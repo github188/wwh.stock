@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-W3CDTD XHTML 1.0 TransitionalEN" "http:www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http:www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="keywords" content=""/>
+    <meta http-equiv="description" content=""/>
+    <link type="text/css" rel="stylesheet" href="${base}/static/css/login.css"/>
+    <style type="text/css">
+        ul.auto-tip li:hover {
+            background-color: #eee;
+        }
+    </style>
+    <title>$!{application_name}</title>
+</head>
+<body>
+<div class="wrap clearfix">
+    <!--header-->
+    <div class="login_header clearfix">
+        <span>$!{application_name}</span>
+    </div>
+    <!--header end-->
+    <!--主体内容--->
+    <div class="container clearfix">
+        <div class="box_l login_box">
+            #if($error)
+                <div class="error_box">$!{error}</div>
+            #end
+            <div class="box" id="login">
+                <form id="fm1" class="fm-v clearfix"
+                      action="${base}/loginpost"
+                      method="post">
+
+                    <div class="row fl-controls-left">
+                        <label for="username" class="fl-label-username">用户名:</label>
+
+
+                        <input id="username" name="username" class="required" tabindex="1" accesskey="n" type="text"
+                               value="admin" size="25" autocomplete="false">
+
+                    </div>
+                    <div class="row fl-controls-left">
+                        <label for="password" class="fl-label-password">密　码:</label>
+
+                        <input id="password" name="password" class="required" tabindex="2" accesskey="p" type="password"
+                               value="111111" size="25" autocomplete="off">
+                    </div>
+
+                    <div class="row1">
+                        <label>&nbsp;</label>
+                        <input id="remenberPass" type="checkbox" value="" class="check">
+                        <span style="vertical-align: bottom;"> 记住用户名和密码</span>
+
+                        <div style="clear: both;"></div>
+                    </div>
+                    <div class="row btn-row">
+                        <input type="submit" class="btn-submit" accesskey="l" value="登录" tabindex="4">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="img_r">
+            <img src="${base}/static/images/img_r.jpg" width="458" height="308"/>
+        </div>
+    </div>
+    <!--主体内容 end--->
+</div>
+</body>
+</html>

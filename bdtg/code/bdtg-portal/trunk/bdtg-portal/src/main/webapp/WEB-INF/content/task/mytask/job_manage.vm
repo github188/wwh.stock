@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="zh-cn">
+<head>
+    <title>用户中心</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="generator" content="客客出品专业威客2.7.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/user.css" rel="stylesheet" type="text/css" id="active-style-user">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.82587500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+</head>
+<body id="user">
+
+<script src="${base}/static/js/model/user/user.js"></script>
+<script src="${base}/static/js/model/user/transaction.js"></script>
+
+<!-- /header -->
+    #parse("includes/ips/home_manage.vm")
+<!-- nav end -->
+
+<div class="container">
+    #parse("includes/ips/nav_manage.vm")
+    <!-- nav-action end -->
+    <div class="content-panel">
+		<div class="tab">
+        	<a href="#" class="selected">我服务的任务</a>
+    	</div>
+		<div class="tab_detail">
+			<div class="action-bar">
+    		<form action="$!{base}/job/jobmember/job_manage" method="post" name="searchTransactionForm" id="searchTransactionForm">
+        		<div class="action-item">
+        			<input type="text" placeholder="请输入订单编号" class="form-control" name="id" id="id" value="$!maps.id">
+        		</div>
+        		<div class="action-item">
+        			<input type="text" placeholder="请输入名称" class="form-control" name="taskTitle" id="taskTitle" value="$!maps.taskTitle">
+        		</div>
+        		<div class="action-item">
+          			<select class="form-control" name="taskStatus" id="taskStatus">
+            			<option value=""  selected="selected">任务状态</option>
+						<option value="0" >未付款</option>
+						<option value="1" >待审核</option>
+						<option value="2" >投稿中</option>
+                        <option value="p2" >投标中</option>
+                        <option value="d2" >竞标中</option>
+                        <option value="3" >任务选稿</option>
+                        <option value="p3" >选标中</option>
+                        <option value="4" >发起投票</option>
+                        <option value="p4" >工作中</option>
+                        <option value="d4" >待托管</option>
+                        <option value="5" >公示中</option>
+                        <option value="6" >交付中</option>
+                        <option value="7" >冻结中</option>
+                        <option value="8" >结束</option>
+                        <option value="9" >失败</option>
+                        <option value="10" >审核失败</option>
+                        <option value="11" >仲裁中</option>
+                        <option value="13" >交付冻结</option>
+					</select>
+        		</div>
+		        <div role="toolbar" class="action-item btn-toolbar">
+		          	<div class="btn-group">
+		            	<button class="btn btn-default" type="submit">搜索</button>
+		          	</div>
+		        </div>
+      		</form>
+      	</div>
+      	
+      	<script type="text/javascript">
+      		$("#taskStatus").val('$!maps.taskStatus');
+      		var typeName = {
+      			"0" : "未付款",
+      			"1" : "待审核",
+      			"2" : "投稿中",
+      			"p2" : "投标中",
+      			"d2" : "竞标中",
+      			"3" : "任务选稿",
+      			"p3" : "选标中",
+      			"4" : "发起投票",
+      			"p4" : "工作中",
+      			"d4" : "待托管",
+      			"5" : "公示中",
+      			"6" : "交付中",
+      			"7" : "冻结中",
+      			"8" : "结束",
+      			"9" : "失败",
+      			"10" : "审核失败",
+      			"11" : "仲裁中",
+      			"13" : "交付冻结"
+      		};
+      	</script>
+      	
+		<div class="table-responsive">
+        	<table class="table table-hover ">
+        		<thead>
+		          	<tr>
+		            	<th>编号</th>
+		            	<th>标题</th>
+		            	<th>金额（元）</th>
+		            	<th>发布时间</th>
+		            	<th>状态</th>
+		            	<th>操作</th>
+		          </tr>
+        		</thead>
+        		<tbody>
+        		#foreach($!model in $!pagenation.list)
+        		<tr>
+            		<td>$!model.id</td>
+            		<td><a href="$!{base}/task-detail-work?id=$!model.id" title="服装公司起名">$!model.taskTitle</a></td>
+            		<td>
+              			<span class="money">
+							<sub>￥</sub>$!NumberTool.format('#0.00', $!model.taskCash)
+						</span>
+            		</td>
+            		<td>$!date.format('yyyy-MM-dd', $!model.createDate) </td>
+            		<td>
+            			<script type="text/javascript">
+            				if(typeName['$!model.taskStatus']){
+            					document.write(typeName['$!model.taskStatus']);
+            				}
+            			</script>
+            		</td>
+		            <td>
+		            	<a href="$!{base}/task-detail-work?id=$!model.id" >查看</a>
+		            	#if($!model.taskStatus == '4')
+		            		<a href="$!{task_url}/$!model.id" target="_blank">工作台</a>
+		            	#end
+		            </td>
+          		</tr>
+        		#end
+              </table>
+		</div>
+##		<div class="clearfix">
+##        	我发布的任务数 共：$!pagenation.total个
+##      	    <ul class="pagination pagination-sm pull-right"></ul>
+##		</div>
+    </div>
+</div>
+    #parse("includes/footer.vm")
+</body>
+</html>

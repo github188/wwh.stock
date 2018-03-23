@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hzskt.bdtg.cm.domain.Info">
+
+	<resultMap id="get-CmInfo-result" type="cn.hzskt.bdtg.cm.domain.Info">
+		<!-- 编号-->
+    	<result property="id" column="id" />
+		<!-- 分类-->
+    	<result property="category" column="category" />
+		<!-- url地址-->
+    	<result property="url" column="url" />
+		<!-- 文件名称-->
+		<result property="fileName" column="file_name" />
+		<!-- 文件名称-->
+		<result property="uploadSize" column="upload_size" />
+	</resultMap>
+	<resultMap id="get-Category-result" type="cn.hzskt.bdtg.cm.domain.InfoCategory">
+		<!-- -->
+		<result property="id" column="id" />
+		<!-- -->
+		<result property="upId" column="up_id" />
+		<!-- -->
+		<result property="catCode" column="cat_code" />
+		<!-- -->
+		<result property="treePath" column="tree_path" />
+		<!-- -->
+		<result property="catName" column="cat_name" />
+		<!-- 1:显示，0：不显示 -->
+		<result property="isShow" column="is_show" />
+		<!-- -->
+		<result property="catOrder" column="cat_order" />
+
+	</resultMap>
+	<select id="CmInfoCategory_selectall" resultMap="get-Category-result">
+		SELECT
+		a.id,
+		a.cat_name,
+		a.tree_path,
+		a.up_id,
+		a.cat_code,
+		a.is_show,
+		a.cat_order
+		FROM
+		cm_info_category a
+		WHERE
+			 a.up_id = '-1'
+		AND a.is_show='1'
+		order by
+		a.cat_order asc
+	</select>
+	<select id="CmInfo_select_all" resultMap="get-CmInfo-result">
+		 SELECT
+			tb.id,
+			tb.category,
+			tb.url,
+			tb.file_name,
+			tb.upload_size
+		FROM
+			cm_info tb
+		WHERE
+			tb.category in (
+			SELECT cic.id FROM cm_info_category cic
+		<where>
+			cic.is_show='1'
+			<if test="treePath!=null and treePath!=''">
+				and tree_path LIKE '${treePath}%'
+			</if>
+		</where>
+			)
+		ORDER BY
+			tb.id DESC
+		LIMIT
+		${limit}, ${size}
+	</select>
+	<select id="CmInfo_select_topshow" resultMap="get-CmInfo-result">
+		SELECT
+			tb.id,
+			tb.category,
+			tb.url,
+			tb.file_name,
+			tb.upload_size
+		FROM
+			cm_info tb
+		WHERE
+			tb.category in (
+				SELECT cic.id FROM cm_info_category cic
+				where  cic.is_show='1'
+				)
+
+		ORDER BY
+			tb.upload_size DESC
+		LIMIT 0, 5
+	</select>
+	<select id="CmInfo_select_all_nums" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			cm_info tb
+		WHERE
+			tb.category in (
+				SELECT cic.id FROM cm_info_category cic
+				<where>
+					cic.is_show='1'
+					<if test="treePath!=null and treePath!=''">
+						and tree_path LIKE '${treePath}%'
+					</if>
+				</where>
+			)
+	</select>
+
+	<update id="CmInfo_update">
+	    update cm_info
+	    <set>
+			upload_size=(IFNULL(upload_size,0)+1)
+	    </set>
+	    where id=#{id}
+	</update>
+
+</mapper>

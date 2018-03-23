@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<portable-config>
+    <config-file path="WEB-INF/classes/spring/application.properties">
+        <replace key="jdbc.url"><![CDATA[jdbc:mysql://rds4bm19r63t22k30u9o.mysql.rds.aliyuncs.com:3306/app?useUnicode=true&characterEncoding=UTF-8]]></replace>
+        <replace key="jdbc.username">app</replace>
+        <replace key="jdbc.password">app2016</replace>
+        <replace key="weather_ds.jdbc.url"><![CDATA[jdbc:mysql://rds8735f74m5601p27m6.mysql.rds.aliyuncs.com:3306/weather?useUnicode=true&characterEncoding=UTF-8]]></replace>
+        <replace key="weather_ds.jdbc.username">weather</replace>
+        <replace key="weather_ds.jdbc.password">weather2016</replace>
+    </config-file>
+    <config-file path="WEB-INF/classes/log4j.properties">
+        <replace key="log4j.rootCategory">ERROR, stdout</replace>
+    </config-file>
+</portable-config>

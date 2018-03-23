@@ -1,0 +1,213 @@
+#parse("includes/header_home.vm")
+<link href="${base}/static/css/style.css" rel="stylesheet" type="text/css">
+<script src="${base}/static/js/bootstrap.min.js"></script>
+<script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+<script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<div class="container">
+<div id="main">
+  <div class="release">
+    <!-- release-progress end-->
+    <div class="release-body">
+    	<div class="release-progress">
+			#parse("task/contract/step.vm")
+		</div>
+		<!-- release-help end  -->
+		<!-- 加载各任务对应步骤  -->
+		<div class="release-form">
+			<form class="form-horizontal" role="form" action="${base}/taskHandle/saveContract" method="post" id="pubTaskFormstep2" name="pubTaskFormstep2" novalidate="novalidate">
+				<input type="hidden" name="taskId" value="$!{taskId}">
+				<div class="form-group">
+					<label for="txt_title" class="col-sm-3 control-label">
+						付款方式
+						<span class="text-danger">*</span>
+					</label>
+					<div class="col-sm-1">
+						<button class="btn btn-primary" value="增加" onclick="appendContract();return false;">增加</button>
+					</div>
+					<div class="col-sm-4">
+						<p class="form-control-static">输入项依次为：付款金额、预计支付日期、备注</p>
+					</div>
+				</div>
+				<div class="form-group" id="contractAttach">
+					<label for="txt_title" class="col-sm-3 control-label">
+						累计金额
+						<span class="text-danger"></span>
+					</label>
+					<div class="col-sm-6">
+						<p class="form-control-static" id="moneys"></p>
+					</div>
+				</div>
+				<!-- 需求描述 end -->
+				<div class="form-group">
+					<label for="upload" class="col-sm-3 control-label">合同附件</label>
+					<div class="col-sm-6">
+					<p class="form-control-static">
+						<input type="file" id="upload" name="upload">
+						<input type="hidden" name="file_ids" id="fileid" class="form-control" value="">
+					</p>
+				</div>
+				<script src="$!{base}/static/js/uploadify/jquery.uploadify.min.js?r=0.01708000" type="text/javascript"></script>
+				<link href="$!{base}/static/js/uploadify/uploadify.css" rel="stylesheet">
+				<script type="text/javascript">
+					$(function() {
+						setTimeout(function() {
+							uploadify({
+								swf : "$!{base}/static/js/uploadify/uploadify.swf",
+								debug:false,
+								text : '上传附件',
+								auto : true,
+								hide : false,
+								exts : '*.pdf;*.doc;*.docx;*.xls;*.ppt;*.wps;*.zip;*.rar;*.txt;*.jpg;*.jpeg;*.gif;*.bmp;*.swf;*.png;*.lsp;*.mp3',
+								size : "2MB",
+								limit : 5,
+								uploader:"$!{base}/taskHandle/upContractFile?random="+Math.random(),
+								deleter:"$!{base}/taskHandle/rmcontract?random="+Math.random()
+							}, {
+								objType : 'task',
+								sessionId:""
+							}, uploadResponse);
+						}, 500);
+					});
+					
+					function uploadResponse(json) {
+						
+					}
+					
+				</script>
+				</div>
+				<!-- 上传附件 end -->
+				<div class="form-group ">
+					<div class="col-sm-offset-3 col-sm-6">
+						<ul class="affix-list" id="fileList">
+							#foreach($file in $attaches)
+								<li class="affix-list-item">$file.fileName &nbsp;<a href="javascript:void(0)" onclick="removeFile(this, '$file.id');">删除</a></li>
+							#end
+						</ul>
+					</div>
+				</div>
+				<!-- 附件列表 end -->
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+						<button type="submit" class="btn btn-primary" value="确认提交" onclick="return isAgreementChecked();">确认提交</button>
+					</div>
+				</div>
+				<div id="contractHidden">
+				</div>
+			</form>
+		</div>      
+		<!-- 加载各任务对应步骤  -->
+		<div id="template" style="display:none;">
+			<div class="form-group">
+					<label for="txt_title" class="col-sm-3 control-label">
+					</label>
+					<div class="col-sm-3">
+						<input type="text" name="contractFare" class="form-control placeholder" placeholder="分期金额">
+					</div>
+					<div class="col-sm-3">
+						<input type="text" name="contratDate" readonly="readonly" data-date-format="yyyy-mm-dd" class="form-control form_datetime" placeholder="预计支付日期">
+					</div>
+					<div class="col-sm-1">
+						<button class="btn btn-primary" onclick="removeContract(this);return false;">删除</button>
+					</div>
+					<br/>
+					<br/>
+					<label for="txt_title" class="col-sm-3 control-label">
+					</label>
+					<div class="col-sm-6">
+						<textarea name="contratDesc" class="form-control" rows="2" placeholder="备注信息"></textarea>
+					</div>
+				</div>
+		</div>
+		
+    </div>
+    <!-- release-body end -->
+  </div>
+  <!-- release end-->
+</div>
+</div>
+#parse("includes/footer.vm")
+<script type="text/javascript">
+	$(function() {
+		$("#active-style-rework").remove();
+	});
+
+	/**
+	  *检查是否选中发布协议*/
+	function isAgreementChecked(){
+		var bool = true, nums=0;
+		var regex = /^([\+\-]?[0-9]+(\.[0-9]+)?)?$/;
+		var data = [];
+		$("#contractHidden").empty();
+		$("form input[name=contractFare]").each(function(i){
+			var numeric = $(this).val();
+			if(!(numeric !== null && $.trim(numeric).length > 0)){
+				tipsOp("金额不能为空！！", "warning");
+				bool = false;
+				return false;
+			}
+			
+			if(!regex.test(numeric)){
+				tipsOp("请输入有效的金额数字！！", "warning");
+				bool = false;
+				return false;
+			}
+			nums += Number(numeric);
+			var fromGroup = $(this).parent().parent();
+			
+			var time = fromGroup.find("input[name=contratDate]").val();
+			var desc = fromGroup.find("textarea[name=contratDesc]").val();
+			var opt = "{\"numeric\":"+numeric+", \"time\":\""+time+"\", \"desc\":\""+desc+"\"}";
+			$("#contractHidden").append("<input type=\"hidden\" name=\"contractData\" value='"+opt+"'>");
+		});
+		
+		if(bool){
+			$("#moneys").html("<sub>￥</sub>" + nums);
+			var confirm = $.scojs_confirm({
+				title : '操作提示',
+				content : "请确认合同金额及合同附件是否正确",
+				action : function() {
+					
+					AjaxForm();
+					
+				}
+			});
+			confirm.show();
+		}
+		return false;
+	}
+	
+	function appendContract(){
+		var item = $("#template").html();
+		$(item).insertBefore("#contractAttach");
+		$('.form_datetime').datetimepicker({
+			language:  'zh-CN',
+			weekStart: 1,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0
+		});
+		return false;
+	}
+	
+	function removeContract(obj){
+		$(obj).parent().parent().remove();
+	}
+	
+	function AjaxForm(){
+		var options = {
+			type : 'post',
+			dataType : "json",
+			success : function(json) {
+				window.location.href="${base}/taskHandle/contractitem?taskId=$!{taskId}";
+			},
+			error : function(json) {
+				tipsOp('服务器繁忙,请重试...','error');
+			}
+		};
+		$('#pubTaskFormstep2').ajaxSubmit(options);
+	}
+	
+</script>

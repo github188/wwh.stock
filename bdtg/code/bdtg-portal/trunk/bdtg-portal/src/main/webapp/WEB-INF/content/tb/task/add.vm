@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>模型新增</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/tb/task/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <table width="100%" cellpadding="5">
+                            <tr>
+                    <td align="left">
+                        任务编号
+                    </td>
+                    <td>
+                                                <input name="taskId" class="easyui-textbox" value="$!{model.taskId}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        模型编号
+                    </td>
+                    <td>
+                                                <input name="modelId" class="easyui-textbox" value="$!{model.modelId}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        稿件数量
+                    </td>
+                    <td>
+                                                <input name="workCount" class="easyui-textbox" value="$!{model.workCount}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        稿件单价
+                    </td>
+                    <td>
+                                                <input name="singleCash" class="easyui-textbox" value="$!{model.singleCash}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        提成比例
+                    </td>
+                    <td>
+                                                <input name="profitRate" class="easyui-textbox" value="$!{model.profitRate}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        失败提成比例
+                    </td>
+                    <td>
+                                                <input name="taskFailRate" class="easyui-textbox" value="$!{model.taskFailRate}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        任务状态
+                    </td>
+                    <td>
+                                                <input name="taskStatus" class="easyui-textbox" value="$!{model.taskStatus}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        任务标题
+                    </td>
+                    <td>
+                                                <input name="taskTitle" class="easyui-textbox" value="$!{model.taskTitle}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        任务描述
+                    </td>
+                    <td>
+                                                <input name="taskDesc" class="easyui-textbox" value="$!{model.taskDesc}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        任务附件
+                    </td>
+                    <td>
+                                                <input name="taskFile" class="easyui-textbox" value="$!{model.taskFile}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        任务图片
+                    </td>
+                    <td>
+                                                <input name="taskPic" class="easyui-textbox" value="$!{model.taskPic}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        行业编号
+                    </td>
+                    <td>
+                                                <input name="indusId" class="easyui-textbox" value="$!{model.indusId}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        父行业编号
+                    </td>
+                    <td>
+                                                <input name="indusPid" class="easyui-textbox" value="$!{model.indusPid}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        用户编号
+                    </td>
+                    <td>
+                                                <input name="uid" class="easyui-textbox" value="$!{model.uid}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        用户名
+                    </td>
+                    <td>
+                                                <input name="username" class="easyui-textbox" value="$!{model.username}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        开始时间
+                    </td>
+                    <td>
+                                                <input name="startTime" class="easyui-textbox" value="$!{model.startTime}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        交稿/选稿截止时间
+                    </td>
+                    <td>
+                                                <input name="subTime" class="easyui-textbox" value="$!{model.subTime}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        任务截止时间
+                    </td>
+                    <td>
+                                                <input name="endTime" class="easyui-textbox" value="$!{model.endTime}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        公示截止时间
+                    </td>
+                    <td>
+                                                <input name="spEndTime" class="easyui-textbox" value="$!{model.spEndTime}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        城市地区
+                    </td>
+                    <td>
+                                                <input name="city" class="easyui-textbox" value="$!{model.city}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        任务赏金
+                    </td>
+                    <td>
+                                                <input name="taskCash" class="easyui-textbox" value="$!{model.taskCash}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        实际金额
+                    </td>
+                    <td>
+                                                <input name="realCash" class="easyui-textbox" value="$!{model.realCash}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        金额区间
+                    </td>
+                    <td>
+                                                <input name="taskCashCoverage" class="easyui-textbox" value="$!{model.taskCashCoverage}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        金额花费
+                    </td>
+                    <td>
+                                                <input name="cashCost" class="easyui-textbox" value="$!{model.cashCost}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        代金券花费
+                    </td>
+                    <td>
+                                                <input name="creditCost" class="easyui-textbox" value="$!{model.creditCost}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        查看次数
+                    </td>
+                    <td>
+                                                <input name="viewNum" class="easyui-textbox" value="$!{model.viewNum}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        投稿次数
+                    </td>
+                    <td>
+                                                <input name="workNum" class="easyui-textbox" value="$!{model.workNum}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        留言次数
+                    </td>
+                    <td>
+                                                <input name="leaveNum" class="easyui-textbox" value="$!{model.leaveNum}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        关注次数
+                    </td>
+                    <td>
+                                                <input name="focusNum" class="easyui-textbox" value="$!{model.focusNum}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        互评次数
+                    </td>
+                    <td>
+                                                <input name="markNum" class="easyui-textbox" value="$!{model.markNum}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        
+                    </td>
+                    <td>
+                                                <input name="isDelineas" class="easyui-textbox" value="$!{model.isDelineas}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        客服UID
+                    </td>
+                    <td>
+                                                <input name="kfUid" class="easyui-textbox" value="$!{model.kfUid}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        付费项
+                    </td>
+                    <td>
+                                                <input name="payItem" class="easyui-textbox" value="$!{model.payItem}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        增值花费
+                    </td>
+                    <td>
+                                                <input name="attCash" class="easyui-textbox" value="$!{model.attCash}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        联系方式
+                    </td>
+                    <td>
+                                                <input name="contact" class="easyui-textbox" value="$!{model.contact}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        唯一编号
+                    </td>
+                    <td>
+                                                <input name="uniqueNum" class="easyui-textbox" value="$!{model.uniqueNum}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        补充需求的时间
+                    </td>
+                    <td>
+                                                <input name="extTime" class="easyui-textbox" value="$!{model.extTime}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        补充的需求描述
+                    </td>
+                    <td>
+                                                <input name="extDesc" class="easyui-textbox" value="$!{model.extDesc}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        联盟任务标识
+                    </td>
+                    <td>
+                                                <input name="taskUnion" class="easyui-textbox" value="$!{model.taskUnion}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        支付宝托管
+                    </td>
+                    <td>
+                                                <input name="alipayTrust" class="easyui-textbox" value="$!{model.alipayTrust}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        是否延期
+                    </td>
+                    <td>
+                                                <input name="isDelay" class="easyui-textbox" value="$!{model.isDelay}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        联盟任务编号
+                    </td>
+                    <td>
+                                                <input name="rTaskId" class="easyui-textbox" value="$!{model.rTaskId}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        是否托管
+                    </td>
+                    <td>
+                                                <input name="isTrust" class="easyui-textbox" value="$!{model.isTrust}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        托管类型
+                    </td>
+                    <td>
+                                                <input name="trustType" class="easyui-textbox" value="$!{model.trustType}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        是否置顶
+                    </td>
+                    <td>
+                                                <input name="isTop" class="easyui-textbox" value="$!{model.isTop}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        是否自动选稿
+                    </td>
+                    <td>
+                                                <input name="isAutoBid" class="easyui-textbox" value="$!{model.isAutoBid}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        任务坐标
+                    </td>
+                    <td>
+                                                <input name="point" class="easyui-textbox" value="$!{model.point}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        增值项购买时间
+                    </td>
+                    <td>
+                                                <input name="payitemTime" class="easyui-textbox" value="$!{model.payitemTime}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        同意协议
+                    </td>
+                    <td>
+                                                <input name="ageRequirement" class="easyui-textbox" value="$!{model.ageRequirement}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        SEO标题
+                    </td>
+                    <td>
+                                                <input name="seoTitle" class="easyui-textbox" value="$!{model.seoTitle}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        SEO关键字
+                    </td>
+                    <td>
+                                                <input name="seoKeyword" class="easyui-textbox" value="$!{model.seoKeyword}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        SEO描述
+                    </td>
+                    <td>
+                                                <input name="seoDesc" class="easyui-textbox" value="$!{model.seoDesc}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        省份
+                    </td>
+                    <td>
+                                                <input name="province" class="easyui-textbox" value="$!{model.province}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        地区
+                    </td>
+                    <td>
+                                                <input name="area" class="easyui-textbox" value="$!{model.area}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        任务置顶状态
+                    </td>
+                    <td>
+                                                <input name="tasktop" class="easyui-textbox" value="$!{model.tasktop}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        任务加急状态
+                    </td>
+                    <td>
+                                                <input name="urgent" class="easyui-textbox" value="$!{model.urgent}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        屏蔽搜索引擎状态
+                    </td>
+                    <td>
+                                                <input name="seohide" class="easyui-textbox" value="$!{model.seohide}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        稿件隐藏状态
+                    </td>
+                    <td>
+                                                <input name="workhide" class="easyui-textbox" value="$!{model.workhide}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        明确预算
+                    </td>
+                    <td>
+                                                <input name="budget" class="easyui-textbox" value="$!{model.budget}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        1,开启工作协同  2，关闭工作协同
+                    </td>
+                    <td>
+                                                <input name="teamwork" class="easyui-textbox" value="$!{model.teamwork}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        是否返还
+                    </td>
+                    <td>
+                                                <input name="isBack" class="easyui-textbox" value="$!{model.isBack}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        赏金类型
+                    </td>
+                    <td>
+                                                <input name="goldtype" class="easyui-textbox" value="$!{model.goldtype}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        礼品名称
+                    </td>
+                    <td>
+                                                <input name="giftname" class="easyui-textbox" value="$!{model.giftname}">
+                    </td>
+                </tr>
+                    </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

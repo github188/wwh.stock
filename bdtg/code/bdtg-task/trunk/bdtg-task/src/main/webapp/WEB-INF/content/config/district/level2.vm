@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>地区管理</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        $(function () {
+            jQuery('#dg').datagrid({
+                url: '${base}/config/district/queryPaged2',
+                method:'get',
+                columns: [[
+                    {field: 'id', checkbox: true}
+                                            , {field: 'upid', title: '上级id', width: 100}
+                                            , {field: 'upname', title: '上级名称', width: 100}
+                                            , {field: 'name', title: '地区名称', width: 100}
+                                            , {field: 'type', title: '地区等级', width: 100}
+//                                            , {field: 'displayorder', title: '排序', width: 100}
+                                            , {field:'opt',title:'操作',width:100,formatter:optionFun,}
+                                    ]],
+                pagination: true,
+                singleSelect: false,
+                fitColumns: true,
+                fit: true,
+                toolbar: '#toolbar',
+                onDblClickRow: function (rowid, rowdata) {
+                    editForm();
+                }
+            });
+        });
+        function optionFun(value,row,index) {
+            return '<a href="javascript:selectRoles('+row.id+');">查看下级</a>';
+        }
+
+        function selectRoles(upid) {
+            window.location=('${base}/config/district/index_3?upid='+upid );
+        }
+        function newForm() {
+            Magic.openWin('新增地区管理', '${base}/config/district/add', 600, 200);
+        }
+        function editForm() {
+            var row = jQuery('#dg').datagrid('getSelected');
+            if (row) {
+                Magic.openWin('编辑地区管理', '${base}/config/district/edit/' + row.id, 600, 300);
+            }
+        }
+        function destroyForm() {
+            var rows = jQuery('#dg').datagrid('getSelections');
+            if (rows.length > 0) {
+                jQuery.messager.confirm('确认删除', '确定删除该记录?', function (r) {
+                    if (r) {
+                        var ids = [];
+                        jQuery.each(rows, function (index, row) {
+                            ids.push(row.id);
+                        });
+                        jQuery.post('${base}/config/district/delete', {'ids': ids.toString()}, function (result) {
+                            if (result.success) {
+                                jQuery('#dg').datagrid('reload');    // reload the user data
+                            } else {
+                                jQuery.messager.show({    // show error message
+                                    title: '错误',
+                                    msg: result.message
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        function contentSearch() {
+                                                var upid=
+                    jQuery('#filter_upid').val();
+                                                                                                                            jQuery('#dg').datagrid('load', {
+                                                            'upid':upid                                                                                                                                                            })
+        }
+
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+<table id="dg" data-options="toolbar:'#toolbar'"></table>
+<div id="toolbar">
+    <div class="search_box">
+##                                    上级id：<input id="filter_upid" class="easyui-validatebox">
+##                                                                                        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+##           onclick="contentSearch()">搜索</a>
+    <ul class="district_level_ul">
+        <a  style="font-size: medium" href="${base}/config/district">一级</a>  <span style="font-size: medium">&nbsp;>> &nbsp; </span>   <a style="color: #0066cb;font-size: medium" href="${base}/config/district/level2">二级</a>   <span style="font-size: medium"> &nbsp;>>&nbsp; </span>    <a style="font-size: medium" href="${base}/config/district/level3">三级</a>
+    </ul>
+    </div>
+    <div class="btn_box">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"
+           onclick="newForm()">新增</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+           onclick="editForm()">编辑</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="destroyForm()">删除</a>
+    </div>
+</div>
+</body>
+</html>

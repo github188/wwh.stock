@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>资料管理</title>
+        <meta charset="UTF-8">
+		#parse("commons/commonJs.vm")
+		#parse("commons/commonCss.vm")
+        <link rel="stylesheet" type="text/css" href="${base}/static/js/webuploader/webuploader.css">
+        <script type="text/javascript" src="${base}/static/js/webuploader/webuploader.js?r=0.85712500"></script>
+        <script type="text/javascript" src="${base}/static/js/webuploader/kppw.webuploader.js"></script>
+        <script type="text/javascript" src="${base}/static/js/webuploader/sweet-alert.min.js?r=0.82587500"></script>
+        <link rel="stylesheet" type="text/css" href="${base}/static/js/webuploader/css/sweet-alert.css">
+	</head>
+	<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+    	<!-- 左侧菜单开始-->
+    	<div data-options="region:'west',split:true"  title="类别" style="width: 200px; overflow: hidden;overflow-y:auto;">
+			<div style=" background:#f8f8f8; border:1px solid #ccc;text-align:left;">
+				<a onclick="jQuery('#grid').tree('reload');" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'ext-icon-arrow_refresh'" style="margin:5px;">刷新</a>
+			</div>
+			<table id="grid"  width="80px" border="0" cellpadding="0" cellspacing="0"></table>
+	    	<input type="hidden" id="needReload" value="0" /> 
+    	</div>
+    	<!-- 左侧菜单结束 -->
+       	<div id="mainPanle" region="center" style="overflow: hidden;" >
+       		<div class="easyui-layout" fit="true">
+
+	       		<div data-options="region:'center',title:'&nbsp;'">
+					<input type="hidden" id="category" name="category" value="">
+		            <table id="contentGrid" class="easyui-datagrid"
+		            		rownumbers="true" pagination="true"
+		            		singleSelect="true" fit="true"
+		            		fitColumns="true" toolbar="#tb">
+		                <thead>
+		                    <tr>
+		                        <th data-options="field:'fileName',align:'center'" width="100" formatter=formatfun>文件名</th>
+		                    </tr>
+		                </thead>
+		            </table>
+		            <div id="tb" style="background:#f8f8f8;">
+                        <div class="btn_box">
+                            <div id="upload" onclick="return uploads()" style="float: left" clas="disenable">上传</div>
+                            &nbsp;&nbsp;
+                            <div class="webuploader-pick" onclick="delfile()"  id="doload">删除</div>
+                            <div style="padding-top: 200px;padding-left: 360px;">
+                                <ul class="affix-list upload-file-list-info" id="fileList"  style="width:280px;"></ul>
+                            </div>
+                        </div>
+					</div>
+		        </div>
+       		</div>
+   	 	</div>
+		<script type="text/javascript">
+				//绑定菜单事件
+				jQuery(function(){
+			        jQuery('#grid').tree({ 
+			        	url:'$!{base}/cm/info/querTree',
+			            checkbox:false,
+			            onlyLeafCheck:false,  
+			            dnd:false,
+			            onClick:function(node){
+			            	var nodeId = node.id;
+			            	if(nodeId < -1) nodeId = "";
+			            	jQuery("#category").val(nodeId);
+			            	contentSearch();
+			            }
+			        });
+                    //上传
+                    $("#upload").KKUploader({
+                                ossType:'fileInfo',
+                                duplicate:true,
+                                fileNumLimit: 1000,
+                                uploadEvents: {
+                                    uploadComplete:function(file){
+                                        var path =$("#"+file.id).find('.webuploader-pick-file-close').attr('data-fileurl');
+                                        var name =file.name;
+                                        var size = file.size;
+										var category=$("#category").val();
+                                        $("#"+file.id).text("");
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '${base}/cm/info/savefile',
+											async:false,
+                                            data: {'path': path,
+													'name':name,
+													'category':category},
+											success:function(data){
+                                                if (data.success) {
+                                                    jQuery.messager.show({    // show error message
+                                                        title: '提示',
+                                                        msg: '上传成功'
+                                                    });
+                                                } else {
+                                                    jQuery.messager.show({    // show error message
+                                                        title: '错误',
+                                                        msg: result.message
+                                                    });
+                                                }
+                                            }
+                                        });
+										contentSearch();
+                                    }
+								},
+                                fileSingleSizeLimit:100*1024*1024			//上传大小限制
+                            },
+                            {
+                                filename : 'upload',//传递给服务端的参数指定上传文本域的name，如果未指定，上传不成功
+                            });
+
+			    });
+				var showbl=false;
+				function uploads(){
+                   var category= jQuery("#category").val();
+					if(category==""){
+						if(!showbl){
+                            jQuery.messager.show({    // show error message
+                                title: '提示',
+                                msg: '请选择正确的分类'
+                            });
+                            showbl=true;
+                            return false;
+						}else{
+                            showbl=false;
+                            return false;
+						}
+					}else{
+						return true;
+					}
+				}
+			    function contentSearch(){
+			    	jQuery("#contentGrid").datagrid('options').url="$!{base}/cm/info/queryPaged";
+			    	jQuery("#contentGrid").datagrid('load', {
+					    "category": jQuery("#category").val()
+					});
+			    }
+
+                function delfile(){
+                    var row = jQuery('#contentGrid').datagrid('getSelected');
+                    if (row) {
+                        jQuery.messager.confirm('确定', '确定删除记录?', function (r) {
+                            if (r) {
+                                jQuery.post('${base}/cm/info/delfile', {'id':row.id,'url':row.url}, function (result) {
+                                    if (result.success) {
+                                        jQuery.messager.show({    // show error message
+                                            title: '提示',
+                                            msg: '删除成功'
+                                        });
+                                        contentSearch();
+                                    } else {
+                                        jQuery.messager.show({    // show error message
+                                            title: '错误',
+                                            msg: result.message
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }else{
+                        jQuery.messager.show({    // show error message
+                            title: '错误',
+                            msg: '请选择文件'
+                        });
+                    }
+                }
+                function formatfun(value,row,index){
+                    return '<a target="_blank" href="'+row.url+'"  style="color:blue;">'+row.fileName+'</a>';
+                  }
+		</script>
+    	<style type="text/css">
+	        #fm{
+	        	margin:0;
+	        	padding:10px 30px;
+	        }
+	        .ftitle{
+	        	font-size:14px;
+	        	font-weight:bold;
+	        	padding:5px 0;
+	        	margin-bottom:10px;
+	        	border-bottom:1px solid #ccc;
+	        }
+	        .fitem{
+	        	margin-bottom:5px;
+	        }
+	        .fitem label{
+		        display:inline-block;
+		        width:80px;
+	        }
+    </style>
+    <style type="text/css">
+		table.altrowstable {
+			font-family: verdana,arial,sans-serif;
+			font-size:11px;
+			color:#333333;
+			border-color: #a9c6c9;
+			border-collapse: collapse;
+		}
+		table.altrowstable th {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #a9c6c9;
+		}
+		table.altrowstable td {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #a9c6c9;
+		}
+	</style>
+    </body>
+</html>

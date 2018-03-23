@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="zh-cn">
+<head>
+    <title>用户中心</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="generator" content="客客出品专业威客2.7.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/user.css" rel="stylesheet" type="text/css" id="active-style-user">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.82587500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+</head>
+<body id="user">
+
+<script src="${base}/static/js/model/user/user.js"></script>
+<script src="${base}/static/js/model/user/transaction.js"></script>
+
+<!-- /header -->
+    #parse("includes/member/home_manage.vm")
+<!-- nav end -->
+
+<div class="container">
+    #parse("includes/member/nav_manage.vm")
+    <!-- nav-action end -->
+	 <form action="/financial/withdraw_submit/step/3" method="post">
+    <div class="content-panel">
+      <div class="tab">
+        <a class="selected" href="index.php?do=user&amp;view=finance&amp;op=withdraw">我要提现</a>
+      </div>
+      <div class="tab_detail">
+  
+      <div class="well well-sm">
+		 #set($user_cash=$session.getAttribute("user_cash"))
+        账户余额：        <b class="money">￥$!user_cash元</b>
+      </div>
+
+  <!--detail内容 start-->
+            <article class="box_detail">
+              <!--messages消息 start-->
+               <p class="text-info">
+                  <i class="fa fa-info-circle"></i>
+                     单日提现最低金额:￥2.00元。                     单日提现最高金额:￥20,000.00元。
+               </p>
+             <!--messages消息 end-->
+             
+                <!--step步骤 start-->
+                  <ul class="step step5">
+                                           <li class="step-item action ">
+                         <span class="step-num">1</span>
+                         <div class="step-text step-bottom">
+                           <p><strong class="step-title">输入金额</strong></p>
+                           <p></p>
+                         </div>
+                       </li>
+                                           <li class="step-item action ">
+                         <span class="step-num">2</span>
+                         <div class="step-text step-bottom">
+                           <p><strong class="step-title">选择方式</strong></p>
+                           <p></p>
+                         </div>
+                       </li>
+                                           <li class="step-item">
+                         <span class="step-num">3</span>
+                         <div class="step-text step-bottom">
+                           <p><strong class="step-title">确认信息</strong></p>
+                           <p></p>
+                         </div>
+                       </li>
+                                           <li class="step-item">
+                         <span class="step-num">4</span>
+                         <div class="step-text step-bottom">
+                           <p><strong class="step-title">等待审核</strong></p>
+                           <p></p>
+                         </div>
+                       </li>
+                                           <li class="step-item">
+                         <span class="step-num">5</span>
+                         <div class="step-text step-bottom">
+                           <p><strong class="step-title">审核通过</strong></p>
+                           <p></p>
+                         </div>
+                       </li>
+                                      </ul>
+               <!--step步骤 end-->
+                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <th>您填写的提现金额为</th>
+					  #set($cash=$session.getAttribute("withdraw").getWithdrawCash())
+					  #set($cash_aftertax=$cash - 1)
+                      <td><b class="money">￥$cash元</b></td>
+                    </tr>
+                    <tr>
+                      <th>网站手续费</th>
+                      <td><b class="money">￥1.00元</b></td>
+
+                    </tr>
+                    <tr class="success">
+                      <th>实际提现金额</th>
+                      <td><b class="money">￥$cash_aftertax元</b></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+
+		
+         <!--页面子导航-->
+
+                <ul class="nav nav-tabs">
+                  <li class="active">
+                  	<a href="#tab_cont_1" data-toggle="tab">第三方交易平台</a>
+  				        </li>
+                  <li class="">
+                  	<a href="#tab_cont_2" data-toggle="tab">绑定银行支付</a>
+  				        </li>
+                </ul>
+
+          <!--end 页面子导航-->
+                <div class="tab-content clearfix mt_10">
+            		  <!--start 三方支付方式-->
+                 <div class="tab-pane active" id="tab_cont_1">
+
+                     
+        <div class="col-sm-3">
+ <div class="form-group">
+        					  	 <label>
+                          <input type="radio" name="online" value="alipayjs" checked="checked">
+          							  <img src="${base}/static/img/ico/alipay_t.gif" align="absmiddle" title="支付宝">
+                       </label>
+                      </div>
+          </div>
+
+            </div>
+<!--end 三方支付方式-->
+  <!--start 绑定银行支付方式-->
+           <div class="tab-pane" id="tab_cont_2">
+			#if(!$cards|| $cards.size()==0)
+                    <div class="form-group clearfix text-center mt_10 mb_30">
+                                       <a class="btn btn-default btn-lg" type="button" href="${base}/financial/banklist"><i class="fa fa-credit-card"></i> 银行认证</a>
+               </div>
+			#else
+				#foreach( $elem in $cards)
+						
+					#set($card_num =$session.getAttribute("carnum"))
+						#if($card_num ==$!{elem.bankAccount})
+                        <label>
+                           <input type="radio" name="offline" value="$!{elem.bankAccount}" checked/>
+                           <img src="${base}/static/img/system/kppw_2.0_$!{elem.bankName}.png" alt="$!{elem.bankName}" title="$!{elem.bankName}">
+                        </label>
+                      #else
+						 <label>
+                           <input type="radio" name="offline" value="$!{elem.bankAccount}" />
+						    <input type="hidden" name="bankid" value="$!{elem.bankId}" />
+                           <img src="${base}/static/img/system/kppw_2.0_$!{elem.bankName}.png" alt="$!{elem.bankName}" title="$!{elem.bankName}">
+                        </label>
+					  #end
+				#end
+			#end
+			</div>
+             <!--end 绑定银行支付方式-->
+          
+			
+       </div>
+ </div>
+   
+   
+   <div class="text-center">
+            <a href="/financial/withdraw_submit/step/1">返回</a>
+        <button class="btn btn-default" type="submit" id="next" >下一步</button>
+      </div>
+
+
+             <div class="clear"></div>
+
+ 
+               <div class="clear"></div>
+           </article>
+         <!--detail内容 end-->
+ 
+  </div>
+  </div>
+  </form><!-- content-panel end -->
+
+            </div><!-- media end -->
+        </div><!-- user-short end -->
+        <script type="text/javascript" src="${base}/static/js/model/user/account.js"></script>
+        
+		
+    </div>
+</div>
+    #parse("includes/footer.vm")
+</body>
+</html>
+
+<script>
+
+</script>

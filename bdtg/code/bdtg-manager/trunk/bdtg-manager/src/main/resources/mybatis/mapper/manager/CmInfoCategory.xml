@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hzskt.bdtg.cm.domain.InfoCategory">
+
+	<resultMap id="get-Category-result" type="cn.hzskt.bdtg.cm.domain.InfoCategory">
+		<!-- -->
+		<result property="id" column="id" />
+		<!-- -->
+		<result property="upId" column="up_id" />
+		<!-- -->
+		<result property="catCode" column="cat_code" />
+		<!-- -->
+		<result property="catName" column="cat_name" />
+		<!-- 1:显示，0：不显示 -->
+		<result property="isShow" column="is_show" />
+		<!-- -->
+		<result property="catOrder" column="cat_order" />
+
+	</resultMap>
+
+	<select id="CmInfoCategory_select_treeNode" resultMap="get-Category-result">
+		SELECT
+			 a.id,
+			 a.cat_name,
+			 a.up_id, 		 
+			 a.cat_code,
+			 a.is_show, 			 
+			 a.cat_order
+	 	 FROM
+		cm_info_category a
+		 <where>
+		 	<if test="upId!=null and upId!=''">
+		 		and a.up_id = #{upId} 
+		 	</if>
+		 </where>
+		 order by 
+		 	a.cat_order asc
+	</select>
+	
+	<insert id="CmInfoCategory_add" parameterType="map">
+	    INSERT INTO cm_info_category(
+			up_id,
+			cat_code,
+			cat_name,
+			is_show,
+			cat_order
+		)
+		values(
+			#{upId} ,    		
+			#{catCode} ,       		
+			#{catName} ,
+			#{isShow} ,     		
+			#{catOrder} 			
+		)
+	</insert>
+	
+	<update id="CmInfoCategory_edit" parameterType="map">
+	    update cm_info_category
+	    <set>
+	        <if test="upId!=null and upId!=''">
+	            up_id = #{upId},
+	        </if>
+	        <if test="catCode!=null and catCode!=''">
+	            cat_code = #{catCode},
+	        </if>
+	        <if test="catName!=null and catName!=''">
+	            cat_name = #{catName},
+	        </if>
+	        <if test="isShow!=null and isShow!=''">
+	            is_show = #{isShow},
+	        </if>
+	        <if test="catOrder!=null and catOrder!=''">
+	            cat_order = #{catOrder}
+	        </if>
+	    </set>
+	    WHERE
+	    	id = #{id}
+	</update>
+	
+	<delete id="CmInfoCategory_remove">
+	    DELETE FROM cm_info_category WHERE id = #{0}
+	</delete>
+</mapper>

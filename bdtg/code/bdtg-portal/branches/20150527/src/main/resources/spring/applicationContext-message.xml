@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd"
+       default-lazy-init="true">
+    <description>Spring消息中间件配置文件</description>
+
+    <context:property-placeholder
+            ignore-unresolvable="true" location="classpath*:/spring/application.properties"/>
+
+
+    <bean id="producer" class="com.aliyun.openservices.ons.api.bean.ProducerBean" init-method="start" destroy-method="shutdown">
+        <property name="properties" > <!--生产者配置信息-->
+            <props>
+                <prop key="ProducerId">${ons.producerId}</prop>
+                <prop key="AccessKey">${ons.accesskey}</prop>
+                <prop key="SecretKey">${ons.secretkey}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="consumer" class="com.aliyun.openservices.ons.api.bean.ConsumerBean" init-method="start" destroy-method="shutdown" lazy-init="false">
+        <property name="properties" > <!--消费者配置信息-->
+            <props>
+                <prop key="ConsumerId">${ons.consumerId}</prop>
+                <prop key="AccessKey">${ons.accesskey}</prop>
+                <prop key="SecretKey">${ons.secretkey}</prop>
+                <!--将消费者线程数固定为50个.
+                <prop key="ConsumeThreadNums">50</prop>
+                -->
+            </props>
+        </property>
+        <property name="subscriptionTable">
+            <map>
+                <entry value-ref="msgMessageListener">
+                    <key>
+                        <bean class="com.aliyun.openservices.ons.api.bean.Subscription">
+                            <property name="topic" value="${ons.topic_task_status}"/>
+                            <property name="expression" value="*"/>
+                        </bean>
+                    </key>
+                </entry>
+                <!--更多的订阅添加entry节点即可-->
+            </map>
+        </property>
+    </bean>
+
+</beans>

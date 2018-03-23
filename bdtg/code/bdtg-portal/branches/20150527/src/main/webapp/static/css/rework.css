@@ -1,0 +1,405 @@
+/* 
+	公共样式 避免修复默认主题下样式 切换主题后 样式无效问题 
+	
+	所有样式修改 请务必在此文件下进行
+*/
+
+/* 2015 9 30 moke  http://localhost/kppw_online/index.php?do=seller&id=1 个人简介内容修改 */
+#shop_banner.banner{
+	height: 280px;
+  text-align: center;
+}
+#shop_banner.banner img{
+  display: inline-block;
+  height: 280px;
+}
+.person-info{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.person-info p{
+	margin-top: 10px;
+}
+.store_name{
+	text-align: center;
+	clear: both;
+	overflow: hidden;
+}
+
+.store_ctrl{
+	margin-bottom: 5px;
+}
+.store_ctrl{
+	clear: both;
+	overflow: hidden;
+}
+
+/* 2016 1 5 jiake */
+.btn-closeStore{
+  width: 76px;
+	margin-right:8px; 
+  float: left;
+}
+.btn-hideStore{
+  width: 76px;
+  float: left;
+}
+/* @media (max-width: 640px) and (min-width: 240px){
+	.store_ctrl{
+		width: 100%;
+	    position: relative;
+        top:10px;
+        left: -38.181818%;
+        border: 0;
+        margin-bottom: 10px;
+	}
+} */
+#seller .left_detail{
+	padding: 0;
+}
+.contact-way{
+	margin-top: 10px;
+}
+@media (max-width: 640px) and (min-width: 240px){
+	.contact-way{
+	    margin-top: 10px;
+    }
+}
+.contact-way p{
+	text-align: left;
+	color: #666;
+}
+.contact-way p span{
+    float: left;
+
+} 
+
+/* end */
+
+/* 2015 9 21 moke  个人店铺 关店&在服务商列表中隐藏 按钮在465~640 区间内被覆盖 只能加50px 下边距 */
+@media (min-width: 465px) and (max-width: 640px) {
+  .store_adv {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 50px;
+  }
+}
+@media (min-width: 240px) and (max-width: 465px) {
+  .store_adv {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+/* end */
+
+/*     2015 9 21  MOKE  图片响应式需要 取消固定高度*/
+ @media (min-width: 240px) and (max-width: 640px) {
+  .banner {
+    height: auto;
+  }
+  .banner img {
+    height: auto;
+  }
+} 
+/* end */
+
+/* 发布商品&发布任务 下一步按钮 下面的 勾选框和 同意 作品出售协议 没有对齐 2015 9 21 moke */
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+	position: absolute;
+	margin-left: -20px;
+    margin-top: 4px;
+}
+/* end */
+
+/* 2015 9 23 moke： width & height   60px->100px*/
+.detail-header-pic img {
+	width: 100px;
+	height: 100px;
+}
+/* end */
+/*支付页面 新添加类名 moke*/ 
+.pay-explain{float: left;} 
+#pay #main .alert span{color:#000;font-weight:bold} 
+#pay #main .alert p{padding:5px 0;}
+.pay-detail{float: right;text-align:right;}
+@media (max-width: 536px) and (min-width: 240px){
+        .pay-detail{float:left;text-align:left;}
+}	
+.clear-float{clear:both}
+.pay-way{display:inline-block;margin:10px 4.3%}
+@media (max-width: 980px) and (min-width: 641px){
+		.pay-way  {margin-left:13%;}		  
+}
+@media (max-width: 640px) and (min-width: 240px){
+		.pay-way {margin-left:20%;}	
+		  
+	}
+#pay #online .btn{width:185px;padding:0}
+.order-detail{border-top:5px solid #eee;padding:15px;display: none}
+.name-phone{float:left;}
+.pay-person{float:right;text-align:right;}
+@media (max-width: 360px) and (min-width: 240px){
+        .pay-person{float:left;text-align:left;}
+	}
+#pay #online .radio-inline{padding-left:0;padding-top:0;margin:10px 2px;}
+#pay #main{width:100%;}
+.payfor{margin-right:10px;}
+#pay #main input[type="radio"]{opacity: 0;}/*支付页面 新添加类名 moke*/ 
+.pay-explain{float: left;} 
+#pay #main .alert span{color:#000;font-weight:bold} 
+#pay #main .alert p{padding:5px 0;}
+.pay-detail{float: right;text-align:right;}
+@media (max-width: 536px) and (min-width: 240px){
+        .pay-detail{float:left;text-align:left;}
+}	
+.clear-float{clear:both}
+.pay-way{display:inline-block;margin:10px 4.3%}
+@media (max-width: 980px) and (min-width: 641px){
+		.pay-way  {margin-left:13%;}		  
+}
+@media (max-width: 640px) and (min-width: 240px){
+		.pay-way {margin-left:20%;}	
+		  
+	}
+#pay #online .btn{width:185px;padding:0}
+.order-detail{border-top:5px solid #eee;padding:15px;display: none}
+.name-phone{float:left;}
+.pay-person{float:right;text-align:right;}
+@media (max-width: 360px) and (min-width: 240px){
+        .pay-person{float:left;text-align:left;}
+	}
+#pay #online .radio-inline{padding-left:0;padding-top:0;margin:10px 2px;}
+#pay #main{width:100%;}
+.payfor{margin-right:10px;}
+#pay #main input[type="radio"]{opacity: 0;}
+/* end */
+/* 2015.9.18 moke 背景图改变 内置表格位置变化 */
+.release-form-step1 form{
+	margin-top: 180px;
+	padding-left: 100px;
+}
+.release-form form {
+	padding-top: 110px;
+}	
+.form-horizontal .control-label-step1 {
+	color: #000;
+}
+.next-step {
+	position: absolute;
+	bottom: 120px;
+	left: 290px
+}
+.next-step_btn {
+	background-color: #d4190d;
+	color: #f8d76b;
+	border: 1px solid #d4190d;
+	padding: 10px 40px
+}
+.input-group-text {
+	color: #ba190f;
+	font-family: "微软雅黑";
+	font-size: 12px;
+	line-height: 20px;
+	margin-left: 150px;
+	margin-top: -10px;
+	margin-bottom: 5px
+}
+
+
+#sendSuggests .modal-dialog {
+	width: 946px
+}
+.form-group-list {
+	width: 180px;
+	margin-top: 10px;
+	float: left;
+	text-align: center
+}
+.form-group-footBtn {
+	clear: both
+}
+.group-tishi {
+	clear: both;
+	color: #f00;
+	padding-left: 30px
+}
+.bargaining-text {
+	color: #ff6f00;
+	font-size: 12px;
+	margin-top: 5px
+}
+.fa-play-circle-text {
+	margin-right: 2px
+}
+.fa {
+	transform: none
+}
+/* end */
+/* 2015 9 28 moke 新增  */
+.pay-ma{
+	float: left;
+	width: 300px;
+	margin-left: 180px;
+	margin-top: 38px;
+	margin-bottom: 30px;
+}
+@media (min-width:980px) and (max-width:1280px){
+		.pay-ma{
+		margin-left: 13%;
+	}
+}
+@media (max-width:767px){
+	 .pay-ma{
+		width:90%; 
+		margin:  30px 5%;
+	}
+}
+.pay-ma img{
+	width: 298px;
+	height: 298px;
+	border: 1px solid #ddd;
+	margin-bottom: 20px;
+	max-width: 298px;
+}
+@media (max-width:767px){
+	#main .pay-ma img{
+		width:100%;
+		max-width: 298px;	
+	}
+}
+ .pay-ma .pay-ma-show{
+	height: 56px;
+	padding: 8px 0 8px 125px;
+	background: url("../../../include/payment/wxpay/-1.png") 50px 8px no-repeat #2f549f;
+	box-sizing: content-box;
+	color: #fff;
+	max-width: 300px;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+.pay-ma .pay-ma-show p{
+	text-align: left;
+}
+.pay-pic{
+	float: left;
+    width: 379px;
+    height: 421px;
+    margin-left: 100px;
+    margin-top: 20px;
+    background: url("../../../include/payment/wxpay/phone-bg.png") 50px 0 no-repeat;
+}
+@media (min-width:980px) and (max-width:1280px){
+	.pay-pic{
+		margin-left: 5%;
+	}
+}
+@media (max-width:767px){
+	.pay-pic{
+		display: none;
+	}
+}
+ .payfor-body{
+	width: 100%;
+	text-align: center;
+}
+#pay .money{
+	width: 100%;
+}
+/* 新增 end */
+
+/* 2015 9 21 moke 上传头像 flash 组件 固定宽度 在手机上 隐藏 */
+.img_cut{
+  overflow: auto;
+}
+/* end */
+
+/* 2015 10 9 moke 修改 */
+.user-meta > li{
+  float: none;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.store-money{
+  color: #fb8835;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* 用户中心 收支明细 > 收支明细 > 账户余额 样式*/
+@media (min-width: 768px){
+	.dl-horizontal dt {
+	    float: left;
+	    width: auto;
+	    clear: left;
+	    padding-right: 10px;
+	    text-align: left;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	}
+} 
+@media (min-width: 768px){
+	.dl-horizontal dd{
+		margin-left: 0;
+
+	}
+}
+/* end */
+/* 收支明细 & 资金流水 */
+#user label{
+	padding-left: 10px;
+}
+/* end */
+
+/* 充值方式 */
+.payfor-selecter{
+	text-align: left;
+}
+/* end */
+
+/* 2015 10 10 moke 个人简介 http://localhost/kppw_online/index.php?do=seller&id=5200 */
+@media (max-width: 640px) and (min-width: 240px){
+	.left_img {
+		width: 100%;
+		height: auto;
+	}
+}
+@media (max-width: 640px) and (min-width: 240px){
+	.left_img img {
+		width: 100%;
+		height: auto;
+	}
+}
+@media (min-width: 240px) and (max-width: 640px) {
+  .store_ctrl {
+    background: #ffffff;
+    position: static;
+
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    -webkit-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+  }
+   .store_ctrl .row .col-sm-4{
+   	margin-bottom: 5px;}
+
+   }
+/* end */
+
+/* 2015 10 10 moke 颜色选择按钮  在330px下 后被挤到下一行 */
+@media (max-width:330px){
+	.header-top .color-selected .nav-item{
+		margin-left: 0;
+	}
+}
+/* end */

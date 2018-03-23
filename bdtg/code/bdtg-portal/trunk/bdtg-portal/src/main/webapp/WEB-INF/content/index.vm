@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+
+<script src="$!{base}/static/newindex/js/jquery.js"></script>
+	#parse("includes/index-header.vm")
+<link rel="stylesheet" type="text/css" href="$!{base}/static/newindex/css/newIndex.css" />
+<body>
+    <div class="nav">
+        <ul class="wrap clearfix">
+            #set($classNum = 1)
+			#parse("includes/index-navmanage.vm")
+        </ul>
+    </div>
+<div class="bannerBox">
+    <div class="slide" id="slide_item">
+        <span class="left_cur" id="left_cur"></span>
+        <span class="right_cur" id="right_cur"></span>
+        <ul class="img_item clearfix">
+            <li><a href="#"><img src="$!{base}/static/newindex/images/lunbo_1.jpg" width="100%"></a></li>
+            <li><a href="#"><img src="$!{base}/static/newindex/images/lunbo_2.jpg" width="100%"></a></li>
+            <li><a href="#"><img src="$!{base}/static/newindex/images/lunbo_3.jpg" width="100%"></a></li>
+        </ul>
+        <div class="num_slide" id="slide_num"></div>
+    </div>
+    <div class="wrap clearfix commonLeft" style="position:absolute;top:20px;">
+        <div class="menu fl">
+            <ul>
+                <li class="menuClass"><i class="icon_title owner"></i>我是业主</li>
+                <li><a onclick="openUrl('${base}/taskpub/pub','_self')">发布项目</a></li>
+                <li><a>货物采购</a></li>
+                <li class="splitline"></li>
+                <li class="menuClass"><i class="icon_title design"></i>我是设计单位</li>
+                <li><a>承接项目</a></li>
+                <li><a onclick="openUrl('${base}/taskpub/zmrc?usrType=2&step=2','_self')">招募人员</a></li>
+                <li><a>货物采购</a></li>
+                <li class="splitline"></li>
+                <li class="menuClass"><i class="icon_title ITer"></i>我是设计人员</li>
+                <li><a>承接任务</a></li>
+            </ul>
+        </div>
+        <div class="infoBox fr">
+            <h2>北斗天工是做什么的？</h2>
+            <a href="" class="info1">
+                <p class="name">网上设计院</p>
+                <span>在线全职|移动办公</span>
+            </a>
+            <a href="" class="info2">
+                <p class="name">项目管理</p>
+            </a>
+            <a href="" class="info3">
+                <p class="name">技术服务</p>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="newsBox">
+    <ul class="newsList wrap clearfix" id="newsScroll">
+        <li><span class="cla_1">石油</span><a href="">内蒙古汇能4亿立方米天然气工程</a><span class="cla_2">设计招标成功</span></li>
+        <li><span class="cla_1">石油</span><a href="">内蒙古汇能4亿立方米天然气工程</a><span class="cla_2">设计招标成功</span></li>
+        <li><span class="cla_1">化工</span><a href="">陕西通化公司，年产1万吨聚胺树脂、涂料1000吨</a><span class="cla_2">设计招标成功</span></li>
+        <li><span class="cla_1">化工</span><a href="">陕西通化公司，年产1万吨聚胺树脂、涂料1000吨</a><span class="cla_2">设计招标成功</span></li>
+        <li><span class="cla_1">化工</span><a href="">内蒙古石化分公司，汽油质量升级改造50万吨 </a><span class="cla_2">设计招标成功</span></li>
+        <li><span class="cla_1">化工</span><a href="">内蒙古石化分公司，汽油质量升级改造50万吨 </a><span class="cla_2">设计招标成功</span></li>
+    </ul>
+</div>
+<a href="" class="imgLink"><img src="$!{base}/static/newindex/images/banner2.png" width="100%"></a>
+<div class="wrap module">
+    <h2  class="icon_title_4"><i></i>项目及货物采购信息</h2>
+    <div class="clearfix">
+        <div class="module_box fl">
+            <div class="module_tab">
+                <a id="task_tab1_0">工程咨询</a>
+                <a id="task_tab1_1">工程设计</a>
+                <a id="task_tab1_2">其他项目信息</a>
+                <a href="${portal_url}/tasklist" class="more">更多 >></a>
+            </div>
+
+            <div class="task_list" id="task_list1_0">
+                <ul class="clearfix">
+                    <li><a href="">陕西通化公司，年产1万吨聚胺树脂、涂料1000吨，前期项目咨询</a><span class="price">¥ 80000</span><span class="status">投标中</span><span class="deadline">截止5月5日</span></li>
+                    <li><a href="">内蒙古石化分公司，汽油质量升级改造50万吨，项目建议书</a><span class="price">¥ 80000</span><span class="status">投标中</span><span class="deadline">截止5月5日</span></li>
+                    <li><a href="">新疆广化，氮肥生产装置技术改造建议书，项目建议书</a><span class="price">¥ 60000</span><span class="status">投标中</span><span class="deadline">截止5月5日</span></li>
+                    <li><a href="">大庆油田，油机工艺改造技术</a><span class="price">¥ 100000</span><span class="status">投标中</span><span class="deadline">截止5月5日</span></li>
+                </ul>
+            </div>
+            <div class="task_list" id="task_list1_1"></div>
+            <div class="task_list" id="task_list1_2"></div>
+        </div>
+        <div class="module_box fr">
+            <div class="module_tab">
+                <a id="task_tab2_0">货物采购</a>
+                <a href="${portal_url}/tasklist" class="more">更多 >></a>
+            </div>
+
+            <div class="task_list" id="task_list2_0">
+                <ul class="clearfix">
+                    <li><a href="">陕西通化公司，年产1万吨聚胺树脂、涂料1000吨，前期项目咨询</a><span class="price">¥ 80000</span><span class="status">投标中</span><span class="deadline">截止5月5日</span></li>
+                    <li><a href="">内蒙古石化分公司，汽油质量升级改造50万吨，项目建议书</a><span class="price">¥ 80000</span><span class="status">投标中</span><span class="deadline">截止5月5日</span></li>
+                    <li><a href="">新疆广化，氮肥生产装置技术改造建议书，项目建议书</a><span class="price">¥ 60000</span><span class="status">投标中</span><span class="deadline">截止5月5日</span></li>
+                    <li><a href="">大庆油田，油机工艺改造技术</a><span class="price">¥ 100000</span><span class="status">投标中</span><span class="deadline">截止5月5日</span></li>
+                </ul>
+            </div>
+            <div class="task_list" id="task_list2_1"></div>
+            <div class="task_list" id="task_list2_2"></div>
+        </div>
+    </div>
+</div>
+
+<a href="" class="imgLink"><img src="$!{base}/static/newindex/images/banner3.png" width="100%"></a>
+<div class="wrap module">
+    <h2  class="icon_title_5"><i></i>猜你喜欢</h2>
+    <ul class="proList clearfix">
+        <li class="margin0">
+            <div class="img"><img src="$!{base}/static/newindex/images/img_3.png"></div>
+            <p class="text">化工厂投资计划书</p>
+            <span class="price">¥24000/本</span>
+            <span class="sale">销量：28</span>
+        </li>
+        <li>
+            <div class="img"><img src="$!{base}/static/newindex/images/img_4.png"></div>
+            <p class="text">职业化工项目经理</p>
+            <span class="price">¥24000/本</span>
+            <span class="sale">销量：28</span>
+        </li>
+        <li>
+            <div class="img"><img src="$!{base}/static/newindex/images/img_5.png"></div>
+            <p class="text">某某化工工程公司</p>
+            <span class="price">¥24000/本</span>
+            <span class="sale">销量：28</span>
+        </li>
+        <li>
+            <div class="img"><img src="$!{base}/static/newindex/images/img_6.png"></div>
+            <p class="text">某某化工建设设计单位</p>
+            <span class="price">¥24000/本</span>
+            <span class="sale">销量：28</span>
+        </li>
+    </ul>
+</div>
+<a href="" class="imgLink"><img src="$!{base}/static/newindex/images/banner4.png" width="100%"></a>
+<div class="wrap module">
+    <h2  class="icon_title_6"><i></i>设计单位招募</h2>
+    <div class="module_box fullpage">
+        <div class="module_tab">
+            <a href="" class="more">更多 >></a>
+        </div>
+
+        <div class="task_list" id="task_list3_0">
+            <ul class="recruit_list clearfix">
+                <li class="cover"><img src="$!{base}/static/newindex/images/img_7.png" width="100%"></li>
+                <li>
+                    <p class="title">项目管理<a href="">详情</a></p>
+                    <p class="require">个人资历：高级</p>
+                    <p class="require">工作经验：拥有6年丰富工程</p>
+                    <p class="require">职位要求：充足的个人拓展空间</p>
+                    <p class="require">邮箱：chanhh@163.com</p>
+                    <a class="applyBtn">我要雇他</a>
+                </li>
+                <li>
+                    <p class="title">项目建设管理<a href="">详情</a></p>
+                    <p class="require">个人资历：高级</p>
+                    <p class="require">工作经验：拥有6年丰富工程</p>
+                    <p class="require">职位要求：充足的个人拓展空间</p>
+                    <p class="require">邮箱：chanhh@163.com</p>
+                    <a class="applyBtn">我要雇他</a>
+                </li>
+                <li>
+                    <p class="title">生产运营<a href="">详情</a></p>
+                    <p class="require">个人资历：高级</p>
+                    <p class="require">工作经验：拥有6年丰富工程</p>
+                    <p class="require">职位要求：充足的个人拓展空间</p>
+                    <p class="require">邮箱：chanhh@163.com</p>
+                    <a class="applyBtn">我要雇他</a>
+                </li>
+            </ul>
+        </div>
+        <div class="task_list" id="task_list3_1"></div>
+    </div>
+</div>
+<a href="" class="imgLink"><img src="$!{base}/static/newindex/images/banner7.png" width="100%"></a>
+<div class="wrap module overhidden" id="proScroll">
+    <h2  class="icon_title_7"><i></i>优质服务商推荐</h2>
+    <span class="left_curx" id="left_curx"></span>
+    <span class="right_curx" id="right_curx"></span>
+    <ul class="providerList clearfix">
+        <li>
+            <div class="libox">
+                <div class="provider_logo"><img src="$!{base}/static/newindex/images/provider_1.png"></div>
+                <div class="followAndstars clearfix"><span>24人关注</span><span>50人收藏</span></div>
+                <div class="followAndstarsBtn clearfix"><a class="current"><i class="icon_follow"></i>关注</a><a class="current"><i class="icon_star"></i>收藏</a></div>
+                <p class="company">STI中国设计咨询有限公司</p>
+                <p class="provider_form"><span class="name">好评</span><span class="stars star_5"></span></p>
+                <p class="provider_form"><span class="name">性质:</span>企业</p>
+                <p class="provider_form"><span class="name">地址:</span>北京</p>
+            </div>
+        </li>
+        <li>
+            <div class="libox">
+                <div class="provider_logo"><img src="$!{base}/static/newindex/images/provider_2.png"></div>
+                <div class="followAndstars clearfix"><span>24人关注</span><span>50人收藏</span></div>
+                <div class="followAndstarsBtn clearfix"><a><i class="icon_follow"></i>关注</a><a><i class="icon_star"></i>收藏</a></div>
+                <p class="company">青海省化工设计研究院有限公司</p>
+                <p class="provider_form"><span class="name">好评</span><span class="stars star_5"></span></p>
+                <p class="provider_form"><span class="name">性质:</span>企业</p>
+                <p class="provider_form"><span class="name">地址:</span>北京</p>
+            </div>
+        </li>
+        <li>
+            <div class="libox">
+                <div class="provider_logo"><img src="$!{base}/static/newindex/images/provider_3.png"></div>
+                <div class="followAndstars clearfix"><span>24人关注</span><span>50人收藏</span></div>
+                <div class="followAndstarsBtn clearfix"><a><i class="icon_follow"></i>关注</a><a><i class="icon_star"></i>收藏</a></div>
+                <p class="company">中国石油工程建设(集团)公司</p>
+                <p class="provider_form"><span class="name">好评</span><span class="stars star_5"></span></p>
+                <p class="provider_form"><span class="name">性质:</span>企业</p>
+                <p class="provider_form"><span class="name">地址:</span>北京</p>
+            </div>
+        </li>
+        <li>
+            <div class="libox">
+                <div class="provider_logo"><img src="$!{base}/static/newindex/images/provider_1.png"></div>
+                <div class="followAndstars clearfix"><span>24人关注</span><span>50人收藏</span></div>
+                <div class="followAndstarsBtn clearfix"><a class="current"><i class="icon_follow"></i>关注</a><a class="current"><i class="icon_star"></i>收藏</a></div>
+                <p class="company">STI中国设计咨询有限公司</p>
+                <p class="provider_form"><span class="name">好评</span><span class="stars star_5"></span></p>
+                <p class="provider_form"><span class="name">性质:</span>企业</p>
+                <p class="provider_form"><span class="name">地址:</span>北京</p>
+            </div>
+        </li>
+        <li>
+            <div class="libox">
+                <div class="provider_logo"><img src="$!{base}/static/newindex/images/provider_2.png"></div>
+                <div class="followAndstars clearfix"><span>24人关注</span><span>50人收藏</span></div>
+                <div class="followAndstarsBtn clearfix"><a class="current"><i class="icon_follow"></i>关注</a><a class="current"><i class="icon_star"></i>收藏</a></div>
+                <p class="company">青海省化工设计研究院有限公司</p>
+                <p class="provider_form"><span class="name">好评</span><span class="stars star_5"></span></p>
+                <p class="provider_form"><span class="name">性质:</span>企业</p>
+                <p class="provider_form"><span class="name">地址:</span>北京</p>
+            </div>
+        </li>
+        <li>
+            <div class="libox">
+                <div class="provider_logo"><img src="$!{base}/static/newindex/images/provider_3.png"></div>
+                <div class="followAndstars clearfix"><span>24人关注</span><span>50人收藏</span></div>
+                <div class="followAndstarsBtn clearfix"><a class="current"><i class="icon_follow"></i>关注</a><a class="current"><i class="icon_star"></i>收藏</a></div>
+                <p class="company">中国石油工程建设(集团)公司</p>
+                <p class="provider_form"><span class="name">好评</span><span class="stars star_5"></span></p>
+                <p class="provider_form"><span class="name">性质:</span>企业</p>
+                <p class="provider_form"><span class="name">地址:</span>北京</p>
+            </div>
+        </li>
+    </ul>
+    <!-- <div class="num_slide" id="slide_numx"></div> -->
+</div>
+<a href="" class="imgLink"><img src="$!{base}/static/newindex/images/banner5.png" width="100%"></a>
+<div class="wrap module">
+    <h2  class="icon_title_8"><i></i>项目流程管理</h2>
+    <ul class="processList clearfix">
+        <li><a href="" class="proBg"><img src="$!{base}/static/newindex/images/icon_pro1.png">项目前期</a></li>
+        <li><a href="" class="proBg"><img src="$!{base}/static/newindex/images/icon_pro2.png">工程设计</a></li>
+        <li><a href="" class="proBg"><img src="$!{base}/static/newindex/images/icon_pro3.png">货物采购</a></li>
+        <li><a href="" class="proBg"><img src="$!{base}/static/newindex/images/icon_pro4.png">施工</a></li>
+        <li><a href="" class="proBg"><img src="$!{base}/static/newindex/images/icon_pro5.png">投料试车</a></li>
+        <li><a href="" class="proBg"><img src="$!{base}/static/newindex/images/icon_pro6.png">商业化生产</a></li>
+    </ul>
+</div>
+<a href="" class="imgLink"><img src="$!{base}/static/newindex/images/banner6.png" width="100%"></a>
+<ul class="serviceList wrap clearfix">
+    <li><a href=""><div class="serviceImg">优</div>品质保障</a></li>
+    <li><a href=""><div class="serviceImg">保</div>交易保障</a></li>
+    <li><a href=""><div class="serviceImg">助</div>帮助中心</a></li>
+</ul>
+<div class="rules">
+    <div class="wrap clearfix">
+        <div class="fl column">
+            <a href="">新手注册</a>
+            <a href="">在线认证</a>
+            <a href="">业主认证</a>
+            <a href="">服务商认证</a>
+            <a href="">团队抢注</a>
+        </div>
+        <div class="fl column">
+            <a href="">平台规则</a>
+            <a href="">交易担保</a>
+            <a href="">服务协议</a>
+            <a href="">质保协议</a>
+            <a href="">服务保障</a>
+        </div>
+        <div class="fl column">
+            <a href="">法律保护</a>
+            <a href="">平台仲裁</a>
+            <a href="">风险赔付</a>
+        </div>
+    </div>
+</div>
+<div class="fixBox">
+    <a href=""><img src="$!{base}/static/newindex/images/fixBox_01.png" width="100%"><span>联系客服</span></a>
+    <a href=""><img src="$!{base}/static/newindex/images/fixBox_03.png" width="100%"><span>请教专家</span></a>
+    <a href=""><img src="$!{base}/static/newindex/images/fixBox_05.png" width="100%"><span>客服热线</span></a>
+    <a href=""><img src="$!{base}/static/newindex/images/fixBox_07.png" width="100%"><span>安信保</span></a>
+    <a href=""><img src="$!{base}/static/newindex/images/fixBox_09.png" width="100%"><span>新手上路</span></a>
+</div>
+
+</body>
+<script type="text/javascript">
+    //图片切换
+    var items= $("#slide_item");
+    var items_tool = $("#slide_num");
+    Slide(items,items_tool,"opacity","click",$("#left_cur"),$("#right_cur"),true);//焦点图
+
+    tab("task_tab1_","task_list1_",3,"","current","click","");
+    tab("task_tab2_","task_list2_",3,"","current","click","");
+    tab("task_tab3_","task_list3_",2,"","current","click","");
+    tab("recruit_tab_","recruit_list_",2,"","current","click","");
+
+
+    //优质服务商列表滚动
+    var items_arrx = $(".providerList").find("li"); //获得包含图片的对象
+    num = items_arrx.length;
+    $(".providerList").css("width",num*25+"%");
+    $(".providerList li").css("width",100/num+"%");
+    Slide($("#proScroll"),$("#slide_numx"),"l_r","click",$("#left_curx"),$("#right_curx"),4);
+    //新闻滚动效果
+    listScroll("newsScroll",35,20,500);
+
+    var c;
+    function listScroll(id,lineHeight,interval,speed){
+        var _=Function;
+        with(o=document.getElementById(id)){ innerHTML+=innerHTML; onmouseover=_("c=1"); onmouseout=_("c=0");}
+        (F=_(("if(#%"+lineHeight+"||!c)#++,#%=o.scrollHeight>>1;setTimeout(F,#%"+lineHeight+"?"+interval+":"+speed+");").replace(/#/g,"o.scrollTop")))();
+    }
+    function Slide(items,items_tool,type,Trigger,up_btn,down_btn,picNum){
+        var items_arr = items.find("li"), //获得包含图片的对象
+                items_ul = items.find("ul");//获得包含图片对象的ul层
+        var item_height = items_arr.first().height(),
+                item_width = items_arr.first().width();//滚动块的宽高
+        var select_point_innerHTML = "",
+                run_interval = null,
+                now = 0,
+                img_count = items_arr.length;//滚动里需要的几个参数
+
+        if(!picNum) picNum = 1;
+        var slide_func = {
+            auto_run : function(){
+                var _this = this;
+                if (now == 0) {
+                    _this.select_point_show(now);
+                    _this.slide_run(now);
+                };
+                run_interval = setInterval(function(){
+                    now++;
+                    if(now > (img_count-picNum)){ now = 0 }
+                    _this.select_point_show(now);
+                    _this.slide_run(now);
+                },3000);
+            },
+            slide_run : function(n){
+                switch (type){
+                    case "opacity":
+                        items_arr.fadeOut(1000);items_arr.eq(n).fadeIn(1000);break;
+                    case "l_r":
+                        items_ul.stop().animate({"margin-left" : n*item_width*-1+"px"},"slow");break;
+                    case "t_b":
+                        items_ul.stop().animate({"margin-top" : n*item_height*-1+"px"},"slow");break;
+                };
+            },
+            select_point_show : function(n){
+                items_tool_a.removeClass("hover");
+                items_tool_a.eq(n).addClass("hover");
+            }
+        };
+
+        if (items_tool.find('img').size() == 0) {
+            items_arr.each(function(i){/* 生成触发的1，2，3，4那种热点。并排列好图片的位置。 */
+                // if(type == "l_r"){$(this).css("left",i*item_width);items_arr.show();}//横向排列大图片
+                // if(type == "t_b"){$(this).css("top",i*item_height);items_arr.show();}//纵向排列大图片
+                select_point_innerHTML += '<a href="javascript:void(0);"></a>';
+            });
+            items_tool.html(select_point_innerHTML);
+        }
+
+        var items_tool_a = items_tool.find("a");//获得很有热点LINK的对象集合
+        items_tool_a.first().addClass("hover");
+
+        items_tool_a.each(function(i){//触发图片热点切换图片
+            $(this).bind(Trigger, function(){
+                clearInterval(run_interval);
+                now = i;
+                slide_func.select_point_show(now);
+                slide_func.slide_run(now);
+                //slide_func.auto_run();
+            })
+        });
+
+        if(up_btn){
+            up_btn.click(function(){
+                clearInterval(run_interval);
+                now--;
+                if(now<0){now=(img_count-picNum)}
+                slide_func.select_point_show(now);
+                slide_func.slide_run(now);
+                //slide_func.auto_run();
+            });
+        }
+        if(down_btn){
+            down_btn.click(function(){
+                clearInterval(run_interval);
+                now++;
+                if(now > (img_count-picNum)){ now = 0 }
+                slide_func.select_point_show(now);
+                slide_func.slide_run(now);
+                //slide_func.auto_run();
+            });
+        }
+        slide_func.auto_run();//启动自动轮播
+        items.hover(function () {
+            clearInterval(run_interval);
+        }, function () {
+            slide_func.auto_run();
+        });
+
+
+    }
+    function tab(tab_title,tab_text,column,auto_css,hover_css,layout_type,default_type,show_active){
+        /* 普通TAB： tab_title,tab_text,column(TAB个数),auto_css(普通项样式),hover_css(当前项样式),layout_type(触发手段),default_type(默认热点)，show_active：tab切换后的初始化 */
+        if(!hover_css){var hover_css=""}
+        if(!auto_css){var auto_css=""}
+        if(!layout_type){var layout_type="mouseover"}
+        if(!default_type){var default_type=0}
+        type_hover(default_type);
+        for(var i = 0 ;i<column;i++){
+            (function(i){
+                $("#"+tab_title+i).off().on(layout_type, function(){type_hover(i);});
+            })(i);
+        }
+        function type_hover(i){
+            for(var id = 0;id<column;id++){
+                $("#"+tab_text+id).hide();
+                $("#"+tab_title+id).addClass(auto_css);
+                $("#"+tab_title+id).removeClass(hover_css);
+            };
+            $("#"+tab_text+i).show();
+            if(show_active)
+                show_active(i);
+            $("#"+tab_title+i).removeClass(auto_css);
+            $("#"+tab_title+i).addClass(hover_css);
+        };
+    }
+</script>
+	#parse("includes/footer.vm")
+</html>

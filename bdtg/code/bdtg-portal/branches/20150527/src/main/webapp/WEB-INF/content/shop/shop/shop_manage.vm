@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="zh-cn">
+<head>
+    <title>用户中心</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="generator" content="客客出品专业威客2.7.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/user.css" rel="stylesheet" type="text/css" id="active-style-user">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.82587500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+</head>
+<body id="user">
+
+<script src="${base}/static/js/model/user/user.js"></script>
+<script src="${base}/static/js/model/user/transaction.js"></script>
+
+<!-- /header -->
+    #parse("includes/ips/home_manage.vm")
+<!-- nav end -->
+
+<div class="container">
+    #parse("includes/ips/nav_manage.vm")
+    <!-- nav-action end -->
+	<div class="content-panel">
+      <div class="tab">
+        <a class="selected" data-toggle="tab">店铺设置</a>
+      </div>
+      <div class="tab_detail">
+      		<!-- 店铺设置 start -->
+          <form role="form" action="index.php?do=user&amp;view=shop&amp;op=setting" method="post" class="form-horizontal" name="editShopForm" id="editShopForm" novalidate="novalidate">
+          	<input type="hidden" name="formhash" id="formhash" value="d03921">
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="shop_name">店铺名称：</label>
+                <div class="col-sm-8">
+                  <input type="text" name="shop_name" id="shop_name" class="form-control" value="admin">
+                </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="shop_slogans">个性签名：</label>
+              <div class="col-sm-8">
+                 <textarea id="shop_slogans" name="shop_slogans" rows="5" class="form-control"></textarea>
+ <span class="help-block"><i class="fa"></i>您的店铺广告语直接影响到他人对您的第一印象，请慎重对待。</span>
+              </div>
+            </div>
+<!--			
+<div class="form-group">
+              <label class="col-sm-2 control-label">所在地：</label>
+              <div class="col-sm-10 row">
+                <div class="col-sm-3">
+                  <select class="form-control" name="province" id="province" onchange="getZone(this.value,'city');">
+                  	<option>选择省份</option>
+<option value="1">北京市</option>
+<option value="20">广西</option>
+<option value="21">海南省</option>
+<option value="22">重庆市</option>
+<option value="23">四川省</option>
+<option value="24">贵州省</option>
+<option value="25">云南省</option>
+<option value="26">西藏</option>
+<option value="27">陕西省</option>
+<option value="28">甘肃省</option>
+<option value="29">青海省</option>
+<option value="30">宁夏</option>
+<option value="31">新疆</option>
+<option value="32">台湾省</option>
+<option value="33">香港</option>
+<option value="34">澳门</option>
+<option value="35">海外</option>
+<option value="19">广东省</option>
+<option value="18">湖南省</option>
+<option value="2">天津市</option>
+<option value="3">河北省</option>
+<option value="4">山西省</option>
+<option value="5">内蒙古</option>
+<option value="6">辽宁省</option>
+<option value="7">吉林省</option>
+<option value="8">黑龙江省</option>
+<option value="9">上海市</option>
+<option value="10">江苏省</option>
+<option value="11">浙江省</option>
+<option value="12">安徽省</option>
+<option value="13">福建省</option>
+<option value="14">江西省</option>
+<option value="15">山东省</option>
+<option value="16">河南省</option>
+<option value="17">湖北省</option>
+<option value="36">其他</option>
+                  </select>
+                  </div>
+                <div class="col-sm-3">
+                  <select class="form-control" name="city" id="city" onchange="getZone(this.value,'area');">
+                  	<option>选择城市</option>
+                  </select>
+                </div>
+               <div class="col-sm-3">
+                  <select class="form-control" name="area" id="area">
+                  	<option>选择区域</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+<div class="form-group">
+      	<label class="col-sm-2 control-label" for="address">详细地址：</label>
+        <div class="col-sm-4">
+          <input type="hidden" name="address" id="address" class="form-control" value="">
+  <div id="span_address" style="padding-top:8px;"></div>
+    	</div>
+<div class="col-sm-4">
+<input type="hidden" name="coordinate" id="coordinate" value="">
+  <a href="javascript:setMap('1');" class="btn btn-default btn-sm">标注地图</a>
+      	</div>
+  	</div>
+	-->
+<div class="form-group">
+      	<label class="col-sm-2 control-label" for="address">店铺头部图片</label>
+        <div class="col-sm-6">
+       <!--   <a href="javascript:changeBanner('1');void(0);" id="change_banner">点击更改图片</a>-->
+   		<div class="modal-body">
+            <p class="text-info mb_10"><i class="fa fa-info-circle"></i> <strong>提示</strong> 最佳图片尺寸：1200*280像素</p>
+            <img id="banner_img" onerror="this.src='${base}/static/images/store_banner.jpg'" src="${base}/static/images/store_banner.jpg" alt="banner" class="img-responsive mb_20">
+ 	<div id="upload1" class="uploadify" style="height: 30px; width: 120px;"><object id="SWFUpload_0" type="application/x-shockwave-flash" data="static/js/uploadify/uploadify.swf?preventswfcaching=1464068742925" width="120" height="30" class="swfupload" style="position: absolute; z-index: 1;"><param name="wmode" value="transparent"><param name="movie" value="static/js/uploadify/uploadify.swf?preventswfcaching=1464068742925"><param name="quality" value="high"><param name="menu" value="false"><param name="allowScriptAccess" value="always"><param name="flashvars" value="movieName=SWFUpload_0&amp;uploadURL=%2Ftest%2Findex.php%3Fdo%3Dajax%26view%3Dupload%26flash%3D1%26fileType%3Datt%26filename%3Dupload1%26objType%3Dtask%26taskId%3DNaN%26workId%3DNaN&amp;useQueryString=false&amp;requeueOnError=false&amp;httpSuccess=&amp;assumeSuccessTimeout=30&amp;params=PHPSESSID%3D4cmqif60r0e7fabok4ud8utp71&amp;filePostName=upload1&amp;fileTypes=*.*&amp;fileTypesDescription=All%20Files&amp;fileSizeLimit=0&amp;fileUploadLimit=1&amp;fileQueueLimit=999&amp;debugEnabled=false&amp;buttonImageURL=%2Ftest%2F&amp;buttonWidth=120&amp;buttonHeight=30&amp;buttonText=&amp;buttonTextTopPadding=0&amp;buttonTextLeftPadding=0&amp;buttonTextStyle=color%3A%20%23000000%3B%20font-size%3A%2016pt%3B&amp;buttonAction=-110&amp;buttonDisabled=false&amp;buttonCursor=-2"></object><div id="upload1-button" class="uploadify-button " style="height: 30px; line-height: 30px; width: 120px;"><span class="uploadify-button-text">上传图片</span></div></div><div id="upload1-queue" class="uploadify-queue"></div>
+ 	<input type="hidden" name="file_id" id="fileid" class="form-control">
+ 	<input type="hidden" name="banner" id="banner_path" class="form-control">
+        </div>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label" for="address">店铺背景图片</label>
+<div id="bground" class="modal-body col-sm-6">
+                <p class="text-info mb_10">
+                    <i class="fa fa-info-circle"></i> <strong>提示</strong>
+                    店铺背景图片,宽度必须为950px。支持.jpg,.gif,.png,.jpeg格式。
+                </p>
+                <img id="background_img" class="img-responsive mb_20" onerror="this.src='${base}/static/images/store_banner.jpg'" src="${base}/static/images/store_banner.jpg">
+                <div class="form-inline pull-right">
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="repeat" value="repeat-x"> 平铺
+                        </label>
+                      </div>
+                    <select id="position" name="position" class="form-control">
+                        <option value="left top" selected="selected">居中对齐</option>
+                        <option value="center top">居左对齐</option>
+                        <option value="right top">居右对齐</option>
+                     </select>
+                </div>
+ <div id="upload2" class="uploadify" style="height: 30px; width: 120px;"><object id="SWFUpload_1" type="application/x-shockwave-flash" data="static/js/uploadify/uploadify.swf?preventswfcaching=1464068742957" width="120" height="30" class="swfupload" style="position: absolute; z-index: 1;"><param name="wmode" value="transparent"><param name="movie" value="static/js/uploadify/uploadify.swf?preventswfcaching=1464068742957"><param name="quality" value="high"><param name="menu" value="false"><param name="allowScriptAccess" value="always"><param name="flashvars" value="movieName=SWFUpload_1&amp;uploadURL=%2Ftest%2Findex.php%3Fdo%3Dajax%26view%3Dupload%26flash%3D1%26fileType%3Datt%26filename%3Dupload2%26objType%3Dtask%26taskId%3DNaN%26workId%3DNaN&amp;useQueryString=false&amp;requeueOnError=false&amp;httpSuccess=&amp;assumeSuccessTimeout=30&amp;params=PHPSESSID%3D4cmqif60r0e7fabok4ud8utp71&amp;filePostName=upload2&amp;fileTypes=*.*&amp;fileTypesDescription=All%20Files&amp;fileSizeLimit=0&amp;fileUploadLimit=1&amp;fileQueueLimit=999&amp;debugEnabled=false&amp;buttonImageURL=%2Ftest%2F&amp;buttonWidth=120&amp;buttonHeight=30&amp;buttonText=&amp;buttonTextTopPadding=0&amp;buttonTextLeftPadding=0&amp;buttonTextStyle=color%3A%20%23000000%3B%20font-size%3A%2016pt%3B&amp;buttonAction=-110&amp;buttonDisabled=false&amp;buttonCursor=-2"></object><div id="upload2-button" class="uploadify-button " style="height: 30px; line-height: 30px; width: 120px;"><span class="uploadify-button-text">上传图片</span></div></div><div id="upload2-queue" class="uploadify-queue"></div>
+ <input type="hidden" name="file_id" id="fileid" class="form-control">
+ 			<input type="hidden" name="background" id="background_path" class="form-control">
+            </div>
+    	</div>
+
+<!-- 
+<div class="form-group">
+              <label class="col-sm-2 control-label" for="seo_title">SEO标题：</label>
+                <div class="col-sm-8">
+                  <input type="text"  name="seo_title" id="seo_title"  class="form-control" value="">
+                </div>
+            </div>
+
+<div class="form-group">
+              <label class="col-sm-2 control-label" for="seo_keyword">SEO关键词：</label>
+                <div class="col-sm-8">
+                  <input type="text"  name="seo_keyword" id="seo_keyword"  class="form-control" value="">
+                </div>
+            </div>
+  <div class="form-group">
+              <label class="col-sm-2 control-label" for="seo_desc">SEO描述：</label>
+              <div class="col-sm-8">
+                 <textarea id="seo_desc" name="seo_desc" rows="5"   class="form-control"> </textarea>
+              </div>
+-->
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-default" type="submit" value="1">保存</button>
+                <span class="text-success" id="tipsUser"></span>
+              </div>
+            </div>
+          </form>
+      		<!-- 基本资料 end -->
+      </div>
+  </div>
+</div>
+    #parse("includes/footer.vm")
+</body>
+</html>

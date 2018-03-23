@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hzskt.bdtg.task.domain.Task">
+
+	<resultMap id="get-Task-result" type="cn.hzskt.bdtg.task.domain.Task">
+		<id property="id" column="ID" />
+		<!-- 稿件数量-->
+    	<result property="workCount" column="work_count" />
+		<!-- 稿件单价-->
+    	<result property="singleCash" column="single_cash" />
+		<!-- 提成比例-->
+    	<result property="profitRate" column="profit_rate" />
+		<!-- 失败提成比例-->
+    	<result property="taskFailRate" column="task_fail_rate" />
+		<!-- 任务状态-->
+    	<result property="taskStatus" column="task_status" />
+		<!-- 任务标题-->
+    	<result property="taskTitle" column="task_title" />
+		<!-- 任务描述-->
+    	<result property="taskDesc" column="task_desc" />
+		<!-- 任务附件-->
+    	<result property="taskFile" column="task_file" />
+		<!-- 任务图片-->
+    	<result property="taskPic" column="task_pic" />
+		<!-- 行业编号-->
+    	<result property="indusId" column="indus_id" />
+		<!-- 父行业编号-->
+    	<result property="indusPid" column="indus_pid" />
+		<!-- 用户编号-->
+    	<result property="uid" column="uid" />
+		<!-- 用户名-->
+    	<result property="username" column="username" />
+		<!-- 开始时间-->
+    	<result property="startTime" column="start_time" />
+		<!-- 交稿/选稿截止时间-->
+    	<result property="subTime" column="sub_time" />
+		<!-- 任务截止时间-->
+    	<result property="endTime" column="end_time" />
+		<!-- 公示截止时间-->
+    	<result property="spEndTime" column="sp_end_time" />
+		<!-- 城市地区-->
+    	<result property="city" column="city" />
+		<!-- 任务赏金-->
+    	<result property="taskCash" column="task_cash" />
+		<!-- 实际金额-->
+    	<result property="realCash" column="real_cash" />
+		<!-- 金额区间-->
+    	<result property="taskCashCoverage" column="task_cash_coverage" />
+		<!-- 金额花费-->
+    	<result property="cashCost" column="cash_cost" />
+		<!-- 代金券花费-->
+    	<result property="creditCost" column="credit_cost" />
+		<!-- 查看次数-->
+    	<result property="viewNum" column="view_num" />
+		<!-- 投稿次数-->
+    	<result property="workNum" column="work_num" />
+		<!-- 留言次数-->
+    	<result property="leaveNum" column="leave_num" />
+		<!-- 关注次数-->
+    	<result property="focusNum" column="focus_num" />
+		<!-- 互评次数-->
+    	<result property="markNum" column="mark_num" />
+		<!-- -->
+    	<result property="isDelineas" column="is_delineas" />
+		<!-- 客服UID-->
+    	<result property="kfUid" column="kf_uid" />
+		<!-- 付费项-->
+    	<result property="payItem" column="pay_item" />
+		<!-- 增值花费-->
+    	<result property="attCash" column="att_cash" />
+		<!-- 联系方式-->
+    	<result property="contact" column="contact" />
+		<!-- 唯一编号-->
+    	<result property="uniqueNum" column="unique_num" />
+		<!-- 补充需求的时间-->
+    	<result property="extTime" column="ext_time" />
+		<!-- 补充的需求描述-->
+    	<result property="extDesc" column="ext_desc" />
+		<!-- 联盟任务标识-->
+    	<result property="taskUnion" column="task_union" />
+		<!-- 支付宝托管-->
+    	<result property="alipayTrust" column="alipay_trust" />
+		<!-- 是否延期-->
+    	<result property="isDelay" column="is_delay" />
+		<!-- 联盟任务编号-->
+    	<result property="rTaskId" column="r_task_id" />
+		<!-- 是否托管-->
+    	<result property="isTrust" column="is_trust" />
+		<!-- 托管类型-->
+    	<result property="trustType" column="trust_type" />
+		<!-- 是否置顶-->
+    	<result property="isTop" column="is_top" />
+		<!-- 是否自动选稿-->
+    	<result property="isAutoBid" column="is_auto_bid" />
+		<!-- 任务坐标-->
+    	<result property="point" column="point" />
+		<!-- 增值项购买时间-->
+    	<result property="payitemTime" column="payitem_time" />
+		<!-- 同意协议-->
+    	<result property="ageRequirement" column="age_requirement" />
+		<!-- SEO标题-->
+    	<result property="seoTitle" column="seo_title" />
+		<!-- SEO关键字-->
+    	<result property="seoKeyword" column="seo_keyword" />
+		<!-- SEO描述-->
+    	<result property="seoDesc" column="seo_desc" />
+		<!-- 省份-->
+    	<result property="province" column="province" />
+		<!-- 地区-->
+    	<result property="area" column="area" />
+		<!-- 任务置顶状态-->
+    	<result property="tasktop" column="tasktop" />
+		<!-- 任务加急状态-->
+    	<result property="urgent" column="urgent" />
+		<!-- 屏蔽搜索引擎状态-->
+    	<result property="seohide" column="seohide" />
+		<!-- 稿件隐藏状态-->
+    	<result property="workhide" column="workhide" />
+		<!-- 明确预算-->
+    	<result property="budget" column="budget" />
+		<!-- 1,开启工作协同  2，关闭工作协同-->
+    	<result property="teamwork" column="teamwork" />
+		<!-- 是否返还-->
+    	<result property="isBack" column="is_back" />
+		<!-- 赏金类型-->
+    	<result property="goldtype" column="goldtype" />
+		<!-- 礼品名称-->
+    	<result property="giftname" column="giftname" />
+		<!-- 担保金额-->
+    	<result property="guarantee" column="guarantee" />
+		<!-- 创建时间-->
+    	<result property="createDate" column="create_Date" />
+		<!-- 修改时间-->
+    	<result property="updateDate" column="update_Date" />
+		<!-- 产品类型,存放的是字典表的id，以逗号分隔， 详见 sys_dict task_product_type-->
+    	<result property="product" column="product" />
+		<!-- 行业类别，以逗号分隔详见sys_dict task_zhuanye_type-->
+    	<result property="profession" column="profession" />
+		<!-- 人才选择模式 1、个人 2、团体 3、企业-->
+    	<result property="talentType" column="talentType" />
+		<!-- 个人要求-->
+    	<result property="talentPerson" column="talent_person" />
+		<!-- 团队要求-->
+    	<result property="talentTeam" column="talent_team" />
+		<!-- 企业资质-->
+    	<result property="talentEnt" column="talent_ent" />
+		<!-- 团队人数-->
+    	<result property="teamNum" column="teamNum" />
+		<!-- 企业支付方式-->
+    	<result property="entPayment" column="ent_payment" />
+		<!-- 支付类型 1、全款 2、分期-->
+    	<result property="crashPayType" column="crash_payType" />
+		<!-- 分期数， 如果是全款则为空-->
+    	<result property="crashPayNum" column="crash_payNum" />
+		<!-- 分期付款-->
+    	<result property="crashPayStages" column="crash_pay_stages" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+
+	<sql id="Task_Base_Column_List">
+		ID,
+		<!-- 模型编号-->
+    	model_id,
+		<!-- 稿件数量-->
+    	work_count,
+		<!-- 稿件单价-->
+    	single_cash,
+		<!-- 提成比例-->
+    	profit_rate,
+		<!-- 失败提成比例-->
+    	task_fail_rate,
+		<!-- 任务状态-->
+    	task_status,
+		<!-- 任务标题-->
+    	task_title,
+		<!-- 任务描述-->
+    	task_desc,
+		<!-- 任务附件-->
+    	task_file,
+		<!-- 任务图片-->
+    	task_pic,
+		<!-- 行业编号-->
+    	indus_id,
+		<!-- 父行业编号-->
+    	indus_pid,
+		<!-- 用户编号-->
+    	uid,
+		<!-- 用户名-->
+    	username,
+		<!-- 开始时间-->
+    	start_time,
+		<!-- 交稿/选稿截止时间-->
+    	sub_time,
+		<!-- 任务截止时间-->
+    	end_time,
+		<!-- 公示截止时间-->
+    	sp_end_time,
+		<!-- 城市地区-->
+    	city,
+		<!-- 任务赏金-->
+    	task_cash,
+		<!-- 实际金额-->
+    	real_cash,
+		<!-- 金额区间-->
+    	task_cash_coverage,
+		<!-- 金额花费-->
+    	cash_cost,
+		<!-- 代金券花费-->
+    	credit_cost,
+		<!-- 查看次数-->
+    	view_num,
+		<!-- 投稿次数-->
+    	work_num,
+		<!-- 留言次数-->
+    	leave_num,
+		<!-- 关注次数-->
+    	focus_num,
+		<!-- 互评次数-->
+    	mark_num,
+		<!-- -->
+    	is_delineas,
+		<!-- 客服UID-->
+    	kf_uid,
+		<!-- 付费项-->
+    	pay_item,
+		<!-- 增值花费-->
+    	att_cash,
+		<!-- 联系方式-->
+    	contact,
+		<!-- 唯一编号-->
+    	unique_num,
+		<!-- 补充需求的时间-->
+    	ext_time,
+		<!-- 补充的需求描述-->
+    	ext_desc,
+		<!-- 联盟任务标识-->
+    	task_union,
+		<!-- 支付宝托管-->
+    	alipay_trust,
+		<!-- 是否延期-->
+    	is_delay,
+		<!-- 联盟任务编号-->
+    	r_task_id,
+		<!-- 是否托管-->
+    	is_trust,
+		<!-- 托管类型-->
+    	trust_type,
+		<!-- 是否置顶-->
+    	is_top,
+		<!-- 是否自动选稿-->
+    	is_auto_bid,
+		<!-- 任务坐标-->
+    	point,
+		<!-- 增值项购买时间-->
+    	payitem_time,
+		<!-- 同意协议-->
+    	age_requirement,
+		<!-- SEO标题-->
+    	seo_title,
+		<!-- SEO关键字-->
+    	seo_keyword,
+		<!-- SEO描述-->
+    	seo_desc,
+		<!-- 省份-->
+    	province,
+		<!-- 地区-->
+    	area,
+		<!-- 任务置顶状态-->
+    	tasktop,
+		<!-- 任务加急状态-->
+    	urgent,
+		<!-- 屏蔽搜索引擎状态-->
+    	seohide,
+		<!-- 稿件隐藏状态-->
+    	workhide,
+		<!-- 明确预算-->
+    	budget,
+		<!-- 1,开启工作协同  2，关闭工作协同-->
+    	teamwork,
+		<!-- 是否返还-->
+    	is_back,
+		<!-- 赏金类型-->
+    	goldtype,
+		<!-- 礼品名称-->
+    	giftname,
+		<!-- 担保金额-->
+    	guarantee,
+		<!-- 创建时间-->
+    	create_Date,
+		<!-- 修改时间-->
+    	update_Date,
+		<!-- 产品类型,存放的是字典表的id，以逗号分隔， 详见 sys_dict task_product_type-->
+    	product,
+		<!-- 行业类别，以逗号分隔详见sys_dict task_zhuanye_type-->
+    	profession,
+		<!-- 人才选择模式 1、个人 2、团体 3、企业-->
+    	talentType,
+		<!-- 个人要求-->
+    	talent_person,
+		<!-- 团队要求-->
+    	talent_team,
+		<!-- 企业资质-->
+    	talent_ent,
+		<!-- 团队人数-->
+    	teamNum,
+		<!-- 企业支付方式-->
+    	ent_payment,
+		<!-- 支付类型 1、全款 2、分期-->
+    	crash_payType,
+		<!-- 分期数， 如果是全款则为空-->
+    	crash_payNum,
+		<!-- 分期付款-->
+    	crash_pay_stages,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	
+	<select id="Task_select_all" resultMap="get-Task-result">
+	    select 
+     		<include refid="Task_Base_Column_List" />
+     	from 
+     		task_content
+     	where 
+     		task_status not in(1, 10)
+     	<if test="status!=null and status!=''">
+     	    and task_status = #{status}
+     	</if>
+     	<if test="indusPid!=null and indusPid!=''">
+     	    and indus_pid = #{indusPid}
+     	</if>
+     	<if test="indusId!=null and indusId!= ''">
+			and indus_id=#{indusId}
+     	</if>
+     	ORDER BY 
+     		CREATE_DATE DESC
+	</select>
+	
+	<select id="Task_select_nums" resultType="int">
+	    select count(id) from task_content 
+	    where 
+     		task_status not in(1, 10)
+     	<if test="status!=null and status!=''">
+     	    and task_status = #{status}
+     	</if>
+     	<if test="indusPid!=null and indusPid!=''">
+     	    and indus_pid = #{indusPid}
+     	</if>
+     	<if test="indusId!=null and indusId!= ''">
+			and indus_id = #{indusId}     	    
+     	</if>
+	</select>
+	
+	<select id="Task_get" resultMap="get-Task-result">
+	    select <include refid="Task_Base_Column_List" /> FROM task_content where id=#{0}
+	</select>
+	
+	<select id="MyTask_select_all" resultType="map">
+	    select 
+	    	tk.id,
+	    	tk.task_title, 
+     		tk.task_cash, 
+     		tk.cash_cost,
+     		tk.create_date,
+     		tk.task_status,
+     		(select count(mk.id) from task_mark mk where mk.obj_id = tk.id)  as marknums, 
+     		(select count(tc.id) from task_contract tc where tc.tk_id = tk.id and ifnull(tc.py_status, 0)=0) as payNum,
+     		bd.id as bid
+     	from 
+     		task_content tk 
+     		left join task_bid bd on bd.task_id=tk.id and bd.bid_status=4
+     	<where>
+     	    <if test="uid!=null and uid!=''">
+     	        and tk.uid = #{uid}
+     	    </if>
+     	    <if test="id!=null and id!=''">
+     	        and tk.id=#{id}
+     	    </if>
+     	    <if test="title!=null and title!=''">
+     	        and tk.task_title like '%${title}%'
+     	    </if>
+     	    <if test="status!=null and status!=''">
+     	        and tk.task_status=#{status}
+     	    </if>
+     	</where>
+     	ORDER BY 
+     		create_date DESC
+	</select>
+	
+	<select id="MyTask_select_nums" resultType="int">
+	    select count(id) from task_content  
+	    <where>
+     	    <if test="uid!=null and uid!=''">
+     	        and uid = #{uid}
+     	    </if>
+     	    <if test="id!=null and id!=''">
+     	        and id=#{id}
+     	    </if>
+     	    <if test="title!=null and title!=''">
+     	        and task_title like '%${title}%'
+     	    </if>
+     	    <if test="status!=null and status!=''">
+     	        and task_status=#{status}
+     	    </if>
+     	</where>
+	</select>
+	
+	<select id="MyTask_bid_select_all" resultType="map">
+	    SELECT 
+	    	tk.id,
+	    	tk.task_title, 
+     		tk.task_cash, 
+     		tk.cash_cost,
+     		tk.create_date,
+     		tk.task_status,
+     		bd.bid_status,
+     		bd.create_date as bdtime,
+     		(select count(mk.id) from task_mark mk where mk.obj_id = tk.id)  as marknums, 
+     		bd.id as bid
+     	FROM 
+     		task_content tk, task_bid bd
+     	<where>
+     	    tk.id = bd.task_id
+     	    <if test="uid!=null and uid!=''">
+     	        and bd.uid = #{uid}
+     	    </if>
+     	    <if test="id!=null and id!=''">
+     	        and id=#{id}
+     	    </if>
+     	    <if test="title!=null and title!=''">
+     	        and tk.task_title like '%${title}%'
+     	    </if>
+     	    <if test="status!=null and status!=''">
+     	        and tk.task_status=#{status}
+     	    </if>
+     	    <if test="bidStatus!=null and bidStatus!=''">
+     	        and bd.bid_status=#{bidStatus}
+     	    </if>
+     	</where>
+	</select>
+	
+	<select id="MyTask_bid_select_nums" resultType="int">
+	    SELECT 
+	    	count(tk.id)
+     	FROM 
+     		task_content tk, task_bid bd
+     	<where>
+     	    tk.id = bd.task_id
+     	    <if test="uid!=null and uid!=''">
+     	        and bd.uid = #{uid}
+     	    </if>
+     	    <if test="id!=null and id!=''">
+     	        and id=#{id}
+     	    </if>
+     	    <if test="title!=null and title!=''">
+     	        and tk.task_title like '%${title}%'
+     	    </if>
+     	    <if test="status!=null and status!=''">
+     	        and tk.task_status=#{status}
+     	    </if>
+     	    <if test="bidStatus!=null and bidStatus!=''">
+     	        and bd.bid_status=#{bidStatus}
+     	    </if>
+     	</where>
+	</select>
+	
+</mapper>

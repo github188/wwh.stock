@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>编辑</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/job/duty/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+		
+		
+		/**
+ * 选择城市
+ * @param id
+ * @param element
+ */
+function getitem(id, element) {
+	jQuery("#"+element).empty();
+	if(id==""||id==null){
+
+	}else{
+		jQuery.post("${base}/job/folder-permission/load_item",{"major":id},function(data){
+			jQuery.each(data, function(index,item){
+				var folders = item.folders;
+				var cfolder = folders.children;
+				var selects;
+				jQuery("#"+element).append("<input name='folder' type='checkbox' value='"+folders.id+"'>"+folders.name);
+				selects="<select name='folder' ><option value=''>请选择</option>";
+				jQuery.each(cfolder, function(i,item){
+					selects=selects+"<option value='"+item.id+"'>"+item.name+"</option>";	
+				});
+				selects=selects+"</select><br/>";
+				jQuery("#"+element).append(selects);
+			});
+		},"json");
+	}
+}
+
+ $(function () {
+ $("input[name='item']").click(function(){
+ 	var id = $(this).attr("id");
+	var major_select = "major_"+id;
+	var duty_select = "duty_"+id;
+	
+	if($("#"+id).is(':checked')==false){
+	$("#"+"duty_default_"+id).prop("selected",true);
+	$("#"+"major_default_"+id).prop("selected",true);
+	$("#"+major_select).attr("disabled",true);
+	$("#"+duty_select).attr("disabled",true);
+	}else{
+	$("#"+major_select).attr("disabled",false);
+	$("#"+duty_select).attr("disabled",false);
+	}
+  });  
+ });
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <input type="hidden" name="id" value="$!{model.id}">
+		<input type="hidden" name="userid" value="$!{model.uid}">
+        <table width="100%" cellpadding="5">
+                            <tr>
+                    <td align="left">
+                        用户名
+                    </td>
+                    <td>
+                                                <input name="username" readonly class="easyui-textbox" value="$!{model.userName}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left" id="itemtd">
+                        主项
+                    </td>
+                    <td>
+                               #foreach( $item in $data)
+								#if($!item.checked == "true")
+								<input name='item' id="${item.id}" type='checkbox' value='${item.id}' checked>${item.name}
+								#else
+								<input name='item' id="${item.id}" type='checkbox' value='${item.id}'>${item.name}
+								#end
+									#if($!item.checked == "true")
+									 <select id="major_${item.id}" name="major" >
+										#else
+									 <select id="major_${item.id}" name="major" disabled="true">
+									#end		
+													<option value="" id="major_default_${item.id}">请选择</option>
+													 #foreach( $major in $item.majors)
+														#if($!major.value == ${item.major})
+															<option value="${major.value}" selected>${major.content}</option>
+														#else
+															<option value="${major.value}" >${major.content}</option>
+														#end
+													#end
+									 </select>
+									 #if($!item.checked == "true")
+									 <select id="duty_${item.id}" name="duty" >
+										#else
+									 <select id="duty_${item.id}" name="duty" disabled="true">
+									#end		
+													<option value="" id="duty_default_${item.id}">请选择</option>
+													 #foreach( $duty in $item.dutys)
+														#if($!duty.type == ${item.duty})
+															<option value="${duty.type}" selected>${duty.name}</option>
+														#else
+															<option value="${duty.type}">${duty.name}</option>
+														#end	
+													#end
+									 </select>
+									 <br/>
+								#end
+                    </td>
+                </tr>
+                    </table>
+   </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()" id="btn">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

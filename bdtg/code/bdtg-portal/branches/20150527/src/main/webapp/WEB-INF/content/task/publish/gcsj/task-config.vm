@@ -1,0 +1,388 @@
+#parse("includes/header_home.vm")
+<link href="${base}/static/css/style.css" rel="stylesheet" type="text/css">
+<div class="container">
+<div id="main">
+  <div class="release">
+    	<div class="release-progress">
+			#parse("task/publish/gcsj/task-step.vm")
+    	</div>
+    <!-- release-progress end-->
+    <div class="release-body">
+		<!-- release-help end  -->
+		<!-- 加载各任务对应步骤  -->
+		<div class="release-form">
+			<form class="form-horizontal" role="form" action="${base}/taskpub/pubsubmit" method="post" id="pubTaskFormstep2" name="pubTaskFormstep2" novalidate="novalidate">
+				<input type="hidden" name="step" value="$!taskstep">
+				<input type="hidden" name="usrType" value="$!usrType">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">
+						产品选择
+						<span class="text-danger"></span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control placeholder" readonly="readonly" value="$!model.productName" id="txt_product" name="productName" placeholder="产品信息选择">
+						<input type="hidden" id="task_product" name="product" value="$!model.product"/>
+					</div>
+					<div class="col-sm">
+						<button type="button" class="btn btn-primary" onclick="choseProduct();">选择</button>
+					</div>
+					<div class="col-sm-offset-2 col-sm-8">
+						<span class="help-block"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-3 control-label">
+						最高限价
+					</label>
+					<div class="col-sm-3">
+						<div class="input-group">
+			              		<input type="text" id="txt_task_cash" name="taskCash" class="form-control" value="$!model.taskCash" placeholder="0.00" onkeyup="clearstr(this);">
+			              		<span class="input-group-addon">元</span>
+			            </div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="upload" class="col-sm-3 control-label">标书上传</label>
+					<div class="col-sm-4">
+					<p class="form-control-static">
+						<input type="file" id="upload" name="upload">
+						<input type="hidden" name="file_ids" id="fileid" class="form-control" value="">
+					</p>
+				</div>
+				<div class="col-sm-4">
+					<p class="form-control-static">最多5个附件，每个附件不得超过2M。</p>
+				</div>
+				<script src="$!{base}/static/js/uploadify/jquery.uploadify.min.js?r=0.01708000" type="text/javascript"></script>
+				<link href="$!{base}/static/js/uploadify/uploadify.css" rel="stylesheet">
+				<script type="text/javascript">
+					$(function() {
+						setTimeout(function() {
+							uploadify({
+								swf : "$!{base}/static/js/uploadify/uploadify.swf",
+								debug:false,
+								text : '上传附件',
+								auto : true,
+								hide : false,
+								exts : '*.pdf;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.wps;*.zip;*.rar;*.txt;*.jpg;*.jpeg;*.gif;*.bmp;*.swf;*.png;*.lsp;*.mp3',
+								size : "5MB",
+								limit : 5,
+								uploader:"$!{base}/taskpub/upload?random="+Math.random(),
+								deleter:"$!{base}/taskpub/deleteFile?random="+Math.random()+"&objType=task-biddoc"
+							}, {
+								objType : "task-biddoc",
+								sessionId:sessionId
+							}, uploadResponse);
+						}, 500);
+					});
+					
+					function uploadResponse(json) {
+						
+					}
+				</script>
+				</div>
+				<!-- 上传附件 end -->
+				<div class="form-group ">
+					<div class="col-sm-offset-3 col-sm-6">
+						<ul class="affix-list" id="fileList">
+							#foreach($file in $attaches)
+								#if($!file)
+									<li class="affix-list-item">$file.fileName &nbsp;<a href="javascript:void(0)" onclick="removeFile(this, '$file.id', 'task-biddoc');">删除</a></li>
+								#end
+							#end
+						</ul>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-3 control-label">
+						支付方式
+						<span class="text-danger"></span>
+					</label>
+					<div class="col-sm-3">
+						<div class="checkbox" style="left:-23px;">
+								<label>
+									<input type="radio" #if($!model.crashPayType == '1') checked="checked" #end value="1" name="crashPayType" onclick="stagesPay();">
+									全款
+								</label>
+								&nbsp;&nbsp;&nbsp;
+								<label>
+									<input id="stagespay" type="radio" #if($!model.crashPayType == '2') checked="checked" #end value="2"  name="crashPayType" onclick="stagesPay();">
+									分期
+								</label>
+								<input type="hidden" id="txt_crashPayStages" name="crashPayStages" />
+							</div>
+					</div>
+				</div>
+				<div class="form-group" style="display:none;" id="stagespay_hidden">
+					<label for="txt_mobile" class="col-sm-3 control-label">
+						分期数
+					</label>
+					<div class="col-sm-1">
+						<select class="form-control" name="crashPayNum" id="stagespay_num" onchange="stagesPayInput();">
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+				</div>
+				
+				<!-- 手机号码 end -->
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+						<button type="submit" class="btn btn-primary" value="下一步" onclick="return isAgreementChecked();">下一步</button>
+						<a href="$!{base}/taskpub/step?usrType=$!{usrType}&step=2&indusPid=$!model.indusPid" class="btn btn-link">返回上一步</a>
+						<input type="hidden" id="choseTypeHidden" name="choseTypeHidden" value="$!model.choseTypeHidden"/>
+						<input type="hidden" id="paymentHidden" name="paymentHidden" value="$!model.paymentHidden"/>
+						<input type="hidden" id="stagesHidden" name="stagesHidden" value="$!model.stagesHidden"/>
+					</div>
+				</div>
+				<!-- form-group end -->
+			</form>
+		</div>      <!-- 加载各任务对应步骤  -->
+    </div>
+    <!-- release-body end -->
+  </div>
+  <!-- release end-->
+</div>
+</div>
+#parse("includes/footer.vm")
+<script type="text/javascript">
+	$(function() {
+		$("#active-style-rework").remove();
+	});
+	
+	var callback = null;
+	
+	function choseProduct(){
+		var modal = $.scojs_modal({
+			remote : "/taskpub/task-chose-product?code=task_product_type&type=1",
+			title : '产品类型选择'
+		});
+		modal.show();
+		callback = function(keys, vals){
+			$("#txt_product").val(selectedKeys.join("+"));
+			if(vals && vals.length > 0) $("#task_product").val(vals.join(","));
+		};
+	}
+
+	function choseProfession(){
+		var modal = $.scojs_modal({
+			remote : "/taskpub/task-chose-product?code=task_zhuanye_type&type=1",
+			title : '专业选择'
+		});
+		modal.show();
+		callback = function(keys, vals){
+			$("#txt_profession").val(selectedKeys.join("+"));
+			if(vals && vals.length > 0) $("#task_profession").val(vals.join(","));
+		};
+	}
+	
+	function chosePersional(){
+		var modal = $.scojs_modal({
+			remote : "/taskpub/task-chose-product?code=task_gerenyaoqi_type&type=1",
+			title : '个人要求选择'
+		});
+		modal.show();
+		callback = function(keys, vals){
+			$("#txt_persional").val(selectedKeys.join("+"));
+			if(vals && vals.length > 0) $("#task_profession").val(vals.join(","));
+		};
+	}
+	
+	function choseTeam(){
+		var modal = $.scojs_modal({
+			remote : "/taskpub/task-chose-product?code=task_gerenyaoqi_type&type=1",
+			title : '团队要求选择'
+		});
+		modal.show();
+		callback = function(keys, vals){
+			$("#txt_team_required").val(selectedKeys.join("+"));
+			if(vals && vals.length > 0) $("#task_team_requird").val(vals.join(","));
+		};
+	}
+	
+	function choseTaskCus(){
+		var modal = $.scojs_modal({
+			remote : "/taskpub/task-chose-product?code=task_rwhf_type&type=2",
+			title : '产品类型选择'
+		});
+		modal.show();
+		callback = function(keys, vals){
+			$("#txt_taskcus").val(selectedKeys.join("+"));
+			if(vals && vals.length > 0) $("#task_cycle").val(vals.join(","));
+		};
+	}
+	
+	function choseTypeMethod(){
+		personalRequired();
+		teamRequired();
+		entRequired();
+	}
+	
+	function personalRequired(){
+		var checked = $("#choseType_personal").attr("checked");
+		if(checked){
+			$("#personal_requirement").show();
+			$("input[name='ent_payment']").attr("checked", false);  
+		}
+		else{
+			$("#personal_requirement").hide();
+			$("#txt_persional").val("");
+			$("#task_profession").val("");
+		}
+	}
+	
+	function teamRequired(){
+		var checked = $("#choseType_team").attr("checked");
+		if(checked){
+			$("#team_requirement").show();
+			$("#team_requirement_num").show();
+		}
+		else{
+			$("#team_requirement").hide();
+			$("#team_requirement_num").hide();
+			
+			$("#teamNum_required").val("");
+			$("#txt_team_required").val("");
+			$("#task_team_requird").val("");
+		}
+	}
+	
+	function entRequired(obj){
+		var checked = $("#choseType_ent").attr("checked");
+		if(checked){
+			$("#ent_requirement").show();
+			$("#ent_requirement_payment").show();
+		}
+		else{
+			$("#ent_requirement").hide();
+			$("#ent_requirement_payment").hide();
+			$("#txt_ent_required").val("");
+			$("input[name='ent_payment']").attr("checked", false);
+		}
+	}
+	
+	function stagesPay(){
+		var checked = $("#stagespay").attr("checked");
+		if(checked){
+			stagesPayInput();
+			$("#stagespay_hidden").show();
+		}
+		else{
+			$("#stagespay_hidden").hide();
+		}
+	}
+	
+	function stagesPayInput(){
+		$("#stagespay_hidden div:gt(0)").remove();
+		var num = $("#stagespay_num").val();
+		for(var i=0;i<num;i++){
+			var html = "<div class=\"col-sm-2\" style=\"width:120px;\">";
+				html += "<div class=\"input-group\">";
+				html += "<input type=\"text\" class=\"form-control\" name=\"stages_num\" placeholder=\"百分比\">";
+				html += "<span class=\"input-group-addon\">%</span>";
+				html += "</div>";
+				html += "</div>";
+			$("#stagespay_hidden").append(html);			
+		}
+	}
+	
+	function isAgreementChecked(){
+		var choseType = [], choseTypeName = [];
+		$("input[name='ck_talentType']").each(function(){
+			if($(this).attr("checked")){
+				choseType.push($(this).val());
+				choseTypeName.push($(this).parent().text().trim());
+			}
+		});
+		$("#choseTypeHidden").val(choseType.join("_"));
+		$("#txt_talentType").val(choseType.join(","));
+		
+		
+		$("#txt_choseTypeName").val(choseTypeName.join(","));
+		var payment = [], paymentName = [];
+		$("input[name='ent_payment']").each(function(){
+			if($(this).attr("checked")){
+				payment.push($(this).val());
+				paymentName.push($(this).parent().text().trim());
+			}
+		});
+		$("#paymentHidden").val(payment.join("_"));
+		$("#txt_paymentTypeName").val(paymentName.join(","));
+		var stagesNum = [], persent = 0;
+		$("#stagespay_hidden input").each(function(){
+			var num = $(this).val();
+			
+			var re = /^[0-9]+.?[0-9]*$/;
+			if(re.test(num)){
+				persent += parseFloat(num);
+			}
+			stagesNum.push(num);
+		});
+		$("#stagesHidden").val(stagesNum.join("_"));
+		var checked = $("#stagespay").attr("checked");
+		if(checked && persent < 100){
+			tipsOp("请重新设置分期付款数", "info");
+			return false;
+		}
+		$("#txt_crashPayStages").val(stagesNum.join(","));
+		return true;
+	}
+	
+	$(function() {
+		//选择方式设置
+		var choseTypeHidden = $("#choseTypeHidden").val();
+		var choseType = choseTypeHidden.split("_");
+		if(choseType && choseType.length > 0){
+			for(var i = 0; i < choseType.length; i++){
+				$("input[name='ck_talentType'][value='"+choseType[i]+"']").attr("checked", "checked");
+			}
+			choseTypeMethod();
+		}
+		
+		//企业支付方式设置
+		var paymentHidden = $("#paymentHidden").val();
+		var paymentType = paymentHidden.split("_");
+		if(paymentType && paymentType.length > 0){
+			for(var i = 0; i < paymentType.length; i++){
+				$("input[name='ent_payment'][value='"+paymentType[i]+"']").attr("checked", "checked");
+			}
+		}
+		$("#stagespay_num").val("$!model.crashPayNum");
+		stagesPay();
+		
+		var stagesNum = "$!model.stagesHidden".split("_");
+		$("#stagespay_hidden input").each(function(i){
+			$(this).val(stagesNum[i]);
+		});
+		
+	});
+	
+	// 
+		$(function(){
+			$('#pubTaskFormstep2').scojs_valid({
+			    rules: {
+			    	
+			    },
+			    messages: {
+			    	
+			    },
+		    	wrapper:'.form-group',
+		    	onSuccess: function(response, validator, $form) {
+		    		#set($num = $NumberTool.toNumber($!taskstep)+1)
+	    			window.location.href = "$!{base}/taskpub/step?usrType=$!usrType&step=$num";
+		    	}
+			});
+		});
+		
+		function removeFile(obj, id, objType){
+			var url = "$!{base}/taskpub/deleteFile";
+			var params = {"id": id, "objType" : objType};
+			var success = function(data){
+				$(obj).parent().remove();
+			};
+			$.post(url, params, success, "json");
+		}
+	
+	
+</script>

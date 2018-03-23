@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>人才招募信息管理</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        $(function () {
+            jQuery('#dg').datagrid({
+                url: 'zmrc/queryPaged',
+                columns: [[
+                    {field: 'id', checkbox: true}, 
+                    {field: 'zwmc', title: '职位名称', width: 100}, 
+                    {field: 'zprs', title: '招聘人数', width: 100}, 
+                    {field: 'zwbq', title: '职位标签', width: 100}, 
+                    {field: 'lxr', title: '联系人', width: 100}, 
+                    {field: 'lxdh', title: '联系电话', width: 100}, 
+                    {field: 'email', title: '邮箱', width: 100}, 
+                    {field: 'address', title: '联系地址', width: 100}, 
+                    {field: 'subtimeStr', title: '截止日期', width: 100},
+                    {field: 'statusStr', title: '状态', width: 100}
+				]],
+                pagination: true,
+                singleSelect: false,
+                fitColumns: true,
+                fit: true,
+                toolbar: '#toolbar',
+                onDblClickRow: function (rowid, rowdata) {
+                    editForm();
+                }
+            });
+        });
+        function optionFun(value, row, index) {
+            return "";
+        }
+        function newForm() {
+            Magic.openWin('新增人才招募信息', 'zmrc/add', 600, 200);
+        }
+        function editForm() {
+            var row = jQuery('#dg').datagrid('getSelected');
+            if (row) {
+                Magic.openWin('编辑人才招募信息', 'zmrc/edit/' + row.id, 600, 300);
+            }
+        }
+        function destroyForm() {
+            var rows = jQuery('#dg').datagrid('getSelections');
+            if (rows.length > 0) {
+                jQuery.messager.confirm('确认删除', '确定删除该记录?', function (r) {
+                    if (r) {
+                        var ids = [];
+                        jQuery.each(rows, function (index, row) {
+                            ids.push(row.id);
+                        });
+                        jQuery.post('recruitment/delete', {'ids': ids.toString()}, function (result) {
+                            if (result.success) {
+                                jQuery('#dg').datagrid('reload');    // reload the user data
+                            } else {
+                                jQuery.messager.show({    // show error message
+                                    title: '错误',
+                                    msg: result.message
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        function contentSearch() {
+			var zwmc = jQuery('#filter_zwmc').val();
+			jQuery('#dg').datagrid('load', {
+				'zwmc' : zwmc,
+				'status' : $("#dictOpt").combobox("getValue")
+			})
+        }
+        
+        function pass(){
+         	var rows = jQuery('#dg').datagrid('getSelections');
+        	if (rows.length > 0) {
+        		var ids = [];
+        		for(var i=0; i<rows.length; i++){
+        			var data = rows[i];
+        			if(data.status != '0'){
+        				jQuery.messager.show({
+							title: '错误',
+							msg: "请选择未审批的记录信息"
+						});
+						return;
+        			}
+        			ids.push(data.id);
+        		}
+        		
+        		$.post("zmrc/passZmrc", {id:ids.join(",")}, function(data){
+        			contentSearch();
+        		}, "json");
+        	}
+        	else {
+				jQuery.messager.show({
+					title: '错误',
+					msg: "请选择要审批的记录信息"
+				});
+        	}
+        }
+        
+        function reject(){
+        	var rows = jQuery('#dg').datagrid('getSelections');
+        	if (rows.length > 0) {
+        		var ids = [];
+        		for(var i=0; i<rows.length; i++){
+        			var data = rows[i];
+        			if(data.status != '0'){
+        				jQuery.messager.show({
+							title: '错误',
+							msg: "请选择未审批的记录信息"
+						});
+						return;
+        			}
+        			ids.push(data.id);
+        		}
+        		$('#fm').form('clear');
+        		$("#id").val(ids.join(","));
+        		$('#dlg').dialog('open');
+        	}
+        	else {
+				jQuery.messager.show({
+					title: '错误',
+					msg: "请选择未审批的记录信息"
+				});
+        	}
+        }
+        
+        function rejectSubmit(){
+        	$('#fm').form('submit', {
+			    url:"zmrc/rejectZmrc",
+			    success:function(data){
+				    jQuery.messager.show({
+						title: '系统提示',
+						msg: "操作成功！！"
+					});
+			    	$('#dlg').dialog('close');
+			    	contentSearch();
+			    }
+			});
+        }
+        
+
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+<table id="dg" data-options="toolbar:'#toolbar'"></table>
+<div id="toolbar">
+    <div class="search_box">
+                                   职位名称：<input id="filter_zwmc" class="easyui-validatebox">
+              	状态：<input id="dictOpt" class="easyui-combobox" name="dept" editable="false"
+    					data-options="valueField:'value',textField:'content',url:'zmrc/dictOpt'">                 
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+           onclick="contentSearch()">搜索</a>
+    </div>
+    <div class="btn_box">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="pass();">审核通过</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="reject();">审核不通过</a>
+    </div>
+    <div id="dlg" class="easyui-dialog" title="审批不通过" data-options="iconCls:'icon-save',buttons:'#dlgButton',closed:true" style="width:500px;height:400px;">
+       <form id="fm" method="post" novalidate>
+            <div class="fitem">
+                <label>驳回理由:</label>
+                <input class="easyui-textbox" name="message" data-options="multiline:true" style="height:250px;width:300px;"></input>
+            	<input type="hidden" name="id" id="id"/>
+            </div>
+        </form>
+    </div>
+    <div id="dlgButton">
+    	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
+           onclick="rejectSubmit();">确定</a>
+    	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" plain="true"
+           onclick="$('#dlg').dialog('close');">取消</a>
+    </div>
+
+</div>
+</body>
+</html>

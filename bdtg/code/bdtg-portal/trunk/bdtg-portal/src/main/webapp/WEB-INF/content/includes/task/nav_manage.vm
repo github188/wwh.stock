@@ -1,0 +1,12 @@
+<div class="nav">
+    <ul class="wrap clearfix">
+        <li onclick="openUrl('${base}/','_self')">首页</li>
+        <li class="current"  onclick="openUrl('${portal_url}/tasklist','_self')">项目信息<i class="icon_tooltip">新</i></li>
+        <li>招募信息</li>
+        <li onclick="openUrl('${portal_url}/indexvm/news','_self')">热点资讯</li>
+        <li onclick="openUrl('${portal_url}/indexvm/expert','_self')">人才库</li>
+        <li onclick="openUrl('${portal_url}/indexvm/vip','_self')">VIP库</li>
+        <li onclick="javascript:openUrl('$bbs_url','_blank')">社区</li>
+        <li onclick="openUrl('${portal_url}/indexvm/database','_self')">资料库</li>
+    </ul>
+</div>

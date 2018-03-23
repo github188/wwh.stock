@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>审核管理</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        $(function () {
+            jQuery('#dg').datagrid({
+                url: 'processPage',
+                columns: [[
+                    {field: 'id', checkbox: true}, 
+					{field: 'typeName', title: '类型', width: 100}, 
+					{field: 'content', title: '内容', width: 100}, 
+					{field: 'time', title: '时间', width: 100}
+				]],
+                pagination: true,
+                singleSelect: true,
+                fitColumns: true,
+                fit: true
+            });
+        });
+        
+        function contentSearch() {
+			var tid= jQuery('#filter_tid').val();
+			jQuery('#dg').datagrid('load', {
+				'type': $("#sc_type").combobox("getValue")
+			})
+        }
+
+		function choseProcess(){
+			var rows = jQuery('#dg').datagrid('getSelected');
+			if(rows){
+				Magic.closeWin();
+				window.parent.addProcess(rows);
+			}
+		}
+
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+	<div data-options="region:'center',title:''">
+		<table id="dg" data-options="toolbar:'#toolbar'"></table>
+		<div id="toolbar">
+		    <div class="search_box">
+		             	 类别：<select id="sc_type" class="easyui-combobox" name="type" style="width:200px;height:30px;">
+								#foreach($!option in $!types)
+								<option value="$!option.value">$!option.content</option>
+								#end
+				            </select>
+		                                    
+					<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+		           	onclick="contentSearch()">搜索</a>
+		    </div>
+		</div>
+	</div>
+	<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="choseProcess();">选择</a>
+	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+	</div>
+</body>
+</html>

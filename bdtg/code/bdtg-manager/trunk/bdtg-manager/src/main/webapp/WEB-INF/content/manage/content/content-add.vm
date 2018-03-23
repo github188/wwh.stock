@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>内容管理</title>
+        <meta charset="UTF-8">
+		#parse("commons/commonJs.vm")
+		#parse("commons/commonCss.vm")
+		<script type="text/javascript" charset="utf-8" src="${base}/ueditor/ueditor.config.js"></script>
+		<script type="text/javascript" charset="utf-8" src="${base}/ueditor/ueditor.all.min.js"> </script>
+		<script type="text/javascript" charset="utf-8" src="${base}/ueditor/lang/zh-cn/zh-cn.js"></script>
+		<style type="text/css">
+			table.altrowstable {
+				font-family: verdana,arial,sans-serif;
+				font-size:11px;
+				color:#333333;
+				border-color: #a9c6c9;
+				border-collapse: collapse;
+			}
+			table.altrowstable th {
+				border-width: 1px;
+				padding: 8px;
+				border-style: solid;
+				border-color: #a9c6c9;
+			}
+			table.altrowstable td {
+				border-width: 1px;
+				padding: 8px;
+				border-style: solid;
+				border-color: #a9c6c9;
+			}
+		</style>
+		
+	</head>
+	<body class="easyui-layout" fit="true">
+		<form id="fm" method="post">
+		<div data-options="region:'center',border:false" style="border:1px solid #ccc;">
+		<div class="easyui-tabs" fit="true">
+	        <div title="基本信息" style="padding:5px">
+	            <table class="altrowstable" style="width:100%;height:99%;">
+					<tr>
+						<td>标题:</td>
+						<td colspan="3">
+							<input id="contentTile" name="contentTile" value="$!model.contentTile" class="easyui-validatebox" required="required"  style="width:240px;" >
+						</td>
+					</tr>
+					<tr>
+						<td>日期:</td>
+						<td>
+							<input id="newsDate" editable="false" value="$!date.format('yyyy-MM-dd',$!model.newsDate)" name="newsDate" type="text" class="easyui-datebox" required="required"  style="width:150px;"  >
+						</td>
+						<td>排序:</td>
+						<td>
+							<input id="contentOrder" name="contentOrder" value="$!model.contentOrder" class="easyui-numberbox"  style="width:150px;" vaildType="number">
+						</td>
+					</tr>
+					<tr>
+						<td>标签:</td>
+						<td>
+							<input id="contentOrder" name="tag" value="$!model.tag" class="easyui-validatebox"  style="width:150px;">
+						</td>
+						<td>基准浏览量:</td>
+						<td>
+							<input id="contentOrder" name="baseViews" value="$!model.baseViews" class="easyui-numberbox"  style="width:150px;" vaildType="number">
+						</td>
+					</tr>
+					<tr>
+						<td>图片:</td>
+						<td colspan="2">
+							<img id="preview" style="width:200px;height:90px;" src="$!model.picture"/>
+							<input type="hidden" name="picture" id="picture"  value="$!model.picture"/>
+						</td>
+						<td>
+							<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" onclick="upimage();" id="saveAndpublish">图片选择</a>
+						</td>
+					</tr>
+					<tr>
+						<td>摘要:</td>
+						<td colspan="3">
+							<textarea cols="20" rows="2" id="contentAbstract" name="contentAbstract" style="width:351px;">$!model.contentAbstract</textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>外站:</td>
+						<td colspan="3">
+							<input id="url" name="url" value="$!model.url" class="easyui-validatebox" style="width:240px;" >
+						</td>
+					</tr>
+					<tr>
+						<td>定时发布:</td>
+						<td>
+							<input id="publishScheduleDate" value="$!model.publishScheduleDate" editable="false" name="publishScheduleDate" type="text" class="easyui-datetimebox" style="width:150px;"  >
+						</td>
+						<td>来源:</td>
+						<td>
+							<input id="source" name="source" value="$!model.source" class="easyui-validatebox"  style="width:150px;">
+						</td>
+					</tr>
+					<tr>
+						<td>编号:</td>
+						<td colspan="3">
+							<input id="id" name="id" value="$!model.id" class="easyui-numberbox"  style="width:150px;" disabled="disabled" vaildType="number">
+						</td>
+					</tr>
+				</table>
+	        </div>
+	        <div title="平台栏目" style="padding:5px">
+	            <table class="altrowstable" style="width:100%;">
+	            	#foreach($dict in ${orgList})
+					<tr>
+						<td>$dict.content:</td>
+						<td colspan="2">
+							<input id="typeCode_platform_${dict.value}" align="left" panelHeight='auto' name="typeCode" style="width:180px;" editable="false" />
+						</td>
+						<td>
+							<a href="#" onclick="platformTreeClear('${dict.value}')">重置</a>
+						</td>
+					</tr>
+					#end
+				</table>
+	        </div>
+	        <div title="内容详情" style="padding:5px">
+	        	<span style="color:red">内容详情中图片大小小于 590*400上传</span>
+	            <textarea id="ueditor" name="content" style="height:250px;">$!model.content</textarea>
+	            <script id="upload_ue" type="text/plain"></script>
+	        </div>
+	    </div>
+		</div>
+		<div region="south" border="false" style="text-align: right; height: 30px;padding-top:5px;padding-right:10px">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveForm('1')" id="saveAndpublish">保存并上架</a>
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveForm('0')" id="save">保存</a>
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+		</div>
+		</form>
+    </body>
+	<script type="text/javascript">
+		var datamap = {};
+		#foreach($map in $relations)
+			datamap['typeCode_platform_$map.plaform_id'] = '$map.category_id';
+		#end
+		
+		jQuery(function(){
+			#foreach($dict in ${orgList})
+			jQuery('#typeCode_platform_${dict.value}').combotree({
+			    url: 'plaformTree?catOrg=${dict.value}',
+			    onLoadSuccess:function(){
+			    	var id = "typeCode_platform_${dict.value}";
+			    	if(datamap[id]){
+			    		jQuery("#" + id).combotree("setValue", datamap[id]);
+			    	}
+			    }
+			});
+			#end
+		});
+
+		UE.getEditor('ueditor');
+		var imageUploader = UE.getEditor('upload_ue');
+		imageUploader.ready(function () {
+			imageUploader.setDisabled();	//设置编辑器不可用
+        	imageUploader.hide();			//隐藏编辑器，因为不会用到这个编辑器实例，所以要隐藏
+        	imageUploader.addListener('beforeInsertImage', function (t, arg) {
+	        	if(arg && arg.length > 0){
+	        		var data = arg[0];
+	        		jQuery("#picture").val(data.src);
+	            	jQuery("#preview").attr({"src" : data.src});
+	        	}
+	        })
+		});
+		
+		function platformTreeClear(val){
+			jQuery("#typeCode_platform_" + val).combotree("clear");
+		}
+		
+		function upimage(){
+			var myImage = imageUploader.getDialog("insertimage");
+    		myImage.open();
+		}
+		
+		#if($model.id)
+			var url = "update";
+		#else
+			var url = "save";
+		#end
+		
+		
+		function saveForm(status){
+			jQuery('#fm').form('submit', {                
+    	    	url: url + '?status='+status,
+    	    	success: function(result){
+    	    		var result = eval('('+result+')');
+	    			if (!result.success) {
+	    				var msg = {title: 'Error', msg: result.data[0]};
+	    				window.parent.jQuery.messager.show(msg);
+	    				return;
+	    			}
+	    			else {
+	    				window.parent.jQuery("#contentGrid").datagrid("reload");
+	    			}
+					Magic.closeWin();           
+    	    	}
+    	    });
+		}
+		
+	</script>
+</html>

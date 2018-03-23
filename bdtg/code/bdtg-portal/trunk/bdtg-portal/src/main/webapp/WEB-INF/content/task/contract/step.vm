@@ -1,0 +1,16 @@
+<ul class="step step2">
+	<li class="step-item action">
+		<span class="step-num">
+			#if($!step > 1)<i class="fa fa-check"></i>#else 1 #end
+		</span>
+		<div class="step-text step-bottom">
+			<p><strong class="step-title" title="合同设置">合同设置</strong></p>
+		</div>
+	</li>
+	<li class="step-item #if($!step > 1) action #end">
+		<span class="step-num">#if($!step > 2)<i class="fa fa-check"></i>#else 2 #end</span>
+		<div class="step-text step-bottom">
+			<p><strong class="step-title" title="合同确认">合同确认</strong></p>
+		</div>
+	</li>
+</ul>

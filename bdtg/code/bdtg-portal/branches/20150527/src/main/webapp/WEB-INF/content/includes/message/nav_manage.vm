@@ -1,0 +1,28 @@
+<div class="nav-action">
+    <a href="javascript:void(0);" class="nav-toggle"><i class="fa fa-reorder"></i></a>
+    <dl class="nav-list">
+        <dt class="nav-list-title"><i class="fa fa-minus"></i> 我的消息</dt>
+        <dd class="nav-list-body">
+            <a href="$base/message/pagelist?type=1"><span class="badge">$!{xttzsize}</span>系统通知</a>
+            <a href="$base/message/pagelist?type=2"><span class="badge">$!{jydtsize}</span>交易动态</a>
+##            <a href="$base/message/msg_manage"> 测试中用</a>
+            <a href="$base/message/onlinemsglist"><span class="badge">$!{zxzysize}</span>在线作业</a>
+##            <a href="$base/message/addmsg"> 写消息</a>
+            <!--
+            <a href="index.php?do=user&amp;view=message&amp;op=private">我的私信</a>
+            <a href="index.php?do=user&amp;view=message&amp;op=send">写消息</a>
+            <a href="index.php?do=user&amp;view=message&amp;op=outbox">发件箱</a>
+            -->
+
+        </dd>
+        <!--
+        <dt class="nav-list-title"><i class="fa fa-minus"></i> 交易维权</dt>
+        <dd class="nav-list-body">
+            <a href="index.php?do=user&amp;view=account&amp;op=report">举报管理</a>
+            <a href="index.php?do=user&amp;view=account&amp;op=rights">维权管理</a>
+
+        </dd>
+        -->
+    </dl>
+
+</div>

@@ -1,0 +1,81 @@
+<div class="header-top">
+    <div class="container">
+        <a href="${base}/" class="nav-item-link active"> <img src="$!{base}/static/img/logo.png"/></a>
+        <ul class="right-nav" style="margin-top:20px;">
+            #if($user)
+                <li class="nav-item nav-static">
+                    欢迎您，<a href="${base}/member/index" style="margin-left:5px;" class="nav-item-link">${user.name}</a>
+                </li>
+                <li class="nav-item">
+
+                </li>
+                <li class="nav-item">
+                    <a href="$base/message/pagelist?type=2"> <i class="fa fa-envelope"></i>#if($msg_cnt)($msg_cnt)#end</a>
+                </li>
+                <li class="nav-item">
+                    <iframe id="J_logoutIframe" width="0" height="0" frameborder="0"></iframe>
+                    <a href="javascript:logout();" class="nav-item-link active">退出</a>
+                </li>
+                <script type="text/javascript">
+                    function logout() {
+                        jQuery.post('${base}/logout',function() {
+                            window.location.reload();
+                        });
+                    }
+                </script>
+            #else
+                <li class="nav-item">
+                    <a href="index.php?do=login" class="nav-item-link active">请登录</a>
+                </li>
+                <li class="nav-item">
+                    <a href="${base}/register" class="nav-item-link active">免费注册</a>
+                </li>
+            #end
+            <li class="nav-item has-sub">
+                <a href="#" class="nav-item-link ">我是业主<span class="caret"></span></a>
+                <ul class="nav-item-sub nav-sub-list">
+                    <li><a href="index.php?do=sellerlist">找服务商</a></li>
+                    <li><a href="index.php?do=pubtask">发布任务</a></li>
+                    <li><a href="index.php?do=user&view=transaction&op=released&intTaskStatus=0"><span class="badge"></span>待付款任务</a></li>
+                    <li><a href="index.php?do=user&view=transaction&op=released&intTaskStatus=3"><span class="badge"></span>待选稿</a></li>
+                    <li><a href="index.php?do=user&view=transaction&op=orders&strStatus=wait"><span class="badge"></span>待付款商品</a></li>
+                    <li><a href="index.php?do=user&view=gz&op=mark&type=1"><span class="badge"></span>待评价</a></li>
+                </ul>
+            </li>
+            <li class="nav-item has-sub">
+                <a href="#" class="nav-item-link">我是服务商<span class="caret"></span></a>
+                <ul class="nav-item-sub nav-sub-list">
+                    <!--<li><a href="index.php?do=pubgoods">发布商品</a></li>
+                    <li><a href="index.php?do=seller&id=">我的店铺</a></li>
+                    <li><a href="index.php?do=user&view=wk&op=gy&s=seller_confirm"><span class="badge"></span>新的雇佣</a></li>-->
+                    <li><a href="index.php?do=user&view=transaction&op=sold&intModelId=7&strStatus=seller_confirm"><span class="badge"></span>新服务订单 </a></li>
+                    <li><a href="index.php?do=user&view=wk&op=mark&type=1"><span class="badge"></span>待评价</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="index.php?do=help" class="nav-item-link">帮助中心</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+    $(function() {
+        var winWh = $(window).width();
+        //console.log(winWh);
+
+        if (winWh <= 640 && $(".nav-item-link").is(":visible") == true) {
+            $('.nav-item-sub').hide();
+            $('.nav-item').click(function() {
+
+                var linkShow = $(this).children('.nav-item-sub');
+
+                linkShow.toggle()
+                $(this).siblings().children('.nav-item-sub').hide();
+                //$(this).next('.nav-item-sub').toggle();
+
+            });
+
+        }
+
+    })
+</script>

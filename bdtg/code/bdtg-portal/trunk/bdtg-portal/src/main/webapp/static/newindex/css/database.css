@@ -1,0 +1,124 @@
+.database_SearchBar{
+	margin-top: 58px;
+}
+.selectBox{
+	display: inline-block;
+	vertical-align: top;
+	border: 1px #ababab solid;
+	width: 315px;
+	height: 35px;
+	line-height: 35px;
+	
+}
+.selectBox .name{
+	display: inline-block;
+	vertical-align: top;
+	width: 116px;
+	text-align: center;
+	height: 33px;
+	line-height: 33px;
+	margin-top: 1px;
+	border-right: 1px #ababab solid;
+	font-size: 13.5px;
+	color: #262626;
+}
+.selectBox select{
+	width: 198px;
+	height: 35px;
+	line-height: 35px;
+	border: none;
+	outline: none;
+}
+.database_SearchBar .searchBtn{
+	display: inline-block;
+	vertical-align: top;
+	width: 104px;
+	height: 39px;
+	text-align: center;
+	line-height: 39px;
+	background: #04a4d8;
+	font-size: 18px;
+	color: #fff;
+	margin-left: 10px;
+	border-radius: 5px;
+}
+
+.tableBox{
+	width: 78%;	
+	min-height: 500px;
+	border: 1px #f3f3f3 solid;
+}
+.tableBox table{
+	width: 100%;
+	border-collapse:collapse; 
+	
+}
+.tableBox table th{
+	background: #f1eeee;
+	font-size: 13.5px;
+	color: #04a4d8;
+	text-align: center;
+	height: 38px;
+	border-right: 1px #cecccc solid;
+}
+.tableBox table th.noborder{border: none;}
+.tableBox table td{
+	font-size: 10.5px;
+	color: #515151;
+	text-align: center;
+	height: 50px;
+}
+.tableBox table td.textLeft{
+	text-align: left;
+	padding-left: 30px;
+}
+.pdf1{
+	display: inline-block;
+	vertical-align: middle;
+	width: 38px;
+	height: 38px;
+	margin-right: 5px;
+	background: url(../images/database/icon1.png) no-repeat;
+}
+.pdf2{
+	display: inline-block;
+	vertical-align: top;
+	width: 19px;
+	height: 20px;
+	margin: 0 5px;
+	background: url(../images/database/icon2.png) no-repeat;
+}
+.recommendBox{
+	width: 21%;
+	min-height: 500px;
+	border: 1px #f3f3f3 solid;
+}
+.recommendBox h2{
+	border-bottom: 1px #f3f3f3 solid;
+	margin: 0;
+	color: #fff;
+	font-size: 13.5px;
+	height: 38px;
+	line-height: 38px;
+	text-indent: 1em;
+	background: #04a4d8;
+}
+.recommendBox li{
+	padding:13px 20px;
+	font-size: 10.5px;
+	color: #ff0404;
+	line-height: 20px;
+	cursor: pointer;
+	display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis
+}
+.recommendBox li:hover .index{
+	color: #ff0404;
+}
+.recommendBox li .index{
+	color: #515151;
+}
+.recommendBox li .num{
+	color: #515151;
+	display: block;
+	margin-left: 38px;
+}

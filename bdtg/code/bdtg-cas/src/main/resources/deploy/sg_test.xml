@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<portable-config>
+	<config-file path="WEB-INF/cas.properties">
+        <replace key="jdbc.url"><![CDATA[jdbc:mysql://10.80.11.246:3306/hcim_sg?useUnicode=true&amp;characterEncoding=utf-8]]></replace>
+    </config-file>
+    <config-file path="WEB-INF/classes/system.properties">
+        <replace key="system.name">\u5BFF\u5149\u667A\u6167\u73AF\u4FDD\u7EDF\u4E00\u7528\u6237\u767B\u5F55</replace>
+    </config-file>
+</portable-config>

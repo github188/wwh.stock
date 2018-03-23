@@ -1,0 +1,97 @@
+
+<!DOCTYPE HTML>
+<!--[if lt IE 7]> <html dir="ltr" lang="zh-cn" id="ie6"> <![endif]-->
+<!--[if IE 7]>    <html dir="ltr" lang="zh-cn" id="ie7"> <![endif]-->
+<!--[if IE 8]>    <html dir="ltr" lang="zh-cn" id="ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html dir="ltr" lang="zh-cn">
+<!--<![endif]-->
+
+<head>
+    <title>北斗天工</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="北斗天工">
+    <meta name="description" content="北斗天工">
+    <meta name="generator" content="北斗天工" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <!--[if lt IE 9]>
+    <script src="static/js/html5.js" type="text/javascript"></script>
+    <script src="static/js/respond.min.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <script src="${base}/static/js/jquery.min.1.8.3.js"></script>
+    <!-- 幻灯片 -->
+    <script src="${base}/static/js/jqplugins/fotorama/fotorama.js"></script>
+    <!-- 滚动视图 -->
+    <script src="${base}/static/js/jqplugins/jcarousel/jquery.jcarousel.js"></script>
+    <script src="${base}/static/js/jqplugins/jcarousel/jquery.jcarousel.control.js"></script>
+    <script src="${base}/static/js/jqplugins/jcarousel/jquery.jcarousel.autoscroll.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <!--
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+    -->
+
+    <link href="${base}/static/js/jqplugins/fotorama/fotorama.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/home.css" rel="stylesheet" type="text/css" id="active-style-home">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css" id="active-style-rework">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.30825000"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="tpl/default/css/font-awesome-ie7.min.css">
+    <link href="tpl/default/css/ie7.css" rel="stylesheet" type="text/css">
+    <![endif]-->
+
+    <!--[if IE 8]>
+    <link href="tpl/default/css/ie8.css" rel="stylesheet" type="text/css">
+    <script src="${base}/static/js/IE8.js" type="text/javascript"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        var SITEURL = 'http://localhost/test',
+                SKIN_PATH = 'tpl/default',
+                LANG = 'cn',
+                INDEX = 'index',
+                CHARSET = 'utf-8';
+
+        function closeErrors() {
+            return true;
+        }
+        window.onerror = closeErrors;
+    </script>
+</head>
+
+<body id="index">
+<header class="header">
+    <div class="container">
+        #parse("includes/new-header.vm")
+        #parse("includes/task/nav_manage.vm")
+    </div>
+</header>
+
+

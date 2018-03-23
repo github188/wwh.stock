@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>北斗天工</title>
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/basic.css" />
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/slide.css" />
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/index.css" />
+    <script src="${base}/static/js/jquery.js"></script>
+
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="tpl/default/css/font-awesome-ie7.min.css">
+    <link href="tpl/default/css/ie7.css" rel="stylesheet" type="text/css">
+    <![endif]-->
+
+    <!--[if IE 8]>
+    <link href="tpl/default/css/ie8.css" rel="stylesheet" type="text/css">
+    <script src="${base}/static/js/IE8.js" type="text/javascript"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        var SITEURL = 'http://localhost/test',
+                SKIN_PATH = 'tpl/default',
+                LANG = 'cn',
+                INDEX = 'index',
+                CHARSET = 'utf-8';
+
+        function closeErrors() {
+            return true;
+        }
+        window.onerror = closeErrors;
+    </script>
+</head>
+
+<body id="index">
+<div class="wrap">
+    #parse("includes/header-top-new.vm")
+    <a href="" class="imgLink"><img src="${base}/static/images/banner1.png" width="100%"></a>
+    <div class="searchBox clearfix">
+        <div class="fl searchBox_img"><img src="${base}/static/images/logo.png" width="100%"></div>
+        <div class="searchBox_search fr">
+            <div class="searchBox_input clearfix">
+                <select class="fl">
+                    <option>找服务</option>
+                    <option>找服务</option>
+                    <option>找服务</option>
+                </select>
+                <a class="searchBox_btn fr"><i class="icon_search"><img src="${base}/static/images/icon_search.png"></i></a>
+                <div class="searchBox_input_"><input type="text" placeholder="建筑/土木设计"></div>
+                <p class="searchBox_tip"><span class="name">热门搜索：</span>设计  咨询  生产运营  项目管理  技术服务  设备采购</p>
+            </div>
+            &nbsp;&nbsp;&nbsp;或&nbsp;&nbsp;&nbsp;
+            <a class="searchBox_releaseBtn">免费发布任务</a>
+
+        </div>
+    </div>

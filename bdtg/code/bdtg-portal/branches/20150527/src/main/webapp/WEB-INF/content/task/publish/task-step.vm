@@ -1,0 +1,48 @@
+<ul class="step step5">
+	<li class="step-item action">
+		<span class="step-num">#if($!model.step < 1)1#else<i class="fa fa-check"></i>#end</span>
+		<div class="step-text step-bottom">
+			#if($!model.step >= 1 && $!model.step < 5) 
+			<p><a href="$!{base}/taskpub/content"><strong class="step-title" title="需求描述">需求描述</strong></a></p>
+			#else 
+			<p><strong class="step-title" title="需求描述">需求描述</strong></p>
+			#end
+		</div>
+	</li>
+	<li class="step-item #if($!model.step > 0) action #end">
+		<span class="step-num">#if($!model.step < 2)2#else<i class="fa fa-check"></i>#end</span>
+		<div class="step-text step-bottom">
+			#if($!model.step >= 2 && $!model.step < 5)
+				<p><a href="$!{base}/taskpub/config"><strong class="step-title" title="任务要求设置">任务要求设置</strong></a></p>
+			#else
+				<p><strong class="step-title" title="任务要求设置">任务要求设置</strong></p>
+			#end
+		</div>
+	</li>
+	<li class="step-item #if($!model.step > 1) action #end">
+		<span class="step-num">#if($!model.step < 3)3#else<i class="fa fa-check"></i>#end</span>
+		<div class="step-text step-bottom">
+			#if($!model.step >= 3 && $!model.step < 5)
+				<p><a href="$!{base}/taskpub/security"><strong class="step-title" title="担保金设置">担保金设置</strong></a></p>
+			#else
+				<p><strong class="step-title" title="担保金设置">担保金设置</strong></p>
+			#end
+		</div>
+	</li>
+	<li class="step-item #if($!model.step > 2) action #end">
+		<span class="step-num">#if($!model.step < 4)4#else<i class="fa fa-check"></i>#end</span>
+		<div class="step-text step-bottom">
+			#if($!model.step >= 4 && $!model.step < 5)
+				<p><a href="$!{base}/taskpub/confirm"><strong class="step-title" title="需求确认">需求确认</strong></a></p>
+			#else
+				<p><strong class="step-title" title="需求确认">需求确认</strong></p>
+			#end
+		</div>
+	</li>
+	<li class="step-item #if($!model.step > 3) action #end">
+		<span class="step-num">#if($!model.step < 5)5#else<i class="fa fa-check"></i>#end</span>
+        <div class="step-text step-bottom">
+          	<p><strong class="step-title" title="托管赏金">托管赏金</strong></p>
+        </div>
+	</li>
+</ul>

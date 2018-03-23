@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>团队成员表管理</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <style>
+        .submbclass{
+            color:blue;
+            text-decoration:none;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            jQuery('#dg').datagrid({
+                url: '${base}/job/member/pagelist?type=1',
+                columns: [[
+                            {field: 'id', checkbox: true}
+                            , {field: 'userName', title: '用户名', width: 100,halign:'center'}
+                            , {field: 'name', title: '姓名', width: 100,halign:'center'}
+                            , {field: 'majorview', title: '专业', width: 100,halign:'center',formatter:majorshow,align:'center'}
+                            , {field: 'mbTypeview', title: '岗位', width: 100,halign:'center',formatter:mbTypeshow,align:'center'}
+                            , {field: 'mobile', title: '手机号', width: 100,halign:'center'}
+                            , {field: 'email', title: '邮箱', width: 100,halign:'center'}
+                            , {field: 'qq', title: 'qq', width: 100,halign:'center'}
+                            , {field: 'dombtype', title: '操作', width: 140,halign:'center',formatter:optionFun,align:'center'}
+                        ]],
+                singleSelect: false,
+                fitColumns: true,
+                fit: true,
+                toolbar: '#toolbar',
+                onDblClickRow: function (rowid, rowdata) {
+                    editForm();
+                }
+            });
+        });
+
+        function mbTypeshow(value, row, index){
+            if(row.mbType==null||row.mbType=="0"){
+            return "";
+            }else{
+                return row.mbTypeStr;
+            }
+        }
+        function majorshow(value, row, index) {
+
+            var strs="",majors = "";
+            if(row.major==null){
+                return "";
+            }else{
+                strs=row.major.toString().split(",");
+                for (i=0;i<strs.length ;i++ )
+                {
+                    #foreach($obj in $!{dictlist})
+                        if(strs[i]==$!obj.value){
+                            if(majors.toString()==""){
+                                majors = "$!obj.content";
+                            }else{
+                                majors += (","+"$!obj.content");
+                            }
+                        }
+                    #end
+                }
+                return majors;
+            }
+        }
+        function optionFun(value, row, index) {
+                var xmhtml='<a href="javascript:utypeset('+row.id+','+5+');" class="submbclass">设为项目主任</a>';
+                var xmhtmlbak='<a href="javascript:utypeset('+row.id+','+1+');" class="submbclass">取消项目主任</a>';
+                var pmhtml='<a href="javascript:utypeset('+row.id+','+4+');" class="submbclass">设为PM</a>';
+                var pmhtmlbak='<a href="javascript:utypeset('+row.id+','+1+');" class="submbclass">取消PM</a>';
+            if(row.mbType=="1"){
+                return xmhtml+'&nbsp;'+pmhtml;
+            }else if(row.mbType=="4"){
+                return xmhtml+'&nbsp;'+pmhtmlbak;
+            }else{
+                return xmhtmlbak+'&nbsp;'+pmhtml;
+            }
+        }
+        function utypeset(id,submbtype){
+            jQuery.post('${base}/job/member/updatesubmbtype', {'id':id,'submbtype':submbtype}, function (result) {
+                if (result.success) {
+                    jQuery('#dg').datagrid('reload');    // reload the user data
+                } else {
+                    jQuery.messager.show({    // show error message
+                        title: '错误',
+                        msg: result.message
+                    });
+                }
+            });
+        }
+        function newForm() {
+            var type=jQuery('#type').val();
+            Magic.openWin('新增团队成员', '${base}/job/member/adduser/?type='+type, 600, 400);
+        }
+        function destroyForm() {
+            var rows = jQuery('#dg').datagrid('getSelections');
+            if (rows.length > 0) {
+                jQuery.messager.confirm('确认删除', '确定删除该记录?', function (r) {
+                    if (r) {
+                        var ids = [];
+                        jQuery.each(rows, function (index, row) {
+                            ids.push(row.id);
+                        });
+                        jQuery.post('${base}/job/member/delete', {'ids': ids.toString()}, function (result) {
+                            if (result.success) {
+                                jQuery('#dg').datagrid('reload');    // reload the user data
+                            } else {
+                                jQuery.messager.show({    // show error message
+                                    title: '错误',
+                                    msg: result.message
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        function contentSearch() {
+            var userName= jQuery('#filter_userName').val();
+            var type=jQuery('#type').val();
+            jQuery('#dg').datagrid('load', {'userName':userName,'type':type})
+        }
+
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+<table id="dg" data-options="toolbar:'#toolbar'"></table>
+<div id="toolbar">
+    <div class="search_box">
+        <input type="hidden" id="type" value="1">
+         用户名：<input id="filter_userName" class="easyui-validatebox">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="contentSearch()">搜索</a>
+    </div>
+    <div class="btn_box">
+        #permission('MB_F_ADD',$permissions)
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"
+           onclick="newForm()">新增</a>
+        #end
+    ##        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+    ##           onclick="editForm()">编辑</a>
+        #permission('MB_F_DEL',$permissions)
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="destroyForm()">删除</a>
+        #end
+    </div>
+</div>
+</body>
+</html>

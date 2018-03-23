@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>商品信息编辑</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/shop/service/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <input type="hidden" name="id" value="$!{model.id}">
+        <table width="100%" cellpadding="5">
+
+
+                            <tr>
+                    <td align="left">
+                        店铺编号
+                    </td>
+                    <td>
+                                                <input name="shopId" class="easyui-textbox" value="$!{model.shopId}">
+                    </td>
+                </tr>
+
+                            <tr>
+                    <td align="left">
+                        商品标题
+                    </td>
+                    <td>
+                                                <input name="title" class="easyui-textbox" value="$!{model.title}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        商品价格
+                    </td>
+                    <td>
+                                                <input name="price" class="easyui-textbox" value="$!{model.price}">
+                    </td>
+                </tr>
+
+
+                            <tr>
+                    <td align="left">
+                        作品发布时间
+                    </td>
+                    <td>
+                                                <input name="onTime" class="easyui-textbox" value="$!{model.onTime}">
+                    </td>
+                </tr>
+
+                            <tr>
+                    <td align="left">
+                        商品状态
+                    </td>
+                    <td>
+                        <select name="serviceStatus" id="serviceStatus">
+                            <option  value="2" #if("2"==$!{model.serviceStatus}) selected="selected" #end>上架</option>
+                            <option  value="3" #if("3"==$!{model.serviceStatus}) selected="selected" #end)>下架</option>
+                            <option  value="4" #if("4"==$!{model.serviceStatus}) selected="selected" #end)>审核失败</option>
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        是否推荐
+                    </td>
+                    <td>
+                        <select name="isTop" id="isTops">
+                            <option  value="0" #if("0"==$!{model.isTop}) selected="selected" #end>否</option>
+                            <option  value="1" #if("1"==$!{model.isTop}) selected="selected" #end)>是</option>
+                    </td>
+                </tr>
+            <tr>
+                <td align="left" width="100px">商品描述:</td>
+                <td>
+                    <textarea id="tar_content" name="content" cols="100"  >&lt;p&gt;$!{model.content}&lt;/p&gt;</textarea>
+                    </td>
+                <script type="text/javascript" src="${base}/ueditor/ueditor.config.js"></script>
+                <!-- 编辑器源码文件 -->
+                <script type="text/javascript" src="${base}/ueditor/ueditor.all.min.js"></script>
+                <script type="text/javascript" src="${base}/static/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+                <!-- 实例化编辑器 -->
+                <script type="text/javascript">
+                    var ue = UE.getEditor('tar_content', {
+                        //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+                        initialFrameWidth: '80%',
+                        initialFrameHeight: '400'
+                    });
+                </script>
+            </tr>
+
+                            <tr>
+                    <td align="left">
+                        SEO标题
+                    </td>
+                    <td>
+                                                <input name="seoTitle" class="easyui-textbox" value="$!{model.seoTitle}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        SEO关键字
+                    </td>
+                    <td>
+                                                <input name="seoKeyword" class="easyui-textbox" value="$!{model.seoKeyword}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        SEO描述
+                    </td>
+                    <td>
+                                                <input name="seoDesc" class="easyui-textbox" value="$!{model.seoDesc}">
+                    </td>
+                </tr>
+                    </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

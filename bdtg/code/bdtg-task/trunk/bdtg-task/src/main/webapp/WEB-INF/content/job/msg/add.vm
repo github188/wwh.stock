@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>信息新增</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            var grid = $("#combgrid").combogrid("grid");
+            var rows = grid.datagrid('getSelections');//获取行数据
+            var ids = [];
+            var titlevalid=$("#title").val();
+            var contentvalid=$("#content").val()
+            if(rows.length==0){
+                jQuery.messager.show({title: '错误', msg: "请选择收件人"});
+                return false;
+            }else{
+                if(titlevalid==""||titlevalid==null){
+                    jQuery.messager.show({title: '错误', msg: "请填写标题"});
+                    return false;
+                }else if(contentvalid==""||contentvalid==null){
+                    jQuery.messager.show({title: '错误', msg: "请填写内容"});
+                    return false;
+                }else{
+                    jQuery.each(rows, function (index, row) {
+                        ids.push(row.userId);
+                    });
+                    $("#ids").val(ids.toString());
+                    jQuery('#fm').form('submit', {
+                        url: '${base}/job/msg/save',
+                        onSubmit: function () {
+                            return jQuery(this).form('validate');
+                        },
+                        success: function (result) {
+                            result = jQuery.parseJSON(result);
+                            Magic.closeWin();
+                            if (!result.success) {
+                                window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                            } else {
+                                window.parent.jQuery('#dg').datagrid('reload');
+                            }
+                        }
+                    });
+                }
+            }
+
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <table width="100%" cellpadding="5">
+        <input type="hidden" id="ids" name="ids" value=""/>
+            <tr>
+                <td align="right">收件人：</td>
+                <td>
+                    <select id="combgrid" class="easyui-combogrid" style="width:250px" data-options="
+                    panelWidth: 400,
+                    idField: 'userId',
+                    textField: 'name',
+                    multiple: true,
+                    url: '${base}/job/member/pagelist?type=',
+                    method: 'get',
+                    columns: [[
+                        {field: 'id', hidden: true}
+                        , {field: 'userId', title: '用户ID', width: 100}
+                        , {field: 'userName', title: '用户名', width: 100}
+                        , {field: 'name', title: '姓名', width: 100}
+                        , {field: 'mbTypeStr', title: '类型', width: 100}
+                    ]],
+                    fitColumns: true
+		        ">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">短信标题：</td>
+                <td><input name="title" id="title" formnovalidate class="easyui-textbox" value="$!{model.title}"> </td>
+            </tr>
+             <tr>
+                <td align="right">短信内容：</td>
+                 <td>
+                     <input name="content" id="content" formnovalidate class="easyui-textbox" data-options="multiline:true" value="$!{model.content}" style="width:300px;height:100px">
+                 </td>
+             </tr>
+        </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

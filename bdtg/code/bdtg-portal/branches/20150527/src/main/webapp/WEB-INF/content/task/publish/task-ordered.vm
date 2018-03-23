@@ -1,0 +1,90 @@
+#parse("includes/header_home.vm")
+<link href="${base}/static/css/style.css" rel="stylesheet" type="text/css">
+<div class="container">
+<div id="main">
+  <div class="release">
+    <div class="release-progress">
+		#parse("task/publish/task-step.vm")
+    </div>
+    
+    <!-- release-progress end-->
+    <div class="release-body">
+		<!-- release-help end  -->
+		<!-- 加载各任务对应步骤  -->
+		<div class="release-form">
+			<form class="form-horizontal" role="form" action="/task-pub-ordered" method="post" id="pubTaskFormstep2" name="pubTaskFormstep2" novalidate="novalidate">
+				<div class="form-group">
+					<div class="col-sm-offset-1 col-sm-8">
+						恭喜您需求单已经生成！<a>去我的任务单里查看</a>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-1 col-sm-8">
+						您可能需要下面三种方式
+						<span class="text-danger">:</span>
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group">
+					<div class="col-sm-offset-1 col-sm-8">
+						<div class="checkbox">
+							<label>
+								<input type="radio" value="1" name="a">
+								系统自动筛选符合条件的服务商
+							</label>
+							<br/>
+							<br/>
+							<label>
+								<input type="radio" value="2" name="a">
+								系统为您推荐前&nbsp;<input style="width:45px;text-align:right;" type="text" value="2">&nbsp;最优条件的服务商
+							</label>
+						</div>
+					</div>
+					<div class="col-sm">
+						<br/>
+						<button type="button" class="btn btn-primary" onclick="">为我推荐</button>
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group">
+					<div class="col-sm-offset-1 col-sm-8">
+						<div class="checkbox">
+							<label>
+								<input type="radio" value="1" name="a">
+								业主自己邀请熟悉的服务商进行投标
+							</label>
+						</div>
+					</div>
+					<div class="col-sm">
+						<button type="button" class="btn btn-primary" onclick="">自己邀请</button>
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group">
+					<div class="col-sm-offset-1 col-sm-8">
+						<div class="checkbox">
+							<label>
+								<input type="radio" value="1" name="a">
+								不，我不需要系统推荐，会有服务商主动联系我
+							</label>
+						</div>
+					</div>
+					<div class="col-sm">
+						<button type="button" class="btn btn-primary" onclick="">发布到大厅</button>
+					</div>
+				</div>
+				<!-- form-group end -->
+			</form>
+		</div>      <!-- 加载各任务对应步骤  -->
+    </div>
+    <!-- release-body end -->
+  </div>
+  <!-- release end-->
+</div>
+</div>
+#parse("includes/footer.vm")
+<script type="text/javascript">
+	$(function() {
+		$("#active-style-rework").remove();
+	});
+</script>

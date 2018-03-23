@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="zh-cn">
+<head>
+    <title>账号设置</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="generator" content="客客出品专业威客2.7.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/user.css" rel="stylesheet" type="text/css" id="active-style-user">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.82587500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+</head>
+<script>
+    window.onload = function(){
+        base_url="${base}";
+        if('$!{enab}'=='Y'){
+            $('input,',$('form[name="editMobileForm"]')).prop('readonly',false);
+            $('button,',$('form[name="editMobileForm"]')).prop('disabled', false);
+            $('input,',$('form[name="saveMobileForm"]')).prop('readonly',false);
+            $('button,',$('form[name="saveMobileForm"]')).prop('disabled', false);
+            $('.hiddenyzm').removeAttr('hidden');
+        }else {
+            $('input,', $('form[name="editMobileForm"]')).prop('readonly', true);
+            $('button,',$('form[name="editMobileForm"]')).prop('disabled', true);
+            $('input,', $('form[name="saveMobileForm"]')).prop('readonly', true);
+            $('button,',$('form[name="saveMobileForm"]')).prop('disabled', true);
+            $('.hiddenyzm').attr('hidden',true);
+        }
+    }
+</script>
+<body id="user">
+
+<script src="${base}/static/js/model/user/user.js"></script>
+<script src="${base}/static/js/model/user/transaction.js"></script>
+
+<!-- /header -->
+    #parse("includes/member/home_manage.vm")
+<!-- nav end -->
+
+<div class="container">
+    #parse("includes/member/nav_manage.vm")
+    <!-- nav-action end -->
+    <div class="content-panel">
+        <div class="tab">
+            <a href="${base}/member/account_email"> 邮箱认证 </a>
+            <a href="${base}/financial/banklist"> 银行认证 </a>
+            <a  href="${base}/member/account_attcomp"> 身份认证 </a>
+            <a  href="${base}/member/account_mobile" class="selected"> 手机认证 </a>
+##            <a href="javascript:void(0)"> 支付宝认证</a>
+        </div>
+        <div class="tab_detail">
+            <form role="form" action="${base}/member/mobile_codesend" method="post" name="editMobileForm" id="editMobileForm">
+                <div class="media">
+                    <div class="pull-left">
+                        <img class="media-object" src="${base}/static/img/1225754d1c76f5ea8a.gif" alt="手机认证">
+                    </div>
+                    <div class="media-body">
+                        <div class="form-group">
+                            <label class="col-sm-7 control-label" for="mobile">手机号：</label>
+                            <div class="col-sm-10 row">
+                                <div class="col-sm-7">
+                                    <input type="mobile" placeholder="请填写手机号" name="mobile" id="mobile" value="$!{model.mobile}" class="form-control">
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="btn btn-default" id="sendcode" type="submit" value="1">发送验证码</button>
+                                </div>
+                                <div style="float: left;padding-left: 20px;padding-top: 7px;">
+                                    <span id="timeshow" style="color: red"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form role="form" action='${base}/member/mobile_save'  method="post" name="saveMobileForm" id="saveMobileForm">
+                <input type="hidden" id="hidmobile" name="hidmobile">
+                <div>
+                    <div class="media-body" style="float: inherit;padding-left: 60px;">
+                        <div class="form-group hiddenyzm">
+                            <label class="col-sm-7 control-label" for="code">验证码：</label>
+                            <div class="col-sm-10 row">
+                                <div class="col-sm-7">
+                                    <input type="text" placeholder="请填写验证码" name="code" id="code"  style="width: 110px;" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="float: inherit;padding-left: 70px;padding-top: 10px;">
+                        <button  id="savecode" class="btn btn-default" id="savecode" type="submit" >验证</button>
+                        <span class="text-success" id="tipsUser"></span>
+                    </div>
+                    <div class="form-group" style="padding-left: 70px;padding-top: 10px;">
+                        <p class="text-info">
+                            <i class="fa fa-info-circle"></i>
+                            手机认证成功后，您可以享有以下服务：
+                        </p>
+                        <p>
+                            <i class="fa fa-arrow-circle-o-right"></i>
+                            重要事件提醒。进行（支付/提现/选稿/中标）时，可及时收到短信提醒。
+                        </p>
+                    </div>
+                </div>
+            </form>
+        <!-- end -->
+    </div>
+</div>
+</div>
+<script src="${base}/static/js/model/user/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<link href="${base}/static/css/style.css" rel="stylesheet" type="text/css">
+
+<div class="container">
+	#parse("includes/new-header.vm")
+	#parse("includes/task/nav_manage.vm")
+	<br/>
+	#parse("task/list/tasklist-content.vm")
+</div>
+#parse("includes/footer.vm")
+<script type="text/javascript">
+//	$(function() {
+//		$("#active-style-home").remove();
+//	});
+</script>

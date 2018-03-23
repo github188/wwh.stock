@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>主项新增</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            var  name=$("#name").val();
+            var spCodesTemp="";
+            if(name==null||name==""){
+                jQuery.messager.show({title: '错误', msg: "名字不能为空"});
+                return false;
+            }
+            $('input:checkbox[name=majori]:checked').each(function(i){
+                if(0==i){
+                    spCodesTemp = $(this).val();
+                }else{
+                    spCodesTemp += (","+$(this).val());
+                }
+            });
+            if(spCodesTemp==null||spCodesTemp==""){
+                jQuery.messager.show({title: '错误', msg: "请选择专业"});
+                return false;
+            }
+            $("#major").val(spCodesTemp);
+            var co = "N";
+            $.ajax({
+                type: 'POST',
+                url: '${base}/job/item/namevalidate',
+                data:{'name':name,'id':""},
+                async: false,
+                success: function(data){
+                    co = (eval('('+data+')')).vars;
+                }
+            });
+            if(co=="N"){
+                jQuery.messager.show({title: '错误', msg: "该名称在当前任务中已存在"});
+                return false;
+            }
+            jQuery('#fm').form('submit', {
+                url: '${base}/job/item/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <table width="100%" cellpadding="">
+            <input type="hidden" name="task"  value="$!{model.task}">
+            <input type="hidden" name="major" id="major"  value="$!{model.major}">
+            <tr>
+                <td align="right" >名称<span style="color: #a94442">*</span>：</td>
+                <td ><input name="name" id="name"   class="easyui-textbox easyui-validatebox" value="$!{model.name}"></td>
+            </tr>
+            <tr style="width: 400px;">
+                <td align="right" width="50px">专业<span style="color: #a94442">*</span>：</td>
+                <td style="padding-top:20px;width: 300px;">
+                #foreach($obj in $!{dictlist})
+                    <div style="width:100px;float: left ">
+                    <label><input name="majori" type="checkbox" id="$!obj.value" value="$!obj.value"/>$!obj.content</label>
+                    </div>
+                #end
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="return save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

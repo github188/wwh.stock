@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script type="text/javascript" src="../internal.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.1&services=true"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+    <style type="text/css">
+        .content{width:530px; height: 350px;margin: 10px auto;}
+        .content table{width: 100%}
+        .content table td{vertical-align: middle;}
+        #city,#addressMap{height:21px;background: #FFF;border:1px solid #d7d7d7; line-height: 21px;}
+        #city{width:60px}
+        #addressMap{width:130px}
+        #is_dynamic_label span{vertical-align:middle;margin: 3px 0px 3px 3px;}
+        #is_dynamic_label input{vertical-align:middle;margin: 3px 3px 3px 50px;}
+    </style>
+</head>
+<body>
+<div class="content">
+    <table>
+    	<tr>
+    		<td>污染地点:</td>
+    		<td colspan="3" id="address"></td>
+    	</tr>
+        <tr>
+            <td width="80">经度:</td>
+            <td><input id="select_lng" type="text" /></td>
+            <td  width="80">纬度:</td>
+            <td><input id="select_lat" type="text" value="" /></td>
+        </tr>
+    </table>
+    <div style="width:100%;height:330px;margin:5px auto;border:1px solid gray" id="container"></div>
+
+</div>
+<script type="text/javascript">
+	var map = new BMap.Map("container");
+	
+	var marker;
+	var marker1;
+	var lng = 0;
+	var lat = 0;
+    var overlays = [];
+	map.addEventListener("click",function(e){
+		clearAll();
+		
+		$("select_lng").value = e.point.lng;
+		$("select_lat").value = e.point.lat;
+    	var marker1 = new BMap.Marker(e.point);
+    	map.addOverlay(marker1); 
+    	
+	});
+    var styleOptions = {
+        strokeColor:"red",    //边线颜色。
+        fillColor:"red",      //填充颜色。当参数为空时，圆形将没有填充效果。
+        strokeWeight: 3,       //边线的宽度，以像素为单位。
+        strokeOpacity: 0.8,	   //边线透明度，取值范围0 - 1。
+        fillOpacity: 0.6,      //填充的透明度，取值范围0 - 1。
+        strokeStyle: 'solid' //边线的样式，solid或dashed。
+    }
+    function $(id){
+        return document.getElementById(id);
+    }
+
+    
+    
+    
+	function clearAll() {
+       map.clearOverlays();   
+    }
+	
+    map.enableScrollWheelZoom();
+    map.enableContinuousZoom();
+    
+    //获得参数
+    function getPars(str,par){
+        var reg = new RegExp(par+"=((\\d+|[.,])*)","g");
+        return reg.exec(str)[1];
+    }
+    function init(){
+    	var lng = 0;
+    	var lat = 0;
+    	
+        var obj = window.parent.initAddress();
+        $("address").innerHTML = obj.adress;
+        lng = obj.adressX;
+        lat = obj.adressY;
+        $("select_lng").value = lng==0?120.190054:lng;
+        $("select_lat").value = lat==0?30.272719:lat;
+        var mapNode = editor.selection.getRange().getClosedNode(),
+            isMapImg = mapNode && /api[.]map[.]baidu[.]com/ig.test(mapNode.getAttribute("src")),
+            isMapIframe = mapNode && domUtils.hasClass(mapNode, 'ueditor_baidumap');
+                
+       	if (!lng && lng==0) {
+       		point = new BMap.Point(120.190054, 30.272719);    // 创建点坐标
+       		var marker1 = new BMap.Marker(point);
+    		map.addOverlay(marker1);
+    		
+       	} else {
+       		var positionLng = Number(lng);
+       		var positionLat = Number(lat);
+       		
+       	    point = new BMap.Point(positionLng, positionLat);    // 创建点坐标
+       		marker1 = new BMap.Marker(point);
+       		map.addOverlay(marker1); 
+       	}
+           map.addControl(new BMap.NavigationControl());
+           map.centerAndZoom(point, 15);       
+           map.setDefaultCursor("crosshair");
+    }
+    init();
+    
+    dialog.onok = function (){
+    	lng = $("select_lng").value;
+    	lat = $("select_lat").value;
+    	if(window.parent.markPointer){
+    		window.parent.markPointer(lng,lat);
+    	}
+    };
+</script>
+
+
+</body>
+</html>

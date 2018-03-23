@@ -1,0 +1,68 @@
+#parse("includes/index-header.vm")
+<script src="$!{base}/static/newindex/js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="$!{base}/static/newindex/css/news.css" />
+<body>
+    <div class="nav">
+        <ul class="wrap clearfix">
+			#set($classNum = 4)
+			#parse("includes/index-navmanage.vm")
+        </ul>
+    </div>
+	<!-- <div class="crumbs"><div class="wrap"><i class="icon_arrow"></i>当前位置：首页  >  热点资讯</div></div> -->
+	<img src="$!{base}/static/newindex/images/lunbo_1.jpg" width="100%;" style="display:block;">
+	<div class="wrap module">
+		<ul class="newsList">
+			<li>
+				<img src="$!{base}/static/newindex/images/news/img_1.png">
+				<div class="listContent">
+					<h3>商标申请人需要符合哪些条件呢？</h3>
+					<p class="content">针对商标申请人资格，只有当具备申请资格的法人主体或自然人向商标审查机关商标局提供注册申请，商标局依法完成对商标构成的显著性和在先权利审查后，并顺利完成公告程序的才可以获得商标注册专用权…<a href="">[阅读更多]</a></p>
+					<div class="clearfix toolbar"><span class="time fl">北斗天工报道  2016-05-16   09:26:36</span></div>
+				</div>
+			</li>
+			<li>
+				<img src="$!{base}/static/newindex/images/news/img_2.png">
+				<div class="listContent">
+					<h3>三新包装技术有限公司</h3>
+					<p class="content">三新包装技术有限公司成立于2000年，是一家专业从事高精度瓦楞纸板印刷机研发、生产、销售及技术服务的高新企业。其董事长刘为是中国包装技术协会专家会员，其自1982年以后就一直从纸箱印刷机械行业，经过26年的经验和技术创新，获得20余项专项权，技术居国内领先水平…<a href="">[阅读更多]</a></p>
+					<div class="clearfix toolbar"><span class="time fl">北斗天工报道  2016-05-16   09:26:36</span></div>
+				</div>
+			</li>
+			<li>
+				<img src="$!{base}/static/newindex/images/news/img_3.png">
+				<div class="listContent">
+					<h3>辰州矿业有限责任公司</h3>
+					<p class="content">辰州矿业有限责任公司是我国十大黄金矿山开发企业之一，是全球第二大开发锑矿和国内主要钨矿的公司…<a href="">[阅读更多]</a></p>
+					<div class="clearfix toolbar"><span class="time fl">北斗天工报道  2016-05-16   09:26:36</span></div>
+				</div>
+			</li>
+            <li>
+                <img src="$!{base}/static/newindex/images/news/img_1.png">
+                <div class="listContent">
+                    <h3>商标申请人需要符合哪些条件呢？</h3>
+                    <p class="content">针对商标申请人资格，只有当具备申请资格的法人主体或自然人向商标审查机关商标局提供注册申请，商标局依法完成对商标构成的显著性和在先权利审查后，并顺利完成公告程序的才可以获得商标注册专用权…<a href="">[阅读更多]</a></p>
+                    <div class="clearfix toolbar"><span class="time fl">北斗天工报道  2016-05-16   09:26:36</span></div>
+                </div>
+            </li>
+            <li>
+                <img src="$!{base}/static/newindex/images/news/img_2.png">
+                <div class="listContent">
+                    <h3>三新包装技术有限公司</h3>
+                    <p class="content">三新包装技术有限公司成立于2000年，是一家专业从事高精度瓦楞纸板印刷机研发、生产、销售及技术服务的高新企业。其董事长刘为是中国包装技术协会专家会员，其自1982年以后就一直从纸箱印刷机械行业，经过26年的经验和技术创新，获得20余项专项权，技术居国内领先水平…<a href="">[阅读更多]</a></p>
+                    <div class="clearfix toolbar"><span class="time fl">北斗天工报道  2016-05-16   09:26:36</span></div>
+                </div>
+            </li>
+            <li>
+                <img src="$!{base}/static/newindex/images/news/img_3.png">
+                <div class="listContent">
+                    <h3>辰州矿业有限责任公司</h3>
+                    <p class="content">辰州矿业有限责任公司是我国十大黄金矿山开发企业之一，是全球第二大开发锑矿和国内主要钨矿的公司…<a href="">[阅读更多]</a></p>
+                    <div class="clearfix toolbar"><span class="time fl">北斗天工报道  2016-05-16   09:26:36</span></div>
+                </div>
+            </li>
+		</ul>
+	</div>
+	<div class="footer">
+		#parse("includes/footer.vm")
+	</div>
+</body>

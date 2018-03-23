@@ -1,0 +1,16 @@
+<script type="text/javascript">
+		#if($!{user.type} != '1')
+	    	var confirm = $.scojs_modal({
+	    		title :"友情提示",
+	    		height: "300",
+				content : '<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i>您当前的用户不属于业主类型，无法进行发布项目操作!!</div>',
+				onClose : function() {
+					#if($!referUrl)
+						var url = "$!referUrl";
+						window.location.href = url;
+					#end
+				}
+			});
+			confirm.show();
+		#end
+</script>

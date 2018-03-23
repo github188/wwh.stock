@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<portable-config>
+	<config-file path="WEB-INF/cas.properties">
+        <replace key="cas.datasource.url"><![CDATA[jdbc:mysql://rds6a710ghx211atsbsj.mysql.rds.aliyuncs.com:3306/bdtg?useUnicode=true&amp;characterEncoding=utf-8]]></replace>
+        <replace key="cas.datasource.userName">bdtg</replace>
+        <replace key="cas.datasource.password">bdtg123</replace>
+    </config-file>
+    <config-file path="WEB-INF/classes/system.properties">
+        <replace key="system.name">\u5B89\u5409\u667A\u6167\u73AF\u4FDD\u7EDF\u4E00\u7528\u6237\u767B\u5F55</replace>
+    </config-file>
+</portable-config>

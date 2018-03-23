@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hzskt.bdtg.task.domain.TaskBid">
+
+	<resultMap id="get-TaskBid-result" type="cn.hzskt.bdtg.task.domain.TaskBid">
+	    
+		<id property="id" column="id" />
+		<!-- 任务编号-->
+    	<result property="taskId" column="task_id" />
+		<!-- 用户编号-->
+    	<result property="uid" column="uid" />
+		<!-- 用户名-->
+    	<result property="username" column="username" />
+		<!-- 投标报价-->
+    	<result property="quote" column="quote" />
+		<!-- 投标周期-->
+    	<result property="cycle" column="cycle" />
+		<!-- 投标地区-->
+    	<result property="area" column="area" />
+		<!-- 投标备注-->
+    	<result property="message" column="message" />
+		<!-- 投标状态-->
+    	<result property="bidStatus" column="bid_status" />
+		<!-- 投标时间-->
+    	<result property="bidTime" column="bid_time" />
+		<!-- 隐藏状态-->
+    	<result property="hiddenStatus" column="hidden_status" />
+		<!-- 扩展状态-->
+    	<result property="extStatus" column="ext_status" />
+		<!-- 留言次数-->
+    	<result property="commentNum" column="comment_num" />
+		<!-- 是否查看-->
+    	<result property="isView" column="is_view" />
+		<!-- 用户中心我的稿件删除后的状态，如果删除状态为1,默认为0,当状态为1的时候 不在我的稿件中显示。-->
+    	<result property="hasdel" column="hasdel" />
+		<!-- 是否隐藏-->
+    	<result property="workhide" column="workhide" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	
+	<sql id="TaskBid_Base_Column_List">
+    	id,
+		<!-- 任务编号-->
+    	task_id,
+		<!-- 用户编号-->
+    	uid,
+		<!-- 用户名-->
+    	username,
+		<!-- 投标报价-->
+    	quote,
+		<!-- 投标周期-->
+    	cycle,
+		<!-- 投标地区-->
+    	area,
+		<!-- 投标备注-->
+    	message,
+		<!-- 投标状态-->
+    	bid_status,
+		<!-- 投标时间-->
+    	bid_time,
+		<!-- 隐藏状态-->
+    	hidden_status,
+		<!-- 扩展状态-->
+    	ext_status,
+		<!-- 留言次数-->
+    	comment_num,
+		<!-- 是否查看-->
+    	is_view,
+		<!-- 用户中心我的稿件删除后的状态，如果删除状态为1,默认为0,当状态为1的时候 不在我的稿件中显示。-->
+    	hasdel,
+		<!-- 是否隐藏-->
+    	workhide,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	
+	<select id="TaskBid_select_nums" resultType="int">
+	    SELECT count(id) FROM task_bid 
+	    <where>
+	        <if test="taskId!=null and taskId!=''">
+	            and task_id = #{taskId}
+	        </if>
+	        <if test="uid!=null and uid!=''">
+				and uid = #{uid}
+	        </if>
+	        
+	    </where>
+	</select>
+	
+	<select id="TaskBid_select_all" resultMap="get-TaskBid-result">
+	    SELECT <include refid="TaskBid_Base_Column_List" /> FROM TASK_BID
+	    <where>
+	        <if test="taskId!=null and taskId!=''">
+	            and task_id = #{taskId}
+	        </if>
+	        <if test="status!=null and status!=''">
+	            and bid_status = #{status}
+	        </if>
+	    </where>
+	</select>
+</mapper>

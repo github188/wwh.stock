@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>资料分类管理</title>
+        <meta charset="UTF-8">
+        #parse("commons/commonJs.vm")
+		#parse("commons/commonCss.vm")
+	</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+		<table>
+			<tr>
+				<td>
+					<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'ext-icon-note_add'" onclick="newForm();">新增</a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'ext-icon-note_edit'" onclick="editForm();">编辑</a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'ext-icon-note_delete'" onclick="destroyForm();">删除</a>
+				</td>
+				<td>
+					<div class="datagrid-btn-separator"></div>
+				</td>
+				<td>
+					<a onclick="redoFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'ext-icon-resultset_next'">展开</a>
+					<a onclick="undoFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'ext-icon-resultset_previous'">折叠</a>
+				</td>
+				<td>
+					<div class="datagrid-btn-separator"></div>
+				</td>
+				<td>
+					<a onclick="jQuery('#grid').treegrid('reload');" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'ext-icon-arrow_refresh'">刷新</a>
+				</td>
+				<td>
+					<div class="datagrid-btn-separator"></div>
+				</td>
+			</tr>
+		</table>
+	
+	<table id="grid" title="" width="100%" border="0" cellpadding="0" cellspacing="0">
+		
+	</table>
+
+    <div id="dlg" class="easyui-dialog" style="width:500px;height:400px;z-index:-999"
+        closed="true" buttons="#dlg-buttons">
+        <form id="fm" method="post" >
+			<input type="hidden" name="id">
+			<table width="100%" border="0" cellpadding="0">
+				<tr>
+					<td width="30%" align="left">
+						<div class="fitem">
+                            <label align="right">类别:</label>
+                            <select class="easyui-combotree" panelHeight='auto' name="upId" id="upId" style="width:220px;"  >
+                            </select>
+                        </div>
+					</td>
+    			</tr>
+				<tr>
+					<td width="40%" align="left">
+            			<div class="fitem">
+                            <label align="right">类别编码:</label>
+                            <input name="catCode" id="catCode" class="easyui-validatebox" required="true" style="width:213px;" >
+                        </div>
+					</td>
+    			</tr>
+				<tr>
+					<td width="40%" align="left">
+            			<div class="fitem">
+                            <label align="right">类别名称:</label>
+                            <input name="catName" id="catName" class="easyui-validatebox" required="true" style="width:213px;" >
+                        </div>
+					</td>
+    			</tr>
+				<tr>
+					<td  align="left">
+	    				<div class="fitem">
+	    					<label align="right">排序:</label>
+	    					<input type="text" id="catOrder"  name="catOrder" class="easyui-numberbox" required="true" missingMessage="只能输入数字" invalidMessage="只能输入数字" style="width:213px;">
+	    				</div>
+    				</td>
+                </tr>
+				<tr>
+					<td  align="left">
+	    				<div class="fitem">
+	    					<label align="right">是否显示:</label>
+	    					<input type="radio" id="rdo1" name="isShow" value="1"  checked="true" > 显示</input>
+	    					<input type="radio" id="rdo2" name="isShow" value="0" > 不显示</input>
+	    				</div>
+    				</td>
+                </tr>
+    		</table>
+	</form>
+</div>
+<div id="dlg-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveForm()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancelFun()">取消</a>
+</div>
+
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+    	$('#catOrder').numberbox({min:1});
+    });
+	/**
+	 *设定栏目树Grid
+	 */
+	$('#grid').treegrid({
+	    url:'$!{base}/cm/info-category/querTree',
+//	    queryParams:{"systemid":'0'},
+	    idField:'id',
+	    treeField:'catName',
+	    parentField:'upId',
+	    toolbar : '#toolbar',
+	    border:false,
+	    fit:true,
+		columns:[[
+			{field:'id',title:'',width:0, hidden:true},
+	    	{field:'catName',title:'类别名称',width:350},
+	        {field:'catCode',title:'类别编码',width:150},
+	        {field:'catOrder',title:'排序',width:50},
+            {field:'isShow',title:'是否显示',formatter:function(value,row,index){if(value == '1'){return '是';}else if(value == '0'){return '否';} else {return ''}},width:50}
+	    ]]
+	});
+	
+	/**
+	 *组织变更后设定上级栏目
+	 *orgId:组织机构ID（在线平台值）
+	 *curCatId：的栏目ID
+	 *curCatName:的栏目名
+	 */
+	var getCatSelect = function(curCatId){
+	    var sUrl = "$!{base}/cm/info-category/getCategoryData";
+		jQuery('#upId').combotree({
+			url:sUrl
+		});
+		jQuery('#upId').combotree('setValue', curCatId);
+	}
+		
+	/**
+	 *栏目树双击进入编辑画面
+	 */			
+	jQuery('#grid').treegrid({
+    	onDblClickRow: function(rowid,rowdata){
+			editForm();
+    	}
+    });
+
+	/**
+	 *新增按钮单击进入栏目新增画面
+	 */	
+  	function newForm(){
+  		var selectRowOrgId;
+	  	jQuery('#dlg').dialog('open').dialog('setTitle','类别新增');
+    	jQuery('#fm').form('clear');
+	  	url = '$!{base}/cm/info-category/save';
+	  	var row = jQuery('#grid').treegrid('getSelected');
+		getCatSelect("-1");
+	}
+	
+	/**
+	 *编辑按钮单击进入栏目编辑画面
+	 */	
+	function editForm(){
+		var cnt = -2147483647;
+		var row = jQuery('#grid').treegrid('getSelected');
+		if (row){
+			if(row.id <= cnt) {
+    	  		var msg = {title: '错误', msg: '【'+row.catName + '】不能编辑，请选择其他行。'}
+				jQuery.messager.show(msg);
+			}else {
+				jQuery('#dlg').dialog('open').dialog('setTitle','内容编辑');
+				jQuery("#fm").form("reset");
+				jQuery('#fm').form('load',	row);
+				url = '$!{base}/cm/info-category/save';
+				getCatSelect(row.upId);
+			}
+		}
+		else{
+    	  	 var msg={title: 'Error', msg: '请选择一行记录' };
+			 jQuery.messager.show(msg);                
+		}
+		
+	}
+	
+	/**
+	 *删除按钮单击执行删除处理
+	 */	
+	function destroyForm(){
+		var cnt = -2147483647;
+		var row = jQuery('#grid').treegrid('getSelected');
+		if (row){
+			if(row.id <=cnt) {
+    	  		var msg={title: 'Error', msg: '【'+row.catName + '】不能删除，请选择其他行。' };
+				jQuery.messager.show(msg);  
+			}
+			else {
+				jQuery.messager.confirm('系统提示','确定删除该记录?栏目和内容都无法恢复！',function(r){
+					if (r){
+						jQuery.post('$!{base}/cm/info-category/cadelete',{id:row.id},function(result){
+							jQuery('#grid').treegrid('reload');    // reload the user data
+							jQuery('#grid').treegrid('unselectAll');
+							if (!result.success){
+								jQuery.messager.show({   //show error message
+									title: '系统提示',
+									msg: result.errorMsg
+								});
+							}
+						},'json');
+					}
+				});
+			}
+		}else{
+    	  	 var msg={title: 'Error', msg: '请选择一行记录' }
+			 jQuery.messager.show(msg);                
+		}
+	}
+	
+	/**
+	 *新增或编辑画面的确定按钮单击后保存提交处理
+	 */	
+	function saveForm(){
+	  jQuery('#fm').form('submit',{                
+		  url: url,                
+		  onSubmit: function(){
+		      	return jQuery(this).form('validate');
+			  },
+			  success: function(result){
+				  var result = eval('('+result+')');   
+				  if (result.errorMsg){  
+				  	  var msg={title: 'Error', msg: result.errorMsg}
+					  jQuery.messager.show(msg);                  
+					  } else {                  
+						  jQuery('#dlg').dialog('close');     
+						  jQuery('#grid').treegrid('reload');
+					  }             
+			  }         
+		  });
+		  
+	}  
+	/**
+	 *新增或编辑画面的取消按钮单击后画面关闭
+	 */	
+	function cancelFun(){
+		jQuery('#dlg').dialog('close');
+	}
+	
+	function contentSearch(){ 
+    	  var catName=document.getElementById("filter_catName").value; 
+		  var isShow = jQuery("#filter_isShow").combobox("getValue");
+          	jQuery('#grid').treegrid('load',{
+          		'catName':catName,
+				'isShow':isShow
+    	});
+	}
+	
+	function redoFun(){
+		jQuery('#grid').treegrid("expandAll");
+	}
+	
+	function undoFun(){
+		jQuery('#grid').treegrid("collapseAll");
+	}
+	
+</script>
+<style type="text/css">
+    #fm{
+		·margin:0;
+    	padding:10px 30px;
+    }
+    
+    .ftitle{
+    	font-size:14px;
+    	font-weight:bold;
+    	padding:5px 0;
+    	margin-bottom:10px;
+    	border-bottom:1px solid #ccc;
+    }
+    
+    .fitem{
+    	margin-bottom:5px;
+    	padding: 10px 0;
+    }
+    
+    .fitem label{
+    	display:inline-block;
+    	width:80px;
+    }
+</style>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry location="F:\workspace\mysql-connector-java-5.1.18.jar" />
+	<context id="context1">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+			<property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳 -->
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://10.80.11.246:3306/envapp_aj" userId="dev"
+			password="dev123!@#" />
+
+		<javaModelGenerator targetPackage="com.zjhcsoft.struc.bean"
+			targetProject="struc" />
+		<sqlMapGenerator targetPackage="com.zjhcsoft.struc.sqlmap"
+			targetProject="struc" />
+		<javaClientGenerator targetPackage="com.zjhcsoft.struc.mapper"
+			targetProject="struc" type="XMLMAPPER" />
+			
+		<table schema="envapp_aj" tableName="amoni_t_region_weather_hour_moni_data">
+			
+		</table>
+	</context>
+</generatorConfiguration>

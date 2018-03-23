@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+	<!-- 自动扫描且只扫描@Controller -->
+	<context:component-scan base-package="cn.hzskt.bdtg"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+	</context:component-scan>
+
+	<!-- 配置静态资源，直接映射到对应的文件夹，DispatcherServlet 不处理 -->
+	<mvc:resources mapping="/static/**" location="/static/" />
+
+	<!--  kisso 注入初始化，也支持使用 web.xml 初始化 -->
+	<bean id="kissoInit" class="com.baomidou.kisso.web.WebKissoConfigurer" init-method="initKisso">
+		<property name="ssoPropPath" value="sso/sso.properties" />
+		<!-- 测试模式 ，不同环境配置选择设置 -->
+		<property name="runMode" value="test_mode" />
+		<!--
+		   此处可以注入 SSOConfig 配置属性，也可以定义自己的 kisso 插件，基础 SSOPlugin 抽象类。
+		 <property name="pluginList">
+		 	<list>
+		 		<bean name="com.xxxx.MyPlugin">
+		 	</list>
+		 </property>
+		 -->
+	</bean>
+	<mvc:interceptors>
+		<!-- SSO 拦截器 -->
+		<!-- path 对所有的请求拦截使用/**，对某个模块下的请求拦截使用：/myPath/* -->
+		<mvc:interceptor>
+			<mvc:mapping path="/ips/**" />
+			<mvc:mapping path="/owner/**" />
+			<mvc:mapping path="/member/**" />
+			<mvc:mapping path="/message/**" />
+			<mvc:mapping path="/taskpub/**" />
+			<mvc:mapping path="/taskHandle/**"/>
+			<mvc:mapping path="/financial/**" />
+			<bean class="com.baomidou.kisso.web.interceptor.SSOSpringInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!-- 定义公共参数初始化拦截器 -->
+	<bean id="contextInterceptor" class="cn.hzskt.bdtg.common.interceptor.ContextInterceptor" />
+
+	<!-- 请求拦截器，每一个用户请求都会被拦截 -->
+	<mvc:interceptors>
+		<ref bean="contextInterceptor" />
+	</mvc:interceptors>
+
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8" />
+			</bean>
+			<!-- 将Jackson2HttpMessageConverter的默认格式化输出设为true -->
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="prettyPrint" value="true" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!-- 定义视图文件的位置 -->
+	<bean id="velocityConfig"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="/WEB-INF/content" />
+		<property name="configLocation" value="classpath:velocity/velocity.properties" />
+	</bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		<property name="suffix" value=".vm" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
+	</bean>
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="maxUploadSize" value="10485760000" />
+		<property name="maxInMemorySize" value="40960" />
+	</bean>
+
+
+	<!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL-->	
+	<mvc:default-servlet-handler/>
+
+</beans>

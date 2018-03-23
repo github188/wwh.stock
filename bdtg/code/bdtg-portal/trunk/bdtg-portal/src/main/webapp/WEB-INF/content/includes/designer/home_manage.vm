@@ -1,0 +1,76 @@
+
+<div class="header-top">
+    #parse("includes/header-top.vm")
+</div>
+
+<nav class="top-nav">
+    <div class="container">
+        <div class="nav-header">
+            <a class="nav-brand" href="javascript:void(0);">用户中心</a>
+        </div>
+        <!-- nav-header end -->
+        <ul class="menu">
+            <li class="line"></li>
+            <!-- <li><a href="index.php?do=user" ><i class="fa fa-tachometer"></i> <span>首页</span></a></li> -->
+            <li class="line"></li>
+			#if($user.type=="1")
+            <li class="line"></li>
+            <li>
+                <a href="$base/owner/owner_manage">
+                    <span>我是业主</span>
+                </a>
+            </li>
+			#elseif($user.type=="2")
+            <li class="line"></li>
+            <li>
+                <a href="$base/ips/ips_manage" >
+                    <span>我是设计单位</span>
+                </a>
+            </li>
+			#elseif($user.type=="3")
+            <li class="line"></li>
+            <li>
+                <a href="$base/designer/designer_manage" class="selected">
+                    <span>我是设计人员</span>
+                </a>
+            </li>
+			#elseif($user.type=="4")
+            <li class="line"></li>
+            <li>
+                <a href="$base/manufacturer/manufacturer_manage">
+                    <span>我是制造厂</span>
+                </a>
+            </li>
+			#end
+            <li class="line"></li>
+
+            <li>
+                <a href="$base/message/pagelist?type=2">
+                    <i class="fa fa-envelope"></i>
+                    <span>我的消息</span>
+                    #if($msg_cnt)<span class="badge">$msg_cnt</span>#end
+                </a>
+            </li>
+			<!--
+            <li class="line"></li>
+            <li>
+                <a href="$base/member/account">
+                    <i class="fa fa-cogs"></i>
+                    <span>帐号设置</span>
+                </a>
+            </li>
+			-->
+            <!-- 			<li>
+            <a href="index.php?do=seller&id=1" target="_blank">
+            <i class="fa fa-home"></i>
+            <span>我的店铺</span>
+            </a>
+            </li>
+            <li class="line"></li> -->
+        </ul>
+        <!-- menu end -->
+
+        
+    </div>
+    <!-- container end -->
+</nav>

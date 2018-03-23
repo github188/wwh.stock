@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>商品信息新增</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/shop/service/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <table width="100%" cellpadding="5">
+                            <tr>
+                    <td align="left">
+                        模型编号
+                    </td>
+                    <td>
+                                                <input name="modelId" class="easyui-textbox" value="$!{model.modelId}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        商品类型
+                    </td>
+                    <td>
+                                                <input name="serviceType" class="easyui-textbox" value="$!{model.serviceType}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        店铺编号
+                    </td>
+                    <td>
+                                                <input name="shopId" class="easyui-textbox" value="$!{model.shopId}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        用户编号
+                    </td>
+                    <td>
+                                                <input name="uid" class="easyui-textbox" value="$!{model.uid}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        用户名
+                    </td>
+                    <td>
+                                                <input name="username" class="easyui-textbox" value="$!{model.username}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        收益率
+                    </td>
+                    <td>
+                                                <input name="profitRate" class="easyui-textbox" value="$!{model.profitRate}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        行业编号
+                    </td>
+                    <td>
+                                                <input name="indusId" class="easyui-textbox" value="$!{model.indusId}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        行业父编号
+                    </td>
+                    <td>
+                                                <input name="indusPid" class="easyui-textbox" value="$!{model.indusPid}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        行业路径
+                    </td>
+                    <td>
+                                                <input name="indusPath" class="easyui-textbox" value="$!{model.indusPath}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        自定义分类
+                    </td>
+                    <td>
+                                                <input name="cusCateId" class="easyui-textbox" value="$!{model.cusCateId}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        商品标题
+                    </td>
+                    <td>
+                                                <input name="title" class="easyui-textbox" value="$!{model.title}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        商品价格
+                    </td>
+                    <td>
+                                                <input name="price" class="easyui-textbox" value="$!{model.price}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        单价
+                    </td>
+                    <td>
+                                                <input name="unitePrice" class="easyui-textbox" value="$!{model.unitePrice}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        服务时间
+                    </td>
+                    <td>
+                                                <input name="serviceTime" class="easyui-textbox" value="$!{model.serviceTime}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        服务单位时间（如：/天/时）
+                    </td>
+                    <td>
+                                                <input name="unitTime" class="easyui-textbox" value="$!{model.unitTime}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        对象名称
+                    </td>
+                    <td>
+                                                <input name="objName" class="easyui-textbox" value="$!{model.objName}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        商品图片
+                    </td>
+                    <td>
+                                                <input name="pic" class="easyui-textbox" value="$!{model.pic}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        商品封面
+                    </td>
+                    <td>
+                                                <input name="adPic" class="easyui-textbox" value="$!{model.adPic}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        区域范围
+                    </td>
+                    <td>
+                                                <input name="areaRange" class="easyui-textbox" value="$!{model.areaRange}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        商品关键词
+                    </td>
+                    <td>
+                                                <input name="keyWord" class="easyui-textbox" value="$!{model.keyWord}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        商品交付方式outside|inside
+                    </td>
+                    <td>
+                                                <input name="submitMethod" class="easyui-textbox" value="$!{model.submitMethod}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        作品附件
+                    </td>
+                    <td>
+                                                <input name="filePath" class="easyui-textbox" value="$!{model.filePath}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        作品描述
+                    </td>
+                    <td>
+                                                <input name="content" class="easyui-textbox" value="$!{model.content}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        作品发布时间
+                    </td>
+                    <td>
+                                                <input name="onTime" class="easyui-textbox" value="$!{model.onTime}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        是否终止
+                    </td>
+                    <td>
+                                                <input name="isStop" class="easyui-textbox" value="$!{model.isStop}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        销量
+                    </td>
+                    <td>
+                                                <input name="saleNum" class="easyui-textbox" value="$!{model.saleNum}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        关注数
+                    </td>
+                    <td>
+                                                <input name="focusNum" class="easyui-textbox" value="$!{model.focusNum}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        评价数
+                    </td>
+                    <td>
+                                                <input name="markNum" class="easyui-textbox" value="$!{model.markNum}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        留言数
+                    </td>
+                    <td>
+                                                <input name="leaveNum" class="easyui-textbox" value="$!{model.leaveNum}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        浏览
+                    </td>
+                    <td>
+                                                <input name="views" class="easyui-textbox" value="$!{model.views}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        付费项
+                    </td>
+                    <td>
+                                                <input name="payItem" class="easyui-textbox" value="$!{model.payItem}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        付费费用
+                    </td>
+                    <td>
+                                                <input name="attCash" class="easyui-textbox" value="$!{model.attCash}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        刷新时间
+                    </td>
+                    <td>
+                                                <input name="refreshTime" class="easyui-textbox" value="$!{model.refreshTime}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        唯一数
+                    </td>
+                    <td>
+                                                <input name="uniqueNum" class="easyui-textbox" value="$!{model.uniqueNum}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        总销量
+                    </td>
+                    <td>
+                                                <input name="totalSale" class="easyui-textbox" value="$!{model.totalSale}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        作品/服务状态
+                    </td>
+                    <td>
+                                                <input name="serviceStatus" class="easyui-textbox" value="$!{model.serviceStatus}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        是否推荐
+                    </td>
+                    <td>
+                                                <input name="isTop" class="easyui-textbox" value="$!{model.isTop}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        地图标记点
+                    </td>
+                    <td>
+                                                <input name="point" class="easyui-textbox" value="$!{model.point}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        城市
+                    </td>
+                    <td>
+                                                <input name="city" class="easyui-textbox" value="$!{model.city}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        使用付费项目时间
+                    </td>
+                    <td>
+                                                <input name="payitemTime" class="easyui-textbox" value="$!{model.payitemTime}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        服务的服务时间
+                    </td>
+                    <td>
+                                                <input name="existTime" class="easyui-textbox" value="$!{model.existTime}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        允许最大时间
+                    </td>
+                    <td>
+                                                <input name="confirmMax" class="easyui-textbox" value="$!{model.confirmMax}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        SEO标题
+                    </td>
+                    <td>
+                                                <input name="seoTitle" class="easyui-textbox" value="$!{model.seoTitle}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        SEO关键字
+                    </td>
+                    <td>
+                                                <input name="seoKeyword" class="easyui-textbox" value="$!{model.seoKeyword}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        SEO描述
+                    </td>
+                    <td>
+                                                <input name="seoDesc" class="easyui-textbox" value="$!{model.seoDesc}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        省份
+                    </td>
+                    <td>
+                                                <input name="province" class="easyui-textbox" value="$!{model.province}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        地区
+                    </td>
+                    <td>
+                                                <input name="area" class="easyui-textbox" value="$!{model.area}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        服务置顶状态
+                    </td>
+                    <td>
+                                                <input name="goodstop" class="easyui-textbox" value="$!{model.goodstop}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        当值为"custom"表示自定义,当值为"forever"表示无期限,当值为数字表示期限为多少天
+                    </td>
+                    <td>
+                                                <input name="overdueType" class="easyui-textbox" value="$!{model.overdueType}">
+                    </td>
+                </tr>
+                    </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

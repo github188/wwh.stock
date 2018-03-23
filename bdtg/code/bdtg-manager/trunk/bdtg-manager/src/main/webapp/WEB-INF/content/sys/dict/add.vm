@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>数据字典新增</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/sys/dict/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				result = jQuery.parseJSON(result);
+				Magic.closeWin();  
+				if(!result.success){  
+					window.parent.jQuery.messager.show({title: '错误', msg: result.message });                  
+				} else {                  
+					window.parent.jQuery('#dg').datagrid('reload');   
+				}             
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div id="p" data-options="region:'center',border:false"  style="padding:10px;background:#fff;border:1px solid #ccc;">
+      <form id="fm" method="post" novalidate>
+			<table width="100%" border="0" cellspacing="1" cellpadding="0">
+    			<tr>
+    			 	<td align="left">
+    			 		<div class="fitem">
+                            <label align="right">类型</label>
+							<input name="keyName" class="easyui-validatebox" data-options="required:true">
+                        </div>
+    			 	</td>
+    			 	<td align="left">
+    			 		<div class="fitem">
+                            <label align="right">值</label>
+                            <input name="value" class="easyui-validatebox textbox" data-options="required:true">
+                        </div>
+    			 	</td>
+    			 </tr>
+    			 <tr>
+    			 	<td align="left">
+    			 		<div class="fitem">
+                            <label align="right">内容</label>
+							<input name="content" class="easyui-validatebox">
+                        </div>
+    			 	</td>
+    			 	<td align="left">
+    			 		<div class="fitem">
+                            <label align="right">备注</label>
+                            <input name="memo" class="easyui-validatebox textbox">
+                        </div>
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+        <div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save('brand')">保存</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+        </div>
+</body>
+</html>

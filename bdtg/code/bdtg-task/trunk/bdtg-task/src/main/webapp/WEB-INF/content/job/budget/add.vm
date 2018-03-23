@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>预算费用新增</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/job/budget/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+        
+        function choseNode(){
+        	Magic.openWin('节点选择', 'choseProcess', 500, 300);
+        }
+        
+        function addProcess(data){
+        	if(data){
+        		$("#processName").textbox("setText", data.content);
+        		$("#processId").val(data.id);
+        	}
+        }
+        
+        function choseMember(){
+        	var pid = $("#processId").combobox("getValue");
+        	if(pid == null || pid==''){
+	        	jQuery.messager.show({
+					title: '错误',
+					msg: "请选择节点信息！！"
+				});
+        	}
+        	else {
+	        	Magic.openWin('成员选择', 'choseMember?processId='+$("#processId").combobox("getValue"), 500, 300);
+        	}
+        }
+        
+        function addmember(data){
+        	if(data){
+        		$("#uname").textbox("setText", data.userName);
+        		$("#uid").val(data.userId);
+        	}
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <table width="100%" cellpadding="5">
+		<tr>
+	        <td align="left">
+				所属节点
+	        </td>
+	        <td>
+				<select id="processId" name="processId" class="easyui-combobox" editable="false" style="width:240px;height:30px;">
+						#foreach($!option in $!options)
+						<option value="$!option.id">$!option.content</option>
+						#end
+		        </select>
+	        </td>
+	    </tr>
+		<tr>
+            <td align="left">
+				成员
+            </td>
+            <td>
+				<input id="uname" class="easyui-textbox" style="width:240px;height:30px;">
+				<input type="hidden" id="uid" name="uid">
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="choseMember();">选择</a>
+            </td>
+        </tr>
+        <tr>
+			<td align="left">
+				预算费用
+			</td>
+			<td>
+				<input name="budgetFare" class="easyui-textbox" style="width:240px;height:30px;" value="$!{model.budgetFare}">
+			</td>
+		</tr>
+		<tr style="display:none;">
+            <td align="left">
+				实付费用
+            </td>
+            <td>
+				<input name="realFare" class="easyui-textbox" style="width:240px;height:30px;" value="0">
+            </td>
+        </tr>
+	</table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

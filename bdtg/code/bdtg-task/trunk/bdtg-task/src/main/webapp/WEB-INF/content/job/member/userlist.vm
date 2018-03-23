@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>系统用户管理</title>
+        <meta charset="UTF-8">
+        #parse("commons/commonJs.vm")
+		#parse("commons/commonCss.vm")
+		<script type="text/javascript">
+			$(function() {
+				jQuery('#dg').datagrid({
+					url:'${base}/job/member/userlist',
+					columns:[[
+						{field:'userId',checkbox:false}
+						,{field:'userName',title:'用户名',width:100}
+						,{field:'email',title:'邮箱',width:100}
+                        ,{field:'mobile',title:'手机号',width:100}
+				    ]],
+				    pagination:true,
+				    singleSelect:true,
+				    fitColumns:true,
+				    fit: true,
+				    toolbar:'#toolbar'
+			    });
+			});
+
+			function contentSearch(){ 
+				var userName=jQuery('#filter_userName').val();
+		        jQuery('#dg').datagrid('load',{
+				'userName':userName		    	})
+			}
+            function save() {
+                var rows = jQuery('#dg').datagrid('getSelections');
+				var type=$("#type").val();
+				if(rows==""){
+                    window.parent.jQuery.messager.show({title: '提示', msg: '请选择用户！' });
+				}else{
+
+                    jQuery.post('${base}/job/member/saveuser',
+							{'type':type,
+							'userId':rows[0].userId,
+							'userName':rows[0].userName},function(result) {
+                        Magic.closeWin();
+                        if(!result.success){
+                            window.parent.jQuery.messager.show({title: '错误', msg: result.message });
+                        } else {
+                            window.parent.jQuery('#dg').datagrid('reload');
+                            window.parent.jQuery.messager.show({title: '提示', msg: '操作成功！' });
+                        }
+                    });
+				}
+
+            }
+		</script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+   <table id="dg" data-options="toolbar:'#toolbar'"></table>
+   <input type="hidden" id="type" value="$!{type}">
+    <div id="toolbar">
+    	<div class="search_box">
+			用户名：<input id="filter_userName" class="easyui-validatebox" >
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="contentSearch()">搜索</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()" style="margin-left: 200px;">保存</a>
+    	</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>审核管理</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        $(function () {
+            jQuery('#dg').datagrid({
+                url: 'memberPaged?processId=$!{processId}',
+                columns: [[
+                    {field: 'id', checkbox: true}, 
+					{field: 'userName', title: '用户名', width: 100}, 
+					{field: 'mobile', title: '联系方式', width: 100}
+				]],
+                pagination: true,
+                singleSelect: true,
+                fitColumns: true,
+                fit: true
+            });
+        });
+        
+        function contentSearch() {
+			jQuery('#dg').datagrid('load', {
+				'userName': $("#username").textbox("getText")
+			})
+        }
+
+		function choseProcess(){
+			var rows = jQuery('#dg').datagrid('getSelected');
+			if(rows){
+				Magic.closeWin();
+				window.parent.addmember(rows);
+			}
+		}
+
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+	<div data-options="region:'center',title:''">
+		<table id="dg" data-options="toolbar:'#toolbar'"></table>
+		<div id="toolbar">
+		    <div class="search_box">
+		             	 姓名：
+		             	 	<input id="username" class="easyui-textbox" style="width:150px;height:30px;">
+		                                    
+					<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+		           	onclick="contentSearch()">搜索</a>
+		    </div>
+		</div>
+	</div>
+	<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="choseProcess();">选择</a>
+	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hzskt.bdtg.cm.domain.Info">
+
+	<resultMap id="get-CmInfo-result" type="cn.hzskt.bdtg.cm.domain.Info">
+		<!-- 编号-->
+    	<result property="id" column="id" />
+		<!-- 分类-->
+    	<result property="category" column="category" />
+		<!-- url地址-->
+    	<result property="url" column="url" />
+		<!-- 文件名称-->
+		<result property="fileName" column="file_name" />
+	</resultMap>
+
+	<select id="CmInfo_select_all" resultMap="get-CmInfo-result">
+		 SELECT
+			tb.id,
+			tb.category,
+			tb.url,
+			tb.file_name
+		FROM
+			cm_info tb
+		<where>
+			tb.category = #{category}
+		</where>
+		ORDER BY
+			tb.id DESC
+       	LIMIT
+       		${limit}, ${size}
+	</select>
+	
+	<select id="CmInfo_select_all_nums" resultType="int">
+		SELECT
+    		count(tb.id)
+	 	FROM
+			cm_info tb
+		<where>
+			tb.category = #{category}
+		</where>
+	</select>
+
+	<select id="CmInfo_SelectNameList" resultMap="get-CmInfo-result">
+		SELECT
+		tb.id,
+		tb.category,
+		tb.url,
+		tb.file_name
+		FROM
+		cm_info tb
+		<where>
+			tb.category = #{category}
+			AND
+			tb.file_name = #{fileName}
+		</where>
+	</select>
+	
+	<delete id="CmInfo_remove">
+	    delete from cm_info where id=#{id}
+	</delete>
+	
+	<insert id="CmInfo_insert">
+		INSERT INTO cm_info(
+				category,
+				url,
+				file_name
+		)
+		VALUES(
+			#{category},
+			#{url},
+			#{fileName}
+		)
+		<selectKey resultType="int" keyProperty="id">
+			<![CDATA[SELECT LAST_INSERT_ID() AS ID]]>
+		</selectKey>
+	</insert>
+	
+	<update id="CmInfo_update">
+	    update cm_info
+	    <set>
+			url = #{url},
+			category = #{category},
+			file_name = #{fileName}
+	    </set>
+	    where id=#{id}
+	</update>
+
+</mapper>

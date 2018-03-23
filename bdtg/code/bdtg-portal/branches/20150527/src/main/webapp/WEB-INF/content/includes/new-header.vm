@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>北斗天工</title>
+    <link rel="stylesheet" type="text/css" href="$!{base}/static/newindex/css/basic.css" />
+    <link rel="stylesheet" type="text/css" href="$!{base}/static/newindex/css/slide.css" />
+    <link rel="stylesheet" type="text/css" href="$!{base}/static/newindex/css/newIndex.css" />
+    <link rel="stylesheet" type="text/css" href="$!{base}/static/newindex/css/awesomeicon.css" />
+</head>
+<div class="wrap">
+    <div class="header clearfix">
+        <div class="fr header_links">
+            #if($user)
+                <span>欢迎您，<a href="${base}/member/index" style="margin-left:5px;">${user.name}</a></span>
+                <a href="$base/message/pagelist?type=2" style="margin-left: 5px;"> <i class="fa fa-envelope"></i>
+                    #if($msg_cnt)($msg_cnt)#end</a>
+                <a href="javascript:logout();" class="nav-item-link active" style="margin-left:10px;">退出</a>
+                <script type="text/javascript">
+                    function logout() {
+                        jQuery.post('${base}/logout',function() {
+                            window.location.reload();
+                        });
+                    }
+                </script>
+            #else
+                <a class="register" href="${base}/register">注册</a>
+                <span class="register_prize">注册就送北斗币</span>
+                <a class="login" href="${base}/login">请登录</a>
+            #end
+            <a href="$base/owner/owner_manage">我是业主</a>
+            <a href="$base/ips/ips_manage">我是服务商</a>
+            <a class="myCart"><i class="icon_cart"></i>我的任务车</a>
+            <a href="">网站导航</a>
+        </div>
+    </div>
+    <a href="" class="imgLink"><img src="$!{base}/static/newindex/images/banner1.png" width="100%"></a>
+    <div class="searchBox clearfix">
+        <div class="fl searchBox_img"><img src="$!{base}/static/newindex/images/logo.png" width="100%"></div>
+        <div class="searchBox_search fr">
+            <div class="searchBox_input clearfix">
+                <select class="fl">
+                    <option>找项目</option>
+                </select>
+                <a class="searchBox_btn fr"><i class="icon_search"><img src="$!{base}/static/newindex/images/icon_search.png"></i></a>
+                <div class="searchBox_input_"><input type="text" placeholder="建筑/土木设计"></div>
+                <p class="searchBox_tip"><span class="name">热门搜索：</span>设计  咨询  生产运营  项目管理  技术服务  设备采购</p>
+            </div>
+            &nbsp;&nbsp;&nbsp;或&nbsp;&nbsp;&nbsp;
+            <a class="searchBox_releaseBtn"  href="$base/taskpub/content">发布任务</a>
+        </div>
+    </div>
+</div>

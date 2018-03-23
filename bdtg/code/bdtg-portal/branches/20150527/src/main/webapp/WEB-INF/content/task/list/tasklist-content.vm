@@ -1,0 +1,156 @@
+<div id="main">
+  <div class="category-list category-xs">
+		<a href="javascript:void(0);" class="category-title">
+			<i class="fa fa-list-ul"></i>分类 
+			<i class="fa fa-angle-down"></i>
+      	</a>
+		<ul class="category-down">
+			#foreach($item in $!classItems)
+				<li class="category-item">
+	          		<div class="category-top">
+						<a href="${base}/tasklist?indusPid=$item.model.id" tabindex="-1">$item.model.indusName</a>
+	            		<i class="fa fa-angle-right"></i>
+	          		</div>
+	          		<div class="category-inner">
+	          			<h3 class="category-inner-title">$item.model.indusName</h3>
+	          			#foreach($clazz in $item.children)
+	          			<a href="${base}/tasklist?indusId=$!clazz.id" tabindex="-1" #if($!clazz.isRecommend == 1) class="hot" #end>$clazz.indusName</a>
+	          			#end
+	           		</div>
+	        	</li>
+			#end
+      	</ul>
+  	</div>
+  	<!-- category-list end -->
+	<div class="tab tab-darken">
+    	<a href="${base}/tasklist" class="selected">所有任务</a>
+  	</div>
+  	<!-- tab end -->
+  	<!-- second-nav end -->
+	<ul class="list-filter">
+		<!--
+	    <li>
+	      <label class="col-xs-1">赏金状态</label>
+	      <div class="col-xs-11 condition">
+	        	<a href="${base}/tasklist" class="selected">全部</a>
+	        	<a href="${base}/tasklist">未托管</a>
+	        	<a href="${base}/tasklist">已托管</a>
+	      </div>
+	    </li>
+	    -->
+	    <li>
+	      <label class="col-xs-1">任务状态</label>
+	      <div class="col-xs-11 condition">
+	        	<a href="${base}/tasklist" #if(!$!status) class="selected" #end>全部</a>
+	        	<a href="${base}/tasklist?status=2" #if($!status==2) class="selected" #end>投标中</a>
+	        	<a href="${base}/tasklist?status=4" #if($!status==4) class="selected" #end>工作中</a>
+				<a href="${base}/tasklist?status=7" #if($!status==7) class="selected" #end>交付中</a>
+	        	<a href="${base}/tasklist?status=8" #if($!status==8) class="selected" #end>已结束</a>
+	      </div>
+	    </li>
+  	</ul>
+	<!-- filter end -->
+	<div class="tool-bar">
+		<div class="actions">
+			<!--
+			<a href="index.php?do=tasklist&amp;m=5&amp;o=1" class="tool-bar-item ">剩余时间</a>
+			<a href="index.php?do=tasklist&amp;m=5&amp;o=3" class="tool-bar-item ">金额</a>
+			<a href="index.php?do=tasklist&amp;m=5&amp;o=5" class="tool-bar-item ">任务数</a>
+			-->
+		</div>
+	</div>
+	<!-- tool-bar end -->
+  	<div class="list list-dl">
+    	<dl class="list-body" id="ajax_dom">
+      		<dt class="list-label">
+        		<ul>
+					<li class="w4">名称</li>
+		          	<li class="w2">赏金</li>
+		          	<li class="w1">查看/投标</li>
+		          	<li class="w1d5">状态</li>
+        		</ul>
+      		</dt>
+      		<script type="text/javascript">
+				var typecode = {
+					"2" : "投标中",
+					"3" : "选标中",
+					"4" : "工作中",
+					"7" : "冻结",
+					"8" : "结束",
+					"9" : "失败",
+					"10" : "审核失败"
+				};
+			</script>
+			#foreach($!data in $!page.list)
+				<dd class="list-item">
+        		<ul class="list-item-body">
+          			<li class="w4">
+            			<a href="/task-detail-work?id=$!data.id" class="list-title" title="$!data.taskTitle">
+              				$!data.taskTitle
+              			</a>
+          			</li>
+          			<li class="w2">
+            			<span class="money">
+							#if($!data.taskCash)
+								<sub>￥</sub>
+								$!NumberTool.format('#0.00', $!data.taskCash)元
+								
+							#else	
+								&nbsp;&nbsp;
+							#end
+						</span>
+          			</li>
+          			<li class="w1">
+          				#if($!data.viewNum) $!data.viewNum #else 0 #end
+          				/
+          				#if($!data.workCount) $!data.workCount #else 0 #end
+          			</li>
+          			<li class="w1d5">
+          				#if($!data.taskStatus)
+							<script type="text/javascript">
+								if(typecode['$!data.taskStatus']){
+									document.write(typecode['$!data.taskStatus']);
+								}
+							</script>
+          				#else
+          					&nbsp;&nbsp;
+          				#end
+          			</li>
+          			<!--
+        			<li class="wd5">
+          				<a href="javascript:addFavorite('task',65);" id="favorite65" title="收藏" class="action-collect"><i class="fa fa-star"></i></a>
+   					</li>
+   					-->
+		        </ul>
+        		<ul class="list-item-body list-visible">
+          			<li class="w8">
+            			<div class="list-desc">$!data.taskDesc</div>
+          			</li>
+          			<li class="w2">
+            			<a href="${base}/taskpub/step?usrType=1&step=2" class="btn btn-primary btn-sm">发布一个类似任务</a>
+          			</li>
+        		</ul>
+      		</dd>
+			#end
+    	</dl>
+  	</div>
+  	<!-- list end-->
+
+	<div class="list-page">
+	    <div class="page-tips pull-left">
+	      	显示 1~20 项 共  $!page.total 个任务
+	    </div>
+	    #if($!page.hasNextPage)
+		<ul class="pagination pagination-sm pull-right">
+       		<li class="active"><a>1</a></li>
+       		<li><a href="index.php?do=tasklist&amp;page=2">2</a></li>
+       		<li><a href="index.php?do=tasklist&amp;page=3">3</a></li>
+       		<li><a href="index.php?do=tasklist&amp;page=4">4</a></li>
+       		<li><a href="index.php?do=tasklist&amp;page=2">»</a></li>
+       		<li><span class="fl_l"> 1 / 4页</span></li>       
+       	</ul>
+	    #end
+  </div>
+  <!-- list-page end -->
+  <!-- for-advertise end -->
+</div>

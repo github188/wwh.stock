@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>北斗天工</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="北斗天工">
+    <meta name="description" content="北斗天工">
+    <meta name="generator" content="北斗天工" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="copyright" content="" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <style>
+        .help-block {
+            display: block;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            color: #737373;
+        }
+    </style>
+    <!--[if lt IE 9]>
+    <script src="static/js/html5.js" type="text/javascript"></script>
+    <script src="static/js/respond.min.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <script src="${base}/static/js/jquery.min.1.8.3.js"></script>
+    <!-- 幻灯片 -->
+    <script src="${base}/static/js/jqplugins/fotorama/fotorama.js"></script>
+    <!-- 滚动视图 -->
+    <script src="${base}/static/js/jqplugins/jcarousel/jquery.jcarousel.js"></script>
+    <script src="${base}/static/js/jqplugins/jcarousel/jquery.jcarousel.control.js"></script>
+    <script src="${base}/static/js/jqplugins/jcarousel/jquery.jcarousel.autoscroll.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+##
+<link href="${base}/static/js/jqplugins/fotorama/fotorama.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/style1.css" rel="stylesheet" type="text/css" id="active-style1">
+    <link href="${base}/static/css/style2.css" rel="stylesheet" type="text/css" id="active-style2">
+<link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+<link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+<link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.30825000"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script type="text/javascript" src="${base}/static/js/model/register/register.js"></script>
+    <script>
+        window.onload = function(){
+            base_url="${base}";
+        }
+
+    </script>
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="${base}/static/newindex/css/register.css" />
+    #parse("includes/index-header.vm")
+    #parse("includes/nav_manage.vm")
+<div class="registerBanner">
+    <img src="${base}/static/newindex/images/register/banner.png" class="banner">
+    <div class="registerBox" >
+        <h2>账户登录<a class="registerBox-a" href="${base}/register">注册新帐号</a></h2>
+        <form action="${base}/loginpost" role="form" name="loginForm" id="loginForm" method="post" novalidate="novalidate">
+        <div class="infoForm form-group">
+            <i class="icon icon_1"></i>
+            <input class="inputText form-control" name="username" id="username" type="text" placeholder="用户名/手机号/邮箱">
+        </div>
+        <div class="infoForm form-group">
+            <i class="icon icon_3"></i>
+            <input class="inputText form-control" name="password" id="password" type="password" placeholder="密码">
+        </div>
+        <div class="treaty">
+            <input class="beijingcheckbox" name="autoLogin" value="1" type="checkbox">
+            两周内记住我
+            <a href="" class="forgetPassword">忘记密码？</a>
+        </div>
+        <a class="registerBtn" style="text-decoration:none;"  href="javascript:load()">登录</a>
+            </form>
+        <div class="clearfix elseSignin">
+            <p class="title">第三方帐号登录</p>
+            <a href=""><i class="icon2 icon2_1"></i></a>
+            <a href=""><i class="icon2 icon2_2"></i></a>
+            <a href=""><i class="icon2 icon2_3"></i></a>
+            <a href=""><i class="icon2 icon2_4"></i></a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function load(){
+        $("#loginForm").submit();
+    }
+    function change(){
+        $("#code").val("");
+    }
+</script>
+    #parse("includes/footer.vm")
+</body>
+</html>

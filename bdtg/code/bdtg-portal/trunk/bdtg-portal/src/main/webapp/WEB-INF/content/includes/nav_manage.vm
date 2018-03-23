@@ -1,0 +1,6 @@
+<div class="nav">
+    <ul class="wrap clearfix">
+        #set($classNum = 0)
+		#parse("includes/index-navmanage.vm")
+    </ul>
+</div>

@@ -1,0 +1,35 @@
+<style>
+    .footer{
+        text-align: center;
+        font-size: 14px;
+        color: #000;
+        line-height: 30px;
+        margin-top: 20px;
+    }
+    .footer a{
+        color: #000;
+        margin: 0 10px;
+
+    }
+    .footer .qqtalk{
+        margin: 0 2px 0 10px;
+    }
+    .footer img{
+        vertical-align: middle;
+    }
+</style>
+<div class="footer">
+    <div><a href="">关于我们</a>|<a href="">联系我们</a>|<a href="">会员服务</a>|<a href="">入网流程</a>|<a href="">付款方式</a>|<a href="">合作伙伴</a>|<a href="">网站优势</a>|<a href="">招贤纳士</a>|<a href="">新闻速递</a>|<a href="">法律声明</a>|<a href="">友情链接</a></div>
+    <p>运营单位：杭州尚青科技有限公司</p>
+##    <p>电话：010-59799358  57259275 57259273 63009628    传真：010-61271207    售后：400-676-1800</p>
+##    <div><a href="" class="qqtalk"><img src="$!{base}/static/newindex/images/icon_qq.png"></a>综合<a href="" class="qqtalk"><img src="$!{base}/static/newindex/images/icon_qq.png"></a>综合<a href="" class="qqtalk"><img src="$!{base}/static/newindex/images/icon_qq.png"></a>综合<a href="" class="qqtalk"><img src="$!{base}/static/newindex/images/icon_qq.png"></a>售后<a href="" class="qqtalk"><img src="$!{base}/static/newindex/images/icon_qq.png"></a>业务<a href="" class="qqtalk"><img src="$!{base}/static/newindex/images/icon_qq.png"></a>合作</div>
+    <p>
+        北京北斗天工有限公司(www.beidoutiangong.com)  版权所有  未经授权禁止传播本站内容&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a target="_blank" href="http://www.beidoutiangong.com"><img src="$!{base}/static/newindex/images/icon_f1.png">京ICP证090537号</a>
+    </p>
+</div>
+<script type="text/javascript">
+    function openUrl(url,target) {
+        window.open(url,target);
+    }
+</script>

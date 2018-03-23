@@ -1,0 +1,441 @@
+#parse("includes/header_home.vm")
+<link href="${base}/static/css/style.css" rel="stylesheet" type="text/css">
+<div class="container">
+<div id="main">
+  <div class="release">
+		<div class="release-progress">
+			#parse("task/zmrc/own/task-step.vm")
+    	</div>
+    <!-- release-progress end-->
+    <div class="release-body">
+		<!-- release-help end  -->
+		<!-- 加载各任务对应步骤  -->
+		<div class="release-form">
+			<form class="form-horizontal" role="form" action="${base}/taskpub/cacheZmrc" method="post" id="pubTaskFormstep2" name="pubTaskFormstep2" novalidate="novalidate">
+				<input type="hidden" name="step" value="$!taskstep">
+				<input type="hidden" name="usrType" value="$!usrType">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">
+						员工类型
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-4">
+						<div class="checkbox" style="left:-21px;">
+							#foreach($!dict in $!yglxdict)
+							<label>
+								<input type="radio" #if($!model.yglb == $!dict.value) checked="checked" #end value="$!dict.value" name="yglb">
+								$!dict.content
+							</label>
+							#end
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">
+						职位名称
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-7">
+						<input type="text" name="zwmc" value="$!model.zwmc" class="form-control placeholder" id="txt_product" placeholder="职位名称">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-3 control-label">
+						应届生应聘
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<div class="checkbox" style="left:-21px;">
+							#foreach($!dict in $!yjsxzdict)
+							<label>
+									<input type="radio" #if($!model.yjsxz == $!dict.value) checked="checked" #end value="$!dict.value" name="yjsxz">
+									$!dict.content
+							</label>
+							#end
+							</div>
+					</div>
+					<label for="txt_mobile" class="col-sm-1 control-label">
+						性别
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-2">
+						<div class="checkbox" style="left:-21px;">
+								<label>
+									<input #if($!model.sex == '1') checked #end type="radio" value="1" name="sex">
+									男
+								</label>
+								&nbsp;&nbsp;&nbsp;
+								<label>
+									<input #if($!model.sex == '2') checked #end id="stagespay" type="radio" value="2"  name="sex">
+									女
+								</label>
+							</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">
+						招聘人数
+						<span class="text-danger">*</span>
+					</label>
+					<div class="col-sm-3">
+						<input type="text" name="zprs" value="$!model.zprs" class="form-control placeholder" id="txt_product" placeholder="招聘人数">
+					</div>
+					<label class="col-sm-1 control-label">
+						职位标签
+						<span class="text-danger">*</span>
+					</label>
+					<div class="col-sm-3">
+						<input type="text" name="zwbq" value="$!model.zwbq" class="form-control placeholder" id="txt_product" placeholder="职位标签">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">
+						学历要求
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<select class="form-control" name="xlyq" id="xlyq">
+							#foreach($!dict in $!xlyqdict)
+							<option #if($!model.xlyq == $!dict.value) selected="selected" #end value="$!dict.value">$!dict.content</option>
+							#end
+						</select>
+					</div>
+					<label class="col-sm-1 control-label">
+						工资范围
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<select class="form-control" name="gzfw" id="gzfw">
+							#foreach($!dict in $!xzyqdict)
+							<option #if($!model.gzfw == $!dict.value) selected="selected" #end value="$!dict.value">$!dict.content</option>
+							#end
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">
+						工作经验
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<select class="form-control" name="gzjy" id="gzjy">
+							#foreach($!dict in $!gzjydict)
+							<option #if($!model.gzjy == $!dict.value) selected="selected" #end value="$!dict.value">$!dict.content</option>
+							#end
+						</select>
+					</div>
+					<label class="col-sm-1 control-label">
+						职位类别
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<select class="form-control" name="zwlb" id="zwlb">
+							#foreach($!dict in $!zwlbdict)
+							<option #if($!model.zwlb == $!dict.value) selected="selected" #end value="$!dict.value">$!dict.content</option>
+							#end
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">
+						工作地点
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<select class="form-control" name="province" onchange="getZone(this.value, 'city');">
+							<option value="">选择省份</option>
+							#foreach($area in $!areas)
+							<option #if($!model.province == $area.id) selected  #end value="$area.id">$area.name</option>
+							#end
+						</select>
+					</div>
+					<label class="col-sm-1 control-label">
+					</label>
+					<div class="col-sm-3">
+						<select class="form-control" name="city" id="city">
+							<option value="">选择城市</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">
+						专业要求
+						<span class="text-danger">*</span>
+					</label>
+					<div class="col-sm-7">
+						<input type="text" name="zyyq" value="$!model.zyyq" class="form-control placeholder" id="txt_product" placeholder="专业要求">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="tar_content" class="col-sm-3 control-label">
+						岗位描述
+					</label>
+					<div class="col-sm-7">
+						<textarea id="tar_content" name="gwms" placeholder="需求描述">$!model.gwms</textarea>
+					</div>
+					<script type="text/javascript" src="${base}/static/js/ueditor/ueditor.config.js"></script>
+					<!-- 编辑器源码文件 -->
+					<script type="text/javascript" src="${base}/static/js/ueditor/ueditor.all.min.js"></script>
+					<script type="text/javascript" src="${base}/static/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+					<!-- 实例化编辑器 -->
+					<script type="text/javascript">
+						//这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+						var ue = UE.getEditor('tar_content', {
+							initialFrameWidth : '100%',
+							initialFrameHeight : '200',
+							elementPathEnabled:false,
+							toolbars:[],
+							wordCount:false
+						});
+					</script>
+				</div>
+				<hr/>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">
+						联系人
+						<span class="text-danger">*</span>
+					</label>
+					<div class="col-sm-3">
+						<input type="text" name="lxr" value="$!model.lxr" class="form-control placeholder" id="txt_product" placeholder="联系人">
+					</div>
+					<label class="col-sm-1 control-label">
+						联系电话
+						<span class="text-danger">*</span>
+					</label>
+					<div class="col-sm-3">
+						<input type="text" name="lxdh" value="$!model.lxdh" class="form-control placeholder" id="txt_product" placeholder="联系电话">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">
+						联系邮箱
+						<span class="text-danger">*</span>
+					</label>
+					<div class="col-sm-3">
+						<input type="text" name="email" value="$!model.email" class="form-control placeholder" id="txt_product" placeholder="联系邮箱">
+					</div>
+					<label class="col-sm-1 control-label">
+						联系QQ
+						<span class="text-danger">*</span>
+					</label>
+					<div class="col-sm-3">
+						<input type="text" name="qq" value="$!model.qq" class="form-control placeholder" id="txt_product" placeholder="联系QQ">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">
+						联系地址
+						<span class="text-danger">*</span>
+					</label>
+					<div class="col-sm-7">
+						<input type="text" name="address" value="$!model.address" class="form-control placeholder" id="txt_product" placeholder="联系地址">
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-3 control-label">
+						招募截止日期
+						<span class="text-danger">*</span>
+					</label>
+					<div class="col-sm-3">
+						<input type="text" name="subtime" readonly="readonly" value="$!model.subtime" data-date-format="yyyy-mm-dd HH:mm" class="form-control form_datetime" placeholder="投标截止日期">
+						<script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+						<script type="text/javascript">
+						    $(".form_datetime").datetimepicker({
+						        format: "yyyy-mm-dd hh:ii",
+						        showMeridian: true,
+						        autoclose: true,
+						        todayBtn: true,
+						        language: "zh-CN"
+						    });
+						</script>      
+					</div>
+					<label for="txt_mobile" class="col-sm-1 control-label">
+						项目周期
+						<span class="text-danger">*</span>
+					</label>
+					<div class="col-sm-3">
+						<input type="text" name="endtime" readonly="readonly" value="$!model.endtime" data-date-format="yyyy-mm-dd HH:mm" class="form-control form_datetime" placeholder="任务周期">
+						<script type="text/javascript">
+						    $(".form_datetime").datetimepicker({
+						        format: "yyyy-mm-dd hh:ii",
+						        showMeridian: true,
+						        autoclose: true,
+						        todayBtn: true,
+						        language: "zh-CN"
+						    });
+						</script>      
+					</div>
+				</div>
+				<!-- 手机号码 end -->
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+						<button type="submit" class="btn btn-primary" value="下一步" onclick="return isAgreementChecked();">下一步</button>
+						<a href="$!{base}/taskpub/zmrc?usrType=$!{usrType}&step=1" class="btn btn-link">返回上一步</a>
+						<span class="text-danger hidden" id="pubAgreementTips">请同意《发布协议》</span>
+					</div>
+				</div>
+				<!-- form-group end -->
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="age_requirement" checked="checked" value="1" id="agreementchecked">
+								同意
+								<a href="javascript:void(0);" id="viewPubAgreement">《发布协议》 </a>
+							</label>
+						</div>
+					</div>
+				</div>
+				<!-- form-group end -->
+			</form>
+			<div class="release-agreement hidden">
+				<div class="agreement-header">
+					<h2 class="agreement-title">《发布协议》</h2>
+				</div>
+				<p>任务发布协议<br></p>
+				<p></p>
+			</div>
+		</div>      
+		<!-- 加载各任务对应步骤  -->
+    </div>
+    <!-- release-body end -->
+  </div>
+  <!-- release end-->
+</div>
+</div>
+#parse("includes/footer.vm")
+<script type="text/javascript">
+	$(function() {
+		$("#active-style-rework").remove();
+		
+		
+		#if($!model.province)
+			getZone('$!model.province', 'city');
+		#end
+		
+		
+		
+		
+		
+	});
+	function checkowninput(){
+	 	$("[minlength]").each(function(index,e){
+	 		var inputlength=parseInt($(e).val().length);
+	 		var minlength=parseInt($(e).attr('minlength'));
+	 		if(inputlength<minlength){
+	 			$(e).parent().parent().addClass('has-error');
+	 		}else{
+	 			$(e).parent().parent().removeClass('has-error');
+	 		}
+	 	})
+	}
+
+	/**
+	  *检查是否选中发布协议*/
+	function isAgreementChecked(){
+		//增加判断自定义字段
+		checkowninput();
+		if($("#agreementchecked" ).is(":checked")){
+			$("#pubAgreementTips").addClass('hidden');return true;
+		}
+		else{
+			$("#pubAgreementTips").removeClass('hidden');return false;
+		}
+	}
+	
+	$(function(){
+		$('#pubTaskFormstep2').scojs_valid({
+		    rules: {
+		    	zwmc:['not_empty'],
+		    	zprs:['not_empty', 'digit'],
+		    	zwbq:['not_empty'],
+		    	zyyq:['not_empty'],
+		    	lxr:['not_empty'],
+		    	lxdh:['not_empty', 'mobile'],
+		    	email:['not_empty', 'email'],
+		    	qq:['not_empty', 'numeric'],
+		    	address:['not_empty']
+		    },
+		    messages: {
+		    	zwmc:{
+					not_empty: "请输入职位名称"
+				},
+				zprs: {
+					not_empty: "请输入招聘人数",
+					digit:"请输入有效整数"
+				},
+		    	zwbq:{
+					not_empty: "请输入职位标签"
+				},
+		    	zyyq:{
+					not_empty: "请输入专业要求"
+				},
+				lxr:{
+					not_empty: "请输入联系人信息"
+				},
+				lxdh : {
+					not_empty: "请输入联系电话信息",
+					mobile : "请输入有效的联系电话信息"
+				},
+				email:{
+					not_empty: "请输入Email信息",
+					email : "请输入有效的邮箱信息"
+				},
+				qq:{
+					not_empty:"请输入联系QQ", 
+					numeric:"QQ只能为数字"
+				},
+				address:{
+					not_empty : "请输入联系地址"
+				}
+		    },
+	    	wrapper:'.form-group',
+	    	onSuccess: function(response, validator, $form) {
+	    		#set($num = $NumberTool.toNumber($!taskstep)+1)
+	    		window.location.href = "$!{base}/taskpub/zmrc?usrType=$!usrType&step=$num";
+	    	}
+		});
+	});
+	
+	function removeFile(obj, id){
+		var url = "$!{base}/taskpub/deleteFile";
+		var params = {"id": id};
+		var success = function(data){
+			$(obj).parent().remove();
+		};
+		$.post(url, params, success, "json");
+	}
+	
+	function getIndustry(id, element, bool) {
+		window.location.href = "$!{base}/taskpub/step?usrType=$!{usrType}&step=2&indusPid=" + id;
+	}
+	
+	function getZone(id, element) {
+			jQuery("#"+element).empty();
+			if(element=="city"){
+				jQuery("#" + element).append("<option value=''>选择城市</option>");
+			}
+			else{
+				jQuery("#"+element).append("<option value=''>选择区域</option>");
+			}
+		
+			if(id==""||id==null){
+		
+			}else{
+				jQuery.post("${base}/taskHandle/areaOps",{"pid":id},function(data){
+					jQuery.each(data, function(index,item){
+						jQuery("#"+element).append("<option value='"+item.id+"'>"+item.name+"</option>");
+					});
+					if(element=="city"){
+						$("#"+element).val("$!model.city");
+						citystr="";
+					}else{
+						$("#"+element).val(areastr);
+						areastr="";
+					}
+				},"json");
+			}
+		}
+	
+</script>

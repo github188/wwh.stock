@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="zh-cn">
+<head>
+    <title>用户中心</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="generator" content="客客出品专业威客2.7.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/user.css" rel="stylesheet" type="text/css" id="active-style-user">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.82587500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+</head>
+<body id="user">
+
+<script src="${base}/static/js/model/user/user.js"></script>
+<script src="${base}/static/js/model/user/transaction.js"></script>
+
+<!-- /header -->
+    #parse("includes/member/home_manage.vm")
+<!-- nav end -->
+
+<div class="container">
+    #parse("includes/member/nav_manage.vm")
+    <!-- nav-action end -->
+    <div class="content-panel">
+      <div class="tab">
+        <a href="online_charge">在线充值</a>
+        <a class="selected" href="offline_charge">线下充值</a>
+      </div>
+      <div class="tab_detail">
+      	      <p class="text-info">
+     	<i class="fa fa-info-circle"></i>
+                    <strong>提醒您</strong> 为识别汇款人，汇款时请多汇或者少汇几分钱， 比如发布500元任务，可以汇500.01、500.02 。 汇款后请在第一时间内联系我们。
+       </p>
+
+      <form action="offline_submit" name="editOffpayForm" class="form-horizontal" id="editOffpayForm" method="post" novalidate="novalidate">
+<input type="hidden" name="formhash" id="formhash" value="d03921">
+
+       <div class="form-group mt_20">
+              <label class="col-sm-2 control-label" for="payMoney">填写充值金额：</label>
+                <div class="col-sm-4">
+                	<div class="input-group">
+                            		<span class="input-group-addon">￥</span>
+                  <input type="text" name="payMoney" id="pay_money" class="form-control">
+                </div>
+                </div>
+        </div>
+
+<!--start 线下支付方式-->
+            <div class=" offline " id="div_cont_2">
+
+             <div class="form-group ">
+
+                    <label class="col-sm-2 control-label">选择银行：</label>
+<div class="col-sm-8">
+    <table id="" class="table">
+  	<tbody>
+		 #foreach( $elem in $apis)
+		<tr>
+  		    	                                                       <td>
+                                 <input type="radio" name="payType" id="${elem.payment}" value="${elem.payment}" checked="">
+ <label for="${elem.payment}">
+ <img src="${base}/static/img/system/kppw_2.0_${elem.payment}.png">
+ </label>
+</td>
+<td>
+	                            
+                                 <ul class="prefix_1">
+                                   <li>开户行：${elem.payment} </li>
+                                   <li> 选择支付账户：${elem.pay_account}</li>
+                                   <li>用户名：${elem.pay_name}</li>
+                                 </ul>
+                               </td>
+   </tr>
+#end
+                                                  </tbody></table>
+ </div>
+</div>
+
+ 	               		<div class="form-group">
+                   		 <label class="col-sm-2 control-label" for="payInfo">充值信息：</label>
+<div class="col-sm-9">
+<textarea name="payInfo" id="pay_info" style="width:400px;height:80px" class="form-control"></textarea>
+<div class="help-block">提醒您，为了提高审核通过率。请输入打款金额，时间，银行，人，地点。</div>
+</div>
+                   </div>
+
+            <div class="rowElem clearfix t_c">
+              <input type="button" id="btn" class="btn btn-default" value="提交"></input>
+               							 <span class="text-success" id="tipsUser"></span>
+            </div>
+ 	
+
+
+
+
+
+                 </div>
+<!--end 线下支付方式-->
+
+        </form>
+      		<!-- 充值 end -->
+      </div>
+  </div>><!-- content-panel end -->
+
+            </div><!-- media end -->
+        </div><!-- user-short end -->
+        <script type="text/javascript" src="${base}/static/js/model/user/account.js"></script>
+        
+		
+    </div>
+</div>
+    #parse("includes/footer.vm")
+</body>
+</html>
+
+<script>
+	jQuery(document).ready(function(){
+		$("#btn").click(function(){	
+		jQuery.ajax({
+                cache: true,
+                type: "POST",
+                url:"offline_submit",
+                data:$('#editOffpayForm').serialize(),// 你的formid
+                async: false,
+                error: function(request) {
+                    alert("Connection error");
+                },
+                success: function(data) {
+                    $("#tipsUser").html("<i class='fa fa-check'></i>提交成功，等待后台审核");
+					 setTimeout("window.location='/financial/financelist'",1000);
+                }
+            });
+			});
+		});
+</script>

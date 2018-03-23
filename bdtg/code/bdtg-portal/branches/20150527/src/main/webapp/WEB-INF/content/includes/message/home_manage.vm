@@ -1,0 +1,80 @@
+
+<div class="header-top">
+    #parse("includes/member/header-top.vm")
+</div>
+
+<nav class="top-nav">
+    <div class="container">
+        <div class="nav-header">
+            <a class="nav-brand" href="$base/member/index">用户中心</a>
+        </div>
+        <!-- nav-header end -->
+        <ul class="menu">
+            <li class="line"></li>
+            <!-- <li><a href="index.php?do=user" ><i class="fa fa-tachometer"></i> <span>首页</span></a></li> -->
+            <li class="line"></li>
+            <li class="line"></li>
+            <li>
+                <a href="$base/owner/owner_manage">
+                    <span>我是业主</span>
+                </a>
+            </li>
+            <li class="line"></li>
+            <li>
+                <a href="$base/ips/ips_manage">
+                    <span>我是服务商</span>
+                </a>
+            </li>
+            <li class="line"></li>
+
+            <li>
+                <a href="$base/message/pagelist?type=2" class="selected">
+                    <i class="fa fa-envelope"></i>
+                    <span>我的消息</span>
+                    #if($msg_cnt)<span class="badge">$msg_cnt</span>#end
+                </a>
+            </li>
+            <li class="line"></li>
+            <li>
+                <a href="$base/member/account">
+                    <i class="fa fa-cogs"></i>
+                    <span>帐号设置</span>
+                </a>
+            </li>
+            <!-- 			<li>
+            <a href="index.php?do=seller&id=1" target="_blank">
+            <i class="fa fa-home"></i>
+            <span>我的店铺</span>
+            </a>
+            </li>
+            <li class="line"></li> -->
+        </ul>
+        <!-- menu end -->
+        <form action="index.php?do=tasklist" class="navbar-form navbar-right" role="search" id="topHeaderSearch" method="post">
+            <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-default dropdown-toggle " data-toggle="dropdown" id="searchType">
+                    任务  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" id="searchOption">
+                    <li class="active">
+                        <a href="javascript:void(0);" rel="tasklist">任务</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" rel="goodslist">商品</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" rel="sellerlist">服务商</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <input type="text" name="ky" onkeydown="searchKeydown(event);" placeholder="" class="form-control input-sm placeholder">
+            </div>
+            <button type="submit" class="btn btn-default btn-sm">
+                <i class="fa fa-search"></i>
+            </button>
+            <!-- input-group end -->
+        </form>
+    </div>
+    <!-- container end -->
+</nav>

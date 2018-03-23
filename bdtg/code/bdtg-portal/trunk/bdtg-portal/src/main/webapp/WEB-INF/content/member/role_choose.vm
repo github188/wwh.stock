@@ -1,0 +1,53 @@
+<div class="modal-body">
+<form role="form" action="${base}/member/set_role" method="post" class="form-horizontal" name="balanceForm" id="balanceForm">
+<input type="hidden" name="amount" value="$!amount"/>
+<input type="hidden" name="type" value="$!type"/>
+<div class="form-group">
+<label class="col-sm-2 control-label">角色选择：</label>
+<div class="col-sm-10">
+<input type="radio" name="role" value="1" checked>我是业主
+<input type="radio" name="role" value="2">我是设计单位
+<input type="radio" name="role" value="3">我是设计人员
+<input type="radio" name="role" value="4">我是制造厂
+</div>
+</div>
+
+<div class="form-group">
+<div class="col-sm-offset-2 col-sm-10">
+<button type="submit" name="submit" class="btn btn-danger">确定</button>
+<a id="clo_se" class="btn btn-default">稍后再说</a>
+</div>
+</div>
+</form>
+</div>
+<script type="text/javascript">
+window.load = function(){ 
+    document.getElementById('zfpwd').value='';
+}; 
+$(function() {
+$('#zfpwd').val('');
+$('#zfpwd').focus(function(){
+$(this).prop('type','password');
+});
+$('#balanceForm').scojs_valid({
+rules : {
+role : [ 'not_empty' ]
+},
+messages : {
+zfpwd : {
+role : "请选择角色"
+
+}
+},
+wrapper : '.form-group',
+onSuccess: function(response, validator, form) {
+if (response.status=="success") {
+ window.location.reload();
+}
+}
+});
+$('#clo_se').click(function() {
+$('.close').trigger('click');
+});
+});
+</script>

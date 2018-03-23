@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hzskt.bdtg.manage.domain.Category">
+
+	<resultMap id="get-Category-result" type="cn.hzskt.bdtg.manage.domain.Category">
+		<!-- -->
+		<result property="id" column="id" />
+		<!-- -->
+		<result property="upId" column="up_id" />
+		<!-- -->
+		<result property="catCode" column="cat_code" />
+		<!-- -->
+		<result property="catName" column="cat_name" />
+		<!-- -->
+		<result property="catOrg" column="cat_org" />
+		<!-- 1:显示，0：不显示 -->
+		<result property="isShow" column="is_show" />
+		<!-- -->
+		<result property="catOrder" column="cat_order" />
+
+		<result property="upCatName" column="up_cat_name" />
+
+	</resultMap>
+
+	<select id="Category_select_treeNode" resultMap="get-Category-result">
+		SELECT
+			 a.id,
+			 a.up_id, 		 
+			 a.cat_code, 		 
+			 a.cat_name, 			 
+			 a.cat_org, 			 
+			 a.is_show, 			 
+			 a.cat_order,
+			 (select c.cat_name  from tb_category c where c.id = a.up_id) as up_cat_name
+	 	 FROM 
+			tb_category a
+		 <where>
+		 	<if test="upId!=null and upId!=''">
+		 		and a.up_id = #{upId} 
+		 	</if>
+		 	<if test="catOrgList!=null">
+		 		and a.cat_org in
+			 	<foreach collection="catOrgList" item="it" open="(" close=")" separator=",">
+			 		#{it}
+			 	</foreach>
+		 	</if>
+		 </where>
+		 order by 
+		 	a.cat_order asc
+	</select>
+	
+	<insert id="Category_add" parameterType="map">
+	    INSERT INTO tb_category(
+			up_id,
+			cat_code,
+			cat_name,
+			cat_org,
+			is_show,
+			cat_order
+		)
+		values(
+			#{upId} ,    		
+			#{catCode} ,       		
+			#{catName} ,     		
+			#{catOrg} ,     		
+			#{isShow} ,     		
+			#{catOrder} 			
+		)
+	</insert>
+	
+	<update id="Category_edit" parameterType="map">
+	    update tb_category 
+	    <set>
+	        <if test="upId!=null and upId!=''">
+	            up_id = #{upId},
+	        </if>
+	        <if test="catCode!=null and catCode!=''">
+	            cat_code = #{catCode},
+	        </if>
+	        <if test="catName!=null and catName!=''">
+	            cat_name = #{catName},
+	        </if>
+	        <if test="catOrg!=null and catOrg!=''">
+	            cat_org = #{catOrg},
+	        </if>
+	        <if test="isShow!=null and isShow!=''">
+	            is_show = #{isShow},
+	        </if>
+	        <if test="catOrder!=null and catOrder!=''">
+	            cat_order = #{catOrder},
+	        </if>
+	    </set>
+	    WHERE
+	    	id = #{id}
+	</update>
+	
+	<delete id="Category_remove">
+	    DELETE FROM tb_category WHERE id = #{0}
+	</delete>
+	
+	<select id="Category_selectOrg" resultType="string">
+	    select cat_org from tb_category where id=#{0}
+	</select>
+	
+
+</mapper>

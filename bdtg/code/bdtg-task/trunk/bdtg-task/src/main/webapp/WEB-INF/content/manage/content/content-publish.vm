@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>内容管理</title>
+        <meta charset="UTF-8">
+		#parse("commons/commonJs.vm")
+		#parse("commons/commonCss.vm")
+	</head>
+	<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+    	<!-- 左侧菜单开始-->
+    	<div data-options="region:'west',split:true"  title="栏目信息" style="width: 200px; overflow: hidden;overflow-y:auto;">
+			<div style=" background:#f8f8f8; border:1px solid #ccc;text-align:left;">
+				<a onclick="jQuery('#grid').tree('reload');" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'ext-icon-arrow_refresh'" style="margin:5px;">刷新</a>
+			</div>
+			<table id="grid"  width="80px" border="0" cellpadding="0" cellspacing="0"></table>
+	    	<input type="hidden" id="needReload" value="0" /> 
+    	</div>
+    	<!-- 左侧菜单结束 -->
+       	<div id="mainPanle" region="center" style="overflow: hidden;" >
+       		<div class="easyui-layout" fit="true">
+       			<div data-options="region:'north'" style="height:85px">
+       			
+       			<table class="altrowstable" style="width:100%;">
+				<tr>
+					<td>标题:</td>
+					<td>
+						<input type="hidden" name="cattreeId" id="cattreeId">
+			            <input type="hidden" name="cattreeName" id="cattreeName">
+			            <input type="hidden" id="catOrg">
+						<input id="filter_contentTile" type="text">
+					</td>
+					<td>上架时间:</td>
+					<td>
+						<input id="filter_startDate" type="text" editable="false" class="easyui-datebox"> 至
+						<input id="filter_endDate" type="text"  editable="false" class="easyui-datebox">
+					</td>
+				</tr>
+				<tr>
+					<td>状态:</td>
+					<td>
+						<select id="filter_status" class="easyui-combobox" editable="false" panelHeight="auto" style="width:135px;"> 
+							<option value="">全部</option>
+							<option value="0">未上架</option>
+							<option value="1">已上架</option>
+							<option value="2">初始导入</option>
+							<option value="3">已下架</option>
+			            </select>
+					</td>
+					<td colspan="2">
+						<a href="javascript:void(0)" style="margin-left:35px;" class="easyui-linkbutton" iconCls="icon-search"  onclick="contentSearch()">查询</a>
+						<a href="javascript:void(0)" style="margin-left:15px;" class="easyui-linkbutton" iconCls="icon-reload"  onclick="clearCdt()">清空</a>
+					</td>
+				</tr>
+				</table>
+       			
+       			</div>
+	       		<div data-options="region:'center',title:'&nbsp;'">
+		            <table id="contentGrid" class="easyui-datagrid"
+		            		rownumbers="true" pagination="true"
+		            		singleSelect="true" fit="true"
+		            		fitColumns="true" toolbar="#tb">
+		                <thead>
+		                    <tr>
+		                        <th data-options="field:'contentTile'" width="100">标题</th>
+		                        <th data-options="field:'contentAbstract'" width="100">摘要</th>
+		                        <th data-options="field:'picture',align:'right'" width="60" formatter=picFun>图片</th>
+		                        <th data-options="field:'tag',align:'right'" width="30">标签</th>
+		                        <th data-options="field:'newsDate'" width="45">资讯日期</th>
+		                        <th data-options="field:'updateDate',align:'center'" width="45">编辑日期</th>
+		                        <th data-options="field:'status',align:'center'" width="80" formatter=formatfun>状态</th>
+		                        <th data-options="field:'shelfDate',align:'center'" width="45">上架时间</th>
+		                        <th data-options="field:'normalEvas',align:'center'" width="30">一般</th>
+		                        <th data-options="field:'goodEvas',align:'center'" width="30">好看</th>
+		                        <th data-options="field:'badEvas',align:'center'" width="35">不好看</th>
+		                        <th data-options="field:'commentCount',align:'center'" width="30">评论</th>
+		                    </tr>
+		                </thead>
+		            </table>
+		            <div id="tb" style="background:#f8f8f8;">
+				        <a href="javascript:void(0)" plain="true" class="easyui-linkbutton" iconCls="icon-add"  onclick="newForm()">新增</a>
+				        <a href="javascript:void(0)" plain="true" class="easyui-linkbutton" iconCls="icon-edit"  onclick="editForm()">编辑</a>
+				        <a href="javascript:void(0)" plain="true" class="easyui-linkbutton" iconCls="icon-remove"  onclick="destroyForm()">删除</a>
+				        <!--
+				        <a href="javascript:void(0)" plain="true" class="easyui-linkbutton" iconCls="icon-add"  onclick="importForm();">导入</a>
+				        -->
+					</div>
+		        </div>
+       		</div>
+    	</iframe>
+   	 	</div>
+   	 	<input type="button" id="reload" class="button" onclick="treeUpdate()"/>
+		<script type="text/javascript">
+				//绑定菜单事件
+				jQuery(function(){
+			        jQuery('#grid').tree({ 
+			        	url:'content-publish/querTree', 
+			            checkbox:false,
+			            onlyLeafCheck:false,  
+			            dnd:false,
+			            onClick:function(node){
+			            	var nodeId = node.id;
+			            	if(nodeId < -1) nodeId = -1;
+			            	jQuery("#cattreeId").val(nodeId);
+			            	jQuery("#cattreeName").val(node.text);
+			            	jQuery("#catOrg").val(node.catOrg);
+			            	contentSearch();
+			            }
+			        });  
+			    });
+			    
+			    function contentSearch(){
+			    	jQuery("#contentGrid").datagrid('options').url="content-publish/queryPaged";
+			    	jQuery("#contentGrid").datagrid('load', {
+					    "typeCode": jQuery("#cattreeId").val(),
+					    "cattreeName": jQuery("#cattreeName").val(),
+					    "contentTile":jQuery("#filter_contentTile").val(),
+					    "startDate":jQuery("#filter_startDate").datebox("getValue"),
+					    "endDate":jQuery("#filter_endDate").datebox("getValue"),
+					    "status":jQuery("#filter_status").combobox("getValue"),
+					    "catOrg":jQuery("#catOrg").val()
+					});
+			    }
+			    
+			    function clearCdt(){
+					jQuery("#filter_contentTile").val("");
+					jQuery("#filter_startDate").datebox("setValue","");
+					jQuery("#filter_endDate").datebox("setValue","");
+					jQuery("#filter_status").combobox("setValue", "");
+				}
+				
+				function picFun(value,row,index){
+					var picContent = "";
+					var picture;
+			
+					if (value != null && value != "") {
+						 picture = row.picture.split(";");
+						 picContent+="<img style='width:100%;height:auto' src='"+picture[0]+"'></img>";
+					}
+			
+			        return picContent;
+				}
+				
+				function formatfun(value,row,index){
+					var id = row.id;
+					var title = row.contentTile;
+			        if (row.status == 0) {
+			    		return '<div><font style="color:#FF6600;">未上架</font><a href="javascript:void(0);" style="color:#0000FF;margin-left:20px;cursor:pointer;text-decoration:none;" onclick="OnShelf(\''+id+'\');">上架</a></div>';
+			        }
+			        
+			        if (row.status == 2) {
+						return '<div><font style="color:#990000;">初始导入</font></div>';
+			        }
+			        
+			        if (row.status == 1) {
+			    		return '<div><font style="color:green;">已上架</font><a href="javascript:void(0);" style="color:#0000FF;margin-left:20px;cursor:pointer;text-decoration:none;" onclick="OffShelf(\''+id+'\');">下架</a></div>';
+			        }
+			        
+			        if (row.status == 3) {
+						return '<div><font style="color:#990000;">已下架</font></div>';
+			        }
+			        
+			        return "";
+   				}
+   				
+   				/**上架操作**/
+				function OnShelf(id){ 
+					jQuery.messager.confirm('确定上架','是否执行上架操作?',function(r){
+						if (r){
+							jQuery.post('content-publish/changeStatus',{id:id,status:1},function(result){
+								jQuery('#contentGrid').datagrid('reload');    // reload the user data
+								if (!result.success){
+									jQuery.messager.show({    // show error message
+										title: 'Error',
+										msg: result.errorMsg
+									});
+								}
+							},'json');
+						}
+					});
+				}
+	
+				/**下架操作**/
+				function OffShelf(id){ 
+					jQuery.messager.confirm('确定下架','下架后不能重新上架，确定下架?',function(r){
+						if (r){
+							jQuery.post('content-publish/changeStatus',{id:id,status:3},function(result){
+								jQuery('#contentGrid').datagrid('reload');    // reload the user data
+								if (!result.success){
+									jQuery.messager.show({    // show error message
+										title: 'Error',
+										msg: result.errorMsg
+									});
+								}
+							},'json');
+						}
+					});
+				}
+    
+    			function newForm(){
+    				Magic.openWin('信息内容设置','content-publish/add', 650, 550);
+    			}
+    			
+    			function editForm(){
+    				var row = jQuery("#contentGrid").datagrid('getSelected');
+					if (row){
+						Magic.openWin('内容编辑','content-publish/edit?id='+row.id ,650, 550);
+					} 
+					else {
+			   	  	 	var msg={title: 'Error', msg: '请选择一行记录' }
+						jQuery.messager.show(msg);  
+					}
+    			}
+
+    			/**
+				 *删除按钮单击执行删除处理
+				 */	
+				function destroyForm(){
+					var row = jQuery('#contentGrid').datagrid('getSelected');
+					var cCatOrg = jQuery('#catOrg').val();
+					if (row){
+						if(isPublished(row.status)) {
+				    	  	 var msg={title: 'Error', msg: '资讯已上架，不能进行删除' }
+							 jQuery.messager.show(msg); 
+							return;
+						}
+						
+						jQuery.messager.confirm('Confirm','确定删除该记录?',function(r){
+							if (r){
+								jQuery.post('content-publish/delete',{id:row.id,catOrg:cCatOrg},function(result){
+									jQuery('#contentGrid').datagrid('reload');    // reload the user data
+									if (!result.success){
+										jQuery.messager.show({    // show error message
+											title: 'Error',
+											msg: result.errorMsg
+										});
+									}
+								},'json');
+							}
+						});
+					} 
+					else {
+			    	  	 var msg={title: 'Error', msg: '请选择一行记录' }
+						 jQuery.messager.show(msg);  
+					}
+				}
+	
+			/**
+			*判断是否上架true：上架；以外：false
+			*0:未上架；1：已上架；2：初始导入；3：已下架；
+			*/
+			function isPublished(curStatus) {
+				if(curStatus== 1) {
+					return true;
+				}
+				return false;
+			}
+				
+		</script>
+    	<style type="text/css">
+	        #fm{
+	        	margin:0;
+	        	padding:10px 30px;
+	        }
+	        .ftitle{
+	        	font-size:14px;
+	        	font-weight:bold;
+	        	padding:5px 0;
+	        	margin-bottom:10px;
+	        	border-bottom:1px solid #ccc;
+	        }
+	        .fitem{
+	        	margin-bottom:5px;
+	        }
+	        .fitem label{
+		        display:inline-block;
+		        width:80px;
+	        }
+    </style>
+    <style type="text/css">
+		table.altrowstable {
+			font-family: verdana,arial,sans-serif;
+			font-size:11px;
+			color:#333333;
+			border-color: #a9c6c9;
+			border-collapse: collapse;
+		}
+		table.altrowstable th {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #a9c6c9;
+		}
+		table.altrowstable td {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #a9c6c9;
+		}
+	</style>
+    </body>
+</html>

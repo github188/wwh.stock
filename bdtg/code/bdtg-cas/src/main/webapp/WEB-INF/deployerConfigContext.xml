@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Licensed to Jasig under one or more contributor license
+    agreements. See the NOTICE file distributed with this work
+    for additional information regarding copyright ownership.
+    Jasig licenses this file to you under the Apache License,
+    Version 2.0 (the "License"); you may not use this file
+    except in compliance with the License.  You may obtain a
+    copy of the License at the following location:
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+-->
+<!--
+	| deployerConfigContext.xml centralizes into one file some of the declarative configuration that
+	| all CAS deployers will need to modify.
+	|
+	| This file declares some of the Spring-managed JavaBeans that make up a CAS deployment.  
+	| The beans declared in this file are instantiated at context initialization time by the Spring 
+	| ContextLoaderListener declared in web.xml.  It finds this file because this
+	| file is among those declared in the context parameter "contextConfigLocation".
+	|
+	| By far the most common change you will need to make in this file is to change the last bean
+	| declaration to replace the default SimpleTestUsernamePasswordAuthenticationHandler with
+	| one implementing your approach for authenticating usernames and passwords.
+	+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+	<!--
+		| This bean declares our AuthenticationManager.  The CentralAuthenticationService service bean
+		| declared in applicationContext.xml picks up this AuthenticationManager by reference to its id, 
+		| "authenticationManager".  Most deployers will be able to use the default AuthenticationManager
+		| implementation and so do not need to change the class of this bean.  We include the whole
+		| AuthenticationManager here in the userConfigContext.xml so that you can see the things you will
+		| need to change in context.
+		+-->
+	<bean id="authenticationManager"
+		class="org.jasig.cas.authentication.AuthenticationManagerImpl">
+		
+		<!-- Uncomment the metadata populator to allow clearpass to capture and cache the password
+		     This switch effectively will turn on clearpass.
+		<property name="authenticationMetaDataPopulators">
+		   <list>
+		      <bean class="org.jasig.cas.extension.clearpass.CacheCredentialsMetaDataPopulator">
+		         <constructor-arg index="0" ref="credentialsCache" />
+		      </bean>
+		   </list>
+		</property>
+		 -->
+		
+		<!--
+			| This is the List of CredentialToPrincipalResolvers that identify what Principal is trying to authenticate.
+			| The AuthenticationManagerImpl considers them in order, finding a CredentialToPrincipalResolver which 
+			| supports the presented credentials.
+			|
+			| AuthenticationManagerImpl uses these resolvers for two purposes.  First, it uses them to identify the Principal
+			| attempting to authenticate to CAS /login .  In the default configuration, it is the DefaultCredentialsToPrincipalResolver
+			| that fills this role.  If you are using some other kind of credentials than UsernamePasswordCredentials, you will need to replace
+			| DefaultCredentialsToPrincipalResolver with a CredentialsToPrincipalResolver that supports the credentials you are
+			| using.
+			|
+			| Second, AuthenticationManagerImpl uses these resolvers to identify a service requesting a proxy granting ticket. 
+			| In the default configuration, it is the HttpBasedServiceCredentialsToPrincipalResolver that serves this purpose. 
+			| You will need to change this list if you are identifying services by something more or other than their callback URL.
+			+-->
+		<property name="credentialsToPrincipalResolvers">
+			<list>
+				<!--
+					| UsernamePasswordCredentialsToPrincipalResolver supports the UsernamePasswordCredentials that we use for /login 
+					| by default and produces SimplePrincipal instances conveying the username from the credentials.
+					| 
+					| If you've changed your LoginFormAction to use credentials other than UsernamePasswordCredentials then you will also
+					| need to change this bean declaration (or add additional declarations) to declare a CredentialsToPrincipalResolver that supports the
+					| Credentials you are using.
+					+-->
+				<bean class="org.jasig.cas.authentication.principal.UsernamePasswordCredentialsToPrincipalResolver" >
+					<property name="returnNullIfNoAttributes" value="true"></property>
+					<property name="attributeRepository" ref="attributeRepository" />
+				</bean>
+				<!--
+					| HttpBasedServiceCredentialsToPrincipalResolver supports HttpBasedCredentials.  It supports the CAS 2.0 approach of
+					| authenticating services by SSL callback, extracting the callback URL from the Credentials and representing it as a
+					| SimpleService identified by that callback URL.
+					|
+					| If you are representing services by something more or other than an HTTPS URL whereat they are able to
+					| receive a proxy callback, you will need to change this bean declaration (or add additional declarations).
+					+-->
+				<bean class="org.jasig.cas.authentication.principal.HttpBasedServiceCredentialsToPrincipalResolver" />
+				
+				<!-- 会员的属性配置
+				<bean class="org.jasig.cas.authentication.principal.UsernamePasswordCredentialsToPrincipalResolver" >
+					<property name="attributeRepository" ref="memberAttributeRepository" />
+				</bean>	
+				 -->
+			</list>
+		</property>
+
+		<!--
+			| Whereas CredentialsToPrincipalResolvers identify who it is some Credentials might authenticate, 
+			| AuthenticationHandlers actually authenticate credentials.  Here we declare the AuthenticationHandlers that
+			| authenticate the Principals that the CredentialsToPrincipalResolvers identified.  CAS will try these handlers in turn
+			| until it finds one that both supports the Credentials presented and succeeds in authenticating.
+			+-->
+		<property name="authenticationHandlers">
+			<list>
+				<!--
+					| This is the authentication handler that authenticates services by means of callback via SSL, thereby validating
+					| a server side SSL certificate.
+					+-->
+				<bean class="org.jasig.cas.authentication.handler.support.HttpBasedServiceCredentialsAuthenticationHandler"
+					p:httpClient-ref="httpClient" p:requireSecure="false"/>
+				<!--
+					| This is the authentication handler declaration that every CAS deployer will need to change before deploying CAS 
+					| into production.  The default SimpleTestUsernamePasswordAuthenticationHandler authenticates UsernamePasswordCredentials
+					| where the username equals the password.  You will need to replace this with an AuthenticationHandler that implements your
+					| local authentication strategy.  You might accomplish this by coding a new such handler and declaring
+					| edu.someschool.its.cas.MySpecialHandler here, or you might use one of the handlers provided in the adaptors modules.
+					+-->
+				<!-- <bean 
+					class="org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler" />
+					 -->
+				<!-- add by zjhc  for system-->
+				<bean id="queryDatabaseAuthenticationHandler" class="org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler">
+			    	 <property name="dataSource" ref="dataSource" /> 
+			    	 <property name="passwordEncoder" ref="passwordEncoder" />
+			    	 <property name="sql" value="select password from s_user where name = ?"/>
+				</bean>
+				
+				<!-- add by zjhc  for web
+				<bean class="org.jasig.cas.personal.handler.MemberAuthenticationHandler">
+			    	 <property name="dataSource" ref="dataSource" /> 
+			    	 <property name="passwordEncoder" ref="md5Encoder" />
+			    	 <property name="sql" value="select password from cms_test.user_info where (email = ?  or phone = ? or user_name=?) and password = ?"/>
+				</bean>
+				 -->
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- AES encoder -->
+	<bean name="passwordEncoder" class="com.zjhcsoft.smartcity.cas.serverX.personal.util.AESPasswordEncoder" />
+	<!-- MD5 encoder -->
+	<bean name="md5Encoder" class="com.zjhcsoft.smartcity.cas.serverX.personal.util.MD5PasswordEncoder" />
+
+	<!--
+	This bean defines the security roles for the Services Management application.  Simple deployments can use the in-memory version.
+	More robust deployments will want to use another option, such as the Jdbc version.
+	
+	The name of this should remain "userDetailsService" in order for Spring Security to find it.
+	 -->
+    <!-- <sec:user name="@@THIS SHOULD BE REPLACED@@" password="notused" authorities="ROLE_ADMIN" />-->
+
+    <sec:user-service id="userDetailsService">
+        <sec:user name="@@THIS SHOULD BE REPLACED@@" password="notused" authorities="ROLE_ADMIN" />
+    </sec:user-service>
+	
+	<!-- 
+	Bean that defines the attributes that a service may return.  This example uses the Stub/Mock version.  A real implementation
+	may go against a database or LDAP server.  The id should remain "attributeRepository" though.
+	
+	<bean id="attributeRepository"
+		class="org.jasig.services.persondir.support.StubPersonAttributeDao">
+		<property name="backingMap">
+			<map>
+				<entry key="uid" value="uid" />
+				<entry key="eduPersonAffiliation" value="eduPersonAffiliation" /> 
+				<entry key="groupMembership" value="groupMembership" />
+			</map>
+		</property>
+	</bean> -->
+	
+	<!-- 用户  -->
+	<bean id="attributeRepository" class="org.jasig.services.persondir.support.jdbc.SingleRowJdbcPersonAttributeDao">
+        <constructor-arg index="0" ref="dataSource" />
+        <constructor-arg index="1">
+            <value>
+            	select name, viewname,id from s_user
+            	where sts = 'Y'
+		           and {0}
+            </value>
+        </constructor-arg>
+        <property name="queryAttributeMapping">
+            <map>
+                <!--  这里的key需写username，value对应数据库用户名字段 -->
+                <entry key="username" value="name"/>
+            </map>
+        </property>
+        <property name="resultAttributeMapping">
+            <map>
+                <entry key="name" value="name"/>
+                <entry key="viewname" value="viewname"/>
+                <entry key="id" value="id"/>
+            </map>
+        </property>
+    </bean>
+    
+    <!-- 会员  
+    <bean id="memberAttributeRepository" class="org.jasig.services.persondir.support.jdbc.SingleRowJdbcPersonAttributeDao">
+        <constructor-arg index="0" ref="dataSource" />
+        <constructor-arg index="1">
+            <value>
+            	select id,userno,nickname,user_name from cms_test.user_info where {0}
+            </value>
+        </constructor-arg>
+        <property name="queryAttributeMapping">
+            <map>
+                <entry key="username" value="userno"/>
+            </map>
+        </property>
+        <property name="resultAttributeMapping">
+            <map>
+            	<entry key="id" value="id"/>
+                <entry key="userno" value="userno"/>
+                <entry key="user_name" value="user_name"/>
+                <entry key="nickname" value="nickname"/>
+            </map>
+        </property>
+    </bean>
+    -->
+	
+	<!-- 
+	Sample, in-memory data store for the ServiceRegistry. A real implementation
+	would probably want to replace this with the JPA-backed ServiceRegistry DAO
+	The name of this bean should remain "serviceRegistryDao".
+	 -->
+	<bean
+		id="serviceRegistryDao"
+        class="org.jasig.cas.services.InMemoryServiceRegistryDaoImpl">
+            <property name="registeredServices">
+                <list>
+                    <bean class="org.jasig.cas.services.RegexRegisteredService">
+                        <property name="id" value="0" />
+                        <property name="name" value="HTTP and IMAP" />
+                        <property name="description" value="Allows HTTP(S) and IMAP(S) protocols" />
+                        <property name="serviceId" value="^(https?|imaps?)://.*" />
+                        <property name="evaluationOrder" value="10000001" />
+                        <property name="allowedToProxy" value="true" />
+                        <property name="allowedAttributes"> 
+                        	<!-- 客户端需要使用的对象的属性名称 -->
+                                <list>
+                                   <value>name</value>
+                                   <value>viewname</value>
+                                   <value>id</value>
+                                   <value>userno</value>
+                                   <value>user_name</value>
+                                   <value>nickname</value>
+                                </list>
+                        </property>
+                    </bean>
+                    <!--
+                    Use the following definition instead of the above to further restrict access
+                    to services within your domain (including subdomains).
+                    Note that example.com must be replaced with the domain you wish to permit.
+                    -->
+                    <!--
+                    <bean class="org.jasig.cas.services.RegexRegisteredService">
+                        <property name="id" value="1" />
+                        <property name="name" value="HTTP and IMAP on example.com" />
+                        <property name="description" value="Allows HTTP(S) and IMAP(S) protocols on example.com" />
+                        <property name="serviceId" value="^(https?|imaps?)://([A-Za-z0-9_-]+\.)*example\.com/.*" />
+                        <property name="evaluationOrder" value="0" />
+                    </bean>
+                    -->
+                </list>
+            </property>
+        </bean>
+
+  <bean id="auditTrailManager" class="com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager" />
+	
+  <bean id="healthCheckMonitor" class="org.jasig.cas.monitor.HealthCheckMonitor">
+    <property name="monitors">
+      <list>
+        <bean class="org.jasig.cas.monitor.MemoryMonitor"
+            p:freeMemoryWarnThreshold="10" />
+        <!--
+          NOTE
+          The following ticket registries support SessionMonitor:
+            * DefaultTicketRegistry
+            * JpaTicketRegistry
+          Remove this monitor if you use an unsupported registry.
+        -->
+        <bean class="org.jasig.cas.monitor.SessionMonitor"
+            p:ticketRegistry-ref="ticketRegistry"
+            p:serviceTicketCountWarnThreshold="5000"
+            p:sessionCountWarnThreshold="100000" />
+      </list>
+    </property>
+  </bean>
+  
+  
+   <!-- add by zjhc -->
+   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${cas.datasource.driverClassName}" />
+        <property name="url" value="${cas.datasource.url}" />
+        <property name="username" value="${cas.datasource.userName}" />
+        <property name="password" value="${cas.datasource.password}" />
+        <!-- 
+    	<property name="initialSize" value="50"/>
+    	<property name="maxActive" value="100"/>
+    	<property name="maxWait" value="60000"/>
+    	<property name="poolPreparedStatements" value="true"/> -->
+	</bean>
+	
+	<!-- add by zjhc this is for querying system information-->
+	<bean id="querySystemInfoHandler" class="com.zjhcsoft.smartcity.cas.serverX.personal.handler.JdbcQuerySystemInfoHandler">
+		<property name="sql" value="select id,am_resource from s_system where sts='Y'" />
+		<property name="hasUserInCurSystemSql">
+			<value>select count(1) from s_user_account b, s_user c, s_system a
+				where a.id = b.system_id 
+				and b.user_id = c.id 
+				<!-- Attention 不同的DB系统时间取法不一致  
+				  	  判定用户有效期-->
+				and c.valid_date > sysdate()
+				and c.name=:user_name 
+				and a.id=:system_id 
+				and b.sts = 'Y' 
+				and a.sts = 'Y' 
+				and c.sts = 'Y'</value>
+		</property>
+		<property name="hasUserInCurSystemSql_member">
+			<value>select count(1) from s_user_account b, cms_test.user_info c, s_system a
+				where a.id = b.system_id 
+				and b.user_id = c.id 
+				and c.userno=:user_name 
+				and a.id=:system_id
+				</value>
+		</property>
+		<property name="systemSql">
+			<!-- 获取系统的类型: S:system; W:web -->
+			<value>select system_type from s_system a where a.sts = 'Y' and a.id=:system_id</value>
+		</property>
+		<property name="dataSource" ref="dataSource" />
+		<property name="Columnkey" value="id"/>
+		<property name="Columnvalue" value="am_resource"/>
+	</bean>
+	
+	<!-- add by zjhc this is for querying user relative information -->
+	<bean id="userRlatedInfoRetrivedService" class="com.zjhcsoft.smartcity.cas.serverX.personal.UserRelatedInfoRetrivedServiceImpl" >
+		<property name="querySystemInfoHandler" ref="querySystemInfoHandler" />
+		<!-- 权限控制体系: 用户→用户角色→模块   simple  -->
+		<property name="relatedInfoHandlers">
+			<list>
+				<bean class="com.zjhcsoft.smartcity.cas.serverX.personal.handler.BasicRelatedInfoRetrieveHandler">
+					<property name="dataSource" ref="dataSource" />
+					<property name="sourceName" value="USER_INFO" />
+					<property name="sql">
+					    <value>
+						    select ID,
+						       NAME,
+						       PASSWORD,
+						       VIEWNAME,
+						       PHONE,
+						       EMAIL,
+						       LOGIN_ID,
+						       STS,
+						       WORKOUT,
+						       LOCKED,
+						       TYPE
+						  from S_USER t
+						  where t.name = :user_name
+						  	and t.sts = 'Y'
+					    </value>	
+					</property>
+				</bean>
+				<bean class="com.zjhcsoft.smartcity.cas.serverX.personal.handler.BasicRelatedInfoRetrieveHandler">
+					<property name="dataSource" ref="dataSource" />
+					<property name="sourceName" value="USER_GROUP_INFO" />
+					<property name="sql">
+					    <value>
+						    select A.id, A.name, A.system_id, A.description from S_RBAC_USER_GROUP B, s_user C, S_RBAC_GROUP A
+				    	where B.USER_ID	= C.ID
+				    		and B.GROUP_ID = A.ID
+				    		and A.sts = 'Y'
+				    		and B.sts = 'Y'
+				    		and C.sts = 'Y'
+				    		and C.name = :user_name
+				    		AND A.SYSTEM_ID = :system_id
+					    </value>	
+					</property>
+				</bean>
+				<bean class="com.zjhcsoft.smartcity.cas.serverX.personal.handler.BasicRelatedInfoRetrieveHandler">
+					<property name="dataSource" ref="dataSource" />
+					<property name="sourceName" value="USER_ROLE_INFO" />
+					<property name="sql">
+					    <value>
+						    select A.ID,
+						       A.NAME,
+						       A.ROLE_TYPE,
+						       A.SYSTEM_ID,
+						       A.DELETE_PRIV,
+						       A.MEMO,
+						       A.STS
+				        from S_RBAC_ROLE A, S_RBAC_USER_ROLE B, s_user C
+				        where  A.id = B.role_id
+				          AND  B.user_id = C.id
+				          and A.sts = 'Y'
+				          and B.sts = 'Y'
+				          and C.sts = 'Y'
+				          and A.SYSTEM_ID = :system_id
+				          and C.name = :user_name
+					    </value>	
+					</property>
+				</bean>
+				<bean class="com.zjhcsoft.smartcity.cas.serverX.personal.handler.BasicRelatedInfoRetrieveHandler">
+					<property name="dataSource" ref="dataSource" />
+					<property name="sourceName" value="SYS_MODULE_INFO" />
+					<property name="sql">
+						   <!-- 
+							如果Flg为1则表示该菜单有权限、
+							如果Flg为null则表示该菜单在当前用户下没有权限
+						    -->
+							<value>
+							SELECT DISTINCT M.ID,
+						       M.NAME,
+								M.orderby,
+						       M.UP_ID,
+						       M.URL,
+						       M.PATTERN,
+						       M.DESCRIPTION,
+						       M.ISMENU,
+						       M.TARGET,
+						       M.HTML,
+						       M.LVL,
+						       M.MENU_TYPE,
+						       M.STS,
+						       G.FLG 
+							  FROM s_module M
+							  LEFT JOIN (SELECT A.ID,
+							                    A.NAME,
+							                    A.UP_ID,
+							                    A.URL,
+							                    A.PATTERN,
+							                    A.DESCRIPTION,
+							                    A.ISMENU,
+							                    A.TARGET,
+							                    A.HTML,
+							                    A.LVL,
+							                    A.MENU_TYPE,
+							                    A.STS,
+							                    B.id AS FLG
+							               FROM s_rbac_role        D,
+							                    s_rbac_role_module B,
+							                    s_user             C,
+							                    s_rbac_user_role   E,
+							                    s_module           A
+							              WHERE B.MODULE_ID = A.id
+							                AND B.ROLE_ID = D.id
+							                AND E.USER_ID = C.ID
+							                AND E.ROLE_ID = D.ID
+							                AND B.sts = 'Y'
+							                AND D.sts = 'Y'
+							                AND C.sts = 'Y'
+							                AND A.sts = 'Y'
+							                AND E.sts = 'Y'
+							                AND C.name = :user_name
+							                AND D.SYSTEM_ID = :system_id
+							                AND A.system_id = :system_id) G
+										    on G.id = M.id
+										 where M.sts = 'Y'
+										   and M.SYSTEM_ID = :system_id
+										 order by M.UP_ID,M.orderby
+					    </value>	
+					</property>
+				</bean>
+				<bean class="com.zjhcsoft.smartcity.cas.serverX.personal.handler.BasicRelatedInfoRetrieveHandler">
+					<property name="dataSource" ref="dataSource" />
+					<property name="sourceName" value="SYS_ORG_INFO" />
+					<property name="sql">
+					    <value>
+						    select b.ID,
+				             b.NAME,
+				             b.UP_ID,
+				            <!--  b.LVL,-->
+				             b.CODE,
+				             b.MANAGER_ID,
+				             b.MEMO,
+				             b.ORDERBY,
+				             b.SYSTEM_ID,
+				             b.STS
+				        <!--  S_USER_DEPT_ORG -->
+					  	from  s_user_org t, s_user a, s_org b
+						where t.user_id = a.id
+						      and t.org_id = b.id
+						      and a.sts = 'Y'
+						      and b.sts = 'Y'
+						      and t.sts = 'Y'
+						      and a.name = :user_name
+						      and b.system_id = :system_id
+					    </value>	
+					</property>
+				</bean>
+				<bean class="com.zjhcsoft.smartcity.cas.serverX.personal.handler.BasicRelatedInfoRetrieveHandler">
+					<property name="dataSource" ref="dataSource" />
+					<property name="sourceName" value="SYSTEM_INFO" />
+					<property name="sql">
+						<value>
+							SELECT
+							a.*
+							FROM
+							s_system a,
+							s_user_account b,
+							s_user c
+							WHERE
+							a.id = b.system_id
+							AND b.user_id = c.id
+							AND a.sts = 'Y'
+							AND b.sts = 'Y'
+							AND c. NAME = :user_name
+							ORDER BY
+							a.orderby
+						</value>
+					</property>
+				</bean>
+				<bean class="com.zjhcsoft.smartcity.cas.serverX.personal.handler.BasicRelatedInfoRetrieveHandler">
+					<property name="dataSource" ref="dataSource" />
+					<property name="sourceName" value="DATA_ACCESS_RULE_INFO" />
+					<property name="sql">
+						<value>
+							SELECT
+							b.id,
+							b.element_code as elementCode,
+							d.code as elementType,
+							b.element_value as elementValue,
+							b.parent_id as parentId,
+							b.tree_path as treePath,
+							b.sorting,
+							b.sts
+							FROM s_user_element a,
+							s_element b,
+							s_user c,
+							s_element_type d
+							WHERE a.element_id = b.id
+							AND a.grant_object = c.ID
+							AND b.element_type=d.id
+							AND c. NAME = :user_name
+							AND d.system_id=:system_id
+						</value>
+					</property>
+				</bean>
+			</list>
+		</property>
+		
+		<!-- 会员权限控制体系: 用户→角色→模块→数据级权限 【TODO 暂未使用】-->
+		<property name="memberRelatedInfoHandlers">
+			<list>
+				<bean class="com.zjhcsoft.smartcity.cas.serverX.personal.handler.BasicRelatedInfoRetrieveHandler">
+					<property name="dataSource" ref="dataSource" />
+					<property name="sourceName" value="MEMBER_INFO" />
+					<property name="sql">
+					    <value>
+						    select
+							 	id,
+								userno,
+								user_name as username,
+								NICKNAME as nick,
+								sex,
+								birthday,
+								province,
+								city,
+								county,
+								img,
+								email,
+								phone,
+								address,
+								corpFlg,
+								sinawebo,
+								qq
+								<!-- TODO -->
+							from cms_test.user_info t
+							where t.id = :id
+					    </value>	
+					</property>
+				</bean>
+				
+				<bean class="com.zjhcsoft.smartcity.cas.serverX.personal.handler.BasicRelatedInfoRetrieveHandler">
+					<property name="dataSource" ref="dataSource" />
+					<property name="sourceName" value="SYS_MODULE_INFO" />
+					<property name="sql">
+						   <!-- 
+							如果Flg为1则表示该菜单有权限、
+							如果Flg为null则表示该菜单在当前用户下没有权限
+						    -->
+							<value>
+							SELECT DISTINCT M.ID,
+						       M.NAME,
+						       M.UP_ID,
+						       M.URL,
+						       M.PATTERN,
+						       M.DESCRIPTION,
+						       M.ISMENU,
+						       M.TARGET,
+						       M.HTML,
+						       M.LVL,
+						       M.MENU_TYPE,
+						       M.STS,
+						       G.FLG 
+							  FROM s_module M
+							  LEFT JOIN (SELECT A.ID,
+							                    A.NAME,
+							                    A.UP_ID,
+							                    A.URL,
+							                    A.PATTERN,
+							                    A.DESCRIPTION,
+							                    A.ISMENU,
+							                    A.TARGET,
+							                    A.HTML,
+							                    A.LVL,
+							                    A.MENU_TYPE,
+							                    A.STS,
+							                    1 AS FLG
+							               FROM s_rbac_role        D,
+							                    s_rbac_role_module B,
+							                    cms_test.user_info C,
+							                    s_rbac_user_role   E,
+							                    s_module           A
+							              WHERE B.MODULE_ID = A.id
+							                AND B.ROLE_ID = D.id
+							                AND E.USER_ID = C.ID
+							                AND E.ROLE_ID = D.ID
+							                AND B.sts = 'Y'
+							                AND D.sts = 'Y'
+							                AND A.sts = 'Y'
+							                AND E.sts = 'Y'
+							                AND C.id = :id
+							                AND D.SYSTEM_ID = :system_id
+							                AND A.system_id = :system_id) G
+										    ON G.id = M.id
+										 WHERE M.sts = 'Y'
+										   AND M.SYSTEM_ID = :system_id
+										 ORDER BY M.UP_ID,M.orderby
+					    </value>	
+					</property>
+				</bean>
+				
+				<bean class="com.zjhcsoft.smartcity.cas.serverX.personal.handler.BasicRelatedInfoRetrieveHandler">
+					<property name="dataSource" ref="dataSource" />
+					<property name="sourceName" value="DATA_ACCESS_RULE_INFO" />
+					<property name="sql">
+						<value>
+						SELECT
+						  b.id,
+						  b.element_code,
+						  b.element_type,
+						  b.element_value,
+						  b.parent_id,
+						  b.tree_path,
+						  b.sorting,
+						  b.sts
+						FROM s_user_element a,
+						  s_element b,
+						  cms_test.user_info c
+						WHERE a.element_id = b.id
+						    AND a.grant_object = c.ID
+						    AND c.ID = :id
+					    </value>	
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 登录日志记录 -->
+	<bean id="logOperationInfoHandler" class="com.zjhcsoft.smartcity.cas.serverX.personal.handler.JdbcOperationInfoHandler">
+		<property name="sql" value="insert into s_login_log(name, login_client_ip, login_service, is_exception, exception_info) values (:name,:login_client_ip,:login_service,:is_exception,:exception_info)" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+</beans>

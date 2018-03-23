@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>查看消息</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function clsw(){
+            Magic.closeWin();
+            window.parent.jQuery('#dg').datagrid('reload');
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <table width="100%" cellpadding="5">
+            <tr>
+                <td align="right">收件人：</td>
+                <td>
+                    <input class="easyui-textbox" name="toUsername" readonly value="$!{model.toUsername}">
+                </td>
+            </tr>
+            <tr>
+                <td align="right">短信标：</td>
+                <td><input name="title" formnovalidate class="easyui-textbox" readonly value="$!{model.title}"> </td>
+            </tr>
+             <tr>
+                <td align="right">短信内容：</td>
+                 <td>
+                     <textarea name="content" readonly rows="5" cols="50">$!{model.content}</textarea>
+                 </td>
+             </tr>
+        </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clsw()">关闭</a>
+</div>
+</body>
+</html>

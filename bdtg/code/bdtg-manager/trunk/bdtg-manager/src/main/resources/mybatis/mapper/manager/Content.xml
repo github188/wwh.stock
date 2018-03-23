@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hzskt.bdtg.manage.domain.Content">
+
+	<resultMap id="get-Content-result" type="cn.hzskt.bdtg.manage.domain.Content">
+		<!-- 编号-->
+    	<result property="id" column="id" />
+		<!-- 分类-->
+    	<result property="typeCode" column="type_code" />
+		<!-- 标题-->
+    	<result property="contentTile" column="content_tile" />
+		<!-- 摘要-->
+    	<result property="contentAbstract" column="content_abstract" />
+		<!-- 主图片-->
+    	<result property="picture" column="picture" />
+		<!-- 城市-->
+    	<result property="contentCity" column="content_city" />
+		<!-- 标签-->
+    	<result property="tag" column="tag" />
+		<!-- 内容-->
+    	<result property="content" column="content" />
+		<!-- 发生日期-->
+    	<result property="newsDate" column="news_date" />
+		<!-- 更新时间-->
+    	<result property="updateDate" column="update_date" />
+		<!-- 录入时间-->
+    	<result property="addDate" column="add_date" />
+		<!-- 排序-->
+    	<result property="contentOrder" column="content_order" />
+    	<!-- 状态1、已发布,2初始导入，3、已审核 -->
+    	<result property="status" column="status"/>
+    	<result property="url" column="url"/>
+    	<result property="cityName" column="cityName"/>
+    	<!-- 栏目名称 -->
+    	<result property="categoryName" column="categoryName"/>
+    	<!-- 来源 -->
+    	<result property="source" column="source"/>
+    	
+    	<result property="shelfDate" column="shelf_date"/>
+    	<!-- 定时发布设定 -->
+    	<result property="publishScheduleDate" column="publish_schedule_date"/>
+    	<!-- 基准浏览量 -->
+    	<result property="baseViews" column="baseViews"/>
+    	<!-- 一般评价 -->
+    	<result property="normalEvas" column="normalEvas"/>
+    	<!-- 好评价 -->
+    	<result property="goodEvas" column="goodEvas"/>
+    	<!-- 差评价 -->
+    	<result property="badEvas" column="badEvas"/>
+    	<!-- 差评价 -->
+    	<result property="commentCount" column="commentCount"/>
+
+	</resultMap>
+
+	<select id="Content_select_all" resultMap="get-Content-result">
+		 SELECT
+    		tb_content.id, 			 
+			 type_code, 			 
+			 content_tile, 			 
+			 content_abstract, 			 
+			 picture, 			 
+			 content_city, 			 
+			 tag, 			 
+			 content, 			 
+			 news_date, 			 
+			 update_date, 			 
+			 add_date, 			 
+			 content_order,
+			 status,
+			 url,
+			 source,
+			 shelf_date,
+			 publish_schedule_date,
+			 "" AS cityName,
+   		     tb_category.cat_name as categoryName,
+   		     tb_content_count.base_views as baseViews,
+   		     tb_content_count.normal_evas as normalEvas,
+   		     tb_content_count.good_evas as goodEvas,
+   		     tb_content_count.bad_evas as badEvas,
+   		     '0' as commentCount
+	 	FROM
+ 		 	tb_content
+  		JOIN
+  		    tb_content_category
+  		 ON  tb_content.id = tb_content_category.content_id
+  		JOIN   
+    		tb_category
+		 ON
+			tb_content_category.category_id = tb_category.id 
+		LEFT JOIN 
+		    tb_content_count ON tb_content.id = tb_content_count.id
+		<where>
+		    <if test="id!=null and id!=''">
+		       and tb_content.id = #{id}
+		    </if>
+		    <if test="typeCode!=null and typeCode!=''">
+		        and tb_content_category.category_id = #{typeCode}  
+		    </if>
+		    <if test="contentTile!=null and contentTile!=''">
+		        and tb_content.content_tile like '%${contentTile}%'
+		    </if>
+		    <if test="contentAbstract!=null and contentAbstract!=''">
+		        and tb_content.content_abstract = #{contentAbstract}
+		    </if>
+		    <if test="picture!=null and picture!=''">
+		        and tb_content.picture = #{picture} 
+		    </if>
+		    <if test="tag!=null and tag!=''">
+		        and tb_content.tag = #{tag} 
+		    </if>
+		    <if test="content!=null and content!=''">
+		        and tb_content.content = #{content} 
+		    </if>
+		    <if test="startDate!=null and startDate!=''">
+		        and <![CDATA[ tb_content.update_date >=  #{startDate}]]>
+		    </if>
+		    <if test="endDate!=null and endDate!=''">
+		        and <![CDATA[ tb_content.update_date <=  #{endDate}]]>
+		    </if>
+		    <if test="updateDate!=null and updateDate!=''">
+		        and tb_content.update_date = #{updateDate} 
+		    </if>
+		    <if test="addDate!=null and addDate!=''">
+		        and tb_content.add_date like '${addDate}%'
+		    </if>
+		    <if test="contentOrder!=null and contentOrder!=''">
+		        and tb_content.content_order = #{contentOrder} 
+		    </if>
+		    <if test="status!=null and status!=''">
+		        and tb_content.status  = #{status} 
+		    </if>
+		    <if test="catOrgList!=null and catOrgList.size()>0">
+		        and tb_category.cat_org in
+			    <foreach collection="catOrgList" open="(" close=")" item="org" separator=",">
+			        #{org}
+			    </foreach>
+		    </if>
+		</where>
+		ORDER BY
+			tb_content.update_date DESC,
+        	tb_content.content_order
+       	LIMIT
+       		${limit}, ${size}
+	</select>
+	
+	<select id="Content_select_all_nums" resultType="int">
+		SELECT
+    		count(tb_content.id)
+	 	FROM
+ 		 	tb_content
+  		JOIN
+  		    tb_content_category
+  		 ON  tb_content.id = tb_content_category.content_id
+  		JOIN   
+    		tb_category
+		 ON
+			tb_content_category.category_id = tb_category.id 
+		LEFT JOIN 
+		    tb_content_count ON tb_content.id = tb_content_count.id
+		<where>
+		    <if test="id!=null and id!=''">
+		       and tb_content.id = #{id}
+		    </if>
+		    <if test="typeCode!=null and typeCode!=''">
+		        and tb_content_category.category_id = #{typeCode}  
+		    </if>
+		    <if test="contentTile!=null and contentTile!=''">
+		        and tb_content.content_tile like '%${contentTile}%'
+		    </if>
+		    <if test="contentAbstract!=null and contentAbstract!=''">
+		        and tb_content.content_abstract = #{contentAbstract}
+		    </if>
+		    <if test="picture!=null and picture!=''">
+		        and tb_content.picture = #{picture} 
+		    </if>
+		    <if test="tag!=null and tag!=''">
+		        and tb_content.tag = #{tag} 
+		    </if>
+		    <if test="content!=null and content!=''">
+		        and tb_content.content = #{content} 
+		    </if>
+		    <if test="startDate!=null and startDate!=''">
+		        and <![CDATA[ tb_content.update_date >=  #{startDate}]]>
+		    </if>
+		    <if test="endDate!=null and endDate!=''">
+		        and <![CDATA[ tb_content.update_date <=  #{endDate}]]>
+		    </if>
+		    <if test="updateDate!=null and updateDate!=''">
+		        and tb_content.update_date = #{updateDate} 
+		    </if>
+		    <if test="addDate!=null and addDate!=''">
+		        and tb_content.add_date like '${addDate}%'
+		    </if>
+		    <if test="contentOrder!=null and contentOrder!=''">
+		        and tb_content.content_order = #{contentOrder} 
+		    </if>
+		    <if test="status!=null and status!=''">
+		        and tb_content.status  = #{status} 
+		    </if>
+		    <if test="catOrgList!=null and catOrgList.size()>0">
+		        and tb_category.cat_org in
+			    <foreach collection="catOrgList" open="(" close=")" item="org" separator=",">
+			        #{org}
+			    </foreach>
+		    </if>
+		</where>
+	</select>	
+	
+	
+	<update id="Content_change_status">
+	    update tb_content
+	    <set>
+	        <if test="status!=null and status!=''">
+	            status=#{status},
+	        </if>
+	        <if test="shelfDate!=null">
+	            shelf_date = #{shelfDate},
+	        </if>
+	        <if test="updateDate!=null">
+	            update_date = #{updateDate},
+	        </if>
+	    </set> 
+	    WHERE 
+	    	id=#{id}
+	</update>
+	
+	<delete id="Content_remove_relation">
+	    DELETE FROM tb_content_category 
+	    <where>
+	        <if test="orgId!=null and orgId!=''">
+	            and plaform_id=#{orgId}
+	        </if>
+	        <if test="id!=null and id!=''">
+	            and content_id=#{id}
+	        </if>
+	    </where>
+	</delete>
+	
+	<select id="Content_count_relation" resultType="int">
+	    select count(id) from tb_content_category where content_id=#{id}
+	</select>
+	
+	<select id="Content_select_relationMap" resultType="map">
+	    select plaform_id, category_id, content_id from tb_content_category where content_id=#{0}
+	</select>
+	
+	<delete id="Content_remove_count">
+		delete from tb_content_count where id=#{id}
+	</delete>
+	
+	<delete id="Content_remove">
+	    delete from tb_content where id=#{id}
+	</delete>
+	
+	<insert id="Content_insert">
+		INSERT INTO tb_content(
+			content_tile,
+			content_abstract,
+			picture,
+			content_city,
+			tag,
+			content,
+			news_date,
+			update_date,
+			add_date,
+			content_order,
+			url,
+			status,
+			source,
+	        publish_schedule_date,
+	        shelf_date
+		)
+		VALUES(
+			#{contentTile},
+			#{contentAbstract},
+			#{picture},
+			#{contentCity},
+			#{tag},
+			#{content},
+			#{newsDate},
+			now(),
+			now(),
+			#{contentOrder},
+			#{url},
+			#{status},
+			#{source},
+			#{publishScheduleDate},
+			#{shelfDate}
+		)
+		<selectKey resultType="int" keyProperty="id">
+			<![CDATA[SELECT LAST_INSERT_ID() AS ID]]>
+		</selectKey>
+	</insert>
+	
+	<update id="Content_update">
+	    update tb_content 
+	    <set>
+	        <if test="contentTile!=null and contentTile!=''">
+	             content_tile = #{contentTile},
+	        </if>
+	        <if test="contentAbstract!=null and contentAbstract!=''">
+	             content_abstract = #{contentAbstract},
+	        </if>
+	        <if test="picture!=null and picture!=''">
+	             picture = #{picture},
+	        </if>
+	        <if test="contentCity!=null and contentCity!=''">
+	             content_city = #{contentCity},
+	        </if>
+	        <if test="tag!=null and tag!=''">
+	             tag = #{tag},
+	        </if>
+	        <if test="content!=null and content!=''">
+	             content = #{content},
+	        </if>
+	        <if test="newsDate!=null and newsDate!=''">
+	             news_date = #{newsDate},
+	        </if>
+	        <if test="contentOrder!=null and contentOrder!=''">
+	             content_order = #{contentOrder},
+	        </if>
+	        <if test="url!=null and url!=''">
+	             url = #{url},
+	        </if>
+	        <if test="status!=null and status!=''">
+	             status = #{status},
+	        </if>
+	        <if test="source!=null and source!=''">
+	             source = #{source},
+	        </if>
+	        <if test="publishScheduleDate!=null and publishScheduleDate!=''">
+	             publish_schedule_date = #{publishScheduleDate},
+	        </if>
+	        <if test="shelfDate!=null and shelfDate!=''">
+	             shelf_date = #{shelfDate},
+	        </if>
+	       	update_date = now()
+	    </set>
+	    where id=#{id}
+	</update>
+	
+	<insert id="Content_count_add">
+	    insert into tb_content_count(id, base_views) values(#{id}, #{base_views})
+	</insert>
+	
+	<insert id="Content_category_add">
+	    insert into tb_content_category(plaform_id, category_id, content_id)
+	    values(
+			#{plaform, jdbcType=VARCHAR},
+			#{category},
+			#{content}	    
+	    )
+	</insert>
+	
+</mapper>

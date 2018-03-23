@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>文件管理</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+
+<body class="easyui-layout">
+    <div style="float: left;width: 20%;height: 100%;border: 1px;border:1px solid;overflow-y: auto;">
+        <ul class="easyui-tree" >
+                    #foreach($obj in $!{follist})
+                        #if($!{obj.pcode}=="-1")
+                            #if($!{obj.type}=="0")
+                                <li data-options="state:'closed'"><span>$!{obj.name}</span>
+                                    <ul>
+                                        #foreach($rowi in $!{follist})
+                                            #if($!{obj.code}==$!{rowi.pcode})
+                                                <li><a href="file/filelist?id=$!{rowi.id}&type=$!{rowi.type}" target="main"><span>$!{rowi.name}</span></a></li>
+                                            #end
+                                        #end
+                                    </ul>
+                                </li>
+                            #elseif($!{obj.type}=="1")
+                                <li><a href="file/filelist?id=$!{obj.id}&type=$!{obj.type}" target="main"><span>$!{obj.name}</span></a></li>
+                            #elseif($!{obj.type}=="2")
+                                <li><a href="file/filelist?id=$!{obj.id}&type=$!{obj.type}" target="main"><span>$!{obj.name}</span></a></li>
+                            #elseif($!{obj.type}=="3")
+                                <li><a href="file/filelist?id=$!{obj.id}&type=$!{obj.type}" target="main"><span>$!{obj.name}</span></a></li>
+                            #elseif($!{obj.type}=="4")
+                                <li><a href="file/filelist?id=$!{obj.id}&type=$!{obj.type}" target="main"><span>$!{obj.name}</span></a></li>
+                            #elseif($!{obj.type}=="5")
+                                <li><a href="file/filelist?id=$!{obj.id}&type=$!{obj.type}" target="main"><span>$!{obj.name}</span></a></li>
+                            #elseif($!{obj.type}=="6")
+                                <li><a href="file/filelist?id=$!{obj.id}&type=$!{obj.type}" target="main"><span>$!{obj.name}</span></a></li>
+                            #end
+                        #end
+                    #end
+        </ul>
+    </div>
+    <div style="height:100%;">
+        <iframe  align="top" scrolling="no" name="main" height="100%" width="79%" frameborder="0"> </iframe>
+    </div>
+</body>
+</html>

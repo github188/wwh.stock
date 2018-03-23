@@ -1,0 +1,28 @@
+<div class="header clearfix">
+    #if($user)
+        <div class="login">
+            <span>欢迎您，</span>
+            <a href="${base}/member/index">${user.name}</a>
+            <a href="$base/message/pagelist?type=2"> <i class="fa fa-envelope"></i>#if($msg_cnt)($msg_cnt)#end</a>
+            <iframe id="J_logoutIframe" width="0" height="0" frameborder="0"></iframe>
+            <a href="javascript:logout();" class="nav-item-link active">退出</a>
+        </div>
+        <script type="text/javascript">
+            function logout() {
+                jQuery.post('${base}/logout',function() {
+                    window.location.reload();
+                });
+            }
+        </script>
+    #else
+        <a href="${base}/login" class="login">请登录</a>
+        <a href="${base}/register" class="register">注册</a>
+        <span class="register_prize">注册就送<br><i class="icon_gold"></i>北斗币</span>
+    #end
+    <div class="fr header_links">
+        <a class="myCart"><i class="icon_cart"></i>我的任务车</a>
+        <a href="">我是业主</a>
+        <a href="">我是服务商</a>
+        <a href="">网站导航</a>
+    </div>
+</div>

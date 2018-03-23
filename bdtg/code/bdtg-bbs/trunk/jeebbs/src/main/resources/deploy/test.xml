@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<portable-config>
+    <config-file path="WEB-INF/config/jdbc.properties">
+        <replace key="jdbc.url"><![CDATA[jdbc:mysql://rds6uk8opiww71726io0.mysql.rds.aliyuncs.com:3306/bbs?useUnicode=true&characterEncoding=UTF-8]]></replace>
+        <replace key="jdbc.username">bbs</replace>
+        <replace key="jdbc.password">bbs123</replace>
+    </config-file>
+    <config-file path="WEB-INF/classes/sso/sso.properties">
+        <replace key="sso.cookie.domain">.bdtg.com</replace>
+    </config-file>
+</portable-config>

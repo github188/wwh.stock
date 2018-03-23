@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="zh-cn">
+<head>
+    <title>我的消息</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="generator" content="客客出品专业威客2.7.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/user.css" rel="stylesheet" type="text/css" id="active-style-user">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.82587500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+</head>
+<body id="user">
+
+<script src="${base}/static/js/model/user/user.js"></script>
+<script src="${base}/static/js/model/user/transaction.js"></script>
+
+<!-- /header -->
+    #parse("includes/message/home_manage.vm")
+<!-- nav end -->
+
+<div class="container">
+    #parse("includes/message/nav_manage.vm")
+    <!-- nav-action end -->
+    <div class="content-panel">
+        <div class="tab">
+            <a href="javascript:void(0);" class="selected">交易动态</a>
+        </div>
+
+        <div class="tab_detail">
+            <div class="action-bar">
+                <form action="index.php?do=user&amp;view=message&amp;op=trends" method="post" name="searchServiceForm" id="searchServiceForm">
+                    <div class="action-item">
+                        <select class="form-control" name="s">
+                            <option value="0" selected="selected">全部</option>
+                            <option value="1">已读</option>
+                            <option value="2">未读</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <form method="post" name="listMessageForm" id="listMessageForm" action="index.php?do=user&amp;view=message&amp;op=trends">
+                <input type="hidden" name="action" value="" id="action">
+                <input type="hidden" name="intPage" value="1">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>状态</th>
+                            <th>标题</th>
+                            <th>发件人</th>
+                            <th>时　间</th>
+                            <th>操　作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" value="262" id="cbk_selected" name="ckb[]"> 已读                    </label>
+                            </td>
+                            <td><a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=262&amp;type=trends&amp;intPage=1">交付协议签署</a></td>
+                            <td>系统消息</td>
+                            <td>2016-04-19 08:55:04</td>
+                            <td>
+                                <a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=262&amp;type=trends&amp;intPage=1">查看</a>
+                                <a href="javascript:opSingle('index.php?do=user&amp;view=message&amp;op=trends&amp;objId=262&amp;action=delSingle&amp;intPage=1');void(0);">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" value="260" id="cbk_selected" name="ckb[]"> 已读                    </label>
+                            </td>
+                            <td><a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=260&amp;type=trends&amp;intPage=1">交付协议签署</a></td>
+                            <td>系统消息</td>
+                            <td>2016-04-19 08:54:25</td>
+                            <td>
+                                <a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=260&amp;type=trends&amp;intPage=1">查看</a>
+                                <a href="javascript:opSingle('index.php?do=user&amp;view=message&amp;op=trends&amp;objId=260&amp;action=delSingle&amp;intPage=1');void(0);">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" value="257" id="cbk_selected" name="ckb[]"> 已读                    </label>
+                            </td>
+                            <td><a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=257&amp;type=trends&amp;intPage=1">任务进入交付阶段</a></td>
+                            <td>系统消息</td>
+                            <td>2016-04-19 08:54:13</td>
+                            <td>
+                                <a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=257&amp;type=trends&amp;intPage=1">查看</a>
+                                <a href="javascript:opSingle('index.php?do=user&amp;view=message&amp;op=trends&amp;objId=257&amp;action=delSingle&amp;intPage=1');void(0);">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" value="255" id="cbk_selected" name="ckb[]"> 已读                    </label>
+                            </td>
+                            <td><a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=255&amp;type=trends&amp;intPage=1">任务交稿</a></td>
+                            <td>系统消息</td>
+                            <td>2016-04-19 08:50:43</td>
+                            <td>
+                                <a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=255&amp;type=trends&amp;intPage=1">查看</a>
+                                <a href="javascript:opSingle('index.php?do=user&amp;view=message&amp;op=trends&amp;objId=255&amp;action=delSingle&amp;intPage=1');void(0);">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" value="254" id="cbk_selected" name="ckb[]"> 已读                    </label>
+                            </td>
+                            <td><a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=254&amp;type=trends&amp;intPage=1">任务通过审核</a></td>
+                            <td>系统消息</td>
+                            <td>2016-04-18 16:52:57</td>
+                            <td>
+                                <a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=254&amp;type=trends&amp;intPage=1">查看</a>
+                                <a href="javascript:opSingle('index.php?do=user&amp;view=message&amp;op=trends&amp;objId=254&amp;action=delSingle&amp;intPage=1');void(0);">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" value="253" id="cbk_selected" name="ckb[]"> 已读                    </label>
+                            </td>
+                            <td><a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=253&amp;type=trends&amp;intPage=1">任务通过审核</a></td>
+                            <td>系统消息</td>
+                            <td>2016-04-18 16:33:18</td>
+                            <td>
+                                <a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=253&amp;type=trends&amp;intPage=1">查看</a>
+                                <a href="javascript:opSingle('index.php?do=user&amp;view=message&amp;op=trends&amp;objId=253&amp;action=delSingle&amp;intPage=1');void(0);">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" value="252" id="cbk_selected" name="ckb[]"> 已读                    </label>
+                            </td>
+                            <td><a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=252&amp;type=trends&amp;intPage=1">任务审核失败</a></td>
+                            <td>系统消息</td>
+                            <td>2016-04-18 16:25:16</td>
+                            <td>
+                                <a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=252&amp;type=trends&amp;intPage=1">查看</a>
+                                <a href="javascript:opSingle('index.php?do=user&amp;view=message&amp;op=trends&amp;objId=252&amp;action=delSingle&amp;intPage=1');void(0);">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" value="251" id="cbk_selected" name="ckb[]"> 已读                    </label>
+                            </td>
+                            <td><a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=251&amp;type=trends&amp;intPage=1">任务通过审核</a></td>
+                            <td>系统消息</td>
+                            <td>2016-04-18 16:19:56</td>
+                            <td>
+                                <a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=251&amp;type=trends&amp;intPage=1">查看</a>
+                                <a href="javascript:opSingle('index.php?do=user&amp;view=message&amp;op=trends&amp;objId=251&amp;action=delSingle&amp;intPage=1');void(0);">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" value="229" id="cbk_selected" name="ckb[]"> 已读                    </label>
+                            </td>
+                            <td><a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=229&amp;type=trends&amp;intPage=1">招标失败</a></td>
+                            <td>系统消息</td>
+                            <td>2016-04-18 15:53:44</td>
+                            <td>
+                                <a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=229&amp;type=trends&amp;intPage=1">查看</a>
+                                <a href="javascript:opSingle('index.php?do=user&amp;view=message&amp;op=trends&amp;objId=229&amp;action=delSingle&amp;intPage=1');void(0);">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" value="228" id="cbk_selected" name="ckb[]"> 已读                    </label>
+                            </td>
+                            <td><a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=228&amp;type=trends&amp;intPage=1">招标失败</a></td>
+                            <td>系统消息</td>
+                            <td>2016-04-18 15:53:44</td>
+                            <td>
+                                <a href="index.php?do=user&amp;view=message&amp;op=detail&amp;msgId=228&amp;type=trends&amp;intPage=1">查看</a>
+                                <a href="javascript:opSingle('index.php?do=user&amp;view=message&amp;op=trends&amp;objId=228&amp;action=delSingle&amp;intPage=1');void(0);">删除</a></td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="clearfix">
+                    <div class="btn-toolbar pull-left" role="toolbar">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-sm" value="0" id="checkbox"><i class="fa fa-check-square-o"></i> 全选</button>
+
+                        </div>
+                        <div class="btn-group"><button type="button" onclick="return opMulit('mulitView','listMessageForm');" class="btn btn-default btn-sm">标记为已读</button>
+                        </div>
+                        <div class="btn-group"><button type="button" onclick="return opMulit('mulitDel','listMessageForm');" class="btn btn-default btn-sm">删除</button></div>
+                    </div>
+
+                    <ul class="pagination pagination-sm pull-right">
+                        <li class="active"><a>1</a></li><li><a href="index.php?do=user&amp;view=message&amp;op=trends&amp;page=2">2</a> </li><li><a href="index.php?do=user&amp;view=message&amp;op=trends&amp;page=2">»</a></li><li><span class="fl_l"> 1 / 2页</span></li>       </ul>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+    #parse("includes/footer.vm")
+</body>
+</html>

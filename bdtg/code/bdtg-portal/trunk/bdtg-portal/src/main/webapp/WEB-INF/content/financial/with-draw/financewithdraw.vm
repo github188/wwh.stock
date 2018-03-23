@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="zh-cn">
+<head>
+    <title>用户中心</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="generator" content="客客出品专业威客2.7.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/user.css" rel="stylesheet" type="text/css" id="active-style-user">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.82587500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+</head>
+<body id="user">
+
+<script src="${base}/static/js/model/user/user.js"></script>
+<script src="${base}/static/js/model/user/transaction.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#ord').val($ord);
+        $('#pageSize').val($pageSize);
+    });
+</script>
+<!-- /header -->
+    #parse("includes/member/home_manage.vm")
+<!-- nav end -->
+
+<div class="container">
+    #parse("includes/member/nav_manage.vm")
+    <!-- nav-action end -->
+    <div class="content-panel">
+      <div class="tab">
+        <a class="selected">收支明细</a>
+      </div>
+          <div class="tab_detail" style="padding-left: 100px">
+              <!-- 基本信息 start -->
+              <dl class="dl-horizontal mb_20">
+                  <dt>账户余额</dt>
+                  <dd>
+                      <p class="mb_10"><strong class="money">￥$!{balance}元</strong> </p>
+                      <p class="mb_10" style="padding-left: 66px">
+                          <a href="charge_index" class="btn btn-default">充值</a>
+                          <a href="" class="btn btn-default">提现</a>
+                      </p>
+                  </dd>
+              </dl>
+              <!-- 基本信息 end -->
+          </div>
+      		<!-- 资金明细 start -->
+        <div class="tab">
+            <label>资金流水</label>
+        </div>
+        <div class="tab_detail">
+
+            <ul class="nav nav-pills second-nav">
+                <li>
+                    <label style="white-space:nowrap;">流水类型 : </label>
+                </li>
+                <li>
+                    <a href="${base}/financial/financelist">流水</a>
+                </li>
+                <li >
+                    <a href="${base}/financial/financein">收入</a>
+                </li>
+                <li >
+                    <a href="${base}/financial/financeout">支出</a>
+                </li>
+                <li >
+                    <a href="${base}/financial/order-charge/financecharge">充值</a>
+                </li>
+                <li class="active">
+                    <a href="${base}/financial/with-draw/financewithdraw">提现</a>
+                </li>
+            </ul>
+
+
+            <div class="action-bar">
+                <form action="financewithdraw" method="post" name="searchTransactionForm" id="searchTransactionForm">
+                    <div class="action-item" style="float: right">
+                        <select class="form-control" name="ord" id="ord">
+                            <option value="3" >时间升序</option>
+                            <option value="4" >时间降序</option>
+                        </select>
+                    </div>
+                    <div class="action-item" style="float: right">
+                        <select class="form-control" name="pageSize" id="pageSize">
+                            <option value="10"  selected="selected">每页10条</option>
+                            <option value="20" >每页20条</option>
+                            <option value="30" >每页30条</option>
+                        </select>
+                    </div>
+
+                    <div class="clearfix">
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover ">
+                            <thead>
+                            <tr>
+								<th>编号</th>
+                                <th>提现人</th>
+                                <th>提现金额/需要打给客户的钱</th>
+                                <th>收款户名</th>
+                                <!--  <th>状态</th> -->
+                                <th>提现状态</th>
+                                <th>受理时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                #foreach($row in $rows)
+                                <tr>
+									<td>$!row.id</td>
+                                    <td>$!row.username</td>
+                                    <td style="color:red">￥$!row.withdrawCash/￥${row.realCash}</td>
+                                    <!--  <td>状态</td> -->
+                                    <td>$!row.payUsername</td>
+                                    <td>$!row.withdrawStatusStr</td>
+                                    <td>$!row.applicTime</td>
+                                </tr>
+                                #end
+                            </tbody>
+                        </table>
+                    </div><!-- content-panel end -->
+                    <div class="clearfix">
+                        <input type="hidden" name="page" id="page" value="1" />
+                        <ul style=" float:right;" class="pagination" id="pagination1"></ul>
+                    </div>
+                    <script type="text/javascript" src="${base}/static/js/pagination/js/jquery.min.js"></script>
+                    <script type="text/javascript" src="${base}/static/js/pagination/js/jqPaginator.js"></script>
+                    <script type="text/javascript">
+                        $.jqPaginator('#pagination1', {
+                            totalPages:$lastPage,
+                            visiblePages: 3,
+                            currentPage: $currentPage,
+                        });
+                        function pagesubmit(a){
+                            $("#page").val(a.id);
+                            document.searchTransactionForm.submit();
+                        }
+                    </script>
+                </form>
+            </div>
+
+            </div><!-- media end -->
+        </div><!-- user-short end -->
+        <script type="text/javascript" src="${base}/static/js/model/user/account.js"></script>
+    </div>
+</div>
+    #parse("includes/footer.vm")
+</body>
+</html>

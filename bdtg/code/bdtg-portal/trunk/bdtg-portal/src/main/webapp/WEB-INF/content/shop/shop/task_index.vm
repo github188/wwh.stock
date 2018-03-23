@@ -1,0 +1,323 @@
+
+<!DOCTYPE HTML>
+<!--[if lt IE 7]> <html dir="ltr" lang="zh-cn" id="ie6"> <![endif]--><!--[if IE 7]>    <html dir="ltr" lang="zh-cn" id="ie7"> <![endif]--><!--[if IE 8]>    <html dir="ltr" lang="zh-cn" id="ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+    <html dir="ltr" lang="zh-cn">
+    <!--<![endif]-->
+    <head>
+        <title>admin客客专业威客系统</title>
+       <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="generator" content="客客出品专业威客2.7.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/user.css" rel="stylesheet" type="text/css" id="active-style-user">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.82587500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+	<link href="${base}/static/css/store.css" rel="stylesheet" type="text/css" id="active-style-store">
+
+        <script type="text/javascript">
+            var SITEURL = 'http://http://www.bdtg.com:8081/test', SKIN_PATH = '${base}/static/images', LANG = 'cn', INDEX = 'seller', CHARSET = 'utf-8';
+            function   closeErrors()   {
+              return   true;
+            }
+            window.onerror=closeErrors;
+
+        </script>
+
+
+    </head>
+    <body id="seller">
+	 <div class="header-top">
+    #parse("includes/header-top.vm")
+	 </div>
+<script src="${base}/static/js/model/seller/seller.js" charset="utf-8"></script>
+<style>
+.confirm_modal{z-index:1041;}
+</style>
+<div id="space_bg" style="background-image:url($!{model.shopBackground});#if($!{repeat}=="1")
+        background-repeat:repeat-x;#end background-position:$!{position};background-attachment:fixed}">
+
+<!-- /.dropzone -->
+
+    	<div class="space_body">
+    <!--导航图片 -->
+    <div id="shop_banner" class="banner">
+    	      	<a id="change_banner"  href="javascript:changeBanner('1');void(0);" >点击更改图片</a>
+<img onerror="this.src='${base}/static/images/store_banner.jpg'" #if($!{model.banner}!="") src="$!{model.banner}" #else src="${base}/static/images/store_banner.jpg " #end style="width: 100%">
+</div>
+<!--导航图片 end-->
+
+        <div class="store_detail">
+
+           <div class="store_left">
+        <div class="left_img ">
+        	<img src="${base}$!{User.userPic}" uid='1' class='pic_larger'>        </div>
+        <div class="left_detail">
+        <h1 class="store_name">admin</h1>
+##        <p>等级： <img src="data/uploads/sys/mark/228324f3b0872c6f04.gif?fid=2075" align="absmiddle" title="头衔 ：五级威客&#13;&#10;能力值：2700&#13;&#10;等级：5"></p>
+            <p>认证：
+                #if($!{User.emailStatus}=="0")
+                    <a href="${base}/member/account_email"><img class="mar0" src="${base}/static/img/1458154d1c49ff3426.gif" width="16px" height="16px" alt="" title="邮箱认证"></a>
+                #else
+                    <a href="${base}/member/account_email"><img class="mar0" src="${base}/static/img/577054d1c4a43944c.gif" width="16px" height="16px" alt="" title="邮箱认证"></a>
+                #end
+                #if($!{authbank}=="1")
+                    <a href="${base}/financial/banklist"><img class="mar0" src="${base}/static/img/1417254d1c7201a313.gif" width="16px" height="16px" alt="" title="银行认证"></a>
+                #else
+                    <a href="${base}/financial/banklist"><img class="mar0" src="${base}/static/img/2913554d1c71d1d6bc.gif" width="16px" height="16px" alt="" title="银行认证"></a>
+                #end
+                #if($!{User.authStatus}=="1")
+                    <a href="${base}/member/account_auth"><img class="mar0" src="${base}/static/img/2353154d1c73aafa2c.gif" width="16px" height="16px" alt="" title="实名认证"></a>
+                #else
+                    <a href="${base}/member/account_auth"><img class="mar0" src="${base}/static/img/901854d1c735cb645.gif" width="16px" height="16px" alt="" title="实名认证"></a>
+                #end
+                <a href=""><img class="mar0" src="/static/img/1678454d1d4a132832.gif" width="16px" height="16px" alt="" title="支付宝认证"></a>
+
+            </p>
+##        <p>来自：
+##&nbsp;&nbsp;暂无</p>
+
+        <div class="store_ctrl">
+
+        	               		</div>
+        </div>
+      		</div><!-- store_left end -->
+
+          <div class="store_adv">
+<h2 class="min-title">简介</h2>
+          	<div class="store_desc">
+          		$!{model.shopDesc}
+          	</div><!-- .store_desc end-->
+
+##<div class="store_skill">
+##        	技能：
+##
+##<span class="skill-item">暂无</span>
+##        </div>
+
+          	<ul class="user-meta">
+<li>最近三月收入：<span class="money"><sub>￥</sub>
+0.00
+</span></li>
+<li>
+工作速度<span class="text-danger">5.0分</span>
+<span class="stars a5 s5"><span class="star_selected"></span></span></li>
+<li>
+工作质量<span class="text-danger">5.0分</span>
+<span class="stars a5 s5"><span class="star_selected"></span></span></li>
+<li>
+工作态度<span class="text-danger">5.0分</span>
+<span class="stars a5 s5"><span class="star_selected"></span></span></li>
+</ul>
+          </div>
+
+  <div class="store_down" id="main_nav">
+<nav class="page_nav">
+    <a href="shop?view=goods" >商品 <span class="badge">$!slist</span></a>
+<a href="shop?view=task" class="selected">任务 <span class="badge">$!tlist</span></a>
+##    <a href="index.php?do=seller&view=case&id=1" >案例 </a>
+##    <a href="index.php?do=seller&view=mark&id=1" >评价详情</a>
+</nav><!-- page_nav end -->
+            <div class="store_info_box">
+                <div class="list list-dl">
+                    <dl class="list-body">
+                        <dt class="list-label">
+                        <ul>
+                            <li class="w4">名称</li>
+                            <li class="w2">赏金</li>
+                            <li class="w1">任务类目</li>
+                            <li class="w1">查看/投稿</li>
+                            <li class="w1d5">状态</li>
+                            <li class="wd5"></li>
+                        </ul>
+                        </dt>
+                        #foreach($obj in $objs)
+                            #if($!obj.taskStatus=="0")
+                                #set($status="未付款")
+                            #end
+                            #if($!obj.taskStatus=="1")
+                                #set($status="待审核")
+                                #end
+                            #if($!obj.taskStatus=="2")
+                                #set($status="投标中")
+                            #end
+                            #if($!obj.taskStatus=="3")
+                                #set($status="选标中")
+                            #end
+                            #if($!obj.taskStatus=="4")
+                                #set($status="工作中")
+                            #end
+                            #if($!obj.taskStatus=="p4")
+                                #set($status="中标")
+                            #end
+                            #if($!obj.taskStatus=="s4")
+                                #set($status="合同确认")
+                            #end
+                            #if($!obj.taskStatus=="7")
+                                #set($status="冻结")
+                            #end
+                            #if($!obj.taskStatus=="8")
+                                #set($status="结束")
+                            #end
+                            #if($!obj.taskStatus=="9")
+                                #set($status="失败")
+                            #end
+                            #if($!obj.taskStatus=="10")
+                                #set($status="审核失败")
+                            #end
+                            #if($!obj.indusPid=="1")
+                                #set($pid="工程设计")
+                            #end
+                            #if($!obj.indusPid=="5")
+                                #set($pid="前期咨询")
+                            #end
+                            #if($!obj.indusPid=="17")
+                                #set($pid="项目建设管理")
+                            #end
+                            #if($!obj.indusPid=="29")
+                                #set($pid="技术服务")
+                            #end
+                            #if($!obj.indusPid=="32")
+                                #set($pid="设备材料采购")
+                            #end
+                        <dd class="list-item">
+                            <ul class="list-item-body">
+                                <li class="w4">
+                                    <a class="list-title" href="index.php?do=task&id=81" title="$!obj.taskTitle">
+                                        $!obj.taskTitle            </a>
+                                </li>
+                                <li class="w2">
+            <span class="money">
+            	            		<sub>￥</sub>$!obj.taskCash            	</span>
+                                </li>
+                                <li class="w1">$pid</li>
+                                <li class="w1">$!obj.viewNum/$!obj.workNum</li>
+                                <li class="w1d5">   <!-- 2天后投稿截止 -->&nbsp;
+                                    $status   </li>
+
+                                <!-- 收藏  START-->
+##                                <li class="wd5" >
+##                                    <a id="favorite81" href="javascript:addFavorite('task',81);" title="收藏" class="action-collect"><i class="fa fa-star"></i></a>
+##
+##                                </li>
+                                <!-- 收藏 END -->
+
+                            </ul>
+                            <ul class="list-item-body list-visible">
+                                <li class="w8">
+                                    <div class="list-desc">$!obj.taskDesc </div>
+                                </li>
+                                <li class="w2">
+                                    <a href="/taskpub/step?usrType=1&step=2&indusPid=$!obj.indusPid" class="btn btn-primary btn-sm">发布一个类似任务</a>
+                                </li>
+                            </ul>
+                        </dd>
+                    #end
+                </dl>
+            </div>
+      <!-- list end-->
+                <div class="list-page">
+                    <div class="page-tips pull-left">
+                        显示 #if( $!objs.size()>0)  1~ $!objs.size() #else  0~0
+                    #end 项 共 $!objs.size() 个任务
+                    </div>
+                </div>
+                <!-- list-page end -->
+
+
+            </div><!-- store_info_box end -->
+
+</div><!-- store_down end-->
+</div><!-- store_detail end -->
+</div><!-- space_body end-->
+</div><!-- #space_bg end-->
+#parse("includes/footer.vm")
+
+
+<div id="fix-box" style="display:none;">
+  <a id="top" href="javascript:void(0);"><i class="fa fa-angle-up"></i></a>
+</div>
+<!-- #fix-box end -->
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(function(){
+  $('.color-selected .nav-sub-list a').click(function() {
+    var css = $(this).attr('data-css');
+    var color = $(this).attr('data-rel');
+    $('.nav-item-link span.style-color').removeClass().addClass('style-color '+ color);
+    $('#active-style').attr('href', '${base}/static/'+ css +'/style.css');
+    $('#active-style-user').attr('href', '${base}/static/'+ css +'/user.css');
+    $('#active-style-store').attr('href', '${base}/static/'+ css +'/store.css');
+    $('#active-style-home').attr('href', '${base}/static/'+ css +'/home.css');
+  });
+})
+  
+</script>
+
+
+<script type="text/javascript">
+var uid='1';
+var UseIm= false;
+var actionDo = 'seller';
+var username='admin';
+var auid = '';
+var atype ='';
+var sessionId = "4cmqif60r0e7fabok4ud8utp71";
+
+$(function(){
+    $("img.lazy").lazyload({
+        effect: "fadeIn"
+    });
+});
+
+</script>
+</body>
+</html>

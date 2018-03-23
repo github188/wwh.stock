@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hzskt.bdtg.task.domain.Recruitment">
+    <resultMap id="get-Recruitment-result" type="cn.hzskt.bdtg.task.domain.Recruitment">
+            <id property="id" column="ID"/>
+                    <!-- 职位名称-->
+            <result property="zwmc" column="zwmc"/>
+                    <!-- 应届生限制-->
+            <result property="yjsxz" column="yjsxz"/>
+                    <!-- 性别-->
+            <result property="sex" column="sex"/>
+                    <!-- 招聘人数-->
+            <result property="zprs" column="zprs"/>
+                    <!-- 职位标签-->
+            <result property="zwbq" column="zwbq"/>
+                    <!-- 学历要求-->
+            <result property="xlyq" column="xlyq"/>
+                    <!-- 工资范围-->
+            <result property="gzfw" column="gzfw"/>
+                    <!-- 工作经验-->
+            <result property="gzjy" column="gzjy"/>
+                    <!-- 职位类别-->
+            <result property="zwlb" column="zwlb"/>
+                    <!-- 省份-->
+            <result property="province" column="province"/>
+                    <!-- 城市-->
+            <result property="city" column="city"/>
+                    <!-- 专业要求-->
+            <result property="zyyq" column="zyyq"/>
+                    <!-- 岗位描述-->
+            <result property="gwms" column="gwms"/>
+                    <!-- 项目概述-->
+            <result property="xmgs" column="xmgs"/>
+                    <!-- 联系人-->
+            <result property="lxr" column="lxr"/>
+                    <!-- 联系电话-->
+            <result property="lxdh" column="lxdh"/>
+                    <!-- 邮箱-->
+            <result property="email" column="email"/>
+                    <!-- -->
+            <result property="qq" column="qq"/>
+                    <!-- 联系地址-->
+            <result property="address" column="address"/>
+                    <!-- 截止日期-->
+            <result property="subtime" column="subtime"/>
+                    <!-- 项目周期-->
+            <result property="endtime" column="endtime"/>
+                    <!-- 发布费用选择类型 0、不支付 1、支付-->
+            <result property="paystatus" column="paystatus"/>
+                    <!-- 支付类型-->
+            <result property="paytype" column="paytype"/>
+                    <!-- 支付发布费用金额-->
+            <result property="paycash" column="paycash"/>
+                    <!-- 用户类型 1、业主 2、设计院-->
+            <result property="usrtype" column="usrType"/>
+                    <!-- 状态-->
+            <result property="status" column="status"/>
+                <!-- 创建时间 -->
+        <result property="createDate" column="CREATE_DATE"/>
+        <!-- 创建人 -->
+        <result property="creator" column="CREATOR"/>
+        <!-- 修改时间 -->
+        <result property="updateDate" column="UPDATE_DATE"/>
+        <!-- 修改人 -->
+        <result property="updator" column="UPDATOR"/>
+        <!-- 软删除标识 -->
+        <result property="valid" column="VALID"/>
+    </resultMap>
+    
+    <sql id="Recruitment_query_Column_List">
+        rt.ID,
+                <!-- 职位名称-->
+        rt.zwmc,
+                <!-- 应届生限制-->
+        rt.yjsxz,
+                <!-- 性别-->
+        rt.sex,
+                <!-- 招聘人数-->
+        rt.zprs,
+                <!-- 职位标签-->
+        rt.zwbq,
+                <!-- 学历要求-->
+        rt.xlyq,
+                <!-- 工资范围-->
+        rt.gzfw,
+                <!-- 工作经验-->
+        rt.gzjy,
+                <!-- 职位类别-->
+        zwlb,
+                <!-- 省份-->
+        rt.province,
+                <!-- 城市-->
+        rt.city,
+                <!-- 专业要求-->
+        rt.zyyq,
+                <!-- 岗位描述-->
+        rt.gwms,
+                <!-- 项目概述-->
+        rt.xmgs,
+                <!-- 联系人-->
+        rt.lxr,
+                <!-- 联系电话-->
+        rt.lxdh,
+                <!-- 邮箱-->
+        rt.email,
+                <!-- -->
+        rt.qq,
+                <!-- 联系地址-->
+        rt.address,
+                <!-- 截止日期-->
+        rt.subtime,
+                <!-- 项目周期-->
+        rt.endtime,
+                <!-- 发布费用选择类型 0、不支付 1、支付-->
+        rt.paystatus,
+                <!-- 支付类型-->
+        rt.paytype,
+                <!-- 支付发布费用金额-->
+        rt.paycash,
+                <!-- 用户类型 1、业主 2、设计院-->
+        rt.usrType,
+                <!-- 状态-->
+        rt.status,
+            <!-- 创建时间 -->
+     	rt.CREATE_DATE,
+     <!-- 创建人 -->
+     	rt.CREATOR,
+     <!-- 更新时间 -->
+     	rt.UPDATE_DATE,
+     <!-- 更新人 -->
+     	rt.UPDATOR,
+     <!-- 软删除标识 -->
+     	rt.VALID
+    </sql>
+    
+    <select id="Recruitment_select_all" resultType="map">
+        SELECT
+            <include refid="Recruitment_query_Column_List"/>,
+            sd.content as statusName,
+            at.name as yz
+        FROM
+        	task_recruitment rt 
+        	left join sys_dict sd on sd.value=rt.status and sd.key_name='zmrc_status'
+        	left join member_auth_space at on at.user_id = rt.creator
+        where
+			rt.valid=1
+		<if test="zwxz!=null and zwxz!=''">
+		    and rt.yglb = #{zwxz}
+		</if>
+		<if test="zwlb!=null and zwlb!=''">
+			and rt.zwlb = #{zwlb}
+		</if>
+		<if test="xlyq!=null and xlyq!=''">
+			and rt.xlyq = #{xlyq}
+		</if>
+		<if test="zyxz!=null and zyxz!=''">
+			and rt.zyyq = #{zyxz}
+		</if>
+		<if test="gzjy!=null and gzjy!=''">
+		    and rt.gzjy = #{gzjy}
+		</if>
+		<if test="xzyq!=null and xzyq!=''">
+			and rt.gzfw = #{xzyq}
+		</if>
+		<if test="status!=null and status!=''">
+		    and rt.status=#{status}
+		</if>
+		<if test="orderByStr!=null and orderByStr!=''">
+		    ORDER BY 
+				${orderByStr} ${ascStr}
+		</if>
+    </select>
+    
+</mapper>

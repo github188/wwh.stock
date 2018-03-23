@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hzskt.bdtg.task.domain.Comment">
+
+	<resultMap id="get-Comment-result" type="cn.hzskt.bdtg.task.domain.Comment">
+		<id property="id" column="ID" />
+		<!-- 对象编号-->
+    	<result property="objId" column="obj_id" />
+		<!-- 源编号-->
+    	<result property="originId" column="origin_id" />
+		<!-- '评论类型'(task=>任务交流,Work=>稿件评论,Kf=>客服留言 ,Shop=>网店评论,Case=>案例留言 ,Service=>服务留言)-->
+    	<result property="objType" column="obj_type" />
+		<!-- 父编号-->
+    	<result property="pId" column="p_id" />
+		<!-- 用户编号-->
+    	<result property="uid" column="uid" />
+		<!-- 用户名-->
+    	<result property="username" column="username" />
+		<!-- 评论内容-->
+    	<result property="content" column="content" />
+		<!-- 评论时间-->
+    	<result property="onTime" column="on_time" />
+		<!-- 评论状态-->
+    	<result property="status" column="status" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+
+	<sql id="Comment_Base_Column_List">
+		ID,
+		<!-- 对象编号-->
+    	obj_id,
+		<!-- 源编号-->
+    	origin_id,
+		<!-- '评论类型'(task=>任务交流,Work=>稿件评论,Kf=>客服留言 ,Shop=>网店评论,Case=>案例留言 ,Service=>服务留言)-->
+    	obj_type,
+		<!-- 父编号-->
+    	p_id,
+		<!-- 用户编号-->
+    	uid,
+		<!-- 用户名-->
+    	username,
+		<!-- 评论内容-->
+    	content,
+		<!-- 评论时间-->
+    	on_time,
+		<!-- 评论状态-->
+    	status,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	
+	<select id="Comment_list" resultMap="get-Comment-result">
+	    SELECT <include refid="Comment_Base_Column_List" /> FROM 
+	    task_comment
+	    <where>
+	        <if test="objType!=null and objType!=''">
+	            and obj_type = #{objType}
+	        </if>
+	        <if test="originId!=null and originId!=''">
+	            and origin_id = #{originId}
+	        </if>
+	        <if test="objId!=null and objId!=''">
+	            and obj_id = #{objId}
+	        </if>
+	    </where>
+	</select>
+	
+</mapper>

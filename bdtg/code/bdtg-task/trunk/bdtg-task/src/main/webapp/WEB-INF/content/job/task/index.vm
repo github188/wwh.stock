@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>项目基本</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <input type="hidden" name="id" value="$!{model.id}">
+			<table width="80%" cellpadding="5" border="1">
+	        <tr>
+				<td align="left">
+					订单号：
+				</td>
+				<td>
+					$!{model.orderNum}
+			    </td>
+				<td align="left">
+					联系方式：
+				</td>
+				<td>
+		            $!model.contact
+			    </td>
+			</tr>
+	        <tr>
+				<td align="left">
+					标题：
+				</td>
+				<td colspan="3">
+		            $!model.taskTitle
+			    </td>
+			</tr>
+	        <tr>
+				<td align="left">
+					具体描述：
+				</td>
+				<td colspan="3">
+		            $!model.taskDesc
+			    </td>
+			</tr>
+	        <tr>
+				<td align="left">
+					产品：
+				</td>
+				<td>
+					$!{model.product}
+			    </td>
+				<td align="left">
+					专业：
+				</td>
+				<td>
+					$!{model.profession}
+			    </td>
+			</tr>
+	        <tr>
+				<td align="left">
+					人才模式：
+				</td>
+				<td>
+					$!{model.talentType}
+			    </td>
+				<td align="left">
+					截止日期：
+				</td>
+				<td>
+					$!date.format('yyyy-MM-dd HH:mm', $!model.subTime)
+			    </td>
+			</tr>
+	        <tr>
+				<td align="left">
+					预算费用：
+				</td>
+				<td>
+					$!model.taskCash
+			    </td>
+				<td align="left">
+					基本要求：
+				</td>
+				<td>
+					热工
+			    </td>
+			</tr>
+	        <tr>
+				<td align="left">
+					支付方式：
+				</td>
+				<td colspan="3">
+					$!{model.entPayment}
+			    </td>
+			</tr>
+		</table>
+    </form>
+</div>
+</body>
+</html>

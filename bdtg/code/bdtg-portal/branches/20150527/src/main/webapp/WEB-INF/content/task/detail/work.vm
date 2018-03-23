@@ -1,0 +1,248 @@
+
+		<!-- second-nav end -->
+		<ul class="nav nav-pills second-nav">
+			<!--
+			<li class="active">
+				<a href="javascript:void(0)">所有的</a>
+			</li> 
+			<li>
+				<a href="javascript:void(0)">未浏览的</a>
+			</li> 
+			<li>
+				<a href="javascript:void(0)">中标</a>
+			</li> 
+			<li>
+				<a href="javascript:void(0)">入围</a>
+			</li> 
+			<li>
+				<a href="javascript:void(0)">淘汰</a>
+			</li> 
+			<li>
+				<a href="javascript:void(0)">我的</a>
+			</li> 
+			-->
+		</ul>
+		
+		<div class="manuscripts">
+		
+			#set($num = 0)
+		
+			#foreach($!item in $!items)
+			#set($num = $num+1)
+			<div id="gj_summery">
+				<div id="13" class="manuscript-item">
+				
+					#if($!item.model.bidStatus == 4)
+					<div class="manuscript-status">
+						<div class="status-item status-4">
+							<i class="fa fa-check-circle"></i>中标
+						</div>
+					</div>
+					#end
+					#if($!item.model.bidStatus == 7)
+					<div class="manuscript-status">
+						<div class="status-item status-7">
+							<i class="fa fa-times-circle"></i> 淘汰
+						</div>
+					</div>
+					#end
+					<div class="manuscript-item-pic">
+						<a href="index.php?do=seller&amp;id=1" title="$!item.model.username">
+							<img src="$!{base}/static/img/1_small.jpg" uid="1" class="pic_larger">
+						</a>
+						<!--
+						<a href="index.php?do=seller&amp;id=1" class="btn btn-default btn-xs btn-block">进入店铺</a> 
+						<a href="javascript:sendMessage(1);void(0);" class="btn btn-default btn-xs btn-block">联系我</a> 
+ 						<a href="index.php?do=taskhandle&amp;op=workinfo&amp;taskId=70&amp;workId=13" class="btn btn-default btn-xs btn-block" target="_blank">任务详情</a>
+ 						-->
+ 					</div>
+					<div class="manuscript-item-content">
+						<div class="manuscript-item-body">
+							<h2 class="manuscript-item-title">
+								<i class="fa fa-user"></i> 
+								投标人: <a href="javascript:void(0)" title="zhangjf">$!item.model.username</a>
+							</h2>
+ 							<div class="manuscript-desc">
+								<table class="table table-bordered">
+									<tbody>
+										#if($!model.uid == $usr.id)
+										<tr>
+											<th width="20%">投标金额 </th>
+											<td><span class="money"><sub>￥</sub> $!NumberTool.format('#0.00', $!item.model.quote) </span></td>
+										</tr>
+										#end
+										<tr>
+											<th width="20%">工作周期</th>
+											<td><span class="money"><sub></sub>$!item.model.cycle</span> 天</td>
+										</tr>
+										<tr>
+											<th>投标内容</th>
+											<td>$!item.model.message</td>
+										</tr>
+										<tr>
+											<th>投标地点</th>
+											<td>
+												<address>$!item.model.area</address>
+											</td>
+										</tr>
+										#if($!model.uid == $usr.id)
+										<tr>
+											<th>附件信息</th>
+											<td>
+												$!items.attaches
+												<ul class="detail-affix">
+												#foreach($!attache in $!item.attaches)
+													<li class="detail-affix-item">
+														<a href="javascript:void(0);" target="_blank">
+															<i class="fa fa-download"></i> $!attache.fileName
+														</a>
+													</li> 
+													<br/>
+												#end
+												</ul>
+											</td>
+										</tr>
+										#end
+									</tbody>
+								</table>
+							</div>
+							
+							<div class="manuscript-ctrl">
+								#if(($!model.uid == $usr.id) && ($!model.taskStatus == 2))
+								<a href="javascript:chooseWork('$!item.model.id',4);void(0);" class="btn btn-success btn-sm"> 
+									<i class="fa fa-check-circle"></i>设为中标
+								</a>   
+								<a href="javascript:chooseWork('$!item.model.id',7);void(0);" class="btn btn-default btn-sm"> 
+									<i class="fa fa-times-circle"></i>设为淘汰
+								</a>    
+								#end
+								#if(($!item.model.bidStatus == 4) && ($!item.model.uid == $usr.id) && ($!model.taskStatus == '4'))
+								<a href="javascript:PubAgreement('77');" class="btn btn-success btn-sm">
+									<i class="fa fa-check-circle"></i>发起完工
+								</a>
+								#end
+								#if(($!model.uid == $usr.id) && ($!model.taskStatus == 5) && ($!item.model.bidStatus == 4))
+								<a href="javascript:WorkOver('77');void(0);" class="btn btn-success btn-sm"> 
+									<i class="fa fa-check-circle"></i>确认完工
+								</a>
+								#end
+								#if(($!model.uid == $usr.id) && ($!model.taskStatus == 8) && ($!item.model.bidStatus == 4))
+									#if(!$!item.mark)
+	     							<a class="btn btn-default btn-sm" href="${base}/taskHandle/employComment?bid=$!item.model.id">
+	     								任务评价
+	     							</a>
+	     							#end
+								#end
+								#if(($!model.uid != $usr.id) && ($!model.taskStatus == 8) && ($!item.model.bidStatus == 4))
+									#if(!$!item.mark)
+	     							<a class="btn btn-default btn-sm" href="${base}/taskHandle/bidComment?bid=$!item.model.id">
+	     								评价雇主
+	     							</a>
+	     							#end
+								#end
+							</div>
+							<div class="manuscript-comment">
+								<!--
+								<div id="div_comment4">
+									<h2 class="manuscript-item-title">任务点评</h2>
+							 		#foreach($!comment in $!item.comments)
+							 		<dl class="manuscript-comment-item">
+										<dt class="manuscript-comment-item-title">
+											<a href="index.php?">$!comment.username</a> 于
+											$!date.format('yyyy-MM-dd HH:mm:ss', $!comment.createDate) 点评:
+										</dt>
+										<dd class="manuscript-comment-item-body">$!comment.content</dd>
+									</dl>
+							 		#end
+								</div>
+								-->
+								<div class="manuscript-comment">
+									<!--
+									<div class="manuscript-comment-post">
+										<div class="form-group">
+											<textarea class="form-control placeholder" rows="3" name="strTarComment" id="strTarComment3" placeholder="点评不得超过100字"></textarea>
+										</div>
+										<div class="form-group">
+											<button type="button" onclick="workComment('74','3',19);" class="btn btn-default btn-sm">
+												<i class="fa fa-comment"></i>点评任务
+											</button>
+											<span class="text-success" id="tipsUser"></span>
+										</div>
+									</div>
+									-->
+									<!-- manuscript-comment-post end -->
+								</div>
+								
+							</div>
+					</div>
+					<div class="manuscript-item-footer">
+						<ul class="manuscript-meta">
+							<li class="manuscript-meta-item">编号 #$!item.model.id</li>
+							<li class="manuscript-meta-item">投标时间： $!date.format('yyyy-MM-dd HH:mm:ss', $!item.model.createDate)</li>
+							<li class="manuscript-meta-item">
+								#if($!item.model.isView == 1)
+									<span class="marked marked-see">业主已浏览  </span>
+								#end
+							</li> 
+							<!--
+							<li class="manuscript-meta-item">
+								<a href="javascript:void(0)" class="action-report">
+									<i class="fa fa-bell"></i>举报
+								</a>
+							</li>
+							-->
+						</ul>
+					</div>
+				</div>
+				<!-- manuscript-item-content end -->
+			</div>
+			#end
+			<div id="14" class="manuscript-item">
+					<!-- manuscripts end -->
+					<div class="list-page">
+						<div class="page-tips pull-left">显示 1~$!num 项 共 $!num 个投标</div>
+						<ul class="pagination pagination-sm pull-right"></ul>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+			
+				function chooseWork(bid, status){
+					var url = "${base}/taskHandle/chageBidStatus";
+					var params = {"taskId":"$!model.id", "bid" : bid, "status": status};
+					var success = function(data){
+						window.location.href="${base}/task-detail-work?id=$!model.id";
+					};
+					$.post(url, params, success, "json");
+				}
+				
+				function PubAgreement(taskId){
+					var url = "${base}/taskHandle/pubAgreement";
+					var params = {"taskId":"$!model.id"};
+					var success = function(data){
+						window.location.href="${base}/task-detail-work?id=$!model.id";
+					};
+					$.post(url, params, success, "json");
+				}
+				
+				function WorkOver(taskId){
+					var url = "${base}/taskHandle/workOver";
+					var params = {"taskId":"$!model.id"};
+					var success = function(data){
+						window.location.href="${base}/task-detail-work?id=$!model.id";
+					};
+					$.post(url, params, success, "json");
+				}
+				
+				$(function(){
+					var params = {"taskId" : "$!model.id"};
+					var url = "${base}/taskView";
+					var success = function(data){
+						
+						
+						
+					};
+					$.post(url, params, success, "json");
+				});
+			
+			</script>

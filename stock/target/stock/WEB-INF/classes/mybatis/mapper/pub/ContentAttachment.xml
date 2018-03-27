@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.pub.domain.ContentAttachment">
+	<resultMap id="get-ContentAttachment-result" type="ContentAttachment">
+		<id property="id" column="ID" />
+		<!-- 内容ID-->
+		<result property="contentId" column="content_id" />
+		<!-- 排列顺序-->
+		<result property="priority" column="priority" />
+		<!-- 附件路径-->
+		<result property="attachmentPath" column="attachment_path" />
+		<!-- 附件名称-->
+		<result property="attachmentName" column="attachment_name" />
+		<!-- 文件名-->
+		<result property="filename" column="filename" />
+		<!-- 下载次数-->
+		<result property="downloadCount" column="download_count" />
+		<!-- 排序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="ContentAttachment_Base_Column_List">
+		ID,
+		<!-- 内容ID-->
+		content_id,
+		<!-- 排列顺序-->
+		priority,
+		<!-- 附件路径-->
+		attachment_path,
+		<!-- 附件名称-->
+		attachment_name,
+		<!-- 文件名-->
+		filename,
+		<!-- 下载次数-->
+		download_count,
+		<!-- 排序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="ContentAttachment_get" resultMap="get-ContentAttachment-result">
+		SELECT
+		<include refid="ContentAttachment_Base_Column_List" />
+		FROM
+		pub_content_attachment
+		where
+		ID = #{id}
+	</select>
+
+	<select id="ContentAttachment_list" resultMap="get-ContentAttachment-result">
+		SELECT
+		<include refid="ContentAttachment_Base_Column_List" />
+		FROM
+		pub_content_attachment
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="ContentAttachment_insert" parameterType="ContentAttachment" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO pub_content_attachment(
+		content_id,
+		priority,
+		attachment_path,
+		attachment_name,
+		filename,
+		download_count,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{contentId},
+		#{priority},
+		#{attachmentPath},
+		#{attachmentName},
+		#{filename},
+		#{downloadCount},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="ContentAttachment_update" parameterType="ContentAttachment">
+		UPDATE pub_content_attachment
+		set
+		content_id = #{contentId},
+		priority = #{priority},
+		attachment_path = #{attachmentPath},
+		attachment_name = #{attachmentName},
+		filename = #{filename},
+		download_count = #{downloadCount},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="ContentAttachment_updateSelective" parameterType="map">
+		UPDATE pub_content_attachment
+		set
+		<if test="record.contentId != null" >
+			content_id = #{contentId},
+		</if>
+		<if test="record.priority != null" >
+			priority = #{priority},
+		</if>
+		<if test="record.attachmentPath != null" >
+			attachment_path = #{attachmentPath},
+		</if>
+		<if test="record.attachmentName != null" >
+			attachment_name = #{attachmentName},
+		</if>
+		<if test="record.filename != null" >
+			filename = #{filename},
+		</if>
+		<if test="record.downloadCount != null" >
+			download_count = #{downloadCount},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="ContentAttachment_logicDelete" parameterType="ContentAttachment">
+		UPDATE pub_content_attachment
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="ContentAttachment_delete" parameterType="ContentAttachment">
+		DELETE FROM pub_content_attachment
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

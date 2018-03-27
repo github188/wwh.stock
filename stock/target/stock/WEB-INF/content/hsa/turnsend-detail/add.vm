@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>沪深A股分红送转新增</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/hsa/turnsend-detail/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		代码
+    			 	</td>
+    			 	<td>
+						<input name="code" class="easyui-textbox" value="$!{model.code}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		简称
+    			 	</td>
+    			 	<td>
+						<input name="name" class="easyui-textbox" value="$!{model.name}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		预案公布日
+    			 	</td>
+    			 	<td>
+						<input name="planDate" class="easyui-textbox" value="$!{model.planDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		送股比例(10送X)
+    			 	</td>
+    			 	<td>
+						<input name="sendScale" class="easyui-textbox" value="$!{model.sendScale}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		转增比例(10转X)
+    			 	</td>
+    			 	<td>
+						<input name="turnScale" class="easyui-textbox" value="$!{model.turnScale}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		派现比例(10派X)
+    			 	</td>
+    			 	<td>
+						<input name="cashScale" class="easyui-textbox" value="$!{model.cashScale}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		股东大会通过日
+    			 	</td>
+    			 	<td>
+						<input name="passDate" class="easyui-textbox" value="$!{model.passDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		股权登记日
+    			 	</td>
+    			 	<td>
+						<input name="registerDate" class="easyui-textbox" value="$!{model.registerDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		除权除息日
+    			 	</td>
+    			 	<td>
+						<input name="dividendDate" class="easyui-textbox" value="$!{model.dividendDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		备注
+    			 	</td>
+    			 	<td>
+						<input name="memo" class="easyui-textbox" value="$!{model.memo}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		顺序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+	<div region="south" border="false" class="dm_btnarea">
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

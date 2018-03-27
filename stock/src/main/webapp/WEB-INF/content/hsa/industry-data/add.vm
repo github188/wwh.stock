@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>沪深A股板块行情新增</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/hsa/industry-data/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		板块编码
+    			 	</td>
+    			 	<td>
+						<input name="industryId" class="easyui-textbox" value="$!{model.industryId}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		板块名称
+    			 	</td>
+    			 	<td>
+						<input name="industryName" class="easyui-textbox" value="$!{model.industryName}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		股票数量
+    			 	</td>
+    			 	<td>
+						<input name="stockNum" class="easyui-textbox" value="$!{model.stockNum}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		加权涨跌幅
+    			 	</td>
+    			 	<td>
+						<input name="udWidth" class="easyui-textbox" value="$!{model.udWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		上涨家数
+    			 	</td>
+    			 	<td>
+						<input name="upNum" class="easyui-textbox" value="$!{model.upNum}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		涨幅
+    			 	</td>
+    			 	<td>
+						<input name="upWidth" class="easyui-textbox" value="$!{model.upWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		下跌家数
+    			 	</td>
+    			 	<td>
+						<input name="downNum" class="easyui-textbox" value="$!{model.downNum}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		跌幅
+    			 	</td>
+    			 	<td>
+						<input name="downWidth" class="easyui-textbox" value="$!{model.downWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		成交量(手)
+    			 	</td>
+    			 	<td>
+						<input name="volume" class="easyui-textbox" value="$!{model.volume}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		成交额(万元)
+    			 	</td>
+    			 	<td>
+						<input name="turnVolume" class="easyui-textbox" value="$!{model.turnVolume}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		总流通市值
+    			 	</td>
+    			 	<td>
+						<input name="circuValue" class="easyui-textbox" value="$!{model.circuValue}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		网址
+    			 	</td>
+    			 	<td>
+						<input name="netAddress" class="easyui-textbox" value="$!{model.netAddress}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		顺序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		网站标志
+    			 	</td>
+    			 	<td>
+						<input name="netFlag" class="easyui-textbox" value="$!{model.netFlag}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		相关资讯
+    			 	</td>
+    			 	<td>
+						<input name="fundAddress" class="easyui-textbox" value="$!{model.fundAddress}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		换手率(%)
+    			 	</td>
+    			 	<td>
+						<input name="turnoverRate" class="easyui-textbox" value="$!{model.turnoverRate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		领涨股票
+    			 	</td>
+    			 	<td>
+						<input name="stockName" class="easyui-textbox" value="$!{model.stockName}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		股票网址
+    			 	</td>
+    			 	<td>
+						<input name="stockAddress" class="easyui-textbox" value="$!{model.stockAddress}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		涨跌幅
+    			 	</td>
+    			 	<td>
+						<input name="stockWidth" class="easyui-textbox" value="$!{model.stockWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		板块类别
+    			 	</td>
+    			 	<td>
+						<input name="industryType" class="easyui-textbox" value="$!{model.industryType}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+	<div region="south" border="false" class="dm_btnarea">
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+2016-02-23 12:48:46,106 INFO [mylogger] - <http://stock.quote.stockstar.com/600337.shtml>
+2016-02-23 16:16:07,159 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=600563&pageid=1>
+2016-02-23 16:29:13,823 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=002217&pageid=1>
+2016-02-23 16:31:52,613 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=603168&pageid=1>

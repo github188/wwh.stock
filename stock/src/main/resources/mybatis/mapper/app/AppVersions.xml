@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.app.domain.AppVersions">
+	<resultMap id="get-AppVersions-result" type="com.skoo.stock.app.domain.AppVersions">
+		<id property="id" column="ID" />
+		<!-- ios版本号-->
+		<result property="iosversion" column="iosversion" />
+		<!-- 安卓版本号-->
+		<result property="androidversion" column="androidversion" />
+		<!-- ios是否强制更新-->
+		<result property="iosforceupdflg" column="iosforceupdflg" />
+		<!-- 安卓是否强制更新-->
+		<result property="androidforceupdflg" column="androidforceupdflg" />
+		<!-- ios更新描述-->
+		<result property="iosdesc" column="iosdesc" />
+		<!-- 安卓更新描述-->
+		<result property="androiddesc" column="androiddesc" />
+		<!-- 排序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="AppVersions_Base_Column_List">
+		ID,
+		<!-- ios版本号-->
+		iosversion,
+		<!-- 安卓版本号-->
+		androidversion,
+		<!-- ios是否强制更新-->
+		iosforceupdflg,
+		<!-- 安卓是否强制更新-->
+		androidforceupdflg,
+		<!-- ios更新描述-->
+		iosdesc,
+		<!-- 安卓更新描述-->
+		androiddesc,
+		<!-- 排序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="AppVersions_get" resultMap="get-AppVersions-result">
+		SELECT
+		<include refid="AppVersions_Base_Column_List" />
+		FROM
+		app_app_versions
+		where
+		ID = #{id}
+	</select>
+
+	<select id="AppVersions_list" resultMap="get-AppVersions-result">
+		SELECT
+		<include refid="AppVersions_Base_Column_List" />
+		FROM
+		app_app_versions
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="AppVersions_insert" parameterType="com.skoo.stock.app.domain.AppVersions" >
+		INSERT INTO app_app_versions(
+		iosversion,
+		androidversion,
+		iosforceupdflg,
+		androidforceupdflg,
+		iosdesc,
+		androiddesc,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{iosversion},
+		#{androidversion},
+		#{iosforceupdflg},
+		#{androidforceupdflg},
+		#{iosdesc},
+		#{androiddesc},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			SELECT LAST_INSERT_ID() AS id;
+		</selectKey>
+	</insert>
+	<update id="AppVersions_update" parameterType="com.skoo.stock.app.domain.AppVersions">
+		UPDATE app_app_versions
+		set
+		iosversion = #{iosversion},
+		androidversion = #{androidversion},
+		iosforceupdflg = #{iosforceupdflg},
+		androidforceupdflg = #{androidforceupdflg},
+		iosdesc = #{iosdesc},
+		androiddesc = #{androiddesc},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="AppVersions_updateSelective" parameterType="map">
+		UPDATE app_app_versions
+		set
+		<if test="record.iosversion != null" >
+			iosversion = #{iosversion},
+		</if>
+		<if test="record.androidversion != null" >
+			androidversion = #{androidversion},
+		</if>
+		<if test="record.iosforceupdflg != null" >
+			iosforceupdflg = #{iosforceupdflg},
+		</if>
+		<if test="record.androidforceupdflg != null" >
+			androidforceupdflg = #{androidforceupdflg},
+		</if>
+		<if test="record.iosdesc != null" >
+			iosdesc = #{iosdesc},
+		</if>
+		<if test="record.androiddesc != null" >
+			androiddesc = #{androiddesc},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="AppVersions_logicDelete" parameterType="com.skoo.stock.app.domain.AppVersions">
+		UPDATE app_app_versions
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="AppVersions_delete" parameterType="com.skoo.stock.app.domain.AppVersions">
+		DELETE FROM app_app_versions
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

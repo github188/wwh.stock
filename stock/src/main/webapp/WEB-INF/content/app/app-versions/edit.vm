@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>APP版本管理编辑</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/app/app-versions/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				result = jQuery.parseJSON(result);
+				Man.closeWin();
+				if(!result.success){  
+					window.parent.jQuery.messager.show({title: '错误', msg: result.message });                  
+				} else {                  
+					window.parent.jQuery('#dg').datagrid('reload');   
+				}             
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+      <form id="fm" method="post">
+			<input type="hidden" name="id" value="$!{model.id}">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		ios版本号
+    			 	</td>
+    			 	<td>
+						<input name="iosversion" class="easyui-textbox" value="$!{model.iosversion}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		安卓版本号
+    			 	</td>
+    			 	<td>
+						<input name="androidversion" class="easyui-textbox" value="$!{model.androidversion}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		ios是否强制更新
+    			 	</td>
+    			 	<td>
+						<input name="iosforceupdflg" class="easyui-textbox" value="$!{model.iosforceupdflg}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		安卓是否强制更新
+    			 	</td>
+    			 	<td>
+						<input name="androidforceupdflg" class="easyui-textbox" value="$!{model.androidforceupdflg}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		ios更新描述
+    			 	</td>
+    			 	<td>
+						<input name="iosdesc" class="easyui-textbox" value="$!{model.iosdesc}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		安卓更新描述
+    			 	</td>
+    			 	<td>
+						<input name="androiddesc" class="easyui-textbox" value="$!{model.androiddesc}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		排序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+        <div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+        </div>
+</body>
+</html>

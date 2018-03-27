@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.sys.domain.SysuserRole">
+	<resultMap id="get-SysuserRole-result" type="com.skoo.stock.sys.domain.SysuserRole">
+		<id property="id" column="ID" />
+		<!-- 用户编号-->
+		<result property="userId" column="user_id" />
+		<!-- 角色编号-->
+		<result property="roleId" column="role_id" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="SysuserRole_Base_Column_List">
+		ID,
+		<!-- 用户编号-->
+		user_id,
+		<!-- 角色编号-->
+		role_id,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="SysuserRole_get" resultMap="get-SysuserRole-result">
+		SELECT
+		<include refid="SysuserRole_Base_Column_List" />
+		FROM
+		sys_sysuser_role
+		where
+		ID = #{id}
+	</select>
+
+	<select id="SysuserRole_list" resultMap="get-SysuserRole-result">
+		SELECT
+		<include refid="SysuserRole_Base_Column_List" />
+		FROM
+		sys_sysuser_role
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="SysuserRole_insert" parameterType="com.skoo.stock.sys.domain.SysuserRole" >
+		INSERT INTO sys_sysuser_role(
+		user_id,
+		role_id,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{userId},
+		#{roleId},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			SELECT LAST_INSERT_ID() AS id;
+		</selectKey>
+	</insert>
+	<update id="SysuserRole_update" parameterType="com.skoo.stock.sys.domain.SysuserRole">
+		UPDATE sys_sysuser_role
+		set
+		user_id = #{userId},
+		role_id = #{roleId},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="SysuserRole_updateSelective" parameterType="map">
+		UPDATE sys_sysuser_role
+		set
+		<if test="record.userId != null" >
+			user_id = #{userId},
+		</if>
+		<if test="record.roleId != null" >
+			role_id = #{roleId},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="SysuserRole_logicDelete" parameterType="com.skoo.stock.sys.domain.SysuserRole">
+		UPDATE sys_sysuser_role
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="SysuserRole_delete" parameterType="com.skoo.stock.sys.domain.SysuserRole">
+		DELETE FROM sys_sysuser_role
+		WHERE
+		ID = #{id}
+	</delete>
+
+	<select id="SysuserRole_idlist" resultType="string">
+		SELECT user_id FROM sys_sysuser_role
+		WHERE
+		role_id = #{roleId}
+		AND valid = '1'
+		<if test="list.size() != 0" >
+			AND user_id in
+			<foreach collection="list" item="userId" open="(" separator="," close=")">
+				#{userId}
+			</foreach>
+		</if>
+	</select>
+
+	<select id="SysuserRole_idlist_del" resultType="string">
+		SELECT user_id FROM sys_sysuser_role
+		WHERE
+		role_id = #{roleId}
+		AND valid = '0'
+		<if test="list.size() != 0" >
+			AND user_id in
+			<foreach collection="list" item="userId" open="(" separator="," close=")">
+				#{userId}
+			</foreach>
+		</if>
+	</select>
+
+	<insert id="SysuserRole_insert_batch" useGeneratedKeys="true" parameterType="map">
+		<selectKey resultType="long" keyProperty="id" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+
+		INSERT INTO sys_sysuser_role(
+		user_id, role_id,
+		CREATE_DATE, CREATOR,
+		valid) values
+		<foreach collection="list" item="userId" index="index" separator=",">
+			(#{userId},#{roleId},
+			NOW(),'0',
+			1)
+		</foreach>
+	</insert>
+
+	<update id="SysuserRole_delete_batch_logic" parameterType="map">
+		update sys_sysuser_role
+		SET valid = '0',
+		update_date = now()
+		WHERE role_id = #{roleId}
+		<if test="list.size() != 0" >
+			AND user_id in
+			<foreach collection="list" item="userId" open="(" separator="," close=")">
+				#{userId}
+			</foreach>
+		</if>
+		<if test="list.size() == 0" >
+			AND 1 = 2
+		</if>
+	</update>
+
+	<update id="SysuserRole_insert_batch_logic" parameterType="map">
+		update sys_sysuser_role
+		SET valid = '1',
+		update_date = now()
+		WHERE role_id = #{roleId}
+		<if test="list.size() != 0" >
+			AND user_id in
+			<foreach collection="list" item="userId" open="(" separator="," close=")">
+				#{userId}
+			</foreach>
+		</if>
+		<if test="list.size() == 0" >
+			AND 1 = 2
+		</if>
+	</update>
+</mapper>

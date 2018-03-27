@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.bus.domain.GoutEnterprises">
+	<resultMap id="get-GoutEnterprises-result" type="GoutEnterprises">
+		<id property="id" column="ID" />
+		<!-- 投资项目编号-->
+		<result property="numberOfInvestmentProjects" column="number_of_investment_projects" />
+		<!-- 申请模式-->
+		<result property="applicationMode" column="application_mode" />
+		<!-- 原-->
+		<result property="former" column="former" />
+		<!-- 现改为-->
+		<result property="nowChanged" column="now_changed" />
+		<!-- 变更年份-->
+		<result property="yearChange" column="year_change" />
+		<!-- 境内投资主体名称-->
+		<result property="domesticInvestorName" column="domestic_investor_name" />
+		<!-- 组织机构代码证号-->
+		<result property="organizationCodeNo" column="organization_code_no" />
+		<!-- 法定代表人-->
+		<result property="legalRepresentative" column="legal_representative" />
+		<!-- 注册资金（万元）-->
+		<result property="registeredCapital" column="registered_capital" />
+		<!-- 办公地址-->
+		<result property="officeAddress" column="office_address" />
+		<!-- 城市-->
+		<result property="domesticCity" column="domestic_city" />
+		<!-- 区县-->
+		<result property="county" column="county" />
+		<!-- 联系人姓名-->
+		<result property="contactName" column="contact_name" />
+		<!-- 联系人座机-->
+		<result property="contactLandline" column="contact_landline" />
+		<!-- 联系人传真-->
+		<result property="contactFax" column="contact_fax" />
+		<!-- 联系人手机-->
+		<result property="contactPhone" column="contact_phone" />
+		<!-- 联系人电子邮件-->
+		<result property="contactEmail" column="contact_email" />
+		<!-- 归属最终母公司全称-->
+		<result property="fullNameOfTheUltimateParent" column="full_name_of_the_ultimate_parent" />
+		<!-- 境外企业名称(中文)-->
+		<result property="overseasCompanyChineseName" column="overseas_company_chinese_name" />
+		<!-- 境外企业名称(外文)-->
+		<result property="overseasCompanyForeignName" column="overseas_company_foreign_name" />
+		<!-- 第一层级公司名称-->
+		<result property="firstLevelCompanyName" column="first_level_company_name" />
+		<!-- 第一层级公司所处国别（地区）-->
+		<result property="countryFirstLevelCompanyLocates" column="country_first_level_company_locates" />
+		<!-- 国家（地区）-->
+		<result property="overseasInvestmentCountry" column="overseas_investment_country" />
+		<!-- 省（州）-->
+		<result property="province" column="province" />
+		<!-- 城市-->
+		<result property="overseasCity" column="overseas_city" />
+		<!-- 中方股东名称-->
+		<result property="chineseShareholder" column="chinese_shareholder" />
+		<!-- 中方股比-->
+		<result property="chineseEquityRatio" column="chinese_equity_ratio" />
+		<!-- 外方股东名称-->
+		<result property="foreignShareholder" column="foreign_shareholder" />
+		<!-- 外方股比-->
+		<result property="foreignEquityRatio" column="foreign_equity_ratio" />
+		<!-- 境外企业经营范围-->
+		<result property="overseasBusinessScope" column="overseas_business_scope" />
+		<!-- 境外企业所属行业-->
+		<result property="overseasEnterpriseIndustry" column="overseas_enterprise_industry" />
+		<!-- 投资总额（美金)-->
+		<result property="totalInvestment" column="total_investment" />
+		<!-- 中方投资额（美元/人民币）-->
+		<result property="chineseInvestment" column="chinese_investment" />
+		<!-- 外方投资额-->
+		<result property="foreignInvestment" column="foreign_investment" />
+		<!-- 投资动机（营销网络）-->
+		<result property="marketingNetwork" column="marketing_network" />
+		<!-- 带动出口（万美金）-->
+		<result property="stimulateExports" column="stimulate_exports" />
+		<!-- 带动进口（万美金）-->
+		<result property="stimulateImports" column="stimulate_imports" />
+		<!-- 投资动机（品牌收购）-->
+		<result property="brandAcquisitions" column="brand_acquisitions" />
+		<!-- 获得品牌名称-->
+		<result property="obtainBrandName" column="obtain_brand_name" />
+		<!-- 投资动机（技术研发）-->
+		<result property="technologyResearch" column="technology_research" />
+		<!-- 获得技术-->
+		<result property="technologyAcquired" column="technology_acquired" />
+		<!-- 投资动机（工程开发）-->
+		<result property="engineeringDevelopment" column="engineering_development" />
+		<!-- 带动营业额-->
+		<result property="boostingSales" column="boosting_sales" />
+		<!-- 投资动机（资源开发）-->
+		<result property="resourceDevelopment" column="resource_development" />
+		<!-- 资源回运量-->
+		<result property="resourcesBackShipments" column="resources_back_shipments" />
+		<!-- 资源开发量-->
+		<result property="resourcesAmount" column="resources_amount" />
+		<!-- 资源名称-->
+		<result property="resourceName" column="resource_name" />
+		<!-- 投资动机（产业链延伸）-->
+		<result property="extensionOfIndustrialChain" column="extension_of_industrial_chain" />
+		<!-- 简述-->
+		<result property="sketch" column="sketch" />
+		<!-- 投资动机（其他）-->
+		<result property="rests" column="rests" />
+		<!-- 投资回报年限-->
+		<result property="paybackPeriod" column="payback_period" />
+		<!-- 备注-->
+		<result property="remark" column="remark" />
+		<!-- 附件-->
+		<result property="accessory" column="accessory" />
+		<!-- 排序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="GoutEnterprises_Base_Column_List">
+		ID,
+		<!-- 投资项目编号-->
+		number_of_investment_projects,
+		<!-- 申请模式-->
+		application_mode,
+		<!-- 原-->
+		former,
+		<!-- 现改为-->
+		now_changed,
+		<!-- 变更年份-->
+		year_change,
+		<!-- 境内投资主体名称-->
+		domestic_investor_name,
+		<!-- 组织机构代码证号-->
+		organization_code_no,
+		<!-- 法定代表人-->
+		legal_representative,
+		<!-- 注册资金（万元）-->
+		registered_capital,
+		<!-- 办公地址-->
+		office_address,
+		<!-- 城市-->
+		domestic_city,
+		<!-- 区县-->
+		county,
+		<!-- 联系人姓名-->
+		contact_name,
+		<!-- 联系人座机-->
+		contact_landline,
+		<!-- 联系人传真-->
+		contact_fax,
+		<!-- 联系人手机-->
+		contact_phone,
+		<!-- 联系人电子邮件-->
+		contact_email,
+		<!-- 归属最终母公司全称-->
+		full_name_of_the_ultimate_parent,
+		<!-- 境外企业名称(中文)-->
+		overseas_company_chinese_name,
+		<!-- 境外企业名称(外文)-->
+		overseas_company_foreign_name,
+		<!-- 第一层级公司名称-->
+		first_level_company_name,
+		<!-- 第一层级公司所处国别（地区）-->
+		country_first_level_company_locates,
+		<!-- 国家（地区）-->
+		overseas_investment_country,
+		<!-- 省（州）-->
+		province,
+		<!-- 城市-->
+		overseas_city,
+		<!-- 中方股东名称-->
+		chinese_shareholder,
+		<!-- 中方股比-->
+		chinese_equity_ratio,
+		<!-- 外方股东名称-->
+		foreign_shareholder,
+		<!-- 外方股比-->
+		foreign_equity_ratio,
+		<!-- 境外企业经营范围-->
+		overseas_business_scope,
+		<!-- 境外企业所属行业-->
+		overseas_enterprise_industry,
+		<!-- 投资总额（美金)-->
+		total_investment,
+		<!-- 中方投资额（美元/人民币）-->
+		chinese_investment,
+		<!-- 外方投资额-->
+		foreign_investment,
+		<!-- 投资动机（营销网络）-->
+		marketing_network,
+		<!-- 带动出口（万美金）-->
+		stimulate_exports,
+		<!-- 带动进口（万美金）-->
+		stimulate_imports,
+		<!-- 投资动机（品牌收购）-->
+		brand_acquisitions,
+		<!-- 获得品牌名称-->
+		obtain_brand_name,
+		<!-- 投资动机（技术研发）-->
+		technology_research,
+		<!-- 获得技术-->
+		technology_acquired,
+		<!-- 投资动机（工程开发）-->
+		engineering_development,
+		<!-- 带动营业额-->
+		boosting_sales,
+		<!-- 投资动机（资源开发）-->
+		resource_development,
+		<!-- 资源回运量-->
+		resources_back_shipments,
+		<!-- 资源开发量-->
+		resources_amount,
+		<!-- 资源名称-->
+		resource_name,
+		<!-- 投资动机（产业链延伸）-->
+		extension_of_industrial_chain,
+		<!-- 简述-->
+		sketch,
+		<!-- 投资动机（其他）-->
+		rests,
+		<!-- 投资回报年限-->
+		payback_period,
+		<!-- 备注-->
+		remark,
+		<!-- 附件-->
+		accessory,
+		<!-- 排序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="GoutEnterprises_get" resultMap="get-GoutEnterprises-result">
+		SELECT
+		<include refid="GoutEnterprises_Base_Column_List" />
+		FROM
+		bus_gout_enterprises
+		where
+		ID = #{id}
+	</select>
+
+	<select id="GoutEnterprises_list" resultMap="get-GoutEnterprises-result">
+		SELECT
+		<include refid="GoutEnterprises_Base_Column_List" />
+		FROM
+		bus_gout_enterprises
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="GoutEnterprises_insert" parameterType="GoutEnterprises" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO bus_gout_enterprises(
+		number_of_investment_projects,
+		application_mode,
+		former,
+		now_changed,
+		year_change,
+		domestic_investor_name,
+		organization_code_no,
+		legal_representative,
+		registered_capital,
+		office_address,
+		domestic_city,
+		county,
+		contact_name,
+		contact_landline,
+		contact_fax,
+		contact_phone,
+		contact_email,
+		full_name_of_the_ultimate_parent,
+		overseas_company_chinese_name,
+		overseas_company_foreign_name,
+		first_level_company_name,
+		country_first_level_company_locates,
+		overseas_investment_country,
+		province,
+		overseas_city,
+		chinese_shareholder,
+		chinese_equity_ratio,
+		foreign_shareholder,
+		foreign_equity_ratio,
+		overseas_business_scope,
+		overseas_enterprise_industry,
+		total_investment,
+		chinese_investment,
+		foreign_investment,
+		marketing_network,
+		stimulate_exports,
+		stimulate_imports,
+		brand_acquisitions,
+		obtain_brand_name,
+		technology_research,
+		technology_acquired,
+		engineering_development,
+		boosting_sales,
+		resource_development,
+		resources_back_shipments,
+		resources_amount,
+		resource_name,
+		extension_of_industrial_chain,
+		sketch,
+		rests,
+		payback_period,
+		remark,
+		accessory,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{numberOfInvestmentProjects},
+		#{applicationMode},
+		#{former},
+		#{nowChanged},
+		#{yearChange},
+		#{domesticInvestorName},
+		#{organizationCodeNo},
+		#{legalRepresentative},
+		#{registeredCapital},
+		#{officeAddress},
+		#{domesticCity},
+		#{county},
+		#{contactName},
+		#{contactLandline},
+		#{contactFax},
+		#{contactPhone},
+		#{contactEmail},
+		#{fullNameOfTheUltimateParent},
+		#{overseasCompanyChineseName},
+		#{overseasCompanyForeignName},
+		#{firstLevelCompanyName},
+		#{countryFirstLevelCompanyLocates},
+		#{overseasInvestmentCountry},
+		#{province},
+		#{overseasCity},
+		#{chineseShareholder},
+		#{chineseEquityRatio},
+		#{foreignShareholder},
+		#{foreignEquityRatio},
+		#{overseasBusinessScope},
+		#{overseasEnterpriseIndustry},
+		#{totalInvestment},
+		#{chineseInvestment},
+		#{foreignInvestment},
+		#{marketingNetwork},
+		#{stimulateExports},
+		#{stimulateImports},
+		#{brandAcquisitions},
+		#{obtainBrandName},
+		#{technologyResearch},
+		#{technologyAcquired},
+		#{engineeringDevelopment},
+		#{boostingSales},
+		#{resourceDevelopment},
+		#{resourcesBackShipments},
+		#{resourcesAmount},
+		#{resourceName},
+		#{extensionOfIndustrialChain},
+		#{sketch},
+		#{rests},
+		#{paybackPeriod},
+		#{remark},
+		#{accessory},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="GoutEnterprises_update" parameterType="GoutEnterprises">
+		UPDATE bus_gout_enterprises
+		set
+		number_of_investment_projects = #{numberOfInvestmentProjects},
+		application_mode = #{applicationMode},
+		former = #{former},
+		now_changed = #{nowChanged},
+		year_change = #{yearChange},
+		domestic_investor_name = #{domesticInvestorName},
+		organization_code_no = #{organizationCodeNo},
+		legal_representative = #{legalRepresentative},
+		registered_capital = #{registeredCapital},
+		office_address = #{officeAddress},
+		domestic_city = #{domesticCity},
+		county = #{county},
+		contact_name = #{contactName},
+		contact_landline = #{contactLandline},
+		contact_fax = #{contactFax},
+		contact_phone = #{contactPhone},
+		contact_email = #{contactEmail},
+		full_name_of_the_ultimate_parent = #{fullNameOfTheUltimateParent},
+		overseas_company_chinese_name = #{overseasCompanyChineseName},
+		overseas_company_foreign_name = #{overseasCompanyForeignName},
+		first_level_company_name = #{firstLevelCompanyName},
+		country_first_level_company_locates = #{countryFirstLevelCompanyLocates},
+		overseas_investment_country = #{overseasInvestmentCountry},
+		province = #{province},
+		overseas_city = #{overseasCity},
+		chinese_shareholder = #{chineseShareholder},
+		chinese_equity_ratio = #{chineseEquityRatio},
+		foreign_shareholder = #{foreignShareholder},
+		foreign_equity_ratio = #{foreignEquityRatio},
+		overseas_business_scope = #{overseasBusinessScope},
+		overseas_enterprise_industry = #{overseasEnterpriseIndustry},
+		total_investment = #{totalInvestment},
+		chinese_investment = #{chineseInvestment},
+		foreign_investment = #{foreignInvestment},
+		marketing_network = #{marketingNetwork},
+		stimulate_exports = #{stimulateExports},
+		stimulate_imports = #{stimulateImports},
+		brand_acquisitions = #{brandAcquisitions},
+		obtain_brand_name = #{obtainBrandName},
+		technology_research = #{technologyResearch},
+		technology_acquired = #{technologyAcquired},
+		engineering_development = #{engineeringDevelopment},
+		boosting_sales = #{boostingSales},
+		resource_development = #{resourceDevelopment},
+		resources_back_shipments = #{resourcesBackShipments},
+		resources_amount = #{resourcesAmount},
+		resource_name = #{resourceName},
+		extension_of_industrial_chain = #{extensionOfIndustrialChain},
+		sketch = #{sketch},
+		rests = #{rests},
+		payback_period = #{paybackPeriod},
+		remark = #{remark},
+		accessory = #{accessory},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="GoutEnterprises_updateSelective" parameterType="map">
+		UPDATE bus_gout_enterprises
+		set
+		<if test="record.numberOfInvestmentProjects != null" >
+			number_of_investment_projects = #{numberOfInvestmentProjects},
+		</if>
+		<if test="record.applicationMode != null" >
+			application_mode = #{applicationMode},
+		</if>
+		<if test="record.former != null" >
+			former = #{former},
+		</if>
+		<if test="record.nowChanged != null" >
+			now_changed = #{nowChanged},
+		</if>
+		<if test="record.yearChange != null" >
+			year_change = #{yearChange},
+		</if>
+		<if test="record.domesticInvestorName != null" >
+			domestic_investor_name = #{domesticInvestorName},
+		</if>
+		<if test="record.organizationCodeNo != null" >
+			organization_code_no = #{organizationCodeNo},
+		</if>
+		<if test="record.legalRepresentative != null" >
+			legal_representative = #{legalRepresentative},
+		</if>
+		<if test="record.registeredCapital != null" >
+			registered_capital = #{registeredCapital},
+		</if>
+		<if test="record.officeAddress != null" >
+			office_address = #{officeAddress},
+		</if>
+		<if test="record.domesticCity != null" >
+			domestic_city = #{domesticCity},
+		</if>
+		<if test="record.county != null" >
+			county = #{county},
+		</if>
+		<if test="record.contactName != null" >
+			contact_name = #{contactName},
+		</if>
+		<if test="record.contactLandline != null" >
+			contact_landline = #{contactLandline},
+		</if>
+		<if test="record.contactFax != null" >
+			contact_fax = #{contactFax},
+		</if>
+		<if test="record.contactPhone != null" >
+			contact_phone = #{contactPhone},
+		</if>
+		<if test="record.contactEmail != null" >
+			contact_email = #{contactEmail},
+		</if>
+		<if test="record.fullNameOfTheUltimateParent != null" >
+			full_name_of_the_ultimate_parent = #{fullNameOfTheUltimateParent},
+		</if>
+		<if test="record.overseasCompanyChineseName != null" >
+			overseas_company_chinese_name = #{overseasCompanyChineseName},
+		</if>
+		<if test="record.overseasCompanyForeignName != null" >
+			overseas_company_foreign_name = #{overseasCompanyForeignName},
+		</if>
+		<if test="record.firstLevelCompanyName != null" >
+			first_level_company_name = #{firstLevelCompanyName},
+		</if>
+		<if test="record.countryFirstLevelCompanyLocates != null" >
+			country_first_level_company_locates = #{countryFirstLevelCompanyLocates},
+		</if>
+		<if test="record.overseasInvestmentCountry != null" >
+			overseas_investment_country = #{overseasInvestmentCountry},
+		</if>
+		<if test="record.province != null" >
+			province = #{province},
+		</if>
+		<if test="record.overseasCity != null" >
+			overseas_city = #{overseasCity},
+		</if>
+		<if test="record.chineseShareholder != null" >
+			chinese_shareholder = #{chineseShareholder},
+		</if>
+		<if test="record.chineseEquityRatio != null" >
+			chinese_equity_ratio = #{chineseEquityRatio},
+		</if>
+		<if test="record.foreignShareholder != null" >
+			foreign_shareholder = #{foreignShareholder},
+		</if>
+		<if test="record.foreignEquityRatio != null" >
+			foreign_equity_ratio = #{foreignEquityRatio},
+		</if>
+		<if test="record.overseasBusinessScope != null" >
+			overseas_business_scope = #{overseasBusinessScope},
+		</if>
+		<if test="record.overseasEnterpriseIndustry != null" >
+			overseas_enterprise_industry = #{overseasEnterpriseIndustry},
+		</if>
+		<if test="record.totalInvestment != null" >
+			total_investment = #{totalInvestment},
+		</if>
+		<if test="record.chineseInvestment != null" >
+			chinese_investment = #{chineseInvestment},
+		</if>
+		<if test="record.foreignInvestment != null" >
+			foreign_investment = #{foreignInvestment},
+		</if>
+		<if test="record.marketingNetwork != null" >
+			marketing_network = #{marketingNetwork},
+		</if>
+		<if test="record.stimulateExports != null" >
+			stimulate_exports = #{stimulateExports},
+		</if>
+		<if test="record.stimulateImports != null" >
+			stimulate_imports = #{stimulateImports},
+		</if>
+		<if test="record.brandAcquisitions != null" >
+			brand_acquisitions = #{brandAcquisitions},
+		</if>
+		<if test="record.obtainBrandName != null" >
+			obtain_brand_name = #{obtainBrandName},
+		</if>
+		<if test="record.technologyResearch != null" >
+			technology_research = #{technologyResearch},
+		</if>
+		<if test="record.technologyAcquired != null" >
+			technology_acquired = #{technologyAcquired},
+		</if>
+		<if test="record.engineeringDevelopment != null" >
+			engineering_development = #{engineeringDevelopment},
+		</if>
+		<if test="record.boostingSales != null" >
+			boosting_sales = #{boostingSales},
+		</if>
+		<if test="record.resourceDevelopment != null" >
+			resource_development = #{resourceDevelopment},
+		</if>
+		<if test="record.resourcesBackShipments != null" >
+			resources_back_shipments = #{resourcesBackShipments},
+		</if>
+		<if test="record.resourcesAmount != null" >
+			resources_amount = #{resourcesAmount},
+		</if>
+		<if test="record.resourceName != null" >
+			resource_name = #{resourceName},
+		</if>
+		<if test="record.extensionOfIndustrialChain != null" >
+			extension_of_industrial_chain = #{extensionOfIndustrialChain},
+		</if>
+		<if test="record.sketch != null" >
+			sketch = #{sketch},
+		</if>
+		<if test="record.rests != null" >
+			rests = #{rests},
+		</if>
+		<if test="record.paybackPeriod != null" >
+			payback_period = #{paybackPeriod},
+		</if>
+		<if test="record.remark != null" >
+			remark = #{remark},
+		</if>
+		<if test="record.accessory != null" >
+			accessory = #{accessory},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="GoutEnterprises_logicDelete" parameterType="GoutEnterprises">
+		UPDATE bus_gout_enterprises
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="GoutEnterprises_delete" parameterType="GoutEnterprises">
+		DELETE FROM bus_gout_enterprises
+		WHERE
+		ID = #{id}
+	</delete>
+	<select id="mst_nation_area_provinces" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT mna.* FROM mst_nation_area mna WHERE mna.parent = 1
+	</select>
+	<select id="mst_nation_area_cities" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT mna.* FROM mst_nation_area mna WHERE (mna.`parent` = #{pid} OR mna.`id` = #{pid}) AND (mna.`city` IS NOT NULL AND mna.`city` &lt;&gt; '')
+	</select>
+	<select id="mst_nation_area_districts" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT mna.* FROM mst_nation_area mna WHERE mna.`parent` = #{cid}
+	</select>
+	<select id="mst_nation_area_countries" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT mxj.`json` FROM mst_xml_json mxj WHERE mxj.`code` = 'world'
+	</select>
+	<select id="mst_nation_area_getRegionById" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT mna.* FROM mst_nation_area mna WHERE mna.`id` = #{id}
+	</select>
+</mapper>

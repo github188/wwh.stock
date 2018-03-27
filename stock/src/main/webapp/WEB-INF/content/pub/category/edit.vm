@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>栏目管理编辑</title>
+    #parse("commons/commonCss.vm")
+    #parse("commons/commonJs.vm")
+    <script type="text/javascript" src="$base/3rd/colorpicker/jquery.colorpicker.js"></script>
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/pub/category/save',
+                onSubmit: function () {
+                    #if($!{model.upCategory.id} == -1)
+                        if (document.getElementById("check1").checked == true) {
+                            $("#isShow").attr("value", '1');
+                        } else {
+                            $("#isShow").attr("value", '0');
+                        }
+                    #end
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Man.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        // 找到父亲页面（相对）
+                        var obj = window.parent.document.getElementById("infoframe");
+                        if (obj) {
+                            obj = obj.contentWindow;
+                        } else {
+                            obj = window.parent;
+                        }
+
+                        var node = obj.jQuery('#grid').treegrid('getSelected');
+                        obj.jQuery('#grid').treegrid('reload', node._parentId);
+                        obj.jQuery('#grid').treegrid('expand', node._parentId);
+                        obj.jQuery('#grid').treegrid('unselectAll');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false" class="dm_mainarea">
+    <form id="fm" method="post">
+        <input type="hidden" name="id" value="$!{model.id}">
+        <table width="100%" cellpadding="5" class="gridpub">
+            <tr>
+                <td class="title" align="left">
+                    父栏目编码
+                </td>
+                <td>
+                    <input name="upCatCode" class="easyui-textbox" value="$!{model.upCategory.catCode}" disabled style="width: 200px;">
+                    <input type="hidden" name="upId" id="upId" value="$!{model.upCategory.id}">
+                    <input type="hidden" id="oldName" value="$!{model.catName}">
+                    <input type="hidden" id="oldCd" value="$!{model.catCode}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    父栏目名称
+                </td>
+                <td>
+                    <input name="upCatName" class="easyui-textbox" value="$!{model.upCategory.catName}" disabled style="width: 200px;">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    栏目编码
+                </td>
+                <td>
+                    <input name="catCode" class="easyui-textbox" value="$!{model.catCode}" style="width: 200px;"
+                           data-options="required:true,validType:['notblank','catCdCheck']" maxlength="20" required>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    栏目名称
+                </td>
+                <td>
+                    <input name="catName" class="easyui-textbox" value="$!{model.catName}" style="width: 200px;"
+                           data-options="required:true,validType:['notblank','catNameCheck']" maxlength="50" required>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    栏目类型
+                </td>
+                <td>
+                    <select id="catOrg" name="catOrg" class="easyui-combobox"
+                            data-options="editable:false,panelHeight:'auto'" style="width: 200px;">
+                        #set($temp="$!{model.catOrg}")
+							#dicSelect("cat_type",$temp)
+                    </select>
+                </td>
+            </tr>
+            #if ($!{model.upCategory.id} == '-1')
+                <tr>
+                    <td align="left">
+                        是否显示在首页导航
+                    </td>
+                    <td>
+                        <input type="checkbox" class="check_box" id="check1">
+                        <input type="hidden" name="isShow" id="isShow" value="$!{model.isShow}"/>
+                        <script>
+                            if ($("#isShow").val() == '1') {
+                                $("#check1").attr("checked", true);
+                            }
+                        </script>
+                    </td>
+                    <script>
+                    </script>
+                </tr>
+            #end
+            <tr>
+                <td align="left">
+                    顺序
+                </td>
+                <td>
+                    <input name="catOrder" class="easyui-numberbox" value="$!{model.catOrder}" maxlength="10" required style="width: 200px;">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div region="south" border="false" class="dm_btnarea">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+</div>
+<script>
+    jQuery.extend(jQuery.fn.validatebox.defaults.rules, {
+        catNameCheck: {
+            validator: function (value, param) {
+                if (value == jQuery("#oldName").val()) {
+                    return "true";
+                }
+                var _2f = jQuery.ajax({
+                    url: '${base}/pub/category/validate',
+                    dataType: "json",
+                    data: {catName: value, upId: $("#upId").val()},
+                    async: false,
+                    cache: false,
+                    type: "post"
+                }).responseText;
+                return _2f == "true";
+            },
+            message: '栏目名称已存在'
+        }
+    });
+
+    jQuery.extend(jQuery.fn.validatebox.defaults.rules, {
+        catCdCheck: {
+            validator: function (value, param) {
+                if (value == jQuery("#oldCd").val()) {
+                    return "true";
+                }
+                var _2f = jQuery.ajax({
+                    url: '${base}/pub/category/validate',
+                    dataType: "json",
+                    data: {catCode: value},
+                    async: false,
+                    cache: false,
+                    type: "post"
+                }).responseText;
+                return _2f == "true";
+            },
+            message: '栏目编码已存在'
+        }
+    });
+
+    function loadtab(div) {
+        div.find(".aeasyui-textbox").removeClass("aeasyui-textbox").addClass("easyui-textbox");
+        $.parser.parse(div);
+    }
+
+    $(function() {
+    });
+
+
+</script>
+</body>
+</html>

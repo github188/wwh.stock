@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.pub.domain.Question">
+	<resultMap id="get-Question-result" type="com.skoo.stock.pub.domain.Question">
+		<id property="id" column="ID" />
+		<!-- 标题-->
+    	<result property="title" column="title" />
+		<!-- 留言-->
+    	<result property="content" column="content" />
+		<!-- 回复-->
+    	<result property="reply" column="reply" />
+		<!-- 回复时间-->
+    	<result property="replyDate" column="reply_date" />
+		<!-- 是否回复-->
+    	<result property="isReply" column="is_reply" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="Question_Base_Column_List">
+		ID,
+		<!-- 标题-->
+    	title,
+		<!-- 留言-->
+    	content,
+		<!-- 回复-->
+    	reply,
+		<!-- 回复时间-->
+    	reply_date,
+		<!-- 是否回复-->
+    	is_reply,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+			<select id="Question_get"  resultMap="get-Question-result">
+		 SELECT
+    		<include refid="Question_Base_Column_List" />
+	 	 FROM 
+			pub_t_question
+		 where 
+			ID = #{id}
+    </select>
+	
+		<select id="Question_list"  resultMap="get-Question-result">
+		 SELECT
+    				<include refid="Question_Base_Column_List" />
+	 	 FROM 
+			pub_t_question    
+		<include refid="common.Select_Where_Clause" />
+    </select>
+    
+		<select id="Question_custlist"  resultMap="get-Question-result">
+		 SELECT
+    				<include refid="Question_Base_Column_List" />
+	 	 FROM 
+			pub_t_question    
+		WHERE valid='1'
+            <if test="title != null and title != ''">
+			AND title = #{title}
+            </if>
+            <if test="content != null and content != ''">
+			AND content = #{content}
+            </if>
+            <if test="reply != null and reply != ''">
+			AND reply = #{reply}
+            </if>
+            <if test="replyDate != null and replyDate != ''">
+			AND reply_date = #{replyDate}
+            </if>
+            <if test="isReply != null and isReply != ''">
+			AND is_reply = #{isReply}
+            </if>
+    </select>
+	
+   <insert id="Question_insert" parameterType="com.skoo.stock.pub.domain.Question" >
+      INSERT INTO pub_t_question(
+		title,
+		content,
+		reply,
+		reply_date,
+		is_reply,
+		CREATE_DATE,
+		CREATOR,
+		valid)values(
+		#{title},
+		#{content},
+		#{reply},
+		#{replyDate},
+		#{isReply},
+		NOW(),
+		#{creator},
+		1)
+		<selectKey keyProperty="id" resultType="long" order="AFTER">
+		 SELECT LAST_INSERT_ID() AS id;
+		 </selectKey>
+    </insert>
+    <update id="Question_update" parameterType="com.skoo.stock.pub.domain.Question">
+    	UPDATE pub_t_question
+			set
+          		title = #{title},
+          		content = #{content},
+          		reply = #{reply},
+          		reply_date = #{replyDate},
+          		is_reply = #{isReply},
+			UPDATE_DATE = now()
+			,UPDATOR = #{updator}
+    	WHERE 
+			ID = #{id}
+    </update>
+    <update id="Question_updateSelective" parameterType="map">
+        UPDATE pub_t_question
+        set
+            <if test="record.title != null and record.title != ''">
+				title = #{record.title},
+            </if>
+            <if test="record.content != null and record.content != ''">
+				content = #{record.content},
+            </if>
+            <if test="record.reply != null and record.reply != ''">
+				reply = #{record.reply},
+            </if>
+            <if test="record.replyDate != null and record.replyDate != ''">
+				reply_date = #{record.replyDate},
+            </if>
+            <if test="record.isReply != null and record.isReply != ''">
+				is_reply = #{record.isReply},
+            </if>
+        UPDATE_DATE = now()
+        ,UPDATOR = #{record.updator}
+        <include refid="common.Update_Where_Clause" />
+    </update>
+    <update id="Question_logicDelete" parameterType="com.skoo.stock.pub.domain.Question">
+		UPDATE pub_t_question
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="Question_delete" parameterType="com.skoo.stock.pub.domain.Question">
+    	DELETE FROM pub_t_question
+		WHERE 
+		ID = #{id}
+  	</delete>
+</mapper>

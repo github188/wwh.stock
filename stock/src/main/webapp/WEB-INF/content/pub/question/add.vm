@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>在线留言新增</title>
+    #parse("commons/commonCss.vm")
+    #parse("commons/commonJs.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/pub/t-question/save',
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+                Man.reload(result);
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+     <div data-options="region:'center',border:false" style="padding-top:10px;background:#fff;border:1px solid #ccc;">
+     <form id="fm" method="post">
+         <table width="100%" cellpadding="5" class="bluetable">
+             <tr >
+                 <td align="right" >
+                     标题：
+                 </td>
+                 <td>
+                     <input name="title" class="easyui-textbox" value="$!{model.title}" >
+                 </td>
+                 <td align="right" >
+                     留言：
+                 </td>
+                 <td>
+                     <input name="content" class="easyui-textbox" value="$!{model.content}" >
+                 </td>
+             </tr>
+              <tr >
+                 <td align="right" >
+                     回复：
+                 </td>
+                 <td>
+                     <input name="reply" class="easyui-textbox" value="$!{model.reply}" >
+                 </td>
+                 <td align="right" >
+                     回复时间：
+                 </td>
+                 <td>
+                     <input name="replyDate" class="easyui-textbox" value="$!{model.replyDate}" >
+                 </td>
+             </tr>
+              <tr >
+                 <td align="right" >
+                     是否回复：
+                 </td>
+                 <td>
+                     <input name="isReply" class="easyui-textbox" value="$!{model.isReply}" >
+                 </td>
+              </tr>
+          </table>
+     </form>
+     </div>
+     <div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+     </div>
+</body>
+</html>

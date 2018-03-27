@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.hsa.domain.MarketData">
+	<resultMap id="get-MarketData-result" type="MarketData">
+		<id property="id" column="ID" />
+		<!-- 代码-->
+		<result property="code" column="code" />
+		<!-- 简称-->
+		<result property="name" column="name" />
+		<!-- 最新价-->
+		<result property="latestPrice" column="latest_price" />
+		<!-- 涨跌幅-->
+		<result property="udWidth" column="ud_width" />
+		<!-- 涨跌额-->
+		<result property="udAmount" column="ud_amount" />
+		<!-- 5分钟涨幅-->
+		<result property="fiveWidth" column="five_width" />
+		<!-- 成交量(手)-->
+		<result property="volume" column="volume" />
+		<!-- 成交额(万元)-->
+		<result property="turnVolume" column="turn_volume" />
+		<!-- 换手率-->
+		<result property="turnoverRate" column="turnover_rate" />
+		<!-- 振幅-->
+		<result property="amplitude" column="amplitude" />
+		<!-- 量比-->
+		<result property="volumeRatio" column="volume_ratio" />
+		<!-- 委比-->
+		<result property="committee" column="committee" />
+		<!-- 市盈率-->
+		<result property="peRatio" column="pe_ratio" />
+		<!-- 网站标志-->
+		<result property="netFlag" column="net_flag" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 昨收-->
+		<result property="yesterdayPrice" column="yesterday_price" />
+		<!-- 今开-->
+		<result property="todayPrice" column="today_price" />
+		<!-- 最高-->
+		<result property="highestPrice" column="highest_price" />
+		<!-- 最低-->
+		<result property="lowestPrice" column="lowest_price" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="MarketData_Base_Column_List">
+		ID,
+		<!-- 代码-->
+		code,
+		<!-- 简称-->
+		name,
+		<!-- 最新价-->
+		latest_price,
+		<!-- 涨跌幅-->
+		ud_width,
+		<!-- 涨跌额-->
+		ud_amount,
+		<!-- 5分钟涨幅-->
+		five_width,
+		<!-- 成交量(手)-->
+		volume,
+		<!-- 成交额(万元)-->
+		turn_volume,
+		<!-- 换手率-->
+		turnover_rate,
+		<!-- 振幅-->
+		amplitude,
+		<!-- 量比-->
+		volume_ratio,
+		<!-- 委比-->
+		committee,
+		<!-- 市盈率-->
+		pe_ratio,
+		<!-- 网站标志-->
+		net_flag,
+		<!-- 顺序-->
+		order_by,
+		<!-- 昨收-->
+		yesterday_price,
+		<!-- 今开-->
+		today_price,
+		<!-- 最高-->
+		highest_price,
+		<!-- 最低-->
+		lowest_price,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="MarketData_get" resultMap="get-MarketData-result">
+		SELECT
+		<include refid="MarketData_Base_Column_List" />
+		FROM
+		hsa_market_data
+		where
+		ID = #{id}
+	</select>
+
+	<select id="MarketData_list" resultMap="get-MarketData-result">
+		SELECT
+		<include refid="MarketData_Base_Column_List" />
+		FROM
+		hsa_market_data
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<select id="MarketData_platelist" resultMap="get-MarketData-result" parameterType="map">
+		SELECT
+		distinct t.*
+		FROM
+		hsa_market_data t
+		<if test="industryType != null and industryType != ''">
+			INNER JOIN hsa_plate_stock a ON t.code = a.code AND a.valid = '1'
+			AND a.industry_type = #{industryType}
+			<if test="conceptId != null and conceptId != ''">
+				AND a.concept_id = #{conceptId}
+			</if>
+		</if>
+		WHERE
+		<!--		t.volume != 0 AND-->
+		t.valid = '1'
+
+		<if test="code != null and code != ''">
+			AND t.code like #{code}
+		</if>
+		<if test="netFlag != null and netFlag != ''">
+			AND t.net_flag = #{netFlag}
+		</if>
+	</select>
+
+	<select id="MarketData_custlist"  resultMap="get-MarketData-result">
+		SELECT
+		<include refid="MarketData_Base_Column_List" />
+		FROM
+		hsa_market_data
+		WHERE valid='1'
+		<if test="code != null and code != ''">
+			AND code = #{code}
+		</if>
+		<if test="name != null and name != ''">
+			AND name = #{name}
+		</if>
+		<if test="latestPrice != null and latestPrice != ''">
+			AND latest_price = #{latestPrice}
+		</if>
+		<if test="udWidth != null and udWidth != ''">
+			AND ud_width = #{udWidth}
+		</if>
+		<if test="udAmount != null and udAmount != ''">
+			AND ud_amount = #{udAmount}
+		</if>
+		<if test="fiveWidth != null and fiveWidth != ''">
+			AND five_width = #{fiveWidth}
+		</if>
+		<if test="volume != null and volume != ''">
+			AND volume = #{volume}
+		</if>
+		<if test="turnVolume != null and turnVolume != ''">
+			AND turn_volume = #{turnVolume}
+		</if>
+		<if test="turnoverRate != null and turnoverRate != ''">
+			AND turnover_rate = #{turnoverRate}
+		</if>
+		<if test="amplitude != null and amplitude != ''">
+			AND amplitude = #{amplitude}
+		</if>
+		<if test="volumeRatio != null and volumeRatio != ''">
+			AND volume_ratio = #{volumeRatio}
+		</if>
+		<if test="committee != null and committee != ''">
+			AND committee = #{committee}
+		</if>
+		<if test="peRatio != null and peRatio != ''">
+			AND pe_ratio = #{peRatio}
+		</if>
+		<if test="netFlag != null and netFlag != ''">
+			AND net_flag = #{netFlag}
+		</if>
+		<if test="orderBy != null and orderBy != ''">
+			AND order_by = #{orderBy}
+		</if>
+		<if test="yesterdayPrice != null and yesterdayPrice != ''">
+			AND yesterday_price = #{yesterdayPrice}
+		</if>
+		<if test="todayPrice != null and todayPrice != ''">
+			AND today_price = #{todayPrice}
+		</if>
+		<if test="highestPrice != null and highestPrice != ''">
+			AND highest_price = #{highestPrice}
+		</if>
+		<if test="lowestPrice != null and lowestPrice != ''">
+			AND lowest_price = #{lowestPrice}
+		</if>
+	</select>
+
+	<insert id="MarketData_insert" parameterType="MarketData" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO hsa_market_data(
+		code,
+		name,
+		latest_price,
+		ud_width,
+		ud_amount,
+		five_width,
+		volume,
+		turn_volume,
+		turnover_rate,
+		amplitude,
+		volume_ratio,
+		committee,
+		pe_ratio,
+		net_flag,
+		order_by,
+		yesterday_price,
+		today_price,
+		highest_price,
+		lowest_price,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{code},
+		#{name},
+		#{latestPrice},
+		#{udWidth},
+		#{udAmount},
+		#{fiveWidth},
+		#{volume},
+		#{turnVolume},
+		#{turnoverRate},
+		#{amplitude},
+		#{volumeRatio},
+		#{committee},
+		#{peRatio},
+		#{netFlag},
+		#{orderBy},
+		#{yesterdayPrice},
+		#{todayPrice},
+		#{highestPrice},
+		#{lowestPrice},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="MarketData_update" parameterType="MarketData">
+		UPDATE hsa_market_data
+		set
+		code = #{code},
+		name = #{name},
+		latest_price = #{latestPrice},
+		ud_width = #{udWidth},
+		ud_amount = #{udAmount},
+		five_width = #{fiveWidth},
+		volume = #{volume},
+		turn_volume = #{turnVolume},
+		turnover_rate = #{turnoverRate},
+		amplitude = #{amplitude},
+		volume_ratio = #{volumeRatio},
+		committee = #{committee},
+		pe_ratio = #{peRatio},
+		net_flag = #{netFlag},
+		order_by = #{orderBy},
+		yesterday_price = #{yesterdayPrice},
+		today_price = #{todayPrice},
+		highest_price = #{highestPrice},
+		lowest_price = #{lowestPrice},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="MarketData_updateSelective" parameterType="map">
+		UPDATE hsa_market_data
+		set
+		<if test="record.code != null" >
+			code = #{record.code},
+		</if>
+		<if test="record.name != null" >
+			name = #{record.name},
+		</if>
+		<if test="record.latestPrice != null" >
+			latest_price = #{record.latestPrice},
+		</if>
+		<if test="record.udWidth != null" >
+			ud_width = #{record.udWidth},
+		</if>
+		<if test="record.udAmount != null" >
+			ud_amount = #{record.udAmount},
+		</if>
+		<if test="record.fiveWidth != null" >
+			five_width = #{record.fiveWidth},
+		</if>
+		<if test="record.volume != null" >
+			volume = #{record.volume},
+		</if>
+		<if test="record.turnVolume != null" >
+			turn_volume = #{record.turnVolume},
+		</if>
+		<if test="record.turnoverRate != null" >
+			turnover_rate = #{record.turnoverRate},
+		</if>
+		<if test="record.amplitude != null" >
+			amplitude = #{record.amplitude},
+		</if>
+		<if test="record.volumeRatio != null" >
+			volume_ratio = #{record.volumeRatio},
+		</if>
+		<if test="record.committee != null" >
+			committee = #{record.committee},
+		</if>
+		<if test="record.peRatio != null" >
+			pe_ratio = #{record.peRatio},
+		</if>
+		<if test="record.netFlag != null" >
+			net_flag = #{record.netFlag},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{record.orderBy},
+		</if>
+		<if test="record.yesterdayPrice != null" >
+			yesterday_price = #{record.yesterdayPrice},
+		</if>
+		<if test="record.todayPrice != null" >
+			today_price = #{record.todayPrice},
+		</if>
+		<if test="record.highestPrice != null" >
+			highest_price = #{record.highestPrice},
+		</if>
+		<if test="record.lowestPrice != null" >
+			lowest_price = #{record.lowestPrice},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="MarketData_logicDelete" parameterType="MarketData">
+		UPDATE hsa_market_data
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="MarketData_delete" parameterType="MarketData">
+		DELETE FROM hsa_market_data
+		WHERE
+		ID = #{id}
+	</delete>
+	<select id="sp_rqwidth" parameterType="MarketData" statementType="CALLABLE">
+		<![CDATA[
+		{call rqwidth(
+			#{industryid,jdbcType=CHAR, mode=IN},
+			#{udwidth,jdbcType=FLOAT, mode=IN},
+			#{num,jdbcType=INTEGER, mode=IN}
+		)}
+		]]>
+	</select>
+</mapper>

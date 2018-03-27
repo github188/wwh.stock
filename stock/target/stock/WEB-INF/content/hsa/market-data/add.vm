@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>沪深A行情新增</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/hsa/market-data/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				result = jQuery.parseJSON(result);
+				Magic.closeWin();  
+				if(!result.success){  
+					window.parent.jQuery.messager.show({title: '错误', msg: result.message });                  
+				} else {                  
+					window.parent.jQuery('#dg').datagrid('reload');   
+				}             
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+      <form id="fm" method="post">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		代码
+    			 	</td>
+    			 	<td>
+						<input name="code" class="easyui-textbox" value="$!{model.code}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		简称
+    			 	</td>
+    			 	<td>
+						<input name="name" class="easyui-textbox" value="$!{model.name}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		最新价
+    			 	</td>
+    			 	<td>
+						<input name="latestPrice" class="easyui-textbox" value="$!{model.latestPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		涨跌幅
+    			 	</td>
+    			 	<td>
+						<input name="udWidth" class="easyui-textbox" value="$!{model.udWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		涨跌额
+    			 	</td>
+    			 	<td>
+						<input name="udAmount" class="easyui-textbox" value="$!{model.udAmount}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		5分钟涨幅
+    			 	</td>
+    			 	<td>
+						<input name="fiveWidth" class="easyui-textbox" value="$!{model.fiveWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		成交量(手)
+    			 	</td>
+    			 	<td>
+						<input name="volume" class="easyui-textbox" value="$!{model.volume}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		成交额(万元)
+    			 	</td>
+    			 	<td>
+						<input name="turnVolume" class="easyui-textbox" value="$!{model.turnVolume}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		换手率
+    			 	</td>
+    			 	<td>
+						<input name="turnoverRate" class="easyui-textbox" value="$!{model.turnoverRate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		振幅
+    			 	</td>
+    			 	<td>
+						<input name="amplitude" class="easyui-textbox" value="$!{model.amplitude}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		量比
+    			 	</td>
+    			 	<td>
+						<input name="volumeRatio" class="easyui-textbox" value="$!{model.volumeRatio}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		委比
+    			 	</td>
+    			 	<td>
+						<input name="committee" class="easyui-textbox" value="$!{model.committee}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		市盈率
+    			 	</td>
+    			 	<td>
+						<input name="peRatio" class="easyui-textbox" value="$!{model.peRatio}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		顺序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+        <div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+        </div>
+</body>
+</html>

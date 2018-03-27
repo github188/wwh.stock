@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.hsa.domain.TurnsendDetail">
+	<resultMap id="get-TurnsendDetail-result" type="TurnsendDetail">
+		<id property="id" column="ID" />
+		<!-- 代码-->
+		<result property="code" column="code" />
+		<!-- 简称-->
+		<result property="name" column="name" />
+		<!-- 预案公布日-->
+		<result property="planDate" column="plan_date" />
+		<!-- 送股比例(10送X)-->
+		<result property="sendScale" column="send_scale" />
+		<!-- 转增比例(10转X)-->
+		<result property="turnScale" column="turn_scale" />
+		<!-- 派现比例(10派X)-->
+		<result property="cashScale" column="cash_scale" />
+		<!-- 股东大会通过日-->
+		<result property="passDate" column="pass_date" />
+		<!-- 股权登记日-->
+		<result property="registerDate" column="register_date" />
+		<!-- 除权除息日-->
+		<result property="dividendDate" column="dividend_date" />
+		<!-- 备注-->
+		<result property="memo" column="memo" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="TurnsendDetail_Base_Column_List">
+		ID,
+		<!-- 代码-->
+		code,
+		<!-- 简称-->
+		name,
+		<!-- 预案公布日-->
+		plan_date,
+		<!-- 送股比例(10送X)-->
+		send_scale,
+		<!-- 转增比例(10转X)-->
+		turn_scale,
+		<!-- 派现比例(10派X)-->
+		cash_scale,
+		<!-- 股东大会通过日-->
+		pass_date,
+		<!-- 股权登记日-->
+		register_date,
+		<!-- 除权除息日-->
+		dividend_date,
+		<!-- 备注-->
+		memo,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="TurnsendDetail_get" resultMap="get-TurnsendDetail-result">
+		SELECT
+		<include refid="TurnsendDetail_Base_Column_List" />
+		FROM
+		hsa_turnsend_detail
+		where
+		ID = #{id}
+	</select>
+
+	<select id="TurnsendDetail_list" resultMap="get-TurnsendDetail-result">
+		SELECT
+		<include refid="TurnsendDetail_Base_Column_List" />
+		FROM
+		hsa_turnsend_detail
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+    <select id="TurnsendDetail_custlist"  resultMap="get-TurnsendDetail-result">
+        SELECT
+	        <include refid="TurnsendDetail_Base_Column_List" />
+        FROM
+		hsa_turnsend_detail
+        WHERE valid='1'
+		            <if test="code != null and code != ''">
+                AND code = #{code}
+            </if>
+		            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+		            <if test="planDate != null and planDate != ''">
+                AND plan_date = #{planDate}
+            </if>
+		            <if test="sendScale != null and sendScale != ''">
+                AND send_scale = #{sendScale}
+            </if>
+		            <if test="turnScale != null and turnScale != ''">
+                AND turn_scale = #{turnScale}
+            </if>
+		            <if test="cashScale != null and cashScale != ''">
+                AND cash_scale = #{cashScale}
+            </if>
+		            <if test="passDate != null and passDate != ''">
+                AND pass_date = #{passDate}
+            </if>
+		            <if test="registerDate != null and registerDate != ''">
+                AND register_date = #{registerDate}
+            </if>
+		            <if test="dividendDate != null and dividendDate != ''">
+                AND dividend_date = #{dividendDate}
+            </if>
+		            <if test="memo != null and memo != ''">
+                AND memo = #{memo}
+            </if>
+		            <if test="orderBy != null and orderBy != ''">
+                AND order_by = #{orderBy}
+            </if>
+		    </select>
+
+	<insert id="TurnsendDetail_insert" parameterType="TurnsendDetail" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO hsa_turnsend_detail(
+		code,
+		name,
+		plan_date,
+		send_scale,
+		turn_scale,
+		cash_scale,
+		pass_date,
+		register_date,
+		dividend_date,
+		memo,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{code},
+		#{name},
+		#{planDate},
+		#{sendScale},
+		#{turnScale},
+		#{cashScale},
+		#{passDate},
+		#{registerDate},
+		#{dividendDate},
+		#{memo},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="TurnsendDetail_update" parameterType="TurnsendDetail">
+		UPDATE hsa_turnsend_detail
+		set
+		code = #{code},
+		name = #{name},
+		plan_date = #{planDate},
+		send_scale = #{sendScale},
+		turn_scale = #{turnScale},
+		cash_scale = #{cashScale},
+		pass_date = #{passDate},
+		register_date = #{registerDate},
+		dividend_date = #{dividendDate},
+		memo = #{memo},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="TurnsendDetail_updateSelective" parameterType="map">
+		UPDATE hsa_turnsend_detail
+		set
+		<if test="record.code != null" >
+			code = #{record.code},
+		</if>
+		<if test="record.name != null" >
+			name = #{record.name},
+		</if>
+		<if test="record.planDate != null" >
+			plan_date = #{record.planDate},
+		</if>
+		<if test="record.sendScale != null" >
+			send_scale = #{record.sendScale},
+		</if>
+		<if test="record.turnScale != null" >
+			turn_scale = #{record.turnScale},
+		</if>
+		<if test="record.cashScale != null" >
+			cash_scale = #{record.cashScale},
+		</if>
+		<if test="record.passDate != null" >
+			pass_date = #{record.passDate},
+		</if>
+		<if test="record.registerDate != null" >
+			register_date = #{record.registerDate},
+		</if>
+		<if test="record.dividendDate != null" >
+			dividend_date = #{record.dividendDate},
+		</if>
+		<if test="record.memo != null" >
+			memo = #{record.memo},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{record.orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="TurnsendDetail_logicDelete" parameterType="TurnsendDetail">
+		UPDATE hsa_turnsend_detail
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="TurnsendDetail_delete" parameterType="TurnsendDetail">
+		DELETE FROM hsa_turnsend_detail
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

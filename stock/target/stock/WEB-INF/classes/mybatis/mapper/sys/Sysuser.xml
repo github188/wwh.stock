@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.sys.domain.Sysuser">
+	<resultMap id="get-Sysuser-result" type="Sysuser">
+		<id property="id" column="ID" />
+		<!-- 用户编号-->
+		<result property="userId" column="user_id" />
+		<!-- 用户名-->
+		<result property="userName" column="user_name" />
+		<!-- 密码-->
+		<result property="password" column="password" />
+		<!-- 失效日-->
+		<result property="invalidDate" column="invalid_date" />
+		<!-- -->
+		<result property="mainDept" column="main_dept" />
+		<!-- -->
+		<result property="mngFlag" column="mng_flag" />
+		<!-- -->
+		<result property="secondDept" column="second_dept" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="Sysuser_Base_Column_List">
+		ID,
+		<!-- 用户编号-->
+		user_id,
+		<!-- 用户名-->
+		user_name,
+		<!-- 密码-->
+		password,
+		<!-- 失效日-->
+		invalid_date,
+		<!-- -->
+		main_dept,
+		<!-- -->
+		mng_flag,
+		<!-- -->
+		second_dept,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="Sysuser_get" resultMap="get-Sysuser-result">
+		SELECT
+		<include refid="Sysuser_Base_Column_List" />
+		FROM
+		sys_sysuser
+		where
+		ID = #{id}
+	</select>
+
+	<select id="Sysuser_list" resultMap="get-Sysuser-result">
+		SELECT
+		<include refid="Sysuser_Base_Column_List" />
+		FROM
+		sys_sysuser
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="Sysuser_insert" parameterType="Sysuser" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO sys_sysuser(
+		user_id,
+		user_name,
+		password,
+		invalid_date,
+		main_dept,
+		mng_flag,
+		second_dept,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{userId},
+		#{userName},
+		#{password},
+		#{invalidDate},
+		#{mainDept},
+		#{mngFlag},
+		#{secondDept},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="Sysuser_update" parameterType="Sysuser">
+		UPDATE sys_sysuser
+		set
+		user_id = #{userId},
+		user_name = #{userName},
+		password = #{password},
+		invalid_date = #{invalidDate},
+		main_dept = #{mainDept},
+		mng_flag = #{mngFlag},
+		second_dept = #{secondDept},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="Sysuser_updateSelective" parameterType="map">
+		UPDATE sys_sysuser
+		set
+		<if test="record.userId != null" >
+			user_id = #{userId},
+		</if>
+		<if test="record.userName != null" >
+			user_name = #{userName},
+		</if>
+		<if test="record.password != null" >
+			password = #{password},
+		</if>
+		<if test="record.invalidDate != null" >
+			invalid_date = #{invalidDate},
+		</if>
+		<if test="record.mainDept != null" >
+			main_dept = #{mainDept},
+		</if>
+		<if test="record.mngFlag != null" >
+			mng_flag = #{mngFlag},
+		</if>
+		<if test="record.secondDept != null" >
+			second_dept = #{secondDept},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="Sysuser_logicDelete" parameterType="Sysuser">
+		UPDATE sys_sysuser
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="Sysuser_delete" parameterType="Sysuser">
+		DELETE FROM sys_sysuser
+		WHERE
+		ID = #{id}
+	</delete>
+
+	<select id="Sysuser_roleusers_list" resultType="map">
+		SELECT
+		ifnull(role.id,999999999999999999999) as ssort,
+		user.id,
+		user.user_id as userId,
+		user.user_name as userName,
+		user.invalid_date as invalidDate,
+		role.id as roleId
+		FROM
+		sys_sysuser user LEFT JOIN sys_sysuser_role role
+		on user.id = role.user_id
+		and role.role_id = ${roleId}
+		and role.valid = '1'
+		where
+		user.valid = '1'
+		<if test="userId != null and userId != ''">
+			and user.user_id like CONCAT('%', #{userId},'%')
+		</if>
+		<if test="userName != null and userName != ''">
+			AND user.user_name like CONCAT('%', #{userName},'%')
+		</if>
+		order by ssort, userName
+	</select>
+
+	<select id="Sysuser_userroles_list" resultType="map">
+		SELECT
+		ifnull(userrole.user_id,999999999999999999999) as ssort,
+		role.id,
+		role.role_code as roleCode,
+		role.role_name as roleName,
+		userrole.user_id as userId
+		FROM
+		sys_sysrole role LEFT JOIN sys_sysuser_role userrole
+		on role.id = userrole.role_id
+		and userrole.user_id = ${userId}
+		and userrole.valid = '1'
+		where
+		role.valid = '1'
+		<if test="roleCode != null and roleCode != ''">
+			and role.role_code like CONCAT('%', #{roleCode},'%')
+		</if>
+		<if test="roleName != null and roleName != ''">
+			AND role.role_name like CONCAT('%', #{roleName},'%')
+		</if>
+		order by ssort, roleCode asc, roleName
+	</select>
+
+	<select id="Sysuser_group_list" resultType="map">
+		SELECT
+		user.id,
+		user.user_id as userId,
+		user.user_name as userName,
+		user.invalid_date as invalidDate,
+		grp.id as groupId
+		FROM
+		sys_sysuser user LEFT JOIN sale_group_user grp
+		on user.id = grp.saler_id
+		and grp.group_id = ${groupId}
+		and grp.valid = '1'
+		where
+		user.valid = '1'
+		<if test="userId != null and userId != ''">
+			and user.user_id like CONCAT('%', #{userId},'%')
+		</if>
+		<if test="userName != null and userName != ''">
+			AND user.user_name like CONCAT('%', #{userName},'%')
+		</if>
+		order by groupId desc, userName
+	</select>
+
+	<select id="Sysuser_chgpass_count" resultType="map">
+		SELECT count(1) as cnt
+		from sys_sysuser
+		WHERE
+		id = #{userId}
+		and password = #{oldpass}
+	</select>
+
+	<update id="Sysuser_chgpass" parameterType="map">
+		UPDATE sys_sysuser
+		set
+		password=#{password}
+		,UPDATE_DATE = now()
+		WHERE
+		id = #{userId}
+		and password = #{oldpass}
+	</update>
+
+	<select id="Sysuser_list_group" resultType="map">
+		SELECT
+		user.id as id,
+		user.user_id as userId,
+		user.user_name as userName,
+		user.password as password,
+		user.invalid_date as invalidDate,
+		user.order_by as orderBy,
+		user.CREATE_DATE as createDate,
+		user.CREATOR as creator,
+		user.valid as valid,
+		GROUP_CONCAT(role.role_name) as roleList
+		FROM
+		sys_sysuser user
+		LEFT JOIN sys_sysuser_role roleuser ON
+		user.id = roleuser.user_id and roleuser.valid = '1'
+		LEFT JOIN sys_sysrole role ON
+		role.id = roleuser.role_id and role.valid = '1'
+		WHERE
+		user.valid = '1'
+		<if test="list.size() != 0" >
+			AND user.id in
+			<foreach collection="list" item="item" open="(" separator="," close=")">
+				#{item.id}
+			</foreach>
+		</if>
+		<if test="list.size() == 0" >
+			AND 1 = 2
+		</if>
+		GROUP BY
+		user.id
+	</select>
+
+
+	<select id="Sysuser_urole_idlist" resultType="string">
+		SELECT role_id FROM sys_sysuser_role
+		WHERE
+		user_id = #{userId}
+		AND valid = '1'
+		<if test="list.size() != 0" >
+			AND role_id in
+			<foreach collection="list" item="roleId" open="(" separator="," close=")">
+				#{roleId}
+			</foreach>
+		</if>
+	</select>
+
+	<select id="Sysuser_urole_idlist_del" resultType="string">
+		SELECT role_id FROM sys_sysuser_role
+		WHERE
+		user_id = #{userId}
+		AND valid = '0'
+		<if test="list.size() != 0" >
+			AND role_id in
+			<foreach collection="list" item="roleId" open="(" separator="," close=")">
+				#{roleId}
+			</foreach>
+		</if>
+	</select>
+
+	<insert id="Sysuser_urole_insert_batch" useGeneratedKeys="true" parameterType="map">
+		<selectKey resultType="long" keyProperty="id" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+
+		INSERT INTO sys_sysuser_role(
+		user_id, role_id,
+		CREATE_DATE, CREATOR,
+		valid) values
+		<foreach collection="list" item="roleId" index="index" separator=",">
+			(#{userId},#{roleId},
+			NOW(),'0',
+			1)
+		</foreach>
+	</insert>
+
+	<update id="Sysuser_urole_delete_batch_logic" parameterType="map">
+		update sys_sysuser_role
+		SET valid = '0',
+		update_date = now()
+		WHERE user_id = #{userId}
+		<if test="list.size() != 0" >
+			AND role_id in
+			<foreach collection="list" item="roleId" open="(" separator="," close=")">
+				#{roleId}
+			</foreach>
+		</if>
+		<if test="list.size() == 0" >
+			AND 1 = 2
+		</if>
+	</update>
+
+	<update id="Sysuser_urole_insert_batch_logic" parameterType="map">
+		update sys_sysuser_role
+		SET valid = '1',
+		update_date = now()
+		WHERE user_id = #{userId}
+		<if test="list.size() != 0" >
+			AND role_id in
+			<foreach collection="list" item="roleId" open="(" separator="," close=")">
+				#{roleId}
+			</foreach>
+		</if>
+		<if test="list.size() == 0" >
+			AND 1 = 2
+		</if>
+	</update>
+</mapper>

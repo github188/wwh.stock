@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.pub.domain.ContentJoin">
+	<resultMap id="get-ContentJoin-result" type="com.skoo.stock.pub.domain.ContentJoin">
+		<id property="id" column="ID" />
+		<!-- 公告编号-->
+    	<result property="contentId" column="content_id" />
+		<!-- 公司-->
+    	<result property="corp" column="corp" />
+		<!-- 参与者姓名-->
+    	<result property="name" column="name" />
+		<!-- 邮件-->
+    	<result property="mail" column="mail" />
+		<!-- 电话-->
+    	<result property="phone" column="phone" />
+		<!-- 备注-->
+    	<result property="memo" column="memo" />
+    	<!-- 微信-->
+    	<result property="weixin" column="weixin" />
+		<!-- 职务-->
+    	<result property="duty" column="duty" />
+		<!-- 活动名-->
+		<result property="contentname" column="contentname" />
+		<!-- 栏目名-->
+		<result property="categoryname" column="categoryname" />
+		<!-- 回执时间-->
+		<result property="receiptdate" column="receiptdate" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="ContentJoin_Base_Column_List">
+		ID,
+		<!-- 公告编号-->
+    	content_id,
+		<!-- 公司-->
+    	corp,
+		<!-- 参与者姓名-->
+    	name,
+		<!-- 邮件-->
+    	mail,
+		<!-- 电话-->
+    	phone,
+    	<!-- 微信/QQ-->
+    	weixin,
+		<!-- 职务-->
+    	duty,
+		<!-- 备注-->
+    	memo,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+			<select id="ContentJoin_get"  resultMap="get-ContentJoin-result">
+		 SELECT
+    		<include refid="ContentJoin_Base_Column_List" />
+	 	 FROM 
+			pub_content_join
+		 where 
+			ID = #{id}
+    </select>
+	
+	<select id="ContentJoin_list"  resultMap="get-ContentJoin-result">
+		 SELECT
+    				<include refid="ContentJoin_Base_Column_List" />
+	 	 FROM 
+			pub_content_join
+		<include refid="common.Select_Where_Clause" />
+		<if test="contentId != null">
+            	AND content_id = #{contentId}
+        </if>	
+    </select>
+
+	<select id="ContentJoin_custlist"  resultMap="get-ContentJoin-result">
+		SELECT
+		pcj.content_id,
+		pcj.corp,
+		pcj.name,
+		pcj.mail,
+		pcj.phone,
+		pcj.weixin,
+		pcj.duty,
+		pcj.memo,
+		date_format(pcj.CREATE_DATE,'%Y-%m-%d %H:%i') as receiptdate,
+		pcj.CREATE_DATE,
+		pc.cat_name as categoryname,
+		pt.content_title as contentname
+		FROM
+		pub_content_join pcj
+		INNER JOIN pub_content pt on pcj.content_id = pt.id
+		INNER JOIN pub_category pc on pt.type_code = pc.id
+		where pcj.valid = '1'
+		<if test="categoryname != null and categoryname != ''">
+			AND pc.cat_name like CONCAT('%', #{categoryname},'%')
+		</if>
+		<if test="contentname != null and contentname != ''">
+			AND pt.content_title like CONCAT('%', #{contentname},'%')
+		</if>
+	</select>
+	
+   <insert id="ContentJoin_insert" parameterType="com.skoo.stock.pub.domain.ContentJoin" >
+      INSERT INTO pub_content_join(
+		content_id,
+		corp,
+		name,
+		mail,
+		phone,
+		memo,
+		weixin,
+		duty,
+		CREATE_DATE,
+		CREATOR,
+		valid)values(
+		#{contentId},
+		#{corp},
+		#{name},
+		#{mail},
+		#{phone},
+		#{memo},
+		#{weixin},
+		#{duty},
+		NOW(),
+		#{creator},
+		1)
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+		 SELECT LAST_INSERT_ID() AS id;
+		 </selectKey>
+    </insert>
+    <update id="ContentJoin_update" parameterType="com.skoo.stock.pub.domain.ContentJoin">
+    	UPDATE pub_content_join
+			set
+          		content_id = #{contentId},
+          		corp = #{corp},
+          		name = #{name},
+          		mail = #{mail},
+          		phone = #{phone},
+          		memo = #{memo},
+          		weixin = #{weixin},
+				duty = #{duty},
+			UPDATE_DATE = now()
+			,UPDATOR = #{updator}
+    	WHERE 
+			ID = #{id}
+    </update>
+    <update id="ContentJoin_updateSelective" parameterType="map">
+        UPDATE pub_content_join
+        set
+		            <if test="record.contentId != null" >
+				content_id = #{contentId},
+            </if>
+		            <if test="record.corp != null" >
+				corp = #{corp},
+            </if>
+		            <if test="record.name != null" >
+				name = #{name},
+            </if>
+		            <if test="record.mail != null" >
+				mail = #{mail},
+            </if>
+		            <if test="record.phone != null" >
+				phone = #{phone},
+            </if>
+		            <if test="record.memo != null" >
+				memo = #{memo},
+            </if>
+		        UPDATE_DATE = now()
+        ,UPDATOR = #{record.updator}
+        <include refid="common.Update_Where_Clause" />
+    </update>
+    <update id="ContentJoin_logicDelete" parameterType="com.skoo.stock.pub.domain.ContentJoin">
+		UPDATE pub_content_join
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="ContentJoin_delete" parameterType="com.skoo.stock.pub.domain.ContentJoin">
+    	DELETE FROM pub_content_join
+		WHERE 
+		ID = #{id}
+  	</delete>
+</mapper>

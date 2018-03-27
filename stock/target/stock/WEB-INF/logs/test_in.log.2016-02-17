@@ -1,0 +1,5 @@
+2016-02-17 15:20:18,314 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_70.html>
+2016-02-17 16:14:36,724 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=002267&pageid=1>
+2016-02-17 16:29:24,847 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=601515&pageid=1>
+2016-02-17 16:39:07,220 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=002180&pageid=1>
+2016-02-17 16:43:42,848 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=300459&pageid=1>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.sys.domain.Sysrole">
+	<resultMap id="get-Sysrole-result" type="Sysrole">
+		<id property="id" column="ID" />
+		<!-- 角色名称-->
+		<result property="roleName" column="role_name" />
+		<!-- 角色类型-->
+		<result property="roleType" column="role_type" />
+		<!-- 角色编码-->
+		<result property="roleCode" column="role_code" />
+		<!-- 角色描述-->
+		<result property="roleDescript" column="role_descript" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="Sysrole_Base_Column_List">
+		ID,
+		<!-- 角色名称-->
+		role_name,
+		<!-- 角色类型-->
+		role_type,
+		<!-- 角色编码-->
+		role_code,
+		<!-- 角色描述-->
+		role_descript,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="Sysrole_get" resultMap="get-Sysrole-result">
+		SELECT
+		<include refid="Sysrole_Base_Column_List" />
+		FROM
+		sys_sysrole
+		where
+		ID = #{id}
+	</select>
+
+	<select id="Sysrole_list" resultMap="get-Sysrole-result">
+		SELECT
+		<include refid="Sysrole_Base_Column_List" />
+		FROM
+		sys_sysrole
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="Sysrole_insert" parameterType="Sysrole" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO sys_sysrole(
+		role_name,
+		role_type,
+		role_code,
+		role_descript,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{roleName},
+		#{roleType},
+		#{roleCode},
+		#{roleDescript},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="Sysrole_update" parameterType="Sysrole">
+		UPDATE sys_sysrole
+		set
+		role_name = #{roleName},
+		role_type = #{roleType},
+		role_code = #{roleCode},
+		role_descript = #{roleDescript},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="Sysrole_updateSelective" parameterType="map">
+		UPDATE sys_sysrole
+		set
+		<if test="record.roleName != null" >
+			role_name = #{roleName},
+		</if>
+		<if test="record.roleType != null" >
+			role_type = #{roleType},
+		</if>
+		<if test="record.roleCode != null" >
+			role_code = #{roleCode},
+		</if>
+		<if test="record.roleDescript != null" >
+			role_descript = #{roleDescript},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="Sysrole_logicDelete" parameterType="Sysrole">
+		UPDATE sys_sysrole
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="Sysrole_delete" parameterType="Sysrole">
+		DELETE FROM sys_sysrole
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

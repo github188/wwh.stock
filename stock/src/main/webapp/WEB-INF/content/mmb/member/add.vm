@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>会员新增</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/mmb/member/save',                
+			onSubmit: function(){
+				if(jQuery(this).form('validate')){
+					var pwd = jQuery("[name=password]").val();
+					var rpwd = jQuery("[name=repeat_password]").val();
+					if(pwd==rpwd){
+
+					}else{
+                        $.messager.alert("提示","两次密码输入不一致！");
+						return false;
+					}
+				}
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+<style type="text/css">
+	select{
+		width:150px;
+		padding-top:2px;
+		padding-bottom:2px;
+		border-radius:5px;
+	}
+</style>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		账号（邮箱）
+    			 	</td>
+    			 	<td>
+						<input type="email" required="required" name="email" class="easyui-textbox" maxlength="64" value="$!{model.email}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		密码
+    			 	</td>
+    			 	<td>
+						<input type="password" required="required" name="password" class="easyui-textbox" value="$!{model.password}">
+    			 	</td>
+                <tr>
+                    <td align="left">
+                        重复密码
+                    </td>
+                    <td>
+                        <input type="password" required="required" name="repeat_password" class="easyui-textbox" value="$!{model.password}">
+                    </td>
+                </tr>
+    			<tr>
+					<td align="left">
+    			 		注册类型
+    			 	</td>
+    			 	<td>
+						#*<input name="registrationType" class="easyui-textbox" value="$!{model.registrationType}">*#
+						<select name="registrationType" class="easyui-validatebox" required="required" value="$!{model.registrationType}">
+							<option value="">--请选择--</option>
+							<optgroup label="管理账户" >
+                                <option value="1">省厅管理员</option>
+                                <option value="2">系统运维人员</option>
+                                <option value="3">市局管理员</option>
+                                <option value="4">市局运维人员</option>
+							</optgroup>
+                            <optgroup label="政府账户" >
+                                <option value="5">省内政府机构</option>
+								<option value="6">国内政府机构</option>
+								<option value="7">国外合作机构</option>
+								<option value="8">省内协会/商会</option>
+                                <option value="9">国内协会/商会</option>
+                                <option value="10">国外协会/商会</option>
+                            </optgroup>
+                            <optgroup label="企业账户" >
+                                <option value="11">省内企业</option>
+                                <option value="12">国内企业</option>
+                                <option value="13">国外企业</option>
+                            </optgroup>
+                            <optgroup label="个人账户" >
+                                <option value="14">省内个人</option>
+                                <option value="15">国内个人</option>
+                                <option value="16">国外个人</option>
+                            </optgroup>
+						</select>
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		用户区域
+    			 	</td>
+    			 	<td>
+						#*<input name="userArea" class="easyui-textbox" value="$!{model.userArea}">*#
+						<select name="userArea" required="required" class="easyui-validatebox" value="$!{model.userArea}">
+							<option value="">--请选择--</option>
+							<option value="1">省内</option>
+                            <option value="2">省外</option>
+                            <option value="3">国外</option>
+						</select>
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		手机号码
+    			 	</td>
+    			 	<td>
+						<input type="tel" name="mobileNumber" maxlength="32" required="required" class="easyui-textbox" value="$!{model.mobileNumber}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		真实姓名
+    			 	</td>
+    			 	<td>
+						<input name="realName" maxlength="32" required="required" class="easyui-textbox" value="$!{model.realName}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		会员等级
+    			 	</td>
+    			 	<td>
+						#*<input name="mmbLevel" class="easyui-textbox" value="$!{model.mmbLevel}">*#
+						<select name="mmbLevel" class="easyui-validatebox" required="required" value="$!{model.mmbLevel}">
+							#dicSelect("mmb_level")
+						</select>
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		排序
+    			 	</td>
+    			 	<td>
+						<input type="number" maxlength="11" required="required" name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+	<div region="south" border="false" class="dm_btnarea">
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>用户编辑</title>
+	#parse("commons/commonJs.vm")
+	#parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save(){
+            // 用户角色
+            var roleAll = [];
+            var itemAll = $('#dg').datagrid('getRows');
+            if (itemAll) {
+                for (var i=0;i<itemAll.length;i++) {
+                    roleAll.push(itemAll[i].id);
+                }
+            }
+            roleAllList = roleAll.join(",");
+            jQuery("#roleAllList").val(roleAllList);
+
+            var roleCheck = [];
+            var itemCheck = $('#dg').datagrid('getSelections');
+            if (itemCheck) {
+                for (var i=0;i<itemCheck.length;i++) {
+                    roleCheck.push(itemCheck[i].id);
+                }
+            }
+            roleCheckList = roleCheck.join(",");
+            jQuery("#roleCheckList").val(roleCheckList);
+
+
+            jQuery('#fmtab').form('submit',{
+                url: '${base}/sys/sysuser/save',
+                onSubmit: function(){
+                    return jQuery(this).form('validate');
+                },
+                success: function(result){
+                    Man.reload(result);
+                }
+            });
+
+        }
+
+        $(function() {
+
+            var userId = $!{model.id};
+            jQuery('#dg').datagrid({
+                url:'${base}/sys/sysuser/userroles?userId='+userId,
+                columns:[[
+                    {field:'id',checkbox:true}
+                    ,{field:'roleCode',title:'角色编号',width:50}
+                    ,{field:'roleName',title:'角色名',width:100}
+                    ,{field:'userId',title:'用户编码',width:100,hidden:true}
+                ]],
+                pagination:true,
+                singleSelect:false,
+                fitColumns:true,
+                fit: true,
+                toolbar:'#toolbar',
+                onLoadSuccess:function(data) {
+                    if (data) {
+                        $.each(data.rows, function (index, item) {
+                            if (item.userId != undefined) {
+                                $('#dg').datagrid('checkRow', index);
+                            }
+                        });
+                    }
+                }
+            });
+
+            $("#mainDept").combotree("setValues", ['$!{model.mainDept}']);
+            $("#secondDept").combotree("setValues", ['$!{model.secondDept}']);
+        });
+
+        function contentSearch(){
+            var roleName=jQuery('#filter_roleName').val();
+            jQuery('#dg').datagrid('load',{
+                'roleName':roleName
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false" class="dm_mainarea">
+    <form id="fmtab" method="post">
+        <input type="hidden" name="id" value="$!{model.id}">
+        <input type="hidden" id="roleAllList" name="roleAllList" value="">
+        <input type="hidden" id="roleCheckList" name="roleCheckList" value="">
+        <div class="easyui-tabs" style="width:100%;height:430px">
+            <div class="tab" title="用户信息" style="padding:0px">
+				<div class="leftdiv">
+                <br><br>
+                <table cellpadding="5">
+                    <tr>
+                        <td align="left">
+                            用户编号
+                        </td>
+                        <td>
+                            <input type="hidden" name="userId" value="$!{model.userId}">
+                            <input name="userIdShow" disabled class="easyui-textbox" style="width:250px" required="true" value="$!{model.userId}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            用户名
+                        </td>
+                        <td>
+                            <input name="userName" class="easyui-textbox" style="width:250px" required="true" value="$!{model.userName}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            密码
+                        </td>
+                        <td>
+                            <input type="password" name="password" style="width:250px" required="true" class="easyui-textbox" value="$!{model.password}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            失效日
+                        </td>
+                        <td>
+                            <input name="invalidDate" class="easyui-datebox" style="width:250px" value="$!date.format('yyyy-MM-dd',$!model.invalidDate)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            所属部门
+                        </td>
+                        <td>
+                            <input name="mainDept" id="mainDept" class="easyui-combotree" data-options="url:'${base}/sys/sysdept/treeAll?id=-1',method:'get',required:true" style="width:250px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            是否主管
+                        </td>
+                        <td>
+                            <select id="mngFlag" name="mngFlag" class="easyui-combobox" data-options="panelHeight:'auto'" style="width:100px">
+								#dicSelect("flag", $!{model.mngFlag})
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            兼职部门
+                        </td>
+                        <td>
+                            <input name="secondDept" id="secondDept" class="easyui-combotree" data-options="url:'${base}/sys/sysdept/treeAll?id=-1',method:'get'" style="width:250px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            顺序
+                        </td>
+                        <td>
+                            <input name="orderBy" class="easyui-textbox" style="width:250px" value="$!{model.orderBy}">
+                        </td>
+                    </tr>
+                </table>
+				</div>
+            </div>
+            <div class="tab" title="用户角色" style="padding:0px">
+                <table id="dg" data-options="toolbar:'#toolbar'"></table>
+                <div id="toolbar">
+                    <div class="search_box">
+                        角色名称：<input id="filter_roleName" class="easyui-textbox" >
+                        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="contentSearch()">搜索</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div region="south" border="false" class="dm_btnarea">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+</div>
+</body>
+</html>

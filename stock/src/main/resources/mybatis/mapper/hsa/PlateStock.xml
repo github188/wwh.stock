@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.hsa.domain.PlateStock">
+	<resultMap id="get-PlateStock-result" type="PlateStock">
+		<id property="id" column="ID" />
+		<!-- 板块代号-->
+		<result property="conceptId" column="concept_id" />
+		<!-- 股票代码-->
+		<result property="code" column="code" />
+		<!-- 网站标志-->
+		<result property="netFlag" column="net_flag" />
+		<!-- 板块类别-->
+		<result property="industryType" column="industry_type" />
+		<!-- 备注-->
+		<result property="memo" column="memo" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="PlateStock_Base_Column_List">
+		ID,
+		<!-- 板块代号-->
+		concept_id,
+		<!-- 股票代码-->
+		code,
+		<!-- 网站标志-->
+		net_flag,
+		<!-- 板块类别-->
+		industry_type,
+		<!-- 备注-->
+		memo,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="PlateStock_get" resultMap="get-PlateStock-result">
+		SELECT
+		<include refid="PlateStock_Base_Column_List" />
+		FROM
+		hsa_plate_stock
+		where
+		ID = #{id}
+	</select>
+
+	<select id="PlateStock_list" resultMap="get-PlateStock-result">
+		SELECT
+		<include refid="PlateStock_Base_Column_List" />
+		FROM
+		hsa_plate_stock
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+    <select id="PlateStock_custlist"  resultMap="get-PlateStock-result">
+        SELECT
+	        <include refid="PlateStock_Base_Column_List" />
+        FROM
+		hsa_plate_stock
+        WHERE valid='1'
+		            <if test="conceptId != null and conceptId != ''">
+                AND concept_id = #{conceptId}
+            </if>
+		            <if test="code != null and code != ''">
+                AND code = #{code}
+            </if>
+		            <if test="netFlag != null and netFlag != ''">
+                AND net_flag = #{netFlag}
+            </if>
+		            <if test="industryType != null and industryType != ''">
+                AND industry_type = #{industryType}
+            </if>
+		            <if test="memo != null and memo != ''">
+                AND memo = #{memo}
+            </if>
+		            <if test="orderBy != null and orderBy != ''">
+                AND order_by = #{orderBy}
+            </if>
+		    </select>
+
+	<insert id="PlateStock_insert" parameterType="PlateStock" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO hsa_plate_stock(
+		concept_id,
+		code,
+		net_flag,
+		industry_type,
+		memo,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{conceptId},
+		#{code},
+		#{netFlag},
+		#{industryType},
+		#{memo},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="PlateStock_update" parameterType="PlateStock">
+		UPDATE hsa_plate_stock
+		set
+		concept_id = #{conceptId},
+		code = #{code},
+		net_flag = #{netFlag},
+		industry_type = #{industryType},
+		memo = #{memo},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="PlateStock_updateSelective" parameterType="map">
+		UPDATE hsa_plate_stock
+		set
+		<if test="record.conceptId != null" >
+			concept_id = #{record.conceptId},
+		</if>
+		<if test="record.code != null" >
+			code = #{record.code},
+		</if>
+		<if test="record.netFlag != null" >
+			net_flag = #{record.netFlag},
+		</if>
+		<if test="record.industryType != null" >
+			industry_type = #{record.industryType},
+		</if>
+		<if test="record.memo != null" >
+			memo = #{record.memo},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{record.orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="PlateStock_logicDelete" parameterType="PlateStock">
+		UPDATE hsa_plate_stock
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="PlateStock_delete" parameterType="PlateStock">
+		DELETE FROM hsa_plate_stock
+		WHERE
+		ID = #{id}
+	</delete>
+	<delete id="PlateStock_delete_byconceptid" parameterType="PlateStock">
+		DELETE FROM hsa_plate_stock
+		WHERE
+		net_flag = #{netFlag}
+		<if test="industryType != null and industryType != ''">
+			AND industry_type = #{industryType}
+		</if>
+	</delete>
+</mapper>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<portable-config>
+	<config-file path="WEB-INF/classes/spring/application.properties">
+		<replace key="jdbc.url"><![CDATA[jdbc:mysql://localhost:3306/stock?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull]]></replace>
+		<replace key="jdbc.username">root</replace>
+		<replace key="jdbc.password">hongcheng</replace>
+	</config-file>
+</portable-config>

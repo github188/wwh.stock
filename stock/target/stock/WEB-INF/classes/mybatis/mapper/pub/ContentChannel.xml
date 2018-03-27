@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.pub.domain.ContentChannel">
+	<resultMap id="get-ContentChannel-result" type="ContentChannel">
+		<id property="id" column="ID" />
+		<!-- 栏目ID-->
+		<result property="channelId" column="channel_id" />
+		<!-- 内容ID-->
+		<result property="contentId" column="content_id" />
+		<!-- 排序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="ContentChannel_Base_Column_List">
+		ID,
+		<!-- 栏目ID-->
+		channel_id,
+		<!-- 内容ID-->
+		content_id,
+		<!-- 排序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="ContentChannel_get" resultMap="get-ContentChannel-result">
+		SELECT
+		<include refid="ContentChannel_Base_Column_List" />
+		FROM
+		pub_content_channel
+		where
+		ID = #{id}
+	</select>
+
+	<select id="ContentChannel_list" resultMap="get-ContentChannel-result">
+		SELECT
+		<include refid="ContentChannel_Base_Column_List" />
+		FROM
+		pub_content_channel
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="ContentChannel_insert" parameterType="ContentChannel" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO pub_content_channel(
+		channel_id,
+		content_id,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{channelId},
+		#{contentId},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="ContentChannel_update" parameterType="ContentChannel">
+		UPDATE pub_content_channel
+		set
+		channel_id = #{channelId},
+		content_id = #{contentId},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="ContentChannel_updateSelective" parameterType="map">
+		UPDATE pub_content_channel
+		set
+		<if test="record.channelId != null" >
+			channel_id = #{channelId},
+		</if>
+		<if test="record.contentId != null" >
+			content_id = #{contentId},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="ContentChannel_logicDelete" parameterType="ContentChannel">
+		UPDATE pub_content_channel
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="ContentChannel_delete" parameterType="ContentChannel">
+		DELETE FROM pub_content_channel
+		WHERE
+		ID = #{id}
+	</delete>
+
+	<delete id="ContentChannel_delete_batch" parameterType="map">
+		DELETE FROM pub_content_channel
+		WHERE 1=1
+		<if test="list.size() != 0" >
+			AND channel_id not in
+			<foreach collection="list" item="channelId" open="(" separator="," close=")">
+				#{channelId}
+			</foreach>
+		</if>
+		AND content_id = #{contentId}
+	</delete>
+
+	<select id="ContentChannel_noinsert_list" resultType="string">
+		SELECT
+			channel_id as channelId
+		FROM
+		pub_content_channel
+		WHERE 1=1
+		<if test="list.size() != 0" >
+			AND channel_id in
+			<foreach collection="list" item="channelId" open="(" separator="," close=")">
+				#{channelId}
+			</foreach>
+		</if>
+		AND content_id = #{contentId}
+	</select>
+
+	<insert id="ContentChannel_insert_batch" useGeneratedKeys="true" parameterType="map">
+		<selectKey resultType="long" keyProperty="id" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+
+		INSERT INTO pub_content_channel(
+		channel_id, content_id,
+		CREATE_DATE, CREATOR,
+		valid) values
+		<foreach collection="list" item="channelId" index="index" separator=",">
+			(#{channelId},#{contentId},
+			NOW(),'0',
+			1)
+		</foreach>
+	</insert>
+
+</mapper>

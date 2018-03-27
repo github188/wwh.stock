@@ -1,0 +1,16 @@
+2016-05-17 15:20:05,454 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_6.html>
+2016-05-17 15:20:10,476 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_7.html>
+2016-05-17 15:20:15,898 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_11.html>
+2016-05-17 15:20:23,614 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_39.html>
+2016-05-17 15:20:29,301 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_48.html>
+2016-05-17 15:20:34,584 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_52.html>
+2016-05-17 15:20:40,380 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_61.html>
+2016-05-17 15:20:45,391 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_62.html>
+2016-05-17 15:20:50,403 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_63.html>
+2016-05-17 15:20:55,569 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_66.html>
+2016-05-17 15:21:00,992 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_72.html>
+2016-05-17 15:21:06,343 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_78.html>
+2016-05-17 15:21:12,667 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_89.html>
+2016-05-17 16:03:55,107 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=600458&pageid=1>
+2016-05-17 16:18:06,277 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=603636&pageid=1>
+2016-05-17 16:22:37,492 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=600895&pageid=1>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+    http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name>stock</display-name>
+	<!-- spring 配置文件位置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:spring/*.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>spring.profiles.default</param-name>
+		<param-value>production</param-value>
+	</context-param>
+	<!-- 项目根目录下 在日志文件配置中可以应用 -->
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>stock</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:log4j.properties</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jRefreshInterval</param-name>
+		<param-value>60000</param-value>
+	</context-param>
+
+	<!-- spring 容器加载器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- log4j 监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.skoo.stock.common.service.log4jlistener</listener-class>
+	</listener>
+
+
+	<!-- 统一编码转换filter -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>springServlet</servlet-name>
+		<!-- <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> -->
+		<servlet-class>com.skoo.stock.ManServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring-mvc.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- 登录filter -->
+	<servlet>
+		<servlet-name>SSOAuth</servlet-name>
+		<servlet-class>com.skoo.stock.login.SSOAuth</servlet-class>
+		<init-param>
+			<!-- ticket名称 -->
+			<param-name>cookieName</param-name>
+			<param-value>SSOID</param-value>
+		</init-param>
+		<init-param>
+			<param-name>secure</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<!-- ticket内容加密密钥，必须为24个字符，中文算2个字符 -->
+			<param-name>secretKey</param-name>
+			<param-value>111111112222222233333333</param-value>
+		</init-param>
+		<init-param>
+			<!-- 服务器中ticket的有效期，单位分钟 -->
+			<param-name>ticketTimeout</param-name>
+			<param-value>48000</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SSOAuth</servlet-name>
+		<url-pattern>/SSOAuth</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>SSOClient</filter-name>
+		<filter-class>com.skoo.stock.login.SSOClient</filter-class>
+		<init-param>
+			<!-- 认证系统服务 -->
+			<param-name>SSOService</param-name>
+			<param-value>http://localhost:8080/dream/SSOAuth</param-value>
+		</init-param>
+		<init-param>
+			<!-- 认证系统ticket名称 -->
+			<param-name>cookieName</param-name>
+			<param-value>SSOID</param-value>
+		</init-param>
+		<init-param>
+			<param-name>notCheckURLList</param-name>
+			<param-value>/login.jsp,/SSOAuth</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ignoreTypes</param-name>
+			<param-value>ico,gif,bmp,png,jpg,jpeg,js,swf,flash,css</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>SSOClient</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 登录filter END-->
+
+	<servlet>
+		<servlet-name>verify</servlet-name>
+		<servlet-class>com.skoo.stock.common.checkcode.VerifyServlet</servlet-class>
+		<init-param>
+			<param-name>fontsize</param-name>
+			<param-value>20</param-value>
+		</init-param>
+		<init-param>
+			<param-name>length</param-name>
+			<param-value>4</param-value>
+		</init-param>
+		<init-param>
+			<param-name>usenoise</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>usecurve</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>verify</servlet-name>
+		<url-pattern>/verify</url-pattern>
+	</servlet-mapping>
+
+	<!-- 异常类型对应错误页面 -->
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/commons/500.jsp</location>
+	</error-page>
+	<!-- http 错误码对应页面 -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/commons/500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/commons/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/commons/403.jsp</location>
+	</error-page>
+	<!-- 默认页面 -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<!-- session 超时时间，单位分钟，-1：不过期，禁止生产环境使用 -->
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+</web-app>

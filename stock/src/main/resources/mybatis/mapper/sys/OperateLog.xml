@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.sys.domain.OperateLog">
+	<resultMap id="get-OperateLog-result" type="com.skoo.stock.sys.domain.OperateLog">
+		<id property="id" column="ID" />
+		<!-- 用户ID-->
+		<result property="userId" column="user_id" />
+		<!-- 站点ID-->
+		<result property="siteId" column="site_id" />
+		<!-- 日志类型-->
+		<result property="category" column="category" />
+		<!-- 日志时间-->
+		<result property="logTime" column="log_time" />
+		<!-- IP地址-->
+		<result property="ip" column="ip" />
+		<!-- URL地址-->
+		<result property="url" column="url" />
+		<!-- 日志标题-->
+		<result property="title" column="title" />
+		<!-- 日志内容-->
+		<result property="content" column="content" />
+		<!-- 排序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="OperateLog_Base_Column_List">
+		ID,
+		<!-- 用户ID-->
+		user_id,
+		<!-- 站点ID-->
+		site_id,
+		<!-- 日志类型-->
+		category,
+		<!-- 日志时间-->
+		log_time,
+		<!-- IP地址-->
+		ip,
+		<!-- URL地址-->
+		url,
+		<!-- 日志标题-->
+		title,
+		<!-- 日志内容-->
+		content,
+		<!-- 排序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="OperateLog_get" resultMap="get-OperateLog-result">
+		SELECT
+		<include refid="OperateLog_Base_Column_List" />
+		FROM
+		sys_operate_log
+		where
+		ID = #{id}
+	</select>
+
+	<select id="OperateLog_list" resultMap="get-OperateLog-result">
+		SELECT
+		<include refid="OperateLog_Base_Column_List" />
+		FROM
+		sys_operate_log
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="OperateLog_insert" parameterType="com.skoo.stock.sys.domain.OperateLog" >
+		INSERT INTO sys_operate_log(
+		user_id,
+		site_id,
+		category,
+		log_time,
+		ip,
+		url,
+		title,
+		content,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{userId},
+		#{siteId},
+		#{category},
+		NOW(),
+		#{ip},
+		#{url},
+		#{title},
+		#{content},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			SELECT LAST_INSERT_ID() AS id;
+		</selectKey>
+	</insert>
+	<update id="OperateLog_update" parameterType="com.skoo.stock.sys.domain.OperateLog">
+		UPDATE sys_operate_log
+		set
+		user_id = #{userId},
+		site_id = #{siteId},
+		category = #{category},
+		log_time = #{logTime},
+		ip = #{ip},
+		url = #{url},
+		title = #{title},
+		content = #{content},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="OperateLog_updateSelective" parameterType="map">
+		UPDATE sys_operate_log
+		set
+		<if test="record.userId != null" >
+			user_id = #{userId},
+		</if>
+		<if test="record.siteId != null" >
+			site_id = #{siteId},
+		</if>
+		<if test="record.category != null" >
+			category = #{category},
+		</if>
+		<if test="record.logTime != null" >
+			log_time = #{logTime},
+		</if>
+		<if test="record.ip != null" >
+			ip = #{ip},
+		</if>
+		<if test="record.url != null" >
+			url = #{url},
+		</if>
+		<if test="record.title != null" >
+			title = #{title},
+		</if>
+		<if test="record.content != null" >
+			content = #{content},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="OperateLog_logicDelete" parameterType="com.skoo.stock.sys.domain.OperateLog">
+		UPDATE sys_operate_log
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="OperateLog_delete" parameterType="com.skoo.stock.sys.domain.OperateLog">
+		DELETE FROM sys_operate_log
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

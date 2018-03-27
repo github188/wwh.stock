@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>栏目管理管理</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: none">
+<div data-options="region:'north'" style="padding:9px 0 5px 5px; height:50px;">
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" onclick="newForm();">新增</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="editForm();">编辑</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" onclick="destroyForm();">删除</a>
+    <a onclick="jQuery('#grid').treegrid('reload');" href="javascript:void(0);" class="easyui-linkbutton"
+       iconCls="icon-reload">刷新</a>
+</div>
+<div data-options="region:'center',border:false">
+    <table id="grid" style="width:700px;" height="100%" width="100%" border="0" cellpadding="0" cellspacing="0"></table>
+</div>
+</body>
+<script type="text/javascript">
+
+    /**
+     *设定栏目树Grid
+     */
+    $('#grid').treegrid({
+        url: '${base}/pub/channel/tree',
+        idField: 'id',
+        treeField: 'chnName',
+        parentField: 'upId',
+        toolbar: '#toolbar',
+        singleSelect: true,
+        border: false,
+        lines: false,
+        fit: true,
+        columns: [[
+            {field: 'chnName', title: '栏目名称', width: 450},
+            {field: 'chnCode', title: '栏目编码', width: 250},
+            {field: 'chnOrder', title: '排序', width: 50},
+            {
+                field: 'isShow', title: '是否显示', formatter: function (value, row, index) {
+                if (value == '1' && row.upId == '-1') {
+                    return '是';
+                }
+                else if (value == '0' && row.upId == '-1') {
+                    return '否';
+                }
+                else {
+                    return ''
+                }
+            }, width: 50
+            },
+        ]]
+    });
+
+    // 新建栏目
+    function newForm() {
+        jQuery('#fm').form('reset');
+        var row = jQuery('#grid').treegrid('getSelected');
+        if (row == null) {
+            jQuery.messager.alert('提示', "请选择上级栏目");
+            return false;
+        }
+        Man.openWin('新增栏目', '${base}/pub/channel/selfAdd?id=' + row.id, 600, 400);
+    }
+
+    function editForm() {
+        var row = jQuery('#grid').treegrid('getSelected');
+        if (row && row.id == '-1') {
+            jQuery.messager.alert('提示', "根栏目不允许编辑");
+            return false;
+        }
+        if (row) {
+            Man.openWin('编辑栏目', '${base}/pub/channel/edit/' + row.id, 600, 400);
+        } else {
+            jQuery.messager.alert('提示', "请选择栏目");
+            return false;
+        }
+    }
+
+    function destroyForm() {
+        var row = jQuery('#grid').treegrid('getSelected');
+        if (row && row.id == '-1') {
+            jQuery.messager.alert('提示', "根栏目不允许删除");
+            return false;
+        }
+        if (row) {
+            jQuery.messager.confirm('确认删除', '确定删除该记录?', function (r) {
+                if (r) {
+                    jQuery.post('${base}/pub/channel/delete', {'ids': row.id}, function (result) {
+                        var result = jQuery.parseJSON(result);
+                        if (result.success) {
+                            var node = jQuery('#grid').treegrid('getSelected');
+                            jQuery('#grid').treegrid('reload', node._parentId);
+
+                        } else {
+                            jQuery.messager.show({    // show error message
+                                title: '错误',
+                                msg: result.message
+                            });
+                        }
+                    });
+                }
+            });
+        } else {
+            jQuery.messager.alert('提示', "请选择栏目");
+            return false;
+        }
+    }
+
+</script>
+</html>

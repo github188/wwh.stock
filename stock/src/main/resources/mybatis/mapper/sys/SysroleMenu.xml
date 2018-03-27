@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.sys.domain.SysroleMenu">
+	<resultMap id="get-SysroleMenu-result" type="com.skoo.stock.sys.domain.SysroleMenu">
+		<id property="id" column="ID" />
+		<!-- 角色编号-->
+		<result property="roleId" column="role_id" />
+		<!-- 菜单编号-->
+		<result property="menuId" column="menu_id" />
+		<!-- 菜单附加信息-->
+		<result property="menuAtt" column="menu_att" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="SysroleMenu_Base_Column_List">
+		ID,
+		<!-- 角色编号-->
+		role_id,
+		<!-- 菜单编号-->
+		menu_id,
+		<!-- 菜单附加信息-->
+		menu_att,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="SysroleMenu_get" resultMap="get-SysroleMenu-result">
+		SELECT
+		<include refid="SysroleMenu_Base_Column_List" />
+		FROM
+		sys_sysrole_menu
+		where
+		ID = #{id}
+	</select>
+
+	<select id="SysroleMenu_list" resultMap="get-SysroleMenu-result">
+		SELECT
+		<include refid="SysroleMenu_Base_Column_List" />
+		FROM
+		sys_sysrole_menu
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="SysroleMenu_insert" parameterType="com.skoo.stock.sys.domain.SysroleMenu" >
+		INSERT INTO sys_sysrole_menu(
+		role_id,
+		menu_id,
+		menu_att,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{roleId},
+		#{menuId},
+		#{menuAtt},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			SELECT LAST_INSERT_ID() AS id;
+		</selectKey>
+	</insert>
+	<update id="SysroleMenu_update" parameterType="com.skoo.stock.sys.domain.SysroleMenu">
+		UPDATE sys_sysrole_menu
+		set
+		role_id = #{roleId},
+		menu_id = #{menuId},
+		menu_att = #{menuAtt},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="SysroleMenu_updateSelective" parameterType="map">
+		UPDATE sys_sysrole_menu
+		set
+		<if test="record.roleId != null" >
+			role_id = #{roleId},
+		</if>
+		<if test="record.menuId != null" >
+			menu_id = #{menuId},
+		</if>
+		<if test="record.menuAtt != null" >
+			menu_att = #{menuAtt},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="SysroleMenu_logicDelete" parameterType="com.skoo.stock.sys.domain.SysroleMenu">
+		UPDATE sys_sysrole_menu
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="SysroleMenu_delete" parameterType="com.skoo.stock.sys.domain.SysroleMenu">
+		DELETE FROM sys_sysrole_menu
+		WHERE
+		ID = #{id}
+	</delete>
+
+	<select id="SysroleMenu_idlist" resultType="string">
+		SELECT menu_id FROM sys_sysrole_menu
+		WHERE
+		role_id = #{roleId}
+		AND valid = '1'
+	</select>
+
+	<select id="SysroleMenu_idlist_del" resultType="string">
+		SELECT menu_id FROM sys_sysrole_menu
+		WHERE
+		role_id = #{roleId}
+		AND valid = '0'
+	</select>
+
+	<insert id="SysroleMenu_insert_batch" useGeneratedKeys="true" parameterType="map">
+		<selectKey resultType="long" keyProperty="id" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+
+		INSERT INTO sys_sysrole_menu(
+		role_id, menu_id,
+		CREATE_DATE, CREATOR,
+		valid) values
+		<foreach collection="list" item="menuId" index="index" separator=",">
+			(#{roleId},#{menuId},
+			NOW(),'0',
+			1)
+		</foreach>
+	</insert>
+
+	<update id="SysroleMenu_delete_batch_logic" parameterType="map">
+		update sys_sysrole_menu
+		SET valid = '0',
+		update_date = now()
+		WHERE role_id = #{roleId}
+		<if test="list.size() != 0" >
+			AND menu_id in
+			<foreach collection="list" item="menuId" open="(" separator="," close=")">
+				#{menuId}
+			</foreach>
+		</if>
+		<if test="list.size() == 0" >
+			AND 1 = 2
+		</if>
+	</update>
+
+	<update id="SysroleMenu_insert_batch_logic" parameterType="map">
+		update sys_sysrole_menu
+		SET valid = '1',
+		update_date = now()
+		WHERE role_id = #{roleId}
+		<if test="list.size() != 0" >
+			AND menu_id in
+			<foreach collection="list" item="menuId" open="(" separator="," close=")">
+				#{menuId}
+			</foreach>
+		</if>
+		<if test="list.size() == 0" >
+			AND 1 = 2
+		</if>
+	</update>
+</mapper>

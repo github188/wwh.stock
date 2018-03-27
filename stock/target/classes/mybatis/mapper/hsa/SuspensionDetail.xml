@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.hsa.domain.SuspensionDetail">
+	<resultMap id="get-SuspensionDetail-result" type="SuspensionDetail">
+		<id property="id" column="ID" />
+		<!-- 代码-->
+		<result property="code" column="code" />
+		<!-- 简称-->
+		<result property="name" column="name" />
+		<!-- 相关资料-->
+		<result property="relativeInfo" column="relative_info" />
+		<!-- 停牌时间-->
+		<result property="startDate" column="start_date" />
+		<!-- 停牌截止时间-->
+		<result property="endDate" column="end_date" />
+		<!-- 预计复牌时间-->
+		<result property="resumeDate" column="resume_date" />
+		<!-- 停牌期限-->
+		<result property="suspensionPeriod" column="suspension_period" />
+		<!-- 停牌原因-->
+		<result property="suspensionReason" column="suspension_reason" />
+		<!-- 备注-->
+		<result property="memo" column="memo" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="SuspensionDetail_Base_Column_List">
+		ID,
+		<!-- 代码-->
+		code,
+		<!-- 简称-->
+		name,
+		<!-- 相关资料-->
+		relative_info,
+		<!-- 停牌时间-->
+		start_date,
+		<!-- 停牌截止时间-->
+		end_date,
+		<!-- 预计复牌时间-->
+		resume_date,
+		<!-- 停牌期限-->
+		suspension_period,
+		<!-- 停牌原因-->
+		suspension_reason,
+		<!-- 备注-->
+		memo,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="SuspensionDetail_get" resultMap="get-SuspensionDetail-result">
+		SELECT
+		<include refid="SuspensionDetail_Base_Column_List" />
+		FROM
+		hsa_suspension_detail
+		where
+		ID = #{id}
+	</select>
+
+	<select id="SuspensionDetail_list" resultMap="get-SuspensionDetail-result">
+		SELECT
+		<include refid="SuspensionDetail_Base_Column_List" />
+		FROM
+		hsa_suspension_detail
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+    <select id="SuspensionDetail_custlist"  resultMap="get-SuspensionDetail-result">
+        SELECT
+	        <include refid="SuspensionDetail_Base_Column_List" />
+        FROM
+		hsa_suspension_detail
+        WHERE valid='1'
+		            <if test="code != null and code != ''">
+                AND code = #{code}
+            </if>
+		            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+		            <if test="relativeInfo != null and relativeInfo != ''">
+                AND relative_info = #{relativeInfo}
+            </if>
+		            <if test="startDate != null and startDate != ''">
+                AND start_date = #{startDate}
+            </if>
+		            <if test="endDate != null and endDate != ''">
+                AND end_date = #{endDate}
+            </if>
+		            <if test="resumeDate != null and resumeDate != ''">
+                AND resume_date = #{resumeDate}
+            </if>
+		            <if test="suspensionPeriod != null and suspensionPeriod != ''">
+                AND suspension_period = #{suspensionPeriod}
+            </if>
+		            <if test="suspensionReason != null and suspensionReason != ''">
+                AND suspension_reason = #{suspensionReason}
+            </if>
+		            <if test="memo != null and memo != ''">
+                AND memo = #{memo}
+            </if>
+		            <if test="orderBy != null and orderBy != ''">
+                AND order_by = #{orderBy}
+            </if>
+		    </select>
+
+	<insert id="SuspensionDetail_insert" parameterType="SuspensionDetail" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO hsa_suspension_detail(
+		code,
+		name,
+		relative_info,
+		start_date,
+		end_date,
+		resume_date,
+		suspension_period,
+		suspension_reason,
+		memo,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{code},
+		#{name},
+		#{relativeInfo},
+		#{startDate},
+		#{endDate},
+		#{resumeDate},
+		#{suspensionPeriod},
+		#{suspensionReason},
+		#{memo},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="SuspensionDetail_update" parameterType="SuspensionDetail">
+		UPDATE hsa_suspension_detail
+		set
+		code = #{code},
+		name = #{name},
+		relative_info = #{relativeInfo},
+		start_date = #{startDate},
+		end_date = #{endDate},
+		resume_date = #{resumeDate},
+		suspension_period = #{suspensionPeriod},
+		suspension_reason = #{suspensionReason},
+		memo = #{memo},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="SuspensionDetail_updateSelective" parameterType="map">
+		UPDATE hsa_suspension_detail
+		set
+		<if test="record.code != null" >
+			code = #{record.code},
+		</if>
+		<if test="record.name != null" >
+			name = #{record.name},
+		</if>
+		<if test="record.relativeInfo != null" >
+			relative_info = #{record.relativeInfo},
+		</if>
+		<if test="record.startDate != null" >
+			start_date = #{record.startDate},
+		</if>
+		<if test="record.endDate != null" >
+			end_date = #{record.endDate},
+		</if>
+		<if test="record.resumeDate != null" >
+			resume_date = #{record.resumeDate},
+		</if>
+		<if test="record.suspensionPeriod != null" >
+			suspension_period = #{record.suspensionPeriod},
+		</if>
+		<if test="record.suspensionReason != null" >
+			suspension_reason = #{record.suspensionReason},
+		</if>
+		<if test="record.memo != null" >
+			memo = #{record.memo},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{record.orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="SuspensionDetail_logicDelete" parameterType="SuspensionDetail">
+		UPDATE hsa_suspension_detail
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="SuspensionDetail_delete" parameterType="SuspensionDetail">
+		DELETE FROM hsa_suspension_detail
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

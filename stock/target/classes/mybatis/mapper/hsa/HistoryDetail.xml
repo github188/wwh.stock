@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.hsa.domain.HistoryDetail">
+	<resultMap id="get-HistoryDetail-result" type="HistoryDetail">
+		<id property="id" column="ID" />
+		<!-- 代码-->
+		<result property="code" column="code" />
+		<!-- 简称-->
+		<result property="name" column="name" />
+		<!-- 当前价-->
+		<result property="currentPrice" column="current_price" />
+		<!-- 预测价-->
+		<result property="forecastPrice" column="forecast_price" />
+		<!-- 起算价-->
+		<result property="initialPrice" column="initial_price" />
+		<!-- 压力位-->
+		<result property="pressurePrice" column="pressure_price" />
+		<!-- 支撑位-->
+		<result property="supportPrice" column="support_price" />
+		<!-- 最高价-->
+		<result property="highestPrice" column="highest_price" />
+		<!-- 最低价-->
+		<result property="lowestPrice" column="lowest_price" />
+		<!-- 5日线-->
+		<result property="fiveLine" column="five_line" />
+		<!-- 10日线-->
+		<result property="tenLine" column="ten_line" />
+		<!-- 30日线-->
+		<result property="thirtyLine" column="thirty_line" />
+		<!-- 动态线-->
+		<result property="dynamicLine" column="dynamic_line" />
+		<!-- 5日涨幅-->
+		<result property="fiveWidth" column="five_width" />
+		<!-- 10日涨幅-->
+		<result property="tenWidth" column="ten_width" />
+		<!-- 20日涨幅-->
+		<result property="twentyWidth" column="twenty_width" />
+		<!-- 动态涨幅-->
+		<result property="dynamicWidth" column="dynamic_width" />
+		<!-- 除权除息日-->
+		<result property="exdividendDate" column="exdividend_date" />
+		<!-- 复牌日-->
+		<result property="resumeDate" column="resume_date" />
+		<!-- 停牌日-->
+		<result property="suspendDate" column="suspend_date" />
+		<!-- 备注-->
+		<result property="memo" column="memo" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="HistoryDetail_Base_Column_List">
+		ID,
+		<!-- 代码-->
+		code,
+		<!-- 简称-->
+		name,
+		<!-- 当前价-->
+		current_price,
+		<!-- 预测价-->
+		forecast_price,
+		<!-- 起算价-->
+		initial_price,
+		<!-- 压力位-->
+		pressure_price,
+		<!-- 支撑位-->
+		support_price,
+		<!-- 最高价-->
+		highest_price,
+		<!-- 最低价-->
+		lowest_price,
+		<!-- 5日线-->
+		five_line,
+		<!-- 10日线-->
+		ten_line,
+		<!-- 30日线-->
+		thirty_line,
+		<!-- 动态线-->
+		dynamic_line,
+		<!-- 5日涨幅-->
+		five_width,
+		<!-- 10日涨幅-->
+		ten_width,
+		<!-- 20日涨幅-->
+		twenty_width,
+		<!-- 动态涨幅-->
+		dynamic_width,
+		<!-- 除权除息日-->
+		exdividend_date,
+		<!-- 复牌日-->
+		resume_date,
+		<!-- 停牌日-->
+		suspend_date,
+		<!-- 备注-->
+		memo,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="HistoryDetail_get" resultMap="get-HistoryDetail-result">
+		SELECT
+		<include refid="HistoryDetail_Base_Column_List" />
+		FROM
+		hsa_history_detail
+		where
+		ID = #{id}
+	</select>
+
+	<select id="HistoryDetail_list" resultMap="get-HistoryDetail-result">
+		SELECT
+		<include refid="HistoryDetail_Base_Column_List" />
+		FROM
+		hsa_history_detail
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+    <select id="HistoryDetail_custlist"  resultMap="get-HistoryDetail-result">
+        SELECT
+	        <include refid="HistoryDetail_Base_Column_List" />
+        FROM
+		hsa_history_detail
+        WHERE valid='1'
+		            <if test="code != null and code != ''">
+                AND code = #{code}
+            </if>
+		            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+		            <if test="currentPrice != null and currentPrice != ''">
+                AND current_price = #{currentPrice}
+            </if>
+		            <if test="forecastPrice != null and forecastPrice != ''">
+                AND forecast_price = #{forecastPrice}
+            </if>
+		            <if test="initialPrice != null and initialPrice != ''">
+                AND initial_price = #{initialPrice}
+            </if>
+		            <if test="pressurePrice != null and pressurePrice != ''">
+                AND pressure_price = #{pressurePrice}
+            </if>
+		            <if test="supportPrice != null and supportPrice != ''">
+                AND support_price = #{supportPrice}
+            </if>
+		            <if test="highestPrice != null and highestPrice != ''">
+                AND highest_price = #{highestPrice}
+            </if>
+		            <if test="lowestPrice != null and lowestPrice != ''">
+                AND lowest_price = #{lowestPrice}
+            </if>
+		            <if test="fiveLine != null and fiveLine != ''">
+                AND five_line = #{fiveLine}
+            </if>
+		            <if test="tenLine != null and tenLine != ''">
+                AND ten_line = #{tenLine}
+            </if>
+		            <if test="thirtyLine != null and thirtyLine != ''">
+                AND thirty_line = #{thirtyLine}
+            </if>
+		            <if test="dynamicLine != null and dynamicLine != ''">
+                AND dynamic_line = #{dynamicLine}
+            </if>
+		            <if test="fiveWidth != null and fiveWidth != ''">
+                AND five_width = #{fiveWidth}
+            </if>
+		            <if test="tenWidth != null and tenWidth != ''">
+                AND ten_width = #{tenWidth}
+            </if>
+		            <if test="twentyWidth != null and twentyWidth != ''">
+                AND twenty_width = #{twentyWidth}
+            </if>
+		            <if test="dynamicWidth != null and dynamicWidth != ''">
+                AND dynamic_width = #{dynamicWidth}
+            </if>
+		            <if test="exdividendDate != null and exdividendDate != ''">
+                AND exdividend_date = #{exdividendDate}
+            </if>
+		            <if test="resumeDate != null and resumeDate != ''">
+                AND resume_date = #{resumeDate}
+            </if>
+		            <if test="suspendDate != null and suspendDate != ''">
+                AND suspend_date = #{suspendDate}
+            </if>
+		            <if test="memo != null and memo != ''">
+                AND memo = #{memo}
+            </if>
+		            <if test="orderBy != null and orderBy != ''">
+                AND order_by = #{orderBy}
+            </if>
+		    </select>
+
+	<insert id="HistoryDetail_insert" parameterType="HistoryDetail" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO hsa_history_detail(
+		code,
+		name,
+		current_price,
+		forecast_price,
+		initial_price,
+		pressure_price,
+		support_price,
+		highest_price,
+		lowest_price,
+		five_line,
+		ten_line,
+		thirty_line,
+		dynamic_line,
+		five_width,
+		ten_width,
+		twenty_width,
+		dynamic_width,
+		exdividend_date,
+		resume_date,
+		suspend_date,
+		memo,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{code},
+		#{name},
+		#{currentPrice},
+		#{forecastPrice},
+		#{initialPrice},
+		#{pressurePrice},
+		#{supportPrice},
+		#{highestPrice},
+		#{lowestPrice},
+		#{fiveLine},
+		#{tenLine},
+		#{thirtyLine},
+		#{dynamicLine},
+		#{fiveWidth},
+		#{tenWidth},
+		#{twentyWidth},
+		#{dynamicWidth},
+		#{exdividendDate},
+		#{resumeDate},
+		#{suspendDate},
+		#{memo},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="HistoryDetail_update" parameterType="HistoryDetail">
+		UPDATE hsa_history_detail
+		set
+		code = #{code},
+		name = #{name},
+		current_price = #{currentPrice},
+		forecast_price = #{forecastPrice},
+		initial_price = #{initialPrice},
+		pressure_price = #{pressurePrice},
+		support_price = #{supportPrice},
+		highest_price = #{highestPrice},
+		lowest_price = #{lowestPrice},
+		five_line = #{fiveLine},
+		ten_line = #{tenLine},
+		thirty_line = #{thirtyLine},
+		dynamic_line = #{dynamicLine},
+		five_width = #{fiveWidth},
+		ten_width = #{tenWidth},
+		twenty_width = #{twentyWidth},
+		dynamic_width = #{dynamicWidth},
+		exdividend_date = #{exdividendDate},
+		resume_date = #{resumeDate},
+		suspend_date = #{suspendDate},
+		memo = #{memo},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="HistoryDetail_updateSelective" parameterType="map">
+		UPDATE hsa_history_detail
+		set
+		<if test="record.code != null" >
+			code = #{record.code},
+		</if>
+		<if test="record.name != null" >
+			name = #{record.name},
+		</if>
+		<if test="record.currentPrice != null" >
+			current_price = #{record.currentPrice},
+		</if>
+		<if test="record.forecastPrice != null" >
+			forecast_price = #{record.forecastPrice},
+		</if>
+		<if test="record.initialPrice != null" >
+			initial_price = #{record.initialPrice},
+		</if>
+		<if test="record.pressurePrice != null" >
+			pressure_price = #{record.pressurePrice},
+		</if>
+		<if test="record.supportPrice != null" >
+			support_price = #{record.supportPrice},
+		</if>
+		<if test="record.highestPrice != null" >
+			highest_price = #{record.highestPrice},
+		</if>
+		<if test="record.lowestPrice != null" >
+			lowest_price = #{record.lowestPrice},
+		</if>
+		<if test="record.fiveLine != null" >
+			five_line = #{record.fiveLine},
+		</if>
+		<if test="record.tenLine != null" >
+			ten_line = #{record.tenLine},
+		</if>
+		<if test="record.thirtyLine != null" >
+			thirty_line = #{record.thirtyLine},
+		</if>
+		<if test="record.dynamicLine != null" >
+			dynamic_line = #{record.dynamicLine},
+		</if>
+		<if test="record.fiveWidth != null" >
+			five_width = #{record.fiveWidth},
+		</if>
+		<if test="record.tenWidth != null" >
+			ten_width = #{record.tenWidth},
+		</if>
+		<if test="record.twentyWidth != null" >
+			twenty_width = #{record.twentyWidth},
+		</if>
+		<if test="record.dynamicWidth != null" >
+			dynamic_width = #{record.dynamicWidth},
+		</if>
+		<if test="record.exdividendDate != null" >
+			exdividend_date = #{record.exdividendDate},
+		</if>
+		<if test="record.resumeDate != null" >
+			resume_date = #{record.resumeDate},
+		</if>
+		<if test="record.suspendDate != null" >
+			suspend_date = #{record.suspendDate},
+		</if>
+		<if test="record.memo != null" >
+			memo = #{record.memo},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{record.orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="HistoryDetail_logicDelete" parameterType="HistoryDetail">
+		UPDATE hsa_history_detail
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="HistoryDetail_delete" parameterType="HistoryDetail">
+		DELETE FROM hsa_history_detail
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

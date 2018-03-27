@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.pub.domain.Content">
+	<resultMap id="get-Content-result" type="Content">
+		<id property="id" column="ID" />
+		<!-- 语言-->
+		<result property="lang" column="lang" />
+		<!-- 栏目ID-->
+		<result property="channelId" column="channel_id" />
+		<!-- 用户ID-->
+		<result property="userId" column="user_id" />
+		<!-- 属性ID-->
+		<result property="typeId" column="type_id" />
+		<!-- 模型ID-->
+		<result property="modelId" column="model_id" />
+		<!-- 站点ID-->
+		<result property="siteId" column="site_id" />
+		<!-- 年度-->
+		<result property="pubYear" column="pub_year" />
+		<!-- 排序日期-->
+		<result property="sortDate" column="sort_date" />
+		<!-- 固顶级别-->
+		<result property="topLevel" column="top_level" />
+		<!-- 是否有标题图-->
+		<result property="hasTitleImg" column="has_title_img" />
+		<!-- 是否推荐-->
+		<result property="isRecommend" column="is_recommend" />
+		<!-- 关键词-->
+		<result property="keywd" column="keywd" />
+		<!-- 状态(0:草稿;1:审核中;2:审核通过;3:回收站)-->
+		<result property="status" column="status" />
+		<!-- 日访问数-->
+		<result property="viewsDay" column="views_day" />
+		<!-- 日评论数-->
+		<result property="commentsDay" column="comments_day" />
+		<!-- 日下载数-->
+		<result property="downloadsDay" column="downloads_day" />
+		<!-- 日顶数-->
+		<result property="upsDay" column="ups_day" />
+		<!-- 排序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="Content_Base_Column_List">
+		ID,
+		<!-- 语言-->
+		lang,
+		<!-- 栏目ID-->
+		channel_id,
+		<!-- 用户ID-->
+		user_id,
+		<!-- 属性ID-->
+		type_id,
+		<!-- 模型ID-->
+		model_id,
+		<!-- 站点ID-->
+		site_id,
+		<!-- 年度-->
+		pub_year,
+		<!-- 排序日期-->
+		sort_date,
+		<!-- 固顶级别-->
+		top_level,
+		<!-- 是否有标题图-->
+		has_title_img,
+		<!-- 是否推荐-->
+		is_recommend,
+		<!-- 关键词-->
+		keywd,
+		<!-- 状态(0:草稿;1:审核中;2:审核通过;3:回收站)-->
+		status,
+		<!-- 日访问数-->
+		views_day,
+		<!-- 日评论数-->
+		comments_day,
+		<!-- 日下载数-->
+		downloads_day,
+		<!-- 日顶数-->
+		ups_day,
+		<!-- 排序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="Content_get" resultMap="get-Content-result">
+		SELECT
+		<include refid="Content_Base_Column_List" />
+		FROM
+		pub_content
+		where
+		ID = #{id}
+	</select>
+
+	<select id="Content_list" resultMap="get-Content-result">
+		SELECT
+		<include refid="Content_Base_Column_List" />
+		FROM
+		pub_content
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="Content_insert" parameterType="Content" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO pub_content(
+		lang,
+		channel_id,
+		user_id,
+		type_id,
+		model_id,
+		site_id,
+		pub_year,
+		sort_date,
+		top_level,
+		has_title_img,
+		is_recommend,
+		keywd,
+		status,
+		views_day,
+		comments_day,
+		downloads_day,
+		ups_day,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{lang},
+		#{channelId},
+		#{userId},
+		#{typeId},
+		#{modelId},
+		#{siteId},
+		#{pubYear},
+		#{sortDate},
+		#{topLevel},
+		#{hasTitleImg},
+		#{isRecommend},
+		#{keywd},
+		#{status},
+		#{viewsDay},
+		#{commentsDay},
+		#{downloadsDay},
+		#{upsDay},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="Content_update" parameterType="Content">
+		UPDATE pub_content
+		set
+		lang = #{lang},
+		channel_id = #{channelId},
+		user_id = #{userId},
+		type_id = #{typeId},
+		model_id = #{modelId},
+		site_id = #{siteId},
+		pub_year = #{pubYear},
+		sort_date = #{sortDate},
+		top_level = #{topLevel},
+		has_title_img = #{hasTitleImg},
+		is_recommend = #{isRecommend},
+		keywd = #{keywd},
+		status = #{status},
+		views_day = #{viewsDay},
+		comments_day = #{commentsDay},
+		downloads_day = #{downloadsDay},
+		ups_day = #{upsDay},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="Content_updateSelective" parameterType="map">
+		UPDATE pub_content
+		set
+		<if test="record.lang != null" >
+			lang = #{lang},
+		</if>
+		<if test="record.channelId != null" >
+			channel_id = #{channelId},
+		</if>
+		<if test="record.userId != null" >
+			user_id = #{userId},
+		</if>
+		<if test="record.typeId != null" >
+			type_id = #{typeId},
+		</if>
+		<if test="record.modelId != null" >
+			model_id = #{modelId},
+		</if>
+		<if test="record.siteId != null" >
+			site_id = #{siteId},
+		</if>
+		<if test="record.pubYear != null" >
+			pub_year = #{pubYear},
+		</if>
+		<if test="record.sortDate != null" >
+			sort_date = #{sortDate},
+		</if>
+		<if test="record.topLevel != null" >
+			top_level = #{topLevel},
+		</if>
+		<if test="record.hasTitleImg != null" >
+			has_title_img = #{hasTitleImg},
+		</if>
+		<if test="record.isRecommend != null" >
+			is_recommend = #{isRecommend},
+		</if>
+		<if test="record.keywd != null" >
+			keywd = #{keywd},
+		</if>
+		<if test="record.status != null" >
+			status = #{status},
+		</if>
+		<if test="record.viewsDay != null" >
+			views_day = #{viewsDay},
+		</if>
+		<if test="record.commentsDay != null" >
+			comments_day = #{commentsDay},
+		</if>
+		<if test="record.downloadsDay != null" >
+			downloads_day = #{downloadsDay},
+		</if>
+		<if test="record.upsDay != null" >
+			ups_day = #{upsDay},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="Content_logicDelete" parameterType="Content">
+		UPDATE pub_content
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="Content_delete" parameterType="Content">
+		DELETE FROM pub_content
+		WHERE
+		ID = #{id}
+	</delete>
+
+	<select id="Content_list_cust" resultType="ContentCust">
+		SELECT
+		con.id As id,
+		con.lang AS lang,
+		con.channel_id AS channelId,
+		con.status AS status,
+		con.is_recommend AS isRecommend,
+		con.top_level AS topLevel,
+		con.sort_date AS sortDate,
+		ext.release_date AS releaseDate,
+		ext.short_title AS shortTitle,
+		ext.title AS title
+		FROM
+		pub_content con
+		INNER JOIN pub_content_ext ext ON con.id = ext.content_id
+		WHERE
+		con.valid = '1'
+		<if test="siteId != null and siteId != ''" >
+			and con.site_id = #{siteId}
+		</if>
+		<if test="status != null and status != ''" >
+			and con.status = #{status}
+		</if>
+		<if test="title != null and title != ''" >
+			and ext.title like concat('%',#{title},'%')
+		</if>
+		<if test="lang != null and lang != ''" >
+			and con.lang = #{lang}
+		</if>
+		<if test="channelId != null and channelId != ''" >
+			and con.channel_id in(
+			SELECT
+			id
+			FROM
+			pub_channel
+			WHERE
+			FIND_IN_SET(id, fun_channel_tree(#{channelId}))
+			)
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>部门信息管理</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+	#parse("commons/commonJs.vm")
+	#parse("commons/commonCss.vm")
+    <script type="text/javascript">
+    </script>
+    <style type="text/css">
+        .datagrid-row-over td{
+            background:#D0E5F5;
+        }
+        .datagrid-row-selected td{
+            background:#FBEC88;
+        }
+    </style>
+</head>
+<body class="easyui-layout" style="overflow-y: none">
+<div data-options="region:'north'" style="padding:9px 0 5px 5px; height:50px;">
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" onclick="newForm();">新增</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="editForm();">编辑</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" onclick="destroyForm();">删除</a>
+    <a onclick="reload();" href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-reload">刷新</a>
+</div>
+<div data-options="region:'center',border:false">
+    <table id="grid" style="width:700px;" height="100%" width="100%" border="0" cellpadding="0" cellspacing="0" ></table>
+</div>
+</body>
+<script type="text/javascript">
+    var menugrid;
+    $(function() {
+        /**
+         *设定菜单树Grid
+         */
+        menugrid = $('#grid').treegrid({
+            url:'${base}/sys/sysdept/tree',
+            idField:'id',
+            treeField:'deptName',
+            parentField:'upId',
+            toolbar : '#toolbar',
+            singleSelect:true,
+            border:false,
+            lines:false,
+            rownumbers:true,
+            fit:true,
+            columns:[[
+                {field:'deptName',title:'部门名称',width:250},
+                {field:'deptTypeStr',title:'部门类型',width:100},
+                {field:'deptCode',title:'部门编码',width:150},
+                {field:'deptFunction',title:'部门职能',width:250},
+                {field:'manager',title:'部门负责人',width:150},
+                {field:'deptDesc',title:'部门描述',width:250}
+            ]],
+            rowStyler: function(row) {
+                if (row['id'] == '-1') {
+                    return 'background:#ccc';
+                }
+            },
+            onLoadSuccess: function (row) {
+                expand();
+            }
+        });
+    });
+
+    function expand() {
+        var roots = menugrid.treegrid("getRoots");
+        if (roots.length > 0) {
+            $.each(roots, function (i, item) {
+                menugrid.treegrid("expandAll", item.id);
+            });
+        }
+    }
+
+    // 刷新
+    function reload(){
+        menugrid.treegrid('reload');
+    }
+
+    // 新建菜单
+    function newForm(){
+        jQuery('#fm').form('reset');
+        var row = menugrid.treegrid('getSelected');
+        if(row == null) {
+            jQuery.messager.alert('提示',"请选择上级菜单");
+            return false;
+        }
+        Man.openWin('新增部门','${base}/sys/sysdept/selfAdd?id='+row.id,600,500);
+    }
+
+    function editForm(){
+        var row = menugrid.treegrid('getSelected');
+        if (row && row.id == '-1') {
+            jQuery.messager.alert('提示', "根部门不允许编辑");
+            return false;
+        }
+        if (row){
+            Man.openWin('编辑菜单','${base}/sys/sysdept/edit/'+row.id,600,500);
+        } else {
+            jQuery.messager.alert('提示', "请选择上级部门");
+            return false;
+        }
+    }
+
+    function destroyForm(){
+        var row = menugrid.treegrid('getSelected');
+        if (row && row.id == '-1') {
+            jQuery.messager.alert('提示', "根部门不允许删除");
+            return false;
+        }
+        if (row){
+            jQuery.messager.confirm('确认删除','确定删除该记录?',function(r){
+                if (r){
+                    jQuery.post('${base}/sys/sysdept/delete',{'ids':row.id},function(result){
+                        result = jQuery.parseJSON(result);
+                        if(result.success) {
+                            var node = menugrid.treegrid('getSelected');
+                            menugrid.treegrid('reload', node._parentId);
+
+                        } else {
+                            jQuery.messager.show({    // show error message
+                                title: '错误',
+                                msg: result.message
+                            });
+                        }
+                    });
+                }
+            });
+        } else {
+            jQuery.messager.alert('提示', "请选择菜单");
+            return false;
+        }
+    }
+
+</script>
+</html>

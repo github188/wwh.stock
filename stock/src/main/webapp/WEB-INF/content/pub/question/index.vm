@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>在线留言管理</title>
+        <meta charset="UTF-8">
+		#parse("commons/commonCss.vm")
+        #parse("commons/commonJs.vm")
+		<script type="text/javascript">
+			$(function() {
+				jQuery('#dg').datagrid({
+					url:'${base}/pub/question/queryPaged',
+					columns:[[
+						{field:'title',title:'标题',width:80}
+						,{field:'content',title:'留言',width:150}
+						,{field:'createDate',title:'留言日期',width:50}
+						,{field:'reply',title:'回复',width:150}
+						,{field:'replyDate',title:'回复日期',width:50}
+						,{field:'isReply',title:'是否回复',width:40,
+							formatter:function(value,row){
+								if(value=="1"){
+									return "是";
+								}else{
+									return "否"
+								}
+							}
+						}
+				    ]],
+				    pagination:true,
+				    singleSelect:true,
+				    fitColumns:true,
+				    fit: true,
+				    nowrap: false,
+				    toolbar:'#toolbar',
+			    	onDblClickRow: function(rowid,rowdata){
+						editForm(rowdata);
+			    	}
+			    });
+			});
+			function editForm(row){
+                row = jQuery('#dg').datagrid('getSelected');
+				if (row){
+					Man.openWin('留言回复','${base}/pub/question/reply/'+row.id,600,350);
+				}else{
+					jQuery.messager.show({
+						title: '错误',
+						msg: "请选择一行数据"
+					});
+				}
+			}
+			function destroyForm(){
+				var row = jQuery('#dg').datagrid('getSelected');
+				if (row){
+					jQuery.messager.confirm('确认删除','确定删除该记录?',function(r){
+						if (r){
+							jQuery.post('${base}/pub/question/delete?ids='+row.id,function(result){
+								var result = jQuery.parseJSON(result);
+								if(result.success) {
+									jQuery('#dg').datagrid('reload');
+								} else {
+									jQuery.messager.show({
+										title: '错误',
+										msg: result.message
+									});
+								}
+							});
+						}
+					});
+				}else{
+					jQuery.messager.show({
+						title: '错误',
+						msg: "请选择一行数据"
+					});
+				}
+			}
+			
+			function contentSearch(){ 
+				var title=jQuery('#filter_title').val();
+				var isReply=jQuery('#filter_isReply').combobox('getValue');
+		        jQuery('#dg').datagrid('load',{
+					'title':title,	    	
+					'isReply':isReply
+				})}
+	    	
+		</script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+   <table id="dg" data-options="toolbar:'#toolbar'"></table>
+    <div id="toolbar">
+    	<div class="search_box">
+			标题：<input id="filter_title" class="easyui-textbox" >
+			是否回复：
+			<select id="filter_isReply" class="easyui-combobox" data-options="panelHeight:'auto'">
+				<option value="">全部</option>
+				<option value="1">是</option>
+				<option value="0">否</option>
+			</select>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="contentSearch()">搜索</a>
+    	</div>
+    	<div class="btn_box">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-reply" plain="true" onclick="editForm()">回复</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyForm()">删除</a>
+    	</div>
+	</div>
+</body>
+</html>

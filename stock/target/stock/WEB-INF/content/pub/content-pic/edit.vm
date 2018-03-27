@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>内容图片表编辑</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/pub/content-pic/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<input type="hidden" name="id" value="$!{model.id}">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		内容ID
+    			 	</td>
+    			 	<td>
+						<input name="contentId" class="easyui-textbox" value="$!{model.contentId}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		排列顺序
+    			 	</td>
+    			 	<td>
+						<input name="priority" class="easyui-textbox" value="$!{model.priority}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		图片地址
+    			 	</td>
+    			 	<td>
+						<input name="imgPath" class="easyui-textbox" value="$!{model.imgPath}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		描述
+    			 	</td>
+    			 	<td>
+						<input name="description" class="easyui-textbox" value="$!{model.description}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		排序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+     <div region="south" border="false" class="dm_btnarea">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

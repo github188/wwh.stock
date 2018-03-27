@@ -1,0 +1,7 @@
+2016-02-22 12:20:05,534 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_1.html>
+2016-02-22 12:20:20,883 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_74.html>
+2016-02-22 15:42:43,431 INFO [mylogger] - <http://stock.quote.stockstar.com/600350.shtml>
+2016-02-22 16:06:01,235 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=002588&pageid=1>
+2016-02-22 16:10:31,601 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=603308&pageid=1>
+2016-02-22 16:24:09,218 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=300145&pageid=1>
+2016-02-22 16:46:47,680 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=002696&pageid=1>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.pub.domain.ContentExt">
+	<resultMap id="get-ContentExt-result" type="ContentExt">
+		<id property="id" column="ID" />
+		<!-- 内容ID-->
+		<result property="contentId" column="content_id" />
+		<!-- 内容类型-->
+		<result property="contentType" column="content_type" />
+		<!-- 标题-->
+		<result property="title" column="title" />
+		<!-- 简短标题-->
+		<result property="shortTitle" column="short_title" />
+		<!-- 作者-->
+		<result property="author" column="author" />
+		<!-- 来源-->
+		<result property="origin" column="origin" />
+		<!-- 来源链接-->
+		<result property="originUrl" column="origin_url" />
+		<!-- 描述-->
+		<result property="description" column="description" />
+		<!-- 发布日期-->
+		<result property="releaseDate" column="release_date" />
+		<!-- 媒体路径-->
+		<result property="mediaPath" column="media_path" />
+		<!-- 媒体类型-->
+		<result property="mediaType" column="media_type" />
+		<!-- 标题颜色-->
+		<result property="titleColor" column="title_color" />
+		<!-- 是否加粗-->
+		<result property="isBold" column="is_bold" />
+		<!-- 标题图片-->
+		<result property="titleImg" column="title_img" />
+		<!-- 内容图片-->
+		<result property="contentImg" column="content_img" />
+		<!-- 类型图片-->
+		<result property="typeImg" column="type_img" />
+		<!-- 外部链接-->
+		<result property="link" column="link" />
+		<!-- 指定模板-->
+		<result property="tplContent" column="tpl_content" />
+		<!-- 需要重新生成静态页-->
+		<result property="needRegenerate" column="need_regenerate" />
+		<!-- 排序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="ContentExt_Base_Column_List">
+		ID,
+		<!-- 内容ID-->
+		content_id,
+		<!-- 内容类型-->
+		content_type,
+		<!-- 标题-->
+		title,
+		<!-- 简短标题-->
+		short_title,
+		<!-- 作者-->
+		author,
+		<!-- 来源-->
+		origin,
+		<!-- 来源链接-->
+		origin_url,
+		<!-- 描述-->
+		description,
+		<!-- 发布日期-->
+		release_date,
+		<!-- 媒体路径-->
+		media_path,
+		<!-- 媒体类型-->
+		media_type,
+		<!-- 标题颜色-->
+		title_color,
+		<!-- 是否加粗-->
+		is_bold,
+		<!-- 标题图片-->
+		title_img,
+		<!-- 内容图片-->
+		content_img,
+		<!-- 类型图片-->
+		type_img,
+		<!-- 外部链接-->
+		link,
+		<!-- 指定模板-->
+		tpl_content,
+		<!-- 需要重新生成静态页-->
+		need_regenerate,
+		<!-- 排序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="ContentExt_get" resultMap="get-ContentExt-result">
+		SELECT
+		<include refid="ContentExt_Base_Column_List" />
+		FROM
+		pub_content_ext
+		where
+		ID = #{id}
+	</select>
+
+	<select id="ContentExt_list" resultMap="get-ContentExt-result">
+		SELECT
+		<include refid="ContentExt_Base_Column_List" />
+		FROM
+		pub_content_ext
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="ContentExt_insert" parameterType="ContentExt" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO pub_content_ext(
+		content_id,
+		content_type,
+		title,
+		short_title,
+		author,
+		origin,
+		origin_url,
+		description,
+		release_date,
+		media_path,
+		media_type,
+		title_color,
+		is_bold,
+		title_img,
+		content_img,
+		type_img,
+		link,
+		tpl_content,
+		need_regenerate,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{contentId},
+		#{contentType},
+		#{title},
+		#{shortTitle},
+		#{author},
+		#{origin},
+		#{originUrl},
+		#{description},
+		#{releaseDate},
+		#{mediaPath},
+		#{mediaType},
+		#{titleColor},
+		#{isBold},
+		#{titleImg},
+		#{contentImg},
+		#{typeImg},
+		#{link},
+		#{tplContent},
+		#{needRegenerate},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="ContentExt_update" parameterType="ContentExt">
+		UPDATE pub_content_ext
+		set
+		content_id = #{contentId},
+		content_type = #{contentType},
+		title = #{title},
+		short_title = #{shortTitle},
+		author = #{author},
+		origin = #{origin},
+		origin_url = #{originUrl},
+		description = #{description},
+		release_date = #{releaseDate},
+		media_path = #{mediaPath},
+		media_type = #{mediaType},
+		title_color = #{titleColor},
+		is_bold = #{isBold},
+		title_img = #{titleImg},
+		content_img = #{contentImg},
+		type_img = #{typeImg},
+		link = #{link},
+		tpl_content = #{tplContent},
+		need_regenerate = #{needRegenerate},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="ContentExt_updateSelective" parameterType="map">
+		UPDATE pub_content_ext
+		set
+		<if test="record.contentId != null" >
+			content_id = #{contentId},
+		</if>
+		<if test="record.contentType != null" >
+			content_type = #{contentType},
+		</if>
+		<if test="record.title != null" >
+			title = #{title},
+		</if>
+		<if test="record.shortTitle != null" >
+			short_title = #{shortTitle},
+		</if>
+		<if test="record.author != null" >
+			author = #{author},
+		</if>
+		<if test="record.origin != null" >
+			origin = #{origin},
+		</if>
+		<if test="record.originUrl != null" >
+			origin_url = #{originUrl},
+		</if>
+		<if test="record.description != null" >
+			description = #{description},
+		</if>
+		<if test="record.releaseDate != null" >
+			release_date = #{releaseDate},
+		</if>
+		<if test="record.mediaPath != null" >
+			media_path = #{mediaPath},
+		</if>
+		<if test="record.mediaType != null" >
+			media_type = #{mediaType},
+		</if>
+		<if test="record.titleColor != null" >
+			title_color = #{titleColor},
+		</if>
+		<if test="record.isBold != null" >
+			is_bold = #{isBold},
+		</if>
+		<if test="record.titleImg != null" >
+			title_img = #{titleImg},
+		</if>
+		<if test="record.contentImg != null" >
+			content_img = #{contentImg},
+		</if>
+		<if test="record.typeImg != null" >
+			type_img = #{typeImg},
+		</if>
+		<if test="record.link != null" >
+			link = #{link},
+		</if>
+		<if test="record.tplContent != null" >
+			tpl_content = #{tplContent},
+		</if>
+		<if test="record.needRegenerate != null" >
+			need_regenerate = #{needRegenerate},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="ContentExt_logicDelete" parameterType="ContentExt">
+		UPDATE pub_content_ext
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="ContentExt_delete" parameterType="ContentExt">
+		DELETE FROM pub_content_ext
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>咨询投诉编辑</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/bus/consulting-complaints/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+<style type="text/css">
+    td:nth-child(2){
+        width:60%;
+    }
+    select,[type=date]{
+        width:150px;
+        padding-top:2px;
+        padding-bottom:2px;
+        border-radius:5px;
+    }
+    [type=date]{
+        width:145px;
+    }
+</style>
+
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<input type="hidden" name="id" value="$!{model.id}">
+          <table width="100%" cellpadding="5">
+              <tr>
+                  <td align="left">
+                      问题类型
+                  </td>
+                  <td>
+				  #*<input name="type" class="easyui-textbox" value="$!{model.type}">*#
+                      <select name="type" class="easyui-validatebox" required>
+						  #dicSelect("question_type",$!{model.type})
+                      </select>
+                  </td>
+              </tr>
+              <tr>
+                  <td align="left">
+                      问题标题
+                  </td>
+                  <td>
+                      <input name="caption" class="easyui-textbox" value="$!{model.caption}">
+                  </td>
+              </tr>
+              <tr>
+                  <td align="left">
+                      问题内容
+                  </td>
+                  <td>
+                      <input name="content" class="easyui-textbox" value="$!{model.content}">
+                  </td>
+              </tr>
+              <tr>
+                  <td align="left">
+                      联系方式（手机）
+                  </td>
+                  <td>
+                      <input name="phone" class="easyui-textbox" value="$!{model.phone}">
+                  </td>
+              </tr>
+              <tr>
+                  <td align="left">
+                      邮箱
+                  </td>
+                  <td>
+                      <input name="email" class="easyui-textbox" value="$!{model.email}">
+                  </td>
+              </tr>
+              <tr>
+                  <td align="left">
+                      回复内容
+                  </td>
+                  <td>
+                      <input name="reply" class="easyui-textbox" value="$!{model.reply}">
+                  </td>
+              </tr>
+              <tr>
+                  <td align="left">
+                      回复状态
+                  </td>
+                  <td>
+				  #*<input name="replyStatus" class="easyui-textbox" value="$!{model.replyStatus}">*#
+                      <select name="replyStatus" class="easyui-validatebox" required>
+						  #dicSelect("reply_status",$!{model.replyStatus})
+                      </select>
+                  </td>
+              </tr>
+              <tr>
+                  <td align="left">
+                      回复时间
+                  </td>
+                  <td>
+                      <input name="replyTime" type="date" value="$!{model.replyTime}">
+                  </td>
+              </tr>
+              <tr>
+                  <td align="left">
+                      是否在前台显示
+                  </td>
+                  <td>
+				  #*<input name="toshow" class="easyui-textbox" value="$!{model.toshow}">*#
+                      <select name="toshow" class="easyui-validatebox" required>
+						  #dicSelect("flag",$!{model.toshow})
+                      </select>
+                  </td>
+              </tr>
+          </table>
+	</form>
+	</div>
+     <div region="south" border="false" class="dm_btnarea">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

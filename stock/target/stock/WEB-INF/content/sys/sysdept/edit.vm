@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>修改部门</title>
+	#parse("commons/commonCss.vm")
+	#parse("commons/commonJs.vm")
+    <script type="text/javascript">
+        function save(){
+            $("#watting_report").show(function(){
+                $.ajax(...);
+            });
+            jQuery('#fm').form('submit',{
+                url: '${base}/sys/sysdept/save',
+                onSubmit: function(){
+                    return jQuery(this).form('validate');
+                },
+                success: function(result){
+                    result = jQuery.parseJSON(result);
+                    Man.reload(result);
+                    if(result.success){
+                        // 找到父亲页面（相对）
+                        var obj = Man.findpapa();
+
+                        var node = obj.jQuery('#grid').treegrid('getSelected');
+                        obj.jQuery('#grid').treegrid('reload', node._parentId);
+                        obj.jQuery('#grid').treegrid('expand', node._parentId);
+                        obj.jQuery('#grid').treegrid('unselectAll');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false" class="dm_mainarea">
+    <form id="fm" method="post">
+        <input type="hidden" name="id" value="$!{model.id}">
+        <table width="100%" style="width:410px;margin:0 auto;" cellpadding="5" class="gridpub">
+            <tr>
+                <td class="title" align="left">
+                    上级部门编码
+                </td>
+                <td>
+                    <input name="updeptCode" class="easyui-textbox" value="$!{model.papa.deptCode}" disabled style="width: 300px">
+                    <input type="hidden" name="upId" id="upId" value="$!{model.papa.id}">
+                    <input type="hidden" id="oldName" value="$!{model.deptName}">
+                    <input type="hidden" id="oldCd" value="$!{model.deptCode}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    上级部门名称
+                </td>
+                <td>
+                    <input name="name" class="easyui-textbox" value="$!{model.papa.deptName}" style="width: 300px" disabled>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    部门类型
+                </td>
+                <td>
+                    <select id="deptType" name="deptType" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'"  style="width: 150px">
+						#dicSelect("dept_type",$!{model.deptType})
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="left">
+                    部门编码
+                </td>
+                <td>
+                    <input name="deptCode" class="easyui-textbox" value="$!{model.deptCode}" maxlength="20" data-options="required:true,validType:['notblank','deptCdCheck']"  style="width: 300px" required="true">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    部门名称
+                </td>
+                <td>
+                    <input name="deptName" class="easyui-textbox" value="$!{model.deptName}" maxlength="50" data-options="required:true,validType:['notblank','deptNameCheck']"  style="width: 300px" required="true">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    部门职能
+                </td>
+                <td>
+                    <input name="deptFunction" class="easyui-textbox" value="$!{model.deptFunction}" maxlength="50" data-options="required:true"  style="width: 300px">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    部门描述
+                </td>
+                <td>
+                    <input name="deptDesc" class="easyui-textbox" maxlength="50" value="$!{model.deptDesc}" data-options="multiline:true" style="height:50px;width: 300px">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    部门负责人
+                </td>
+                <td>
+                    <input name="manager" class="easyui-textbox" maxlength="50" value="$!{model.manager}" style="width: 300px">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    联系电话
+                </td>
+                <td>
+                    <input name="phone" class="easyui-textbox" maxlength="50" value="$!{model.phone}" style="width: 300px">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    排序
+                </td>
+                <td>
+                    <input name="orderBy" class="easyui-numberbox" value="$!{model.orderBy}" maxlength="10" style="width: 300px" required="true">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div region="south" border="false" class="dm_btnarea">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+</div>
+</body>
+<script type="text/javascript">
+    jQuery.extend(jQuery.fn.validatebox.defaults.rules, {
+        deptNameCheck: {
+            validator: function(value, param){
+                if (value == jQuery("#oldName").val()) {
+                    return "true";
+                }
+                var _2f=jQuery.ajax({url:'${base}/sys/sysdept/validate',dataType:"json",data:{deptName:value,upId:$("#upId").val()},async:false,cache:false,type:"post"}).responseText;
+                return _2f=="true";
+            },
+            message: '菜单名称已存在'
+        }
+    });
+
+    jQuery.extend(jQuery.fn.validatebox.defaults.rules, {
+        deptCdCheck: {
+            validator: function(value, param){
+                if (value == jQuery("#oldCd").val()) {
+                    return "true";
+                }
+                var _2f=jQuery.ajax({url:'${base}/sys/sysdept/validate',dataType:"json",data:{deptCode:value},async:false,cache:false,type:"post"}).responseText;
+                return _2f=="true";
+            },
+            message: '菜单编码已存在'
+        }
+    });
+
+</script>
+</html>

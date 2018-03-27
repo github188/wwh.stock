@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.pub.domain.Category">
+	<resultMap id="get-Category-result" type="com.skoo.stock.pub.domain.Category">
+		<id property="id" column="ID" />
+		<!-- 父栏目编号-->
+    	<result property="upId" column="up_id" />
+		<!-- 栏目编码-->
+    	<result property="catCode" column="cat_code" />
+		<!-- 栏目名称-->
+    	<result property="catName" column="cat_name" />
+		<!-- 组织机构-->
+    	<result property="catOrg" column="cat_org" />
+		<!-- 1:显示，0：不显示-->
+    	<result property="isShow" column="is_show" />
+		<!-- 顺序-->
+    	<result property="catOrder" column="cat_order" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<resultMap id="get-hasP_Category-result" type="com.skoo.stock.pub.domain.Category">
+		<id property="id" column="ID" />
+		<!-- 父栏目编号-->
+    	<result property="upId" column="up_id" />
+		<!-- 栏目编码-->
+    	<result property="catCode" column="cat_code" />
+		<!-- 栏目名称-->
+    	<result property="catName" column="cat_name" />
+		<!-- 组织机构-->
+    	<result property="catOrg" column="cat_org" />
+		<!-- 1:显示，0：不显示-->
+    	<result property="isShow" column="is_show" />
+		<!-- 顺序-->
+    	<result property="catOrder" column="cat_order" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+		<!-- 上级栏目-->
+		<association property="upCategory" column="up_id" select="getUpCategory" />  
+	</resultMap>
+	
+	<!-- 获取上级栏目 -->
+	<select id="getUpCategory"  resultMap="get-Category-result">
+		SELECT
+   		<include refid="Category_Base_Column_List" />
+	 	 FROM 
+			pub_category
+		 where 
+			ID = #{value}
+    </select>
+    
+	<sql id="Category_Base_Column_List">
+		ID,
+		<!-- 父栏目编号-->
+    	up_id,
+		<!-- 栏目编码-->
+    	cat_code,
+		<!-- 栏目名称-->
+    	cat_name,
+		<!-- 组织机构-->
+    	cat_org,
+		<!-- 1:显示，0：不显示-->
+    	is_show,
+		<!-- 顺序-->
+    	cat_order,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="Category_get"  resultMap="get-hasP_Category-result">
+		 SELECT
+    		<include refid="Category_Base_Column_List" />
+	 	 FROM 
+			pub_category
+		 where 
+			ID = #{id}
+    </select>
+	
+	<select id="Category_list"  resultMap="get-Category-result">
+		 SELECT
+    		<include refid="Category_Base_Column_List" />
+	 	 FROM 
+			pub_category    
+		<include refid="common.Select_Where_Clause" />
+    </select>
+
+	<select id="Category_custlist"  resultMap="get-Category-result">
+		SELECT
+		<include refid="Category_Base_Column_List" />
+		FROM
+		pub_category
+		WHERE valid='1'
+		<if test="catCode != null and catCode != ''">
+			AND cat_code = #{catCode}
+		</if>
+	</select>
+	
+   <insert id="Category_insert" parameterType="com.skoo.stock.pub.domain.Category" >
+      INSERT INTO pub_category(
+		up_id,
+		cat_code,
+		cat_name,
+		cat_org,
+		is_show,
+		cat_order,
+		CREATE_DATE,
+		CREATOR,
+		valid)values(
+		#{upId},
+		#{catCode},
+		#{catName},
+		#{catOrg},
+		#{isShow},
+		#{catOrder},
+		NOW(),
+		#{creator},
+		1)
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+		 SELECT LAST_INSERT_ID() AS id;
+		 </selectKey>
+    </insert>
+    <update id="Category_update" parameterType="com.skoo.stock.pub.domain.Category">
+    	UPDATE pub_category
+			set
+          		up_id = #{upId},
+          		cat_code = #{catCode},
+          		cat_name = #{catName},
+          		cat_org = #{catOrg},
+          		is_show = #{isShow},
+          		cat_order = #{catOrder},
+			UPDATE_DATE = now()
+			,UPDATOR = #{updator}
+    	WHERE 
+			ID = #{id}
+    </update>
+    <update id="Category_updateSelective" parameterType="map">
+        UPDATE pub_category
+        set
+		            <if test="record.upId != null" >
+				up_id = #{upId},
+            </if>
+		            <if test="record.catCode != null" >
+				cat_code = #{catCode},
+            </if>
+		            <if test="record.catName != null" >
+				cat_name = #{catName},
+            </if>
+		            <if test="record.catOrg != null" >
+				cat_org = #{catOrg},
+            </if>
+		            <if test="record.isShow != null" >
+				is_show = #{isShow},
+            </if>
+		            <if test="record.catOrder != null" >
+				cat_order = #{catOrder},
+            </if>
+		        UPDATE_DATE = now()
+        ,UPDATOR = #{record.updator}
+        <include refid="common.Update_Where_Clause" />
+    </update>
+    <update id="Category_logicDelete" parameterType="com.skoo.stock.pub.domain.Category">
+		UPDATE pub_category
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="Category_delete" parameterType="com.skoo.stock.pub.domain.Category">
+    	DELETE FROM pub_category
+		WHERE 
+		ID = #{id}
+  	</delete>
+  	
+  	<select id="Category_tree_list" resultMap="get-Category-result">
+		SELECT
+		<include refid="Category_Base_Column_List" />
+		FROM
+		pub_category
+		where valid = '1'
+		<if test="upId != null">
+			and up_id = #{upId}
+		</if>
+		<if test="catCode != null">
+			and cat_code = #{catCode}
+		</if>
+		<if test="catName != null">
+			and cat_name = #{catName}
+		</if>
+		<if test="catOrg != null">
+			and cat_org = #{catOrg}
+		</if>
+		<if test="isShow != null">
+			and is_show = #{isShow}
+		</if>
+		<if test="catOrder != null">
+			and cat_order = #{catOrder}
+		</if>
+		order by cat_order
+	</select>
+	
+	<!-- 检索件数 -->
+	<select id="Category_tree_count" resultType="java.lang.Integer">
+		SELECT count(1)
+		FROM
+		pub_category
+		where valid = '1'
+		<if test="upId != null">
+			and up_id = #{upId}
+		</if>
+		<if test="catCode != null">
+			and cat_code = #{catCode}
+		</if>
+		<if test="catName != null">
+			and cat_name = #{catName}
+		</if>
+		<if test="catOrg != null">
+			and cat_org = #{catOrg}
+		</if>
+		<if test="isShow != null">
+			and is_show = #{isShow}
+		</if>
+		<if test="catOrder != null">
+			and cat_order = #{catOrder}
+		</if>
+	</select>
+	
+	
+	<!-- 缓存情况 -->
+	<select id="category_cache_info" resultType="java.lang.Integer">
+		SELECT refresh
+		FROM
+		pub_refresh
+		where valid = '1'
+			and name = 'cat_tree' and type = 1
+	</select>
+	
+	<update id="category_refresh_info">
+		update pub_refresh set refresh = 0 where valid = '1'
+			and name = 'cat_tree' and type = 1
+	</update>
+	
+</mapper>

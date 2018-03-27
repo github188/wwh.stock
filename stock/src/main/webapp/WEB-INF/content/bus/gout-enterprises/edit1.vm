@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html ng-app="nationApp">
+<head>
+    <meta charset="UTF-8">
+    <title>走出去企业编辑</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save(){
+            jQuery('#fm').form('submit',{
+                url: '${base}/bus/gout-enterprises/save',
+                onSubmit: function(){
+                    return jQuery(this).form('validate');
+                },
+                success: function(result){
+                    Man.reload(result);
+                }
+            });
+        }
+
+        jQuery(function(){
+            var am = jQuery("select[name=applicationMode]");
+            am.val(am.attr("value"));
+
+            jQuery("select[ng-model=pid]").change(function(){
+                var pid = jQuery(this).val();
+                var county = jQuery("select[name=county]");
+                var cs = county.find("option:not(:first)");
+                cs.remove();
+                if(pid){
+                    var url = '${base}/bus/gout-enterprises/getCities?pid=' +pid;
+                    jQuery.getJSON( url, function( json ) {
+                        var domesticCity = jQuery("select[name=domesticCity]");
+                        domesticCity.empty();
+                        var options = "";
+                        options += '<option value="">--城市--</option>';
+                        for(var i=0;i<json.length;i++){
+                            options += '<option value="'+json[i].id+'">'+json[i].city+'</option>';
+                        }
+                        domesticCity.append(options);
+                    });
+                }
+            });
+
+            jQuery("select[ng-model=cid]").change(function(){
+                var cid = jQuery(this).val();
+                if(cid){
+                    var url = '${base}/bus/gout-enterprises/getDistricts?cid='+cid;
+                    jQuery.getJSON( url, function( json ) {
+                        var county = jQuery("select[name=county]");
+                        county.empty();
+                        var options = "";
+                        options += '<option value="">--请选择--</option>';
+                        for(var i=0;i<json.length;i++){
+                            options += '<option value="'+json[i].id+'">'+json[i].district+'</option>';
+                        }
+                        county.append(options);
+                    });
+                }
+            });
+
+            function oichange(oic){
+
+                var province = jQuery("select[name=province]");
+                province.find("option:not(:first)").remove();
+                var overseasCity = jQuery("select[name=overseasCity]");
+                overseasCity.find("option:not(:first)").remove();
+                var oicCode = jQuery(oic).val();
+                if(oicCode){
+                    var url = '${base}/bus/gout-enterprises/getStatesAndCities?oicCode=' +oicCode;
+                    jQuery.getJSON( url,function( json ) {
+                        qqjson = json;
+                        if(jQuery.isArray(json)){
+                            var options = "";
+                            for(var i=0;i<json.length;i++){
+                                options += '<option value="'+json[i].code+'">'+json[i].name+'</option>';
+                            }
+                            province.append(options);
+                        }else{
+                            if(json.city){
+                                var cs = json.city;
+                                var options = "";
+                                for(var i=0;i<cs.length;i++){
+                                    options += '<option value="'+cs[i].code+'">'+cs[i].name+'</option>';
+                                }
+                                overseasCity.append(options);
+                            }
+                        }
+                    });
+                }
+            }
+
+            jQuery("select[name=overseasInvestmentCountry]").change(function(){
+                var oic = this;
+                oichange(this);
+            });
+
+
+            jQuery("select[name=province]").change(function(){
+                var overseasCity = jQuery("select[name=overseasCity]");
+                overseasCity.find("option:not(:first)").remove();
+                var sCode = jQuery(this).val();
+                if(sCode){
+                    if(jQuery.isArray(qqjson)){
+                        for(var i=0;i<qqjson.length;i++){
+                            if(sCode==qqjson[i].code){
+                                if(qqjson[i].city){
+                                    var cs = qqjson[i].city;
+                                    var options = "";
+                                    for(var j=0;j<cs.length;j++){
+                                        options += '<option value="'+cs[j].code+'">'+cs[j].name+'</option>';
+                                    }
+                                    overseasCity.append(options);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            //加载国家
+            var url = '${base}/bus/gout-enterprises/getCountries';
+            jQuery.getJSON( url, function( json ) {
+                var countryFirstLevelCompanyLocates = jQuery("select[name=countryFirstLevelCompanyLocates]");
+                countryFirstLevelCompanyLocates.empty();
+                var overseasInvestmentCountry = jQuery("select[name=overseasInvestmentCountry]");
+                overseasInvestmentCountry.empty();
+                var options = "";
+                options += '<option value="">--请选择--</option>';
+                for(var i=0;i<json.length;i++){
+                    options += '<option value="'+json[i].code+'">'+json[i].name+'</option>';
+                }
+                countryFirstLevelCompanyLocates.append(options);
+                overseasInvestmentCountry.append(options);
+
+
+                {
+                    var cfcl = jQuery("select[name=countryFirstLevelCompanyLocates]");
+                    cfcl.val(cfcl.attr("value"));
+                    var oic = jQuery("select[name=overseasInvestmentCountry]");
+                    var oicv = oic.attr("value");
+                    setTimeout(function(){
+                        oic.val(oicv);
+                        oichange(oic);
+                        var pro = jQuery("select[name=province]");
+                        if(pro.attr("value")){
+                            setTimeout(function(){
+                                pro.val(pro.attr("value"));
+                                pro.trigger("change");
+                                setTimeout(function(){
+                                    var overseasCity = jQuery("select[name=overseasCity]");
+                                    var ocv = overseasCity.attr("value");
+                                    if(ocv){
+                                        overseasCity.val(ocv);
+                                    }
+                                },1000);
+                            },1000);
+                        }
+                    },1000);
+                }
+            });
+
+
+            var qqjson = null;
+
+
+            {
+                var cid = jQuery("select[name=domesticCity]").attr("value");
+                var did = jQuery("select[name=county]").attr("value");
+                var url = '${base}/bus/gout-enterprises/getRegion?id='+cid;
+                jQuery.getJSON( url, function( data ) {
+                    var pid = null;
+                    if(data.parent==1){
+                        pid = data.id;
+                    }else{
+                        pid = data.parent;
+                    }
+                    jQuery("select[ng-model=pid]").val(pid);
+                    jQuery("select[ng-model=pid]").trigger("change");
+                    setTimeout(function(){
+                        jQuery("select[name=domesticCity]").val(cid);
+                        jQuery("select[ng-model=cid]").trigger("change");
+                        setTimeout(function(){
+                            jQuery("select[name=county]").val(did);
+                        },600);
+                    },600);
+
+                });
+            }
+        });
+
+    </script>
+    <style type="text/css">
+        td:nth-child(2){
+            width:70%;
+        }
+        select{
+            width:150px;
+            padding-top:2px;
+            padding-bottom:2px;
+            border-radius:5px;
+        }
+
+        [name$=EquityRatio]{
+
+            padding-top:2px;
+            padding-bottom:2px;
+            border-radius:5px;
+        }
+        [name$=EquityRatio]::-webkit-input-placeholder { /* WebKit browsers */
+            text-align:right;
+        }
+        [name$=EquityRatio]:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            text-align:right;
+        }
+        [name$=EquityRatio]::-moz-placeholder { /* Mozilla Firefox 19+ */
+            text-align:right;
+        }
+        [name$=EquityRatio]::-ms-input-placeholder { /* Internet Explorer 10+ */
+            text-align:right;
+        }
+    </style>
+</head>
+<body class="easyui-layout" data-options="fit:true" ng-controller="areaController">
+<div data-options="region:'center',border:false" class="dm_mainarea">
+    <form id="fm" method="post">
+        <input type="hidden" name="id" value="$!{model.id}">
+        <table width="100%" cellpadding="5" data-ng-init="load()">
+            <tr>
+                <td align="left">
+                    投资项目编号
+                </td>
+                <td>
+                    <input name="numberOfInvestmentProjects" required="required" class="easyui-textbox" value="$!{model.numberOfInvestmentProjects}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    申请模式
+                </td>
+                <td>
+                #*<input name="applicationMode" class="easyui-textbox" value="$!{model.applicationMode}">*#
+                    <select name="applicationMode" ng-model="applicationMode" class="easyui-validatebox" required="required" value="$!{model.applicationMode}">
+                        #dicSelect("application_mode")
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    原
+                </td>
+                <td>
+                    <input name="former" class="easyui-textbox" value="$!{model.former}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    现改为
+                </td>
+                <td>
+                    <input name="nowChanged" class="easyui-textbox" value="$!{model.nowChanged}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    变更年份
+                </td>
+                <td>
+                    <input type="number" name="yearChange" step="1" required="required" class="easyui-textbox" value="$!{model.yearChange}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    境内投资主体名称
+                </td>
+                <td>
+                    <input name="domesticInvestorName" required="required" class="easyui-textbox" value="$!{model.domesticInvestorName}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    组织机构代码证号
+                </td>
+                <td>
+                    <input name="organizationCodeNo" required="required" class="easyui-textbox" value="$!{model.organizationCodeNo}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    法定代表人
+                </td>
+                <td>
+                    <input name="legalRepresentative" required="required" class="easyui-textbox" value="$!{model.legalRepresentative}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    注册资金（万元）
+                </td>
+                <td>
+                    <input type="number" required="required" name="registeredCapital" class="easyui-textbox" value="$!{model.registeredCapital}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    办公地址
+                </td>
+                <td>
+                    <input name="officeAddress" required="required" class="easyui-textbox" value="$!{model.officeAddress}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    城市
+                </td>
+                <td>
+                    <select class="easyui-validatebox" ng-model="pid" ng-change="populateCities()" required="required">
+                        <option value="">--省份--</option>
+                        #foreach ($element in $provinces)
+                            <option value="$!{element.id}">$!{element.province}</option>
+                        #end
+                    </select>
+                    <select name="domesticCity" ng-model="cid" ng-change="populateDistricts()" class="easyui-validatebox" required="required" value="$!{model.domesticCity}">
+                        <option value="">--城市--</option>
+                        <option ng-repeat="city in cities" value="{{city.id}}">{{city.city}}</option>
+                    </select>
+                #*<input name="domesticCity" class="easyui-textbox" value="$!{model.domesticCity}">*#
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    区县
+                </td>
+                <td>
+                #*<input name="county" class="easyui-textbox" value="$!{model.county}">*#
+                    <select name="county" ng-model="did" class="easyui-validatebox" required="required" value="$!{model.county}">
+                        <option value="">--请选择--</option>
+                        <option ng-repeat="d in districts" value="{{d.id}}">{{d.district}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    联系人姓名
+                </td>
+                <td>
+                    <input name="contactName" required="required" class="easyui-textbox" value="$!{model.contactName}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    联系人座机
+                </td>
+                <td>
+                    <input name="contactLandline" required="required" class="easyui-textbox" value="$!{model.contactLandline}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    联系人传真
+                </td>
+                <td>
+                    <input name="contactFax" class="easyui-textbox" value="$!{model.contactFax}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    联系人手机
+                </td>
+                <td>
+                    <input type="tel" required="required" name="contactPhone" class="easyui-textbox" value="$!{model.contactPhone}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    联系人电子邮件
+                </td>
+                <td>
+                    <input type="email" name="contactEmail" class="easyui-textbox" value="$!{model.contactEmail}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    归属最终母公司全称
+                </td>
+                <td>
+                    <input required name="fullNameOfTheUltimateParent" class="easyui-textbox" value="$!{model.fullNameOfTheUltimateParent}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    境外企业名称(中文)
+                </td>
+                <td>
+                    <input required name="overseasCompanyChineseName" class="easyui-textbox" value="$!{model.overseasCompanyChineseName}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    境外企业名称(外文)
+                </td>
+                <td>
+                    <input required name="overseasCompanyForeignName" class="easyui-textbox" value="$!{model.overseasCompanyForeignName}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    第一层级公司名称
+                </td>
+                <td>
+                    <input name="firstLevelCompanyName" class="easyui-textbox" value="$!{model.firstLevelCompanyName}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    第一层级公司所处国别（地区）
+                </td>
+                <td>
+                #*<input list="countries" required="required" style="border-radius:5px;padding-bottom: 3px;padding-top: 3px;" name="countryFirstLevelCompanyLocates" class="easyui-validatebox" value="$!{model.countryFirstLevelCompanyLocates}">
+              <datalist id="countries" style="height:150px;overflow-y:auto;">
+                  <option ng-repeat="c in countries" value="{{c.name}}">
+              </datalist>*#
+                    <select required="required" name="countryFirstLevelCompanyLocates" class="easyui-validatebox" value="$!{model.countryFirstLevelCompanyLocates}">
+                        <option value="">--请选择--</option>
+                        <option ng-repeat="c in countries" value="{{c.code}}">{{c.name}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    国家（地区）
+                </td>
+                <td>
+                #*<input name="overseasInvestmentCountry" class="easyui-textbox" value="$!{model.overseasInvestmentCountry}">*#
+                    <select name="overseasInvestmentCountry" ng-model="oicCode" ng-change="populateStatesAndCities()" required class="easyui-validatebox" value="$!{model.overseasInvestmentCountry}">
+                        <option value="">--请选择--</option>
+                        <option ng-repeat="c in countries" value="{{c.code}}">{{c.name}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    省（州）
+                </td>
+                <td>
+                #*<input name="province" class="easyui-textbox" value="$!{model.province}">*#
+                    <select name="province" id="province" ng-model="sCode" ng-change="populateConurbations()" value="$!{model.province}">
+                        <option value="">--请选择--</option>
+                        <option ng-repeat="s in states" value="{{s.code}}">{{s.name}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    城市
+                </td>
+                <td>
+                #*<input name="overseasCity" class="easyui-textbox" value="$!{model.overseasCity}">*#
+                    <select name="overseasCity" value="$!{model.overseasCity}">
+                        <option value="">--请选择--</option>
+                        <option ng-repeat="c in conurbations" value="{{c.code}}">{{c.name}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    中方股东名称
+                </td>
+                <td>
+                    <input name="chineseShareholder" required class="easyui-textbox" value="$!{model.chineseShareholder}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    中方股比
+                </td>
+                <td>
+                    <input placeholder="%" name="chineseEquityRatio" value="$!{model.chineseEquityRatio}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    外方股东名称
+                </td>
+                <td>
+                    <input name="foreignShareholder" class="easyui-textbox" value="$!{model.foreignShareholder}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    外方股比
+                </td>
+                <td>
+                    <input name="foreignEquityRatio" placeholder="%" value="$!{model.foreignEquityRatio}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    境外企业经营范围
+                </td>
+                <td>
+                    <input name="overseasBusinessScope" class="easyui-textbox" value="$!{model.overseasBusinessScope}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    境外企业所属行业
+                </td>
+                <td>
+                #*<input name="overseasEnterpriseIndustry" class="easyui-textbox" value="$!{model.overseasEnterpriseIndustry}">*#
+                    <select name="overseasEnterpriseIndustry" class="easyui-validatebox" required value="$!{model.overseasEnterpriseIndustry}">
+                        #dicSelect("trade",$!{model.overseasEnterpriseIndustry})
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    投资总额（美金)
+                </td>
+                <td>
+                    <input type="number" name="totalInvestment" class="easyui-textbox" value="$!{model.totalInvestment}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    中方投资额（美元/人民币）
+                </td>
+                <td>
+                    <input name="chineseInvestment" class="easyui-textbox" value="$!{model.chineseInvestment}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    外方投资额
+                </td>
+                <td>
+                    <input name="foreignInvestment" class="easyui-textbox" value="$!{model.foreignInvestment}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    投资动机（营销网络）
+                </td>
+                <td>
+                    <input name="marketingNetwork" class="easyui-textbox" value="$!{model.marketingNetwork}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    带动出口（万美金）
+                </td>
+                <td>
+                    <input name="stimulateExports" class="easyui-textbox" value="$!{model.stimulateExports}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    带动进口（万美金）
+                </td>
+                <td>
+                    <input name="stimulateImports" class="easyui-textbox" value="$!{model.stimulateImports}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    投资动机（品牌收购）
+                </td>
+                <td>
+                    <input name="brandAcquisitions" class="easyui-textbox" value="$!{model.brandAcquisitions}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    获得品牌名称
+                </td>
+                <td>
+                    <input name="obtainBrandName" class="easyui-textbox" value="$!{model.obtainBrandName}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    投资动机（技术研发）
+                </td>
+                <td>
+                    <input name="technologyResearch" class="easyui-textbox" value="$!{model.technologyResearch}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    获得技术
+                </td>
+                <td>
+                    <input name="technologyAcquired" class="easyui-textbox" value="$!{model.technologyAcquired}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    投资动机（工程开发）
+                </td>
+                <td>
+                    <input name="engineeringDevelopment" class="easyui-textbox" value="$!{model.engineeringDevelopment}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    带动营业额
+                </td>
+                <td>
+                    <input name="boostingSales" class="easyui-textbox" value="$!{model.boostingSales}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    投资动机（资源开发）
+                </td>
+                <td>
+                    <input name="resourceDevelopment" class="easyui-textbox" value="$!{model.resourceDevelopment}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    资源回运量
+                </td>
+                <td>
+                    <input name="resourcesBackShipments" class="easyui-textbox" value="$!{model.resourcesBackShipments}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    资源开发量
+                </td>
+                <td>
+                    <input name="resourcesAmount" class="easyui-textbox" value="$!{model.resourcesAmount}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    资源名称
+                </td>
+                <td>
+                    <input name="resourceName" class="easyui-textbox" value="$!{model.resourceName}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    投资动机（产业链延伸）
+                </td>
+                <td>
+                    <input name="extensionOfIndustrialChain" class="easyui-textbox" value="$!{model.extensionOfIndustrialChain}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    简述
+                </td>
+                <td>
+                    <input name="sketch" class="easyui-textbox" value="$!{model.sketch}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    投资动机（其他）
+                </td>
+                <td>
+                    <input name="rests" class="easyui-textbox" value="$!{model.rests}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    投资回报年限
+                </td>
+                <td>
+                    <input type="number" min="0" name="paybackPeriod" class="easyui-textbox" value="$!{model.paybackPeriod}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    备注
+                </td>
+                <td>
+                    <input name="remark" class="easyui-textbox" value="$!{model.remark}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    附件
+                </td>
+                <td>
+                    <input name="accessory" class="easyui-textbox" value="$!{model.accessory}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    排序
+                </td>
+                <td>
+                    <input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div region="south" border="false" class="dm_btnarea">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+</div>
+</body>
+</html>

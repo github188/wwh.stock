@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>沪深A股停复牌提示编辑</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/hsa/suspension-detail/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<input type="hidden" name="id" value="$!{model.id}">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		代码
+    			 	</td>
+    			 	<td>
+						<input name="code" class="easyui-textbox" value="$!{model.code}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		简称
+    			 	</td>
+    			 	<td>
+						<input name="name" class="easyui-textbox" value="$!{model.name}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		相关资料
+    			 	</td>
+    			 	<td>
+						<input name="relativeInfo" class="easyui-textbox" value="$!{model.relativeInfo}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		停牌时间
+    			 	</td>
+    			 	<td>
+						<input name="startDate" class="easyui-textbox" value="$!{model.startDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		停牌截止时间
+    			 	</td>
+    			 	<td>
+						<input name="endDate" class="easyui-textbox" value="$!{model.endDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		预计复牌时间
+    			 	</td>
+    			 	<td>
+						<input name="resumeDate" class="easyui-textbox" value="$!{model.resumeDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		停牌期限
+    			 	</td>
+    			 	<td>
+						<input name="suspensionPeriod" class="easyui-textbox" value="$!{model.suspensionPeriod}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		停牌原因
+    			 	</td>
+    			 	<td>
+						<input name="suspensionReason" class="easyui-textbox" value="$!{model.suspensionReason}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		备注
+    			 	</td>
+    			 	<td>
+						<input name="memo" class="easyui-textbox" value="$!{model.memo}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		顺序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+     <div region="south" border="false" class="dm_btnarea">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

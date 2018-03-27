@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.mmb.domain.Member">
+	<resultMap id="get-Member-result" type="Member">
+		<id property="id" column="ID" />
+		<!-- 账号（邮箱）-->
+		<result property="email" column="email" />
+		<!-- 密码-->
+		<result property="password" column="password" />
+		<!-- 注册类型-->
+		<result property="registrationType" column="registration_type" />
+		<!-- 用户区域-->
+		<result property="userArea" column="user_area" />
+		<!-- 手机号码-->
+		<result property="mobileNumber" column="mobile_number" />
+		<!-- 真实姓名-->
+		<result property="realName" column="real_name" />
+		<!-- 身份证号-->
+		<result property="idNumber" column="id_number" />
+		<!-- 联系地址-->
+		<result property="address" column="address" />
+		<!-- 所在地类型-->
+		<result property="locationType" column="location_type" />
+		<!-- 所在地-->
+		<result property="location" column="location" />
+		<!-- -->
+		<result property="organization" column="organization" />
+		<!-- 行业类别-->
+		<result property="industry" column="industry" />
+		<!-- 联系人-->
+		<result property="contact" column="contact" />
+		<!-- -->
+		<result property="phone" column="phone" />
+		<!-- -->
+		<result property="fax" column="fax" />
+		<!-- 单位简介-->
+		<result property="synopsis" column="synopsis" />
+		<!-- 营业执照-->
+		<result property="businessLicense" column="business_license" />
+		<!-- 组织机构代码证-->
+		<result property="organizationCodeCertificate" column="organization_code_certificate" />
+		<!-- -->
+		<result property="officialLetter" column="official_letter" />
+		<!-- 激活码-->
+		<result property="activation" column="activation" />
+		<!-- -->
+		<result property="status" column="status" />
+		<!-- 会员等级-->
+		<result property="mmbLevel" column="mmb_level" />
+		<!-- 排序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="Member_Base_Column_List">
+		ID,
+		<!-- 账号（邮箱）-->
+		email,
+		<!-- 密码-->
+		password,
+		<!-- 注册类型-->
+		registration_type,
+		<!-- 用户区域-->
+		user_area,
+		<!-- 手机号码-->
+		mobile_number,
+		<!-- 真实姓名-->
+		real_name,
+		<!-- 身份证号-->
+		id_number,
+		<!-- 联系地址-->
+		address,
+		<!-- 所在地类型-->
+		location_type,
+		<!-- 所在地-->
+		location,
+		<!-- -->
+		organization,
+		<!-- 行业类别-->
+		industry,
+		<!-- 联系人-->
+		contact,
+		<!-- -->
+		phone,
+		<!-- -->
+		<!-- 单位简介-->
+		fax,
+		synopsis,
+		<!-- 营业执照-->
+		business_license,
+		<!-- 组织机构代码证-->
+		organization_code_certificate,
+		<!-- -->
+		official_letter,
+		<!-- 激活码-->
+		activation,
+		<!-- -->
+		status,
+		<!-- 会员等级-->
+		mmb_level,
+		<!-- 排序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="Member_get" resultMap="get-Member-result">
+		SELECT
+		<include refid="Member_Base_Column_List" />
+		FROM
+		mmb_member
+		where
+		ID = #{id}
+	</select>
+
+	<select id="Member_list" resultMap="get-Member-result">
+		SELECT
+		<include refid="Member_Base_Column_List" />
+		FROM
+		mmb_member
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="Member_insert" parameterType="Member" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO mmb_member(
+		email,
+		password,
+		registration_type,
+		user_area,
+		mobile_number,
+		real_name,
+		id_number,
+		address,
+		location_type,
+		location,
+		organization,
+		industry,
+		contact,
+		phone,
+		fax,
+		synopsis,
+		business_license,
+		organization_code_certificate,
+		official_letter,
+		activation,
+		status,
+		mmb_level,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{email},
+		PASSWORD(#{password}),
+		#{registrationType},
+		#{userArea},
+		#{mobileNumber},
+		#{realName},
+		#{idNumber},
+		#{address},
+		#{locationType},
+		#{location},
+		#{organization},
+		#{industry},
+		#{contact},
+		#{phone},
+		#{fax},
+		#{synopsis},
+		#{businessLicense},
+		#{organizationCodeCertificate},
+		#{officialLetter},
+		#{activation},
+		#{status},
+		#{mmbLevel},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="Member_update" parameterType="Member">
+		UPDATE mmb_member
+		set
+		email = #{email},
+		password = PASSWORD(#{password}),
+		registration_type = #{registrationType},
+		user_area = #{userArea},
+		mobile_number = #{mobileNumber},
+		real_name = #{realName},
+		id_number = #{idNumber},
+		address = #{address},
+		location_type = #{locationType},
+		location = #{location},
+		organization = #{organization},
+		industry = #{industry},
+		contact = #{contact},
+		phone = #{phone},
+		fax = #{fax},
+		synopsis = #{synopsis},
+		business_license = #{businessLicense},
+		organization_code_certificate = #{organizationCodeCertificate},
+		official_letter = #{officialLetter},
+		activation = #{activation},
+		status = #{status},
+		mmb_level = #{mmbLevel},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="Member_updateSelective" parameterType="map">
+		UPDATE mmb_member
+		set
+		<if test="record.email != null" >
+			email = #{email},
+		</if>
+		<if test="record.password != null" >
+			password = PASSWORD(#{password}),
+		</if>
+		<if test="record.registrationType != null" >
+			registration_type = #{registrationType},
+		</if>
+		<if test="record.userArea != null" >
+			user_area = #{userArea},
+		</if>
+		<if test="record.mobileNumber != null" >
+			mobile_number = #{mobileNumber},
+		</if>
+		<if test="record.realName != null" >
+			real_name = #{realName},
+		</if>
+		<if test="record.idNumber != null" >
+			id_number = #{idNumber},
+		</if>
+		<if test="record.address != null" >
+			address = #{address},
+		</if>
+		<if test="record.locationType != null" >
+			location_type = #{locationType},
+		</if>
+		<if test="record.location != null" >
+			location = #{location},
+		</if>
+		<if test="record.organization != null" >
+			organization = #{organization},
+		</if>
+		<if test="record.industry != null" >
+			industry = #{industry},
+		</if>
+		<if test="record.contact != null" >
+			contact = #{contact},
+		</if>
+		<if test="record.phone != null" >
+			phone = #{phone},
+		</if>
+		<if test="record.fax != null" >
+			fax = #{fax},
+		</if>
+		<if test="record.synopsis != null" >
+			synopsis = #{synopsis},
+		</if>
+		<if test="record.businessLicense != null" >
+			business_license = #{businessLicense},
+		</if>
+		<if test="record.organizationCodeCertificate != null" >
+			organization_code_certificate = #{organizationCodeCertificate},
+		</if>
+		<if test="record.officialLetter != null" >
+			official_letter = #{officialLetter},
+		</if>
+		<if test="record.activation != null" >
+			activation = #{activation},
+		</if>
+		<if test="record.status != null" >
+			status = #{status},
+		</if>
+		<if test="record.mmbLevel != null" >
+			mmb_level = #{mmbLevel},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="Member_logicDelete" parameterType="Member">
+		UPDATE mmb_member
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="Member_examination_passed" parameterType="map">
+		UPDATE mmb_member mm SET mm.`status` = '2' WHERE mm.`status` = '1' AND mm.`id` = #{id}
+	</update>
+	<delete id="Member_delete" parameterType="Member">
+		DELETE FROM mmb_member
+		WHERE
+		ID = #{id}
+	</delete>
+	<select id="Member_byPhone" resultType="long">
+		SELECT
+		count(0)
+		FROM
+		drm_member
+		where
+		mobile_number = #{phone}
+		AND valid ='1'
+	</select>
+	
+	<select id="Member_chgpass_count" resultType="map">
+		SELECT count(1) as cnt
+		from mmb_member
+		WHERE
+		id = #{userId}
+		and password = #{oldpass}
+	</select>
+
+	<update id="Member_chgpass" parameterType="map">
+		UPDATE mmb_member
+		set
+		password=#{password}
+		,UPDATE_DATE = now()
+		WHERE
+		id = #{userId}
+		and password = #{oldpass}
+	</update>
+</mapper>

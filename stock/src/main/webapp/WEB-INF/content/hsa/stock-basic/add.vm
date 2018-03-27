@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>沪深A股基本信息新增</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/hsa/stock-basic/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		代码
+    			 	</td>
+    			 	<td>
+						<input name="code" class="easyui-textbox" value="$!{model.code}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		简称
+    			 	</td>
+    			 	<td>
+						<input name="name" class="easyui-textbox" value="$!{model.name}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		流通股本
+    			 	</td>
+    			 	<td>
+						<input name="circulationEquity" class="easyui-textbox" value="$!{model.circulationEquity}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		总股本
+    			 	</td>
+    			 	<td>
+						<input name="totalEquity" class="easyui-textbox" value="$!{model.totalEquity}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		每股收益
+    			 	</td>
+    			 	<td>
+						<input name="perProfit" class="easyui-textbox" value="$!{model.perProfit}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		每股净资产
+    			 	</td>
+    			 	<td>
+						<input name="netAssets" class="easyui-textbox" value="$!{model.netAssets}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		每股未分配利润
+    			 	</td>
+    			 	<td>
+						<input name="ndistribProfit" class="easyui-textbox" value="$!{model.ndistribProfit}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		每股资本公积金
+    			 	</td>
+    			 	<td>
+						<input name="capitalFund" class="easyui-textbox" value="$!{model.capitalFund}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		净资产收益率
+    			 	</td>
+    			 	<td>
+						<input name="assetsYield" class="easyui-textbox" value="$!{model.assetsYield}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		主营业务收入
+    			 	</td>
+    			 	<td>
+						<input name="mainRevenue" class="easyui-textbox" value="$!{model.mainRevenue}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		净利润
+    			 	</td>
+    			 	<td>
+						<input name="netProfit" class="easyui-textbox" value="$!{model.netProfit}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		净利润描述
+    			 	</td>
+    			 	<td>
+						<input name="profitDescribe" class="easyui-textbox" value="$!{model.profitDescribe}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		主营业务
+    			 	</td>
+    			 	<td>
+						<input name="mainBusiness" class="easyui-textbox" value="$!{model.mainBusiness}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		所属板块
+    			 	</td>
+    			 	<td>
+						<input name="thePlate" class="easyui-textbox" value="$!{model.thePlate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		上市日期
+    			 	</td>
+    			 	<td>
+						<input name="openDate" class="easyui-textbox" value="$!{model.openDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		备注
+    			 	</td>
+    			 	<td>
+						<input name="memo" class="easyui-textbox" value="$!{model.memo}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		顺序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+	<div region="south" border="false" class="dm_btnarea">
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

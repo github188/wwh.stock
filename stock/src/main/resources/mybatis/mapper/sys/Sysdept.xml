@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.sys.domain.Sysdept">
+	<resultMap id="get-Sysdept-result" type="Sysdept">
+		<id property="id" column="ID" />
+		<!-- 父部门编号-->
+		<result property="upId" column="up_id" />
+		<!-- 部门类型-->
+		<result property="deptType" column="dept_type" />
+		<!-- 部门编码-->
+		<result property="deptCode" column="dept_code" />
+		<!-- 部门名称-->
+		<result property="deptName" column="dept_name" />
+		<!-- 部门职能-->
+		<result property="deptFunction" column="dept_function" />
+		<!-- 部门描述-->
+		<result property="deptDesc" column="dept_desc" />
+		<!-- 负责人-->
+		<result property="manager" column="manager" />
+		<!-- 联系电话-->
+		<result property="phone" column="phone" />
+		<!-- 备注-->
+		<result property="memo" column="memo" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="Sysdept_Base_Column_List">
+		ID,
+		<!-- 父部门编号-->
+		up_id,
+		<!-- 部门类型-->
+		dept_type,
+		<!-- 部门编码-->
+		dept_code,
+		<!-- 部门名称-->
+		dept_name,
+		<!-- 部门职能-->
+		dept_function,
+		<!-- 部门描述-->
+		dept_desc,
+		<!-- 负责人-->
+		manager,
+		<!-- 联系电话-->
+		phone,
+		<!-- 备注-->
+		memo,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+
+	<resultMap id="get-Sysdept-result-withpapa" type="Sysdept">
+		<id property="id" column="ID" />
+		<!-- 父部门编号-->
+		<result property="upId" column="up_id" />
+		<!-- 部门类型-->
+		<result property="deptType" column="dept_type" />
+		<!-- 部门编码-->
+		<result property="deptCode" column="dept_code" />
+		<!-- 部门名称-->
+		<result property="deptName" column="dept_name" />
+		<!-- 部门职能-->
+		<result property="deptFunction" column="dept_function" />
+		<!-- 部门描述-->
+		<result property="deptDesc" column="dept_desc" />
+		<!-- 负责人-->
+		<result property="manager" column="manager" />
+		<!-- 联系电话-->
+		<result property="phone" column="phone" />
+		<!-- 备注-->
+		<result property="memo" column="memo" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+		<!-- 上级菜单-->
+		<association property="papa" column="up_id" select="getPapa" />
+	</resultMap>
+
+	<!-- 获取上级菜单 -->
+	<select id="getPapa"  resultMap="get-Sysdept-result">
+		SELECT
+		<include refid="Sysdept_Base_Column_List" />
+		FROM
+		sys_sysdept
+		where
+		ID = #{value}
+	</select>
+
+	<select id="Sysdept_get" resultMap="get-Sysdept-result-withpapa">
+		SELECT
+		<include refid="Sysdept_Base_Column_List" />
+		FROM
+		sys_sysdept
+		where
+		ID = #{id}
+	</select>
+
+	<select id="Sysdept_list" resultMap="get-Sysdept-result">
+		SELECT
+		<include refid="Sysdept_Base_Column_List" />
+		FROM
+		sys_sysdept
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="Sysdept_insert" parameterType="Sysdept" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO sys_sysdept(
+		up_id,
+		dept_type,
+		dept_code,
+		dept_name,
+		dept_function,
+		dept_desc,
+		manager,
+		phone,
+		memo,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{upId},
+		#{deptType},
+		#{deptCode},
+		#{deptName},
+		#{deptFunction},
+		#{deptDesc},
+		#{manager},
+		#{phone},
+		#{memo},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="Sysdept_update" parameterType="Sysdept">
+		UPDATE sys_sysdept
+		set
+		up_id = #{upId},
+		dept_type = #{deptType},
+		dept_code = #{deptCode},
+		dept_name = #{deptName},
+		dept_function = #{deptFunction},
+		dept_desc = #{deptDesc},
+		manager = #{manager},
+		phone = #{phone},
+		memo = #{memo},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="Sysdept_updateSelective" parameterType="map">
+		UPDATE sys_sysdept
+		set
+		<if test="record.upId != null" >
+			up_id = #{upId},
+		</if>
+		<if test="record.deptType != null" >
+			dept_type = #{deptType},
+		</if>
+		<if test="record.deptCode != null" >
+			dept_code = #{deptCode},
+		</if>
+		<if test="record.deptName != null" >
+			dept_name = #{deptName},
+		</if>
+		<if test="record.deptFunction != null" >
+			dept_function = #{deptFunction},
+		</if>
+		<if test="record.deptDesc != null" >
+			dept_desc = #{deptDesc},
+		</if>
+		<if test="record.manager != null" >
+			manager = #{manager},
+		</if>
+		<if test="record.phone != null" >
+			phone = #{phone},
+		</if>
+		<if test="record.memo != null" >
+			memo = #{memo},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="Sysdept_logicDelete" parameterType="Sysdept">
+		UPDATE sys_sysdept
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="Sysdept_delete" parameterType="Sysdept">
+		DELETE FROM sys_sysdept
+		WHERE
+		ID = #{id}
+	</delete>
+
+	<select id="Sysdept_tree_list" resultMap="get-Sysdept-result">
+		SELECT
+		<include refid="Sysdept_Base_Column_List" />
+		FROM
+		sys_sysdept
+		where valid = '1'
+		<if test="upId != null">
+			and up_id = #{upId}
+		</if>
+		<if test="deptCode != null">
+			and dept_code = #{deptCode}
+		</if>
+		<if test="deptName != null">
+			and dept_name = #{deptName}
+		</if>
+		order by order_by
+	</select>
+
+	<!-- 检索件数 -->
+	<select id="Sysdept_tree_count" resultType="java.lang.Integer">
+		SELECT count(1)
+		FROM
+		sys_sysdept
+		where valid = '1'
+		<if test="upId != null">
+			and up_id = #{upId}
+		</if>
+		<if test="deptCode != null">
+			and dept_code = #{deptCode}
+		</if>
+		<if test="deptName != null">
+			and dept_name = #{deptName}
+		</if>
+	</select>
+
+	<select id="Sysdept_tree_all" resultType="map">
+		SELECT id, up_id, dept_code, dept_name
+		FROM sys_sysdept
+		 WHERE FIND_IN_SET(id, fun_dept_tree(#{id}))
+		order by  FIND_IN_SET(id, fun_dept_tree(#{id}))
+	</select>
+</mapper>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>菜单管理编辑</title>
+	#parse("commons/commonCss.vm")
+	#parse("commons/commonJs.vm")
+    <script type="text/javascript">
+        function save(){
+            jQuery('#fm').form('submit',{
+                url: '${base}/sys/rolemenu/save',
+                onSubmit: function(){
+                    if (document.getElementById("check1").checked == true) {
+                        $("#isShow").attr("value", '1');
+                    } else {
+                        $("#isShow").attr("value", '0');
+                    }
+                    return jQuery(this).form('validate');
+                },
+                success: function(result){
+                    result = jQuery.parseJSON(result);
+                    Man.reload(result);
+                    if(result.success){
+                        // 找到父亲页面（相对）
+                        var obj = Man.findpapa();
+
+                        var node = obj.jQuery('#grid').treegrid('getSelected');
+                        obj.jQuery('#grid').treegrid('reload', node._parentId);
+                        obj.jQuery('#grid').treegrid('expand', node._parentId);
+                        obj.jQuery('#grid').treegrid('unselectAll');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false" class="dm_mainarea">
+    <form id="fm" method="post">
+        <input type="hidden" name="id" value="$!{model.id}">
+        <table width="100%" cellpadding="5" class="gridpub">
+            <tr>
+                <td class="title" align="left">
+                    父菜单编码
+                </td>
+                <td>
+                    <input name="upmenuCode" class="easyui-textbox" value="$!{model.upCategory.menuCode}" disabled style="width: 300px">
+                    <input type="hidden" name="upId" id="upId" value="$!{model.upCategory.id}">
+                    <input type="hidden" id="oldName" value="$!{model.menuName}">
+                    <input type="hidden" id="oldCd" value="$!{model.menuCode}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    父菜单名称
+                </td>
+                <td>
+                    <input name="upmenuName" class="easyui-textbox" value="$!{model.upCategory.menuName}" disabled style="width: 300px">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    菜单编码
+                </td>
+                <td>
+                    <input name="menuCode" class="easyui-textbox" value="$!{model.menuCode}" data-options="required:true,validType:['notblank','catCdCheck']"  style="width: 300px" maxlength="20" required>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    菜单名称
+                </td>
+                <td>
+                    <input name="menuName" class="easyui-textbox" value="$!{model.menuName}" data-options="required:true,validType:['notblank','menuNameCheck']" style="width: 300px" maxlength="50" required>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    菜单类型
+                </td>
+                <td>
+                    <select id="menuOrg" name="menuOrg" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'"  style="width: 300px">
+						#set($temp="$!{model.menuOrg}")
+						#dicSelect("menu_type",$temp)
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    菜单动作URL
+                </td>
+                <td>
+                    <input name="menuAct" class="easyui-textbox" value="$!{model.menuAct}" data-options=""  style="width: 300px" maxlength="200">
+                </td>
+            </tr>
+			#if ($!{model.upCategory.id} != '-1-')
+                <tr>
+                    <td align="left">
+                        是否显示
+                    </td>
+                    <td>
+                        <input type="checkbox" class="check_box" id="check1">
+                        <input type="hidden" name="isShow" id="isShow" value="$!{model.isShow}"/>
+                        <script>
+                            if ($("#isShow").val() == '1') {
+                                $("#check1").attr("checked", true);
+                            }
+                        </script>
+                    </td>
+                    <script>
+                    </script>
+                </tr>
+			#end
+            <tr>
+                <td align="left">
+                    顺序
+                </td>
+                <td>
+                    <input name="orderBy" class="easyui-numberbox" value="$!{model.orderBy}" style="width: 300px" maxlength="10" required>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div region="south" border="false" class="dm_btnarea">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+</div>
+<script>
+    jQuery.extend(jQuery.fn.validatebox.defaults.rules, {
+        menuNameCheck: {
+            validator: function(value, param){
+                if (value == jQuery("#oldName").val()) {
+                    return "true";
+                }
+                var _2f=jQuery.ajax({url:'${base}/sys/rolemenu/validate',dataType:"json",data:{menuName:value,upId:$("#upId").val()},async:false,cache:false,type:"post"}).responseText;
+                return _2f=="true";
+            },
+            message: '菜单名称已存在'
+        }
+    });
+
+    jQuery.extend(jQuery.fn.validatebox.defaults.rules, {
+        catCdCheck: {
+            validator: function(value, param){
+                if (value == jQuery("#oldCd").val()) {
+                    return "true";
+                }
+                var _2f=jQuery.ajax({url:'${base}/sys/rolemenu/validate',dataType:"json",data:{menuCode:value},async:false,cache:false,type:"post"}).responseText;
+                return _2f=="true";
+            },
+            message: '菜单编码已存在'
+        }
+    });
+
+
+</script>
+</body>
+</html>

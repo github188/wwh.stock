@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>栏目列表</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+<!-- 左侧菜单开始-->
+<div data-options="region:'west',split:true" title="平台栏目管理" style="width: 200px; overflow: hidden;overflow-y:auto;">
+
+    <div style=" background:#f8f8f8; border:1px solid #ccc;text-align:left;">
+        <a onclick="jQuery('#grid').tree('reload');" href="javascript:void(0);" class="easyui-linkbutton"
+           iconCls="icon-reload" style="margin:5px;">刷新</a>
+        语言：<select id="gbl_lang" class="easyui-combobox" style="width:70px" data-options="panelHeight:'auto',editable:false, onSelect: function(rec){onThirdClick(rec);}">
+        #dicOptions("lang") </select>
+    </div>
+    <table id="grid" width="60px" border="0" cellpadding="0" cellspacing="0"></table>
+</div>
+<input type="hidden" id="needReload" value="0"/>
+<!-- 左侧菜单结束 -->
+<div id="mainPanle" region="center" style="overflow: hidden;">
+</div>
+<input type="button" id="reload" class="button" onclick="treeUpdate()"/>
+<script type="text/javascript">
+    function onThirdClick(rec) {
+        var node = $('#grid').tree("getSelected");
+        if (node) {
+            treeclick(node);
+        }
+    }
+
+    function treeclick(node) {
+        $('#loading-mask').fadeOut();
+
+        $("#mainPanle").empty();
+//                if (node.id == -1) {
+//                    return false;
+//                }
+        if ($('#win').length == 0) {
+            $("#mainPanle").append('<iframe name="infoframe" id="infoframe"  frameborder="0" style="border:0;width:100%;height:100%;">');
+        }
+
+        // iframe加载监听
+        document.getElementById('infoframe').onload = function() {
+            $.dream.closetip();
+        }
+
+        var gbl_lang = $('#gbl_lang').combobox('getValue');
+        $.dream.tip("");
+        $('#infoframe')[0].src = '$!{base}/pub/content#' + node.id + ':' + gbl_lang + ':' + node.text + ':' + node.attributes;
+    }
+    //绑定菜单事件
+    $(function () {
+        $('#grid').tree({
+            url: 'treeinfo',
+            checkbox: false,
+            onlyLeafCheck: true,
+            dnd: false,
+            //点击事件
+            onClick: function(node) {treeclick(node);}
+        });
+    });
+
+</script>
+</body>
+</html>

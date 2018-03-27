@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.hsa.domain.IndustryData">
+	<resultMap id="get-IndustryData-result" type="IndustryData">
+		<id property="id" column="ID" />
+		<!-- 板块编码-->
+		<result property="industryId" column="industry_id" />
+		<!-- 板块名称-->
+		<result property="industryName" column="industry_name" />
+		<!-- 股票数量-->
+		<result property="stockNum" column="stock_num" />
+		<!-- 加权涨跌幅-->
+		<result property="udWidth" column="ud_width" />
+		<!-- 上涨家数-->
+		<result property="upNum" column="up_num" />
+		<!-- 涨幅-->
+		<result property="upWidth" column="up_width" />
+		<!-- 下跌家数-->
+		<result property="downNum" column="down_num" />
+		<!-- 跌幅-->
+		<result property="downWidth" column="down_width" />
+		<!-- 成交量(手)-->
+		<result property="volume" column="volume" />
+		<!-- 成交额(万元)-->
+		<result property="turnVolume" column="turn_volume" />
+		<!-- 总流通市值-->
+		<result property="circuValue" column="circu_value" />
+		<!-- 网址-->
+		<result property="netAddress" column="net_address" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 网站标志-->
+		<result property="netFlag" column="net_flag" />
+		<!-- 相关资讯-->
+		<result property="fundAddress" column="fund_address" />
+		<!-- 换手率(%)-->
+		<result property="turnoverRate" column="turnover_rate" />
+		<!-- 领涨股票-->
+		<result property="stockName" column="stock_name" />
+		<!-- 股票网址-->
+		<result property="stockAddress" column="stock_address" />
+		<!-- 涨跌幅-->
+		<result property="stockWidth" column="stock_width" />
+		<!-- 板块类别-->
+		<result property="industryType" column="industry_type" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="IndustryData_Base_Column_List">
+		ID,
+		<!-- 板块编码-->
+		industry_id,
+		<!-- 板块名称-->
+		industry_name,
+		<!-- 股票数量-->
+		stock_num,
+		<!-- 加权涨跌幅-->
+		ud_width,
+		<!-- 上涨家数-->
+		up_num,
+		<!-- 涨幅-->
+		up_width,
+		<!-- 下跌家数-->
+		down_num,
+		<!-- 跌幅-->
+		down_width,
+		<!-- 成交量(手)-->
+		volume,
+		<!-- 成交额(万元)-->
+		turn_volume,
+		<!-- 总流通市值-->
+		circu_value,
+		<!-- 网址-->
+		net_address,
+		<!-- 顺序-->
+		order_by,
+		<!-- 网站标志-->
+		net_flag,
+		<!-- 相关资讯-->
+		fund_address,
+		<!-- 换手率(%)-->
+		turnover_rate,
+		<!-- 领涨股票-->
+		stock_name,
+		<!-- 股票网址-->
+		stock_address,
+		<!-- 涨跌幅-->
+		stock_width,
+		<!-- 板块类别-->
+		industry_type,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="IndustryData_get" resultMap="get-IndustryData-result">
+		SELECT
+		<include refid="IndustryData_Base_Column_List" />
+		FROM
+		hsa_industry_data
+		where
+		ID = #{id}
+	</select>
+
+	<select id="IndustryData_list" resultMap="get-IndustryData-result">
+		SELECT
+		<include refid="IndustryData_Base_Column_List" />
+		FROM
+		hsa_industry_data
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+    <select id="IndustryData_custlist"  resultMap="get-IndustryData-result">
+        SELECT
+	        <include refid="IndustryData_Base_Column_List" />
+        FROM
+		hsa_industry_data
+        WHERE valid='1'
+		            <if test="industryId != null and industryId != ''">
+                AND industry_id = #{industryId}
+            </if>
+		            <if test="industryName != null and industryName != ''">
+                AND industry_name = #{industryName}
+            </if>
+		            <if test="stockNum != null and stockNum != ''">
+                AND stock_num = #{stockNum}
+            </if>
+		            <if test="udWidth != null and udWidth != ''">
+                AND ud_width = #{udWidth}
+            </if>
+		            <if test="upNum != null and upNum != ''">
+                AND up_num = #{upNum}
+            </if>
+		            <if test="upWidth != null and upWidth != ''">
+                AND up_width = #{upWidth}
+            </if>
+		            <if test="downNum != null and downNum != ''">
+                AND down_num = #{downNum}
+            </if>
+		            <if test="downWidth != null and downWidth != ''">
+                AND down_width = #{downWidth}
+            </if>
+		            <if test="volume != null and volume != ''">
+                AND volume = #{volume}
+            </if>
+		            <if test="turnVolume != null and turnVolume != ''">
+                AND turn_volume = #{turnVolume}
+            </if>
+		            <if test="circuValue != null and circuValue != ''">
+                AND circu_value = #{circuValue}
+            </if>
+		            <if test="netAddress != null and netAddress != ''">
+                AND net_address = #{netAddress}
+            </if>
+		            <if test="orderBy != null and orderBy != ''">
+                AND order_by = #{orderBy}
+            </if>
+		            <if test="netFlag != null and netFlag != ''">
+                AND net_flag = #{netFlag}
+            </if>
+		            <if test="fundAddress != null and fundAddress != ''">
+                AND fund_address = #{fundAddress}
+            </if>
+		            <if test="turnoverRate != null and turnoverRate != ''">
+                AND turnover_rate = #{turnoverRate}
+            </if>
+		            <if test="stockName != null and stockName != ''">
+                AND stock_name = #{stockName}
+            </if>
+		            <if test="stockAddress != null and stockAddress != ''">
+                AND stock_address = #{stockAddress}
+            </if>
+		            <if test="stockWidth != null and stockWidth != ''">
+                AND stock_width = #{stockWidth}
+            </if>
+		            <if test="industryType != null and industryType != ''">
+                AND industry_type = #{industryType}
+            </if>
+		    </select>
+
+	<insert id="IndustryData_insert" parameterType="IndustryData" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO hsa_industry_data(
+		industry_id,
+		industry_name,
+		stock_num,
+		ud_width,
+		up_num,
+		up_width,
+		down_num,
+		down_width,
+		volume,
+		turn_volume,
+		circu_value,
+		net_address,
+		order_by,
+		net_flag,
+		fund_address,
+		turnover_rate,
+		stock_name,
+		stock_address,
+		stock_width,
+		industry_type,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{industryId},
+		#{industryName},
+		#{stockNum},
+		#{udWidth},
+		#{upNum},
+		#{upWidth},
+		#{downNum},
+		#{downWidth},
+		#{volume},
+		#{turnVolume},
+		#{circuValue},
+		#{netAddress},
+		#{orderBy},
+		#{netFlag},
+		#{fundAddress},
+		#{turnoverRate},
+		#{stockName},
+		#{stockAddress},
+		#{stockWidth},
+		#{industryType},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="IndustryData_update" parameterType="IndustryData">
+		UPDATE hsa_industry_data
+		set
+		industry_id = #{industryId},
+		industry_name = #{industryName},
+		stock_num = #{stockNum},
+		ud_width = #{udWidth},
+		up_num = #{upNum},
+		up_width = #{upWidth},
+		down_num = #{downNum},
+		down_width = #{downWidth},
+		volume = #{volume},
+		turn_volume = #{turnVolume},
+		circu_value = #{circuValue},
+		net_address = #{netAddress},
+		order_by = #{orderBy},
+		net_flag = #{netFlag},
+		fund_address = #{fundAddress},
+		turnover_rate = #{turnoverRate},
+		stock_name = #{stockName},
+		stock_address = #{stockAddress},
+		stock_width = #{stockWidth},
+		industry_type = #{industryType},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="IndustryData_updateSelective" parameterType="map">
+		UPDATE hsa_industry_data
+		set
+		<if test="record.industryId != null" >
+			industry_id = #{record.industryId},
+		</if>
+		<if test="record.industryName != null" >
+			industry_name = #{record.industryName},
+		</if>
+		<if test="record.stockNum != null" >
+			stock_num = #{record.stockNum},
+		</if>
+		<if test="record.udWidth != null" >
+			ud_width = #{record.udWidth},
+		</if>
+		<if test="record.upNum != null" >
+			up_num = #{record.upNum},
+		</if>
+		<if test="record.upWidth != null" >
+			up_width = #{record.upWidth},
+		</if>
+		<if test="record.downNum != null" >
+			down_num = #{record.downNum},
+		</if>
+		<if test="record.downWidth != null" >
+			down_width = #{record.downWidth},
+		</if>
+		<if test="record.volume != null" >
+			volume = #{record.volume},
+		</if>
+		<if test="record.turnVolume != null" >
+			turn_volume = #{record.turnVolume},
+		</if>
+		<if test="record.circuValue != null" >
+			circu_value = #{record.circuValue},
+		</if>
+		<if test="record.netAddress != null" >
+			net_address = #{record.netAddress},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{record.orderBy},
+		</if>
+		<if test="record.netFlag != null" >
+			net_flag = #{record.netFlag},
+		</if>
+		<if test="record.fundAddress != null" >
+			fund_address = #{record.fundAddress},
+		</if>
+		<if test="record.turnoverRate != null" >
+			turnover_rate = #{record.turnoverRate},
+		</if>
+		<if test="record.stockName != null" >
+			stock_name = #{record.stockName},
+		</if>
+		<if test="record.stockAddress != null" >
+			stock_address = #{record.stockAddress},
+		</if>
+		<if test="record.stockWidth != null" >
+			stock_width = #{record.stockWidth},
+		</if>
+		<if test="record.industryType != null" >
+			industry_type = #{record.industryType},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="IndustryData_logicDelete" parameterType="IndustryData">
+		UPDATE hsa_industry_data
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="IndustryData_delete" parameterType="IndustryData">
+		DELETE FROM hsa_industry_data
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

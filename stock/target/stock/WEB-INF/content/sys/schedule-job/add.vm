@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>计划任务信息新增</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/sys/schedule-job/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		任务id
+    			 	</td>
+    			 	<td>
+						<input name="jobId" class="easyui-textbox" value="$!{model.jobId}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		任务名称
+    			 	</td>
+    			 	<td>
+						<input name="jobName" class="easyui-textbox" value="$!{model.jobName}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		任务分组
+    			 	</td>
+    			 	<td>
+						<input name="jobGroup" class="easyui-textbox" value="$!{model.jobGroup}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		任务状态
+    			 	</td>
+    			 	<td>
+						<input name="jobStatus" class="easyui-textbox" value="$!{model.jobStatus}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		cron表达式
+    			 	</td>
+    			 	<td>
+						<input name="cronExpression" class="easyui-textbox" value="$!{model.cronExpression}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		描述
+    			 	</td>
+    			 	<td>
+						<input name="description" class="easyui-textbox" value="$!{model.description}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		包名+类名
+    			 	</td>
+    			 	<td>
+						<input name="beanClass" class="easyui-textbox" value="$!{model.beanClass}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		任务是否有状态
+    			 	</td>
+    			 	<td>
+						<input name="isConcurrent" class="easyui-textbox" value="$!{model.isConcurrent}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		spring bean
+    			 	</td>
+    			 	<td>
+						<input name="springId" class="easyui-textbox" value="$!{model.springId}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		任务调用的方法名
+    			 	</td>
+    			 	<td>
+						<input name="methodName" class="easyui-textbox" value="$!{model.methodName}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		顺序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+	<div region="south" border="false" class="dm_btnarea">
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

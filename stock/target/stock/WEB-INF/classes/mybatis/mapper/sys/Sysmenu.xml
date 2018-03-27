@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.sys.domain.Sysmenu">
+	<resultMap id="get-Sysmenu-result" type="Sysmenu">
+		<id property="id" column="ID" />
+		<!-- 父菜单编号-->
+		<result property="upId" column="up_id" />
+		<!-- 菜单编码-->
+		<result property="menuCode" column="menu_code" />
+		<!-- 菜单名称-->
+		<result property="menuName" column="menu_name" />
+		<!-- 组织机构-->
+		<result property="menuOrg" column="menu_org" />
+		<!-- 菜单URL-->
+		<result property="menuAct" column="menu_act" />
+		<!-- 菜单图标-->
+		<result property="menuIcon" column="menu_icon" />
+		<!-- 1:显示，0：不显示-->
+		<result property="isShow" column="is_show" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<resultMap id="get-hasP_Category-result" type="Sysmenu">
+		<id property="id" column="ID" />
+		<!-- 父菜单编号-->
+		<result property="upId" column="up_id" />
+		<!-- 菜单编码-->
+		<result property="menuCode" column="menu_code" />
+		<!-- 菜单名称-->
+		<result property="menuName" column="menu_name" />
+		<!-- 组织机构-->
+		<result property="menuOrg" column="menu_org" />
+		<!-- 菜单URL-->
+		<result property="menuAct" column="menu_act" />
+		<!-- 菜单图标-->
+		<result property="menuIcon" column="menu_icon" />
+		<!-- 1:显示，0：不显示-->
+		<result property="isShow" column="is_show" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+		<!-- 上级菜单-->
+		<association property="upCategory" column="up_id" select="getUpCategory" />
+	</resultMap>
+
+	<!-- 获取上级菜单 -->
+	<select id="getUpCategory"  resultMap="get-Sysmenu-result">
+		SELECT
+		<include refid="Sysmenu_Base_Column_List" />
+		FROM
+		sys_sysmenu
+		where
+		ID = #{value}
+	</select>
+
+	<sql id="Sysmenu_Base_Column_List">
+		ID,
+		<!-- 父菜单编号-->
+		up_id,
+		<!-- 菜单编码-->
+		menu_code,
+		<!-- 菜单名称-->
+		menu_name,
+		<!-- 组织机构-->
+		menu_org,
+		<!-- 菜单URL-->
+		menu_act,
+		<!-- 菜单图标-->
+		menu_icon,
+		<!-- 1:显示，0：不显示-->
+		is_show,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="Sysmenu_get"  resultMap="get-hasP_Category-result">
+		SELECT
+		<include refid="Sysmenu_Base_Column_List" />
+		FROM
+		sys_sysmenu
+		where
+		ID = #{id}
+	</select>
+
+	<select id="Sysmenu_list"  resultMap="get-Sysmenu-result">
+		SELECT
+		<include refid="Sysmenu_Base_Column_List" />
+		FROM
+		sys_sysmenu
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<select id="Sysmenu_custlist"  resultMap="get-Sysmenu-result">
+		SELECT
+		<include refid="Sysmenu_Base_Column_List" />
+		FROM
+		sys_sysmenu
+		WHERE valid='1'
+		<if test="menuCode != null and menuCode != ''">
+			AND menu_code = #{menuCode}
+		</if>
+	</select>
+
+	<insert id="Sysmenu_insert" parameterType="Sysmenu" >
+		INSERT INTO sys_sysmenu(
+		up_id,
+		menu_code,
+		menu_name,
+		menu_org,
+		menu_act,
+		menu_icon,
+		is_show,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid)values(
+		#{upId},
+		#{menuCode},
+		#{menuName},
+		#{menuOrg},
+		#{menuAct},
+		#{menuIcon},
+		#{isShow},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			SELECT LAST_INSERT_ID() AS id;
+		</selectKey>
+	</insert>
+	<update id="Sysmenu_update" parameterType="Sysmenu">
+		UPDATE sys_sysmenu
+		set
+		up_id = #{upId},
+		menu_code = #{menuCode},
+		menu_name = #{menuName},
+		menu_org = #{menuOrg},
+		menu_act = #{menuAct},
+		menu_icon = #{menuIcon},
+		is_show = #{isShow},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="Sysmenu_updateSelective" parameterType="map">
+		UPDATE sys_sysmenu
+		set
+		<if test="record.upId != null" >
+			up_id = #{upId},
+		</if>
+		<if test="record.menuCode != null" >
+			menu_code = #{menuCode},
+		</if>
+		<if test="record.menuName != null" >
+			menu_name = #{menuName},
+		</if>
+		<if test="record.menuOrg != null" >
+			menu_org = #{menuOrg},
+		</if>
+		<if test="record.menuAct != null" >
+			menu_act = #{menuAct},
+		</if>
+		<if test="record.menuIcon != null" >
+			menu_icon = #{menuIcon},
+		</if>
+		<if test="record.isShow != null" >
+			is_show = #{isShow},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="Sysmenu_logicDelete" parameterType="Sysmenu">
+		UPDATE sys_sysmenu
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="Sysmenu_delete" parameterType="Sysmenu">
+		DELETE FROM sys_sysmenu
+		WHERE
+		ID = #{id}
+	</delete>
+
+	<select id="Sysmenu_tree_list" resultMap="get-Sysmenu-result">
+		SELECT
+		<include refid="Sysmenu_Base_Column_List" />
+		FROM
+		sys_sysmenu
+		where valid = '1'
+		<if test="upId != null">
+			and up_id = #{upId}
+		</if>
+		<if test="menuCode != null">
+			and menu_code = #{menuCode}
+		</if>
+		<if test="menuName != null">
+			and menu_name = #{menuName}
+		</if>
+		<if test="menuOrg != null">
+			and menu_org = #{menuOrg}
+		</if>
+		<if test="menuAct != null">
+			and menu_act = #{menuAct}
+		</if>
+		<if test="menuIcon != null">
+			and menu_icon = #{menuIcon}
+		</if>
+		<if test="isShow != null">
+			and is_show = #{isShow}
+		</if>
+		<if test="orderBy != null">
+			and order_by = #{orderBy}
+		</if>
+		order by order_by
+	</select>
+
+	<!-- 检索件数 -->
+	<select id="Sysmenu_tree_count" resultType="java.lang.Integer">
+		SELECT count(1)
+		FROM
+		sys_sysmenu
+		where valid = '1'
+		<if test="upId != null">
+			and up_id = #{upId}
+		</if>
+		<if test="menuCode != null">
+			and menu_code = #{menuCode}
+		</if>
+		<if test="menuName != null">
+			and menu_name = #{menuName}
+		</if>
+		<if test="menuOrg != null">
+			and menu_org = #{menuOrg}
+		</if>
+		<if test="menuAct != null">
+			and menu_act = #{menuAct}
+		</if>
+		<if test="menuIcon != null">
+			and menu_icon = #{menuIcon}
+		</if>
+		<if test="isShow != null">
+			and is_show = #{isShow}
+		</if>
+		<if test="orderBy != null">
+			and order_by = #{orderBy}
+		</if>
+	</select>
+
+	<!-- 缓存情况 -->
+	<select id="Sysmenu_cache_info" resultType="java.lang.Integer">
+		SELECT refresh
+		FROM
+		sys_refresh
+		where valid = '1'
+		and name = 'cat_tree' and type = 1
+	</select>
+
+	<update id="Sysmenu_refresh_info">
+		update sys_refresh set refresh = 0 where valid = '1'
+		and name = 'cat_tree' and type = 1
+	</update>
+
+	<select id="Sysmenu_module_tree"  resultType="ModuleBean">
+		SELECT DISTINCT
+		module.id AS id,
+		module.up_id AS up_id,
+		module.menu_name AS NAME,
+		module.menu_act AS url,
+		module.menu_icon AS icon,
+		module.menu_code AS pattern,
+		module.menu_org AS menu_type
+		FROM
+		sys_sysmenu module
+		INNER JOIN sys_sysrole_menu menu ON
+		module.id = menu.menu_id
+		AND menu.valid = '1'
+		INNER JOIN sys_sysrole role ON
+		menu.role_id = role.id
+		AND role.valid = '1'
+		INNER JOIN sys_sysuser_role ru ON
+		role.id = ru.role_id
+		AND ru.valid = '1'
+		INNER JOIN sys_sysuser USER ON
+		USER .id = ru.user_id
+		WHERE
+		module.is_show = '1'
+		AND USER.user_id = #{userId}
+		<if test="upId != null">
+			AND module.up_id = #{upId}
+		</if>
+		ORDER BY module.up_id,module.order_by
+	</select>
+
+	<select id="Sysmenu_module_tree_role"  resultType="ModuleBean">
+		SELECT DISTINCT
+		module.id AS id,
+		module.up_id AS up_id,
+		module.menu_name AS NAME,
+		module.menu_act AS url,
+		module.menu_icon AS icon,
+		module.menu_code AS pattern,
+		module.menu_org AS menu_type
+		FROM
+		sys_sysmenu module
+		INNER JOIN sys_sysrole_menu menu ON
+		module.id = menu.menu_id
+		AND menu.valid = '1'
+		INNER JOIN sys_sysrole role ON
+		menu.role_id = role.id
+		AND role.valid = '1'
+		WHERE
+		module.is_show = '1'
+		AND role.id = #{roleId}
+		<if test="upId != null">
+			AND module.up_id = #{upId}
+		</if>
+		ORDER BY module.up_id,module.order_by
+	</select>
+</mapper>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.pub.domain.Channel">
+	<resultMap id="get-Channel-result" type="com.skoo.stock.pub.domain.Channel">
+		<id property="id" column="ID" />
+		<!-- 父栏目编号-->
+    	<result property="upId" column="up_id" />
+		<!-- 栏目编码-->
+    	<result property="chnCode" column="chn_code" />
+		<!-- 栏目名称-->
+    	<result property="chnName" column="chn_name" />
+		<!-- 组织机构-->
+    	<result property="chnOrg" column="chn_org" />
+		<!-- 1:显示，0：不显示-->
+    	<result property="isShow" column="is_show" />
+		<!-- 顺序-->
+    	<result property="chnOrder" column="chn_order" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<resultMap id="get-hasP_Channel-result" type="com.skoo.stock.pub.domain.Channel">
+		<id property="id" column="ID" />
+		<!-- 父栏目编号-->
+    	<result property="upId" column="up_id" />
+		<!-- 栏目编码-->
+    	<result property="chnCode" column="chn_code" />
+		<!-- 栏目名称-->
+    	<result property="chnName" column="chn_name" />
+		<!-- 组织机构-->
+    	<result property="chnOrg" column="chn_org" />
+		<!-- 1:显示，0：不显示-->
+    	<result property="isShow" column="is_show" />
+		<!-- 顺序-->
+    	<result property="chnOrder" column="chn_order" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+		<!-- 上级栏目-->
+		<association property="upChannel" column="up_id" select="getUpChannel" />  
+	</resultMap>
+	
+	<!-- 获取上级栏目 -->
+	<select id="getUpChannel"  resultMap="get-Channel-result">
+		SELECT
+   		<include refid="Channel_Base_Column_List" />
+	 	 FROM 
+			pub_channel
+		 where 
+			ID = #{value}
+    </select>
+    
+	<sql id="Channel_Base_Column_List">
+		ID,
+		<!-- 父栏目编号-->
+    	up_id,
+		<!-- 栏目编码-->
+    	chn_code,
+		<!-- 栏目名称-->
+    	chn_name,
+		<!-- 组织机构-->
+    	chn_org,
+		<!-- 1:显示，0：不显示-->
+    	is_show,
+		<!-- 顺序-->
+    	chn_order,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="Channel_get"  resultMap="get-hasP_Channel-result">
+		 SELECT
+    		<include refid="Channel_Base_Column_List" />
+	 	 FROM 
+			pub_channel
+		 where 
+			ID = #{id}
+    </select>
+	
+	<select id="Channel_list"  resultMap="get-Channel-result">
+		 SELECT
+    		<include refid="Channel_Base_Column_List" />
+	 	 FROM 
+			pub_channel    
+		<include refid="common.Select_Where_Clause" />
+    </select>
+
+	<select id="Channel_custlist"  resultMap="get-Channel-result">
+		SELECT
+		<include refid="Channel_Base_Column_List" />
+		FROM
+		pub_channel
+		WHERE valid='1'
+		<if test="chnCode != null and chnCode != ''">
+			AND chn_code = #{chnCode}
+		</if>
+	</select>
+	
+   <insert id="Channel_insert" parameterType="com.skoo.stock.pub.domain.Channel" >
+      INSERT INTO pub_channel(
+		up_id,
+		chn_code,
+		chn_name,
+		chn_org,
+		is_show,
+		chn_order,
+		CREATE_DATE,
+		CREATOR,
+		valid)values(
+		#{upId},
+		#{chnCode},
+		#{chnName},
+		#{chnOrg},
+		#{isShow},
+		#{chnOrder},
+		NOW(),
+		#{creator},
+		1)
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+		 SELECT LAST_INSERT_ID() AS id;
+		 </selectKey>
+    </insert>
+    <update id="Channel_update" parameterType="com.skoo.stock.pub.domain.Channel">
+    	UPDATE pub_channel
+			set
+          		up_id = #{upId},
+          		chn_code = #{chnCode},
+          		chn_name = #{chnName},
+          		chn_org = #{chnOrg},
+          		is_show = #{isShow},
+          		chn_order = #{chnOrder},
+			UPDATE_DATE = now()
+			,UPDATOR = #{updator}
+    	WHERE 
+			ID = #{id}
+    </update>
+    <update id="Channel_updateSelective" parameterType="map">
+        UPDATE pub_channel
+        set
+		            <if test="record.upId != null" >
+				up_id = #{upId},
+            </if>
+		            <if test="record.chnCode != null" >
+				chn_code = #{chnCode},
+            </if>
+		            <if test="record.chnName != null" >
+				chn_name = #{chnName},
+            </if>
+		            <if test="record.chnOrg != null" >
+				chn_org = #{chnOrg},
+            </if>
+		            <if test="record.isShow != null" >
+				is_show = #{isShow},
+            </if>
+		            <if test="record.chnOrder != null" >
+				chn_order = #{chnOrder},
+            </if>
+		        UPDATE_DATE = now()
+        ,UPDATOR = #{record.updator}
+        <include refid="common.Update_Where_Clause" />
+    </update>
+    <update id="Channel_logicDelete" parameterType="com.skoo.stock.pub.domain.Channel">
+		UPDATE pub_channel
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="Channel_delete" parameterType="com.skoo.stock.pub.domain.Channel">
+    	DELETE FROM pub_channel
+		WHERE 
+		ID = #{id}
+  	</delete>
+  	
+  	<select id="Channel_tree_list" resultMap="get-Channel-result">
+		SELECT
+		<include refid="Channel_Base_Column_List" />
+		FROM
+		pub_channel
+		where valid = '1'
+		<if test="upId != null">
+			and up_id = #{upId}
+		</if>
+		<if test="excludeChannel != null">
+			and id != #{excludeChannel}
+		</if>
+		<if test="chnCode != null">
+			and chn_code = #{chnCode}
+		</if>
+		<if test="chnName != null">
+			and chn_name = #{chnName}
+		</if>
+		<if test="chnOrg != null">
+			and chn_org = #{chnOrg}
+		</if>
+		<if test="isShow != null">
+			and is_show = #{isShow}
+		</if>
+		<if test="chnOrder != null">
+			and chn_order = #{chnOrder}
+		</if>
+		order by chn_order
+	</select>
+	
+	<!-- 检索件数 -->
+	<select id="Channel_tree_count" resultType="java.lang.Integer">
+		SELECT count(1)
+		FROM
+		pub_channel
+		where valid = '1'
+		<if test="upId != null">
+			and up_id = #{upId}
+		</if>
+		<if test="chnCode != null">
+			and chn_code = #{chnCode}
+		</if>
+		<if test="chnName != null">
+			and chn_name = #{chnName}
+		</if>
+		<if test="chnOrg != null">
+			and chn_org = #{chnOrg}
+		</if>
+		<if test="isShow != null">
+			and is_show = #{isShow}
+		</if>
+		<if test="chnOrder != null">
+			and chn_order = #{chnOrder}
+		</if>
+	</select>
+	
+	
+	<!-- 缓存情况 -->
+	<select id="channel_cache_info" resultType="java.lang.Integer">
+		SELECT refresh
+		FROM
+		pub_refresh
+		where valid = '1'
+			and name = 'chn_tree' and type = 1
+	</select>
+	
+	<update id="channel_refresh_info">
+		update pub_refresh set refresh = 0 where valid = '1'
+			and name = 'chn_tree' and type = 1
+	</update>
+	
+</mapper>

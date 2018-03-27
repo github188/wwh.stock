@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.hsa.domain.StockBasic">
+	<resultMap id="get-StockBasic-result" type="StockBasic">
+		<id property="id" column="ID" />
+		<!-- 代码-->
+		<result property="code" column="code" />
+		<!-- 简称-->
+		<result property="name" column="name" />
+		<!-- 流通股本-->
+		<result property="circulationEquity" column="circulation_equity" />
+		<!-- 总股本-->
+		<result property="totalEquity" column="total_equity" />
+		<!-- 每股收益-->
+		<result property="perProfit" column="per_profit" />
+		<!-- 每股净资产-->
+		<result property="netAssets" column="net_assets" />
+		<!-- 每股未分配利润-->
+		<result property="ndistribProfit" column="ndistrib_profit" />
+		<!-- 每股资本公积金-->
+		<result property="capitalFund" column="capital_fund" />
+		<!-- 净资产收益率-->
+		<result property="assetsYield" column="assets_yield" />
+		<!-- 主营业务收入-->
+		<result property="mainRevenue" column="main_revenue" />
+		<!-- 净利润-->
+		<result property="netProfit" column="net_profit" />
+		<!-- 净利润描述-->
+		<result property="profitDescribe" column="profit_describe" />
+		<!-- 主营业务-->
+		<result property="mainBusiness" column="main_business" />
+		<!-- 所属板块-->
+		<result property="thePlate" column="the_plate" />
+		<!-- 上市日期-->
+		<result property="openDate" column="open_date" />
+		<!-- 备注-->
+		<result property="memo" column="memo" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="StockBasic_Base_Column_List">
+		ID,
+		<!-- 代码-->
+		code,
+		<!-- 简称-->
+		name,
+		<!-- 流通股本-->
+		circulation_equity,
+		<!-- 总股本-->
+		total_equity,
+		<!-- 每股收益-->
+		per_profit,
+		<!-- 每股净资产-->
+		net_assets,
+		<!-- 每股未分配利润-->
+		ndistrib_profit,
+		<!-- 每股资本公积金-->
+		capital_fund,
+		<!-- 净资产收益率-->
+		assets_yield,
+		<!-- 主营业务收入-->
+		main_revenue,
+		<!-- 净利润-->
+		net_profit,
+		<!-- 净利润描述-->
+		profit_describe,
+		<!-- 主营业务-->
+		main_business,
+		<!-- 所属板块-->
+		the_plate,
+		<!-- 上市日期-->
+		open_date,
+		<!-- 备注-->
+		memo,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="StockBasic_get" resultMap="get-StockBasic-result">
+		SELECT
+		<include refid="StockBasic_Base_Column_List" />
+		FROM
+		hsa_stock_basic
+		where
+		ID = #{id}
+	</select>
+
+	<select id="StockBasic_list" resultMap="get-StockBasic-result">
+		SELECT
+		<include refid="StockBasic_Base_Column_List" />
+		FROM
+		hsa_stock_basic
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+    <select id="StockBasic_custlist"  resultMap="get-StockBasic-result">
+        SELECT
+	        <include refid="StockBasic_Base_Column_List" />
+        FROM
+		hsa_stock_basic
+        WHERE valid='1'
+		            <if test="code != null and code != ''">
+                AND code = #{code}
+            </if>
+		            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+		            <if test="circulationEquity != null and circulationEquity != ''">
+                AND circulation_equity = #{circulationEquity}
+            </if>
+		            <if test="totalEquity != null and totalEquity != ''">
+                AND total_equity = #{totalEquity}
+            </if>
+		            <if test="perProfit != null and perProfit != ''">
+                AND per_profit = #{perProfit}
+            </if>
+		            <if test="netAssets != null and netAssets != ''">
+                AND net_assets = #{netAssets}
+            </if>
+		            <if test="ndistribProfit != null and ndistribProfit != ''">
+                AND ndistrib_profit = #{ndistribProfit}
+            </if>
+		            <if test="capitalFund != null and capitalFund != ''">
+                AND capital_fund = #{capitalFund}
+            </if>
+		            <if test="assetsYield != null and assetsYield != ''">
+                AND assets_yield = #{assetsYield}
+            </if>
+		            <if test="mainRevenue != null and mainRevenue != ''">
+                AND main_revenue = #{mainRevenue}
+            </if>
+		            <if test="netProfit != null and netProfit != ''">
+                AND net_profit = #{netProfit}
+            </if>
+		            <if test="profitDescribe != null and profitDescribe != ''">
+                AND profit_describe = #{profitDescribe}
+            </if>
+		            <if test="mainBusiness != null and mainBusiness != ''">
+                AND main_business = #{mainBusiness}
+            </if>
+		            <if test="thePlate != null and thePlate != ''">
+                AND the_plate = #{thePlate}
+            </if>
+		            <if test="openDate != null and openDate != ''">
+                AND open_date = #{openDate}
+            </if>
+		            <if test="memo != null and memo != ''">
+                AND memo = #{memo}
+            </if>
+		            <if test="orderBy != null and orderBy != ''">
+                AND order_by = #{orderBy}
+            </if>
+		    </select>
+
+	<insert id="StockBasic_insert" parameterType="StockBasic" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO hsa_stock_basic(
+		code,
+		name,
+		circulation_equity,
+		total_equity,
+		per_profit,
+		net_assets,
+		ndistrib_profit,
+		capital_fund,
+		assets_yield,
+		main_revenue,
+		net_profit,
+		profit_describe,
+		main_business,
+		the_plate,
+		open_date,
+		memo,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{code},
+		#{name},
+		#{circulationEquity},
+		#{totalEquity},
+		#{perProfit},
+		#{netAssets},
+		#{ndistribProfit},
+		#{capitalFund},
+		#{assetsYield},
+		#{mainRevenue},
+		#{netProfit},
+		#{profitDescribe},
+		#{mainBusiness},
+		#{thePlate},
+		#{openDate},
+		#{memo},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="StockBasic_update" parameterType="StockBasic">
+		UPDATE hsa_stock_basic
+		set
+		code = #{code},
+		name = #{name},
+		circulation_equity = #{circulationEquity},
+		total_equity = #{totalEquity},
+		per_profit = #{perProfit},
+		net_assets = #{netAssets},
+		ndistrib_profit = #{ndistribProfit},
+		capital_fund = #{capitalFund},
+		assets_yield = #{assetsYield},
+		main_revenue = #{mainRevenue},
+		net_profit = #{netProfit},
+		profit_describe = #{profitDescribe},
+		main_business = #{mainBusiness},
+		the_plate = #{thePlate},
+		open_date = #{openDate},
+		memo = #{memo},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="StockBasic_updateSelective" parameterType="map">
+		UPDATE hsa_stock_basic
+		set
+		<if test="record.code != null" >
+			code = #{code},
+		</if>
+		<if test="record.name != null" >
+			name = #{name},
+		</if>
+		<if test="record.circulationEquity != null" >
+			circulation_equity = #{circulationEquity},
+		</if>
+		<if test="record.totalEquity != null" >
+			total_equity = #{totalEquity},
+		</if>
+		<if test="record.perProfit != null" >
+			per_profit = #{perProfit},
+		</if>
+		<if test="record.netAssets != null" >
+			net_assets = #{netAssets},
+		</if>
+		<if test="record.ndistribProfit != null" >
+			ndistrib_profit = #{ndistribProfit},
+		</if>
+		<if test="record.capitalFund != null" >
+			capital_fund = #{capitalFund},
+		</if>
+		<if test="record.assetsYield != null" >
+			assets_yield = #{assetsYield},
+		</if>
+		<if test="record.mainRevenue != null" >
+			main_revenue = #{mainRevenue},
+		</if>
+		<if test="record.netProfit != null" >
+			net_profit = #{netProfit},
+		</if>
+		<if test="record.profitDescribe != null" >
+			profit_describe = #{profitDescribe},
+		</if>
+		<if test="record.mainBusiness != null" >
+			main_business = #{mainBusiness},
+		</if>
+		<if test="record.thePlate != null" >
+			the_plate = #{thePlate},
+		</if>
+		<if test="record.openDate != null" >
+			open_date = #{openDate},
+		</if>
+		<if test="record.memo != null" >
+			memo = #{memo},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="StockBasic_logicDelete" parameterType="StockBasic">
+		UPDATE hsa_stock_basic
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="StockBasic_delete" parameterType="StockBasic">
+		DELETE FROM hsa_stock_basic
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

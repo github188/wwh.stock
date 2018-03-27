@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>走出去企业管理</title>
+        <meta charset="UTF-8">
+        #parse("commons/commonJs.vm")
+		#parse("commons/commonCss.vm")
+		<script type="text/javascript">
+			$(function() {
+				jQuery('#dg').datagrid({
+					url:'gout-enterprises/queryPaged',
+					columns:[[
+                        {field:'id',checkbox:true}
+						,{field:'numberOfInvestmentProjects',title:'投资项目编号',width:100}
+						,{field:'applicationMode',title:'申请模式',width:100}
+						,{field:'former',title:'原',width:100}
+						,{field:'nowChanged',title:'现改为',width:100}
+						,{field:'yearChange',title:'变更年份',width:100}
+						,{field:'domesticInvestorName',title:'境内投资主体名称',width:100}
+						,{field:'organizationCodeNo',title:'组织机构代码证号',width:100}
+						,{field:'legalRepresentative',title:'法定代表人',width:100}
+						,{field:'registeredCapital',title:'注册资金（万元）',width:100}
+						/*,{field:'officeAddress',title:'办公地址',width:100}
+						,{field:'domesticCity',title:'城市',width:100}
+						,{field:'county',title:'区县',width:100}
+						,{field:'contactName',title:'联系人姓名',width:100}
+						,{field:'contactLandline',title:'联系人座机',width:100}
+						,{field:'contactFax',title:'联系人传真',width:100}
+						,{field:'contactPhone',title:'联系人手机',width:100}
+						,{field:'contactEmail',title:'联系人电子邮件',width:100}
+						,{field:'fullNameOfTheUltimateParent',title:'归属最终母公司全称',width:100}
+						,{field:'overseasCompanyChineseName',title:'境外企业名称(中文)',width:100}
+						,{field:'overseasCompanyForeignName',title:'境外企业名称(外文)',width:100}
+						,{field:'firstLevelCompanyName',title:'第一层级公司名称',width:100}
+						,{field:'countryFirstLevelCompanyLocates',title:'第一层级公司所处国别（地区）',width:100}
+						,{field:'overseasInvestmentCountry',title:'国家（地区）',width:100}
+						,{field:'province',title:'省（州）',width:100}
+						,{field:'overseasCity',title:'城市',width:100}
+						,{field:'chineseShareholder',title:'中方股东名称',width:100}
+						,{field:'chineseEquityRatio',title:'中方股比',width:100}
+						,{field:'foreignShareholder',title:'外方股东名称',width:100}
+						,{field:'foreignEquityRatio',title:'外方股比',width:100}
+						,{field:'overseasBusinessScope',title:'境外企业经营范围',width:100}
+						,{field:'overseasEnterpriseIndustry',title:'境外企业所属行业',width:100}
+						,{field:'totalInvestment',title:'投资总额（美金)',width:100}
+						,{field:'chineseInvestment',title:'中方投资额（美元/人民币）',width:100}
+						,{field:'foreignInvestment',title:'外方投资额',width:100}
+						,{field:'marketingNetwork',title:'投资动机（营销网络）',width:100}
+						,{field:'stimulateExports',title:'带动出口（万美金）',width:100}
+						,{field:'stimulateImports',title:'带动进口（万美金）',width:100}
+						,{field:'brandAcquisitions',title:'投资动机（品牌收购）',width:100}
+						,{field:'obtainBrandName',title:'获得品牌名称',width:100}
+						,{field:'technologyResearch',title:'投资动机（技术研发）',width:100}
+						,{field:'technologyAcquired',title:'获得技术',width:100}
+						,{field:'engineeringDevelopment',title:'投资动机（工程开发）',width:100}
+						,{field:'boostingSales',title:'带动营业额',width:100}
+						,{field:'resourceDevelopment',title:'投资动机（资源开发）',width:100}
+						,{field:'resourcesBackShipments',title:'资源回运量',width:100}
+						,{field:'resourcesAmount',title:'资源开发量',width:100}
+						,{field:'resourceName',title:'资源名称',width:100}
+						,{field:'extensionOfIndustrialChain',title:'投资动机（产业链延伸）',width:100}
+						,{field:'sketch',title:'简述',width:100}
+						,{field:'rests',title:'投资动机（其他）',width:100}
+						,{field:'paybackPeriod',title:'投资回报年限',width:100}
+						,{field:'remark',title:'备注',width:100}
+						,{field:'accessory',title:'附件',width:100}
+						,{field:'orderBy',title:'排序',width:100}*/
+				    ]],
+				    pagination:true,
+				    singleSelect:false,
+				    fitColumns:true,
+				    fit: true,
+				    toolbar:'#toolbar',
+			    	onDblClickRow: function(rowid,rowdata){
+						editForm();
+			    	}
+			    });
+			});
+			function optionFun(value,row,index) {
+				return "";
+			}
+		  	function newForm(){
+		  		Man.openWin('新增走出去企业','${base}/bus/gout-enterprises/addg',640,360);
+			}
+			function editForm(){
+				var row = jQuery('#dg').datagrid('getSelected');
+				if (row){
+					Man.openWin('编辑走出去企业','${base}/bus/gout-enterprises/edit/'+row.id,640,360);
+				}
+			}
+			function destroyForm(){
+                var rows = jQuery('#dg').datagrid('getSelections');
+				if (rows.length>0){
+					jQuery.messager.confirm('确认删除','确定删除该记录?',function(r){
+						if (r){
+                            var ids = [];
+                            jQuery.each(rows,function(index,row) {
+                                ids.push(row.id);
+                            });
+							jQuery.post('gout-enterprises/delete',{'ids':ids.toString()},function(result){
+								Man.reloadList(result);
+							});
+						}
+					});
+				}
+			}
+			
+			function contentSearch(){ 
+				var numberOfInvestmentProjects=jQuery('#filter_numberOfInvestmentProjects').val();
+		        jQuery('#dg').datagrid('load',{
+				'numberOfInvestmentProjects':numberOfInvestmentProjects		    	})}
+	    	
+		</script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+   <table id="dg" data-options="toolbar:'#toolbar'"></table>
+    <div id="toolbar">
+    	<div class="search_box">
+			投资项目编号：<input id="filter_numberOfInvestmentProjects" class="easyui-textbox" >
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="contentSearch()">搜索</a>
+    	</div>
+    	<div class="btn_box">
+    		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newForm()">新增</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editForm()">编辑</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyForm()">删除</a>
+    	</div>
+	</div>
+</body>
+</html>

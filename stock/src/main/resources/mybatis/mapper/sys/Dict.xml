@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.sys.domain.Dict">
+	<resultMap id="get-Dict-result" type="Dict">
+		<id property="id" column="ID" />
+		<!-- 数据键 -->
+		<result property="keyName" column="KEY_NAME" />
+		<!-- 数据值 -->
+		<result property="value" column="VALUE" />
+		<!-- 内容 -->
+		<result property="content" column="CONTENT" />
+		<!-- 排序 -->
+		<result property="orderBy" column="ORDER_BY" />
+		<!-- 备注 -->
+		<result property="memo" column="MEMO" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 有效性 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="Dict_Base_Column_List">
+		ID,
+		KEY_NAME,
+		VALUE,
+		CONTENT,
+		ORDER_BY,
+		MEMO,
+		VALID,
+		CREATE_DATE,
+		CREATOR,
+		UPDATE_DATE,
+		UPDATOR
+	</sql>
+	<select id="Dict_get" resultMap="get-Dict-result">
+		SELECT
+		<include refid="Dict_Base_Column_List" />
+		FROM
+		sys_dict
+		where
+		ID = #{id}
+	</select>
+
+	<select id="Dict_list" resultMap="get-Dict-result">
+		SELECT
+		<include refid="Dict_Base_Column_List" />
+		FROM
+		sys_dict
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="Dict_insert" parameterType="Dict">
+		INSERT INTO sys_dict(
+		KEY_NAME,
+		VALUE,
+		CONTENT,
+		ORDER_BY,
+		MEMO,
+		CREATE_DATE,
+		CREATOR
+		)values(
+		#{keyName} ,
+		#{value} ,
+		#{content} ,
+		#{orderBy} ,
+		#{memo} ,
+		now() ,
+		#{creator}
+		)
+		<selectKey keyProperty="id" resultType="long" order="AFTER">
+			SELECT LAST_INSERT_ID() AS id;
+		</selectKey>
+	</insert>
+	<update id="Dict_update" parameterType="Dict">
+		UPDATE sys_dict
+		set
+		KEY_NAME = #{keyName}
+		,VALUE = #{value}
+		,CONTENT = #{content}
+		,ORDER_BY = #{orderBy}
+		,MEMO = #{memo}
+		,UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="Dict_updateSelective" parameterType="map">
+		UPDATE sys_dict
+		set
+		<if test="record.keyName != null" >
+			KEY_NAME = #{record.keyName},
+		</if>
+		<if test="record.value != null" >
+			VALUE = #{record.value},
+		</if>
+		<if test="record.content != null" >
+			CONTENT = #{record.content},
+		</if>
+		<if test="record.memo != null" >
+			MEMO = #{record.memo},
+		</if>
+		<if test="record.valid != null" >
+			VALID = #{record.valid},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="Dict_logicDelete" parameterType="Dict">
+		UPDATE sys_dict
+		set
+		VALID='0'
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="Dict_deleteByPrimaryKey" parameterType="int">
+		DELETE FROM sys_dict
+		WHERE
+		ID = #{id}
+	</delete>
+	<delete id="Dict_delete" parameterType="Dict">
+		DELETE FROM sys_dict
+	</delete>
+	<select id="Dict_getKeyNames" resultType="String">
+		select distinct(key_name) from sys_dict where valid='1'
+	</select>
+
+	<select id="Param_getKeyValue" resultType="String">
+		select key_value from sys_param where valid='1' and key_name = #{keyName}
+	</select>
+
+	<select id="Dict_listmap" resultType="map">
+		SELECT
+		*
+		FROM
+		sys_dict
+	</select>
+</mapper>

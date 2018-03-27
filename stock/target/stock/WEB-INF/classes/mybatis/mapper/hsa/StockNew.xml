@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.hsa.domain.StockNew">
+	<resultMap id="get-StockNew-result" type="StockNew">
+		<id property="id" column="ID" />
+		<!-- 代码-->
+		<result property="code" column="code" />
+		<!-- 简称-->
+		<result property="name" column="name" />
+		<!-- 最新价-->
+		<result property="latestPrice" column="latest_price" />
+		<!-- 平均价-->
+		<result property="averagePrice" column="average_price" />
+		<!-- 涨跌幅-->
+		<result property="udWidth" column="ud_width" />
+		<!-- 涨跌额-->
+		<result property="udAmount" column="ud_amount" />
+		<!-- 成交量(万手)-->
+		<result property="volume" column="volume" />
+		<!-- 成交额(亿元)-->
+		<result property="turnVolume" column="turn_volume" />
+		<!-- 换手率-->
+		<result property="turnoverRate" column="turnover_rate" />
+		<!-- 量比-->
+		<result property="volumeRatio" column="volume_ratio" />
+		<!-- 振幅-->
+		<result property="amplitude" column="amplitude" />
+		<!-- 委比-->
+		<result property="committee" column="committee" />
+		<!-- 市盈率-->
+		<result property="peRatio" column="pe_ratio" />
+		<!-- 5分钟涨幅-->
+		<result property="fiveWidth" column="five_width" />
+		<!-- 网站标志-->
+		<result property="netFlag" column="net_flag" />
+		<!-- 最高-->
+		<result property="highestPrice" column="highest_price" />
+		<!-- 最低-->
+		<result property="lowestPrice" column="lowest_price" />
+		<!-- 今开-->
+		<result property="todayPrice" column="today_price" />
+		<!-- 昨收-->
+		<result property="yesterdayPrice" column="yesterday_price" />
+		<!-- 涨停-->
+		<result property="maxPrice" column="max_price" />
+		<!-- 跌停-->
+		<result property="minPrice" column="min_price" />
+		<!-- 外盘-->
+		<result property="outsideDish" column="outside_dish" />
+		<!-- 内盘-->
+		<result property="insideDish" column="inside_dish" />
+		<!-- 主力净流入(万元)-->
+		<result property="inflowFund" column="inflow_fund" />
+		<!-- 超大单流入(万元)-->
+		<result property="inflowLarge" column="inflow_large" />
+		<!-- 大单流入(万元)-->
+		<result property="inflowBig" column="inflow_big" />
+		<!-- 龙头标志-->
+		<result property="topFlag" column="top_flag" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="StockNew_Base_Column_List">
+		ID,
+		<!-- 代码-->
+		code,
+		<!-- 简称-->
+		name,
+		<!-- 最新价-->
+		latest_price,
+		<!-- 平均价-->
+		average_price,
+		<!-- 涨跌幅-->
+		ud_width,
+		<!-- 涨跌额-->
+		ud_amount,
+		<!-- 成交量(万手)-->
+		volume,
+		<!-- 成交额(亿元)-->
+		turn_volume,
+		<!-- 换手率-->
+		turnover_rate,
+		<!-- 量比-->
+		volume_ratio,
+		<!-- 振幅-->
+		amplitude,
+		<!-- 委比-->
+		committee,
+		<!-- 市盈率-->
+		pe_ratio,
+		<!-- 5分钟涨幅-->
+		five_width,
+		<!-- 网站标志-->
+		net_flag,
+		<!-- 最高-->
+		highest_price,
+		<!-- 最低-->
+		lowest_price,
+		<!-- 今开-->
+		today_price,
+		<!-- 昨收-->
+		yesterday_price,
+		<!-- 涨停-->
+		max_price,
+		<!-- 跌停-->
+		min_price,
+		<!-- 外盘-->
+		outside_dish,
+		<!-- 内盘-->
+		inside_dish,
+		<!-- 主力净流入(万元)-->
+		inflow_fund,
+		<!-- 超大单流入(万元)-->
+		inflow_large,
+		<!-- 大单流入(万元)-->
+		inflow_big,
+		<!-- 龙头标志-->
+		top_flag,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="StockNew_get" resultMap="get-StockNew-result">
+		SELECT
+		<include refid="StockNew_Base_Column_List" />
+		FROM
+		hsa_stock_new
+		where
+		ID = #{id}
+	</select>
+
+	<select id="StockNew_list" resultMap="get-StockNew-result">
+		SELECT
+		<include refid="StockNew_Base_Column_List" />
+		FROM
+		hsa_stock_new
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+    <select id="StockNew_custlist"  resultMap="get-StockNew-result">
+        SELECT
+	        <include refid="StockNew_Base_Column_List" />
+        FROM
+		hsa_stock_new
+        WHERE valid='1'
+		            <if test="code != null and code != ''">
+                AND code = #{code}
+            </if>
+		            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+		            <if test="latestPrice != null and latestPrice != ''">
+                AND latest_price = #{latestPrice}
+            </if>
+		            <if test="averagePrice != null and averagePrice != ''">
+                AND average_price = #{averagePrice}
+            </if>
+		            <if test="udWidth != null and udWidth != ''">
+                AND ud_width = #{udWidth}
+            </if>
+		            <if test="udAmount != null and udAmount != ''">
+                AND ud_amount = #{udAmount}
+            </if>
+		            <if test="volume != null and volume != ''">
+                AND volume = #{volume}
+            </if>
+		            <if test="turnVolume != null and turnVolume != ''">
+                AND turn_volume = #{turnVolume}
+            </if>
+		            <if test="turnoverRate != null and turnoverRate != ''">
+                AND turnover_rate = #{turnoverRate}
+            </if>
+		            <if test="volumeRatio != null and volumeRatio != ''">
+                AND volume_ratio = #{volumeRatio}
+            </if>
+		            <if test="amplitude != null and amplitude != ''">
+                AND amplitude = #{amplitude}
+            </if>
+		            <if test="committee != null and committee != ''">
+                AND committee = #{committee}
+            </if>
+		            <if test="peRatio != null and peRatio != ''">
+                AND pe_ratio = #{peRatio}
+            </if>
+		            <if test="fiveWidth != null and fiveWidth != ''">
+                AND five_width = #{fiveWidth}
+            </if>
+		            <if test="netFlag != null and netFlag != ''">
+                AND net_flag = #{netFlag}
+            </if>
+		            <if test="highestPrice != null and highestPrice != ''">
+                AND highest_price = #{highestPrice}
+            </if>
+		            <if test="lowestPrice != null and lowestPrice != ''">
+                AND lowest_price = #{lowestPrice}
+            </if>
+		            <if test="todayPrice != null and todayPrice != ''">
+                AND today_price = #{todayPrice}
+            </if>
+		            <if test="yesterdayPrice != null and yesterdayPrice != ''">
+                AND yesterday_price = #{yesterdayPrice}
+            </if>
+		            <if test="maxPrice != null and maxPrice != ''">
+                AND max_price = #{maxPrice}
+            </if>
+		            <if test="minPrice != null and minPrice != ''">
+                AND min_price = #{minPrice}
+            </if>
+		            <if test="outsideDish != null and outsideDish != ''">
+                AND outside_dish = #{outsideDish}
+            </if>
+		            <if test="insideDish != null and insideDish != ''">
+                AND inside_dish = #{insideDish}
+            </if>
+		            <if test="inflowFund != null and inflowFund != ''">
+                AND inflow_fund = #{inflowFund}
+            </if>
+		            <if test="inflowLarge != null and inflowLarge != ''">
+                AND inflow_large = #{inflowLarge}
+            </if>
+		            <if test="inflowBig != null and inflowBig != ''">
+                AND inflow_big = #{inflowBig}
+            </if>
+		            <if test="topFlag != null and topFlag != ''">
+                AND top_flag = #{topFlag}
+            </if>
+		            <if test="orderBy != null and orderBy != ''">
+                AND order_by = #{orderBy}
+            </if>
+		    </select>
+
+	<insert id="StockNew_insert" parameterType="StockNew" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO hsa_stock_new(
+		code,
+		name,
+		latest_price,
+		average_price,
+		ud_width,
+		ud_amount,
+		volume,
+		turn_volume,
+		turnover_rate,
+		volume_ratio,
+		amplitude,
+		committee,
+		pe_ratio,
+		five_width,
+		net_flag,
+		highest_price,
+		lowest_price,
+		today_price,
+		yesterday_price,
+		max_price,
+		min_price,
+		outside_dish,
+		inside_dish,
+		inflow_fund,
+		inflow_large,
+		inflow_big,
+		top_flag,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{code},
+		#{name},
+		#{latestPrice},
+		#{averagePrice},
+		#{udWidth},
+		#{udAmount},
+		#{volume},
+		#{turnVolume},
+		#{turnoverRate},
+		#{volumeRatio},
+		#{amplitude},
+		#{committee},
+		#{peRatio},
+		#{fiveWidth},
+		#{netFlag},
+		#{highestPrice},
+		#{lowestPrice},
+		#{todayPrice},
+		#{yesterdayPrice},
+		#{maxPrice},
+		#{minPrice},
+		#{outsideDish},
+		#{insideDish},
+		#{inflowFund},
+		#{inflowLarge},
+		#{inflowBig},
+		#{topFlag},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="StockNew_update" parameterType="StockNew">
+		UPDATE hsa_stock_new
+		set
+		code = #{code},
+		name = #{name},
+		latest_price = #{latestPrice},
+		average_price = #{averagePrice},
+		ud_width = #{udWidth},
+		ud_amount = #{udAmount},
+		volume = #{volume},
+		turn_volume = #{turnVolume},
+		turnover_rate = #{turnoverRate},
+		volume_ratio = #{volumeRatio},
+		amplitude = #{amplitude},
+		committee = #{committee},
+		pe_ratio = #{peRatio},
+		five_width = #{fiveWidth},
+		net_flag = #{netFlag},
+		highest_price = #{highestPrice},
+		lowest_price = #{lowestPrice},
+		today_price = #{todayPrice},
+		yesterday_price = #{yesterdayPrice},
+		max_price = #{maxPrice},
+		min_price = #{minPrice},
+		outside_dish = #{outsideDish},
+		inside_dish = #{insideDish},
+		inflow_fund = #{inflowFund},
+		inflow_large = #{inflowLarge},
+		inflow_big = #{inflowBig},
+		top_flag = #{topFlag},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="StockNew_updateSelective" parameterType="map">
+		UPDATE hsa_stock_new
+		set
+		<if test="record.code != null" >
+			code = #{record.code},
+		</if>
+		<if test="record.name != null" >
+			name = #{record.name},
+		</if>
+		<if test="record.latestPrice != null" >
+			latest_price = #{record.latestPrice},
+		</if>
+		<if test="record.averagePrice != null" >
+			average_price = #{record.averagePrice},
+		</if>
+		<if test="record.udWidth != null" >
+			ud_width = #{record.udWidth},
+		</if>
+		<if test="record.udAmount != null" >
+			ud_amount = #{record.udAmount},
+		</if>
+		<if test="record.volume != null" >
+			volume = #{record.volume},
+		</if>
+		<if test="record.turnVolume != null" >
+			turn_volume = #{record.turnVolume},
+		</if>
+		<if test="record.turnoverRate != null" >
+			turnover_rate = #{record.turnoverRate},
+		</if>
+		<if test="record.volumeRatio != null" >
+			volume_ratio = #{record.volumeRatio},
+		</if>
+		<if test="record.amplitude != null" >
+			amplitude = #{record.amplitude},
+		</if>
+		<if test="record.committee != null" >
+			committee = #{record.committee},
+		</if>
+		<if test="record.peRatio != null" >
+			pe_ratio = #{record.peRatio},
+		</if>
+		<if test="record.fiveWidth != null" >
+			five_width = #{record.fiveWidth},
+		</if>
+		<if test="record.netFlag != null" >
+			net_flag = #{record.netFlag},
+		</if>
+		<if test="record.highestPrice != null" >
+			highest_price = #{record.highestPrice},
+		</if>
+		<if test="record.lowestPrice != null" >
+			lowest_price = #{record.lowestPrice},
+		</if>
+		<if test="record.todayPrice != null" >
+			today_price = #{record.todayPrice},
+		</if>
+		<if test="record.yesterdayPrice != null" >
+			yesterday_price = #{record.yesterdayPrice},
+		</if>
+		<if test="record.maxPrice != null" >
+			max_price = #{record.maxPrice},
+		</if>
+		<if test="record.minPrice != null" >
+			min_price = #{record.minPrice},
+		</if>
+		<if test="record.outsideDish != null" >
+			outside_dish = #{record.outsideDish},
+		</if>
+		<if test="record.insideDish != null" >
+			inside_dish = #{record.insideDish},
+		</if>
+		<if test="record.inflowFund != null" >
+			inflow_fund = #{record.inflowFund},
+		</if>
+		<if test="record.inflowLarge != null" >
+			inflow_large = #{record.inflowLarge},
+		</if>
+		<if test="record.inflowBig != null" >
+			inflow_big = #{record.inflowBig},
+		</if>
+		<if test="record.topFlag != null" >
+			top_flag = #{record.topFlag},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{record.orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="StockNew_logicDelete" parameterType="StockNew">
+		UPDATE hsa_stock_new
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="StockNew_delete" parameterType="StockNew">
+		DELETE FROM hsa_stock_new
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

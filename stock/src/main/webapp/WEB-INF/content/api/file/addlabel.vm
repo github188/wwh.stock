@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>给图片添加标签</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    #parse("commons/commonCss.vm")
+    #parse("commons/commonJs.vm")
+    <script src="${base}/3rd/Jcorp/js/drag.js"></script>
+    <script src="${base}/3rd/Jcorp/js/label.js"></script>
+    <link rel="stylesheet" href="${base}/3rd/Jcorp/css/jquery.Jcrop.picprc.css" type="text/css" />
+    <link rel="stylesheet" href="${base}/3rd/Jcorp/css/nicedream.css"></link>
+    <script>
+        $(function () {
+            var lastIndex;
+            $('#dg').datagrid({
+                columns:[[
+                    {field:'itemid',checkbox:true},
+                    {field:'lblContent',title:'标签内容',width:250,editor:'text'},
+                    {field:'divId',title:'标签所在DIV',width:0,editor:'text',hidden:'true'}
+                ]],
+                onClickRow: function (rowIndex) {
+                    //if (lastIndex != rowIndex) {
+                        $('#dg').datagrid('endEdit', lastIndex);
+                        $('#dg').datagrid('beginEdit', rowIndex);
+                        setEditing(rowIndex);
+                    //}
+                    lastIndex = rowIndex;
+                },
+                rownumbers: true,
+                fitColumns:true,
+                toolbar:'#toolbar'
+            });
+
+        });
+
+        function setEditing(rowIndex){
+            var editors = $('#dg').datagrid('getEditors', rowIndex);
+            var lblEdt = editors[0];
+            var divIdx = editors[1];
+            lblEdt.target.bind('change', function(){
+                calculate();
+            });
+            function calculate(){
+                $("#labeldivM"+divIdx.target.val()).html(lblEdt.target.val());
+                $("#labelcontent"+divIdx.target.val()).html(lblEdt.target.val());
+            }
+        }
+
+        function delLabel(){
+            var rows = jQuery('#dg').datagrid('getSelections');
+            if (rows.length>0){
+                jQuery.messager.confirm('确认删除','确定删除选中标签吗?',function(r){
+                    if (r){
+                        jQuery.each(rows,function(index,row) {
+                            $("#labeldiv"+row.divId).remove();
+                            var rowIndex = $('#dg').datagrid('getRowIndex', row);
+                            $('#dg').datagrid('deleteRow', rowIndex);
+                        });
+                    }
+                });
+            }
+        }
+
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div id="p" data-options="region:'center',border:false" class="dm_mainarea">
+    <div class="ldiv">
+        <div class="lblbody">
+            <form id="upload_form" enctype="multipart/form-data" method="post"
+                  onsubmit="return checkForm()">
+                <div class="wrap-img loading-block">
+                    <img src="${pic}" id="img1" width="500px" onclick="showhiddenlabels(event)">
+                    <div id="labels" style="visibility:hidden"></div>
+                </div>
+                <input type="hidden" id="x1" name="x1">
+                <input type="hidden" id="y1" name="y1">
+                <input type="hidden" id="x2" name="x2">
+                <input type="hidden" id="y2" name="y2">
+                <input type="hidden" id="img1count" name="img1count" value="0">
+
+            </form>
+        </div>
+    </div>
+    <div class="rdiv">
+        <table id="dg"  data-options="toolbar:'#toolbar'" ></table>
+        <div id="toolbar">
+            <div class="btn_box">
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="delLabel()">删除</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div region="south" border="false" class="dm_btnarea">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save('brand')">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+</div>
+</body>
+</html>
+

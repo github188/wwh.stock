@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>招商证券A股日线新增</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/zs/rx-data/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		代码
+    			 	</td>
+    			 	<td>
+						<input name="stockCode" class="easyui-textbox" value="$!{model.stockCode}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		名称
+    			 	</td>
+    			 	<td>
+						<input name="stockName" class="easyui-textbox" value="$!{model.stockName}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		日期
+    			 	</td>
+    			 	<td>
+						<input name="dt" class="easyui-textbox" value="$!{model.dt}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		开盘
+    			 	</td>
+    			 	<td>
+						<input name="curOpen" class="easyui-textbox" value="$!{model.curOpen}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		最高
+    			 	</td>
+    			 	<td>
+						<input name="high" class="easyui-textbox" value="$!{model.high}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		最低
+    			 	</td>
+    			 	<td>
+						<input name="low" class="easyui-textbox" value="$!{model.low}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		收盘
+    			 	</td>
+    			 	<td>
+						<input name="curClose" class="easyui-textbox" value="$!{model.curClose}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		成交量
+    			 	</td>
+    			 	<td>
+						<input name="volume" class="easyui-textbox" value="$!{model.volume}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		5日线
+    			 	</td>
+    			 	<td>
+						<input name="ma1" class="easyui-textbox" value="$!{model.ma1}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		10日线
+    			 	</td>
+    			 	<td>
+						<input name="ma2" class="easyui-textbox" value="$!{model.ma2}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		20日线
+    			 	</td>
+    			 	<td>
+						<input name="ma3" class="easyui-textbox" value="$!{model.ma3}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		60日线
+    			 	</td>
+    			 	<td>
+						<input name="ma4" class="easyui-textbox" value="$!{model.ma4}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		5日量
+    			 	</td>
+    			 	<td>
+						<input name="mavol1" class="easyui-textbox" value="$!{model.mavol1}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		10日量
+    			 	</td>
+    			 	<td>
+						<input name="mavol2" class="easyui-textbox" value="$!{model.mavol2}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		KDJ.K
+    			 	</td>
+    			 	<td>
+						<input name="k" class="easyui-textbox" value="$!{model.k}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		KDJ.D
+    			 	</td>
+    			 	<td>
+						<input name="d" class="easyui-textbox" value="$!{model.d}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		KDJ.J
+    			 	</td>
+    			 	<td>
+						<input name="j" class="easyui-textbox" value="$!{model.j}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		顺序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+	<div region="south" border="false" class="dm_btnarea">
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

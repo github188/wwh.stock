@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>数据字典新增</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/sys/dict/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Man.reload(result);
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div id="p" data-options="region:'center',border:false" class="dm_mainarea">
+    <form id="fm" method="post" novalidate>
+        <table cellpadding="5" width="100%" style="width:220px;margin:0 auto;">
+            <tr>
+                <td>
+                    类型
+                </td>
+                <td>
+                    <input name="keyName" class="easyui-textbox" data-options="required:true">
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    值
+                </td>
+                <td>
+                    <input name="value" class="easyui-textbox" data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>内容</td>
+                <td><input name="content" class="easyui-textbox"></td>
+            </tr>
+            <tr>
+                <td>备注</td>
+                <td>
+                    <input name="memo" class="easyui-textbox" data-options="multiline:true" style="height: 60px">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div region="south" border="false" class="dm_btnarea">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save('brand')">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+</div>
+</body>
+</html>

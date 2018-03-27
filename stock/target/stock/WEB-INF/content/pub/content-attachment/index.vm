@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>内容附件表管理</title>
+        <meta charset="UTF-8">
+        #parse("commons/commonJs.vm")
+		#parse("commons/commonCss.vm")
+		<script type="text/javascript">
+			$(function() {
+				jQuery('#dg').datagrid({
+					url:'${base}/pub/content-attachment/queryPaged',
+					columns:[[
+						{field:'id',checkbox:true}
+						,{field:'contentId',title:'内容ID',width:100}
+						,{field:'priority',title:'排列顺序',width:100}
+						,{field:'attachmentPath',title:'附件路径',width:100}
+						,{field:'attachmentName',title:'附件名称',width:100}
+						,{field:'filename',title:'文件名',width:100}
+						,{field:'downloadCount',title:'下载次数',width:100}
+						,{field:'orderBy',title:'排序',width:100}
+					]],
+					pagination:true,
+					singleSelect:false,
+					fitColumns:true,
+					fit: true,
+					toolbar:'#toolbar',
+					onDblClickRow: function(rowid,rowdata){
+						editForm();
+					}
+				});
+			});
+			function optionFun(value,row,index) {
+				return "";
+			}
+			function newForm(){
+				Man.openWin('新增内容附件表','${base}/pub/content-attachment/add',600,200);
+			}
+			function editForm(){
+				var row = jQuery('#dg').datagrid('getSelected');
+				if (row){
+					Man.openWin('编辑内容附件表','${base}/pub/content-attachment/edit/'+row.id,600,300);
+				}
+			}
+			function destroyForm(){
+				var rows = jQuery('#dg').datagrid('getSelections');
+				if (rows.length>0){
+					jQuery.messager.confirm('确认删除','确定删除该记录?',function(r){
+						if (r){
+							var ids = [];
+							jQuery.each(rows,function(index,row) {
+								ids.push(row.id);
+							});
+							jQuery.post('${base}/pub/content-attachment/delete',{'ids':ids.toString()},function(result){
+								Man.reloadList(result);
+							});
+						}
+					});
+				}
+			}
+			
+			function contentSearch(){ 
+				var contentId=jQuery('#filter_contentId').val();
+                jQuery('#dg').datagrid('load',{
+				'contentId':contentId				})}
+			
+		</script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+   <table id="dg" data-options="toolbar:'#toolbar'"></table>
+    <div id="toolbar">
+    	<div class="search_box">
+			内容ID：<input id="filter_contentId" class="easyui-textbox" >
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="contentSearch()">搜索</a>
+    	</div>
+    	<div class="btn_box">
+    		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newForm()">新增</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editForm()">编辑</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyForm()">删除</a>
+    	</div>
+	</div>
+</body>
+</html>

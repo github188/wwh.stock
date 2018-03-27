@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+	<diskStore path="java.io.tmpdir" />
+
+	<defaultCache maxElementsInMemory="10000" eternal="false"
+				  timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="true"
+				  diskPersistent="false" diskExpiryThreadIntervalSeconds="120"
+				  memoryStoreEvictionPolicy="LRU" />
+
+	<cache name="sys" maxElementsInMemory="10000"
+		   maxElementsOnDisk="1000" eternal="false" overflowToDisk="true"
+		   diskSpoolBufferSizeMB="20" timeToIdleSeconds="300" timeToLiveSeconds="600"
+		   memoryStoreEvictionPolicy="LFU" />
+
+	<cache name="smscache" maxElementsInMemory="10000"
+		   maxElementsOnDisk="1000" eternal="false" overflowToDisk="true"
+		   diskSpoolBufferSizeMB="20" timeToIdleSeconds="300" timeToLiveSeconds="600"
+		   memoryStoreEvictionPolicy="LFU" />
+
+	<cache name="memberlogin" maxElementsInMemory="10000"
+		   maxElementsOnDisk="1000" eternal="false" overflowToDisk="true"
+		   diskSpoolBufferSizeMB="20" timeToIdleSeconds="300" timeToLiveSeconds="600"
+		   memoryStoreEvictionPolicy="LFU" />
+
+	<cache name="sysmenuforole" maxElementsInMemory="10000"
+		   maxElementsOnDisk="1000" eternal="false" overflowToDisk="true"
+		   diskSpoolBufferSizeMB="20" timeToIdleSeconds="3000" timeToLiveSeconds="6000"
+		   memoryStoreEvictionPolicy="LFU" />
+
+	<cache name="example" maxElementsInMemory="10000"
+		   maxElementsOnDisk="1000" eternal="false" overflowToDisk="true"
+		   diskSpoolBufferSizeMB="20" timeToIdleSeconds="100" timeToLiveSeconds="200"
+		   memoryStoreEvictionPolicy="LFU" />
+
+	<cache name="hotpage" maxElementsInMemory="10000"
+		   maxElementsOnDisk="1000" eternal="false" overflowToDisk="true"
+		   diskSpoolBufferSizeMB="20" timeToIdleSeconds="300" timeToLiveSeconds="600"
+		   memoryStoreEvictionPolicy="LFU" />
+
+	<cache name="sysmenu" maxElementsInMemory="10000"
+		   maxElementsOnDisk="1000" eternal="false" overflowToDisk="true"
+		   diskSpoolBufferSizeMB="20" timeToIdleSeconds="60" timeToLiveSeconds="120"
+		   memoryStoreEvictionPolicy="LFU" />
+
+
+	<cache name="other" maxElementsInMemory="10000"
+		   maxElementsOnDisk="1000" eternal="false" overflowToDisk="true"
+		   diskSpoolBufferSizeMB="20" timeToIdleSeconds="30000" timeToLiveSeconds="60000"
+		   memoryStoreEvictionPolicy="LFU" />
+
+	<cache name="forever"
+		   maxElementsInMemory="1000"
+		   eternal="true"
+		   overflowToDisk="false"
+		   memoryStoreEvictionPolicy="FIFO"
+			/>
+
+</ehcache>

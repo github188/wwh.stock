@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>密码修改</title>
+    #parse("commons/commonCss.vm")
+    #parse("commons/commonJs.vm")
+    <script type="text/javascript">
+        function save(){
+            jQuery('#fm').form('submit',{
+                url: '${base}/sys/sysuser/dochgpass',
+                onSubmit: function(){
+                    return jQuery(this).form('validate');
+                },
+                success: function(result){
+                    Man.reload(result);
+                }
+            });
+        }
+
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false" class="dm_mainarea">
+    <form id="fm" method="post">
+        <input type="hidden" name="uuid" value="$!{uuid}" />
+        <br>
+        <table width="100%" cellpadding="5" class="bluetable">
+            <tr >
+                <td align="right" >
+                    原密码：
+                </td>
+                <td>
+                    <input name="oldpass" type="password" maxlength="200" required="required" class="easyui-textbox">
+                </td>
+            </tr>
+            <tr >
+                <td align="right" >
+                    新密码：
+                </td>
+                <td>
+                    <input id="newpass" name="newpass" type="password" validType="validPassword" maxlength="20" required="required" class="easyui-textbox">
+                </td>
+            </tr>
+            <tr >
+                <td align="right" >
+                    确认新密码：
+                </td>
+                <td>
+                    <input id="newpass2" name="newpass2" type="password" validType="equalTo['#newpass']" invalidMessage="两次密码不一致！" required="required" class="easyui-textbox">
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+<div class="dm_btnarea" region="south" border="false">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">修改</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.hsa.domain.IndexData">
+	<resultMap id="get-IndexData-result" type="IndexData">
+		<id property="id" column="ID" />
+		<!-- 代码-->
+		<result property="code" column="code" />
+		<!-- 简称-->
+		<result property="name" column="name" />
+		<!-- 日期-->
+		<result property="dt" column="dt" />
+		<!-- 今开-->
+		<result property="startPrice" column="start_price" />
+		<!-- 昨收-->
+		<result property="endPrice" column="end_price" />
+		<!-- 当前点数-->
+		<result property="closingPrice" column="closing_price" />
+		<!-- 涨跌额-->
+		<result property="udAmount" column="ud_amount" />
+		<!-- 涨跌幅-->
+		<result property="udWidth" column="ud_width" />
+		<!-- 最高价-->
+		<result property="highestPrice" column="highest_price" />
+		<!-- 最低价-->
+		<result property="lowestPrice" column="lowest_price" />
+		<!-- 成交量(手)-->
+		<result property="volume" column="volume" />
+		<!-- 成交额(万元)-->
+		<result property="turnVolume" column="turn_volume" />
+		<!-- 上涨家数-->
+		<result property="riseCnt" column="rise_cnt" />
+		<!-- 平盘家数-->
+		<result property="flatCnt" column="flat_cnt" />
+		<!-- 下跌家数-->
+		<result property="fallCnt" column="fall_cnt" />
+		<!-- 相对涨跌幅-->
+		<result property="curUdWidth" column="cur_ud_width" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="IndexData_Base_Column_List">
+		ID,
+		<!-- 代码-->
+		code,
+		<!-- 简称-->
+		name,
+		<!-- 日期-->
+		dt,
+		<!-- 今开-->
+		start_price,
+		<!-- 昨收-->
+		end_price,
+		<!-- 当前点数-->
+		closing_price,
+		<!-- 涨跌额-->
+		ud_amount,
+		<!-- 涨跌幅-->
+		ud_width,
+		<!-- 最高价-->
+		highest_price,
+		<!-- 最低价-->
+		lowest_price,
+		<!-- 成交量(手)-->
+		volume,
+		<!-- 成交额(万元)-->
+		turn_volume,
+		<!-- 上涨家数-->
+		rise_cnt,
+		<!-- 平盘家数-->
+		flat_cnt,
+		<!-- 下跌家数-->
+		fall_cnt,
+		<!-- 相对涨跌幅-->
+		cur_ud_width,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="IndexData_get" resultMap="get-IndexData-result">
+		SELECT
+		<include refid="IndexData_Base_Column_List" />
+		FROM
+		hsa_index_data
+		where
+		ID = #{id}
+	</select>
+
+	<select id="IndexData_list" resultMap="get-IndexData-result">
+		SELECT
+		<include refid="IndexData_Base_Column_List" />
+		FROM
+		hsa_index_data
+		<include refid="common.Select_Where_Clause" />
+		order by dt desc
+	</select>
+
+    <select id="IndexData_custlist"  resultMap="get-IndexData-result">
+        SELECT
+	        <include refid="IndexData_Base_Column_List" />
+        FROM
+		hsa_index_data
+        WHERE valid='1'
+		            <if test="code != null and code != ''">
+                AND code = #{code}
+            </if>
+		            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+		            <if test="dt != null and dt != ''">
+                AND dt = #{dt}
+            </if>
+		            <if test="startPrice != null and startPrice != ''">
+                AND start_price = #{startPrice}
+            </if>
+		            <if test="endPrice != null and endPrice != ''">
+                AND end_price = #{endPrice}
+            </if>
+		            <if test="closingPrice != null and closingPrice != ''">
+                AND closing_price = #{closingPrice}
+            </if>
+		            <if test="udAmount != null and udAmount != ''">
+                AND ud_amount = #{udAmount}
+            </if>
+		            <if test="udWidth != null and udWidth != ''">
+                AND ud_width = #{udWidth}
+            </if>
+		            <if test="highestPrice != null and highestPrice != ''">
+                AND highest_price = #{highestPrice}
+            </if>
+		            <if test="lowestPrice != null and lowestPrice != ''">
+                AND lowest_price = #{lowestPrice}
+            </if>
+		            <if test="volume != null and volume != ''">
+                AND volume = #{volume}
+            </if>
+		            <if test="turnVolume != null and turnVolume != ''">
+                AND turn_volume = #{turnVolume}
+            </if>
+		            <if test="riseCnt != null and riseCnt != ''">
+                AND rise_cnt = #{riseCnt}
+            </if>
+		            <if test="flatCnt != null and flatCnt != ''">
+                AND flat_cnt = #{flatCnt}
+            </if>
+		            <if test="fallCnt != null and fallCnt != ''">
+                AND fall_cnt = #{fallCnt}
+            </if>
+		            <if test="curUdWidth != null and curUdWidth != ''">
+                AND cur_ud_width = #{curUdWidth}
+            </if>
+		            <if test="orderBy != null and orderBy != ''">
+                AND order_by = #{orderBy}
+            </if>
+		    </select>
+
+	<insert id="IndexData_insert" parameterType="IndexData" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO hsa_index_data(
+		code,
+		name,
+		dt,
+		start_price,
+		end_price,
+		closing_price,
+		ud_amount,
+		ud_width,
+		highest_price,
+		lowest_price,
+		volume,
+		turn_volume,
+		rise_cnt,
+		flat_cnt,
+		fall_cnt,
+		cur_ud_width,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{code},
+		#{name},
+		#{dt},
+		#{startPrice},
+		#{endPrice},
+		#{closingPrice},
+		#{udAmount},
+		#{udWidth},
+		#{highestPrice},
+		#{lowestPrice},
+		#{volume},
+		#{turnVolume},
+		#{riseCnt},
+		#{flatCnt},
+		#{fallCnt},
+		#{curUdWidth},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="IndexData_update" parameterType="IndexData">
+		UPDATE hsa_index_data
+		set
+		code = #{code},
+		name = #{name},
+		dt = #{dt},
+		start_price = #{startPrice},
+		end_price = #{endPrice},
+		closing_price = #{closingPrice},
+		ud_amount = #{udAmount},
+		ud_width = #{udWidth},
+		highest_price = #{highestPrice},
+		lowest_price = #{lowestPrice},
+		volume = #{volume},
+		turn_volume = #{turnVolume},
+		rise_cnt = #{riseCnt},
+		flat_cnt = #{flatCnt},
+		fall_cnt = #{fallCnt},
+		cur_ud_width = #{curUdWidth},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="IndexData_updateSelective" parameterType="map">
+		UPDATE hsa_index_data
+		set
+		<if test="record.code != null" >
+			code = #{record.code},
+		</if>
+		<if test="record.name != null" >
+			name = #{record.name},
+		</if>
+		<if test="record.dt != null" >
+			dt = #{record.dt},
+		</if>
+		<if test="record.startPrice != null" >
+			start_price = #{record.startPrice},
+		</if>
+		<if test="record.endPrice != null" >
+			end_price = #{record.endPrice},
+		</if>
+		<if test="record.closingPrice != null" >
+			closing_price = #{record.closingPrice},
+		</if>
+		<if test="record.udAmount != null" >
+			ud_amount = #{record.udAmount},
+		</if>
+		<if test="record.udWidth != null" >
+			ud_width = #{record.udWidth},
+		</if>
+		<if test="record.highestPrice != null" >
+			highest_price = #{record.highestPrice},
+		</if>
+		<if test="record.lowestPrice != null" >
+			lowest_price = #{record.lowestPrice},
+		</if>
+		<if test="record.volume != null" >
+			volume = #{record.volume},
+		</if>
+		<if test="record.turnVolume != null" >
+			turn_volume = #{record.turnVolume},
+		</if>
+		<if test="record.riseCnt != null" >
+			rise_cnt = #{record.riseCnt},
+		</if>
+		<if test="record.flatCnt != null" >
+			flat_cnt = #{record.flatCnt},
+		</if>
+		<if test="record.fallCnt != null" >
+			fall_cnt = #{record.fallCnt},
+		</if>
+		<if test="record.curUdWidth != null" >
+			cur_ud_width = #{record.curUdWidth},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{record.orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="IndexData_logicDelete" parameterType="IndexData">
+		UPDATE hsa_index_data
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="IndexData_delete" parameterType="IndexData">
+		DELETE FROM hsa_index_data
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

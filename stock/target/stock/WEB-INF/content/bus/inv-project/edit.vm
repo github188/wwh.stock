@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>投资项目编辑</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/bus/inv-project/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+    <style type="text/css">
+        td:nth-child(2){
+            width:60%;
+        }
+        select{
+            width:150px;
+            padding-top:2px;
+            padding-bottom:2px;
+            border-radius:5px;
+        }
+        input[type=date],input[type=time]{
+            width:145px;
+        }
+
+        [placeholder]{
+
+            padding-top:2px;
+            padding-bottom:2px;
+            border-radius:5px;
+        }
+        [placeholder]::-webkit-input-placeholder { /* WebKit browsers */
+            text-align:right;
+        }
+        [placeholder]:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            text-align:right;
+        }
+        [placeholder]::-moz-placeholder { /* Mozilla Firefox 19+ */
+            text-align:right;
+        }
+        [placeholder]::-ms-input-placeholder { /* Internet Explorer 10+ */
+            text-align:right;
+        }
+    </style>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<input type="hidden" name="id" value="$!{model.id}">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		项目名称
+    			 	</td>
+    			 	<td>
+						<input name="projectName" required class="easyui-textbox" value="$!{model.projectName}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目大类
+    			 	</td>
+    			 	<td>
+                        <select name="projectCategories" class="easyui-validatebox" required>
+							#dicSelect("project_categories",$!{model.projectCategories})
+                        </select>
+						#*<input name="projectCategories" class="easyui-textbox" value="$!{model.projectCategories}">*#
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目小类
+    			 	</td>
+    			 	<td>
+						<input name="brokendownCategory" class="easyui-textbox" value="$!{model.brokendownCategory}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		发布日期
+    			 	</td>
+    			 	<td>
+						<input type="date" name="releaseDate" class="easyui-textbox" value="$!{model.releaseDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		发布时间
+    			 	</td>
+    			 	<td>
+						<input type="time" name="releaseTime" class="easyui-textbox" value="$!{model.releaseTime}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目类型
+    			 	</td>
+    			 	<td>
+						#*<input name="projectType" class="easyui-textbox" value="$!{model.projectType}">*#
+                        <select name="projectType" class="easyui-validatebox">
+							#dicSelect("project_type",$!{model.projectType})
+                        </select>
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		投资方式
+    			 	</td>
+    			 	<td>
+						<input name="investmentWay" class="easyui-textbox" value="$!{model.investmentWay}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		所属行业
+    			 	</td>
+    			 	<td>
+						#*<input name="industry" class="easyui-textbox" value="$!{model.industry}">*#
+                        <select name="industry" class="easyui-validatebox">
+							#dicSelect("trade",$!{model.industry})
+                        </select>
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目地点
+    			 	</td>
+    			 	<td>
+						<input name="projectLocation" class="easyui-textbox" value="$!{model.projectLocation}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		建设该项目的优势条件
+    			 	</td>
+    			 	<td>
+						<input name="advantageousConditionsOfTheProject" class="easyui-textbox" value="$!{model.advantageousConditionsOfTheProject}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目有效期
+    			 	</td>
+    			 	<td>
+						<input name="lifeOfTheProject" class="easyui-textbox" value="$!{model.lifeOfTheProject}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目标示
+    			 	</td>
+    			 	<td>
+						#*<input name="projectsMark" class="easyui-textbox" value="$!{model.projectsMark}">*#
+                        <select name="projectsMark" class="easyui-validatebox">
+							#dicSelect("projects_mark",$!{model.projectsMark})
+                        </select>
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目性质
+    			 	</td>
+    			 	<td>
+						<input name="projectNature" class="easyui-textbox" value="$!{model.projectNature}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目状态
+    			 	</td>
+    			 	<td>
+						<input name="projectStatus" class="easyui-textbox" value="$!{model.projectStatus}">
+                        <select name="projectStatus">
+							#dicSelect("project_status",$!{model.projectStatus})
+                        </select>
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目总金额
+    			 	</td>
+    			 	<td>
+						<input name="totalAmount" class="easyui-textbox" value="$!{model.totalAmount}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		拟吸引投资总金额
+    			 	</td>
+    			 	<td>
+						<input name="totalAmountToAttractInvestment" class="easyui-textbox" value="$!{model.totalAmountToAttractInvestment}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		预计年销售收入
+    			 	</td>
+    			 	<td>
+						<input name="estimatedAnnualSalesIncome" class="easyui-textbox" value="$!{model.estimatedAnnualSalesIncome}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		预计投资回报期
+    			 	</td>
+    			 	<td>
+						<input name="expectedPaybackPeriod" class="easyui-textbox" value="$!{model.expectedPaybackPeriod}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		预计就业人数
+    			 	</td>
+    			 	<td>
+						<input name="expectedEmployment" class="easyui-textbox" value="$!{model.expectedEmployment}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目环保简述
+    			 	</td>
+    			 	<td>
+						<input name="environmentalProjectBrief" class="easyui-textbox" value="$!{model.environmentalProjectBrief}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		投资者条件简述
+    			 	</td>
+    			 	<td>
+						<input name="investorRequirments" class="easyui-textbox" value="$!{model.investorRequirments}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目背景及进展情况
+    			 	</td>
+    			 	<td>
+						<input name="projectBackgroundAndProgress" class="easyui-textbox" value="$!{model.projectBackgroundAndProgress}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目内容描述
+    			 	</td>
+    			 	<td>
+						<input name="projectContentDescription" class="easyui-textbox" value="$!{model.projectContentDescription}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		合作意向或洽谈对象
+    			 	</td>
+    			 	<td>
+						<input name="cooperationIntention" class="easyui-textbox" value="$!{model.cooperationIntention}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目单位名称
+    			 	</td>
+    			 	<td>
+						<input name="projectUnitName" class="easyui-textbox" value="$!{model.projectUnitName}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		招商项目单位简介
+                    </td>
+    			 	<td>
+						<input name="introductionOfInvestmentProjects" class="easyui-textbox" value="$!{model.introductionOfInvestmentProjects}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目单位地址
+    			 	</td>
+    			 	<td>
+						<input name="projectAddress" class="easyui-textbox" value="$!{model.projectAddress}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目联系人名称
+    			 	</td>
+    			 	<td>
+						<input name="projectContact" class="easyui-textbox" value="$!{model.projectContact}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目联系人手机
+    			 	</td>
+    			 	<td>
+						<input name="contactPhone" class="easyui-textbox" value="$!{model.contactPhone}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目联系人电话
+    			 	</td>
+    			 	<td>
+						<input name="contactCall" class="easyui-textbox" value="$!{model.contactCall}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		项目联系人邮箱
+    			 	</td>
+    			 	<td>
+						<input name="contactEmail" class="easyui-textbox" value="$!{model.contactEmail}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		备注
+    			 	</td>
+    			 	<td>
+						<input name="remark" class="easyui-textbox" value="$!{model.remark}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		审核状态
+    			 	</td>
+    			 	<td>
+						<input name="approvalStatus" class="easyui-textbox" value="$!{model.approvalStatus}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		排序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+     <div region="south" border="false" class="dm_btnarea">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

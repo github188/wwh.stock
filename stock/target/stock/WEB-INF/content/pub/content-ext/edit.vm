@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>内容扩展表编辑</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/pub/content-ext/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<input type="hidden" name="id" value="$!{model.id}">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		内容ID
+    			 	</td>
+    			 	<td>
+						<input name="contentId" class="easyui-textbox" value="$!{model.contentId}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		标题
+    			 	</td>
+    			 	<td>
+						<input name="title" class="easyui-textbox" value="$!{model.title}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		简短标题
+    			 	</td>
+    			 	<td>
+						<input name="shortTitle" class="easyui-textbox" value="$!{model.shortTitle}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		作者
+    			 	</td>
+    			 	<td>
+						<input name="author" class="easyui-textbox" value="$!{model.author}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		来源
+    			 	</td>
+    			 	<td>
+						<input name="origin" class="easyui-textbox" value="$!{model.origin}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		来源链接
+    			 	</td>
+    			 	<td>
+						<input name="originUrl" class="easyui-textbox" value="$!{model.originUrl}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		描述
+    			 	</td>
+    			 	<td>
+						<input name="description" class="easyui-textbox" value="$!{model.description}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		发布日期
+    			 	</td>
+    			 	<td>
+						<input name="releaseDate" class="easyui-textbox" value="$!{model.releaseDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		媒体路径
+    			 	</td>
+    			 	<td>
+						<input name="mediaPath" class="easyui-textbox" value="$!{model.mediaPath}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		媒体类型
+    			 	</td>
+    			 	<td>
+						<input name="mediaType" class="easyui-textbox" value="$!{model.mediaType}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		标题颜色
+    			 	</td>
+    			 	<td>
+						<input name="titleColor" class="easyui-textbox" value="$!{model.titleColor}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		是否加粗
+    			 	</td>
+    			 	<td>
+						<input name="isBold" class="easyui-textbox" value="$!{model.isBold}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		标题图片
+    			 	</td>
+    			 	<td>
+						<input name="titleImg" class="easyui-textbox" value="$!{model.titleImg}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		内容图片
+    			 	</td>
+    			 	<td>
+						<input name="contentImg" class="easyui-textbox" value="$!{model.contentImg}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		类型图片
+    			 	</td>
+    			 	<td>
+						<input name="typeImg" class="easyui-textbox" value="$!{model.typeImg}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		外部链接
+    			 	</td>
+    			 	<td>
+						<input name="link" class="easyui-textbox" value="$!{model.link}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		指定模板
+    			 	</td>
+    			 	<td>
+						<input name="tplContent" class="easyui-textbox" value="$!{model.tplContent}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		需要重新生成静态页
+    			 	</td>
+    			 	<td>
+						<input name="needRegenerate" class="easyui-textbox" value="$!{model.needRegenerate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		排序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+     <div region="south" border="false" class="dm_btnarea">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.pub.domain.ContentTxt">
+	<resultMap id="get-ContentTxt-result" type="ContentTxt">
+		<id property="id" column="ID" />
+		<!-- 内容ID-->
+		<result property="contentId" column="content_id" />
+		<!-- 文章内容-->
+		<result property="txt" column="txt" />
+		<!-- 扩展内容1-->
+		<result property="txt1" column="txt1" />
+		<!-- 扩展内容2-->
+		<result property="txt2" column="txt2" />
+		<!-- 扩展内容3-->
+		<result property="txt3" column="txt3" />
+		<!-- 描述-->
+		<result property="description" column="description" />
+		<!-- 排序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="ContentTxt_Base_Column_List">
+		ID,
+		<!-- 内容ID-->
+		content_id,
+		<!-- 文章内容-->
+		txt,
+		<!-- 扩展内容1-->
+		txt1,
+		<!-- 扩展内容2-->
+		txt2,
+		<!-- 扩展内容3-->
+		txt3,
+		<!-- 描述-->
+		description,
+		<!-- 排序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="ContentTxt_get" resultMap="get-ContentTxt-result">
+		SELECT
+		<include refid="ContentTxt_Base_Column_List" />
+		FROM
+		pub_content_txt
+		where
+		ID = #{id}
+	</select>
+
+	<select id="ContentTxt_list" resultMap="get-ContentTxt-result">
+		SELECT
+		<include refid="ContentTxt_Base_Column_List" />
+		FROM
+		pub_content_txt
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="ContentTxt_insert" parameterType="ContentTxt" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO pub_content_txt(
+		content_id,
+		txt,
+		txt1,
+		txt2,
+		txt3,
+		description,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{contentId},
+		#{txt},
+		#{txt1},
+		#{txt2},
+		#{txt3},
+		#{description},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="ContentTxt_update" parameterType="ContentTxt">
+		UPDATE pub_content_txt
+		set
+		content_id = #{contentId},
+		txt = #{txt},
+		txt1 = #{txt1},
+		txt2 = #{txt2},
+		txt3 = #{txt3},
+		description = #{description},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="ContentTxt_updateSelective" parameterType="map">
+		UPDATE pub_content_txt
+		set
+		<if test="record.contentId != null" >
+			content_id = #{contentId},
+		</if>
+		<if test="record.txt != null" >
+			txt = #{txt},
+		</if>
+		<if test="record.txt1 != null" >
+			txt1 = #{txt1},
+		</if>
+		<if test="record.txt2 != null" >
+			txt2 = #{txt2},
+		</if>
+		<if test="record.txt3 != null" >
+			txt3 = #{txt3},
+		</if>
+		<if test="record.description != null" >
+			description = #{description},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="ContentTxt_logicDelete" parameterType="ContentTxt">
+		UPDATE pub_content_txt
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="ContentTxt_delete" parameterType="ContentTxt">
+		DELETE FROM pub_content_txt
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

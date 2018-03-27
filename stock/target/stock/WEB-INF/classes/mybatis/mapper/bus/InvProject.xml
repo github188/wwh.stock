@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.bus.domain.InvProject">
+	<resultMap id="get-InvProject-result" type="InvProject">
+		<id property="id" column="ID" />
+		<!-- 项目名称-->
+		<result property="projectName" column="project_name" />
+		<!-- 项目大类-->
+		<result property="projectCategories" column="project_categories" />
+		<!-- 项目小类-->
+		<result property="brokendownCategory" column="brokendown_category" />
+		<!-- 发布日期-->
+		<result property="releaseDate" column="release_date" />
+		<!-- 发布时间-->
+		<result property="releaseTime" column="release_time" />
+		<!-- 项目类型-->
+		<result property="projectType" column="project_type" />
+		<!-- 投资方式-->
+		<result property="investmentWay" column="investment_way" />
+		<!-- 所属行业-->
+		<result property="industry" column="industry" />
+		<!-- 项目地点-->
+		<result property="projectLocation" column="project_location" />
+		<!-- 建设该项目的优势条件-->
+		<result property="advantageousConditionsOfTheProject" column="advantageous_conditions_of_the_project" />
+		<!-- 项目有效期-->
+		<result property="lifeOfTheProject" column="life_of_the_project" />
+		<!-- 项目标示-->
+		<result property="projectsMark" column="projects_mark" />
+		<!-- 项目性质-->
+		<result property="projectNature" column="project_nature" />
+		<!-- 项目状态-->
+		<result property="projectStatus" column="project_status" />
+		<!-- 项目总金额-->
+		<result property="totalAmount" column="total_amount" />
+		<!-- 拟吸引投资总金额-->
+		<result property="totalAmountToAttractInvestment" column="total_amount_to_attract_investment" />
+		<!-- 预计年销售收入-->
+		<result property="estimatedAnnualSalesIncome" column="estimated_annual_sales_income" />
+		<!-- 预计投资回报期-->
+		<result property="expectedPaybackPeriod" column="expected_payback_period" />
+		<!-- 预计就业人数-->
+		<result property="expectedEmployment" column="expected_employment" />
+		<!-- 项目环保简述-->
+		<result property="environmentalProjectBrief" column="environmental_project_brief" />
+		<!-- 投资者条件简述-->
+		<result property="investorRequirments" column="investor_requirments" />
+		<!-- 项目背景及进展情况-->
+		<result property="projectBackgroundAndProgress" column="project_background_and_progress" />
+		<!-- 项目内容描述-->
+		<result property="projectContentDescription" column="project_content_description" />
+		<!-- 合作意向或洽谈对象-->
+		<result property="cooperationIntention" column="cooperation_intention" />
+		<!-- 项目单位名称-->
+		<result property="projectUnitName" column="project_unit_name" />
+		<!-- 招商项目单位简介-->
+		<result property="introductionOfInvestmentProjects" column="introduction_of_investment_projects" />
+		<!-- 项目单位地址-->
+		<result property="projectAddress" column="project_address" />
+		<!-- 项目联系人名称-->
+		<result property="projectContact" column="project_contact" />
+		<!-- 项目联系人手机-->
+		<result property="contactPhone" column="contact_phone" />
+		<!-- 项目联系人电话-->
+		<result property="contactCall" column="contact_call" />
+		<!-- 项目联系人邮箱-->
+		<result property="contactEmail" column="contact_email" />
+		<!-- 备注-->
+		<result property="remark" column="remark" />
+		<!-- 审核状态-->
+		<result property="approvalStatus" column="approval_status" />
+		<!-- 排序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="InvProject_Base_Column_List">
+		ID,
+		<!-- 项目名称-->
+		project_name,
+		<!-- 项目大类-->
+		project_categories,
+		<!-- 项目小类-->
+		brokendown_category,
+		<!-- 发布日期-->
+		release_date,
+		<!-- 发布时间-->
+		release_time,
+		<!-- 项目类型-->
+		project_type,
+		<!-- 投资方式-->
+		investment_way,
+		<!-- 所属行业-->
+		industry,
+		<!-- 项目地点-->
+		project_location,
+		<!-- 建设该项目的优势条件-->
+		advantageous_conditions_of_the_project,
+		<!-- 项目有效期-->
+		life_of_the_project,
+		<!-- 项目标示-->
+		projects_mark,
+		<!-- 项目性质-->
+		project_nature,
+		<!-- 项目状态-->
+		project_status,
+		<!-- 项目总金额-->
+		total_amount,
+		<!-- 拟吸引投资总金额-->
+		total_amount_to_attract_investment,
+		<!-- 预计年销售收入-->
+		estimated_annual_sales_income,
+		<!-- 预计投资回报期-->
+		expected_payback_period,
+		<!-- 预计就业人数-->
+		expected_employment,
+		<!-- 项目环保简述-->
+		environmental_project_brief,
+		<!-- 投资者条件简述-->
+		investor_requirments,
+		<!-- 项目背景及进展情况-->
+		project_background_and_progress,
+		<!-- 项目内容描述-->
+		project_content_description,
+		<!-- 合作意向或洽谈对象-->
+		cooperation_intention,
+		<!-- 项目单位名称-->
+		project_unit_name,
+		<!-- 招商项目单位简介-->
+		introduction_of_investment_projects,
+		<!-- 项目单位地址-->
+		project_address,
+		<!-- 项目联系人名称-->
+		project_contact,
+		<!-- 项目联系人手机-->
+		contact_phone,
+		<!-- 项目联系人电话-->
+		contact_call,
+		<!-- 项目联系人邮箱-->
+		contact_email,
+		<!-- 备注-->
+		remark,
+		<!-- 审核状态-->
+		approval_status,
+		<!-- 排序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="InvProject_get" resultMap="get-InvProject-result">
+		SELECT
+		<include refid="InvProject_Base_Column_List" />
+		FROM
+		bus_inv_project
+		where
+		ID = #{id}
+	</select>
+
+	<select id="InvProject_list" resultMap="get-InvProject-result">
+		SELECT
+		<include refid="InvProject_Base_Column_List" />
+		FROM
+		bus_inv_project
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="InvProject_insert" parameterType="InvProject" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO bus_inv_project(
+		project_name,
+		project_categories,
+		brokendown_category,
+		release_date,
+		release_time,
+		project_type,
+		investment_way,
+		industry,
+		project_location,
+		advantageous_conditions_of_the_project,
+		life_of_the_project,
+		projects_mark,
+		project_nature,
+		project_status,
+		total_amount,
+		total_amount_to_attract_investment,
+		estimated_annual_sales_income,
+		expected_payback_period,
+		expected_employment,
+		environmental_project_brief,
+		investor_requirments,
+		project_background_and_progress,
+		project_content_description,
+		cooperation_intention,
+		project_unit_name,
+		introduction_of_investment_projects,
+		project_address,
+		project_contact,
+		contact_phone,
+		contact_call,
+		contact_email,
+		remark,
+		approval_status,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{projectName},
+		#{projectCategories},
+		#{brokendownCategory},
+		#{releaseDate},
+		#{releaseTime},
+		#{projectType},
+		#{investmentWay},
+		#{industry},
+		#{projectLocation},
+		#{advantageousConditionsOfTheProject},
+		#{lifeOfTheProject},
+		#{projectsMark},
+		#{projectNature},
+		#{projectStatus},
+		#{totalAmount},
+		#{totalAmountToAttractInvestment},
+		#{estimatedAnnualSalesIncome},
+		#{expectedPaybackPeriod},
+		#{expectedEmployment},
+		#{environmentalProjectBrief},
+		#{investorRequirments},
+		#{projectBackgroundAndProgress},
+		#{projectContentDescription},
+		#{cooperationIntention},
+		#{projectUnitName},
+		#{introductionOfInvestmentProjects},
+		#{projectAddress},
+		#{projectContact},
+		#{contactPhone},
+		#{contactCall},
+		#{contactEmail},
+		#{remark},
+		#{approvalStatus},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="InvProject_update" parameterType="InvProject">
+		UPDATE bus_inv_project
+		set
+		project_name = #{projectName},
+		project_categories = #{projectCategories},
+		brokendown_category = #{brokendownCategory},
+		release_date = #{releaseDate},
+		release_time = #{releaseTime},
+		project_type = #{projectType},
+		investment_way = #{investmentWay},
+		industry = #{industry},
+		project_location = #{projectLocation},
+		advantageous_conditions_of_the_project = #{advantageousConditionsOfTheProject},
+		life_of_the_project = #{lifeOfTheProject},
+		projects_mark = #{projectsMark},
+		project_nature = #{projectNature},
+		project_status = #{projectStatus},
+		total_amount = #{totalAmount},
+		total_amount_to_attract_investment = #{totalAmountToAttractInvestment},
+		estimated_annual_sales_income = #{estimatedAnnualSalesIncome},
+		expected_payback_period = #{expectedPaybackPeriod},
+		expected_employment = #{expectedEmployment},
+		environmental_project_brief = #{environmentalProjectBrief},
+		investor_requirments = #{investorRequirments},
+		project_background_and_progress = #{projectBackgroundAndProgress},
+		project_content_description = #{projectContentDescription},
+		cooperation_intention = #{cooperationIntention},
+		project_unit_name = #{projectUnitName},
+		introduction_of_investment_projects = #{introductionOfInvestmentProjects},
+		project_address = #{projectAddress},
+		project_contact = #{projectContact},
+		contact_phone = #{contactPhone},
+		contact_call = #{contactCall},
+		contact_email = #{contactEmail},
+		remark = #{remark},
+		approval_status = #{approvalStatus},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="InvProject_updateSelective" parameterType="map">
+		UPDATE bus_inv_project
+		set
+		<if test="record.projectName != null" >
+			project_name = #{projectName},
+		</if>
+		<if test="record.projectCategories != null" >
+			project_categories = #{projectCategories},
+		</if>
+		<if test="record.brokendownCategory != null" >
+			brokendown_category = #{brokendownCategory},
+		</if>
+		<if test="record.releaseDate != null" >
+			release_date = #{releaseDate},
+		</if>
+		<if test="record.releaseTime != null" >
+			release_time = #{releaseTime},
+		</if>
+		<if test="record.projectType != null" >
+			project_type = #{projectType},
+		</if>
+		<if test="record.investmentWay != null" >
+			investment_way = #{investmentWay},
+		</if>
+		<if test="record.industry != null" >
+			industry = #{industry},
+		</if>
+		<if test="record.projectLocation != null" >
+			project_location = #{projectLocation},
+		</if>
+		<if test="record.advantageousConditionsOfTheProject != null" >
+			advantageous_conditions_of_the_project = #{advantageousConditionsOfTheProject},
+		</if>
+		<if test="record.lifeOfTheProject != null" >
+			life_of_the_project = #{lifeOfTheProject},
+		</if>
+		<if test="record.projectsMark != null" >
+			projects_mark = #{projectsMark},
+		</if>
+		<if test="record.projectNature != null" >
+			project_nature = #{projectNature},
+		</if>
+		<if test="record.projectStatus != null" >
+			project_status = #{projectStatus},
+		</if>
+		<if test="record.totalAmount != null" >
+			total_amount = #{totalAmount},
+		</if>
+		<if test="record.totalAmountToAttractInvestment != null" >
+			total_amount_to_attract_investment = #{totalAmountToAttractInvestment},
+		</if>
+		<if test="record.estimatedAnnualSalesIncome != null" >
+			estimated_annual_sales_income = #{estimatedAnnualSalesIncome},
+		</if>
+		<if test="record.expectedPaybackPeriod != null" >
+			expected_payback_period = #{expectedPaybackPeriod},
+		</if>
+		<if test="record.expectedEmployment != null" >
+			expected_employment = #{expectedEmployment},
+		</if>
+		<if test="record.environmentalProjectBrief != null" >
+			environmental_project_brief = #{environmentalProjectBrief},
+		</if>
+		<if test="record.investorRequirments != null" >
+			investor_requirments = #{investorRequirments},
+		</if>
+		<if test="record.projectBackgroundAndProgress != null" >
+			project_background_and_progress = #{projectBackgroundAndProgress},
+		</if>
+		<if test="record.projectContentDescription != null" >
+			project_content_description = #{projectContentDescription},
+		</if>
+		<if test="record.cooperationIntention != null" >
+			cooperation_intention = #{cooperationIntention},
+		</if>
+		<if test="record.projectUnitName != null" >
+			project_unit_name = #{projectUnitName},
+		</if>
+		<if test="record.introductionOfInvestmentProjects != null" >
+			introduction_of_investment_projects = #{introductionOfInvestmentProjects},
+		</if>
+		<if test="record.projectAddress != null" >
+			project_address = #{projectAddress},
+		</if>
+		<if test="record.projectContact != null" >
+			project_contact = #{projectContact},
+		</if>
+		<if test="record.contactPhone != null" >
+			contact_phone = #{contactPhone},
+		</if>
+		<if test="record.contactCall != null" >
+			contact_call = #{contactCall},
+		</if>
+		<if test="record.contactEmail != null" >
+			contact_email = #{contactEmail},
+		</if>
+		<if test="record.remark != null" >
+			remark = #{remark},
+		</if>
+		<if test="record.approvalStatus != null" >
+			approval_status = #{approvalStatus},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="InvProject_logicDelete" parameterType="InvProject">
+		UPDATE bus_inv_project
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="InvProject_delete" parameterType="InvProject">
+		DELETE FROM bus_inv_project
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

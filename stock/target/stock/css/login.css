@@ -1,0 +1,130 @@
+.loginbg{
+	height: 525px;
+	background: url(../images/login/bg.png) center repeat;
+	position: relative;
+}
+.loginbox{
+	background: #fff;
+	width: 294px;
+	height: 320px;
+	position: absolute;
+	top: 112px;
+	left: 60%;
+}
+.loginbox .boxshadow{
+	width: 294px;
+	height: 18px;
+	background: url(../images/login/boxshadow.png) no-repeat;
+	position: absolute;
+	bottom: -18px;
+} 
+.loginbox .title{
+	height: 37px;
+	line-height: 37px;
+	background: #e5e5e5;
+	font-size: 16px;
+	color: #999;
+	text-align: center;
+}
+.loginbox .title a{
+	text-decoration: none;
+	display: block;
+	float: left;
+	width: 147px;
+	height: 45px;
+}
+.loginbox .title a.current{
+	color: #fff;
+	background: url(../images/login/selected_icon.png) no-repeat;
+}
+
+.ibox{
+	margin: 17px 32px;
+}
+
+.blockbox{
+	margin: 17px 32px;
+}
+
+.nonebox{
+	margin: 29px 32px;
+}
+
+.ibox .name{font-size: 14px;color: #666;}
+.ibox .inputtext{
+	height: 34px;
+	width: 196px;
+	border: #b6b6b6 1px solid;
+	padding-left:4px;
+	padding-right: 30px;
+	margin: 5px auto;
+}
+
+.ibox .blocktext{
+	margin: 5px auto;
+}
+
+.ibox .nonetext{
+	margin: 9px auto;
+}
+
+.ibox .inputtext:focus {
+	outline:none;
+	border:#35a5e5 1px solid;
+	box-shadow: 0 0 3px rgba(81, 203, 238, 1);
+	-webkit-box-shadow: 0 0 3px rgba(81, 203, 238, 1);
+	-moz-box-shadow: 0 0 3px rgba(81, 203, 238, 1);
+}
+
+.blockbox i{position: absolute;right: 5px;top: 11px;width: 24px;height: 25px;}
+.nonebox i{position: absolute;right: 5px;top: 15px;width: 24px;height: 25px;}
+.user_icon{
+	background: url(../images/login/icon_user.png) no-repeat;
+	background-size: 100% 100%;
+}
+.user_password{
+	background: url(../images/login/icon_password.png) no-repeat;
+	background-size: 100% 100%;
+}
+.forgetpassword,.registLink{
+	float: right;
+	font-size: 12px;
+	color: #0088cc;
+}
+.ibox  .loginBtn{
+	width: 231px;
+	height: 36px;
+	font-size: 18px;
+	color: #fff;
+	background: url(../images/login/loginbtn.png) no-repeat;
+	border: none;
+	outline: none;
+    cursor: pointer;
+}
+
+.ibox  .blockverify{
+	margin: 0 auto 4px;
+}
+
+.ibox  .noneverify{
+	margin: 22px auto 4px;
+}
+
+.errtip {
+    float: left;
+    font-size: 12px;
+    color: #ff0000;
+}
+.verifyimg {
+	position: relative;
+	border: #e8e8e8 1px solid;
+	top: 13px;
+	height: 35px;
+	width: 112px;
+}
+.changeimg{
+	font-size: 12px;
+	color: #0088cc;
+	margin-top: -4px;
+	margin-left: 1px;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>新增部门</title>
+	#parse("commons/commonCss.vm")
+	#parse("commons/commonJs.vm")
+    <script type="text/javascript">
+        function save(){
+            jQuery('#fm').form('submit',{
+                url: '${base}/sys/sysdept/save',
+                onSubmit: function(){
+                    return jQuery(this).form('validate');
+                },
+                success: function(result){
+                    result = jQuery.parseJSON(result);
+                    Man.reload(result);
+                    if(result.success){
+                        // 找到父亲页面（相对）
+                        var obj = Man.findpapa();
+
+                        var node = obj.jQuery('#grid').treegrid('getSelected');
+                        obj.jQuery('#grid').treegrid('reload', node.id);
+                        obj.jQuery('#grid').treegrid('expand', node.id);
+                        obj.jQuery('#grid').treegrid('unselectAll');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false" class="dm_mainarea">
+    <form id="fm" method="post">
+        <table width="100%" style="width:410px;margin:0 auto;" cellpadding="5" class="gridpub">
+            <tr>
+                <td class="title" align="left">
+                    上级部门编码
+                </td>
+                <td>
+                    <input name="menuCode" class="easyui-textbox" value="$!{model.deptCode}" style="width: 300px" disabled>
+                    <input type="hidden" name="upId" id="upId" value="$!{model.id}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    上级部门名称
+                </td>
+                <td>
+                    <input name="name" class="easyui-textbox" value="$!{model.deptName}" style="width: 300px" disabled>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    部门类型
+                </td>
+                <td>
+                    <select id="deptType" name="deptType" class="easyui-combobox" data-options="editable:false,panelHeight:'auto'"  style="width: 150px">
+						#dicSelect("dept_type","10")
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="left">
+                    部门编码
+                </td>
+                <td>
+                    <input name="deptCode" class="easyui-textbox" maxlength="20" data-options="required:true,validType:['notblank','deptCdCheck']"  style="width: 300px" required="true">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    部门名称
+                </td>
+                <td>
+                    <input name="deptName" class="easyui-textbox" maxlength="50" data-options="required:true,validType:['notblank','deptNameCheck']"  style="width: 300px" required="true">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    部门职能
+                </td>
+                <td>
+                    <input name="deptFunction" class="easyui-textbox" maxlength="50" data-options="required:true"  style="width: 300px">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    部门描述
+                </td>
+                <td>
+                    <input name="deptDesc" class="easyui-textbox" maxlength="50" data-options="multiline:true" style="height:50px;width: 300px">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    部门负责人
+                </td>
+                <td>
+                    <input name="manager" class="easyui-textbox" maxlength="50" style="width: 300px">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    联系电话
+                </td>
+                <td>
+                    <input name="phone" class="easyui-textbox" maxlength="50" style="width: 300px">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    排序
+                </td>
+                <td>
+                    <input name="orderBy" class="easyui-numberbox" maxlength="10" style="width: 300px" required="true">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div region="south" border="false" class="dm_btnarea">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+</div>
+</body>
+<script type="text/javascript">
+    jQuery.extend(jQuery.fn.validatebox.defaults.rules, {
+        deptNameCheck: {
+            validator: function(value, param){
+                var _2f=jQuery.ajax({url:'${base}/sys/sysdept/validate',dataType:"json",data:{deptName:value.trim(),upId:$("#upId").val()},async:false,cache:false,type:"post"}).responseText;
+                return _2f=="true";
+            },
+            message: '部门名称已存在'
+        }
+    });
+    jQuery.extend(jQuery.fn.validatebox.defaults.rules, {
+        deptCdCheck: {
+            validator: function(value, param){
+                var _2f=jQuery.ajax({url:'${base}/sys/sysdept/validate',dataType:"json",data:{deptCode:value.trim()},async:false,cache:false,type:"post"}).responseText;
+                return _2f=="true";
+            },
+            message: '部门编码已存在'
+        }
+    });
+
+</script>
+</html>

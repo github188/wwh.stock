@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>沪深A股行情明细新增</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/hsa/history-detail/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		代码
+    			 	</td>
+    			 	<td>
+						<input name="code" class="easyui-textbox" value="$!{model.code}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		简称
+    			 	</td>
+    			 	<td>
+						<input name="name" class="easyui-textbox" value="$!{model.name}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		当前价
+    			 	</td>
+    			 	<td>
+						<input name="currentPrice" class="easyui-textbox" value="$!{model.currentPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		预测价
+    			 	</td>
+    			 	<td>
+						<input name="forecastPrice" class="easyui-textbox" value="$!{model.forecastPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		起算价
+    			 	</td>
+    			 	<td>
+						<input name="initialPrice" class="easyui-textbox" value="$!{model.initialPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		压力位
+    			 	</td>
+    			 	<td>
+						<input name="pressurePrice" class="easyui-textbox" value="$!{model.pressurePrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		支撑位
+    			 	</td>
+    			 	<td>
+						<input name="supportPrice" class="easyui-textbox" value="$!{model.supportPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		最高价
+    			 	</td>
+    			 	<td>
+						<input name="highestPrice" class="easyui-textbox" value="$!{model.highestPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		最低价
+    			 	</td>
+    			 	<td>
+						<input name="lowestPrice" class="easyui-textbox" value="$!{model.lowestPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		5日线
+    			 	</td>
+    			 	<td>
+						<input name="fiveLine" class="easyui-textbox" value="$!{model.fiveLine}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		10日线
+    			 	</td>
+    			 	<td>
+						<input name="tenLine" class="easyui-textbox" value="$!{model.tenLine}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		30日线
+    			 	</td>
+    			 	<td>
+						<input name="thirtyLine" class="easyui-textbox" value="$!{model.thirtyLine}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		动态线
+    			 	</td>
+    			 	<td>
+						<input name="dynamicLine" class="easyui-textbox" value="$!{model.dynamicLine}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		5日涨幅
+    			 	</td>
+    			 	<td>
+						<input name="fiveWidth" class="easyui-textbox" value="$!{model.fiveWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		10日涨幅
+    			 	</td>
+    			 	<td>
+						<input name="tenWidth" class="easyui-textbox" value="$!{model.tenWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		20日涨幅
+    			 	</td>
+    			 	<td>
+						<input name="twentyWidth" class="easyui-textbox" value="$!{model.twentyWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		动态涨幅
+    			 	</td>
+    			 	<td>
+						<input name="dynamicWidth" class="easyui-textbox" value="$!{model.dynamicWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		除权除息日
+    			 	</td>
+    			 	<td>
+						<input name="exdividendDate" class="easyui-textbox" value="$!{model.exdividendDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		复牌日
+    			 	</td>
+    			 	<td>
+						<input name="resumeDate" class="easyui-textbox" value="$!{model.resumeDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		停牌日
+    			 	</td>
+    			 	<td>
+						<input name="suspendDate" class="easyui-textbox" value="$!{model.suspendDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		备注
+    			 	</td>
+    			 	<td>
+						<input name="memo" class="easyui-textbox" value="$!{model.memo}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		顺序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+	<div region="south" border="false" class="dm_btnarea">
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

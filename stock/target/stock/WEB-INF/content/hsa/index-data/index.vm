@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>沪深A股指数管理</title>
+        <meta charset="UTF-8">
+        #parse("commons/commonJs.vm")
+		#parse("commons/commonCss.vm")
+		<script type="text/javascript">
+			$(function() {
+				jQuery('#dg').datagrid({
+					url:'${base}/hsa/index-data/queryPaged',
+					columns:[[
+						{field:'id',checkbox:true,hidden:true}
+						,{field:'code',title:'代码',width:100,align:'center'}
+						,{field:'name',title:'简称',width:100,align:'center'}
+						,{field:'dt',title:'日期',width:120,align:'center'}
+						,{field:'startPrice',title:'今开',width:100,align:'right',formatter:optionFun}
+						,{field:'endPrice',title:'昨收',width:100,align:'right',formatter:optionFun}
+						,{field:'closingPrice',title:'当前点数',width:100,align:'right',formatter:optionFun}
+						,{field:'udAmount',title:'涨跌额',width:100,align:'right',formatter:optionFun}
+						,{field:'udWidth',title:'涨跌幅',width:100,align:'right',formatter:optionFun}
+						,{field:'highestPrice',title:'最高价',width:100,align:'right',formatter:optionFun}
+						,{field:'lowestPrice',title:'最低价',width:100,align:'right',formatter:optionFun}
+						,{field:'volume',title:'成交量(手)',width:100,align:'right'}
+						,{field:'turnVolume',title:'成交额(万元)',width:100,align:'right'}
+                        ,{field:'riseCnt',title:'上涨家数',width:100}
+                        ,{field:'flatCnt',title:'平盘家数',width:80}
+                        ,{field:'fallCnt',title:'下跌家数',width:100}
+						,{field:'curUdWidth',title:'相对涨跌幅',width:100,align:'right',formatter:optionFun}
+						,{field:'orderBy',title:'顺序',width:100,hidden:true}
+					]],
+					pagination:true,
+                    pageSize:5000,
+                    rownumbers:true,
+					singleSelect:true,
+					fitColumns:true,
+					fit: true,
+					toolbar:'#toolbar',
+					onDblClickRow: function(rowid,rowdata){
+						editForm();
+					}
+				});
+			});
+			function optionFun(value,row,index) {
+                if (!!value) {
+                    return Highcharts.numberFormat(value, 2);
+                } else {
+                    return '';
+                }
+			}
+			function newForm(){
+				Man.openWin('新增沪深A股指数','${base}/hsa/index-data/add',600,200);
+			}
+			function editForm(){
+				var row = jQuery('#dg').datagrid('getSelected');
+				if (row){
+					Man.openWin('编辑沪深A股指数','${base}/hsa/index-data/edit/'+row.id,600,300);
+				}
+			}
+			function destroyForm(){
+				var rows = jQuery('#dg').datagrid('getSelections');
+				if (rows.length>0){
+					jQuery.messager.confirm('确认删除','确定删除该记录?',function(r){
+						if (r){
+							var ids = [];
+							jQuery.each(rows,function(index,row) {
+								ids.push(row.id);
+							});
+							jQuery.post('${base}/hsa/index-data/delete',{'ids':ids.toString()},function(result){
+								Man.reloadList(result);
+							});
+						}
+					});
+				}
+			}
+
+            function dataRefresh() {
+                $.dream.tip("加载中...");
+                var stocktype=jQuery('#filter_stocktype').combobox("getValue");
+                jQuery.post('index-data/dataRefresh',{stocktype:stocktype},function(result){
+                    if(!result.success){
+                        $.dream.closetip();
+                        jQuery.messager.show({title: '错误', msg: result.message });
+
+                    } else {
+                        jQuery('#dg').datagrid('load',{stocktype:stocktype});
+                        $.dream.closetip();
+                    }
+                });
+            }
+
+			function contentSearch(){
+                var stocktype=jQuery('#filter_stocktype').combobox("getValue");
+				var code=jQuery('#filter_code').val();
+				jQuery('#dg').datagrid('load',{
+                'stocktype':stocktype,
+				'code':code				})}
+			
+		</script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+   <table id="dg" data-options="toolbar:'#toolbar'"></table>
+    <div id="toolbar">
+    	<div class="search_box">
+            市场分类:<select id="filter_stocktype" class="easyui-combobox" >
+				#dicSelect("stock_type")
+			</select>
+            &nbsp;代码：<input id="filter_code" class="easyui-textbox" >
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="contentSearch()">搜索</a>
+    	</div>
+    	<div class="btn_box">
+    		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newForm()">新增</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editForm()">编辑</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyForm()">删除</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-mini-refresh" plain="true" onclick="dataRefresh()">重新生成</a>
+    	</div>
+	</div>
+</body>
+</html>

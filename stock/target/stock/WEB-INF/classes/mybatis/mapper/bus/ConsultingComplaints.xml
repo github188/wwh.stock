@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.bus.domain.ConsultingComplaints">
+	<resultMap id="get-ConsultingComplaints-result" type="ConsultingComplaints">
+		<id property="id" column="ID" />
+		<!-- 问题类型-->
+		<result property="type" column="type" />
+		<!-- 问题标题-->
+		<result property="caption" column="caption" />
+		<!-- 问题内容-->
+		<result property="content" column="content" />
+		<!-- 联系方式（手机）-->
+		<result property="phone" column="phone" />
+		<!-- 邮箱-->
+		<result property="email" column="email" />
+		<!-- 回复内容-->
+		<result property="reply" column="reply" />
+		<!-- 回复状态-->
+		<result property="replyStatus" column="reply_status" />
+		<!-- 回复时间-->
+		<result property="replyTime" column="reply_time" />
+		<!-- 是否在前台显示-->
+		<result property="toshow" column="toshow" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="ConsultingComplaints_Base_Column_List">
+		ID,
+		<!-- 问题类型-->
+		type,
+		<!-- 问题标题-->
+		caption,
+		<!-- 问题内容-->
+		content,
+		<!-- 联系方式（手机）-->
+		phone,
+		<!-- 邮箱-->
+		email,
+		<!-- 回复内容-->
+		reply,
+		<!-- 回复状态-->
+		reply_status,
+		<!-- 回复时间-->
+		reply_time,
+		<!-- 是否在前台显示-->
+		toshow,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="ConsultingComplaints_get" resultMap="get-ConsultingComplaints-result">
+		SELECT
+		<include refid="ConsultingComplaints_Base_Column_List" />
+		FROM
+		bus_consulting_complaints
+		where
+		ID = #{id}
+	</select>
+
+	<select id="ConsultingComplaints_list" resultMap="get-ConsultingComplaints-result">
+		SELECT
+		<include refid="ConsultingComplaints_Base_Column_List" />
+		FROM
+		bus_consulting_complaints
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="ConsultingComplaints_insert" parameterType="ConsultingComplaints" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO bus_consulting_complaints(
+		type,
+		caption,
+		content,
+		phone,
+		email,
+		reply,
+		reply_status,
+		reply_time,
+		toshow,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{type},
+		#{caption},
+		#{content},
+		#{phone},
+		#{email},
+		#{reply},
+		#{replyStatus},
+		#{replyTime},
+		#{toshow},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="ConsultingComplaints_update" parameterType="ConsultingComplaints">
+		UPDATE bus_consulting_complaints
+		set
+		type = #{type},
+		caption = #{caption},
+		content = #{content},
+		phone = #{phone},
+		email = #{email},
+		reply = #{reply},
+		reply_status = #{replyStatus},
+		reply_time = #{replyTime},
+		toshow = #{toshow},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="ConsultingComplaints_updateSelective" parameterType="map">
+		UPDATE bus_consulting_complaints
+		set
+		<if test="record.type != null" >
+			type = #{type},
+		</if>
+		<if test="record.caption != null" >
+			caption = #{caption},
+		</if>
+		<if test="record.content != null" >
+			content = #{content},
+		</if>
+		<if test="record.phone != null" >
+			phone = #{phone},
+		</if>
+		<if test="record.email != null" >
+			email = #{email},
+		</if>
+		<if test="record.reply != null" >
+			reply = #{reply},
+		</if>
+		<if test="record.replyStatus != null" >
+			reply_status = #{replyStatus},
+		</if>
+		<if test="record.replyTime != null" >
+			reply_time = #{replyTime},
+		</if>
+		<if test="record.show != null" >
+			toshow = #{toshow},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="ConsultingComplaints_logicDelete" parameterType="ConsultingComplaints">
+		UPDATE bus_consulting_complaints
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="ConsultingComplaints_delete" parameterType="ConsultingComplaints">
+		DELETE FROM bus_consulting_complaints
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

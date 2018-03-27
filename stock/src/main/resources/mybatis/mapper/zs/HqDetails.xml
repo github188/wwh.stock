@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.zs.domain.HqDetails">
+	<resultMap id="get-HqDetails-result" type="HqDetails">
+		<id property="id" column="ID" />
+		<!-- 日期-->
+		<result property="dt" column="dt" />
+		<!-- 代码-->
+		<result property="stockCode" column="stock_code" />
+		<!-- 名称-->
+		<result property="stockName" column="stock_name" />
+		<!-- 涨幅-->
+		<result property="changeWidth" column="change_width" />
+		<!-- 现价-->
+		<result property="price" column="price" />
+		<!-- 涨跌-->
+		<result property="changeAmount" column="change_amount" />
+		<!-- 买价-->
+		<result property="buyPrice" column="buy_price" />
+		<!-- 卖价-->
+		<result property="salePrice" column="sale_price" />
+		<!-- 总量-->
+		<result property="totalVolume" column="total_volume" />
+		<!-- 现量-->
+		<result property="volume" column="volume" />
+		<!-- 涨速-->
+		<result property="changeRate" column="change_rate" />
+		<!-- 换手-->
+		<result property="turnOver" column="turn_over" />
+		<!-- 今开-->
+		<result property="curOpen" column="cur_open" />
+		<!-- 最高-->
+		<result property="high" column="high" />
+		<!-- 最低-->
+		<result property="low" column="low" />
+		<!-- 昨收-->
+		<result property="preClose" column="pre_close" />
+		<!-- 市盈(动)-->
+		<result property="pe" column="pe" />
+		<!-- 总金额-->
+		<result property="amount" column="amount" />
+		<!-- 量比-->
+		<result property="volumeRatio" column="volume_ratio" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="HqDetails_Base_Column_List">
+		ID,
+		<!-- 日期-->
+		dt,
+		<!-- 代码-->
+		stock_code,
+		<!-- 名称-->
+		stock_name,
+		<!-- 涨幅-->
+		change_width,
+		<!-- 现价-->
+		price,
+		<!-- 涨跌-->
+		change_amount,
+		<!-- 买价-->
+		buy_price,
+		<!-- 卖价-->
+		sale_price,
+		<!-- 总量-->
+		total_volume,
+		<!-- 现量-->
+		volume,
+		<!-- 涨速-->
+		change_rate,
+		<!-- 换手-->
+		turn_over,
+		<!-- 今开-->
+		cur_open,
+		<!-- 最高-->
+		high,
+		<!-- 最低-->
+		low,
+		<!-- 昨收-->
+		pre_close,
+		<!-- 市盈(动)-->
+		pe,
+		<!-- 总金额-->
+		amount,
+		<!-- 量比-->
+		volume_ratio,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="HqDetails_get" resultMap="get-HqDetails-result">
+		SELECT
+		<include refid="HqDetails_Base_Column_List" />
+		FROM
+		zs_hq_details
+		where
+		ID = #{id}
+	</select>
+
+	<select id="HqDetails_list" resultMap="get-HqDetails-result">
+		SELECT
+		<include refid="HqDetails_Base_Column_List" />
+		FROM
+		zs_hq_details
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+    <select id="HqDetails_custlist"  resultMap="get-HqDetails-result">
+        SELECT
+	        <include refid="HqDetails_Base_Column_List" />
+        FROM
+		zs_hq_details
+        WHERE valid='1'
+		            <if test="dt != null and dt != ''">
+                AND dt = #{dt}
+            </if>
+		            <if test="stockCode != null and stockCode != ''">
+                AND stock_code = #{stockCode}
+            </if>
+		            <if test="stockName != null and stockName != ''">
+                AND stock_name = #{stockName}
+            </if>
+		            <if test="changeWidth != null and changeWidth != ''">
+                AND change_width = #{changeWidth}
+            </if>
+		            <if test="price != null and price != ''">
+                AND price = #{price}
+            </if>
+		            <if test="changeAmount != null and changeAmount != ''">
+                AND change_amount = #{changeAmount}
+            </if>
+		            <if test="buyPrice != null and buyPrice != ''">
+                AND buy_price = #{buyPrice}
+            </if>
+		            <if test="salePrice != null and salePrice != ''">
+                AND sale_price = #{salePrice}
+            </if>
+		            <if test="totalVolume != null and totalVolume != ''">
+                AND total_volume = #{totalVolume}
+            </if>
+		            <if test="volume != null and volume != ''">
+                AND volume = #{volume}
+            </if>
+		            <if test="changeRate != null and changeRate != ''">
+                AND change_rate = #{changeRate}
+            </if>
+		            <if test="turnOver != null and turnOver != ''">
+                AND turn_over = #{turnOver}
+            </if>
+		            <if test="curOpen != null and curOpen != ''">
+                AND cur_open = #{curOpen}
+            </if>
+		            <if test="high != null and high != ''">
+                AND high = #{high}
+            </if>
+		            <if test="low != null and low != ''">
+                AND low = #{low}
+            </if>
+		            <if test="preClose != null and preClose != ''">
+                AND pre_close = #{preClose}
+            </if>
+		            <if test="pe != null and pe != ''">
+                AND pe = #{pe}
+            </if>
+		            <if test="amount != null and amount != ''">
+                AND amount = #{amount}
+            </if>
+		            <if test="volumeRatio != null and volumeRatio != ''">
+                AND volume_ratio = #{volumeRatio}
+            </if>
+		            <if test="orderBy != null and orderBy != ''">
+                AND order_by = #{orderBy}
+            </if>
+		    </select>
+
+	<insert id="HqDetails_insert" parameterType="HqDetails" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO zs_hq_details(
+		dt,
+		stock_code,
+		stock_name,
+		change_width,
+		price,
+		change_amount,
+		buy_price,
+		sale_price,
+		total_volume,
+		volume,
+		change_rate,
+		turn_over,
+		cur_open,
+		high,
+		low,
+		pre_close,
+		pe,
+		amount,
+		volume_ratio,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{dt},
+		#{stockCode},
+		#{stockName},
+		#{changeWidth},
+		#{price},
+		#{changeAmount},
+		#{buyPrice},
+		#{salePrice},
+		#{totalVolume},
+		#{volume},
+		#{changeRate},
+		#{turnOver},
+		#{curOpen},
+		#{high},
+		#{low},
+		#{preClose},
+		#{pe},
+		#{amount},
+		#{volumeRatio},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="HqDetails_update" parameterType="HqDetails">
+		UPDATE zs_hq_details
+		set
+		dt = #{dt},
+		stock_code = #{stockCode},
+		stock_name = #{stockName},
+		change_width = #{changeWidth},
+		price = #{price},
+		change_amount = #{changeAmount},
+		buy_price = #{buyPrice},
+		sale_price = #{salePrice},
+		total_volume = #{totalVolume},
+		volume = #{volume},
+		change_rate = #{changeRate},
+		turn_over = #{turnOver},
+		cur_open = #{curOpen},
+		high = #{high},
+		low = #{low},
+		pre_close = #{preClose},
+		pe = #{pe},
+		amount = #{amount},
+		volume_ratio = #{volumeRatio},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="HqDetails_updateSelective" parameterType="map">
+		UPDATE zs_hq_details
+		set
+		<if test="record.dt != null" >
+			dt = #{record.dt},
+		</if>
+		<if test="record.stockCode != null" >
+			stock_code = #{record.stockCode},
+		</if>
+		<if test="record.stockName != null" >
+			stock_name = #{record.stockName},
+		</if>
+		<if test="record.changeWidth != null" >
+			change_width = #{record.changeWidth},
+		</if>
+		<if test="record.price != null" >
+			price = #{record.price},
+		</if>
+		<if test="record.changeAmount != null" >
+			change_amount = #{record.changeAmount},
+		</if>
+		<if test="record.buyPrice != null" >
+			buy_price = #{record.buyPrice},
+		</if>
+		<if test="record.salePrice != null" >
+			sale_price = #{record.salePrice},
+		</if>
+		<if test="record.totalVolume != null" >
+			total_volume = #{record.totalVolume},
+		</if>
+		<if test="record.volume != null" >
+			volume = #{record.volume},
+		</if>
+		<if test="record.changeRate != null" >
+			change_rate = #{record.changeRate},
+		</if>
+		<if test="record.turnOver != null" >
+			turn_over = #{record.turnOver},
+		</if>
+		<if test="record.curOpen != null" >
+			cur_open = #{record.curOpen},
+		</if>
+		<if test="record.high != null" >
+			high = #{record.high},
+		</if>
+		<if test="record.low != null" >
+			low = #{record.low},
+		</if>
+		<if test="record.preClose != null" >
+			pre_close = #{record.preClose},
+		</if>
+		<if test="record.pe != null" >
+			pe = #{record.pe},
+		</if>
+		<if test="record.amount != null" >
+			amount = #{record.amount},
+		</if>
+		<if test="record.volumeRatio != null" >
+			volume_ratio = #{record.volumeRatio},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{record.orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="HqDetails_logicDelete" parameterType="HqDetails">
+		UPDATE zs_hq_details
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="HqDetails_delete" parameterType="HqDetails">
+		DELETE FROM zs_hq_details
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

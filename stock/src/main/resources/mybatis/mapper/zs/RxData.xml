@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.zs.domain.RxData">
+	<resultMap id="get-RxData-result" type="RxData">
+		<id property="id" column="ID" />
+		<!-- 代码-->
+		<result property="stockCode" column="stock_code" />
+		<!-- 名称-->
+		<result property="stockName" column="stock_name" />
+		<!-- 日期-->
+		<result property="dt" column="dt" />
+		<!-- 开盘-->
+		<result property="curOpen" column="cur_open" />
+		<!-- 最高-->
+		<result property="high" column="high" />
+		<!-- 最低-->
+		<result property="low" column="low" />
+		<!-- 收盘-->
+		<result property="curClose" column="cur_close" />
+		<!-- 成交量-->
+		<result property="volume" column="volume" />
+		<!-- 5日线-->
+		<result property="ma1" column="ma1" />
+		<!-- 10日线-->
+		<result property="ma2" column="ma2" />
+		<!-- 20日线-->
+		<result property="ma3" column="ma3" />
+		<!-- 60日线-->
+		<result property="ma4" column="ma4" />
+		<!-- 5日量-->
+		<result property="mavol1" column="mavol1" />
+		<!-- 10日量-->
+		<result property="mavol2" column="mavol2" />
+		<!-- KDJ.K-->
+		<result property="k" column="k" />
+		<!-- KDJ.D-->
+		<result property="d" column="d" />
+		<!-- KDJ.J-->
+		<result property="j" column="j" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="RxData_Base_Column_List">
+		ID,
+		<!-- 代码-->
+		stock_code,
+		<!-- 名称-->
+		stock_name,
+		<!-- 日期-->
+		dt,
+		<!-- 开盘-->
+		cur_open,
+		<!-- 最高-->
+		high,
+		<!-- 最低-->
+		low,
+		<!-- 收盘-->
+		cur_close,
+		<!-- 成交量-->
+		volume,
+		<!-- 5日线-->
+		ma1,
+		<!-- 10日线-->
+		ma2,
+		<!-- 20日线-->
+		ma3,
+		<!-- 60日线-->
+		ma4,
+		<!-- 5日量-->
+		mavol1,
+		<!-- 10日量-->
+		mavol2,
+		<!-- KDJ.K-->
+		k,
+		<!-- KDJ.D-->
+		d,
+		<!-- KDJ.J-->
+		j,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="RxData_get" resultMap="get-RxData-result">
+		SELECT
+		<include refid="RxData_Base_Column_List" />
+		FROM
+		zs_rx_data
+		where
+		ID = #{id}
+	</select>
+
+	<select id="RxData_list" resultMap="get-RxData-result">
+		SELECT
+		<include refid="RxData_Base_Column_List" />
+		FROM
+		zs_rx_data
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+    <select id="RxData_custlist"  resultMap="get-RxData-result">
+        SELECT
+	        <include refid="RxData_Base_Column_List" />
+        FROM
+		zs_rx_data
+        WHERE valid='1'
+		            <if test="stockCode != null and stockCode != ''">
+                AND stock_code = #{stockCode}
+            </if>
+		            <if test="stockName != null and stockName != ''">
+                AND stock_name = #{stockName}
+            </if>
+		            <if test="dt != null and dt != ''">
+                AND dt = #{dt}
+            </if>
+		            <if test="curOpen != null and curOpen != ''">
+                AND cur_open = #{curOpen}
+            </if>
+		            <if test="high != null and high != ''">
+                AND high = #{high}
+            </if>
+		            <if test="low != null and low != ''">
+                AND low = #{low}
+            </if>
+		            <if test="curClose != null and curClose != ''">
+                AND cur_close = #{curClose}
+            </if>
+		            <if test="volume != null and volume != ''">
+                AND volume = #{volume}
+            </if>
+		            <if test="ma1 != null and ma1 != ''">
+                AND ma1 = #{ma1}
+            </if>
+		            <if test="ma2 != null and ma2 != ''">
+                AND ma2 = #{ma2}
+            </if>
+		            <if test="ma3 != null and ma3 != ''">
+                AND ma3 = #{ma3}
+            </if>
+		            <if test="ma4 != null and ma4 != ''">
+                AND ma4 = #{ma4}
+            </if>
+		            <if test="mavol1 != null and mavol1 != ''">
+                AND mavol1 = #{mavol1}
+            </if>
+		            <if test="mavol2 != null and mavol2 != ''">
+                AND mavol2 = #{mavol2}
+            </if>
+		            <if test="k != null and k != ''">
+                AND k = #{k}
+            </if>
+		            <if test="d != null and d != ''">
+                AND d = #{d}
+            </if>
+		            <if test="j != null and j != ''">
+                AND j = #{j}
+            </if>
+		            <if test="orderBy != null and orderBy != ''">
+                AND order_by = #{orderBy}
+            </if>
+		    </select>
+
+	<insert id="RxData_insert" parameterType="RxData" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO zs_rx_data(
+		stock_code,
+		stock_name,
+		dt,
+		cur_open,
+		high,
+		low,
+		cur_close,
+		volume,
+		ma1,
+		ma2,
+		ma3,
+		ma4,
+		mavol1,
+		mavol2,
+		k,
+		d,
+		j,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{stockCode},
+		#{stockName},
+		#{dt},
+		#{curOpen},
+		#{high},
+		#{low},
+		#{curClose},
+		#{volume},
+		#{ma1},
+		#{ma2},
+		#{ma3},
+		#{ma4},
+		#{mavol1},
+		#{mavol2},
+		#{k},
+		#{d},
+		#{j},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="RxData_update" parameterType="RxData">
+		UPDATE zs_rx_data
+		set
+		stock_code = #{stockCode},
+		stock_name = #{stockName},
+		dt = #{dt},
+		cur_open = #{curOpen},
+		high = #{high},
+		low = #{low},
+		cur_close = #{curClose},
+		volume = #{volume},
+		ma1 = #{ma1},
+		ma2 = #{ma2},
+		ma3 = #{ma3},
+		ma4 = #{ma4},
+		mavol1 = #{mavol1},
+		mavol2 = #{mavol2},
+		k = #{k},
+		d = #{d},
+		j = #{j},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="RxData_updateSelective" parameterType="map">
+		UPDATE zs_rx_data
+		set
+		<if test="record.stockCode != null" >
+			stock_code = #{record.stockCode},
+		</if>
+		<if test="record.stockName != null" >
+			stock_name = #{record.stockName},
+		</if>
+		<if test="record.dt != null" >
+			dt = #{record.dt},
+		</if>
+		<if test="record.curOpen != null" >
+			cur_open = #{record.curOpen},
+		</if>
+		<if test="record.high != null" >
+			high = #{record.high},
+		</if>
+		<if test="record.low != null" >
+			low = #{record.low},
+		</if>
+		<if test="record.curClose != null" >
+			cur_close = #{record.curClose},
+		</if>
+		<if test="record.volume != null" >
+			volume = #{record.volume},
+		</if>
+		<if test="record.ma1 != null" >
+			ma1 = #{record.ma1},
+		</if>
+		<if test="record.ma2 != null" >
+			ma2 = #{record.ma2},
+		</if>
+		<if test="record.ma3 != null" >
+			ma3 = #{record.ma3},
+		</if>
+		<if test="record.ma4 != null" >
+			ma4 = #{record.ma4},
+		</if>
+		<if test="record.mavol1 != null" >
+			mavol1 = #{record.mavol1},
+		</if>
+		<if test="record.mavol2 != null" >
+			mavol2 = #{record.mavol2},
+		</if>
+		<if test="record.k != null" >
+			k = #{record.k},
+		</if>
+		<if test="record.d != null" >
+			d = #{record.d},
+		</if>
+		<if test="record.j != null" >
+			j = #{record.j},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{record.orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="RxData_logicDelete" parameterType="RxData">
+		UPDATE zs_rx_data
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="RxData_delete" parameterType="RxData">
+		DELETE FROM zs_rx_data
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

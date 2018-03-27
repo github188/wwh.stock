@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.sys.domain.ScheduleJob">
+	<resultMap id="get-ScheduleJob-result" type="ScheduleJob">
+		<id property="id" column="ID" />
+		<!-- 任务id-->
+		<result property="jobId" column="job_id" />
+		<!-- 任务名称-->
+		<result property="jobName" column="job_name" />
+		<!-- 任务分组-->
+		<result property="jobGroup" column="job_group" />
+		<!-- 任务状态-->
+		<result property="jobStatus" column="job_status" />
+		<!-- cron表达式-->
+		<result property="cronExpression" column="cron_expression" />
+		<!-- 描述-->
+		<result property="description" column="description" />
+		<!-- 包名+类名-->
+		<result property="beanClass" column="bean_class" />
+		<!-- 任务是否有状态-->
+		<result property="isConcurrent" column="is_concurrent" />
+		<!-- spring bean-->
+		<result property="springId" column="spring_id" />
+		<!-- 任务调用的方法名-->
+		<result property="methodName" column="method_name" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="ScheduleJob_Base_Column_List">
+		ID,
+		<!-- 任务id-->
+		job_id,
+		<!-- 任务名称-->
+		job_name,
+		<!-- 任务分组-->
+		job_group,
+		<!-- 任务状态-->
+		job_status,
+		<!-- cron表达式-->
+		cron_expression,
+		<!-- 描述-->
+		description,
+		<!-- 包名+类名-->
+		bean_class,
+		<!-- 任务是否有状态-->
+		is_concurrent,
+		<!-- spring bean-->
+		spring_id,
+		<!-- 任务调用的方法名-->
+		method_name,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="ScheduleJob_get" resultMap="get-ScheduleJob-result">
+		SELECT
+		<include refid="ScheduleJob_Base_Column_List" />
+		FROM
+		sys_schedule_job
+		where
+		ID = #{id}
+	</select>
+
+	<select id="ScheduleJob_list" resultMap="get-ScheduleJob-result">
+		SELECT
+		<include refid="ScheduleJob_Base_Column_List" />
+		FROM
+		sys_schedule_job
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+    <select id="ScheduleJob_custlist"  resultMap="get-ScheduleJob-result">
+        SELECT
+	        <include refid="ScheduleJob_Base_Column_List" />
+        FROM
+		sys_schedule_job
+        WHERE valid='1'
+		            <if test="jobId != null and jobId != ''">
+                AND job_id = #{jobId}
+            </if>
+		            <if test="jobName != null and jobName != ''">
+                AND job_name = #{jobName}
+            </if>
+		            <if test="jobGroup != null and jobGroup != ''">
+                AND job_group = #{jobGroup}
+            </if>
+		            <if test="jobStatus != null and jobStatus != ''">
+                AND job_status = #{jobStatus}
+            </if>
+		            <if test="cronExpression != null and cronExpression != ''">
+                AND cron_expression = #{cronExpression}
+            </if>
+		            <if test="description != null and description != ''">
+                AND description = #{description}
+            </if>
+		            <if test="beanClass != null and beanClass != ''">
+                AND bean_class = #{beanClass}
+            </if>
+		            <if test="isConcurrent != null and isConcurrent != ''">
+                AND is_concurrent = #{isConcurrent}
+            </if>
+		            <if test="springId != null and springId != ''">
+                AND spring_id = #{springId}
+            </if>
+		            <if test="methodName != null and methodName != ''">
+                AND method_name = #{methodName}
+            </if>
+		            <if test="orderBy != null and orderBy != ''">
+                AND order_by = #{orderBy}
+            </if>
+		    </select>
+
+	<insert id="ScheduleJob_insert" parameterType="ScheduleJob" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO sys_schedule_job(
+		job_id,
+		job_name,
+		job_group,
+		job_status,
+		cron_expression,
+		description,
+		bean_class,
+		is_concurrent,
+		spring_id,
+		method_name,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{jobId},
+		#{jobName},
+		#{jobGroup},
+		#{jobStatus},
+		#{cronExpression},
+		#{description},
+		#{beanClass},
+		#{isConcurrent},
+		#{springId},
+		#{methodName},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="ScheduleJob_update" parameterType="ScheduleJob">
+		UPDATE sys_schedule_job
+		set
+		job_id = #{jobId},
+		job_name = #{jobName},
+		job_group = #{jobGroup},
+		job_status = #{jobStatus},
+		cron_expression = #{cronExpression},
+		description = #{description},
+		bean_class = #{beanClass},
+		is_concurrent = #{isConcurrent},
+		spring_id = #{springId},
+		method_name = #{methodName},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="ScheduleJob_updateSelective" parameterType="map">
+		UPDATE sys_schedule_job
+		set
+		<if test="record.jobId != null" >
+			job_id = #{record.jobId},
+		</if>
+		<if test="record.jobName != null" >
+			job_name = #{record.jobName},
+		</if>
+		<if test="record.jobGroup != null" >
+			job_group = #{record.jobGroup},
+		</if>
+		<if test="record.jobStatus != null" >
+			job_status = #{record.jobStatus},
+		</if>
+		<if test="record.cronExpression != null" >
+			cron_expression = #{record.cronExpression},
+		</if>
+		<if test="record.description != null" >
+			description = #{record.description},
+		</if>
+		<if test="record.beanClass != null" >
+			bean_class = #{record.beanClass},
+		</if>
+		<if test="record.isConcurrent != null" >
+			is_concurrent = #{record.isConcurrent},
+		</if>
+		<if test="record.springId != null" >
+			spring_id = #{record.springId},
+		</if>
+		<if test="record.methodName != null" >
+			method_name = #{record.methodName},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{record.orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="ScheduleJob_logicDelete" parameterType="ScheduleJob">
+		UPDATE sys_schedule_job
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="ScheduleJob_delete" parameterType="ScheduleJob">
+		DELETE FROM sys_schedule_job
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

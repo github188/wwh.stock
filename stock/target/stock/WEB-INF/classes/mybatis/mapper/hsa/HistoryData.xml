@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.hsa.domain.HistoryData">
+	<resultMap id="get-HistoryData-result" type="com.skoo.stock.hsa.domain.HistoryData">
+		<id property="id" column="ID" />
+		<!-- 代码-->
+		<result property="code" column="code" />
+		<!-- 日期-->
+		<result property="dt" column="dt" />
+		<!-- 收盘价(元)-->
+		<result property="closingPrice" column="closing_price" />
+		<!-- 涨跌幅(%)-->
+		<result property="udWidth" column="ud_width" />
+		<!-- 换手率(%)-->
+		<result property="turnoverRate" column="turnover_rate" />
+		<!-- 量比-->
+		<result property="volumeRatio" column="volume_ratio" />
+		<!-- 最高价-->
+		<result property="highestPrice" column="highest_price" />
+		<!-- 最低价-->
+		<result property="lowestPrice" column="lowest_price" />
+		<!-- 振幅-->
+		<result property="amplitude" column="amplitude" />
+		<!-- 成交量(万股)-->
+		<result property="volume" column="volume" />
+		<!-- 成交额(亿)-->
+		<result property="turnVolume" column="turn_volume" />
+		<!-- 流入资金(亿)-->
+		<result property="inflowFund" column="inflow_fund" />
+		<!-- 买卖差额(万元)-->
+		<result property="tradeBalance" column="trade_balance" />
+		<!-- 资金差(亿)-->
+		<result property="fundDiff" column="fund_diff" />
+		<!-- 净流入率(%)-->
+		<result property="netInflowRate" column="net_inflow_rate" />
+		<!-- 顺序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<resultMap id="get-HistoryData-result-custom" type="com.skoo.stock.hsa.domain.HistoryData">
+		<!-- 最高价(元)-->
+		<result property="highestPrice" column="highestPrice" />
+		<!-- 最低价(元)-->
+		<result property="lowestPrice" column="lowestPrice" />
+		<!-- 停牌天数-->
+		<result property="suspensionDays" column="suspensionDays" />
+		<!-- 开始日期-->
+		<result property="startDate" column="startDate" />
+		<!-- 结束日期-->
+		<result property="endDate" column="endDate" />
+	</resultMap>
+	<sql id="HistoryData_Base_Column_List">
+		ID,
+		<!-- 代码-->
+		code,
+		<!-- 日期-->
+		dt,
+		<!-- 收盘价(元)-->
+		closing_price,
+		<!-- 涨跌幅(%)-->
+		ud_width,
+		<!-- 换手率(%)-->
+		turnover_rate,
+		<!-- 量比-->
+		volume_ratio,
+		<!-- 最高价-->
+		highest_price,
+		<!-- 最低价-->
+		lowest_price,
+		<!-- 振幅-->
+		amplitude,
+		<!-- 成交量(万股)-->
+		volume,
+		<!-- 成交额(亿)-->
+		turn_volume,
+		<!-- 流入资金(亿)-->
+		inflow_fund,
+		<!-- 买卖差额(万元)-->
+		trade_balance,
+		<!-- 资金差(亿)-->
+		fund_diff,
+		<!-- 净流入率(%)-->
+		net_inflow_rate,
+		<!-- 顺序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="HistoryData_get"  resultMap="get-HistoryData-result">
+		SELECT
+		<include refid="HistoryData_Base_Column_List" />
+		FROM
+		hsa_history_data
+		where
+		ID = #{id}
+	</select>
+
+	<select id="HistoryData_list"  resultMap="get-HistoryData-result">
+		SELECT
+		<include refid="HistoryData_Base_Column_List" />
+		FROM
+		hsa_history_data
+		<include refid="common.Select_Where_Clause" />
+		ORDER BY dt DESC
+	</select>
+
+	<select id="HistoryData_get_maxdt" resultType="String">
+		SELECT max(dt) as dt
+		FROM hsa_history_data where closing_price is not null
+	</select>
+
+	<select id="HistoryData_get_by_group" resultMap="get-HistoryData-result-custom" parameterType="map">
+		select max(a.closing_price) highestPrice,min(a.closing_price) lowestPrice from hsa_history_data a where a.code=#{code} and a.dt >= date_add(CURDATE(), interval #{month} month)
+	</select>
+
+	<select id="HistoryData_get_by_group1" resultMap="get-HistoryData-result-custom" parameterType="map">
+		select count(distinct a.dt) suspensionDays,min(a.dt) startDate,max(a.dt) endDate from hsa_history_data a where a.dt >= date_add(CURDATE(), interval #{month} month) and a.dt not in (select dt from hsa_history_data b where b.code=#{code}) order by a.dt
+	</select>
+
+	<select id="HistoryData_custlist"  resultMap="get-HistoryData-result">
+		SELECT
+		<include refid="HistoryData_Base_Column_List" />
+		FROM
+		hsa_history_data
+		WHERE valid='1'
+		<if test="code != null and code != ''">
+			AND code = #{code}
+		</if>
+		<if test="dt != null and dt != ''">
+			AND dt = #{dt}
+		</if>
+		<if test="closingPrice != null and closingPrice != ''">
+			AND closing_price = #{closingPrice}
+		</if>
+		<if test="udWidth != null and udWidth != ''">
+			AND ud_width = #{udWidth}
+		</if>
+		<if test="turnoverRate != null and turnoverRate != ''">
+			AND turnover_rate = #{turnoverRate}
+		</if>
+		<if test="volumeRatio != null and volumeRatio != ''">
+			AND volume_ratio = #{volumeRatio}
+		</if>
+		<if test="highestPrice != null and highestPrice != ''">
+			AND highest_price = #{highestPrice}
+		</if>
+		<if test="lowestPrice != null and lowestPrice != ''">
+			AND lowest_price = #{lowestPrice}
+		</if>
+		<if test="amplitude != null and amplitude != ''">
+			AND amplitude = #{amplitude}
+		</if>
+		<if test="volume != null and volume != ''">
+			AND volume = #{volume}
+		</if>
+		<if test="turnVolume != null and turnVolume != ''">
+			AND turn_volume = #{turnVolume}
+		</if>
+		<if test="inflowFund != null and inflowFund != ''">
+			AND inflow_fund = #{inflowFund}
+		</if>
+		<if test="tradeBalance != null and tradeBalance != ''">
+			AND trade_balance = #{tradeBalance}
+		</if>
+		<if test="fundDiff != null and fundDiff != ''">
+			AND fund_diff = #{fundDiff}
+		</if>
+		<if test="netInflowRate != null and netInflowRate != ''">
+			AND net_inflow_rate = #{netInflowRate}
+		</if>
+		<if test="orderBy != null and orderBy != ''">
+			AND order_by = #{orderBy}
+		</if>
+	</select>
+
+	<insert id="HistoryData_insert" parameterType="HistoryData" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO hsa_history_data(
+		code,
+		dt,
+		closing_price,
+		ud_width,
+		turnover_rate,
+		volume_ratio,
+		highest_price,
+		lowest_price,
+		amplitude,
+		volume,
+		turn_volume,
+		inflow_fund,
+		trade_balance,
+		fund_diff,
+		net_inflow_rate,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{code},
+		#{dt},
+		#{closingPrice},
+		#{udWidth},
+		#{turnoverRate},
+		#{volumeRatio},
+		#{highestPrice},
+		#{lowestPrice},
+		#{amplitude},
+		#{volume},
+		#{turnVolume},
+		#{inflowFund},
+		#{tradeBalance},
+		#{fundDiff},
+		#{netInflowRate},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="HistoryData_update" parameterType="HistoryData">
+		UPDATE hsa_history_data
+		set
+		code = #{code},
+		dt = #{dt},
+		closing_price = #{closingPrice},
+		ud_width = #{udWidth},
+		turnover_rate = #{turnoverRate},
+		volume_ratio = #{volumeRatio},
+		highest_price = #{highestPrice},
+		lowest_price = #{lowestPrice},
+		amplitude = #{amplitude},
+		volume = #{volume},
+		turn_volume = #{turnVolume},
+		inflow_fund = #{inflowFund},
+		trade_balance = #{tradeBalance},
+		fund_diff = #{fundDiff},
+		net_inflow_rate = #{netInflowRate},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="HistoryData_updateSelective" parameterType="map">
+		UPDATE hsa_history_data
+		set
+		<if test="record.code != null" >
+			code = #{record.code},
+		</if>
+		<if test="record.dt != null" >
+			dt = #{record.dt},
+		</if>
+		<if test="record.closingPrice != null" >
+			closing_price = #{record.closingPrice},
+		</if>
+		<if test="record.udWidth != null" >
+			ud_width = #{record.udWidth},
+		</if>
+		<if test="record.turnoverRate != null" >
+			turnover_rate = #{record.turnoverRate},
+		</if>
+		<if test="record.volumeRatio != null" >
+			volume_ratio = #{record.volumeRatio},
+		</if>
+		<if test="record.highestPrice != null" >
+			highest_price = #{record.highestPrice},
+		</if>
+		<if test="record.lowestPrice != null" >
+			lowest_price = #{record.lowestPrice},
+		</if>
+		<if test="record.amplitude != null" >
+			amplitude = #{record.amplitude},
+		</if>
+		<if test="record.volume != null" >
+			volume = #{record.volume},
+		</if>
+		<if test="record.turnVolume != null" >
+			turn_volume = #{record.turnVolume},
+		</if>
+		<if test="record.inflowFund != null" >
+			inflow_fund = #{record.inflowFund},
+		</if>
+		<if test="record.tradeBalance != null" >
+			trade_balance = #{record.tradeBalance},
+		</if>
+		<if test="record.fundDiff != null" >
+			fund_diff = #{record.fundDiff},
+		</if>
+		<if test="record.netInflowRate != null" >
+			net_inflow_rate = #{record.netInflowRate},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{record.orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="HistoryData_logicDelete" parameterType="HistoryData">
+		UPDATE hsa_history_data
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="HistoryData_delete" parameterType="HistoryData">
+		DELETE FROM hsa_history_data
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

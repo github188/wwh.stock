@@ -1,0 +1,7 @@
+2016-04-24 17:15:28,914 INFO [mytest] - <调度完成>
+2016-04-24 17:31:45,864 INFO [mytest] - <调度完成>
+2016-04-24 17:33:52,245 INFO [mytest] - <调度完成>
+2016-04-24 17:36:34,428 ERROR [mytest] - <[StockZsQtz]： null>
+2016-04-24 17:39:00,756 ERROR [mytest] - <[StockZsQtz]： null>
+2016-04-24 17:40:40,395 ERROR [mytest] - <[StockZsQtz]： java.sql.BatchUpdateException: Incorrect string value: '\xF3\xB6\xAB\xBA\xEF\xBF...' for column 'stock_name' at row 1>
+2016-04-24 17:45:51,172 INFO [mytest] - <调度完成>

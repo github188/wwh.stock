@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.login.domain.UserInfo">
+    <resultMap id="get-UserInfo-result" type="com.skoo.stock.login.domain.UserInfo">
+        <id property="id" column="ID"/>
+        <!-- 用户ID -->
+        <result property="userId" column="userId"/>
+        <!-- 用户名 -->
+        <result property="userName" column="userName"/>
+    </resultMap>
+
+    <resultMap id="get-assoc-domain" type="com.skoo.stock.login.domain.AssDomain">
+        <id property="id" column="ID"/>
+        <!-- 协会ID -->
+        <result property="assIdLocal" column="assIdLocal"/>
+        <!-- 协会ID统一认证 -->
+        <result property="assId" column="assId"/>
+        <!-- Domain -->
+        <result property="domain" column="domain"/>
+    </resultMap>
+
+    <select id="UserInfo_list" resultMap="get-UserInfo-result">
+        select
+            user.id,
+            user.user_id as userId,
+            user.user_name as userName,
+            '1' as userType,
+            dept.id as topDeptId
+        from sys_sysuser user
+        LEFT JOIN (SELECT T2.id, T2.up_id, T2.dept_code, T2.dept_name, T2.dept_type, T1.lvl
+        FROM (
+        SELECT
+        @r AS _id,
+        (SELECT @r := up_id FROM sys_sysdept WHERE id = _id) AS up_id,
+        @l := @l + 1 AS lvl
+        FROM
+        (SELECT @r := (select main_dept from sys_sysuser where user_id = #{userId}), @l := 0) vars,
+        sys_sysdept h
+        WHERE @r != 0) T1
+        INNER JOIN sys_sysdept T2
+        ON T1._id = T2.id and (T2.dept_type = '11' or T2.dept_type = '0')
+        ORDER BY T1.lvl ASC LIMIT 1) dept on 1=1
+        where user.user_id = #{userId}
+            and user.password = #{password}
+            and user.valid = '1'
+            and (user.invalid_date is null
+              OR user.invalid_date >= now())
+            and #{userType} = '1'
+    </select>
+
+    <select id="UserInfo_assocId" resultMap="get-assoc-domain">
+        select
+        id as id,
+        ass_id_local as assIdLocal,
+        ass_id as assId,
+        domain as domain
+        from sys_ass_domain
+        where domain = #{domain}
+
+    </select>
+
+</mapper>

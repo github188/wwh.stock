@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>沪深A股指数新增</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/hsa/index-data/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		代码
+    			 	</td>
+    			 	<td>
+						<input name="code" class="easyui-textbox" value="$!{model.code}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		简称
+    			 	</td>
+    			 	<td>
+						<input name="name" class="easyui-textbox" value="$!{model.name}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		日期
+    			 	</td>
+    			 	<td>
+						<input name="dt" class="easyui-textbox" value="$!{model.dt}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		今开
+    			 	</td>
+    			 	<td>
+						<input name="startPrice" class="easyui-textbox" value="$!{model.startPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		昨收
+    			 	</td>
+    			 	<td>
+						<input name="endPrice" class="easyui-textbox" value="$!{model.endPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		当前点数
+    			 	</td>
+    			 	<td>
+						<input name="closingPrice" class="easyui-textbox" value="$!{model.closingPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		涨跌额
+    			 	</td>
+    			 	<td>
+						<input name="udAmount" class="easyui-textbox" value="$!{model.udAmount}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		涨跌幅
+    			 	</td>
+    			 	<td>
+						<input name="udWidth" class="easyui-textbox" value="$!{model.udWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		最高价
+    			 	</td>
+    			 	<td>
+						<input name="highestPrice" class="easyui-textbox" value="$!{model.highestPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		最低价
+    			 	</td>
+    			 	<td>
+						<input name="lowestPrice" class="easyui-textbox" value="$!{model.lowestPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		成交量(手)
+    			 	</td>
+    			 	<td>
+						<input name="volume" class="easyui-textbox" value="$!{model.volume}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		成交额(万元)
+    			 	</td>
+    			 	<td>
+						<input name="turnVolume" class="easyui-textbox" value="$!{model.turnVolume}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		上涨家数
+    			 	</td>
+    			 	<td>
+						<input name="riseCnt" class="easyui-textbox" value="$!{model.riseCnt}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		平盘家数
+    			 	</td>
+    			 	<td>
+						<input name="flatCnt" class="easyui-textbox" value="$!{model.flatCnt}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		下跌家数
+    			 	</td>
+    			 	<td>
+						<input name="fallCnt" class="easyui-textbox" value="$!{model.fallCnt}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		相对涨跌幅
+    			 	</td>
+    			 	<td>
+						<input name="curUdWidth" class="easyui-textbox" value="$!{model.curUdWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		顺序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+	<div region="south" border="false" class="dm_btnarea">
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

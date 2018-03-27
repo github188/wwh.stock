@@ -1,0 +1,7 @@
+2016-05-20 12:42:12,593 INFO [mylogger] - <http://stock.quote.stockstar.com/002437.shtml>
+2016-05-20 14:20:05,767 INFO [mylogger] - <http://quote.stockstar.com/futures/ifnational.htm>
+2016-05-20 15:20:06,119 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_6.html>
+2016-05-20 16:12:02,813 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=002737&pageid=1>
+2016-05-20 16:17:09,816 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=600732&pageid=1>
+2016-05-20 16:17:21,567 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=600856&pageid=1>
+2016-05-20 16:25:00,865 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=000552&pageid=1>

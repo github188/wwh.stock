@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>角色新增</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+    var menugrid;
+    $(function() {
+        /**
+         *设定菜单树Grid
+         */
+        menugrid = $('#grid').treegrid({
+            url:'${base}/sys/rolemenu/cachetree',
+            idField:'id',
+            treeField:'menuName',
+            parentField:'upId',
+            toolbar : '#toolbar',
+            singleSelect:true,
+            border:false,
+            lines:false,
+            fit:true,
+            columns:[[
+                {field:'menuName',title:'菜单名称',formatter:formatcheckbox,width:250},
+                {field:'menuCode',title:'菜单编码',width:150},
+                {field:'menuAct',title:'菜单URL',width:350}
+            ]],
+            onLoadSuccess: function (row) {
+                removeIcon();
+                expand();
+            }
+        });
+
+        jQuery('#dg').datagrid({
+            url:'${base}/sys/sysuser/roleusers?roleId=-99999999999999999999999',
+            columns:[[
+                {field:'id',checkbox:true}
+                ,{field:'userId',title:'用户编号',width:100}
+                ,{field:'userName',title:'用户名',width:100}
+                ,{field:'invalidDate',title:'有效期',width:100}
+                ,{field:'roleId',title:'角色编码',width:100,hidden:true}
+            ]],
+            pagination:true,
+            singleSelect:false,
+            fitColumns:true,
+            fit: true,
+            toolbar:'#toolbar'
+        });
+    });
+
+    function formatcheckbox(val,row){
+        return "<input type='checkbox' onclick=show('"+row.id+"') id='check_"+row.id+"' "+(row.checked?'checked':'')+"/>" + row.menuName;
+    }
+
+    //获取选中的结点
+    function getSelected(){
+        var idList = "";
+        $("input:checked").each(function(){
+            var id = $(this).attr("id");
+
+            if(id.indexOf('check_type')== -1 && id.indexOf("check_")>-1)
+                idList += id.replace("check_",'')+',';
+
+        })
+    }
+
+    function expand() {
+        var roots = menugrid.treegrid("getRoots");
+        if (roots.length > 0) {
+            $.each(roots, function (i, item) {
+                menugrid.treegrid("expandAll", item.id);
+            });
+        }
+    }
+
+    // 刷新
+    function reload(){
+        menugrid.treegrid('reload');
+    }
+
+    var imgcheckbox = function (value,row,index) {
+        if (value=='1') {
+            return '<span class="tree-checkbox tree-dnd-yes"></span>';
+        } else if (value=='0') {
+            return '<span class="tree-checkbox tree-dnd-no"></span>';
+        } else {
+            return "";
+        }
+    }
+
+	function save(){
+
+        // 菜单处理
+        var opts = $.data(menugrid[0], "treegrid").options;
+        var idField = opts.idField;//这里的idField其实就是API里方法的id参数
+        var node = menugrid.treegrid('getChildren','-1');
+        var checkList = "";
+        var checkCount = 0;
+        for(var i=0;i<node.length;i++){
+            var nodeId = node[i][idField];
+            if ($(('#check_'+nodeId))[0].checked) {
+                if (checkCount++ == 0) {
+                    checkList = "-1";
+                }
+                checkList = checkList + "," + nodeId;
+            }
+        }
+
+        jQuery("#checkList").val(checkList);
+
+        // 角色用户
+        var userAll = [];
+        var itemAll = $('#dg').datagrid('getRows');
+        if (itemAll) {
+            for (var i=0;i<itemAll.length;i++) {
+                userAll.push(itemAll[i].id);
+            }
+        }
+        userAllList = userAll.join(",");
+        jQuery("#userAllList").val(userAllList);
+
+        var userCheck = [];
+        var itemCheck = $('#dg').datagrid('getSelections');
+        if (itemCheck) {
+            for (var i=0;i<itemCheck.length;i++) {
+                userCheck.push(itemCheck[i].id);
+            }
+        }
+        userCheckList = userCheck.join(",");
+        jQuery("#userCheckList").val(userCheckList);
+
+		jQuery('#fmtab').form('submit',{
+			url: '${base}/sys/sysrole/save',
+			onSubmit: function(){
+                return commitCheck();
+			},
+			success: function(result){
+				Man.reload(result);
+			}
+		});
+	}
+
+    function contentSearch(){
+        var userId=jQuery('#filter_userId').val();
+        var userName=jQuery('#filter_userName').val();
+        jQuery('#dg').datagrid('load',{
+            'userId':userId,
+            'userName':userName
+        });
+    }
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fmtab" method="post">
+          <input type="hidden" id="id" name="id">
+		  <input type="hidden" id="checkList" name="checkList" value="">
+          <input type="hidden" id="userAllList" name="userAllList" value="">
+          <input type="hidden" id="userCheckList" name="userCheckList" value="">
+          <div class="easyui-tabs" style="width:100%;height:400px">
+              <div class="tab" title="角色信息" style="padding:0px">
+                  <table width="100%" cellpadding="5" style="padding:10px 10px 10px 60px">
+                      <tr>
+                          <td align="left">
+                              角色名称
+                          </td>
+                          <td>
+                              <input name="roleName" class="easyui-textbox" required="true" value="$!{model.roleName}" style="width: 300px">
+                          </td>
+                      </tr>
+                      <tr>
+                          <td align="left">
+                              角色类型
+                          </td>
+                          <td>
+                              <select id="roleType" name="roleType" class="easyui-combobox" validType="selectValueRequired['#roleType']"
+                                      data-options="required:true,editable:false,panelHeight:'auto'"  style="width: 300px">
+                                  #dicSelect("role_type")
+                              </select>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td align="left">
+                              角色编码
+                          </td>
+                          <td>
+                              <input name="roleCode" class="easyui-textbox" value="$!{model.roleCode}" style="width: 300px">
+                          </td>
+                      </tr>
+                      <tr>
+                          <td align="left">
+                              角色描述
+                          </td>
+                          <td>
+                              <input name="roleDescript" class="easyui-textbox" value="$!{model.roleDescript}" style="width: 300px">
+                          </td>
+                      </tr>
+                      <tr>
+                          <td align="left">
+                              顺序
+                          </td>
+                          <td>
+                              <input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}" style="width: 300px">
+                          </td>
+                      </tr>
+                  </table>
+              </div>
+              <div class="tab" title="角色菜单" style="padding:0px">
+                  <table id="grid" style="width:700px;" height="100%" width="100%" border="0" cellpadding="0" cellspacing="0" ></table>
+			  </div>
+              <div class="tab" title="角色用户" style="padding:0px">
+                  <table id="dg" data-options="toolbar:'#toolbar'"></table>
+                  <div id="toolbar">
+                      <div class="search_box">
+                          用户编号：<input id="filter_userId" class="easyui-textbox" >
+                          &nbsp;用户名：<input id="filter_userName" class="easyui-textbox" >
+                          <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="contentSearch()">搜索</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+	</form>
+	</div>
+	<div region="south" border="false" class="dm_btnarea">
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

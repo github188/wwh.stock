@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>内容发布编辑</title>
+	#parse("commons/commonJs.vm")
+	#parse("commons/commonCss.vm")
+    <link rel="stylesheet" type="text/css" href="${base}/3rd/spectrum/spectrum.css">
+    <script type="text/javascript" src="$base/3rd/spectrum/spectrum.js"></script>
+    <script type="text/javascript" src="$base/3rd/colorpicker/jquery.colorpicker.js"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="${base}/ue/ueditor.config.js"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="${base}/ue/ueditor.custom.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="${base}/ue/ueditor.all.js"></script>
+
+    <style type="text/css">
+        .man_left {
+            width:465px;
+            float: left;
+            margin-top: 0px;
+        }
+
+        .man_title {
+            width:84px;text-align: right;float:left;line-height: 24px;
+        }
+
+        .man_value {
+            width:380px;float:left;
+        }
+
+        .man_fontcss {
+            color: #000;
+        }
+
+        .man_row {
+            width: 930px;
+            height: 32px;
+        }
+
+        .man_row80 {
+            width: 930px;
+            height: 110px;
+        }
+
+        .man_left_one {
+            width:930px;
+            float: left;
+            margin-top: 0px;
+        }
+
+        .man_value_one {
+            width:840px;float:left;
+        }
+
+        .man_left_none {
+            float: left;
+            margin-top: 0px;
+        }
+    </style>
+    <script type="text/javascript">
+        function save(){
+            $("#channelId").val($("#channelIdView").combotree("getValue"));
+            $("#assChannelId").val($("#assChannelIdView").combotree("getValues").toString());
+
+            // 是否加粗
+            if ($("#isBoldCK").prop("checked")) {
+                $("#isBold").val("1");
+            } else {
+                $("#isBold").val("0");
+            }
+
+            // 是否推荐
+            if ($("#isRecommandCK").prop("checked")) {
+                $("#isRecommend").val("1");
+            } else {
+                $("#isRecommend").val("0");
+            }
+
+            jQuery('#fman').form('submit',{
+                url: '${base}/pub/content/save',
+                onSubmit: function(){
+                    return jQuery(this).form('validate');
+                },
+                success: function(result){
+                    // 找到父亲页面（相对）
+                    var obj = window.parent.document.getElementById("infoframe").contentWindow;
+                    obj = obj.document.getElementById("infoframe").contentWindow;
+
+                    obj.jQuery('#dg').datagrid('reload');
+                    Man.reload(result);
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false" class="dm_mainarea">
+    <form id="fman" method="post">
+        <input type="hidden" id="id" name="id" value="$!{model.id}"/>
+        <input type="hidden" id="siteId" name="siteId" value="$!{model.siteId}"/>
+        <input type="hidden" id="extId" name="extId" value="$!{modelExt.id}"/>
+        <input type="hidden" id="txtId" name="txtId" value="$!{modelTxt.id}"/>
+        <input type="hidden" id="channelId" name="channelId" value="$!{model.channelId}"/>
+        <input type="hidden" id="contentId" name="contentId" value="$!{modelExt.contentId}"/>
+        <input type="hidden" id="assChannelId" name="assChannelId" value="$!{model.assChannelId}"/>
+        <div style="width:450px;margin: 10px 20px 0px 20px">
+            <div class="man_row">
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">栏目：</span>
+                    </div>
+                    <div class="man_value">
+                        <input type="text" id="channelIdView" name="channelIdView" value="$!{model.channelId}" required class="easyui-combotree" style="width:280px"/>
+                        <span class="tree-icon tree-file"></span><span class="man_blue">请选末级栏目</span>
+                    </div>
+                </div>
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">副栏目：</span>
+                    </div>
+                    <div class="man_value">
+                        <input type="text" id="assChannelIdView" name="assChannelIdView" value="$!{model.typeCode}" class="easyui-combotree" style="width:280px"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="man_row">
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">标题：</span>
+                    </div>
+                    <div class="man_value">
+                        <input id="title" name="title" required value="$!{modelExt.title}" class="easyui-textbox" style="width:280px"/>
+                    </div>
+                </div>
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">语言：</span>
+                    </div>
+                    <div class="man_value">
+                        <select id="lang" name="lang" readonly class="easyui-combobox" style="width:70px" data-options="panelHeight:'auto',editable:false">
+							#dicOptions("lang",$!{model.lang}) </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="man_row">
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">简短标题：</span>
+                    </div>
+                    <div class="man_value">
+                        <div class="man_left_none">
+                            <input id="shortTitle" name="shortTitle" required value="$!{modelExt.shortTitle}" class="easyui-textbox" style="width:280px"/>
+                        </div>
+                        <div class="man_left_none"><input type="checkbox" id="shortTitleCK" /></div>
+                    </div>
+                </div>
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">标题颜色：</span>
+                    </div>
+                    <div class="man_value">
+                        <input id='colorpicker' />
+                        <input id='titleColor' name="titleColor" value="$!{modelExt.titleColor}" class="easyui-textbox" style="width:75px"/>
+                        <input type="checkbox" id="isBoldCK" value="1"/>
+                        <input type="hidden" id="isBold" name="isBold" value="$!{modelExt.isBold}" />
+                        <script>
+                            if ($("#isBold").val() == "1") {
+                                $("#isBoldCK").attr("checked", true);
+                            }
+                        </script>
+                        <label id="titleColorEx">加粗标题</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="man_row">
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">内容类型：</span>
+                    </div>
+                    <div class="man_value">
+                        <input id="contentType" name="contentType" value="$!{model.contentType}" class="easyui-textbox" style="width:280px"/>
+                    </div>
+                </div>
+
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">是否推荐：</span>
+                    </div>
+                    <input type="checkbox" id="isRecommandCK" value="1"/>
+                    <input type="hidden" id="isRecommend" name="isRecommend" value="$!{model.isRecommend}"/>
+                    <script>
+                        if ($("#isRecommend").val() == '1') {
+                            $("#isRecommandCK").attr("checked", true);
+                        }
+                    </script>
+                </div>
+            </div>
+
+            <div class="man_row80">
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">主题图片：</span>
+                    </div>
+                    <div class="man_value">
+                        <div style="float: left">
+                            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-upload" onclick="uploadImg()">上传图片</a>
+                        </div>
+                        <div style="float: left;" id="loading"></div>
+                    </div>
+                    <div style="margin-top: 35px;margin-left: 84px;">图片地址：<br>
+                        <input name="titleImg" id="titleImg" class="easyui-textbox" value="$!{modelExt.titleImg}" style="width:380px"/>
+                    </div>
+                </div>
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">&nbsp;</span>
+                    </div>
+                    <div class="man_value">
+                        <img id="preview" style="width:100px;height:100px;" src="$!{modelExt.titleImg}"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="man_row">
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">摘要：</span>
+                    </div>
+                    <div class="man_value">
+                        <input id="description" name="description" value="$!{modelExt.description}" class="easyui-textbox" style="width:280px"/>
+                    </div>
+                </div>
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">作者：</span>
+                    </div>
+                    <div class="man_value">
+                        <input name="author" class="easyui-textbox" required id="author" value="$!{modelExt.author}" style="width:280px"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="man_row">
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">来源：</span>
+                    </div>
+                    <div class="man_value">
+                        <input id="origin" name="origin" value="$!{modelExt.origin}" class="easyui-textbox" style="width:280px"/>
+                    </div>
+                </div>
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">URL：</span>
+                    </div>
+                    <div class="man_value">
+                        <input id="originUrl" name="originUrl" class="easyui-textbox" value="$!{modelExt.originUrl}" style="width:280px"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="man_row">
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">固顶级别：</span>
+                    </div>
+                    <div class="man_value">
+                        <input id="topLevel" name="topLevel" value="$!{model.topLevel}" class="easyui-textbox" style="width:50px"/>
+                    </div>
+                </div>
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">排序时间：</span>
+                    </div>
+                    <div class="man_value">
+                        <input id="sortDate" name="sortDate" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{model.sortDate})" class="easyui-datetimebox" style="width:160px"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="man_row">
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">发布时间：</span>
+                    </div>
+                    <div class="man_value">
+                        <input id="releaseDate" name="releaseDate" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{modelExt.releaseDate})" class="easyui-datetimebox" style="width:160px"/>
+                    </div>
+                </div>
+                <div class="man_left">
+                    <div class="man_title">
+                        <span class="man_fontcss">关键词：</span>
+                    </div>
+                    <div class="man_value">
+                        <input id="keywd" name="keywd" value="$!{model.keywd}" class="easyui-textbox" style="width:280px"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="man_row">
+                <div class="man_left_one">
+                    <div class="man_title">
+                        <span class="man_fontcss">内容：</span>
+                    </div>
+                    <div class="man_value_one">
+                        <script id="container" name="txt" type="text/plain" style="width:100%;height:370px;"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script id="editor-img" type="text/plain" style="width:100%;height:300px;"></script>
+        <div id="temp-img-list" style="display: none"></div>
+
+    </form>
+</div>
+<div region="south" border="false" class="dm_btnarea">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+</div>
+
+<script type="text/javascript">
+
+    var editor;
+    editor = UE.getEditor('container');//参数网站专用，其他页面切勿模仿
+    var papawin = parent.parent;
+    $(function() {
+        $("#isBoldCK").bind("click", function () {
+            if ($(this).prop("checked")) {
+                $("#isBold").val("1");
+                $("#titleColorEx").css("font-weight", "bold");
+            } else {
+                $("#titleColorEx").css("font-weight", "normal");
+                $("#isBold").val("0");
+            }
+        });
+
+        jQuery('#channelIdView').combotree({
+            url:'${base}/pub/content/treeinfo',
+            onlyLeafCheck:true,
+            checkbox:true,
+            multiple:false,
+            lines:true,
+            panelHeight:'200',
+            cascadeCheck:false,
+            onBeforeSelect:function(node){
+                //var cnode = this.tree('getChildren', node.target);
+                var tree = $(this).tree;
+                if(tree('isLeaf',node.target)){
+                    return true;
+                }
+                else{
+                    $('#channelIdView').combotree('clear');
+                    return false;
+                }
+            },
+            onLoadSuccess : function(row, data) {
+                // 设置初始值并展开到该节点
+                var type = location.hash.substr(1).split(":");
+                $("#channelIdView").combotree('setExpandValue', type[0]);
+            },
+            //选择树节点触发事件
+            onSelect : function(node) {
+                //返回树对象
+                var tree = $(this).tree;
+                //选中的节点是否为叶子节点,如果不是叶子节点,清除选中
+                var isLeaf = tree('isLeaf', node.target);
+                if (!isLeaf) {
+                    //清除选中
+                    $('#channelIdView').combotree('clear');
+                }
+            }
+
+        });
+
+
+        $("#colorpicker").spectrum({
+            showPaletteOnly: true,
+            preferredFormat: "hex",
+            cancelText: "取消",
+            chooseText: "选择",
+            togglePaletteOnly: true,
+            togglePaletteMoreText: '更多',
+            togglePaletteLessText: '<<',
+            color: '$!{modelExt.titleColor}',
+            palette: [
+                ["#000","#444","#666","#999","#ccc","#eee","#f3f3f3","#fff"],
+                ["#f00","#f90","#ff0","#0f0","#0ff","#00f","#90f","#f0f"],
+                ["#f4cccc","#fce5cd","#fff2cc","#d9ead3","#d0e0e3","#cfe2f3","#d9d2e9","#ead1dc"],
+                ["#ea9999","#f9cb9c","#ffe599","#b6d7a8","#a2c4c9","#9fc5e8","#b4a7d6","#d5a6bd"],
+                ["#e06666","#f6b26b","#ffd966","#93c47d","#76a5af","#6fa8dc","#8e7cc3","#c27ba0"],
+                ["#c00","#e69138","#f1c232","#6aa84f","#45818e","#3d85c6","#674ea7","#a64d79"],
+                ["#900","#b45f06","#bf9000","#38761d","#134f5c","#0b5394","#351c75","#741b47"],
+                ["#600","#783f04","#7f6000","#274e13","#0c343d","#073763","#20124d","#4c1130"]
+            ],
+            change: function(color) {
+                $("#titleColor").textbox('setValue',color.toHexString());
+                $("#titleColorEx").css("color", color.toHexString());
+            }
+        });
+
+        if ('$!{modelExt.titleColor}'!='') {
+            $("#titleColorEx").css("color", '$!{modelExt.titleColor}');
+        }
+
+        if ('$!{modelExt.isBold}'=='1') {
+            $("#titleColorEx").css("font-weight", "bold");
+        }
+
+        jQuery('#assChannelIdView').combotree({
+            url:'${base}/pub/content/treeinfo',
+            onlyLeafCheck:true,
+            checkbox:true,
+            multiple:true,
+            lines:true,
+            panelHeight:'200',
+            cascadeCheck:false,
+            onBeforeSelect:function(node){
+                //var cnode = this.tree('getChildren', node.target);
+                var tree = $(this).tree;
+                if(tree('isLeaf',node.target)){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            },
+            onLoadSuccess : function(row, data) {
+                // 设置初始值并展开到该节点
+                // $("#assChannelIdView").combotree("setValues", chnArray);
+                var chnArray = '$!{modelChn}'.split(",");
+                $("#assChannelIdView").combotree('setExpandValues', chnArray);
+            }
+        });
+
+        var type = location.hash.substr(1).split(":");
+        $("#lang").combobox("setValue", type[1]);
+
+    });
+
+    //弹出图片上传的对话框
+    function upImage() {
+        _upload_ue.getDialog("insertimage").open();
+    }
+
+    //弹出文件上传的对话框
+    function upFiles() {
+        var myFiles = _upload_ue.getDialog("attachment");
+        myFiles.open();
+    }
+
+    editor.ready(function () {
+        editor.setContent('$!{modelTxt.txt}', false);
+    });
+</script>
+</body>
+</html>

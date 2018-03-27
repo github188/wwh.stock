@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>招商证券A股行情管理</title>
+        <meta charset="UTF-8">
+        #parse("commons/commonJs.vm")
+		#parse("commons/commonCss.vm")
+		<script type="text/javascript">
+			$(function() {
+				jQuery('#dg').datagrid({
+					url:'${base}/zs/hq-details/queryPaged',
+					columns:[[
+						{field:'id',checkbox:true,hidden:true}
+						,{field:'dt',title:'日期',width:100}
+						,{field:'stockCode',title:'代码',width:100}
+						,{field:'stockName',title:'名称',width:100}
+						,{field:'changeWidth',title:'涨幅',width:100}
+						,{field:'price',title:'现价',width:100}
+						,{field:'changeAmount',title:'涨跌',width:100}
+						,{field:'buyPrice',title:'买价',width:100}
+						,{field:'salePrice',title:'卖价',width:100}
+						,{field:'totalVolume',title:'总量',width:100}
+						,{field:'volume',title:'现量',width:100}
+						,{field:'changeRate',title:'涨速',width:100}
+						,{field:'turnOver',title:'换手',width:100}
+						,{field:'curOpen',title:'今开',width:100}
+						,{field:'high',title:'最高',width:100}
+						,{field:'low',title:'最低',width:100}
+						,{field:'preClose',title:'昨收',width:100}
+						,{field:'pe',title:'市盈(动)',width:100}
+						,{field:'amount',title:'总金额',width:100}
+						,{field:'volumeRatio',title:'量比',width:100}
+						,{field:'orderBy',title:'顺序',width:100}
+					]],
+					pagination:true,
+                    pageSize:5000,
+                    rownumbers:true,
+					singleSelect:false,
+                    remoteSort:false,
+					fitColumns:true,
+					fit: true,
+					toolbar:'#toolbar',
+					onDblClickRow: function(rowid,rowdata){
+						editForm();
+					}
+				});
+			});
+			function optionFun(value,row,index) {
+				return "";
+			}
+			function newForm(){
+				Man.openWin('新增招商证券A股行情','${base}/zs/hq-details/add',600,200);
+			}
+			function editForm(){
+				var row = jQuery('#dg').datagrid('getSelected');
+				if (row){
+					Man.openWin('编辑招商证券A股行情','${base}/zs/hq-details/edit/'+row.id,600,300);
+				}
+			}
+			function destroyForm(){
+				var rows = jQuery('#dg').datagrid('getSelections');
+				if (rows.length>0){
+					jQuery.messager.confirm('确认删除','确定删除该记录?',function(r){
+						if (r){
+							var ids = [];
+							jQuery.each(rows,function(index,row) {
+								ids.push(row.id);
+							});
+							jQuery.post('${base}/zs/hq-details/delete',{'ids':ids.toString()},function(result){
+								Man.reloadList(result);
+							});
+						}
+					});
+				}
+			}
+
+            function dataRefresh() {
+                $.dream.tip("加载中...");
+                var dt=jQuery('#filter_dt').val();
+                jQuery.post('hq-details/dataRefresh',{dt:dt},function(result){
+                    if(!result.success){
+                        $.dream.closetip();
+                        jQuery.messager.show({title: '错误', msg: result.message });
+
+                    } else {
+                        jQuery('#dg').datagrid('load',{dt:dt});
+                        $.dream.closetip();
+                    }
+                });
+            }
+
+			function contentSearch(){ 
+				var dt=jQuery('#filter_dt').val();
+				jQuery('#dg').datagrid('load',{
+				'dt':dt				})}
+			
+		</script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+   <table id="dg" data-options="toolbar:'#toolbar'"></table>
+    <div id="toolbar">
+    	<div class="search_box">
+			日期：<input id="filter_dt" class="easyui-textbox" >
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="contentSearch()">搜索</a>
+    	</div>
+    	<div class="btn_box">
+    		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newForm()">新增</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editForm()">编辑</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyForm()">删除</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-mini-refresh" plain="true" onclick="dataRefresh()">重新生成</a>
+    	</div>
+	</div>
+</body>
+</html>

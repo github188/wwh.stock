@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>沪深A股自选行情新增</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/hsa/stock-new/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		代码
+    			 	</td>
+    			 	<td>
+						<input name="code" class="easyui-textbox" value="$!{model.code}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		简称
+    			 	</td>
+    			 	<td>
+						<input name="name" class="easyui-textbox" value="$!{model.name}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		最新价
+    			 	</td>
+    			 	<td>
+						<input name="latestPrice" class="easyui-textbox" value="$!{model.latestPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		平均价
+    			 	</td>
+    			 	<td>
+						<input name="averagePrice" class="easyui-textbox" value="$!{model.averagePrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		涨跌幅
+    			 	</td>
+    			 	<td>
+						<input name="udWidth" class="easyui-textbox" value="$!{model.udWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		涨跌额
+    			 	</td>
+    			 	<td>
+						<input name="udAmount" class="easyui-textbox" value="$!{model.udAmount}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		成交量(万手)
+    			 	</td>
+    			 	<td>
+						<input name="volume" class="easyui-textbox" value="$!{model.volume}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		成交额(亿元)
+    			 	</td>
+    			 	<td>
+						<input name="turnVolume" class="easyui-textbox" value="$!{model.turnVolume}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		换手率
+    			 	</td>
+    			 	<td>
+						<input name="turnoverRate" class="easyui-textbox" value="$!{model.turnoverRate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		量比
+    			 	</td>
+    			 	<td>
+						<input name="volumeRatio" class="easyui-textbox" value="$!{model.volumeRatio}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		振幅
+    			 	</td>
+    			 	<td>
+						<input name="amplitude" class="easyui-textbox" value="$!{model.amplitude}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		委比
+    			 	</td>
+    			 	<td>
+						<input name="committee" class="easyui-textbox" value="$!{model.committee}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		市盈率
+    			 	</td>
+    			 	<td>
+						<input name="peRatio" class="easyui-textbox" value="$!{model.peRatio}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		5分钟涨幅
+    			 	</td>
+    			 	<td>
+						<input name="fiveWidth" class="easyui-textbox" value="$!{model.fiveWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		网站标志
+    			 	</td>
+    			 	<td>
+						<input name="netFlag" class="easyui-textbox" value="$!{model.netFlag}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		最高
+    			 	</td>
+    			 	<td>
+						<input name="highestPrice" class="easyui-textbox" value="$!{model.highestPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		最低
+    			 	</td>
+    			 	<td>
+						<input name="lowestPrice" class="easyui-textbox" value="$!{model.lowestPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		今开
+    			 	</td>
+    			 	<td>
+						<input name="todayPrice" class="easyui-textbox" value="$!{model.todayPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		昨收
+    			 	</td>
+    			 	<td>
+						<input name="yesterdayPrice" class="easyui-textbox" value="$!{model.yesterdayPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		涨停
+    			 	</td>
+    			 	<td>
+						<input name="maxPrice" class="easyui-textbox" value="$!{model.maxPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		跌停
+    			 	</td>
+    			 	<td>
+						<input name="minPrice" class="easyui-textbox" value="$!{model.minPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		外盘
+    			 	</td>
+    			 	<td>
+						<input name="outsideDish" class="easyui-textbox" value="$!{model.outsideDish}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		内盘
+    			 	</td>
+    			 	<td>
+						<input name="insideDish" class="easyui-textbox" value="$!{model.insideDish}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		主力净流入(万元)
+    			 	</td>
+    			 	<td>
+						<input name="inflowFund" class="easyui-textbox" value="$!{model.inflowFund}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		超大单流入(万元)
+    			 	</td>
+    			 	<td>
+						<input name="inflowLarge" class="easyui-textbox" value="$!{model.inflowLarge}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		大单流入(万元)
+    			 	</td>
+    			 	<td>
+						<input name="inflowBig" class="easyui-textbox" value="$!{model.inflowBig}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		龙头标志
+    			 	</td>
+    			 	<td>
+						<input name="topFlag" class="easyui-textbox" value="$!{model.topFlag}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		顺序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+	<div region="south" border="false" class="dm_btnarea">
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

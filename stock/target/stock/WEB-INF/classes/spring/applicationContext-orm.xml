@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd"
+       default-lazy-init="true">
+    <description>Spring-orm配置文件</description>
+
+    <!--扫描com.包下包含spring 注解的类，自动注入 -->
+    <context:component-scan base-package="com.skoo.orm"/>
+
+    <context:property-placeholder
+            ignore-unresolvable="true" location="classpath*:/spring/application.properties"/>
+
+    <!-- 单数据源配置开始 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass">
+            <value>${jdbc.driverClassName}</value>
+        </property>
+        <property name="jdbcUrl">
+            <value>${jdbc.url}</value>
+        </property>
+        <property name="user">
+            <value>${jdbc.username}</value>
+        </property>
+        <property name="password">
+            <value>${jdbc.password}</value>
+        </property>
+        <property name="maxPoolSize" value="50"/>
+        <property name="minPoolSize" value="0"/>
+        <property name="initialPoolSize" value="5"/>
+        <property name="maxIdleTime" value="1800"/>
+        <property name="testConnectionOnCheckout" value="true"/>
+        <property name="acquireIncrement" value="5"/>
+        <property name="maxStatements" value="0"/>
+        <property name="idleConnectionTestPeriod" value="120"/>
+        <property name="acquireRetryAttempts" value="30"/>
+    </bean>
+    <!-- 单数据源配置结束 -->
+
+    <!-- 多数据源配置开始 -->
+    <!-- 
+    <bean id="ds1" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass">
+            <value>${ds1.jdbc.driverClassName}</value>
+        </property>
+        <property name="jdbcUrl">
+            <value>${ds1.jdbc.url}</value>
+        </property>
+        <property name="user">
+            <value>${ds1.jdbc.username}</value>
+        </property>
+        <property name="password">
+            <value>${ds1.jdbc.password}</value>
+        </property>
+        <property name="maxPoolSize" value="50" />
+        <property name="minPoolSize" value="0" />
+        <property name="initialPoolSize" value="5" />
+        <property name="maxIdleTime" value="1800" />
+        <property name="testConnectionOnCheckout" value="true" />
+        <property name="acquireIncrement" value="5" />
+        <property name="maxStatements" value="0" />
+        <property name="idleConnectionTestPeriod" value="120" />
+        <property name="acquireRetryAttempts" value="30" />
+    </bean>
+
+    <bean id="ds2" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass">
+            <value>${ds2.jdbc.driverClassName}</value>
+        </property>
+        <property name="jdbcUrl">
+            <value>${ds2.jdbc.url}</value>
+        </property>
+        <property name="user">
+            <value>${ds2.jdbc.username}</value>
+        </property>
+        <property name="password">
+            <value>${ds2.jdbc.password}</value>
+        </property>
+        <property name="maxPoolSize" value="50" />
+        <property name="minPoolSize" value="0" />
+        <property name="initialPoolSize" value="5" />
+        <property name="maxIdleTime" value="1800" />
+        <property name="testConnectionOnCheckout" value="true" />
+        <property name="acquireIncrement" value="5" />
+        <property name="maxStatements" value="0" />
+        <property name="idleConnectionTestPeriod" value="120" />
+        <property name="acquireRetryAttempts" value="30" />
+    </bean>
+
+    <bean id="dataSource" class="com.skoo.orm.service.support.datasource.MultipleDataSource">
+        <property name="defaultTargetDataSource" ref="ds1"/>
+        <property name="targetDataSources">
+            <map>
+                <entry value-ref="ds1" key="ds1"/>
+                <entry value-ref="ds2" key="ds2"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="dataSourceMethodInterceptor" class="com.skoo.orm.service.support.datasource.DataSourceMethodInterceptor"/>
+
+    <bean id="dataSourceMethodCachePointCut" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="dataSourceMethodInterceptor" />
+        <property name="patterns">
+            <list>
+                <value>com.skoo.*.service.*Service*\.*.*</value>
+                <value>com.wedream.pap.*.service.*Service*\.*.*</value>
+            </list>
+        </property>
+    </bean>
+     -->
+    <!-- 多数据源配置结束 -->
+
+
+    <!-- 事物管理器 -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 事物管理模板 -->
+    <bean id="transactionTemplate"
+          class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="transactionManager"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="typeAliasesPackage" value="com.skoo.stock"/>
+        <property name="mapperLocations" value="classpath*:mybatis/mapper/**/*.xml"/>
+    </bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+
+    <!-- 使用annotation定义事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"
+                          proxy-target-class="true"/>
+
+    <tx:advice id="readTxAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="query*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="read*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id="pc" expression="execution(* com.skoo.orm.service.*.*(..))" />
+        <aop:advisor pointcut-ref="pc" advice-ref="readTxAdvice" />
+    </aop:config>
+
+    <aop:config>
+        <aop:pointcut id="webPc" expression="execution(* com.skoo.*.*.service.*.*(..))" />
+        <aop:advisor pointcut-ref="webPc" advice-ref="readTxAdvice" />
+    </aop:config>
+
+</beans>

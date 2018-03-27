@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>回执名单</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="UTF-8">
+		#parse("commons/commonCss.vm")
+        #parse("commons/commonJs.vm")
+		<script type="text/javascript">
+		//var id = location.hash.substr(1);
+			$(function() {
+				jQuery('#dg').datagrid({
+					url:'${base}/pub/join/queryPaged',
+					columns:[[
+                        {field:'categoryname',title:'栏目名',width:60,halign:'center', align:'center'}
+                        ,{field:'contentname',title:'活动名',width:150,halign:'center'}
+						,{field:'corp',title:'公司',width:100,halign:'center'}
+						,{field:'name',title:'姓名',width:60,halign:'center', align:'center'}
+						,{field:'duty',title:'职务',width:60,halign:'center', align:'center'}
+						,{field:'phone',title:'电话',width:100,halign:'center', align:'center'}
+						,{field:'weixin',title:'微信/QQ',width:80,halign:'center', align:'center'}
+						,{field:'mail',title:'邮箱',width:100,halign:'center'}
+						,{field:'memo',title:'备注',width:100,halign:'center'}
+						,{field:'createDate',title:'回执时间',width:100,halign:'center', align:'center'}
+				    ]],
+				    pagination:true,
+				    singleSelect:false,
+				    fitColumns:true,
+				    fit: true,
+				    toolbar:'#toolbar'
+			    });
+			});
+			function optionFun(value,row,index) {
+				return "";
+			}
+		  	function newForm(){
+		  		Man.openWin('新增回执','${base}/pub/join/add',600,200);
+			}
+			function editForm(){
+				var row = jQuery('#dg').datagrid('getSelected');
+				if (row){
+					Man.openWin('编辑回执','${base}/pub/join/edit/'+row.id,600,300);
+				}
+			}
+			function destroyForm(){
+                var rows = jQuery('#dg').datagrid('getSelections');
+				if (rows.length>0){
+					jQuery.messager.confirm('确认删除','确定删除该记录?',function(r){
+						if (r){
+                            var ids = [];
+                            jQuery.each(rows,function(index,row) {
+                                ids.push(row.id);
+                            });
+							jQuery.post('${base}/pub/join/delete',{'ids':ids},function(result){
+								if(result.success) {
+									jQuery('#dg').datagrid('reload');    // reload the user data
+								} else {
+									jQuery.messager.show({    // show error message
+										title: '错误',
+										msg: result.message
+									});
+								}
+							});
+						}
+					});
+				}
+			}
+			
+			// 回执名单导出
+			//function exportList(){
+			//	window.open("${base}/pub/join/export?contentId=" + id);
+			//}
+			
+			function contentSearch(){ 
+				var contentname=jQuery('#filter_contentname').val();
+		        jQuery('#dg').datagrid('load',{
+					'contentname':contentname
+				})}
+
+			function exportList(){
+                var contentname=jQuery('#filter_contentname').val();
+				if (contentname == '') {
+					$.messager.alert('提示', '活动名不能为空');
+                    jQuery('#filter_contentname').focus().select();
+					return;
+				}
+				$("#contentname").val(contentname);
+				jQuery("#exportForm").submit();
+			}
+	    	
+		</script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+   <table id="dg" data-options="toolbar:'#toolbar'"></table>
+   <input type="hidden" id="id" />
+    <div id="toolbar">
+    	<div class="search_box">
+			活动名：<input id="filter_contentname" class="easyui-textbox" style="width:200px">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="contentSearch()">搜索</a>
+    	</div>
+    	<div class="btn_box">
+    		<!-- 
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyForm()">删除</a>
+    		-->
+        	<a href="javascript:void(0)" target="_blank" class="easyui-linkbutton" iconCls="icon-add" onclick="exportList();" plain="true">导出名单</a>
+    	</div>
+	</div>
+   <form id="exportForm" action="${base}/pub/join/export.do" method="post">
+       <input type="hidden" id="contentname" name="contentname">
+   </form>
+</body>
+</html>

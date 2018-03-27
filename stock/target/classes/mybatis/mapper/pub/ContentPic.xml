@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skoo.stock.pub.domain.ContentPic">
+	<resultMap id="get-ContentPic-result" type="ContentPic">
+		<id property="id" column="ID" />
+		<!-- 内容ID-->
+		<result property="contentId" column="content_id" />
+		<!-- 排列顺序-->
+		<result property="priority" column="priority" />
+		<!-- 图片地址-->
+		<result property="imgPath" column="img_path" />
+		<!-- 描述-->
+		<result property="description" column="description" />
+		<!-- 排序-->
+		<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="ContentPic_Base_Column_List">
+		ID,
+		<!-- 内容ID-->
+		content_id,
+		<!-- 排列顺序-->
+		priority,
+		<!-- 图片地址-->
+		img_path,
+		<!-- 描述-->
+		description,
+		<!-- 排序-->
+		order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	<select id="ContentPic_get" resultMap="get-ContentPic-result">
+		SELECT
+		<include refid="ContentPic_Base_Column_List" />
+		FROM
+		pub_content_pic
+		where
+		ID = #{id}
+	</select>
+
+	<select id="ContentPic_list" resultMap="get-ContentPic-result">
+		SELECT
+		<include refid="ContentPic_Base_Column_List" />
+		FROM
+		pub_content_pic
+		<include refid="common.Select_Where_Clause" />
+	</select>
+
+	<insert id="ContentPic_insert" parameterType="ContentPic" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO pub_content_pic(
+		content_id,
+		priority,
+		img_path,
+		description,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid) values (
+		#{contentId},
+		#{priority},
+		#{imgPath},
+		#{description},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+	</insert>
+	<update id="ContentPic_update" parameterType="ContentPic">
+		UPDATE pub_content_pic
+		set
+		content_id = #{contentId},
+		priority = #{priority},
+		img_path = #{imgPath},
+		description = #{description},
+		order_by = #{orderBy},
+		UPDATE_DATE = now()
+		,UPDATOR = #{updator}
+		WHERE
+		ID = #{id}
+	</update>
+	<update id="ContentPic_updateSelective" parameterType="map">
+		UPDATE pub_content_pic
+		set
+		<if test="record.contentId != null" >
+			content_id = #{contentId},
+		</if>
+		<if test="record.priority != null" >
+			priority = #{priority},
+		</if>
+		<if test="record.imgPath != null" >
+			img_path = #{imgPath},
+		</if>
+		<if test="record.description != null" >
+			description = #{description},
+		</if>
+		<if test="record.orderBy != null" >
+			order_by = #{orderBy},
+		</if>
+		UPDATE_DATE = now()
+		,UPDATOR = #{record.updator}
+		<include refid="common.Update_Where_Clause" />
+	</update>
+	<update id="ContentPic_logicDelete" parameterType="ContentPic">
+		UPDATE pub_content_pic
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="ContentPic_delete" parameterType="ContentPic">
+		DELETE FROM pub_content_pic
+		WHERE
+		ID = #{id}
+	</delete>
+</mapper>

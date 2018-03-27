@@ -1,0 +1,2 @@
+.content img{display:block;padding:10px;border:5px solid #999;}
+.content img + img{margin-top:20px;}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>菜单管理管理</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+	#parse("commons/commonJs.vm")
+	#parse("commons/commonCss.vm")
+    <script type="text/javascript">
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: none">
+<div data-options="region:'north'" style="padding:9px 0 5px 5px; height:50px;">
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" onclick="newForm();">新增</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="editForm();">编辑</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" onclick="destroyForm();">删除</a>
+    <a onclick="reload();" href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-reload">刷新</a>
+</div>
+<div data-options="region:'center',border:false">
+<table id="grid" style="width:700px;" height="100%" width="100%" border="0" cellpadding="0" cellspacing="0" ></table>
+</div>
+</body>
+<script type="text/javascript">
+    var menugrid;
+    $(function() {
+        /**
+         *设定菜单树Grid
+         */
+        menugrid = $('#grid').treegrid({
+            url:'${base}/sys/rolemenu/tree',
+            idField:'id',
+            treeField:'menuName',
+            parentField:'upId',
+            toolbar : '#toolbar',
+            singleSelect:true,
+            border:false,
+            lines:false,
+            fit:true,
+            columns:[[
+                {field:'menuName',title:'菜单名称',formatter:formatcheckbox,width:250},
+                {field:'menuCode',title:'菜单编码',width:150},
+                {field:'menuAct',title:'菜单URL',width:350},
+                {field:'orderBy',title:'排序',align:'right',width:50},
+                {field:'target',title:'排序',align:'right',width:150},
+                {field:'isShow',title:'是否显示',align:'center',formatter:imgcheckbox,width:70},
+            ]],
+            onLoadSuccess: function (row) {
+                removeIcon();
+                expand();
+            }
+        });
+    });
+
+    function formatcheckbox(val,row){
+        return "<input type='checkbox' onclick=show('"+row.id+"') id='check_"+row.id+"' "+(row.checked?'checked':'')+"/>" + row.menuName;
+    }
+
+    //获取选中的结点
+    function getSelected(){
+        var idList = "";
+        $("input:checked").each(function(){
+            var id = $(this).attr("id");
+
+            if(id.indexOf('check_type')== -1 && id.indexOf("check_")>-1)
+                idList += id.replace("check_",'')+',';
+
+        })
+        alert(idList);
+    }
+
+    function expand() {
+        var roots = menugrid.treegrid("getRoots");
+        if (roots.length > 0) {
+            $.each(roots, function (i, item) {
+                menugrid.treegrid("expandAll", item.id);
+            });
+        }
+    }
+
+    // 刷新
+    function reload(){
+        menugrid.treegrid('reload');
+    }
+
+    var imgcheckbox = function (value,row,index) {
+        if (value=='1') {
+            return '<span class="tree-checkbox tree-dnd-yes"></span>';
+        } else if (value=='0') {
+            return '<span class="tree-checkbox tree-dnd-no"></span>';
+        } else {
+            return "";
+        }
+    }
+
+    // 新建菜单
+    function newForm(){
+        jQuery('#fm').form('reset');
+        var row = menugrid.treegrid('getSelected');
+        if(row == null) {
+            jQuery.messager.alert('提示',"请选择上级菜单");
+            return false;
+        }
+        Man.openWin('新增菜单','${base}/sys/rolemenu/selfAdd?id='+row.id,600,410);
+    }
+
+    function editForm(){
+        var row = menugrid.treegrid('getSelected');
+        if (row && row.id == '-1') {
+            jQuery.messager.alert('提示', "根菜单不允许编辑");
+            return false;
+        }
+        if (row){
+            Man.openWin('编辑菜单','${base}/sys/rolemenu/edit/'+row.id,600,410);
+        } else {
+            jQuery.messager.alert('提示', "请选择菜单");
+            return false;
+        }
+    }
+
+    function destroyForm(){
+        var row = menugrid.treegrid('getSelected');
+        if (row && row.id == '-1') {
+            jQuery.messager.alert('提示', "根菜单不允许删除");
+            return false;
+        }
+        if (row){
+            jQuery.messager.confirm('确认删除','确定删除该记录?',function(r){
+                if (r){
+                    jQuery.post('${base}/sys/rolemenu/delete',{'ids':row.id},function(result){
+                        var result = jQuery.parseJSON(result);
+                        if(result.success) {
+                            var node = menugrid.treegrid('getSelected');
+                            menugrid.treegrid('reload', node._parentId);
+
+                        } else {
+                            jQuery.messager.show({    // show error message
+                                title: '错误',
+                                msg: result.message
+                            });
+                        }
+                    });
+                }
+            });
+        } else {
+            jQuery.messager.alert('提示', "请选择菜单");
+            return false;
+        }
+    }
+
+</script>
+</html>

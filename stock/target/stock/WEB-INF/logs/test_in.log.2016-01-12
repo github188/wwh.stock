@@ -1,0 +1,17 @@
+2016-01-12 09:42:59,098 INFO [mylogger] - <http://quote.stockstar.com/stock/sha.shtml>
+2016-01-12 09:42:59,136 INFO [mylogger] - <http://quote.stockstar.com/stock/sza.shtml>
+2016-01-12 09:42:59,137 INFO [mylogger] - <http://quote.stockstar.com/stock/small.shtml>
+2016-01-12 09:42:59,141 INFO [mylogger] - <http://quote.stockstar.com/stock/gem.shtml>
+2016-01-12 09:43:00,200 INFO [mylogger] - <http://quote.stockstar.com/futures/ifnational.htm>
+2016-01-12 10:03:05,601 INFO [mylogger] - <http://quote.stockstar.com/stock/small.shtml>
+2016-01-12 12:20:16,442 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_35.html>
+2016-01-12 14:30:05,710 INFO [mylogger] - <http://quote.stockstar.com/futures/ifnational.htm>
+2016-01-12 15:20:06,044 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_3.html>
+2016-01-12 15:20:11,230 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_6.html>
+2016-01-12 15:20:16,989 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_14.html>
+2016-01-12 15:20:22,222 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_18.html>
+2016-01-12 15:20:28,112 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_25.html>
+2016-01-12 15:20:33,123 INFO [mylogger] - <http://quote.stockstar.com/stock/ranklist_a_3_1_26.html>
+2016-01-12 16:19:33,424 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=002599&pageid=1>
+2016-01-12 16:39:29,968 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=002689&pageid=1>
+2016-01-12 16:46:31,145 INFO [mylogger] - <http://stock.quote.stockstar.com/stockinfo_capital/flow.aspx?code=600880&pageid=1>

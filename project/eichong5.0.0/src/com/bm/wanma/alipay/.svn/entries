@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/com/bm/wanma/alipay"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="3652"
+   kind="dir"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="Base64.java"
+   checksum="146574269346cd9c0f2e0cb6dc1019b6"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="PayResult.java"
+   checksum="977c6869a0731ae4507d29f33cf5ffa4"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="SignUtils.java"
+   checksum="7c458e16ff9beef2fed73d4d6fe88c7a"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+</wc-entries>

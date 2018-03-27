@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/com/bm/wanma/broadcast"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="8692"
+   kind="dir"
+   committed-date="2017-08-01T05:10:59.180465Z"/>
+<entry
+   name="BroadcastUtil.java"
+   checksum="6991f7247b7e42e14ba79780fa64663a"
+   last-author="liuyahui"
+   committed-rev="8692"
+   text-time="2017-08-01T05:10:59.180000Z"
+   kind="file"
+   committed-date="2017-08-01T05:10:59.180465Z"/>
+<entry
+   name="NetWorkChangeBroadcastReceiver.java"
+   checksum="5331649d56477841e0c707a243102b74"
+   last-author="liuyahui"
+   committed-rev="5922"
+   text-time="2017-03-07T06:34:01.560000Z"
+   kind="file"
+   committed-date="2017-03-07T06:34:01.560009Z"/>
+</wc-entries>

@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/com/bm/wanma/adapter"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="12701"
+   kind="dir"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="AreaListViewAdapter.java"
+   checksum="9f6f5ce539037e23b45565f9d242d0e6"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="CarBrandListViewAdapter.java"
+   checksum="63f4bf814cbf1e04dff3d2cb3b66adbc"
+   last-author="chengmeng"
+   committed-rev="4469"
+   text-time="2016-12-19T09:43:01.626000Z"
+   kind="file"
+   committed-date="2016-12-19T09:43:01.626103Z"/>
+<entry
+   name="CarRepairAdapter.java"
+   checksum="da932cfc54dee112dad5c1a72b268600"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CarTypeListViewAdapter.java"
+   checksum="cd14f28a14ffd309353aa9674fe3c024"
+   last-author="chengmeng"
+   committed-rev="4469"
+   text-time="2016-12-19T09:43:01.626000Z"
+   kind="file"
+   committed-date="2016-12-19T09:43:01.626103Z"/>
+<entry
+   name="ChargeFinishAndDoneAdapter.java"
+   checksum="0451ad1f35ad2d6ffca8e14e1993b8ea"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="ChargeFlAdapter.java"
+   checksum="226430a3edef195732d01beb06028771"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="CityListViewAdapter.java"
+   checksum="c2cd60fc2a38a00aac2c4ddf3868164e"
+   last-author="chengmeng"
+   committed-rev="4410"
+   text-time="2016-12-19T02:37:15.473000Z"
+   kind="file"
+   committed-date="2016-12-19T02:37:15.473633Z"/>
+<entry
+   name="CommonViewPagerAdapter.java"
+   checksum="fc22db8641ab6da80a82392d81c2f10d"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="EmergencyCallAdapter.java"
+   checksum="a55d4a90e65f03dab699fad81042bd82"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="EverydayGetAdapter.java"
+   checksum="029ea261e9800c87d939a2a8de3a0669"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="FunctionButtonAdapter.java"
+   checksum="4633b801b0cac114eda10771879efa74"
+   last-author="liuyahui"
+   committed-rev="6068"
+   text-time="2017-03-13T05:22:43.421000Z"
+   kind="file"
+   committed-date="2017-03-13T05:22:43.421443Z"/>
+<entry
+   name="GetDataPostAdapter.java"
+   checksum="999a77a5ca10d18ff4d0664c07fc6da0"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="InformationAdapter.java"
+   checksum="022e10544476d3052b901eb875a76e77"
+   last-author="liuyahui"
+   committed-rev="5978"
+   text-time="2017-03-08T02:45:21.276000Z"
+   kind="file"
+   committed-date="2017-03-08T02:45:21.276465Z"/>
+<entry
+   name="IntegralDetailAdapter.java"
+   checksum="1b0a1dca8d5152a41ef51b7cd3e3f7b1"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="MalfunctionAdapter.java"
+   checksum="b0429ca5d82085585dd03720426c7032"
+   last-author="liuyahui"
+   committed-rev="5699"
+   text-time="2017-03-01T02:24:50.632000Z"
+   kind="file"
+   committed-date="2017-03-01T02:24:50.632028Z"/>
+<entry
+   name="MineInformationAdapter.java"
+   checksum="ee975743356a565ae0f3f771505326a1"
+   last-author="chengmeng"
+   committed-rev="4531"
+   text-time="2016-12-20T10:44:08.524000Z"
+   kind="file"
+   committed-date="2016-12-20T10:44:08.524697Z"/>
+<entry
+   name="MyBillsAdapter.java"
+   checksum="a41f8866a39856357bb62b52f5172ffd"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyBillsDetailsAdapter.java"
+   checksum="13cc7881fbd780da51908ee0432508c2"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="MyBillsOneAdapter.java"
+   checksum="af265effe38b3fc5deb1d5e5f0b71a8b"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="MyCardApplyListAdapter.java"
+   checksum="b153a79b57f2f709ca78ec2577771327"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyCouponDeprecateAdapter.java"
+   checksum="99172400dc3a45174765a1c4a4d4c3bc"
+   last-author="liuyahui"
+   committed-rev="6957"
+   text-time="2017-05-19T05:21:29.356000Z"
+   kind="file"
+   committed-date="2017-05-19T05:21:29.356265Z"/>
+<entry
+   name="MyCouponUsableAdapter.java"
+   checksum="6c4c36e783c72b7fdb1744209637c279"
+   last-author="liuyahui"
+   committed-rev="6957"
+   text-time="2017-05-19T05:21:29.356000Z"
+   kind="file"
+   committed-date="2017-05-19T05:21:29.356265Z"/>
+<entry
+   name="MyCouponUsedAdapter.java"
+   checksum="ca8705deacc5830be1e43c27a7ddf9c8"
+   last-author="liuyahui"
+   committed-rev="6957"
+   text-time="2017-05-19T05:21:29.356000Z"
+   kind="file"
+   committed-date="2017-05-19T05:21:29.356265Z"/>
+<entry
+   name="MyDeviceErrorGridViewAdapter.java"
+   checksum="2f813062bbd9051251b2d48f4481dc65"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyDynamicAdapter.java"
+   checksum="a00d81a74ea1cfa011c0d3178c8acdd0"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyInvoiceAdapter.java"
+   checksum="1c28edd4199e363a24547211803ac7b3"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyInvoiceRecordAdapter.java"
+   checksum="d024225c50e972cbc05954318acde83b"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="MyListModeListViewAdapter.java"
+   checksum="8a575b4fb33c052274e600cd3c0af977"
+   last-author="liuyahui"
+   committed-rev="8692"
+   text-time="2017-08-01T05:10:59.180000Z"
+   kind="file"
+   committed-date="2017-08-01T05:10:59.180465Z"/>
+<entry
+   name="MyNewsFeedbackAdapter.java"
+   checksum="fead1826c2d48ffc622ecca772c5d39e"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyNewsSystemAdapter.java"
+   checksum="f18febec5f7e5ae572849344cc9c7f72"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyRechargeMoneyGridViewAdapter.java"
+   checksum="857c39b42ec169fd66c79285e4aeaffd"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="PoiAdcodeAdapter.java"
+   checksum="22f18a31b786b7d82205ca68fa0c6b17"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="PoiKeywordAdapter.java"
+   checksum="da9c5cc605b4c2f3da83409b89bd1362"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ProvinceListViewAdapter.java"
+   checksum="ac68b569e5b9662f33a785019244d672"
+   last-author="chengmeng"
+   committed-rev="4410"
+   text-time="2016-12-19T02:37:15.473000Z"
+   kind="file"
+   committed-date="2016-12-19T02:37:15.473633Z"/>
+<entry
+   name="RechargeRecordAdapter.java"
+   checksum="ba9eeee3e20b360f0bdb9e73bc47b10f"
+   last-author="liuyahui"
+   committed-rev="4588"
+   text-time="2016-12-22T08:30:15.795000Z"
+   kind="file"
+   committed-date="2016-12-22T08:30:15.795695Z"/>
+<entry
+   name="SearchMyCollectAdapter.java"
+   checksum="e428dd682d6876f6ec4ee3e691546bb5"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="SearchMyHistoryAdapter.java"
+   checksum="d957abd3db0a782cf7d4b6e39d367c22"
+   last-author="liuyahui"
+   committed-rev="5069"
+   text-time="2017-01-16T08:16:00.303000Z"
+   kind="file"
+   committed-date="2017-01-16T08:16:00.303106Z"/>
+<entry
+   name="SystemNoticeAdapter.java"
+   checksum="8d1de16265ee8fe3d3b42c2375037582"
+   last-author="chengmeng"
+   committed-rev="4531"
+   text-time="2016-12-20T10:44:08.524000Z"
+   kind="file"
+   committed-date="2016-12-20T10:44:08.524697Z"/>
+<entry
+   name="backMyListModeListViewAdapter.java"
+   checksum="57ccfd8c0038fd6a035977548cd9f02b"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+</wc-entries>

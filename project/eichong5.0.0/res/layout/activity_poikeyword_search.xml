@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/common_light_white"
+    android:orientation="vertical" >
+    
+        <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/common_orange"
+         android:orientation="horizontal"
+        >
+        <ImageButton
+            android:id="@+id/check_latlng_title_back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/nav_btn_back"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"/>
+        <AutoCompleteTextView 
+            android:id="@+id/check_latlng_title_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:hint="输入关键词"
+            android:textColorHint="@color/common_light_white"
+            android:layout_gravity="center"
+            android:paddingLeft="10dp"
+            android:textColor="@color/common_white"
+            android:textSize="15sp"       
+            android:drawableLeft="@drawable/nav_btn_search"
+            android:background="@drawable/home_search_bg"   
+            android:completionThreshold="1"
+            android:dropDownVerticalOffset="1dp"
+            android:imeOptions="actionDone"
+            android:inputType="text|textAutoComplete"
+            android:singleLine="true"
+            android:ellipsize="end"            
+            />
+         <TextView 
+             android:id="@+id/check_latlng_title_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+             android:textColor="@color/common_white"
+            android:textSize="17sp" 
+            android:text="确定"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            />
+    </LinearLayout>
+    <ListView 
+         android:id="@+id/check_latlng_title_search_listview"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:listSelector="#00000000"
+         android:divider="@color/common_light_gray"
+         android:dividerHeight="1dp"
+         android:scrollbars="none"
+         ></ListView>
+    
+    
+    
+    
+    
+    
+    
+
+</LinearLayout>

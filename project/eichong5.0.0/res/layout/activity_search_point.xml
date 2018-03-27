@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/common_light_white"
+    android:orientation="vertical" >
+    <!--  android:focusable="true"
+    android:focusableInTouchMode="true" -->
+    <LinearLayout 
+         android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/common_orange"
+         android:orientation="horizontal"
+        >
+
+        <EditText 
+            android:id="@+id/activity_search_point_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:layout_marginLeft="20dp" 
+            android:hint="输入的关键词"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+            android:textColorHint="@color/common_white"
+            android:layout_gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:textColor="@color/common_white"
+            android:textSize="15sp"       
+            android:background="@drawable/nav_search_backgroud"   
+            />
+        <TextView 
+             android:id="@+id/activity_search_point_back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+             android:textColor="@color/common_white"
+            android:textSize="17sp" 
+            android:text="取消"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+     <FrameLayout 
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_weight="1"
+         >
+         <!-- 搜索历史，收藏布局 -->
+          <LinearLayout 
+            android:id="@+id/search_point_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView 
+         android:id="@+id/search_point_tv_history_no"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="暂无历史搜索"
+         android:visibility="gone"
+         android:textColor="@color/common_light_black"
+         android:textSize="15sp"
+         android:layout_margin="27dp"
+         android:paddingTop="5dp"
+         android:paddingBottom="5dp"
+         android:gravity="center"
+         />
+     <TextView 
+         android:id="@+id/search_point_tv_history"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="历史记录"
+          android:visibility="gone"
+         android:textColor="@color/common_light_black"
+         android:textSize="12sp"
+         android:layout_marginLeft="20dp"
+         android:layout_marginRight="20dp"
+         android:paddingTop="12dp"
+         android:paddingBottom="12dp"
+         />
+     <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" 
+         android:background="@color/common_light_grey"
+         android:orientation="vertical"
+         >
+     <com.bm.wanma.view.MyDetailListView
+        android:id="@+id/search_point_history_listview"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	     android:divider="@color/common_light_gray"
+	    android:dividerHeight="1dp"
+	    android:listSelector="@color/common_white"
+	    ></com.bm.wanma.view.MyDetailListView>  
+
+	    <TextView 
+	     android:id="@+id/search_point_tv_history_clear"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="清除历史搜索"
+          android:visibility="gone"
+         android:layout_gravity="center"
+         android:textColor="@color/common_light_black"
+         android:textSize="17sp"
+         android:padding="5dp"
+         android:layout_margin="10dp"
+ 
+	        />
+	     </LinearLayout>
+	    
+     <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" 
+         android:background="@color/common_white"
+         android:orientation="vertical"
+         >
+     <com.bm.wanma.view.MyDetailListView
+        android:id="@+id/search_point_collect_listview"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:divider="@color/common_light_gray"
+	    android:dividerHeight="1dp"
+	    android:listSelector="@color/common_white"
+	    ></com.bm.wanma.view.MyDetailListView>  
+
+ </LinearLayout>
+</LinearLayout>
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+		<TextView 
+         android:id="@+id/search_point_search_listview_result"
+         android:visibility="gone"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="搜索结果"
+         android:textColor="@color/common_light_black"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:paddingTop="5dp"
+         android:layout_marginBottom="9dp"
+         android:paddingBottom="5dp"
+         />
+         <ListView
+        android:id="@+id/search_point_search_listview"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/search_point_search_listview_result"
+	    android:divider="@color/common_light_grey"
+	    android:dividerHeight="20dp"
+	    />  
+	     <TextView 
+         android:id="@+id/search_point_search_listview_no_result"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="暂无充电桩"
+          android:visibility="gone"
+         android:textColor="@color/common_light_black"
+         android:textSize="17sp"
+         android:layout_margin="20dp"
+         android:drawablePadding="10dp"
+         android:gravity="center_vertical"
+         android:layout_centerHorizontal="true"
+         android:layout_centerVertical="true"
+         android:drawableRight="@drawable/img_cry"
+         />
+	     
+	     </RelativeLayout>
+     </FrameLayout>   
+ 
+
+</LinearLayout>

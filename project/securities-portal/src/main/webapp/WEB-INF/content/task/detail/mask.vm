@@ -1,0 +1,71 @@
+<!-- second-nav end -->
+<ul class="nav nav-pills second-nav">
+	<!--
+	<li class="active"><a href="index.php?do=task&amp;id=69&amp;view=mark&amp;s=100#detail">所有的</a></li>
+	<li><a href="index.php?do=task&amp;id=69&amp;view=mark&amp;s=1#detail">好评</a></li>
+	<li><a href="index.php?do=task&amp;id=69&amp;view=mark&amp;s=2#detail">中评</a></li>
+	<li><a href="index.php?do=task&amp;id=69&amp;view=mark&amp;s=3#detail">差评</a></li>
+	<li><a href="index.php?do=task&amp;id=69&amp;view=mark&amp;s=101#detail">来自雇主</a></li>
+	<li><a href="index.php?do=task&amp;id=69&amp;view=mark&amp;s=102#detail">来自威客</a></li>
+	-->
+</ul>
+<div class="evaluate">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="t_c"  width="10%">评价人</th>
+          <th>评价</th>
+        </tr>
+      </thead>
+      <tbody>
+      	#foreach($item in $!items)
+          <tr>
+	          <td>
+				<div class="evaluate-avatar">
+					<img src='$!{base}/static/img/1_small.jpg' uid='3' class='pic_small'>            
+				</div>
+				<p class="evaluate-username">$item.byUname</p>
+	          </td>
+          <td>
+            <p>对$item.uname的评价
+				<span class="label label-danger">
+					#if($!item.status == '1')
+					好评
+					#end
+					#if($!item.status == '2')
+					中评
+					#end
+					#if($!item.status == '3')
+					差评
+					#end
+				</span>
+				<img src="static/img/ico/ico_mark_${item.status}.gif" alt="好评">
+              	<time class="evaluate-time">$!date.format('yyyy-MM-dd HH:mm:ss', $!item.time)</time>
+            </p>
+            <p class="evaluate-content">$item.content</p>
+            <div class="evaluate-meta">
+            	#foreach($score in $item.score)
+				<div class="evaluate-meta-item">
+					$score.name <span class="text-danger">$score.val分</span>
+                	<span class="stars a5 s5"><span class="star_selected"></span></span>
+                </div>
+            	#end
+			</div>
+          </td>
+        </tr>
+      	#end
+<tr>
+<td>
+           <div class="list-page">
+    			<div class="page-tips pull-left">
+      			显示 1~$!maskNum 项 共 $!maskNum 个评价
+    		</div>
+  </div>
+</td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+	<script type="text/javascript" src="static/js/model/task/common.js" charset="utf-8"></script>

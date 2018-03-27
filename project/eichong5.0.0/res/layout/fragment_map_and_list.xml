@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mapmode_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/common_white"
+    android:orientation="vertical" >
+    <View 
+         android:layout_width="match_parent"
+         android:layout_height="23dp"
+         android:background="@color/common_orange"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="13dp"
+        android:paddingBottom="10dp"
+        android:background="@color/common_orange"
+       >
+   <ImageButton
+            android:id="@+id/swith_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_bulleted_list" />
+   
+<!--    <FrameLayout -->
+<!--         android:id="@+id/charging_confirm" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!-- 		android:layout_gravity="right" -->
+<!--         android:layout_marginRight="15dp" -->
+<!--         android:layout_alignParentRight="true" -->
+<!--         android:layout_centerVertical="true" -->
+<!--         android:background="@drawable/img_round" > -->
+<!--        <ImageView  -->
+<!--                 android:id="@+id/nav_charging" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--         	    android:layout_height="wrap_content" -->
+<!--                 android:src="@drawable/img_charging" -->
+<!--                 android:layout_gravity="center_vertical|center_horizontal" -->
+<!--                 /> -->
+<!--    </FrameLayout> -->
+   <TextView 
+             android:id="@+id/nav_charging"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginRight="10dp"
+             android:text="充电中"
+             android:padding="5dp"
+             android:visibility="gone"
+             android:textColor="@color/common_white"
+             android:layout_alignParentRight="true"
+             android:textSize="13dp"
+             android:layout_centerVertical="true"
+             />
+		<!-- 搜索框 -->
+    <TextView 
+         android:id="@+id/nav_search"
+         android:layout_width="match_parent"
+         android:layout_marginLeft="47dp"
+         android:layout_marginRight="15dp"
+         android:layout_height="wrap_content"
+         android:paddingLeft="10dp"
+         android:paddingTop="3dp"
+         android:paddingRight="10dp"
+         android:paddingBottom="3dp"
+         android:layout_gravity="center_vertical"
+         android:text="  查找充电点"
+         android:textSize="15dp"
+         android:textColor="@color/common_white"
+         android:drawableLeft="@drawable/img_magnifying"
+         android:layout_centerVertical="true"
+         android:background="@drawable/nav_search_backgroud"
+        />
+     </RelativeLayout>
+    
+    <!-- 内容部分， fragment切换 -->
+<!--  
+    <LinearLayout
+        android:id="@+id/map_list_content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+    </LinearLayout>
+  -->   
+  <!-- 地图界面 -->
+ <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0.9"
+        android:background="@color/common_white"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" >
+
+        <com.bm.wanma.view.CustomPullLinearLayout
+            android:id="@+id/map_custom_pull_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <View
+                android:id="@+id/scroll_handler"
+                android:layout_width="40dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:background="@drawable/nav_search_pull_bg" />
+        </com.bm.wanma.view.CustomPullLinearLayout>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/home_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:layout_margin="20dp"
+        android:background="@drawable/btn_map_positioning" />
+
+    <ImageButton
+        android:id="@+id/map_scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="20dp"
+        android:background="@drawable/btn_map_scan" />
+    <include
+        android:id="@+id/mapmode_fragment_loading"
+        android:layout_marginTop="5dp"
+        layout="@layout/map_request_data"
+        android:visibility="gone" />
+
+</FrameLayout>
+</LinearLayout>

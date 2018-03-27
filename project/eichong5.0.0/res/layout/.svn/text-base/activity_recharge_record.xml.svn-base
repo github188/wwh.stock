@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:background="@color/common_light_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    >
+    
+    <RelativeLayout
+        android:background="@color/common_orange"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        >
+        <ImageButton
+            android:id="@+id/activity_recharge_record_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/nav_btn_back"
+            android:background="@android:color/transparent"/>
+        <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="充值记录"
+             android:textColor="@color/common_white"
+             android:textSize="18sp"
+             android:padding="5dp"
+             android:layout_centerVertical="true"
+             android:layout_centerInParent="true"
+            />
+        </RelativeLayout>
+<pulltorefresh.PullToRefreshScrollView 
+    android:id="@+id/recharge_record_refresh" 
+     
+    android:background="@color/common_light_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    ptr:ptrAnimationStyle="flip"
+    ptr:ptrMode="both"
+    ptr:ptrHeaderBackground="@color/common_light_white"
+    ptr:ptrHeaderTextColor="@color/common_light_black"
+    ptr:ptrHeaderSubTextColor="@color/common_light_black">
+    <FrameLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+       <pulltorefresh.ListViewCustom 
+           		android:id="@+id/recharge_record_listview"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:divider="@null"
+		        android:dividerHeight="0dp"
+		        android:listSelector="#00000000"/> 
+     
+		<TextView
+		        android:visibility="gone"
+		        android:id="@+id/recharge_record__nodata"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:gravity="center"  
+		        android:layout_marginTop="50dp"
+		        android:textSize="15sp"
+		        android:drawableTop="@drawable/img_vouchers"
+		        android:drawablePadding="20dp"
+		        android:textColor="@color/common_light_black"
+		        />
+        
+    </FrameLayout>
+   
+
+</pulltorefresh.PullToRefreshScrollView>
+   
+</LinearLayout>

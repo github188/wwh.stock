@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>模型管理</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        $(function () {
+            jQuery('#dg').datagrid({
+                url: 'task/queryPaged',
+                columns: [[
+                    {field: 'id', checkbox: true}
+                                            , {field: 'taskId', title: '任务编号', width: 100}
+                                            , {field: 'modelId', title: '模型编号', width: 100}
+                                            , {field: 'workCount', title: '稿件数量', width: 100}
+                                            , {field: 'singleCash', title: '稿件单价', width: 100}
+                                            , {field: 'profitRate', title: '提成比例', width: 100}
+                                            , {field: 'taskFailRate', title: '失败提成比例', width: 100}
+                                            , {field: 'taskStatus', title: '任务状态', width: 100}
+                                            , {field: 'taskTitle', title: '任务标题', width: 100}
+                                            , {field: 'taskDesc', title: '任务描述', width: 100}
+                                            , {field: 'taskFile', title: '任务附件', width: 100}
+                                            , {field: 'taskPic', title: '任务图片', width: 100}
+                                            , {field: 'indusId', title: '行业编号', width: 100}
+                                            , {field: 'indusPid', title: '父行业编号', width: 100}
+                                            , {field: 'uid', title: '用户编号', width: 100}
+                                            , {field: 'username', title: '用户名', width: 100}
+                                            , {field: 'startTime', title: '开始时间', width: 100}
+                                            , {field: 'subTime', title: '交稿/选稿截止时间', width: 100}
+                                            , {field: 'endTime', title: '任务截止时间', width: 100}
+                                            , {field: 'spEndTime', title: '公示截止时间', width: 100}
+                                            , {field: 'city', title: '城市地区', width: 100}
+                                            , {field: 'taskCash', title: '任务赏金', width: 100}
+                                            , {field: 'realCash', title: '实际金额', width: 100}
+                                            , {field: 'taskCashCoverage', title: '金额区间', width: 100}
+                                            , {field: 'cashCost', title: '金额花费', width: 100}
+                                            , {field: 'creditCost', title: '代金券花费', width: 100}
+                                            , {field: 'viewNum', title: '查看次数', width: 100}
+                                            , {field: 'workNum', title: '投稿次数', width: 100}
+                                            , {field: 'leaveNum', title: '留言次数', width: 100}
+                                            , {field: 'focusNum', title: '关注次数', width: 100}
+                                            , {field: 'markNum', title: '互评次数', width: 100}
+                                            , {field: 'isDelineas', title: '', width: 100}
+                                            , {field: 'kfUid', title: '客服UID', width: 100}
+                                            , {field: 'payItem', title: '付费项', width: 100}
+                                            , {field: 'attCash', title: '增值花费', width: 100}
+                                            , {field: 'contact', title: '联系方式', width: 100}
+                                            , {field: 'uniqueNum', title: '唯一编号', width: 100}
+                                            , {field: 'extTime', title: '补充需求的时间', width: 100}
+                                            , {field: 'extDesc', title: '补充的需求描述', width: 100}
+                                            , {field: 'taskUnion', title: '联盟任务标识', width: 100}
+                                            , {field: 'alipayTrust', title: '支付宝托管', width: 100}
+                                            , {field: 'isDelay', title: '是否延期', width: 100}
+                                            , {field: 'rTaskId', title: '联盟任务编号', width: 100}
+                                            , {field: 'isTrust', title: '是否托管', width: 100}
+                                            , {field: 'trustType', title: '托管类型', width: 100}
+                                            , {field: 'isTop', title: '是否置顶', width: 100}
+                                            , {field: 'isAutoBid', title: '是否自动选稿', width: 100}
+                                            , {field: 'point', title: '任务坐标', width: 100}
+                                            , {field: 'payitemTime', title: '增值项购买时间', width: 100}
+                                            , {field: 'ageRequirement', title: '同意协议', width: 100}
+                                            , {field: 'seoTitle', title: 'SEO标题', width: 100}
+                                            , {field: 'seoKeyword', title: 'SEO关键字', width: 100}
+                                            , {field: 'seoDesc', title: 'SEO描述', width: 100}
+                                            , {field: 'province', title: '省份', width: 100}
+                                            , {field: 'area', title: '地区', width: 100}
+                                            , {field: 'tasktop', title: '任务置顶状态', width: 100}
+                                            , {field: 'urgent', title: '任务加急状态', width: 100}
+                                            , {field: 'seohide', title: '屏蔽搜索引擎状态', width: 100}
+                                            , {field: 'workhide', title: '稿件隐藏状态', width: 100}
+                                            , {field: 'budget', title: '明确预算', width: 100}
+                                            , {field: 'teamwork', title: '1,开启工作协同  2，关闭工作协同', width: 100}
+                                            , {field: 'isBack', title: '是否返还', width: 100}
+                                            , {field: 'goldtype', title: '赏金类型', width: 100}
+                                            , {field: 'giftname', title: '礼品名称', width: 100}
+                                    ]],
+                pagination: true,
+                singleSelect: false,
+                fitColumns: true,
+                fit: true,
+                toolbar: '#toolbar',
+                onDblClickRow: function (rowid, rowdata) {
+                    editForm();
+                }
+            });
+        });
+        function optionFun(value, row, index) {
+            return "";
+        }
+        function newForm() {
+            Magic.openWin('新增模型', 'task/add', 600, 200);
+        }
+        function editForm() {
+            var row = jQuery('#dg').datagrid('getSelected');
+            if (row) {
+                Magic.openWin('编辑模型', 'task/edit/' + row.id, 600, 300);
+            }
+        }
+        function destroyForm() {
+            var rows = jQuery('#dg').datagrid('getSelections');
+            if (rows.length > 0) {
+                jQuery.messager.confirm('确认删除', '确定删除该记录?', function (r) {
+                    if (r) {
+                        var ids = [];
+                        jQuery.each(rows, function (index, row) {
+                            ids.push(row.id);
+                        });
+                        jQuery.post('task/delete', {'ids': ids.toString()}, function (result) {
+                            if (result.success) {
+                                jQuery('#dg').datagrid('reload');    // reload the user data
+                            } else {
+                                jQuery.messager.show({    // show error message
+                                    title: '错误',
+                                    msg: result.message
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        function contentSearch() {
+                                                var taskId=
+                    jQuery('#filter_taskId').val();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                jQuery('#dg').datagrid('load', {
+                                                            'taskId':taskId                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        })
+        }
+
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+<table id="dg" data-options="toolbar:'#toolbar'"></table>
+<div id="toolbar">
+    <div class="search_box">
+                                    任务编号：<input id="filter_taskId" class="easyui-validatebox">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+           onclick="contentSearch()">搜索</a>
+    </div>
+    <div class="btn_box">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"
+           onclick="newForm()">新增</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+           onclick="editForm()">编辑</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="destroyForm()">删除</a>
+    </div>
+</div>
+</body>
+</html>

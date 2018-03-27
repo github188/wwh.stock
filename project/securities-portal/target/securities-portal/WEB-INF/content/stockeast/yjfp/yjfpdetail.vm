@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/master.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/default.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/layer2012.css">
+    <script type="text/javascript" src="${base}/static/js/east/ht_web.js"></script>
+    <script type="text/javascript" src="${base}/static/js/jquery.min.1.8.3.js"></script>
+
+    <script type="text/javascript">
+        var jQuery = $.noConflict();
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/base.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/plugin.js"></script>
+
+    <title>分红送配</title>
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/page_common.css" media="all" >
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/yjfp.css">
+    <base target="_blank" />
+    <style>
+        .maincont table.tab1 {
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="page" class="page">
+        <div class="main">
+            <div class="framecontent">
+                <div class="sitebody">
+
+                <div class="maincont ">
+        <div class="contentBox">
+            <div class="titbar">
+                <b class="el"></b>
+                <div class="tit">
+                    <span>$!name($!code)分红送配详情</span>
+                </div>
+                <div class="search">
+                    <span class="txt">个股分红数据：</span>
+                    <form method="get" target="_self">
+                        <input class="sinput" name="ggfh_bar" id="ggfh_bar" type="text" autocomplete="off">
+                    </form>
+                    <div onclick="javascript:ggfh_search('ggfh_bar')" class="btn">
+                        <img src="${base}/static/img/east/btn_search_blue.gif" title="查询">
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    var zz = new StockSuggest("ggfh_bar", {
+
+                        text: "输代码、名称或拼音",
+                        type: "ABSTOCK",
+                        autoSubmit: false,
+                        width: 200,
+                        header: ["选项", "代码", "名称", "类型"],
+                        body: [-1, 1, 4, -2],
+                        callback: function (ag) {
+                            var url = '/stockeast/yjfpdetail?code=' + ag.code + '&name=' + encodeURI(encodeURI(ag.cnName)) + '&mt=' + ag.mt;
+                            window.open(url);
+                        }
+                    });
+                </script>
+            </div>
+            <div class="sepe">
+                <div class="left">
+                </div>
+                <div class="right">
+                </div>
+            </div>
+
+            <div class="s6"></div>
+            <div class="contentBox" style="border-top: 0; margin-top: -10px;">
+                <div class="content" id="zjlx_hqcont">
+                    <table cellpadding="0" cellspacing="0" id="self-select-tab" class="t2 ns2">
+                        <thead>
+                        <tr>
+                            <th>代码</th>
+                            <th>名称</th>
+                            <th>相关链接</th>
+                            <th>最新价</th>
+                            <th>涨跌额</th>
+                            <th>涨跌幅</th>
+                            <th>振幅</th>
+                            <th>成交量(手)</th>
+                            <th>成交额(万)</th>
+                            <th>换手率</th>
+                            <th>量比</th>
+                            <th>市盈率</th>
+                            <th>加自选</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td><a href="http://quote.eastmoney.com/300083.html" target="_blank">300083</a></td><td><a href="http://quote.eastmoney.com/300083.html" target="_blank">劲胜精密</a></td><td><a href="http://quote.eastmoney.com/300083.html" target="_blank">行情</a>&nbsp;&nbsp;<a href="http://data.eastmoney.com/notices/stock/300083.html" target="_blank">公告</a>&nbsp;&nbsp;<a href="http://data.eastmoney.com/bbsj/300083.html" target="_blank">报表</a>&nbsp;&nbsp;<a href="http://f10.eastmoney.com/f10_v2/ShareholderResearch.aspx?code=sz300083" target="_blank">F10</a>&nbsp;&nbsp;<a href="http://guba.eastmoney.com/list,300083.html" target="_blank">股吧</a></td><td><span class="red">7.35</span></td><td><span class="red">0.15</span></td><td><span class="red">2.08%</span></td><td><span>2.64%</span></td><td><span>126575</span></td><td><span>9289</span></td><td><span>1.39%</span></td><td><span>1.03</span></td><td><span>91.88</span></td><td><a href="http://quote.eastmoney.com/favor/infavor.aspx?code=300083" title="将300083(劲胜精密)加为自选股"><img src="${base}/static/img/east/add.gif"></a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="s6"></div>
+            <div class="contentBox">
+                <div class="titbar shortbar">
+                    <div class="tit">
+                        分红派息各重要日期与相关走势
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div id="emchart-k" style="height: 350px; margin-bottom: 20px; padding-right: 50px; -webkit-tap-highlight-color: transparent; user-select: none; background-color: rgba(0, 0, 0, 0); cursor: default;" _echarts_instance_="1482036664883"><div style="position: relative; overflow: hidden; width: 815px; height: 350px;"><div data-zr-dom-id="bg" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 815px; height: 350px; user-select: none;"></div><canvas width="815" height="350" data-zr-dom-id="0" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 815px; height: 350px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas><canvas width="815" height="350" data-zr-dom-id="1" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 815px; height: 350px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas><canvas width="815" height="350" data-zr-dom-id="_zrender_hover_" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 815px; height: 350px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas><div class="echarts-tooltip zr-element" style="position: absolute; display: none; border-style: solid; white-space: nowrap; transition: left 0.4s, top 0.4s; background-color: rgba(0, 0, 0, 0.701961); border-width: 0px; border-color: rgb(51, 51, 51); border-radius: 4px; color: rgb(255, 255, 255); padding: 5px; left: 612px; top: 42px;">2016-05-30<br>  开盘 : 8.00<br>  收盘 : 8.34<br>  最高 : 9.08<br>  最低 : 7.82</div></div></div>
+                <div class="kbar_note">
+                    <div>
+                        <span class="span_s">备注：</span><span class="span_n"><img src="${base}/static/img/east/fhyuan_date.png" />预案公布日</span><span class="span_n"><img src="${base}/static/img/east/fhguquan_date.png" />股权登记日</span><span class="span_n"><img src="${base}/static/img/east/fhcxcq_date.png" />除权除息日</span>
+                    </div>
+                    <div>
+                        <span class="span_s">&nbsp;</span><span class="span_n">
+                            <img src="${base}/static/img/east/fhyuan_dateqian.png" />预案公布日前一交易日</span><span class="span_n"><img src="${base}/static/img/east/fhguquan_dateqian.png" />股权登记日前一交易日</span><span class="span_n"><img src="${base}/static/img/east/fhcxcq_dateqian.png" />除权除息日前一交易日</span>
+                    </div>
+                </div>
+            </div>
+            <div class="s6"></div>
+            <div class="catemk width_auto" id="catemk">
+                <ul>
+                    <li id="detail" class="at">分红送配详细列表</li>
+                    <li id="per" class="">历次分红派息与涨跌幅表现</li>
+                </ul>
+            </div>
+            <div class="content" id="graph">
+            </div>
+            <div class="s6"></div>
+            <div class="s6"></div>
+            <div class="content">
+                <table cellpadding="0" cellspacing="0" id="dt_1" class="tab1">
+                    <thead class="h101">
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div id="PageNav" class="PageNav">
+                <div class="Page" id="PageCont">
+                </div>
+            </div>
+
+        </div>
+                </div>
+                    <input type="hidden" id="codeID" value="${code}" />
+                    <input type="hidden" id="market" value="${mt}" />
+                    <input type="hidden" id="codeName" value="${name}" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="${base}/static/js/east/qphf.js"></script>
+    #*<script type="text/javascript" src="${base}/static/js/east/master.js"></script>*#
+    <script type="text/javascript" src="${base}/static/js/east/echarts.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/k.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/bar.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/common.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/load_table_data.js"></script>
+    <script type="text/javascript">
+        // 设置显示的持股类型
+        var stat = 'detail';
+
+        //页面加载时进入
+        ; (function () {
+            var tablelist = new LoadTable({
+                id: "dt_1",
+                sort: { id: "ReportingPeriod", desc: true },
+                autoScrollRun: false,
+                //cells: editThead(),
+                //cellcount: 18,
+                pagesize:50,
+                autoScrollRun :false,
+                dataurl: GetUrl(),
+                //param: { "mk_type": { cname: "li", type: "cmd", value: "" }, "stat_type": { cname: "li", type: "sty", value: "DCFFITA", cssclass: "at2" } },
+                afterdisplay: function (_t) {
+                },
+                beforeupdate: function (_t) {
+                    _t.options.cells = editThead();
+                    var addCell=3;
+                    if(stat=="per")
+                        addCell=0;
+                    _t.options.cellcount = _t.options.cells.length + addCell;
+                },
+                maketr: function (row, data, i, c) {
+
+                    var _class = (i % 2 == 0) ? "" : "odd";
+                    row.className = _class;
+                    row.onmouseover = function () {
+                        this.className = "over";
+                    }
+                    row.onmouseout = function (o, _c) {
+                        o.className = _c;
+                    }.bind(this, row, _class)
+                    row.cells[0].innerHTML = yjfp_tools.dateFormat(data.ReportingPeriod, "yyyy-MM-dd");//报告期
+                    if(stat=="detail")
+                    {
+                        row.cells[1].innerHTML =  yjfp_tools.dateFormat(data.ResultsbyDate, "yyyy-MM-dd");//披露时间
+                        row.cells[2].innerHTML = yjfp_tools.getSZZB(data.SGBL, data.ZGBL); //转送总比例
+                        row.cells[3].innerHTML = yjfp_tools.getSZ(data.SGBL,'送'); //送股比例
+                        row.cells[4].innerHTML = yjfp_tools.getSZ(data.ZGBL,'转'); //转股比例
+                        row.cells[5].innerHTML = yjfp_tools.getFhbl(data.XJFH,data.GXL); //现金分红比例
+                        row.cells[6].innerHTML = yjfp_tools.getGXL(data.GXL); //股息率
+                        row.cells[7].innerHTML = yjfp_tools.getNumData(data.EarningsPerShare,2); //每股收益
+                        row.cells[8].innerHTML = yjfp_tools.getNumData(data.NetAssetsPerShare,2); //每股净资产
+                        row.cells[9].innerHTML = yjfp_tools.getNumData(data.MGGJJ,2); //每股公积金
+                        row.cells[10].innerHTML = yjfp_tools.getNumData(data.MGWFPLY,2); //每股未分配利润
+                        row.cells[11].innerHTML = yjfp_tools.getNumData(data.JLYTBZZ,2); //净利润同比增长
+                        row.cells[12].innerHTML = yjfp_tools.getNumToGuBen(data.TotalEquity); //总股本
+                        row.cells[13].innerHTML = '<span title="'+yjfp_tools.dateFormat(data.YAGGR, "yyyy-MM-dd")+'">'+yjfp_tools.dateFormat(data.YAGGR, "MM-dd")+'</span>'; //预案公告日
+                        row.cells[14].innerHTML = '<span title="'+yjfp_tools.dateFormat(data.GQDJR, "yyyy-MM-dd")+'">'+yjfp_tools.dateFormat(data.GQDJR, "MM-dd")+'</span>'; //股权登记日
+                        row.cells[15].innerHTML = '<span title="'+yjfp_tools.dateFormat(data.CQCXR, "yyyy-MM-dd")+'">'+yjfp_tools.dateFormat(data.CQCXR, "MM-dd")+'</span>'; //除息除权日
+                        row.cells[16].innerHTML = data.ProjectProgress; //方案进度
+                    }
+                    else
+                    {
+                        row.cells[1].innerHTML =  data.AllocationPlan;//分配预案
+                        row.cells[2].innerHTML =  yjfp_tools.dateFormat(data.YAGGR, "yyyy-MM-dd");//预案公告日
+                        row.cells[3].innerHTML =  '<span class="' + yjfp_tools.getColor(data.YAGGRHSRZF) + '">' + yjfp_tools.getDataToNum(data.YAGGRHSRZF) + '</span>';//预案公告日后10
+                        row.cells[4].innerHTML =  yjfp_tools.dateFormat(data.GQDJR, "yyyy-MM-dd");//股权登记日
+                        row.cells[5].innerHTML =  '<span class="' + yjfp_tools.getColor(data.GQDJRQSRZF) + '">' + yjfp_tools.getDataToNum(data.GQDJRQSRZF) + '</span>';//股权登记前10
+                        row.cells[6].innerHTML =  yjfp_tools.dateFormat(data.CQCXR, "yyyy-MM-dd");//除权除其
+                        row.cells[7].innerHTML =  '<span class="' + yjfp_tools.getColor(data.CQCXRHSSRZF) + '">' + yjfp_tools.getDataToNum(data.CQCXRHSSRZF) + '</span>';//除权除息后30
+                    }
+                }
+            });
+            // 选项卡单击事件处理
+            var tabLi = document.getElementById("catemk").getElementsByTagName("li");
+            for (var i = 0; i < tabLi.length; i++) {
+                tabLi[i].onclick = function ggcg_TapClick() {
+                    setLiClass(this.id, tabLi);
+                    stat = this.id;
+                    //document.getElementById("navCacheName").innerHTML = setNavCacheName();
+                    //tablelist.options.param.stat.value = this.id;
+                    tablelist.options.page = 1;//初始化页数
+                    tablelist.options.dataurl=GetUrl();
+                    tablelist.update();
+                }
+            }
+            //获得数据接口（修改参数）
+            function GetUrl() {
+                //非传统url
+                var filter = '&filter=';
+                var code=document.getElementById("codeID").value;
+                var url = 'http://data.eastmoney.com/DataCenter_V3/yjfp/getlist.ashx?js=var%20{jsname}&pagesize={pageSize}&code='+code+'&page={page}&sr={sortRule}&sortType={sortType}' + filter;//默认地址
+                return url;
+            }
+            //stat && setLiClass(stat, tabLi);
+            //-----
+
+        })();
+
+        // 页面加载时设置选项卡选中状态
+        function setLiClass(id, typeLi) {
+            for (var i = 0; i < typeLi.length; i++) {
+                if (typeLi[i].id == id) {
+                    typeLi[i].className = "at";
+                } else {
+                    typeLi[i].className = "";
+                }
+            }
+            //editThead();
+        }
+        // 编辑表头json
+        function editThead() {
+            //总长度865
+            var thead = [
+                { "n": "报告期", "w": 90 }, { "n": "业绩披露日期", "w": 100 },
+                { "n": "<span id=\"rq1\"></span>送转股份", cells: [{ "n": "送转总比例", "w": 100 }, { "n": "送股比例", "w": 75 }, { "n": "转股比例", "w": 75 }], "w": 250 },
+                { "n": "<span id=\"rq1\"></span>现金分红", cells: [{ "n": "现金分红比例", "w": 80 }, { "n": "股息率（%）", "w": 60 }], "w": 140 },
+                { "n": "每股收益(元)", "w": 40 }, { "n": "每股净资产(元)", "w": 45 }, { "n": "每股公积金(元)", "w": 45 }, { "n": "每股未分配利润(元)", "w": 45 }, { "n": "净利润同比增长(%)", "w": 45 }
+                , { "n": "总股本(亿）", "w": 40 }, { "n": "预案公告日", "w": 55 }, { "n": "股权登记日", "w": 55 }, { "n": "除权除息日", "w": 55 }, { "n": "方案进度", "w": 60 }];
+            if (stat == "per") {
+                thead = [
+                    { "n": "报告期", "w": 110 }, { "n": "分配方案<br/>预案", "w": 156 }, { "n": "预案公告日", "w": 110 }, { "n": "预案公告日后10日涨幅%", "w": 120 }, { "n": "股权登记日", "w": 110 }, { "n": "股权登记日前10日涨幅%", "w": 120 }, { "n": "除权除息日", "w": 110 }, { "n": "除权除息日后30日涨幅%", "w": 120 }];
+            }
+            return thead;
+        };
+
+        function getDateList(){
+            var dates=null;
+            //上榜日期
+            return dates;
+        }
+    </script>
+    <script src="${base}/static/js/east/fhHq.js"></script>
+    <script src="${base}/static/js/east/PreviousPerformance.js"></script>
+
+    <script>
+        window.adDataType = "data"; //共3个值：quote，data，guba不写默认表示其他频道；
+        window.adSwitch = "both";//共3个值：both,left,right 不写默认both；
+        window.fixedBodyWidth = 1100;//950,1000 不写默认1000
+    </script>
+
+    <!--[if IE 6]>
+        <script type="text/javascript">
+            jQuery(function() {
+                var $ = jQuery;
+                var html = '<div class="IE6_notice" style="font-size:14px;padding-top:5px;z-index:100000;width:100%;height:25px;background-color:#fbe899;">' +
+	                            '您的浏览器版本太低，为了给您提供更好的浏览体验，请改用其他浏览器打开页面！' +
+	                        '</div>';
+                //$(html).insertBefore($(".top-nav-wrap"));
+                $(html).insertBefore($("#fixMenuBar"));
+                $(".IE6_notice").css("color", "red").css("font-family", "Microsoft YaHei");
+                //$(".top-nav-wrap").css("top", "30px");
+                $(".adFrame1000").css("padding-top", "40px");
+            })
+        </script>  
+    <![endif]-->
+
+</body>
+</html>

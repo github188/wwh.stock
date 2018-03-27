@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/uk/co/senab/photoview/log"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="3652"
+   kind="dir"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="LogManager.java"
+   checksum="aacd06fcad732a2c14a8663a93243cc8"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="Logger.java"
+   checksum="e94ecbbe386c0ec8006354612d0037ff"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="LoggerDefault.java"
+   checksum="d122ea25a73db2fe1fb78e33f03e9342"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+</wc-entries>

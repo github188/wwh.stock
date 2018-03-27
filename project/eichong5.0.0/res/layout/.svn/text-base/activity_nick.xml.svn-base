@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 昵称设置界面 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/common_light_white"
+    android:orientation="vertical" >
+     <RelativeLayout
+        android:background="@color/common_orange"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        >
+        <ImageButton
+            android:id="@+id/security_settings_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/nav_btn_back"
+            android:background="@android:color/transparent"/>
+        <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="昵称"
+             android:textColor="@color/common_white"
+             android:textSize="18sp"
+             android:padding="5dp"
+             android:layout_centerVertical="true"
+             android:layout_centerInParent="true"
+            />
+         <TextView 
+             android:id="@+id/nick_save"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="保存"
+             android:textColor="@color/common_white"
+             android:textSize="15sp"
+             android:layout_centerVertical="true"
+             android:layout_alignParentRight="true"
+             android:padding="10dp"
+            />
+        
+        </RelativeLayout>
+     <com.bm.wanma.view.ContainsEmojiEditText
+            android:id="@+id/nick_content"
+            android:layout_marginTop="@dimen/common_item_padding_20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入昵称"
+            android:maxLength="10"
+            android:padding="@dimen/common_item_padding_15"
+            android:textColor="@color/common_black"
+            android:background="@color/common_white"
+            android:textSize="16sp" />
+
+</LinearLayout>

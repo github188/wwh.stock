@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/uk/co/senab/photoview/gestures"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="3652"
+   kind="dir"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CupcakeGestureDetector.java"
+   checksum="b50b09f54ef713698509b2aae3826b9f"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="EclairGestureDetector.java"
+   checksum="078ff3c8fbd85e2aa2f1c9f4383ec426"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="FroyoGestureDetector.java"
+   checksum="d46ff60f59446ebcd3f53f25d687bd34"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="GestureDetector.java"
+   checksum="4f13e3a2b6647e0ebbe8d3c2aae95ccf"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="OnGestureListener.java"
+   checksum="b8e25463ddd39ce1474e58e010a0f275"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="VersionedGestureDetector.java"
+   checksum="3bf49e07bd24468882a5da3f80ded85b"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+</wc-entries>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:unlock="http://schemas.android.com/apk/res/com.bm.wanma"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/common_orange" >
+
+        <ImageButton
+            android:id="@+id/realtime_charge_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/nav_btn_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="正在充电"
+            android:textColor="@color/common_white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+    <!-- 显示动画 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
+            android:background="@color/common_orange" >
+
+            <com.bm.wanma.view.DynamicWave
+                android:id="@+id/realtime_charge_dynamicwave"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerInParent="true" />
+
+            <ImageView
+                android:id="@+id/realtime_charge_car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/img_car" />
+
+            <TextView
+                android:id="@+id/realtime_charge_soc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="29dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="30dp"
+                android:text="soc" 
+                android:textColor="@color/common_white"
+                android:textSize="41sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@color/common_weak_gray"
+                android:baselineAligned="false"
+                android:orientation="horizontal" >
+
+                <!-- 已充时长 -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/common_white"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/realtime_charge_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/common_black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="已充时长（分）"
+                        android:textColor="@color/common_weak_gray"
+                        android:textSize="13sp" />
+                </LinearLayout>
+                <!-- 已充电量 -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/common_white"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/realtime_charge_electric"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/common_black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="电量（度）"
+                        android:textColor="@color/common_weak_gray"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/common_white" >
+
+                    <TextView
+                        android:id="@+id/realtime_charge_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/common_black"
+                        android:textSize="15sp" />
+
+                    <ImageButton
+                        android:id="@+id/realtime_charge_price_help_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_toRightOf="@id/realtime_charge_money"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/btn_price_question_realtime"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/realtime_charge_money"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="计费(元)"
+                        android:textColor="@color/common_weak_gray"
+                        android:textSize="13sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/realtime_charge_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="20dp" >
+
+                <com.bm.wanma.view.SlideUnlockView
+                    android:id="@+id/realtime_charge_unlock"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    unlock:slideUnlockBackgroundResource="@drawable/btn_strip"
+                    unlock:slideUnlockBlockResource="@drawable/btn_plug" />
+
+                <TextView
+                    android:id="@+id/realtime_charge_unlock_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@drawable/btn_unlock_arrow"
+                    android:text="滑动结束充电"
+                    android:textColor="@color/common_orange"
+                    android:textSize="20sp" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/realtime_charge_bottom"
+                android:gravity="center"
+                android:text="订单结算金额与该金额可能不一致，以订单结算金额为准"
+                android:textColor="@color/common_weak_gray"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

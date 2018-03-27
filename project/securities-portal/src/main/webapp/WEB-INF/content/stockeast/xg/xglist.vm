@@ -1,0 +1,576 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>新股申购与中签查询</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <base target="_self" />
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/page_common.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/default.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/layer2012w.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/master.css">
+    <script type="text/javascript" src="${base}/static/js/jquery.min.1.8.3.js"></script>
+    <script type="text/javascript">
+        var jQuery = $.noConflict();
+        var portalurl = "${portal_url}/";
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/base.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/plugin.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/layer2012.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/public_common_tools.js"></script>
+    <style type="text/css">
+        #autofontDiv {
+            float: right;
+            height: 24px;
+            margin: 4px 10px;
+            line-height: 24px;
+        }
+
+        #autofontDiv .at {
+            font-weight: bold;
+        }
+
+        #autofontDiv span {
+            cursor: pointer;
+            color: #03318F;
+        }
+
+        table.dzb * {
+            font-size: 14px !important;
+        }
+
+        #dt_1 td.at {
+            background-color: rgb(222, 240, 246);
+        }
+
+        font.ssp {
+            display: inline-block;
+            width: 24px;
+        }
+
+        font.ssp2 {
+            display: inline-block;
+            width: 52px;
+            *width: 55px;
+        }
+
+        font.ssp1 {
+            display: inline-block;
+            width: 40px;
+        }
+
+        font.ssp3 {
+            *display: inline-block;
+            /**width: 35px;*/
+        }
+
+        .Vertical {
+            vertical-align: middle;
+        }
+
+        .zqh_a {
+            font-family: serif;
+            text-decoration: none !important;
+        }
+    </style>
+</head>
+<body class="min_width_1024 min_width_scroll">
+<script type="text/javascript">
+    var NavCache = { Page: "新股申购", current_n: 2 };
+</script>
+<style>
+    .old_head {display:none;}
+    .top-nav-wrap .tw-nav a {
+        color: #000 !important;
+    }
+    .page {
+        width:100%;
+    }
+    .header .picker {
+        /*border-bottom:none;*/
+    }
+    .header,.maincont .titbar,.maincont .contentBox {
+        overflow:initial;
+    }
+
+</style>
+    <div class="linkNav min_width_1024" style="width: 96%;">
+        <div id="Column_Navigation">
+            <a href="${base}/">首页</a> &gt; <a href="${base}/stockeast/center/">数据中心</a>&gt; <a href="http://data.eastmoney.com/xg/">新股数据</a> &gt; 新股申购
+        </div>
+    </div>
+    <div class="mainFrame" id="mainflow" style="width: 96%;">
+        <div class="maincont">
+            <div class="contentBox">
+                <div class="titbar" id="datatitle">
+                    <b class="el"></b>
+                    <div class="tit">
+                        新股申购与中签查询
+                    </div>
+                    <div class="search xgsg" style="float: right;">
+                        <span class="txt">新股代码：</span>
+                        <form method="get" target="_self"><input name="xgsg_bar" class="sinput" id="xgsg_bar" type="text" autocomplete="off"></form>
+                        <div class="btn" onclick="javascript:xgsg_search('xgsg_bar')">
+                            <img title="查询" src="${base}/static/img/east/btn_search_blue.gif">
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        var zz = new StockSuggest("xgsg_bar", {
+                            text: "输代码、名称或拼音",
+                            type: "ABSTOCK",
+                            autoSubmit: false,
+                            width: 190,
+                            header: ["选项", "代码", "名称", "类型"],
+                            body: [-1, 1, 4, -2],
+                            callback: function (ag) {
+                                var url = 'http://data.eastmoney.com/xg/xg/detail/' + ag.code + '.html';
+                                window.open(url);
+                            }
+                        });
+                        function xgsg_search(bb) {
+                            var s1 = document.getElementById(bb).value;
+                            var s = escape(s1);
+                            if (s1 == "输代码、名称或拼音" || s1 == "" || isNaN(parseInt(s1)) || s1.length != 6) {
+                                alert("请输入所有查询股票的代码！");
+                                return false;
+                            } else {
+                                var url = 'http://data.eastmoney.com/xg/xg/detail/' + s1 + '.html';
+                                window.open(url);
+                            }
+                        }
+                    </script>
+                </div>
+                <div style="display: none;">
+                    <img src="/static/img/east/down.gif" width="11" height="10">
+                    <img src="/static/img/east/up.gif" width="11" height="10">
+                </div>
+                <div class="content">
+                    <div class="catemk" style="min-width: 1024px; *width: expression(this.offsetWidth < 1024 ? '1024px' : this.offsetWidth + 'px')">
+                        <ul id="mk_type">
+                            <li data="1">全部股票</li>
+                            <li data="2">上海主板</li>
+                            <li data="3">创业板</li>
+                            <li data="4">中小板</li>
+                        </ul>
+                        <div style="float: right;" class="miniPageNav" id="miniPageNav">
+                        </div>
+
+                    </div>
+                    <table cellpadding="0" cellspacing="0" class="tab1" id="dt_1" style="width: 100%">
+                        <thead class="h101">
+                            <tr>
+                                <th>加载中......
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="PageNav" class="PageNav">
+                    <div class="Page" id="PageCont">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer20">
+    </div>
+    <script type="text/javascript" src="${base}/static/js/east/load_table_data_xg.js"></script>
+    <script type="text/javascript">
+        //window.onload=function(){
+        //    window.onresize =function(){
+        //        if(document.getElementById("adTgshds").offsetLeft-document.getElementById("mk_type").offsetLeft<396) {
+        //            document.getElementById("adTgshds").style.visibility="hidden";
+        //        }else{
+        //            document.getElementById("adTgshds").style.visibility="visible";
+        //        }
+        //    };
+        //};
+        function _doZoom(t){
+            setCookie(fontCookieName,h,9999);
+            var a=document.getElementsByTagName("dl");
+            var k=[],c=[],g=[];
+            var b=a.length;
+            for(var f=0;f<b;f++){
+                if(a[f].getElementsByTagName("span").length>0){
+                    g.push(a[f]);k.push(a[f].getElementsByTagName("span")[0]);
+                    c.push(a[f].getElementsByTagName("span")[1])
+                }
+            }
+            b=g.length;
+            var e=document.getElementById("combinationsContainer");
+            switch(parseInt(h)){
+                case 0:e.style.fontSize="14px";
+                    for(var d=0;d<b;d++){
+                        k[d].className="at";c[d].className=""
+                    }break;
+                case 1:e.style.fontSize="12px";
+                    for(var d=0;d<b;d++){k[d].className="";c[d].className="at"
+                    }break
+            }
+        } 
+        Date.prototype.format = function (part) {
+            var date = this, redate;
+            part = (part == null) ? "yyyy-MM-dd HH:mm:ss" : part;
+            var y = date.getFullYear(),
+			M = date.getMonth() + 1,
+			d = date.getDate(),
+			H = date.getHours(),
+			m = date.getMinutes(),
+			s = date.getSeconds(),
+			ms = date.getMilliseconds(),
+			CW = "<font class=\"ssp\">"+["周日", "周一", "周二", "周三", "周四", "周五", "周六"][date.getDay()]+"</font>",
+			MM = (M > 9) ? M : "0" + M,
+			dd = (d > 9) ? d : "0" + d,
+			HH = (H > 9) ? H : "0" + H,
+			mm = (m > 9) ? m : "0" + m,
+			ss = (s > 9) ? s : "0" + s;
+            ms = (ms > 9) ? (ms > 99) ? ms : "0" + ms : "00" + ms,
+			redate = part.replace("yyyy", y).replace("MM", MM).replace("dd", dd)
+							.replace("HH", HH).replace("mm", mm)
+							.replace("ms", ms).replace("ss", ss)
+							.replace("M", M).replace("d", d)
+							.replace("m", m).replace("s", s)
+							.replace("CW", CW).replace("H", H);
+            return redate;
+        }
+        var rows = "";
+        function setColor0(sender) {
+            if (sender.tagName == "TD") {
+                for (var i = 0; i < rows.length; i++) {
+                    rows[i].cells[sender.cellIndex].className=rows[i].cells[sender.cellIndex].className.replace(" at","");
+                    //rows[i].cells[sender.cellIndex].style.backgroundColor = rows[i].cells[sender.cellIndex].attributes["yc"].nodeValue;
+                }
+            }
+        }
+        function setColor1(sender) {
+            if (sender.tagName == "TD") {
+                for (var i = 0; i < rows.length; i++) {
+                    rows[i].cells[sender.cellIndex].className+=" at";
+                    //rows[i].cells[sender.cellIndex].setAttribute("yc", rows[i].cells[sender.cellIndex].style.backgroundColor);
+                    //rows[i].cells[sender.cellIndex].style.backgroundColor = "#DEF0F6";
+                }
+            }
+        }
+        function lcolor() {
+            rows = document.getElementById("dt_1").rows;
+            tiny.addEvent(tiny.selector("dt_1"), "mouseover", function (e) {
+                setColor1(e.srcElement || e.target);
+            });
+            tiny.addEvent(tiny.selector("dt_1"), "mouseout", function (e) {
+                setColor0(e.srcElement || e.target);
+            });
+        }
+        function GetTiShi(p1,p2,p3,pe1/*m*/,pe2/*n*/,pe3,peh/*x*/,name)
+        {
+            var res='';
+            var tiShiBase=['提示：&#10;1、{0}如不出现超23倍发行市盈率，预估发行价为预一价格{1}元。&#10;2、{0}如按当前募资总额与新股发行数募集满额，将会出现超23倍发行市盈率，预估发行价为预二价格{2}元。仅供参考！'
+                ,'提示：&#10;1、{0}如不出现超行业市盈率发行，预估发行价为预一价格{1}元，预一价格会随行业市盈率变化。&#10;2、{0}如按当前募资总额与新股发行数募集满额，将会出现超行业市盈率发行，预估发行价为预二价格{2}元。仅供参考！'
+                ,'提示：&#10;1、{0}如不出现超行业市盈率发行，预估发行价为预一价格{1}元，预一价格会随行业市盈率变化。&#10;2、{0}如按当前募资总额与新股发行数募集满额，将会出现超行业市盈率发行，预估发行价为预二价格{2}元。&#10;3、城地股份如果以计划募集资金发行的话，发行市盈率会超过23倍。针对这种情况，就会出现预三价格{3}元，对应的发行市盈率是22.99，仅供参考！'];
+            if(pe1<pe2&&pe2<peh)
+                res=tiShiBase[0].format(name,p1,p2);
+            else
+                res=tiShiBase[1].format(name,p1,p2);
+            if(pe2>peh&&pe2>23&&pe1!=pe3)
+                res=tiShiBase[2].format(name,p1,p2,p3);
+            return res;
+        }
+        function GetPAndPe(p1,p2,p3,pe1,pe2,pe3,peh,name,issgh)
+        {
+            //该方法参照1020需求创建
+            //var tishi= GetTiShi(data[34],data[47],data[50],data[44],data[48],data[51],hysyl,data[3]);
+            var idTwo=false;
+            var res=["",""];
+            var fxj_x='';
+            var syl_x='';
+            var tishi= GetTiShi(p1,p2,p3,pe1,pe2,pe3,peh,name);
+            var top23=true;
+            if(pe2<=peh)
+            {
+                //pe2小于等于peh就没有预3
+                if(pe2>=23)
+                {
+                    top23=false;
+                    fxj_x = ((isNaN(p1)||!issgh)?'':'<p><img class="Vertical" src="${base}/static/img/east/xg_yugu'+(idTwo?"":"1")+'.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(p1/1).toFixed(2)+'</font>&nbsp;<i style="width: 14px;display: inline-block;"></i></p>'+((idTwo)?'':'<p><img class="Vertical" src="${base}/static/img/east/xg_yugu'+(idTwo?"":"2")+'.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(p2/1).toFixed(2)+'</font>'+(top23?'&nbsp;<i style="width: 14px;display: inline-block;"></i>':'&nbsp;<img class="Vertical" src="${base}/static/img/east/B3DB94.png" title="'+tishi+'"/>')+'</p>'));
+                    syl_x=((isNaN(pe1)||!issgh)?'&nbsp;':('<p><img src="${base}/static/img/east/xg_yugu1.png" title="黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。" /><font  class="ssp1" style="font-style:italic;">&nbsp;'+(pe1/1).toFixed(2)+'</font></p><p><img src="${base}/static/img/east/xg_yugu2.png" title="黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。" /><font  class="ssp1" style="font-style:italic;">&nbsp;'+(pe2/1).toFixed(2)+'</font></p>'));
+                }
+                else
+                { 
+                    //1.1
+                    fxj_x = ((isNaN(p1)||!issgh)?'':'<p><img class="Vertical" src="${base}/static/img/east/xg_yugu'+(idTwo?"":"1")+'.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(p1/1).toFixed(2)+'</font>&nbsp;<i style="width: 14px;display: inline-block;"></i></p>'+((idTwo)?'':'<p><img class="Vertical" src="${base}/static/img/east/xg_yugu'+(idTwo?"":"2")+'.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(p2/1).toFixed(2)+'</font>'+(top23?'&nbsp;<i style="width: 14px;display: inline-block;"></i>':'&nbsp;<img class="Vertical" src="${base}/static/img/east/B3DB94.png" title="'+tishi+'"/>')+'</p>'));
+                    syl_x=((isNaN(pe1)||!issgh)?'&nbsp;':('<p><img src="${base}/static/img/east/xg_yugu1.png" title="黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。" /><font  class="ssp1" style="font-style:italic;">&nbsp;'+(pe1/1).toFixed(2)+'</font></p><p><img src="${base}/static/img/east/xg_yugu2.png" title="黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。" /><font  class="ssp1" style="font-style:italic;">&nbsp;'+(pe2/1).toFixed(2)+'</font></p>'));
+                }
+            }
+            else if(pe2>peh)
+            {
+                //pe2小于等于peh可能有预3
+                if(pe2>=23 && p1!=p3)
+                {
+                    //2.2
+                    //pe2大于等于23就有预3
+                    //top23==true pe2处不显示提示语
+                    fxj_x = ((isNaN(p1)||!issgh)?'':'<p><img class="Vertical" src="${base}/static/img/east/xg_yugu'+(idTwo?"":"1")+'.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(p1/1).toFixed(2)+'</font>&nbsp;<i style="width: 14px;display: inline-block;"></i></p>'+((idTwo)?'':'<p><img class="Vertical" src="${base}/static/img/east/xg_yugu'+(idTwo?"":"2")+'.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(p2/1).toFixed(2)+'</font>'+(top23?'&nbsp;<i style="width: 14px;display: inline-block;"></i>':'&nbsp;<img class="Vertical" src="${base}/static/img/east/B3DB94.png" title="'+tishi+'"/>')+'</p>'));
+                    syl_x=((isNaN(pe1)||!issgh)?'&nbsp;':('<p><img src="${base}/static/img/east/xg_yugu1.png" title="黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。" /><font  class="ssp1" style="font-style:italic;">&nbsp;'+(pe1/1).toFixed(2)+'</font></p><p><img src="${base}/static/img/east/xg_yugu2.png" title="黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。" /><font  class="ssp1" style="font-style:italic;">&nbsp;'+(pe2/1).toFixed(2)+'</font></p>'));
+                    if(top23)
+                    {
+                        fxj_x += '<p><img class="Vertical" src="${base}/static/img/east/xg_yugu3.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。"><font class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(p3/1).toFixed(2)+'</font>&nbsp;<img class="Vertical" src="${base}/static/img/east/B3DB94.png" title="'+tishi+'"/></p>';
+                        syl_x+='<p><img src="${base}/static/img/east/xg_yugu3.png" title="黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。"><font class="ssp1" style="font-style:italic;">&nbsp;'+(pe3/1).toFixed(2)+'</font></p>';
+                    }
+                }
+                else if(pe2<23)
+                {
+                    top23=false;
+                    fxj_x = ((isNaN(p1)||!issgh)?'':'<p><img class="Vertical" src="${base}/static/img/east/xg_yugu'+(idTwo?"":"1")+'.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(p1/1).toFixed(2)+'</font>&nbsp;<i style="width: 14px;display: inline-block;"></i></p>'+((idTwo)?'':'<p><img class="Vertical" src="${base}/static/img/east/xg_yugu'+(idTwo?"":"2")+'.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(p2/1).toFixed(2)+'</font>'+(top23?'&nbsp;<i style="width: 14px;display: inline-block;"></i>':'&nbsp;<img class="Vertical" src="${base}/static/img/east/B3DB94.png" title="'+tishi+'"/>')+'</p>'));
+                    syl_x=((isNaN(pe1)||!issgh)?'&nbsp;':('<p><img src="${base}/static/img/east/xg_yugu1.png" title="黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。" /><font  class="ssp1" style="font-style:italic;">&nbsp;'+(pe1/1).toFixed(2)+'</font></p><p><img src="${base}/static/img/east/xg_yugu2.png" title="黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。" /><font  class="ssp1" style="font-style:italic;">&nbsp;'+(pe2/1).toFixed(2)+'</font></p>'));
+                }
+            }
+            res[0]=fxj_x;
+            res[1]=syl_x;
+            return res;
+        }
+        var tablelist = new LoadTable({
+            id: "dt_1",
+            sort: { id: "12", desc: true },
+            cells: [{ "n": "股票<font class=\"ssp\" style=\"text-decoration: underline;\">代码</font>", "s": "5" }, 
+                { "n": "股票<font class=\"ssp2\">简称</font>", "w": "58" }, 
+                { "n": "相关资料", "w": "121" },
+                { "n": "申购<br />代码", "w": "44" },
+                { "n": "发行<br />总数<br />(万股)", "s": "7" },
+                { "n": "网上<br />发行<br />(万股)", "s": "8" },
+                { "n": "顶格申购<br />需配市值<br />(万元)<i title=\"黑色斜体部分为预估值，顶格申购需配市值的预估不涉及公司基本面分析，请谨慎参考。\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>" }, 
+                 { "n": "申购<br />上限<br />(万股)<i title=\"黑色斜体部分为预估值，申购上限的预估不涉及公司基本面分析，请谨慎参考。\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>"},
+                 //{ "n": "申购资<br />金上限<br />(万元)<i title=\"黑色斜体部分为预估值，申购资金上限的预估不涉及公司基本面分析，请谨慎参考。\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>" },
+                 { "n": "发行<br />价格<br /><i title=\"黑色斜体部分为预估值，发行价的预估不涉及公司基本面分析，请谨慎参考。\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>", "s": "11", "w": "93"},
+                 { "n": "最新价", "s": "24" },
+                 { "n": "首日<br />收盘价", "s": "25" }, 
+                 { "n": "申购日期", "s": "12", "w": "70" }, 
+                 { "n": "中签号<br />公布<i title=\"中签号公布之后, 可点击中签号公布日期查询中签号\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>", "s": "13", "w": "50" },
+                 { "n": "中签缴<br />款日期", "s": "33" }, //12
+                 { "n": "上市<br />日期", "s": "14" },
+                 { "n": "发行<br />市盈率<i title=\"黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>", "s": "15", "w": "80" },
+                 { "n": "行业<br />市盈率", "s": "28" }, 
+                 { "n": "中签率<br />(%)", "s": "16" }, 
+                 //16{ "n": "每中<br />一签约<br />(万元)", "s": "19" }, 
+                 //17{ "n": "冻结<br />资金<br />(亿元)", "s": "17" }, 
+                 { "n": "询价累<br />计报价<br />倍数<i title=\"初步询价阶段累计报价股数除以初步询价阶段网下配售股数\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>", "s": "18" }, 
+                 { "n": "配售对象<br />报价家数", "s": "29", "w": "50" },
+                 //20{ "n": "打新<br />收益<br />(%)<i title=\"计算公式：打新收益率=中一签的股数*(上市首个非一字板（上市首日不计）成交均价-发行价)/每中一签需要的资金\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>", "s": "32" },
+                { "n": "连续<br/>一字板<br />数量<i title=\"上市首日默认一字板\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>","s":"31", "w": "50" },
+                { "n": "总涨<br />幅%<i title=\"表示新股未开板的浮盈率或已开板的平均出场获利率\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>"},
+                { "n": "每中一<br/>签获利<br/>(元)<i title=\"表示新股中一签未开板的浮盈或已开板的平均出场获利\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>"}//,
+                //{ "n": "招股说<br />明书/意<br />向书<i title=\"提供最新的招股说明书。如果招股说明书没公布，则提供最新的招股意向书。\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>", "w": "50"}
+            ],
+            dataurl: "http://datainterface.eastmoney.com/EM_DataCenter/JS.aspx?type=NS&sty=NSSTV5&st={sortType}&sr={sortRule}&p={page}&ps={pageSize}&js=var {jsname}={pages:(pc),data:[(x)]}{param}",
+            param: { "mk_type": { cname: "li", type: "stat", value: "1"} },
+            afterdisplay:function(_t){setTimeout(function(){
+                if(_t.tools.browser.ie){
+                    scrollTable = document.getElementById("dt_1-scroll-table");
+                    if(scrollTable)
+                        scrollTable.style.width="auto";
+                }
+                lcolor();
+            },500)
+            },minWidth:1200,autoWidit:true,
+            maketr: function (row, data, i, c) {
+                var _class = (i % 2 == 0) ? "" : "odd";
+                var nowtime=new Date();
+                _class += (nowtime.format("yyyy-MM-dd") == data[11] ? " today" : "");
+                _class += (nowtime.format("yyyy-MM-dd") == data[13] ? " today_1" : "");
+                _class += (new Date(nowtime.getTime() + 24 * 60 * 60 * 1000).format("yyyy-MM-dd")== data[13] ? " today_2" : "");
+                var mkt=(data[19]=="sh"?"sh":"sz");
+                row.className = _class;
+                row.onmouseover = function () {
+                    this.className = "over";
+                }
+                row.onmouseout = function (o, _c) {
+                    o.className = _c;
+                } .bind(this, row, _class)
+                _sgrq = (data[11] == "" || data[11] == "NULL") ? "<span title=\"" + data[11] + "\" class=\"red txt\">"+data[49]+ "</span>" : "<span title=\"" + data[11] + "\" class=\"txt\">" + new Date(Date.parse(data[11].replace(/-/ig, "/"))).format("MM-dd CW") + "</span>",
+                //_sgrq = (data[11] == "" || data[11] == "NULL") ? "" : "<span title=\"" + data[11] + "\" class=\"txt\">" + new Date(Date.parse(data[11].replace(/-/ig, "/"))).format("MM-dd CW") + "</span>",
+                _zqgbr = (data[12] == "" || data[12] == "NULL") ? "&nbsp;" : Date.parse(nowtime)>(new Date(data[12].replace(/-/ig, "/"))).getTime()?"<a href=\"/xg/xg/detail/" + data[4] + ".html?tr_zqh=1\" class=\"zqh_a\"><span title=\"" + data[12] + "\" class=\"txt\">" + new Date(Date.parse(data[12].replace(/-/ig, "/"))).format("MM-dd") + "</span>&gt;&gt;</a>":"<span title=\"" + data[12] + "\" class=\"txt\">" + new Date(Date.parse(data[12].replace(/-/ig, "/"))).format("MM-dd") + "</span>",
+				_ssrq = (data[13] == "" || data[13] == "NULL") ? "&nbsp;" : "<span title=\"" + data[13] + "\" class=\"txt\">" + new Date(Date.parse(data[13].replace(/-/ig, "/"))).format("MM-dd") + "</span>";
+                var issgh=(data[11] == "" || data[11] == "NULL")?true:new Date(Date.parse(data[11].replace(/-/ig, "/")))>nowtime;
+                var _style_pf = "";
+                var _zxj = (data[23] == "-" || data[23] == "" || data[23] == "NULL") ? "&nbsp;" : data[23];
+                if (data[23] == '1') {
+                    _zxj = '<i class="pf" title="破发&#13;注：只判断上市三个月内的新股，如果最新价小于发行价，则判断为破发"></i>' + '<span title="破发&#13;注：只判断上市三个月内的新股，如果最新价小于发行价，则判断为破发">' + _zxj + '</span>';
+                    _style_pf = "position:relative;display:block;";
+                }
+                else {
+                    _zxj =  _zxj ;
+                }
+                row.cells[14].style.whiteSpace="nowrap";
+                if(this.tools.browser.ie6){
+                    row.cells[13].style.width="60px";
+                    row.cells[14].style.width="33px";
+                    row.cells[15].style.width="33px";
+                    row.cells[19].style.width="33px";
+                    row.cells[21].style.width="30px";
+                }
+                else{
+                    row.cells[13].style.minWidth="33px";
+                    row.cells[14].style.minWidth="33px";
+                    row.cells[15].style.minWidth="33px";
+                    row.cells[19].style.minWidth="33px";
+                    row.cells[21].style.minWidth="30px";
+                }
+                var _cetitle = '';
+                var _cergbs = (data[17] == "-" || data[17] == "" || data[17] == "NULL") ? "&nbsp;" : data[17];
+                var _pdf = data[0] == "" ? (data[43]==""?"&nbsp;":"<a href=\"http://pdf.dfcfw.com/pdf/H2_" + data[43] + "_1.pdf\"><img src=\"/static/img/east/pdf.png\" /></a>") : "<a href=\"http://pdf.dfcfw.com/pdf/H2_" + data[0] + "_1.pdf\"><img src=\"/static/img/east/pdf.png\" /></a>";
+                row.cells[0].innerHTML = "&nbsp;<a href=\"${base}/stockeast/detail?stockCode="+data[4]+"\">"+data[4]+"</a>";//股票代码
+                row.cells[1].innerHTML = "<a href=\"http://quote.eastmoney.com/"+mkt+data[4]+".html\">"+data[3]+"</a>"; //股票简称
+                var detalUrl=(data[11] == "" || data[11] == "NULL") ? '<span style="color: #808080;font-weight: initial;">详细</span>' : '<a href="/xg/xg/detail/' + data[4] + '.html" class="red">详细</a>';
+                row.cells[2].innerHTML = '<font class="ssp2">'+detalUrl+' <a href="http://data.eastmoney.com/report/' + data[4] + '.html">研报</a></font> <font class="ssp2"><a href="http://guba.eastmoney.com/topic,' + data[4] + '.html">股吧</a> ' + (data[26].indexOf("http") == -1 ? '<label>专题</label>' : '<a href="' + data[26] + '">专题</a>') + '</font>'; //相关资料
+                row.cells[3].innerHTML = ((data[5] == "-" || data[5] == "" || data[5] == "NULL") ? "&nbsp;" : data[5]); //申购代码
+                row.cells[4].innerHTML = ((data[6] == "-" || data[6] == "" || data[6] == "NULL") ? "&nbsp;" : (data[6] / 10000).toFixed(0)); //发行总数(万股)
+                row.cells[5].innerHTML = (data[7] == "-" || data[7] == "" || data[7] == "NULL") ? "&nbsp;" : (data[7] / 10000).toFixed(0); //网上发行(万股)
+                //row.cells[6].innerHTML = (data[37] == "-" || data[37] == "" || data[37] == "NULL") ? "&nbsp;" : (data[37] / 1).toFixed(2); //顶格申购所需市值(万元)
+                row.cells[6].innerHTML = isNaN(parseFloat(data[22])) ? ((isNaN(parseFloat(data[37]))||!issgh)?'&nbsp;':('<img src="/static/img/east/xg_yugu.png" title="黑色斜体部分为预估值，顶格申购所需市值的预估不涉及公司基本面分析，请谨慎参考。" /><font class="ssp1"  style="font-style:italic;">&nbsp;'+(data[37]/1).toFixed(2))+'</font>') : parseFloat(data[22] / 10000).toFixed(2); //顶格申购所需市值(万元)
+                row.cells[7].innerHTML = isNaN(parseFloat(data[8])) ? ((isNaN(parseFloat(data[35]))||!issgh)?'&nbsp;':('<img src="/static/img/east/xg_yugu.png" title="黑色斜体部分为预估值，申购上限的预估不涉及公司基本面分析，请谨慎参考。" /><font class="ssp1"  style="font-style:italic;">&nbsp;'+(data[35]/1).toFixed(2))+'</font>') : parseFloat(data[8] / 10000).toFixed(2); //申购上限(万股)
+                //row.cells[7].innerHTML = isNaN(parseFloat(data[9])) ? ((isNaN(parseFloat(data[36]))||!issgh)?'&nbsp;':('<img src="/static/img/east/xg_yugu.png" title="黑色斜体部分为预估值，申购资金上限的预估不涉及公司基本面分析，请谨慎参考。" /><font class="ssp1"  style="font-style:italic;">&nbsp;'+(data[36]/1).toFixed(2))+'</font>') : parseFloat(data[9] / 10000).toFixed(5).replace(/(0$)/g,"").replace(/(0$)/g,"").replace(/(0$)/g,""); //申购资金上限(万元)
+                var isYcj=true;
+                var isOneYcj=true;
+                //行业市盈率
+                var hysyl= (data[32] == "-" || data[32] == ""|| data[32] == "0" || data[32] == "NULL") ?((data[45] == "-" || data[45] == ""|| data[45] == "0" || data[45] == "NULL") ? "&nbsp;" : data[45]) : data[32];
+                //预测行业市盈率2
+                pe2=pe2*1;
+                hysyl=hysyl*1;
+                var pe2=!isNaN(parseFloat(data[48]))?data[48]:0;
+                row.cells[8].innerHTML =isNaN(parseFloat(data[10])) ? ((isNaN(parseFloat(data[34]))||!issgh)?'&nbsp;':('<img class="Vertical" src="/static/img/east/xg_yugu.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(data[34]/1).toFixed(2))+'</font>') : (isYcj=false,'<span>'+data[10]+'</span>'); //发行价格
+                var cells815=[];
+                if((data[34]*1)==(data[47]*1)&&(data[47]*1)==(data[50]*1)&&(data[50]*1)==(data[34]*1))
+                    isOneYcj=true;
+                if(isYcj&&parseFloat(data[47])!=parseFloat(data[34]))
+                {
+                    isOneYcj=false;
+                    var idTwo=(isNaN(parseFloat(data[47])));//是否有预测二
+                    var fxj_x=row.cells[8].innerHTML;
+                    if(pe2>hysyl)
+                    {
+                        //出现预测三的情况:Pe2大于23 ，有预测市盈率2，预测市盈率1不等于预测市盈率3
+                        if(pe2>23 && !idTwo && parseFloat(data[51])!=parseFloat(data[44]))
+                            var top23=true;
+                        var tishi= GetTiShi(data[34],data[47],data[50],data[44],data[48],data[51],hysyl,data[3]);
+                        fxj_x = ((isNaN(parseFloat(data[34]))||!issgh)?'':'<p><img class="Vertical" src="/static/img/east/xg_yugu'+(idTwo?"":"1")+'.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(data[34]/1).toFixed(2)+'</font>&nbsp;<i style="width: 14px;display: inline-block;"></i></p>'+((idTwo)?'':'<p><img class="Vertical" src="/static/img/east/xg_yugu'+(idTwo?"":"2")+'.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(data[47]/1).toFixed(2)+'</font>'+(top23?'&nbsp;<i style="width: 14px;display: inline-block;"></i>':'&nbsp;<img class="Vertical" src="${base}/static/img/east/B3DB94.png" title="'+tishi+'"/>')+'</p>'));
+                        if(top23)
+                        {
+                            fxj_x += '<p><img class="Vertical" src="${base}/static/img/east/xg_yugu3.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。"><font class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(data[50]/1).toFixed(2)+'</font>&nbsp;<img class="Vertical" src="${base}/static/img/east/B3DB94.png" title="'+tishi+'"/></p>';
+                        }
+                    }
+                    cells815=GetPAndPe((data[34]*1),(data[47]*1),(data[50]*1),(data[44]*1),(data[48]*1),(data[51]*1),hysyl,data[3],issgh);
+                    row.cells[8].innerHTML =cells815[0];
+                    
+                    //row.cells[8].innerHTML =((isNaN(parseFloat(data[34]))||!issgh)?'':'<p><img class="Vertical" src="${base}/static/img/east/xg_yugu'+(idTwo?"":"1")+'.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(data[34]/1).toFixed(2)+'</font>'+(baseArr[data[4]]?'&nbsp;<i style="width: 14px;display: inline-block;"></i>':"")+'</p>'+((idTwo)?'':'<p><img class="Vertical" src="${base}/static/img/east/xg_yugu'+(idTwo?"":"2")+'.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(data[47]/1).toFixed(2)+'</font>'+(baseArr[data[4]]?'&nbsp;<img class="Vertical" src="${base}/static/img/east/B3DB94.png" title="'+baseArr[data[4]]+'"/>':'')+'</p>'));
+                    
+                    //使用预测
+                    //row.cells[8].innerHTML =((isNaN(parseFloat(data[34]))||!issgh)?'&nbsp;':('<p><img class="Vertical" src="${base}/static/img/east/xg_yugu1.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(data[34]/1).toFixed(2))+'</font></p>'+((isNaN(parseFloat(data[49])))?'':'<p><img class="Vertical" src="${base}/static/img/east/xg_yugu2.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(data[28]/1).toFixed(2)+'</font>&nbsp;</p>')); //发行价格
+                    //if(baseArr[data[4]])
+                    //{
+                    //    row.cells[8].innerHTML =((isNaN(parseFloat(data[34]))||!issgh)?'&nbsp;':('<p><img class="Vertical" src="${base}/static/img/east/xg_yugu1.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(data[34]/1).toFixed(2))+'</font>&nbsp;<i style="width: 14px;display: inline-block;"></i></p>'+((isNaN(parseFloat(data[49])))?'':'<p><img class="Vertical" src="${base}/static/img/east/xg_yugu2.png" title="黑色斜体部分为预估值，预估值会因为募集资金、发行数量、发行费用等数据变动而变动，仅供参考。" /><font  class="ssp1 Vertical" style="font-style:italic;">&nbsp;'+(data[49]/1).toFixed(2)+'</font>&nbsp;<img class="Vertical" src="${base}/static/img/east/B3DB94.png" title="'+baseArr[data[4].trim()]+'"/></p>')); //发行价格
+                    //}
+                }
+                row.cells[9].innerHTML = _zxj; //最新价
+                row.cells[9].setAttribute('style', _style_pf);
+                row.cells[10].innerHTML = isNaN(parseFloat(data[24])) ? data[24] + "&nbsp;" : data[24]; //首日收盘价
+                row.cells[11].innerHTML = _sgrq;//申购日期
+                row.cells[12].innerHTML = '<font  class="ssp3">'+_zqgbr+'</font>';//中签号公布日期
+                //中签缴款日期
+                var _sjkrq =(data[46] == "" || data[46] == "NULL") ? "&nbsp;" : "<span title=\"" + data[46] + "\" class=\"txt\">" + new Date(Date.parse(data[46].replace(/-/ig, "/"))).format("MM-dd") + "</span>";
+            
+                row.cells[13].innerHTML = _sjkrq;
+                row.cells[14].innerHTML = '<font  class="ssp3">'+_ssrq+'</font>'; //上市日期
+                var isYcsyl=true;
+                row.cells[15].innerHTML =isNaN(parseFloat(data[14])) ? ((isNaN(parseFloat(data[44]))||!issgh)?'&nbsp;':('<img src="/static/img/east/xg_yugu.png" title="黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。" /><font  class="ssp1" style="font-style:italic;">&nbsp;'+(data[44]/1).toFixed(2))+'</font>') :(isYcsyl=false,''+ data[14]+''); //发行市盈率
+                if(isYcsyl&&!isNaN(parseFloat(data[48]))&&parseFloat(data[44])!=parseFloat(data[48]))
+                {
+                    if(isOneYcj){
+                        row.cells[15].innerHTML='<p><img src="/static/img/east/xg_yugu.png" title="黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。"><font class="ssp1" style="font-style:italic;">&nbsp;'+(data[48]/1).toFixed(2)+'</font></p>';
+                    }else {
+                        if(pe2>hysyl)
+                        {
+                            var syl_x=((isNaN(parseFloat(data[44]))||!issgh)?'&nbsp;':('<p><img src="/static/img/east/xg_yugu1.png" title="黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。" /><font  class="ssp1" style="font-style:italic;">&nbsp;'+(data[44]/1).toFixed(2)+'</font></p><p><img src="${base}/static/img/east/xg_yugu2.png" title="黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。" /><font  class="ssp1" style="font-style:italic;">&nbsp;'+(data[48]/1).toFixed(2)+'</font></p>'));
+                            if(pe2>23&&parseFloat(data[44])!=parseFloat(data[51]))
+                            {
+                                syl_x+='<p><img src="/static/img/east/xg_yugu3.png" title="黑色斜体部分为预估值，发行市盈率的预估不涉及公司基本面分析，请谨慎参考。"><font class="ssp1" style="font-style:italic;">&nbsp;'+(data[51]/1).toFixed(2)+'</font></p>';
+                            }
+                            //row.cells[15].innerHTML=GetPAndPe((data[34]*1),(data[47]*1),(data[50]*1),(data[44]*1),(data[48]*1),(data[51]*1),hysyl,data[3],issgh)[1];
+                        }
+                        row.cells[15].innerHTML=cells815[1];
+                    }
+                }
+                row.cells[16].innerHTML = (data[32] == "-" || data[32] == ""|| data[32] == "0" || data[32] == "NULL") ?((data[45] == "-" || data[45] == ""|| data[45] == "0" || data[45] == "NULL") ? "&nbsp;" : data[45]) : data[32]; //行业市盈率
+
+                row.cells[17].innerHTML = (data[15] == "-" || data[15] == "" || data[15] == "NULL") ? "&nbsp;" : data[15]; //中签率（%）
+                //row.cells[18].innerHTML = (data[18] == "-" || data[18] == "" || data[18] == "NULL") ? "&nbsp;" : (data[18] / 10000).toFixed(0); //每中一签约(万元)
+                //row.cells[19].innerHTML = (data[16] == "-" || data[16] == "" || data[16] == "NULL") ? "&nbsp;" : (data[16] / 100000000).toFixed(0); //冻结资金（亿元）
+                row.cells[18].innerHTML = _cergbs; //询价累计报价倍数
+                row.cells[19].innerHTML = (data[33] == "")?"&nbsp;":data[33]; //配售对象报价家数
+                //row.cells[22].innerHTML = (data[41] == "-" || data[41] == "" || data[41] == "NULL") ? "&nbsp;" : data[41]; //打新收益(%)     
+                row.cells[20].innerHTML = (data[40] == "")?data[38]:("<a href=\"http://quote.eastmoney.com/"+mkt+data[4]+".html\">"+data[40]+"</a>"); //连续<br/>一字板<br />数量
+                var zzf = data[39], fZxj = parseFloat(_zxj), fFxj = parseFloat(data[10]);
+                if(data[38] == "未开板" && !isNaN(fZxj) && !isNaN(fZxj) && fFxj != 0)
+                    zzf = ((fZxj - fFxj) / fFxj * 100).toFixed(2);
+                row.cells[21].innerHTML = zzf; //总涨幅
+
+                //沪市：每中一签获利=1000*发行价格*总涨幅%，四舍五入取整数
+                //深市：每中一签获利=500*发行价格*总涨幅%。
+                var mzyq;
+               
+                if(!isNaN(fFxj)&&!isNaN(zzf)&&fFxj!=0&&zzf!=0)
+                {
+                    mzyq= mkt=="sz"? Math.round(500*fFxj*zzf/100):Math.round(1000*fFxj*zzf/100);
+                }
+                else
+                {
+                    mzyq="";
+                }
+               
+                row.cells[22].innerHTML =mzyq;//每中一签获利（元）
+                //row.cells[23].innerHTML = _pdf; //招股说明书
+                row.setAttribute('title', data[27].replace(/&sbquo;/ig, ",").replace(/&quot;/ig, "\""));
+            }
+        });
+
+        //老
+        var wwwwwwidth;
+        if (window.innerWidth) wwwwwwidth = window.innerWidth;
+        else if ((document.body) && (document.body.clientWidth)) wwwwwwidth = document.body.clientWidth;
+        if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) {
+            wwwwwwidth = document.documentElement.clientWidth
+        }
+        if(wwwwwwidth<1200){
+            document.getElementById("mainflow").style.width = "100%";
+        }
+        //a 基础数据，
+        //b 类型“%”百分数 “w”大写 (X万||X亿) 
+        //c 可选参数，如存在则根据其确定红绿展示不存在则根据a展示红绿
+        function getcolor_JS(a, b, c) {
+            if (a == '-'||a==""||a=="NaN") return "<span>-</span>";
+            var v;
+            if (b == "%") v = parseFloat(a).toFixed(2) + b;
+            else if (b == "w") {
+                var m = Math.abs(a);
+                if (m < 10000) {
+                    v = (a/1).toFixed(0);
+                } else if (m >= 10000 && m < 1000000) {
+                    v = (a / 10000).toFixed(2) + "万";
+                } else if (m >= 1000000 && m < 100000000) {
+                    v = (a / 10000).toFixed(0) + "万";
+                } else if (m >= 100000000 && m < 10000000000) {
+                    v = (a / 100000000).toFixed(2) + "亿";
+                } else {
+                    v = (a / 100000000).toFixed(0) + "亿";
+                }
+            } else v = (a * 100 / 100).toFixed(2);
+            if (c) a = c;
+            if (a.length > 0) {
+                if (a.substring(0, 1) == '-') return "<span class=\"green\">" + v + "</span>";
+                else if (a != 0) return "<span class=\"red\">" + v + "</span>";
+            }
+            return "<span>" + v + "</span>";
+        }    
+    </script>
+
+</body>
+</html>

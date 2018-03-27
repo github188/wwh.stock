@@ -1,0 +1,50 @@
+##包定义
+package $!{targetPackage};
+
+import $!{basePackage}.common.service.StkCommQtz;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import $!{basePackage}.common.action.MagicAction;
+##import domain、service
+import $!{generatorContext.domain};
+import $!{generatorContext.service};
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+/**
+*
+* @description:$!{className} action
+* @author: autoCode
+* @history:
+*/
+## 类名
+@Controller
+@RequestMapping("/$!{generatorContext.module}/$!{table.urlName}")
+@SuppressWarnings("serial")
+public class $!{className}Action extends MagicAction<$!{className},$!{className}Service> {
+
+    @Autowired
+    private StkCommQtz stkCommQtz;
+
+    /**
+     * 生成记录.
+     */
+    @RequestMapping(value = "dataRefresh", method = RequestMethod.POST)
+    public void dataRefresh(HttpServletRequest request,
+            HttpServletResponse response) {
+        try {
+            $!{className} o = bindEntity(request, entityClass);
+            stkCommQtz.execute();
+
+            printJson(response, messageSuccuseWrap());
+        } catch (Exception e) {
+            logger.error("dataRefresh", e);
+            printJson(response, messageFailureWrap("刷新失败！"));
+        }
+    }
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/net/tsz/afinal/core"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="3652"
+   kind="dir"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="AbstractCollection.java"
+   checksum="1e4a800560e9f8b0d43e9ae8d0e43e9a"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ArrayDeque.java"
+   checksum="f6dcc612ec551685fb29d0a63f138388"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="Arrays.java"
+   checksum="c21d6dd0f0c705d483e1e49f47e17887"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="AsyncTask.java"
+   checksum="fe528cfb74bc881a48b255ce0cbf41fd"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="Deque.java"
+   checksum="7d878182f256b24d5579f769ad15cc42"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="FileNameGenerator.java"
+   checksum="a93b21d235f7fbe62aea36af99270c01"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="Queue.java"
+   checksum="c0d22521581e9e4b85efc5e4bc7d12c6"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+</wc-entries>

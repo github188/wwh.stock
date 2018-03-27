@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>${stocksInfo.name}(${stocksInfo.code})业绩大全</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/master.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/default.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/layer2012.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/page_common.css" media="all" >
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/bbsj.css">
+    <script type="text/javascript" src="${base}/static/js/jquery.min.1.8.3.js"></script>
+    <script type="text/javascript">
+        var jQuery = $.noConflict();
+        var portalurl = "${portal_url}/";
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/base.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/plugin.js"></script>
+    <script type="text/javascript">
+        var NavCache = { Page: "财务数据", current_n: 5 };
+    </script>
+</head>
+<body>
+<div id="page" class="page">
+    <div class="main">
+        <div class="framecontent">
+            <div class="linkNav">
+                <div id="Column_Navigation">
+                    <a href="${base}/">首页</a> &gt; <a href="${base}/stockeast/center/">数据中心</a> &gt; <a href="${base}/stockeast/yjbb/">年报季报</a> &gt; 财务数据
+                </div>
+                <div class="promotion_link">
+                    <b class="arr_01"></b>
+                    <ul><li><a href="http://data.eastmoney.com/bbsj/201512/yjyg/3.html">分配预告</a>&nbsp;<a href="http://data.eastmoney.com/bbsj/201512/yjbb/0/2.html">每股收益榜</a>&nbsp;<a href="http://data.eastmoney.com/bbsj/201512/yjbb/0/3.html">营业收入榜</a>&nbsp;<a href="http://data.eastmoney.com/bbsj/201512/yjbb/0/6.html">净利润榜</a>&nbsp;<a href="http://data.eastmoney.com/bbsj/201512/szbl.html">送转比例</a>&nbsp;<a href="http://data.eastmoney.com/bbsj/201512/xjfh.html">现金分红</a></li></ul>
+                </div>
+            </div>
+            <div class="mainFrame">
+                <div class="maincont">
+                    <div class="contentBox">
+                        <div class="titbar">
+                            <b class="el"></b>
+                            <div class="tit">
+                                <a href="${base}/stockeast/detail?stockCode=${stocksInfo.code}">
+                                    ${stocksInfo.name}(${stocksInfo.code})</a>业绩报表
+                            </div>
+                            <div class="search pr20" style="float: right; padding-left: 5px; padding-right: 5px;">
+                                <span class="txt">个股业绩报表：</span>
+                                <input class="sinput" name="ggyj_bar" id="ggyj_bar" type="text">
+                                <div onclick="javascript:ggyj_search('ggyj_bar')" class="btn">
+                                    <img src="/static/img/east/btn_search_blue.gif" title="查询" />
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                var zz = new StockSuggest("ggyj_bar", {
+                                    text: "输代码、名称或拼音",
+                                    type: "ABSTOCK",
+                                    autoSubmit: false,
+                                    width: 200,
+                                    header: ["选项", "代码", "名称", "类型"],
+                                    body: [-1, 1, 4, -2],
+                                    callback: function (ag) {
+                                        var url = '/stockeast/bbsj?code=' + ag.code;
+                                        window.open(url);
+                                    }
+                                });
+
+                                function ggyj_search(bb) {
+                                    var s1 = document.getElementById(bb).value;
+                                    var s = escape(s1);
+                                    if (s1 == "输代码、名称或拼音" || s1 == "" || isNaN(parseInt(s1)) || s1.length != 6) {
+                                        alert("请输入所有查询股票的代码！");
+                                        return false;
+                                    } else {
+                                        var url = '/stockeast/bbsj?code=' + s1;
+                                        window.open(url);
+                                    }
+                                }
+                            </script>
+                        </div>
+                    </div>
+                    <div class="contentBox" style="border-top: 0;">
+                        <div class="content" id="zjlx_hqcont">
+                        </div>
+                    </div>
+                    <div class="s8">
+                    </div>
+                    <div class="contentBox">
+                        <div class="titbar shortbar">
+                            <div class="tit">
+                                <a href="/bbsj/stock002102/yjbb.html">业绩报表明细</a>
+                            </div>
+                            <div class="morecont">
+                                <a href="/bbsj/stock002102/yjbb.html">更多&gt;&gt;</a>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <table cellpadding="0" cellspacing="0" class="tab1" id="dt_1">
+                                <thead class="h101">
+                                <tr>
+                                    <th rowspan="2" style="width:65px;">截止日期
+                                    </th>
+                                    <th rowspan="2" style="width:50px;">每股收益<br />
+                                        (元)
+                                    </th>
+                                    <th rowspan="2" style="width:50px;">每股收益<br />
+                                        (扣除)<br />
+                                        (元)
+                                    </th>
+                                    <th colspan="3">营业收入
+                                    </th>
+                                    <th colspan="3">净利润
+                                    </th>
+                                    <th rowspan="2">每股<br />
+                                        净资产<br />
+                                        (元)
+                                    </th>
+                                    <th rowspan="2" style="width:50px;">净资产<br />
+                                        收益率<br />
+                                        (%)
+                                    </th>
+                                    <th rowspan="2">每股经营<br />
+                                        现金流量<br />
+                                        (元)
+                                    </th>
+                                    <th rowspan="2" style="width:45px;">销售<br />
+                                        毛利率<br />
+                                        (%)
+                                    </th>
+                                    <th rowspan="2">利润分配
+                                    </th>
+                                    <th rowspan="2" style="width:45px;">股息<br />
+                                        率(%)
+                                    </th>
+                                    <th rowspan="2" style="width:65px;">公告<br />
+                                        日期
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>营业收入<br />
+                                        (万元)
+                                    </th>
+                                    <th style="width:50px;">同比增长<br />
+                                        (%)
+                                    </th>
+                                    <th style="width:50px;">季度环比<br />
+                                        增长(%)
+                                    </th>
+                                    <th>净利润<br />
+                                        (万元)
+                                    </th>
+                                    <th style="width:50px;">同比增长<br />
+                                        (%)
+                                    </th>
+                                    <th style="width:50px;">季度环比<br />
+                                        增长(%)
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="s8">
+                    </div>
+                    <div class="contentBox">
+                        <div class="titbar shortbar">
+                            <div class="tit">
+                                业绩快报明细
+                            </div>
+                        </div>
+                        <div class="content">
+                            <table cellpadding="0" cellspacing="0" class="tab1" id="Table1">
+                                <thead class="h101">
+                                <tr>
+                                    <th rowspan="2">截至日期
+                                    </th>
+                                    <th rowspan="2">每股收<br />
+                                        益(元)
+                                    </th>
+                                    <th colspan="4">营业收入
+                                    </th>
+                                    <th colspan="4">净利润
+                                    </th>
+                                    <th rowspan="2">每股<br />
+                                        净资产<br />
+                                        (元)
+                                    </th>
+                                    <th rowspan="2">净资产<br />
+                                        收益率<br />
+                                        (%)
+                                    </th>
+                                    <th rowspan="2">公告<br />
+                                        日期
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>营业收入<br />
+                                        (万元)
+                                    </th>
+                                    <th>去年同期<br />
+                                        (万元)
+                                    </th>
+                                    <th>同比增长<br />
+                                        (%)
+                                    </th>
+                                    <th>季度环比<br />
+                                        增长(%)
+                                    </th>
+                                    <th>净利润<br />
+                                        (万元)
+                                    </th>
+                                    <th>去年同期<br />
+                                        (万元)
+                                    </th>
+                                    <th>同比增长<br />
+                                        (%)
+                                    </th>
+                                    <th>季度环比<br />
+                                        增长(%)
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="s8">
+                    </div>
+                    <div class="contentBox">
+                        <div class="titbar shortbar">
+                            <div class="tit">
+                                业绩预告明细
+                            </div>
+                        </div>
+                        <div class="catemk">
+                            <ul id="tab-yjyg">
+                                <li class="at">业绩预告</li>
+                                <li>分配预告</li>
+                            </ul>
+                        </div>
+                        <div class="s6">
+                        </div>
+                        <div class="content" id="cont-yjyg1">
+                            <table cellpadding="0" cellspacing="0" class="tab1" id="Table2">
+                                <thead class="h101">
+                                <tr>
+                                    <th width="80px">截至日期
+                                    </th>
+                                    <th>业绩变动
+                                    </th>
+                                    <th width="145px">业绩变动幅度
+                                    </th>
+                                    <th width="80px">预告类型
+                                    </th>
+                                    <th width="60px">
+                                        <div>
+                                            上年同期<br />
+                                            净利润(万元)
+                                        </div>
+                                    </th>
+                                    <th width="80px">公告日期
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="content" id="cont-yjyg2" style="display: none;">
+                            <table cellpadding="0" cellspacing="0" class="tab1" id="Table3">
+                                <thead class="h101">
+                                <tr>
+                                    <th width="80px">截止日期</th>
+                                    <th>利润分配预案</th>
+                                    <th width="80px">公告日期</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <script type="text/javascript">
+                            tiny.tabSliding("tab-yjyg", "li", "at", "cont-yjyg", "click");
+                        </script>
+                    </div>
+                    <div class="s8">
+                    </div>
+                    <div class="contentBox">
+                        <div class="titbar shortbar">
+                            <div class="tit">
+                                预约披露明细
+                            </div>
+                        </div>
+                        <div class="content" id="cont-yypl1">
+                            <table cellpadding="0" cellspacing="0" class="tab1" id="Table4">
+                                <thead class="h101">
+                                <tr>
+                                    <th>截止日期
+                                    </th>
+                                    <th>首次预约时间
+                                    </th>
+                                    <th>一次变更日期
+                                    </th>
+                                    <th>二次变更日期
+                                    </th>
+                                    <th>三次变更日期
+                                    </th>
+                                    <th>实际披露时间
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="s8">
+                    </div>
+                    <div class="contentBox">
+                        <div class="titbar">
+                            <b class="el"></b>
+                            <div class="tit">
+                                重要财务指标
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s8">
+                    </div>
+                    <div class="contentBox content1">
+                        <div class="titbar shortbar">
+                            <div class="tit">
+                                利润趋势 (净利润 万元)
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="c1" style="text-align: center;">
+                                <img src="http://f9.eastmoney.com/ct/002102/SZ002102_F9_LRQS.png"
+                                     onerror="this.style.display='none';" style="height: 175px; width: 414px;" />
+                            </div>
+                            <div class="c2">
+                                <table cellpadding="0" cellspacing="0" class="tab1 scwzb" id="Table8">
+                                    <tr><td>时间</td><td>2016</td><td>2015</td><td>2014</td></tr><tr><td>第一季度</td><td>3889万</td><td>2442万</td><td>171万</td></tr><tr><td>第二季度</td><td>4214万</td><td>467万</td><td>83.4万</td></tr><tr><td>第三季度</td><td>4095万</td><td>2473万</td><td>-138万</td></tr><tr><td>第四季度</td><td>--</td><td>1.39亿</td><td>453万</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s8">
+                    </div>
+                    <div class="contentBox content1">
+                        <div class="titbar shortbar">
+                            <div class="tit">
+                                收入趋势 (主营收入 万元)
+                            </div>
+                        </div>
+                        <div class="content" style="border-top: 1px #d7d7d7 solid;">
+                            <div class="c1" style="text-align: center;">
+                                <img src="http://f9.eastmoney.com/ct/002102/SZ002102_F9_SRQS.png"
+                                     onerror="this.style.display='none';" style="height: 175px; width: 414px;" />
+                            </div>
+                            <div class="c2">
+                                <table cellpadding="0" cellspacing="0" class="tab1 scwzb" id="Table6">
+                                    <tr><td>时间</td><td>2016</td><td>2015</td><td>2014</td></tr><tr><td>第一季度</td><td>2.79亿</td><td>3.79亿</td><td>1.80亿</td></tr><tr><td>第二季度</td><td>2.46亿</td><td>4.91亿</td><td>5.04亿</td></tr><tr><td>第三季度</td><td>1.95亿</td><td>1.19亿</td><td>5.43亿</td></tr><tr><td>第四季度</td><td>--</td><td>3.28亿</td><td>6.47亿</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s8">
+                    </div>
+                    <div class="contentBox content1">
+                        <div class="titbar shortbar">
+                            <div class="tit">
+                                盈利趋势 (每股收益 元)
+                            </div>
+                        </div>
+                        <div class="content" style="border-top: 1px #d7d7d7 solid;">
+                            <div class="c1" style="text-align: center;">
+                                <img src="http://f9.eastmoney.com/ct/002102/SZ002102_F9_YLQS.png"
+                                     onerror="this.style.display='none';" style="height: 175px; width: 414px;" />
+                            </div>
+                            <div class="c2">
+                                <table cellpadding="0" cellspacing="0" class="tab1 scwzb" id="Table7">
+                                    <tr><td>时间</td><td>2016</td><td>2015</td><td>2014</td></tr><tr><td>第一季度</td><td>0.05</td><td>0.03</td><td>0.00</td></tr><tr><td>第二季度</td><td>0.06</td><td>0.01</td><td>0.00</td></tr><tr><td>第三季度</td><td>0.02</td><td>0.07</td><td>0.00</td></tr><tr><td>第四季度</td><td>--</td><td>0.19</td><td>0.01</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s8">
+                    </div>
+                    <div class="c1">
+                        <div class="contentBox content1">
+                            <div class="titbar shortbar">
+                                <div class="tit">
+                                    投资评级
+                                </div>
+                            </div>
+                            <div class="content">
+                                <div class="report-img-cont img-chart1" style="height: 163px; padding-top: 40px;">
+                                    <img src="http://f9.eastmoney.com/ct/002102/SZ002102_F10_TZPJ.png" height="150"
+                                         width="270">
+                                </div>
+                                <table width="100%" cellspacing="0" cellpadding="0" border="0" class="report_t1">
+                                    <tbody>
+                                    <tr class="head"><td>预测指标</td><td>13A</td><td>14A</td><td>15A</td><td>16E</td><td>17E</td><td>18E</td></tr><tr><td>每股收益(元)</td><td>0.0128</td><td>0.0026</td><td>0.0884</td><td>0.2826</td><td>0.8382</td><td>1.0960</td></tr><tr><td>净利润(元)</td><td>2804万</td><td>569万</td><td>1.93亿</td><td>2.54亿</td><td>7.11亿</td><td>9.57亿</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="s6"></div>
+                    </div>
+                    <div class="c2">
+                        <div class="contentBox content1">
+                            <div class="titbar shortbar">
+                                <div class="tit">
+                                    盈利预测
+                                </div>
+                            </div>
+                            <div class="content">
+                                <div id="noDataDiv" style="display:none;text-align:center; height: 202px;"><b>该股暂无盈利预测</b></div>
+                                <div class="report-img-cont img-chart2">
+                                    <img src="http://f9.eastmoney.com/ct/002102/SZ002102_F9_YLYC.png" height="202" width="408" onerror="this.style.display='none'; document.getElementById('noDataDiv').style.display='';">
+                                </div>
+                                <table width="477" cellspacing="0" cellpadding="0" border="0" class="report_t1">
+                                    <tr class="head"><td>时间段</td><td>买入</td><td>增持</td><td>中性</td><td>减持</td><td>卖出</td><td>总家数</td></tr><tr><td>1月内</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>3月内</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>6月内</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>1年内</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="s6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript" src="${base}/static/js/east/master.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/load_table_data.js"></script>
+    <script type="text/javascript">
+        var _stockCode = "${stocksInfo.code}", _stockName = "${stocksInfo.name}";
+        var url = "http://hqdigi2.eastmoney.com/EM_Quote2010NumericApplication/Index.aspx?Type=F&jsName=zjlx_hq&id=${stocksInfo.code}${mt}";
+        var tableCache = '<table cellpadding="0" cellspacing="0" class="t2 ns2"><thead><tr><th>代码</th><th>名称</th><th>最新价</th><th>涨跌额</th><th>涨跌幅</th><th>振幅</th><th>成交量(手)</th><th>成交额(万)</th><th>昨收</th><th>今开</th><th>最高</th><th>最低</th><th>换手率</th><th>量比</th><th>市盈率</th><th>加自选</th></tr></thead><tbody><tr><td><a href="${base}/stockeast/detail?stockCode={code}" target="_self">{code}</a></td><td><a href="${base}/stockeast/detail?stockCode={code}" target="_self">{name}</a></td><td>{price}</td><td>{change}</td><td>{percent}</td><td><span>{zf}</span></td><td><span>{amount}</span></td><td><span>{volume}</span></td><td>{last}</td><td>{open}</td><td>{height}</td><td>{low}</td><td><span>{hsl}</span></td><td><span>{lb}</span></td><td><span>{syl}</span></td><td><a href="${base}/stockeast/addstock?code={code}" title="将{code}({name})加为自选股"><img src="${base}/static/img/east/add.gif"></a></td></tr></tbody></table>';
+        function hqUpdate() {
+            var a = url + "&rt=" + Math.floor((new Date().getTime()) / 30000);
+            var data, str;
+            var getColorStr = function (val, _val, _val1) {
+                if (isNaN(_val) || isNaN(_val1)) {
+                    return "<span>" + val + "</span>";
+                }
+                if (parseFloat(_val) > _val1) {
+                    val = "<span class=\"red\">" + val + "</span>";
+                } else if (parseFloat(_val) < _val1) {
+                    val = "<span class=\"green\">" + val + "</span>";
+                } else {
+                    val = "<span>" + val + "</span>";
+                }
+                return val;
+            }
+            tiny.loadJs(a, "utf-8", function () {
+                if (!(typeof zjlx_hq == "undefined" || zjlx_hq == null)) {
+                    data = zjlx_hq.quotation[0].split(',');
+                    if (data.length > 1) {
+                        str = tableCache.replace(/{code}/ig, data[1]);
+                        str = str.replace(/{name}/ig, data[2]);
+
+                        str = str.replace(/{price}/ig, getColorStr(data[5], data[10], 0));
+                        str = str.replace(/{change}/ig, getColorStr(data[10], data[10], 0));
+                        str = str.replace(/{percent}/ig, getColorStr(data[11], data[10], 0));
+                        str = str.replace(/{zf}/ig, data[13]);
+                        str = str.replace(/{amount}/ig, data[9]);
+                        str = str.replace(/{volume}/ig, data[8]);
+                        str = str.replace(/{last}/ig, getColorStr(data[3]));
+                        str = str.replace(/{open}/ig, getColorStr(data[4], data[4], data[3]));
+                        str = str.replace(/{height}/ig, getColorStr(data[6], data[6], data[3]));
+                        str = str.replace(/{low}/ig, getColorStr(data[7], data[7], data[3]));
+
+                        str = str.replace(/{hsl}/ig, data[23]);
+                        str = str.replace(/{lb}/ig, data[22]);
+                        str = str.replace(/{syl}/ig, (data[24] < 0 ? "--" : data[24]));
+                    }
+                    else if (data.length == 1) {
+                        str = tableCache.replace(/{code}/ig, _stockCode);
+                        str = str.replace(/{name}/ig, _stockName);
+
+                        str = str.replace(/{price}/ig, "-");
+                        str = str.replace(/{change}/ig, "-");
+                        str = str.replace(/{percent}/ig, "-");
+                        str = str.replace(/{zf}/ig, "-");
+                        str = str.replace(/{amount}/ig, "-");
+                        str = str.replace(/{volume}/ig, "-");
+                        str = str.replace(/{last}/ig, "-");
+                        str = str.replace(/{open}/ig, "-");
+                        str = str.replace(/{height}/ig, "-");
+                        str = str.replace(/{low}/ig, "-");
+
+                        str = str.replace(/{hsl}/ig, "-");
+                        str = str.replace(/{lb}/ig, "-");
+                        str = str.replace(/{syl}/ig, "-");
+                    }
+
+                    $("zjlx_hqcont").innerHTML = str;
+                }
+            }, true);
+        }
+        function hqInterval() { var b = new Date(); try { b = Eastmoney.Time.now() } catch (d) { } var c = parseInt(tiny.dateFormat(b, "HHmm") * 1); var a = b.getDay(); if (!(c <= 924 || (c >= 1145 && c <= 1259) || c >= 1515 || a > 5)) { try { hqUpdate(); } catch (d) { } } };
+        setInterval(hqUpdate, 10000);
+        hqUpdate();
+
+        // 获取颜色样式
+        function getColor(data) {
+            var colorClass = "";
+            if (data > 0)
+                colorClass = "red";
+            else if (data < 0)
+                colorClass = "green";
+
+            return colorClass;
+        }
+
+        String.prototype.format = function () {
+            var str = this;
+            str = str == '' ? '-' : '<span>' + str + '</span>';
+            return str;
+        }
+
+        // 动态加载table
+        var peiguList = new LoadTable({
+            id: "dt_1",
+            sort: {
+                id: "14",
+                desc: true
+            },
+            pagesize: 50,
+            cellcount:16,
+            cells: [{ "n": "截止日期","w":80 },{ "n": "每股收<br />益(元)" ,"w": 50 },{ "n": "每股收益<br />(扣除)<br />(元)" ,"w": 55 },
+                { "n": "营业收入",cells:[{"n": "营业收入<br />(万元)","w":60 },{"n": "同比增长<br />(%)","w":60 },{"n": "季度环比<br />增长(%)","w":60 }] },
+                { "n": "净利润",cells:[{"n": "净利润<br />(万元)","w":60 },{"n": "同比增长<br />(%)","w":60 },{"n": "季度环比<br />增长(%)","w":60 }] },
+                {"n": "每股<br />净资产<br />(元)","w":50},{"n": "净资产<br />收益率<br />(%)","w":50},{"n": "每股经营<br />现金流量<br />(元)","w":55},
+                {"n": "销售<br />毛利率<br />(%)","w":45},{"n":"利润分配","w":100},{"n":"股息率<br />(%)","w":45},{"n": "公告日期","w":75}],
+            dataurl: "http://datainterface.eastmoney.com/EM_DataCenter/JS.aspx?type=SR&sty=YJBB&code=${stocksInfo.code}&st={sortType}&sr={sortRule}&p={page}&ps={pageSize}&js=var {jsname}={pages:(pc),data:[(x)]}{param}",
+            maketr: function (row, data, i, c) {
+                var _t=this;
+                var _class = (i % 2 == 0) ? "" : "odd";
+                row.className = _class;
+                row.onmouseover = function () {
+                    this.className = "over";
+                }
+                row.onmouseout = function (o, _c) {
+                    o.className = _c;
+                } .bind(this, row, _class)
+                var yytb = "", yyhb = "",  jlrtb = "",  jlrhb = "",yysr = "",jlr = "";
+                row.cells[0].innerHTML = data[17] || "-";
+                row.cells[1].className = "tdnumber";
+                row.cells[1].innerHTML = data[2].format(); //每股收益
+                row.cells[2].className = "tdnumber";
+                row.cells[2].innerHTML = data[3].format(); //每股收益扣除
+                row.cells[3].className = "tdnumber";
+                yysr = data[4] || "-";
+                yysr = yysr == "-" ? "-" : (data[4] / 10000).toFixed(2);
+                row.cells[3].innerHTML ="<span>" +  yysr + "</span>";//营业收入
+
+                row.cells[4].className = "tdnumber";
+                yytb = data[5] || "-";
+                yytb = yytb == "-" ?"-" : (data[5] / 1).toFixed(2);
+                row.cells[4].innerHTML = "<span class='" + getColor(yytb) + "'>"+yytb+"</span>"; //营业收入同比增长
+
+                row.cells[5].className = "tdnumber";
+                yyhb = data[6] || "-";
+                yyhb = yyhb ==  "-" ? "-" : (data[6] / 1).toFixed(2);
+                row.cells[5].innerHTML ="<span class='" + getColor(yyhb) + "'>"+yyhb+"</span>"; //季度环比增长
+                row.cells[6].className = "tdnumber";
+                jlr = data[7] || "-";
+                jlr = jlr == "-"?"-":(data[7] / 10000).toFixed(2);
+                row.cells[6].innerHTML ="<span>" +  jlr + "</span>"; //净利润
+
+                row.cells[7].className = "tdnumber";
+                jlrtb = data[8] || "-";
+                jlrtb = jlrtb=="-"?"-":(data[8] / 1).toFixed(2);
+                row.cells[7].innerHTML ="<span class='" + getColor(jlrtb) + "'>"+jlrtb+"</span>"; //净利润同比增长
+
+                row.cells[8].className = "tdnumber";
+                jlrhb = data[9] || "-";
+                jlrhb = jlrhb == "-" ?"-":(data[9] / 1).toFixed(2);
+                row.cells[8].innerHTML ="<span class='" + getColor(jlrhb) + "'>"+jlrhb+"</span>"; //季度环比增长
+                row.cells[9].className = "tdnumber";
+                var mgjzc = data[10] || "-";
+                mgjzc = mgjzc == "-" ? "-" : (data[10]/1).toFixed(4);
+                row.cells[9].innerHTML ="<span>" + mgjzc + "</span>"; //每股净资产
+                row.cells[10].className = "tdnumber";
+                var jzcsyl = data[11] || "-";
+                jzcsyl = jzcsyl == "-" ? "-" : (data[11]/1).toFixed(2);
+                row.cells[10].innerHTML ="<span>" + jzcsyl + "</span>"; //净资产收益率
+                row.cells[11].className = "tdnumber";
+                var mgxjll = data[12] || "-";
+                mgxjll = mgxjll == "-" ? "-" : (data[12]/1).toFixed(4);
+                row.cells[11].innerHTML ="<span>" +  mgxjll + "</span>"; //每股现金流量
+                row.cells[12].className = "tdnumber";
+                var xsmll = data[13] || "-";
+                xsmll = xsmll == "-" ? "-" : (data[13]/1).toFixed(2);
+                row.cells[12].innerHTML ="<span>" + xsmll + "</span>"; //销售毛利率
+                row.cells[13].innerHTML = data[14] || "-";//利润分配
+                row.cells[14].className = "tdnumber";
+                var gxl = data[15] || "-";
+                gxl = gxl == "-" ? "-" : (data[15]/1).toFixed(2);
+                row.cells[14].innerHTML ="<span>" + gxl + "</span>"; //股息率
+                row.cells[15].innerHTML =data[16] || "-"; //公告日期
+            }
+        });
+        function getcolor_JS(a, b, c, d) {
+            if (a == '-' || a == "" || a == "NaN") return "<span>-</span>";
+            d = d || 0;
+            var v;
+            if (b == '%') {
+                v = parseFloat(a).toFixed(2) + '%';
+            } else if (b == "w") {
+                var m = Math.abs(a);
+                if (m == 0) {
+                    v = "-"
+                } else if (m < 10000) {
+                    v = (a / 1).toFixed(2);
+                } else if (m >= 10000 && m < 1000000) {
+                    v = (a / 10000).toFixed(2) + "万";
+                } else if (m >= 1000000 && m < 100000000) {
+                    v = (a / 10000).toFixed(2) + "万";
+                } else if (m >= 100000000 && m < 10000000000) {
+                    v = (a / 100000000).toFixed(2) + "亿";
+                } else {
+                    v = (a / 100000000).toFixed(2) + "亿";
+                }
+            } else v = a;
+            if (c) a = c + "";
+            if (d == 0 && a.length > 0) {
+                if (a.substring(0, 1) == '-') return "<span class=\"green\">" + v + "</span>";
+                else if (a != 0) return "<span class=\"red\">" + v + "</span>";
+            }
+            return "<span>" + v + "</span>";
+        }
+        var tablelist = new LoadTable({
+            id: "Table1",
+            sort: { id: "14", desc: true },
+            cellcount:13,
+            cells: [{ "n": "截止日期","w":80 },{ "n": "每股收<br />益(元)" ,"w": 50 },
+                { "n": "营业收入",cells:[{"n": "营业收入<br />(万元)","w":60 },{"n": "去年同期<br /> (万元)","w":60 },{"n": "同比增长<br />(%)","w":60 },{"n": "季度环比<br />增长(%)","w":60 }] },
+                { "n": "净利润",cells:[{"n": "净利润<br />(万元)","w":60 },{"n": "去年同期<br /> (万元)","w":60 },{"n": "同比增长<br />(%)","w":60 },{"n": "季度环比<br />增长(%)","w":60 }] },
+                {"n": "每股<br />净资产<br />(元)","w":50},{"n": "净资产<br />收益率<br />(%)","w":50},{"n": "公告日期","w":75}],
+            dataurl: "http://datainterface.eastmoney.com/EM_DataCenter/JS.aspx?type=SR&sty=YJKB&code=${stocksInfo.code}&st={sortType}&sr={sortRule}&p={page}&ps={pageSize}&js=var {jsname}={pages:(pc),data:[(x)]}{param}",
+            maketr: function (row, data, i, c) {
+                var _t=this;
+                var _class = (i % 2 == 0) ? "" : "odd";
+                row.className = _class;
+                row.onmouseover = function () {
+                    this.className = "over";
+                }
+                row.onmouseout = function (o, _c) {
+                    o.className = _c;
+                } .bind(this, row, _class)
+                var yytb = "", yyhb = "",  jlrtb = "",  jlrhb = "";
+                row.cells[0].innerHTML = data[14] || "-";
+                row.cells[1].className = "tdnumber";
+                var mgsy  = data[2] || "-";
+                row.cells[1].innerHTML = "<span>" + mgsy + "</span>"; //每股收益
+                row.cells[2].className = "tdnumber";
+                var yysr = data[3] || "-";
+                //yysr = yysr == "-" ? "-" : (data[3] / 10000).toFixed(2);
+                row.cells[2].innerHTML =getcolor_JS(yysr,'w',yysr,1);//营业收入
+
+                row.cells[3].className = "tdnumber";
+                var qntq = data[4] || "-";
+                //qntq = qntq == "-" ? "-" : (data[4] / 10000).toFixed(2);
+                row.cells[3].innerHTML =getcolor_JS(qntq,'w',qntq,1);//去年同期
+
+                row.cells[4].className = "tdnumber";
+                yytb = data[5] || "-";
+                yytb = yytb == "-" ? "-" : (data[5] / 1).toFixed(2);
+                row.cells[4].innerHTML = "<span class='" + getColor(yytb) + "'>"+yytb+"</span>"; //营业收入同比增长
+
+                row.cells[5].className = "tdnumber";
+                yyhb = data[6] || "-";
+                yyhb = yyhb == "-" ? "-" : (data[6] / 1).toFixed(2);
+                row.cells[5].innerHTML ="<span class='" + getColor(yyhb) + "'>"+yyhb+"</span>"; //季度环比增长
+                row.cells[6].className = "tdnumber";
+                var jlr = data[7] || "-";
+                //jlr = jlr == "-" ? "-" : (data[7] / 10000).toFixed(2);
+                row.cells[6].innerHTML =getcolor_JS(jlr,'w',jlr,1); //净利润
+                row.cells[7].className = "tdnumber";
+                var jlrqntq = data[8] || "-";
+                //jlrqntq = jlrqntq == "-" ? "-" : (data[8] / 10000).toFixed(2);
+                row.cells[7].innerHTML =getcolor_JS(jlrqntq,'w',jlrqntq,1); //净利润去年同期
+
+                row.cells[8].className = "tdnumber";
+                jlrtb = data[6] || "-";
+                jlrtb = jlrtb == "-" ? "-" : (data[9] / 1).toFixed(2);
+                row.cells[8].innerHTML ="<span class='" + getColor(jlrtb) + "'>"+jlrtb+"</span>"; //净利润同比增长
+
+                row.cells[9].className = "tdnumber";
+                jlrhb = data[7] || "-";
+                jlrhb = jlrhb == "-" ? "-" : (data[10] / 1).toFixed(2);
+                row.cells[9].innerHTML ="<span class='" + getColor(jlrhb) + "'>"+jlrhb+"</span>"; //季度环比增长
+                row.cells[10].className = "tdnumber";
+                var mgjzc = data[11] || "-";
+                mgjzc = mgjzc == "-" ? "-" : (data[11]/1).toFixed(4);
+                row.cells[10].innerHTML ="<span>" + mgjzc + "</span>"; //每股净资产
+                row.cells[11].className = "tdnumber";
+                var jzcsyl = data[12] || "-";
+                jzcsyl = jzcsyl == "-" ? "-" : (data[12]/1).toFixed(2);
+                row.cells[11].innerHTML ="<span>" + jzcsyl + "</span>"; //净资产收益率
+                row.cells[12].innerHTML =data[13] || "-"; //公告日期
+            }
+        });
+    </script>
+
+    <div class="spacer20">
+    </div>
+</body>
+</html>

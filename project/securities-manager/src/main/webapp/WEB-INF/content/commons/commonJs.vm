@@ -1,0 +1,9 @@
+<script type="text/javascript" src="${base}/static/js/manhood.js"></script>
+<script type="text/javascript" src="${base}/static/js/magic.js"></script>
+<script type="text/javascript" src="${base}/static/jquery-easyui-1.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="${base}/static/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${base}/static/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src='${base}/static/js/manhood-tools.js'></script>
+<script type="text/javascript" src="${base}/static/ueditor1.4.3.2/third-party/highcharts/highcharts.src.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/StockSuggest.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/qphf.js"></script>

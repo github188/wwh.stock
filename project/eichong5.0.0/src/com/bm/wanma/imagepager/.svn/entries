@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/com/bm/wanma/imagepager"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="6334"
+   kind="dir"
+   committed-date="2017-03-24T01:01:05.161884Z"/>
+<entry
+   name="HackyViewPager.java"
+   checksum="7918081478979a954bc0cfd2a2c1de8a"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ImageDetailFragment.java"
+   checksum="5ebb09f8a53f32169ea75bc185a9413d"
+   last-author="liuyahui"
+   committed-rev="6334"
+   text-time="2017-03-24T01:01:05.161000Z"
+   kind="file"
+   committed-date="2017-03-24T01:01:05.161884Z"/>
+<entry
+   name="NoScrollGridAdapter.java"
+   checksum="cef3b8cfffeb66fc5864bf5e440f1048"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="NoScrollGridView.java"
+   checksum="859d113caab046f025f942974962ba38"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+</wc-entries>

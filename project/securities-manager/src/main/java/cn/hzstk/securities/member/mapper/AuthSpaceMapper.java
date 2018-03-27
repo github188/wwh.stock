@@ -1,0 +1,17 @@
+package cn.hzstk.securities.member.mapper;
+
+import cn.hzstk.securities.member.domain.AuthSpace;
+import org.apache.ibatis.annotations.Select;
+import tk.mybatis.mapper.common.Mapper;
+
+import java.util.List;
+
+/**
+* @description:
+* @author: autoCode
+* @history:
+*/
+public interface AuthSpaceMapper extends Mapper<AuthSpace>{
+    @Select("select id,auth_status as authStatus,user_type as userType from member_auth_space where valid='1' and user_id=#{value}")
+    List<AuthSpace> getlist(Long userId);
+}

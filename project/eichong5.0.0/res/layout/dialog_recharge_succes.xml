@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:padding="30dp" >
+    
+    <TextView 
+         android:id="@+id/dialog_charge_sucess_title"
+         android:layout_width="match_parent"
+    	 android:layout_height="wrap_content"
+         android:text="恭喜您，充值成功!"
+         android:textColor="@color/common_orange"
+         android:textSize="22sp"
+         android:textStyle="bold"
+         android:gravity="center"
+        />
+     <TextView 
+         android:id="@+id/dialog_cancel_bespoke_price"
+          android:layout_below="@id/dialog_charge_sucess_title"
+         android:layout_width="match_parent"
+    	 android:layout_height="wrap_content"
+    	 android:layout_marginTop="10dp"
+         android:textStyle="bold"
+         android:gravity="center"
+         android:textColor="@color/common_gray"
+         android:textSize="18sp"
+        />
+
+    <TextView 
+         android:id="@+id/dialog_charge_sucess_confirm"
+         android:layout_centerInParent="true"
+         android:layout_below="@id/dialog_cancel_bespoke_price"
+         android:layout_marginTop="30dp"
+         android:layout_width="wrap_content"
+    	 android:layout_height="wrap_content"
+         android:text="确定"
+         android:textColor="@color/common_white"
+         android:textSize="18sp"
+         android:gravity="center"
+         android:paddingLeft="25dp"
+         android:paddingRight="25dp"
+         android:background="@drawable/dialog_select_shape_confirm"
+        />
+    
+    
+    
+    
+    
+
+</RelativeLayout>

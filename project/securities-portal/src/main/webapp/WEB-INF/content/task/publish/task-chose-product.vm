@@ -1,0 +1,45 @@
+<div class="modal-body">
+	
+	<form class="form-horizontal" role="form" action="/task-pub-security" method="post" id="pubTaskFormstep2" name="pubTaskFormstep2" novalidate="novalidate">
+		<input type="hidden" name="step2" value="step2">
+		<input type="hidden" name="formhash" id="formhash" value="6a5086">
+		#foreach($item in $items)
+		<div class="form-group">
+			<div class="col-sm-6 col-sm-6">
+				<div class="checkbox">
+					<label>
+						<input name="typeName" #if($!type == '1') type="checkbox" #elseif($!type == '2') type="radio" #end  value="$!item.value">
+						$!item.content
+						</input>
+					</label>
+				</div>
+			</div>
+		</div>
+		#end
+	</form>
+	
+	
+</div>
+<div class="modal-footer">
+	<button type="button" id="btn_insert" class="btn btn-primary">确认选择</button>
+</div>
+<script type="text/javascript">
+		var countEdit = "7";
+</script>
+<script type="text/javascript">
+	var selectedKeys = [];
+	var selectedvals = [];
+	$("#btn_insert").click(function(){
+		selectedvals = [];
+		selectedKeys = [];
+		$(".close").click();
+		$("[name='typeName']").each(function(){
+			if($(this).attr("checked")){
+				selectedKeys.push($(this).parent().text().trim());
+				selectedvals.push($(this).val());
+			}
+		});
+		if(callback) callback(selectedKeys, selectedvals);
+	});
+	
+</script>

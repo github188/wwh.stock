@@ -1,0 +1,494 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="zh-cn">
+<head>
+    <title>用户中心</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="generator" content="客客出品专业威客2.7.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/user.css" rel="stylesheet" type="text/css" id="active-style-user">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.82587500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+	<link href="${base}/static/css/style.css" rel="stylesheet" type="text/css" id="active-style">
+</head>
+<body id="user">
+
+<script src="${base}/static/js/model/user/user.js"></script>
+<script src="${base}/static/js/model/user/transaction.js"></script>
+
+<!-- /header -->
+    #parse("includes/ips/home_manage.vm")
+<!-- nav end -->
+<div class="container">
+<div id="side">
+<!-- 卖家名片 -->
+<div class="poster-card">
+<!-- <div class="box-header">
+      <h2 class="min-title">卖家名片</h2>
+    </div> -->
+<div class="box-body">
+<div class="poster-top">
+<!-- <div class="post-avatar">
+                <a href="index.php?do=seller&id=5">
+                  userpic(5,'larger')
+                </a>
+              </div> -->
+<div class="post-content">
+<h4 class="media-heading">烂苹果丶</h4>
+<!--卖家的认证信息-->
+<p>
+认证： </p>
+<p>
+所在地：
+<a href="javascript:showMap('5');">
+<i class="fa fa-map-marker"></i>
+</a>
+-</p>
+<p>等级：<img src="data/uploads/sys/mark/28624f3b088d957db.gif?fid=2077" align="absmiddle" title="头衔 ：六级威客
+能力值：8100
+等级：6"></p>
+</div>
+</div>
+<ul class="poster-num">
+<li class="poster-num-item">
+<p>
+好评率：
+<span class="text-danger num">
+100%
+</span>
+</p>
+</li>
+<li class="poster-num-item">
+<p>
+出售商品：
+<span class="num">8</span>
+</p>
+</li>
+</ul>
+<ul class="poster-meta">
+<li class="poster-meta-item">
+工作速度<span class="text-danger">5.0分</span>
+<span class="stars a5 s5"><span class="star_selected"></span></span></li>
+<li class="poster-meta-item">
+工作质量<span class="text-danger">5.0分</span>
+<span class="stars a5 s5"><span class="star_selected"></span></span></li>
+<li class="poster-meta-item">
+工作态度<span class="text-danger">5.0分</span>
+<span class="stars a5 s5"><span class="star_selected"></span></span></li>
+</ul>
+<div class="poster-ctrl">
+<div class="row">
+<div class="col-sm-12 mb_10">
+<a href="index.php?do=gy&amp;id=5" class="btn btn-primary btn-sm btn-block">雇佣TA</a>
+</div>
+<div class="col-sm-6">
+<a href="javascript:sendMessage(5);void(0);" class="btn btn-default btn-sm btn-block">联系我</a>
+</div>
+<div class="col-sm-6">
+<a href="javascript:addCollect(5);void(0);" class="btn btn-default btn-sm btn-block" id="follow5">
+<i class="fa fa-plus"></i>
+收藏店铺
+</a>
+<!--
+                  <a href="index.php?do=seller&id=5" class="btn btn-default btn-sm btn-block">收藏店铺</a>-->
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="box-body site-security">
+<h2 class="min-title">诚信威客网站，服务更放心</h2>
+<ul>
+<li class="col3">
+<p>
+<span class="fa-stack fa-2x">
+<i class="fa fa-circle fa-stack-2x text-success"></i>
+<i class="fa fa-yen fa-stack-1x fa-inverse"></i>
+</span>
+</p>
+<p>担保交易</p>
+</li>
+<li class="col3">
+<p>
+<span class="fa-stack fa-2x">
+<i class="fa fa-circle fa-stack-2x text-success"></i>
+<i class="fa fa-shield fa-stack-1x fa-inverse"></i>
+</span>
+</p>
+<p>诚信保障</p>
+</li>
+<li class="col3">
+<p>
+<span class="fa-stack fa-2x">
+<i class="fa fa-circle fa-stack-2x text-success"></i>
+<i class="fa fa-user fa-stack-1x fa-inverse"></i>
+</span>
+</p>
+<p>威客认证</p>
+</li>
+</ul>
+</div>
+<!--  site-security end -->
+<div class="box-header">
+<h2 class="min-title">推荐服务商</h2>
+</div>
+<div class="box-body">
+<ul class="record-list img">
+ <li>
+<a href="index.php?do=seller&amp;id=5" class="avatar" title="烂苹果丶">
+<img src="http://10.80.11.246/test/data/avatar/000/00/00/05_avatar_middle.jpg" uid="5" class="pic_middle"></a>
+<div class="avatar-detail">
+<p class="record-list-title">
+<a href="index.php?do=seller&amp;id=5" title="烂苹果丶"> 烂苹果丶 </a>
+</p>
+<p class="record-list-meta">
+好评率
+<span>
+100<sub>%</sub>
+</span>
+</p>
+<p>
+<span class="marked marked-tags"></span>
+<span class="marked marked-tags"></span>
+</p>
+</div>
+</li>
+<li>
+<a href="index.php?do=seller&amp;id=12" class="avatar" title="蓝小咩">
+<img src="http://10.80.11.246/test/data/avatar/000/00/00/12_avatar_middle.jpg" uid="12" class="pic_middle"></a>
+<div class="avatar-detail">
+<p class="record-list-title">
+<a href="index.php?do=seller&amp;id=12" title="蓝小咩"> 蓝小咩 </a>
+</p>
+<p class="record-list-meta">
+好评率
+<span>
+100<sub>%</sub>
+</span>
+</p>
+<p>
+<span class="marked marked-tags"></span>
+<span class="marked marked-tags"></span>
+</p>
+</div>
+</li>
+<li>
+<a href="index.php?do=seller&amp;id=4" class="avatar" title="暗夜行路">
+<img src="http://10.80.11.246/test/data/avatar/000/00/00/04_avatar_middle.jpg" uid="4" class="pic_middle"></a>
+<div class="avatar-detail">
+<p class="record-list-title">
+<a href="index.php?do=seller&amp;id=4" title="暗夜行路"> 暗夜行路 </a>
+</p>
+<p class="record-list-meta">
+好评率
+<span>
+100<sub>%</sub>
+</span>
+</p>
+<p>
+<span class="marked marked-tags">软件开发</span>
+<span class="marked marked-tags">程序功能开发</span>
+</p>
+</div>
+</li>
+<li>
+<a href="index.php?do=seller&amp;id=11" class="avatar" title="soul丶">
+<img src="http://10.80.11.246/test/data/avatar/000/00/00/11_avatar_middle.jpg" uid="11" class="pic_middle"></a>
+<div class="avatar-detail">
+<p class="record-list-title">
+<a href="index.php?do=seller&amp;id=11" title="soul丶"> soul丶 </a>
+</p>
+<p class="record-list-meta">
+好评率
+<span>
+100<sub>%</sub>
+</span>
+</p>
+<p>
+<span class="marked marked-tags"></span>
+<span class="marked marked-tags"></span>
+</p>
+</div>
+</li>
+<li>
+<a href="index.php?do=seller&amp;id=3" class="avatar" title="MR.TABLE">
+<img src="http://10.80.11.246/test/data/avatar/000/00/00/03_avatar_middle.jpg" uid="3" class="pic_middle"></a>
+<div class="avatar-detail">
+<p class="record-list-title">
+<a href="index.php?do=seller&amp;id=3" title="MR.TABLE"> MR.TABLE </a>
+</p>
+<p class="record-list-meta">
+好评率
+<span>
+100<sub>%</sub>
+</span>
+</p>
+<p>
+<span class="marked marked-tags">软件开发</span>
+<span class="marked marked-tags">程序功能开发</span>
+</p>
+</div>
+</li>
+ </ul>
+</div>
+<!-- 推荐服务商 & box-body end -->
+</div>
+<!-- #side end -->
+<div id="main">
+<div class="for-advertise">
+<div class="adv"><a href="http://www.renwuyi.com" target="_blank" title="任务易"><img src="data/uploads/sys/ad/950x80_1.jpg" width="950" class="lazy" data-original="data/uploads/sys/ad/950x80_1.jpg" height="50" alt="任务易" title="任务易" style="display: block;"></a></div></div>
+<div class="detail">
+<div class="detail-top">
+<div class="row">
+<div class="col-sm-4">
+<div class="detail-thumbnail">
+<div class="detail-thumbnail-inner" data-jcarousel="true">
+<ul class="detail-thumbnail-body" style="left: 0px; top: 0px;">
+<li class="detail-thumbnail-item">
+<a href="data/uploads/2015/03/25/7642728595512797291967.jpg" rel="detail-thumbnail-group">
+<img src="data/uploads/2015/03/25/7642728595512797291967.jpg" onerror="$(this).attr(&quot;src&quot;,&quot;${base}/static/images/shop_default_big.jpg&quot;)">
+</a>
+</li>
+</ul>
+</div>
+<a href="#" class="detail-thumbnail-pv btn btn-default jcarousel-control-prev inactive" data-jcarouselcontrol="true">
+<i class="fa fa-angle-double-left"></i>
+</a>
+<a href="#" class="detail-thumbnail-nx btn btn-default jcarousel-control-next inactive" data-jcarouselcontrol="true">
+<i class="fa fa-angle-double-right"></i>
+</a>
+</div>
+<!-- detail-thumbnail end -->
+</div>
+<div class="col-sm-8">
+<div class="detail-ctrl">
+ <a href="${base}/shop/service/buygoods/1" class="btn btn-primary btn-lg">我要购买</a>
+ </div>
+<!-- /.detail-ctrl -->
+<div class="detail-header">
+<h1 class="detail-title">
+（3折） 价限购 包装设计 </h1>
+</div>
+<div class="detail-top-body">
+<div class="detail-obj">
+<div class="detail-obj-item">
+分类：
+<a href="index.php?do=goodslist&amp;pd=3">文案写作</a>
+/
+<a href="index.php?do=goodslist&amp;pd=3&amp;i=14">招牌设计</a>
+</div>
+<div class="detail-obj-item">
+售价：
+<span class="money money-lg">
+<sub>￥</sub>
+750.00/个</span>
+</div>
+<div class="detail-obj-item">
+<div class="method">
+<a href="index.php?do=goodslist&amp;m=6">文件</a>
+<span>已售出：1</span>
+</div>
+</div>
+<div class="detail-obj-item line hidden">
+<div class="row">
+<div class="col-md-4">编号：#21</div>
+<div class="col-md-8">
+<i class="fa fa-clock-o"></i>
+发布时间：
+2015-03-25 17:01:02</div>
+</div>
+</div>
+<div class="detail-obj-item">
+<p>
+好评率：
+<span class="text-danger">0%</span>
+</p>
+</div>
+</div>
+<div class="detail-min-ctrl">
+<a href="index.php?do=seller&amp;id=5" class="btn btn-primary btn-sm">进入店铺</a>
+<div id="sc" class="btn-group">
+ <a title="收藏" onclick="collect();" class="btn btn-primary btn-sm" href="javascript:void(0);">我要收藏 </a>
+ </div>
+</div>
+<div class="detail-min-ctrl">
+<a href="javascript:report(2,'product','5','21','21');void(0);" class="action-report btn btn-default btn-sm">
+<i class="fa fa-bell"></i>
+举报
+</a>
+</div>
+<!-- detail-ctrl end -->
+</div>
+<!-- detail-top-body end -->
+<div class="detail-top-footer">
+<div class="pull-left text-warning">
+<p>购买完成之后即可下载，一次购买长期有效</p>
+</div>
+<div class="pull-right">
+<div class="bdsharebuttonbox bdshare-button-style1-16" data-bd-bind="1464084232047">
+<a href="#" class="bds_more" data-cmd="more">分享到：</a>
+<a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a>
+<a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a>
+<a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a>
+<a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a>
+<a title="分享到复制网址" href="#" class="bds_copy" data-cmd="copy"></a>
+<a title="分享到打印" href="#" class="bds_print" data-cmd="print"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</div>
+</div>
+<!-- detail-top-footer end -->
+</div>
+</div>
+</div>
+</div>
+<!-- detail end-->
+<div class="tab tab-darken" id="pageT">
+<a href="index.php?do=goods&amp;id=21&amp;view=content#pageT" class="selected">商品描述</a>
+<a href="index.php?do=goods&amp;id=21&amp;view=mark#pageT">
+评价
+<span class="badge">0</span>
+</a>
+<a href="index.php?do=goods&amp;id=21&amp;view=sale#pageT">
+交易记录
+<span class="badge">1</span>
+</a>
+<a href="index.php?do=goods&amp;id=21&amp;view=comment#pageT">
+留言
+<span class="badge">0</span>
+</a>
+</div>
+<!-- tab end -->
+<div class="detail-tab-body">
+  
+
+
+<div class="detail-desc ws_break">
+
+     <p><img src="data/uploads/bdattachment/image/20150325/1427274022816026.jpg"></p>  </div>
+
+
+</div>
+<!-- detail-body end --><div class="box-header">
+<h2 class="min-title">该服务商的其他商品</h2>
+</div>
+<div class="box-body same-type mb_10">
+<ul class="min-list img row">
+ <li class="col-sm-3">
+<a title="单品包装设计1000元，3天初稿，2套方案，满意为止！" href="index.php?do=goods&amp;id=22">
+<div class="min-list-img">
+<img alt="单品包装设计1000元，3天初稿，2套方案，满意为止！" onerror="$(this).attr(&quot;src&quot;,&quot;${base}/static/images/shop_default_big.jpg&quot;)" src="data/uploads/2015/03/25/210_68626920555127a3288814.jpg">
+<span class="money">
+<sub>￥</sub>
+6000.00</span>
+</div>
+<div class="min-list-title">单品包装设计1000元，3天初稿，2套方案，满意为止！</div>
+</a>
+</li>
+<li class="col-sm-3">
+<a title="Unity3D游戏开发（程序）" href="index.php?do=goods&amp;id=20">
+<div class="min-list-img">
+<img alt="Unity3D游戏开发（程序）" onerror="$(this).attr(&quot;src&quot;,&quot;${base}/static/images/shop_default_big.jpg&quot;)" src="data/uploads/2015/03/25/210_990160973551278c35a7b9.jpg">
+<span class="money">
+<sub>￥</sub>
+3000.00</span>
+</div>
+<div class="min-list-title">Unity3D游戏开发（程序）</div>
+</a>
+</li>
+<li class="col-sm-3">
+<a title="五分钟打造超炫微信3G网站" href="index.php?do=goods&amp;id=19">
+<div class="min-list-img">
+<img alt="五分钟打造超炫微信3G网站" onerror="$(this).attr(&quot;src&quot;,&quot;${base}/static/images/shop_default_big.jpg&quot;)" src="data/uploads/2015/03/25/210_12735217385512785f3f86b.png">
+<span class="money">
+<sub>￥</sub>
+2600.00</span>
+</div>
+<div class="min-list-title">五分钟打造超炫微信3G网站</div>
+</a>
+</li>
+ </ul>
+</div>
+<!-- list-page end -->
+<div class="for-advertise">
+<div class="adv"><a href="http://www.renwuyi.com" target="_blank" title="任务易"><img src="data/uploads/sys/ad/950x80_1.jpg" width="950" class="lazy" data-original="data/uploads/sys/ad/950x80_1.jpg" height="1190" alt="任务易" title="任务易" style="display: block;"></a></div></div>
+<!-- for-advertise end -->
+</div>
+<!-- #main end -->
+</div>
+<script type="text/javascript">
+var strUrl = "index.php?do=pubgoods&id=6&step=step1";
+var splitStr = ",";
+/**
+ * 日期选择插件*/
+$('.form_datetime').datetimepicker({
+      language:  'zh-CN',
+      weekStart: 1,
+      todayBtn:  1,
+      autoclose: 1,
+      todayHighlight: 1,
+      startView: 2,
+      minView: 2,
+      forceParse: 0
+  });
+
+
+$(function(){
+/**
+ *切换任务说明*/
+$("#toggleTaskDesc").click(function(){
+if($(this).children('i').hasClass('fa-caret-down')){
+$(this).children('i').removeClass('fa-caret-down');
+$(this).children('i').addClass('fa-caret-up');
+}else{
+$(this).children('i').removeClass('fa-caret-up');
+$(this).children('i').addClass('fa-caret-down');
+}
+$("#DivTaskDesc").toggleClass('hidden');
+});
+
+/**
+ *查看发布协议*/
+ $("#viewPubAgreement").click(function(){
+$('.release-agreement').toggleClass('hidden');
+ });
+});
+
+
+</script>
+    #parse("includes/footer.vm")
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>股市日历</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="refresh" content="600">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/master.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/default.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/layer2012.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/page_common.css">
+    <script type="text/javascript" src="${base}/static/js/jquery.min.1.8.3.js"></script>
+    <script type="text/javascript">
+        var jQuery = $.noConflict();
+        var portalurl = "${portal_url}/";
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/base.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/plugin.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/WdatePicker.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/gsrlFloatHead.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/public_emchart.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/chart.js"></script>
+    <style type="text/css">
+        #qqgs1 span b {
+            font-family: Arial;
+            font-size: 12px;
+        }
+
+        #qqgs1 span {
+            font-size: 12px;
+        }
+        #flash-cont {
+            min-height: 225px;
+        }
+
+        #flash-cont-1 {
+            min-height: 250px;
+        }
+        .content2 {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<div id="page" class="page">
+    <div class="main">
+        <div class="framecontent">
+            <div class="linkNav">
+                <div id="Column_Navigation">
+                    <a href="${base}/">首页</a> &gt; <a href="${base}/stockeast/center/">数据中心</a>&gt; <a href="default.html">特色数据</a> &gt; <span class="txt" id="navCacheName">股市日历</span>
+                </div>
+            </div>
+            <div class="sitebody">
+                <div class="maincont">
+        <div class="contentBox">
+            <div class="titbar" id="datatitle">
+                <b class="el"></b>
+                <div class="tit" id="topTit" style="position: relative;">
+                    股市日历()
+                </div>
+
+                <div class="search" style="float: right; padding-right: 0px; width: 200px;">
+                    <span class="txt txt_date">数据日期:</span>
+                    <div class="selectRegion" onclick="WdatePicker({ dchanged: updateData,el:'inputDate' })">
+                        <input type="text" id="inputDate" class="dll" value="" readonly="readonly">
+                        <b class="dateSelector"></b>
+                    </div>
+                </div>
+            </div>
+            <div class="sepe">
+                <div class="left">
+                </div>
+                <div class="right">
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="catemk">
+                <ul id="mk_type">
+                    <li class="at"><a value="default.html" target="_self">特别提示</a></li>
+                    <li><a value="ggzy.html" target="_self">公告摘要</a></li>
+                    <li><a value="tfpts.html" target="_self">停复牌提示</a></li>
+                    <li><a value="nbjb.html" target="_self">年报季报</a></li>
+                    <li><a value="xgfx.html" target="_self">新股发行</a></li>
+                    <li><a value="zfpg.html" target="_self">增发配股</a></li>
+                    <li><a value="gfss.html" target="_self">股份上市</a></li>
+                    <li><a value="gddh.html" target="_self">股东大会</a></li>
+                    <li><a value="gsdt.html" target="_self">公司动态</a></li>
+                </ul>
+            </div>
+            <div class="cateday">
+                <ul id="statUL">
+                    <li id="21" class="at2">全部<i></i></li>
+                    <li id="5">特别处理<i></i></li>
+                    <li id="6">首发新股<i></i></li>
+                    <li id="7">增发配股<i></i></li>
+                    <li id="8">分红转增<i></i></li>
+                    <li id="9">股东权益<i></i></li>
+                </ul>
+            </div>
+            <div class="content" id="mainContent">
+                <table cellpadding="0" cellspacing="0" class="tab1" id="dt_1">
+                    <thead class="h101">
+                    <tr>
+                        <th style="width: 30px;">序号</th>
+                        <th style="width: 53px;">
+                            <a href="#" target="_self" onclick="searchData(false)">代码<img src="\" style="height: 10px; width: 11px; display: none;" id="sortImg"></a>
+                                </th>
+                                <th style="width: 61px;">简称</th>
+                        <th style="width: 89px;">相关资料</th>
+                        <th style="width: 150px;">事件类型</th>
+                        <th style="width: 463px;">事件内容</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tabBody">
+                    </tbody>
+                </table>
+                <div id="divRef" style="top: 0px; left: 0px; position: absolute; z-index: 9999; opacity: 0.5; filter: alpha(opacity=50); text-align: center; min-height: 300px; display: none; background-color: rgb(255, 255, 255);">
+                    <img src="http://datapic.eastmoney.com/img/loading.gif" style="height: 70px; width: 70px;">
+                </div>
+                <div id="float_head" ></div>
+            </div>
+        </div>
+        <div id="PageNav" class="PageNav">
+            <div class="Page" id="PageCont">
+            </div>
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="qphox">
+    <script type="text/javascript" src="${base}/static/js/east/qphf.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/master.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/gsrl.js"></script>
+    <script type="text/javascript">
+        var statLis = document.getElementById("statUL").getElementsByTagName("li");
+        var _stat = "21";
+        var _data = null;
+        var _startRow = 0;
+        var _sortType = true;
+        var _sr = '';
+        var _pageCount = 1;
+        var _pageIndex = 1;
+        // 绑定数据
+        function bindData() {
+            var odd = "";
+            for (var i = 0; i < _data.length; i++) {
+                odd = odd == "odd" ? "" : "odd";
+                var tr = $("tabBody").insertRow(-1);
+                tr.className = odd;
+                tr.setAttribute("data_classname", odd);
+                tr.onmouseover = function () { this.className = "over"; };
+                tr.onmouseout = function () { this.className = this.getAttribute("data_classname"); };
+                //　加载table
+                var _code = _data[i].SECUCODE.split('.')[0],
+                        _hq_link = "${base}/stockeast/detail?stockCode=" + _code,
+                        _gg_link = "${base}/stockeast/notices/detail?stockCode=" + _code,
+                        _gb_link = "http://guba.eastmoney.com/topic," + _code + ".html";
+                var isAFristCode = _code.indexOf("A") == 0;
+                // 序号
+                td1 = tr.insertCell(-1);
+                td1.innerHTML = i + 1 + _startRow;
+                // 代码
+                td2 = tr.insertCell(-1);
+                td2.innerHTML = isAFristCode ? _code : "<a href=\"" + _hq_link + "\">" + _code + "</a>" || "&nbsp;";
+                // 简称
+                td3 = tr.insertCell(-1);
+                td3.innerHTML = isAFristCode ? _data[i].SECURITYSHORTNAME : "<a href=\"" + _hq_link + "\">" + _data[i].SECURITYSHORTNAME + "</a>" || "&nbsp;";
+                // 相关资料
+                td4 = tr.insertCell(-1);
+                td4.innerHTML = isAFristCode ? "公司公告 股吧" : "<a href=\"" + _gg_link + "\" class=\"red\">公司公告</a> <a href=\"" + _gb_link + "\">股吧</a>";
+                // 事件类型
+                td5 = tr.insertCell(-1);
+                td5.innerHTML = _data[i].TYPE || "&nbsp;";
+                // 事件内容
+                td6 = tr.insertCell(-1);
+                td6.innerHTML = _data[i].CONTENT || "&nbsp;";
+            }
+        }
+
+        // 页面加载时设置选项卡选中状态
+        function setLiClass(stat) {
+            if (stat != "") {
+                for (var i = 0; i < statLis.length; i++) {
+                    if (statLis[i].id == stat) {
+                        statLis[i].className = "at2";
+                    } else {
+                        statLis[i].className = "";
+                    }
+                }
+            }
+        }
+
+        // 选项卡链接绑定
+        function setMKLIUrl() {
+            var mkLis = document.getElementById("mk_type").getElementsByTagName("li");
+            for (var i = 0; i < mkLis.length; i++) {
+                mkLis[i].firstChild.href = mkLis[i].firstChild.getAttribute("value") + "#" + $('inputDate').value;
+            }
+        }
+
+        function searchData(isOnload) {
+            var dataUrl = "http://datainterface.eastmoney.com/EM_DataCenter/JS.aspx?type=GSRL&sty=GSRL&stat=" + _stat + "&fd=" + $('inputDate').value;
+            jQuery.ajax({
+                scriptCharset: "utf-8",
+                url: dataUrl + "&p=1&ps=5000&js=({pages:(pc),data:[(x)]})&cb=callback",
+                dataType: "jsonp",
+                jsonpCallback: "callback",
+                beforeSend: function () {
+                    // 遮罩层
+                    $('divRef').style.top = jQuery('#mainContent').position().top + "px";
+                    $('divRef').style.left = jQuery('#mainContent').position().left + "px";
+                    $('divRef').style.height = $('mainContent').offsetHeight + "px";
+                    $('divRef').style.width = $('mainContent').offsetWidth + "px";
+                    $('divRef').style.display = "block";
+                    // 删除原有数据
+                    var childs = $('tabBody').children || $('tabBody').childNodes;
+                    while (childs.length > 0) {
+                        $('tabBody').removeChild(childs[childs.length - 1]);
+                    }
+                    // 清空分页控件
+                    var pn = $('PageCont');
+                    pn.innerHTML = "";
+                    // 选项卡链接绑定
+                    setMKLIUrl();
+                    // 排序处理
+                    sortData(isOnload, dataUrl, this);
+                },
+                success: function (da) {
+                    if (da.data[0].stats == undefined) {
+                        _data = da.data;
+                        _pageCount = da.pages;
+                        new loadPageNav(dataUrl, 50, bindData);
+                    } else {
+                        var tr = $("tabBody").insertRow(-1);
+                        td = tr.insertCell(-1);
+                        td.innerHTML = "没有相关数据...";
+                        td.colSpan = "6";
+                    }
+                },
+                error: function (r) {
+                    alert("获取数据失败！");
+
+                },
+                complete: function () {
+                    // 遮罩层
+                    $('divRef').style.display = "none";
+                }
+            });
+        }
+        window.onload = function () {
+            var url = document.location.href.replace("#", "");
+            var date = tiny.tool.GetQueryStr("date");// 交易所;
+            if (date == '' || date == null)
+                date = new Date();
+            date = date.getFullYear()+"-"+((date.getMonth()+1)<10?"0":"")+(date.getMonth()+1)+"-"+(date.getDate()<10?"0":"")+date.getDate();
+            if (url.indexOf("#") > 0 && url.indexOf("#") < url.length - 1)
+                date = url.substr(url.indexOf("#") + 1, url.length);
+            document.location.hash = "";
+            document.getElementById("inputDate").value = date;
+
+            jQuery("#topTit").html("股市日历(" + date + ")");
+            //document.getElementById('topTit').innerHTML = "股市日历(" + document.getElementById("inputDate").value + ")";
+
+            //控制一级标题粗细下划线的宽度
+            (function ($) {
+                var tit_wid = $("#topTit").width();
+                var titbar_wid = $("#topTit").parent().width();
+
+                if (tit_wid && titbar_wid) {
+                    $("#topTit").parent().next().find(".left").width((tit_wid + 30) + "px");
+                    $("#topTit").parent().next().find(".right").width((titbar_wid - tit_wid - 30) + "px");
+                }
+            })(jQuery)
+
+            for (var i = 0; i < statLis.length; i++) {
+                statLis[i].onclick = function () {
+                    setLiClass(this.id);
+                    _stat = this.id;
+                    _data = null;
+                    _startRow = 0;
+                    searchData(true);
+                }
+            }
+            searchData(true);
+        };
+        //表头浮动锁定
+        CreateHead("dt_1", "tab1", "h101", false);
+    </script>
+    <script>
+        SeoGa();
+        window.adDataType = "data"; //共3个值：quote，data，guba不写默认表示其他频道；
+        window.adSwitch = "both";//共3个值：both,left,right 不写默认both；
+        window.fixedBodyWidth = 1000;//950,1000 不写默认1000
+    </script>
+</div>
+</body>
+</html>

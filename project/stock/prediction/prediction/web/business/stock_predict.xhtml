@@ -1,0 +1,198 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="head">
+        <script type="text/javascript">
+            function skinChart() {
+                this.cfg.shadow = false;
+                this.cfg.seriesColors = ['#1C75BC', '#FF4081'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#ffffff',
+                    gridLineColor: '#E8E8E8',
+                    shadow: false
+                };
+                this.cfg.axesDefaults = {
+                    rendererOptions: {
+                        textColor: '#778D9B'
+                    }
+                };
+                this.cfg.seriesDefaults = {
+                    shadow: false,
+                    lineWidth: 3,
+                    markerOptions: {
+                        shadow: false, style: "filledSquare", size: 20
+                    }
+                }
+            }
+        </script>
+        <style type="text/css">
+            .jqplot-target, .jqplot-axis {
+                color: #778D9B;
+            }
+        </style>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="form">
+            <div class="Container75 Responsive100">
+                <div class="Container100 Responsive100">
+                    <div class="ContainerIndent">
+                        <div class="Card ShadowEffect TexAlLeft">
+                            <div class="Container100 Responsive100">
+                                <div class="ContainerIndent">
+                                    <h2 class="BigTopic"><i class="icon-question Fs30 Fleft MarRight10 OvHidden"></i>输入股票代码，如600000</h2>
+                                    <p:messages showDetail="true" autoUpdate="true" closable="true" />
+                                    <h:panelGrid columns="3" cellpadding="5">
+                                        <p:outputLabel value="输入股票代码：" for="acSimple" />
+                                        <p:inputText id="acSimple" placeholder="000000" value="#{stockQueryMB.stockCode}"/>
+                                        <p:commandButton value="个股短期预测" styleClass="RedButton RaisedButton" actionListener="#{stockQueryMB.queryPredictedValue()}" update="predict_result, stock_info, recent_query_stock, max_price_chart" />
+                                    </h:panelGrid>
+                                    <h:panelGroup id="stock_info" layout="block">
+                                        <br />
+                                        <p:panel id="basic" header="#{stockQueryMB.predictedStock.stockId.stockName} (#{stockQueryMB.predictedStock.stockId.stockCode})" style="margin-bottom:20px" rendered="#{not empty stockQueryMB.predictedStock}">
+                                            <f:facet name="footer">
+                                                <b>交易日：<h:outputText value="#{stockQueryMB.predictedStock.tradeDate}">
+                                                        <f:convertDateTime type="date" dateStyle="short" pattern="yyyy/MM/dd" timeZone="GMT+8"/>
+                                                    </h:outputText></b>
+                                            </f:facet>
+                                            <h:panelGrid columns="2" cellpadding="10" width="100%">
+                                                <i class="fa fa-line-chart Fs100 Orange"></i>
+                                                <p:panelGrid columns="2" layout="grid" columnClasses="Wid40 Wid60">
+                                                    <h:outputText value="今日开盘价：" />
+                                                    <h:outputText value="#{stockQueryMB.predictedStock.openPrice} 元" />
+
+                                                    <h:outputText value="今日收盘价：" />
+                                                    <h:outputText value="#{stockQueryMB.predictedStock.closePrice} 元" />
+
+                                                    <h:outputText value="总交易量（万手）：" />
+                                                    <h:outputText value="#{stockQueryMB.predictedStock.tradeNum} 万手" />
+
+                                                    <h:outputText value="总交易金额（万元）：" />
+                                                    <h:outputText value="#{stockQueryMB.predictedStock.tradeAmount} 万元" />
+                                                </p:panelGrid>
+                                            </h:panelGrid>
+                                        </p:panel>
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h:panelGroup id="predict_result" layout="block">
+                        <h:panelGroup layout="block" rendered="#{not empty stockQueryMB.predictedStock}">
+                            <div class="Container100 Responsive100">
+                                <div class="ContainerIndent">
+                                    <div class="Card ShadowEffect TexAlLeft">
+                                        <div class="Container50 Responsive50">
+                                            <div class="ContainerIndent">
+                                                <div class="Card ShadowEffect HeiAutoOnMobile OvHidden">
+                                                    <div class="Container100" style="margin:0px 10px 10px -10px; padding:0px 10px;">
+                                                        <div class="SoftRedBack DispInlBlock Fleft" style="margin:-10px 10px -10px -10px; padding:20px 10px;">
+                                                            <i class="icon-out Red Fs130"></i>
+                                                        </div>
+                                                        <span class="Gray FontRobotoLight Fs20">下一交易日全天最高价预测</span><br/>
+                                                        <div class="animated pulse infinite">
+                                                            <span class="Red Fs100 FontRobotoBold">
+                                                                <h:outputText styleClass="Fs40" value="计算中.." rendered="#{empty stockQueryMB.predictedStock.predictMaxPrice}"/>
+                                                                <h:outputText value="#{stockQueryMB.predictedStock.predictMaxPrice}" rendered="#{not empty stockQueryMB.predictedStock.predictMaxPrice}">
+                                                                    <f:convertNumber type="currency" pattern="####.00" />
+                                                                </h:outputText>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="CardFooter">
+                                                        <span class="Fleft Red Fs18">今日最高：#{stockQueryMB.predictedStock.maxPrice} 元</span>
+                                                        <a href="#" class="CardFooterBtn Gray BorderLeft Fright ripplelink"><i class="icon-add182"></i></a>
+                                                        <a href="#" class="CardFooterBtn Gray BorderLeft Fright ripplelink"><i class="icon-receipt9"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="Container50 Responsive50">
+                                            <div class="ContainerIndent">
+                                                <div class="Card ShadowEffect HeiAutoOnMobile OvHidden">
+                                                    <div class="Container100" style="margin:0px 10px 10px -10px; padding:0px 10px;">
+                                                        <div class="SoftGreenBack DispInlBlock Fleft" style="margin:-10px 10px -10px -10px; padding:20px 10px;">
+                                                            <i class="icon-in Green Fs130"></i>
+                                                        </div>
+                                                        <span class="Gray FontRobotoLight Fs20">下一交易日全天最低价预测</span><br/>
+                                                        <div class="animated pulse infinite">
+                                                            <span class="Green Fs100 FontRobotoBold">
+                                                                <h:outputText styleClass="Fs40" value="计算中.." rendered="#{empty stockQueryMB.predictedStock.predictMinPrice}"/>
+                                                                <h:outputText value="#{stockQueryMB.predictedStock.predictMinPrice}" rendered="#{not empty stockQueryMB.predictedStock.predictMinPrice}">
+                                                                    <f:convertNumber type="currency" pattern="####.00" />
+                                                                </h:outputText>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="CardFooter">
+                                                        <span class="Green Fleft Fs18">今日最低：<h:outputText value="#{stockQueryMB.predictedStock.minPrice}"><f:convertNumber currencyCode="CNY" /> </h:outputText> 元</span>
+                                                        <a href="#" class="CardFooterBtn Gray BorderLeft Fright ripplelink"><i class="icon-add182"></i></a>
+                                                        <a href="#" class="CardFooterBtn Gray BorderLeft Fright ripplelink"><i class="icon-receipt9"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                </div>
+
+                <h:panelGroup id="max_price_chart" layout="block">
+                    <h:panelGroup layout="block" rendered="#{not empty stockQueryMB.predictedStock}">
+                        <div class="Container100">
+                            <div class="ContainerIndent">
+                                <div class="Card ShadowEffect HeiAutoOnMobile" style="height:392px;">
+                                    <p:panel header="历史预测数据对比（最高价）" style="height:100%; min-height:348px;" styleClass="HeiAutoOnMobile">
+                                        <p:chart type="line" model="#{maxPriceChartView.lineModel}" style="height:320px;" responsive="true" />
+                                    </p:panel>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Container100">
+                            <div class="ContainerIndent">
+                                <div class="Card ShadowEffect HeiAutoOnMobile" style="height:392px;">
+                                    <p:panel header="历史预测数据对比（最低价）" style="height:100%; min-height:348px;" styleClass="HeiAutoOnMobile">
+                                        <p:chart type="line" model="#{minPriceChartView.lineModel}" style="height:320px;" responsive="true" />
+                                    </p:panel>
+                                </div>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </h:panelGroup>
+
+            </div>
+            <div class="Container25 Responsive100">
+                <div class="ContainerIndent">
+                    <div class="Card ShadowEffect TexAlLeft HeiAutoOnMobile">
+                        <h2 class="CardTopic"><i class="icon-turn20 Fs20 Fleft MarRight10 animated swing infinite"></i> 最近查询
+                            <p:commandButton id="issuesMenu" type="button" icon="fa fa-ellipsis-v Gray Fs20" styleClass="Fright GrayButton" style="margin-top:-30px !important;"/>
+                            <p:menu overlay="true" trigger="issuesMenu" my="left top" at="left bottom">
+                                <p:menuitem value="清除记录" icon="ui-icon-disk fa fa-close" />
+                            </p:menu>
+                        </h2>
+                        <h:panelGroup id="recent_query_stock" layout="block">
+                            <ui:repeat value="#{recentQueryMB.stockList}" rendered="#{not empty recentQueryMB.stockList}" var="stock">
+                                <div class="SeparatorFull"></div>
+                                <div class="Wid100">
+                                    <div class="ContainerIndent Fs18 BoldGray">
+                                        # #{stock.stockName} - #{stock.stockCode} <br/> <span class="Gray Fs14">所属股市 - #{stock.marketId.marketName}</span>
+                                        <p:commandButton value="预测" icon="fa fa-wrench Fs14" styleClass="Fright RaisedButton BlueTextButton" iconPos="right" actionListener="#{stockQueryMB.queryPredictedValue(stock.stockCode)}" update=":form:predict_result, :form:stock_info, :form:recent_query_stock, :form:max_price_chart" />
+                                    </div>
+                                </div>
+                            </ui:repeat>
+                        </h:panelGroup>
+                        <div class="CardFooter">
+                            <p:commandButton value="清除查询记录" icon="fa fa-file-text-o Fs14" styleClass="Fright BlueTextButton"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

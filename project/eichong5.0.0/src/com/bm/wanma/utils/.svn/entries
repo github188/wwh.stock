@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/com/bm/wanma/utils"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="12701"
+   kind="dir"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="ComparatorGunHead.java"
+   checksum="d7181d2bd1d5f7f48335521aacb95970"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ComparatorListMode.java"
+   checksum="a307e592cf523adbc43d2fe76b8f09b2"
+   last-author="chengmeng"
+   committed-rev="5092"
+   text-time="2017-01-17T06:02:14.497000Z"
+   kind="file"
+   committed-date="2017-01-17T06:02:14.497563Z"/>
+<entry
+   name="DatabaseHelper.java"
+   checksum="9416819094f7aedfe71021439235caba"
+   last-author="chengmeng"
+   committed-rev="5092"
+   text-time="2017-01-17T06:02:14.497000Z"
+   kind="file"
+   committed-date="2017-01-17T06:02:14.497563Z"/>
+<entry
+   name="DistanceUtil.java"
+   checksum="90a4278de54cc49f272c7e769133944f"
+   last-author="chengmeng"
+   committed-rev="5054"
+   text-time="2017-01-16T07:19:11.587000Z"
+   kind="file"
+   committed-date="2017-01-16T07:19:11.587919Z"/>
+<entry
+   name="FirstLetterUtil.java"
+   checksum="4eda65e0580771ee4c44b55711d82544"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="GetResourceUtil.java"
+   checksum="779fbdf8129ed36cb3ba7843519830c4"
+   last-author="chengmeng"
+   committed-rev="5092"
+   text-time="2017-01-17T06:02:14.497000Z"
+   kind="file"
+   committed-date="2017-01-17T06:02:14.497563Z"/>
+<entry
+   name="HeadImageUtils.java"
+   checksum="ddda50acb971f4fe7f3c84c588981424"
+   last-author="chengmeng"
+   committed-rev="5092"
+   text-time="2017-01-17T06:02:14.497000Z"
+   kind="file"
+   committed-date="2017-01-17T06:02:14.497563Z"/>
+<entry
+   name="IntentUtil.java"
+   checksum="5a3d33378956a1226baaf7237391ea55"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="LogUtil.java"
+   checksum="100d0cf274b11b0c5cd90a62e29a06f5"
+   last-author="liuyahui"
+   committed-rev="6804"
+   text-time="2017-05-10T02:32:38.593000Z"
+   kind="file"
+   committed-date="2017-05-10T02:32:38.593889Z"/>
+<entry
+   name="PreferencesUtil.java"
+   checksum="9311df750f89261f62fd6c4919478ca5"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="ProjectApplication.java"
+   checksum="a61d5417834e1ed3e195170e4123c053"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="RegularExpressionUtil.java"
+   checksum="d8633874c0f0c52d224c2426e6685619"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ShareConstant.java"
+   checksum="534b9de528ee3fe74bf099a4194fbaa7"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ShowCustomKeybordUtil.java"
+   checksum="eb37ce3eeae0453a08a816604ffb1e8a"
+   last-author="chengmeng"
+   committed-rev="5092"
+   text-time="2017-01-17T06:02:14.497000Z"
+   kind="file"
+   committed-date="2017-01-17T06:02:14.497563Z"/>
+<entry
+   name="SoundManager.java"
+   checksum="259a1d6c369dfad72bc1b0ad59f8f997"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="StringUtils.java"
+   checksum="c8705024bc01e7227240a035852c98b1"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="TCPUtil.java"
+   checksum="9fc906b50dac12798c6c91439f444012"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="TimeUtil.java"
+   checksum="a54b7e0459d8623e4e840485f71a273e"
+   last-author="chengmeng"
+   committed-rev="5092"
+   text-time="2017-01-17T06:02:14.497000Z"
+   kind="file"
+   committed-date="2017-01-17T06:02:14.497563Z"/>
+<entry
+   name="ToastUtil.java"
+   checksum="5530fa9c8b8fb1b156c0315fd5893a4e"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="Tools.java"
+   checksum="ccb90928c5744185d9df66872abee6b2"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="UpdateAppManager.java"
+   checksum="7e6029d2a1adfccb6e7dd1988d2243d2"
+   last-author="chengmeng"
+   committed-rev="5092"
+   text-time="2017-01-17T06:02:14.497000Z"
+   kind="file"
+   committed-date="2017-01-17T06:02:14.497563Z"/>
+<entry
+   name="ViewFactory.java"
+   checksum="98868c99103705745dbb33f33d3af9ab"
+   last-author="liuyahui"
+   committed-rev="5684"
+   text-time="2017-03-01T01:18:20.238000Z"
+   kind="file"
+   committed-date="2017-03-01T01:18:20.238619Z"/>
+</wc-entries>

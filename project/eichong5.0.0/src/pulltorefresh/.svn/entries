@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/pulltorefresh"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="5684"
+   kind="dir"
+   committed-date="2017-03-01T01:18:20.238619Z"/>
+<entry
+   name="ILoadingLayout.java"
+   checksum="7dd6daf95920b0768f7c6b04acc4d4e2"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="IPullToRefresh.java"
+   checksum="8866a63382d2ab908010cfd65194b49e"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ListViewCustom.java"
+   checksum="aa4f717730d358a4294d9cf32a24a730"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="LoadingLayoutProxy.java"
+   checksum="1d2014696b61bafffc7d29ec07ec15fb"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="OverscrollHelper.java"
+   checksum="52a137380f5af8c27996c64dabbdbeb4"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="PullToRefreshBase.java"
+   checksum="51b75d0b286ff3e0cf0c8b58a0e92758"
+   last-author="liuyahui"
+   committed-rev="5443"
+   text-time="2017-02-17T01:56:47.335000Z"
+   kind="file"
+   committed-date="2017-02-17T01:56:47.335998Z"/>
+<entry
+   name="PullToRefreshScrollView.java"
+   checksum="1a76dc0e653e8666aa213d3722f73a50"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="internal"
+   kind="dir"/>
+</wc-entries>

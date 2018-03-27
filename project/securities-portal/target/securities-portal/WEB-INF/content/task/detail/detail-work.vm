@@ -1,0 +1,17 @@
+#parse("includes/header_home.vm")
+<link href="${base}/static/css/style.css" rel="stylesheet" type="text/css">
+<div class="container">
+    #parse("task/detail/navgation.vm")
+</div>
+<div class="container">
+	<div id="main">
+	    #parse("task/detail/content.vm")
+	    #parse("task/detail/work.vm")
+	</div>
+</div>
+#parse("includes/footer.vm")
+<script type="text/javascript">
+	$(function() {
+		selectTab("0");
+	});
+</script>

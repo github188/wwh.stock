@@ -1,0 +1,1832 @@
+blockquote,body,dd,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,html,img,legend,li,ol,p,ul {
+    margin: 0;
+    padding: 0
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-weight: 400
+}
+
+fieldset,img {
+    border: 0
+}
+
+address,caption,cite,code,dfn,em,th,var {
+    font-style: normal;
+    font-weight: 400
+}
+
+input,select {
+    vertical-align: middle
+}
+
+input,select,textarea {
+    font-size: 12px;
+    margin: 0
+}
+
+table {
+    border-collapse: collapse
+}
+
+body {
+    background: #fff;
+    color: #333;
+    padding: 0;
+    font: 12px/20px Arial,"宋体"
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both
+}
+
+.clearfix {
+    zoom:1}
+
+.clearit {
+    clear: both;
+    height: 10px;
+    font-size: 0;
+    overflow: hidden;
+    zoom:1}
+
+a {
+    color: #4b4b4b;
+    text-decoration: none
+}
+
+a:active,a:focus,a:hover {
+    color: red;
+    text-decoration: underline
+}
+
+.stKred {
+    color: #fe0000!important
+}
+
+.stKgreen {
+    color: #199900!important
+}
+
+.st-gray {
+    color: #7d7d7d
+}
+
+.font-wryh {
+    font-family: "微软雅黑"
+}
+
+.fl {
+    float: left
+}
+
+.click {
+    cursor: pointer
+}
+
+.fr {
+    float: right
+}
+
+.ml18 {
+    margin-left: 18px
+}
+
+.mr15 {
+    margin-right: 15px
+}
+
+.st-wrap {
+    width: 815px;
+    font-family: Arial,"宋体";
+    _overflow: hidden
+}
+
+.st-title {
+    height: 39px;
+    background-color: #f3f3f3;
+    border-bottom: #2f5895 3px solid;
+    line-height: 39px;
+    margin-bottom: 5px
+}
+
+.st-title-refresh {
+    padding-right: 20px;
+    height: 39px;
+    line-height: 39px;
+    display: block
+}
+
+.st-title-refresh em {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url(../../img/east/zxgbg.png) -72px -36px no-repeat;
+    float: left;
+    margin: 11px 2px 0 0
+}
+
+.st-title-input {
+    height: 18px;
+    border: #9d9d9d 1px solid;
+    color: #9d9d9d;
+    line-height: 18px;
+    padding: 3px;
+    outline: 0;
+    margin: -3px 0 auto 38px;
+    width: 208px
+}
+
+.st-title-button {
+    background-color: #456ea9;
+    display: inline-block;
+    width: 60px;
+    height: 25px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 25px;
+    text-align: center;
+    margin-left: 6px
+}
+
+.st-title .st-title-button,.st-title .st-title-input {
+    float: left;
+    margin-top: 6px
+}
+
+.st-title-button:hover {
+    color: #fff;
+    text-decoration: none
+}
+
+.st-title-h2 {
+    font-size: 18px;
+    margin-left: 12px
+}
+
+.st-add-collection {
+    background-color: #4171b8;
+    display: block;
+    color: #fff;
+    height: 24px;
+    width: 70px;
+    line-height: 24px;
+    position: absolute;
+    right: 0;
+    top: 4px;
+    _z-index: 99
+}
+
+.st-add-collection em {
+    float: left;
+    background: url(../../img/east/zxgbg.png) -75px -13px no-repeat;
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    margin: 8px 4px 8px 6px
+}
+
+.st-user-tab1 {
+    height: 34px;
+    border-bottom: #2f5895 1px solid;
+    line-height: 34px;
+    font-size: 14px;
+    color: #2f5895;
+    _overflow: hidden
+}
+
+.st-user-tab1 li {
+    width: 95px;
+    text-align: center;
+    float: left;
+    cursor: pointer;
+    position: relative
+}
+
+.st-user-tab1 li.cur {
+    font-weight: 700;
+    border: #2f5895 1px solid;
+    border-bottom: 0;
+    position: relative;
+    background-color: #fff;
+    line-height: 33px;
+    height: 34px
+}
+
+.st-user-tab2 {
+    height: 40px;
+    border-bottom: #bbd4e8 2px solid;
+    padding: 0 5px
+}
+
+.positionrelativemy {
+    position: relative
+}
+
+.st-user-tab2 li {
+    height: 40px;
+    line-height: 40px;
+    margin: 0 5px;
+    float: left;
+    cursor: pointer
+}
+
+.st-user-tab2 li.cur {
+    color: #ff4900;
+    background: url(../../img/east/zxgbg.png) -8px -212px no-repeat
+}
+
+.st-table-info {
+    height: 30px;
+    line-height: 30px;
+    border: #bbd4e8 1px solid;
+    border-left: 0;
+    border-right: 0;
+    padding-left: 10px;
+    margin-bottom: 10px
+}
+
+#gagagc {
+    display: none
+}
+
+.st-total-table {
+    width: 100%
+}
+
+.st-total-table td {
+    padding-left: 2px;
+    white-space: nowrap
+}
+
+.st-ht {
+    height: 30px;
+    line-height: 30px;
+    border-top: #bbd4e8 1px solid
+}
+
+.st-table {
+    _width: 815px;
+    overflow: hidden
+}
+
+.leftTable i,.rightTable i {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url(../../img/east/zxgbg.png) no-repeat;
+    position: relative;
+    top: 0;
+    cursor: pointer
+}
+
+.leftTable i.star {
+    background-position: -7px -158px
+}
+
+.leftTable i.star-on {
+    background-position: -36px -158px
+}
+
+.rightTable i.note {
+    background-position: -8px -116px
+}
+
+.rightTable i.note-on {
+    background-position: -37px -116px
+}
+
+.rightTable i.del {
+    background-position: -74px -83px
+}
+
+.leftTable i.alert,.rightTable i.alert {
+    background-position: -9px -135px
+}
+
+.leftTable i.alert-on,.rightTable i.alert-on {
+    background-position: -39px -135px
+}
+
+.st-table a {
+    color: #003299;
+    text-decoration: underline
+}
+
+.st-table th a {
+    margin-left: 5px
+}
+
+.backToMars {
+    position: absolute;
+    right: 100px
+}
+
+.st-table table {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none
+}
+
+.st-table table td {
+    border: 0;
+    height: 30px;
+    text-align: center
+}
+
+.leftTable th,.rightTable th {
+    border-bottom: #bbd4e8 1px solid;
+    height: 40px;
+    text-align: center
+}
+
+.mainTable th.k1 {
+    border-bottom: #bbd4e8 1px solid;
+    height: 40px
+}
+
+.mainTable th.k2 {
+    height: 20px;
+    text-align: center
+}
+
+.mainTable th.k3 {
+    border-bottom: #bbd4e8 1px solid;
+    height: 20px
+}
+
+.st-table table th.upsort {
+    background: url(../../img/east/updown.png) right -40px no-repeat
+}
+
+.st-table table th.downsort {
+    background: url(../../img/east/updown.png) right 15px no-repeat
+}
+
+.st-table table th i {
+    width: 9px;
+    height: 9px;
+    display: inline-block;
+    vertical-align: middle;
+    top: 0;
+    _margin-right: 5px;
+    _margin-top: 3px;
+    *zoom:1}
+
+.st-table table th i.icondownsort,.st-table table th i.iconupsort {
+    background: url(../../img/east/zxgbg.png) -96px -275px no-repeat
+}
+
+.st-table table th i.icondownsort {
+    background: url(../../img/east/zxgbg.png) -96px -220px no-repeat
+}
+
+.rightTable tr,.st-table tr {
+    background-color: #fff
+}
+
+.st-table tr.bgcolor {
+    background-color: #f5f5f5
+}
+
+.leftTable input {
+    position: relative;
+    vertical-align: top;
+    top: 1px;
+    top: -1px\9
+}
+
+@media all and (-ms-high-contrast:none) {
+    .leftTable input,::-ms-backdrop {
+        top: -1px
+    }
+}
+
+.leftTable th input {
+    margin-left: 9px
+}
+
+table.leftTable td {
+    overflow: hidden;
+    white-space: nowrap
+}
+
+table.leftTable td input {
+    margin-left: 10px
+}
+
+.st-table .st-up {
+    color: #e30000
+}
+
+.st-table .st-down {
+    color: #00712f
+}
+
+.leftTable {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 260px
+}
+
+.rightTable {
+    position: absolute;
+    right: 0;
+    top: 0;
+    _right: -1px
+}
+
+.rightTable th {
+    padding: 0 4px;
+    white-space: nowrap
+}
+
+.mainTable {
+    margin-left: 260px;
+    white-space: nowrap;
+    min-width: 760px;
+    *width: 960px;
+    z-index: 0
+}
+
+table.mainTable th {
+    padding: 0;
+    white-space: nowrap;
+    text-align: right
+}
+
+table.mainTable td {
+    padding: 0 9px 0 6px;
+    white-space: nowrap;
+    text-align: right
+}
+
+.mainTable th.up {
+    background-position: -183px -244px
+}
+
+.mainTable th.down {
+    background: -183px -235px
+}
+
+.st-single-new {
+    width: 402px;
+    border-bottom: #bbd4e8 1px solid;
+    margin-bottom: 8px
+}
+
+.st-single-new ul {
+    padding: 5px 0 9px
+}
+
+.st-single-new li {
+    padding-left: 10px;
+    height: 26px;
+    line-height: 26px;
+    display: block
+}
+
+.st-single-new li a {
+    text-decoration: underline;
+    white-space: nowrap
+}
+
+.st-single-new li span {
+    font-family: "微软雅黑"
+}
+
+.st-single-new h3 {
+    font-size: 18px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 10px;
+    border-bottom: #2f5895 2px solid;
+    font-family: "微软雅黑"
+}
+
+a.st-a-black {
+    color: #000!important;
+    margin-right: 5px;
+    display: inline-block;
+    width: 60px;
+    float: left
+}
+
+.st-a-normal {
+    color: #003299;
+    display: block;
+    margin: 0 50px 0 70px;
+    _width: 260px;
+    overflow: hidden;
+    height: 26px
+}
+
+.st-blank {
+    height: 180px;
+    line-height: 180px;
+    text-align: center;
+    font-size: 14px
+}
+
+.st-deletlots,.st-movelots {
+    border: #b2b2b2 1px solid;
+    width: 50px;
+    height: 21px;
+    display: inline-block;
+    line-height: 21px
+}
+
+.st-movelots {
+    width: 58px;
+    z-index: 99
+}
+
+.st-deletlots em,.st-movelots em {
+    display: inline-block;
+    float: left;
+    width: 12px;
+    height: 16px;
+    background: url(../../img/east/zxgbg.png) -73px -62px no-repeat;
+    margin: 3px 3px 0 4px;
+    overflow: hidden
+}
+
+.st-movelots em {
+    width: 7px;
+    height: 4px;
+    background-position: -76px -109px;
+    margin: 9px 3px 0 4px
+}
+
+.pics {
+    display: none;
+    width: 815px;
+    overflow: hidden;
+    padding: 10px 0;
+    margin: auto
+}
+
+.jmbv1,.jmbv2 {
+    height: 26px;
+    top: 9px;
+    right: 10px;
+    position: absolute;
+    line-height: 26px
+}
+
+.jmbv2 {
+    top: 0;
+    right: 10px;
+    background-color: #fff;
+    height: 34px;
+    width: 200px;
+    z-index: 108
+}
+
+#allSCollections {
+    position: absolute;
+    z-index: 2;
+    border: #a1a1a1 1px solid;
+    padding: 2px 3px;
+    right: -1px;
+    top: 21px;
+    background-color: #f2f2f2;
+    width: 170px;
+    display: none
+}
+
+#allSCollections span {
+    display: block;
+    padding: 0 6px;
+    height: 24px;
+    line-height: 24px;
+    float: left;
+    color: #003498
+}
+
+.topmoreCollectionSelect {
+    display: none;
+    position: absolute;
+    right: 127px;
+    _right: 126px;
+    height: 34px;
+    line-height: 34px;
+    z-index: 198;
+    color: #003498
+}
+
+.moreCollectionSelect {
+    position: absolute;
+    top: 34px;
+    right: 0;
+    width: 574px;
+    display: none;
+    border: #a1a1a1 1px solid;
+    padding: 2px 3px;
+    background-color: #f2f2f2;
+    z-index: 239;
+    text-align: right
+}
+
+.moreCollectionSelect span {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+    font-size: 14px;
+    color: #003498
+}
+
+.editCollection {
+    width: 95px;
+    padding: 2px 0;
+    position: absolute;
+    top: 34px;
+    border: #2f5895 1px solid;
+    border-top: 0;
+    background-color: #fff;
+    z-index: 106;
+    left: -1px;
+    display: none
+}
+
+.editCollection span {
+    display: block;
+    height: 16px;
+    line-height: 16px;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 400;
+    background: url(../../img/east/zxgbg.png) no-repeat
+}
+
+.stock-loading-div {
+    text-align: center;
+    padding: 80px 0
+}
+
+span.renameCt {
+    background-position: -180px -210px
+}
+
+span.deleteCt {
+    background-position: -180px -250px
+}
+
+#mainTableSLeft,#mainTableSRight {
+    width: 14px;
+    height: 14px;
+    background: url(../../img/east/zxgbg.png) -10px -183px no-repeat;
+    display: inline-block;
+    cursor: pointer
+}
+
+#mainTableSRight {
+    background-position: -39px -183px;
+    left: 703px
+}
+
+.myDargDivClass {
+    height: 30px;
+    width: 100%;
+    position: absolute;
+    background-color: #fff;
+    z-index: 9;
+    opacity: .6;
+    filter: alpha(opacity=60);
+    display: none;
+    overflow: hidden
+}
+
+.dropInmyStock {
+    color: #ff4900!important;
+    text-decoration: underline
+}
+
+.dropInmyStock:hover {
+    color: #ff4900;
+    text-decoration: underline
+}
+
+.mainTable th[colspan] a {
+    display: inline-block
+}
+
+.jmbv3 {
+    position: absolute;
+    left: 490px;
+    top: 10px;
+    display: none
+}
+
+.jmbv3 i {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: url(../../img/east/faq.png) no-repeat;
+    position: relative;
+    top: 2px;
+    left: 3px
+}
+
+.more-pages {
+    text-align: center;
+    height: 32px;
+    background-color: #fff;
+    border-top: #d7d7d7 1px solid;
+    color: #3669ba;
+    cursor: pointer;
+    display: none
+}
+
+.more-pages span {
+    display: inline-block;
+    padding: 0 6px;
+    border: #a7bacb 1px solid;
+    line-height: 20px;
+    margin: 5px 0 2px 5px
+}
+
+.more-pages span.cur {
+    background-color: #3669ba;
+    color: #fff
+}
+
+a.yaya-a {
+    color: #333!important;
+    text-decoration: none!important
+}
+
+a.yaya-a:hover {
+    text-decoration: none!important;
+    color: #333!important
+}
+
+.gtallw {
+    width: 1100px;
+    margin: 0 auto 20px
+}
+
+.st-meun {
+    width: 175px
+}
+
+.navi-close,.navi-open {
+    position: fixed !important;
+    margin-left: -20px;
+    display: block;
+    color: #2f5895;
+    width: 20px;
+    padding-top: 16px;
+    height: 90px;
+    font-size: 12px;
+    z-index: 99;
+    bottom: 195px;
+    _position: absolute;
+    _top: expression(documentElement.scrollTop+documentElement.clientHeight - this.offsetHeight-140);
+    text-align: center;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    cursor: pointer;
+    background: url(../../img/east/navi.png);
+    line-height: 16px
+}
+
+.navi-close {
+    background-position: 0 -106px;
+    _position: absolute;
+    _left: expression((documentElement.clientWidth-1000)/2)
+}
+
+.unnote {
+    width: 480px
+}
+
+.unnote-header {
+    line-height: 24px;
+    padding: 0 10px
+}
+
+.unnote-header h5 {
+    font-size: 14px;
+    font-weight: 700;
+    display: inline
+}
+
+.unnote-header small {
+    display: inline;
+    margin: 0 10px
+}
+
+.unnote-table {
+    width: 100%
+}
+
+.unnote-table th {
+    border-top: #40669f 2px solid;
+    border-bottom: #bbd4e8 2px solid;
+    line-height: 24px;
+    text-align: center
+}
+
+.unnote-table td {
+    text-align: center;
+    line-height: 30px
+}
+
+.unnote-table td input {
+    width: 50px
+}
+
+.unnote-btns {
+    text-align: center;
+    padding: 6px 0 12px
+}
+
+.unnote-btns span {
+    display: inline-block;
+    text-align: center;
+    height: 26px;
+    line-height: 26px;
+    background: #40669f;
+    color: #fff;
+    font-size: 14px;
+    padding: 0 20px;
+    margin: 0 6px;
+    cursor: pointer
+}
+
+.dzb * {
+    font-size: 14px!important
+}
+
+.dzml5 {
+    margin-left: 5px;
+    cursor: pointer;
+    color: #003497
+}
+
+.dzbtnSelected {
+    font-weight: 700
+}
+
+#xxxl {
+    position: absolute;
+    right: 200px;
+    top: 15px
+}
+
+.pt-title {
+    display: block;
+    background: #f3f3f3;
+    width: 200px;
+    height: 30px;
+    margin-top: 5px
+}
+
+.pt-title h3 {
+    border: #0180c1 1px solid;
+    color: #0180c1;
+    text-align: center;
+    height: 26px;
+    line-height: 26px;
+    float: left;
+    width: 86px;
+    font-size: 15px;
+    font-family: "微软雅黑";
+    margin-left: 10px;
+    position: relative;
+    _display: inline;
+    background: #fff;
+    text-decoration: none
+}
+
+.pt-title h3.cur {
+    background: #0180c1;
+    color: #fff
+}
+
+.pt-title h3 i {
+    width: 9px;
+    height: 4px;
+    display: block;
+    background: url(../../img/east/zxgbg.png) -8px -328px no-repeat;
+    position: absolute;
+    left: 37px;
+    top: 27px
+}
+
+#exChangeManage {
+    position: absolute;
+    width: 700px;
+    height: 385px;
+    left: 30%;
+    top: 130px;
+    border: solid 1px;
+    z-index: 390;
+    background: #FFF;
+    border-color: #bbd4e8
+}
+
+#exChangeTitle {
+    height: 36px;
+    background: #f2f2f2
+}
+
+#exChangeTitle .exChangeManage {
+    margin-left: 27px;
+    padding-top: 8px;
+    float: left;
+    font-size: 20px;
+    font-family: "Microsoft YaHei","微软雅黑";
+    display: inline
+}
+
+#exChangeTitle #exChangeClose {
+    float: right;
+    height: 30px;
+    width: 30px;
+    background: url(../../img/east/zxgbg.png);
+    background-position: -175px 0;
+    cursor: pointer
+}
+
+#exChangeStock {
+    height: 35px;
+    font-size: 15px;
+    margin-top: 6px
+}
+
+#exChangeStock .leftexChange {
+    float: left;
+    width: 356px;
+    margin-left: 20px;
+    margin-top: 6px
+}
+
+#exChangeStock .rightexChange {
+    float: right;
+    width: 277px;
+    margin-top: 6px
+}
+
+#exChangeList {
+    height: 24px;
+    font-size: 12px;
+    padding-left: 10px;
+    margin-top: 3px
+}
+
+#exChangeList span {
+    margin-left: 37px;
+    letter-spacing: -2px
+}
+
+#exChangeInput {
+    height: 22px;
+    font-size: 12px;
+    margin-left: 24px;
+    margin-top: 6px
+}
+
+#exChangeInput input {
+    margin-left: 11px
+}
+
+#exChangeNote {
+    position: absolute;
+    margin-top: 35px;
+    margin-left: 40px;
+    font-size: 14px;
+    zoom:1}
+
+#exChangeNote .exChangeNote {
+    float: left
+}
+
+#exChangeNote .exChangewrite {
+    margin-left: 425px
+}
+
+#exChangeNote textarea {
+    width: 615px;
+    margin-top: 10px;
+    height: 100px;
+    border: solid 1px #bbd4e8;
+    padding-left: 5px;
+    overflow: auto;
+    resize: none;
+    clear: both;
+    font-size: 12px
+}
+
+#saveExChange {
+    height: 23px;
+    width: 64px;
+    margin-top: 14px;
+    margin-left: 160px;
+    text-align: center;
+    background: #40669F;
+    cursor: pointer;
+    color: #FFF;
+    padding-top: 5px;
+    float: left;
+    display: inline
+}
+
+#closeExChange {
+    height: 23px;
+    width: 64px;
+    margin-top: 14px;
+    margin-right: 170px;
+    text-align: center;
+    background: #40669F;
+    cursor: pointer;
+    color: #FFF;
+    padding-top: 5px;
+    float: right;
+    display: inline
+}
+
+#closeExChange:hover,#saveExChange:hover {
+    background-color: #6D97CD
+}
+
+#exChangeTips {
+    position: absolute;
+    display: none;
+    width: 100%;
+    line-height: 26px
+}
+
+#exChangeTips span {
+    margin-top: 8px;
+    font-size: 12px;
+    margin-left: 569px;
+    color: red
+}
+
+#SelectOption {
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+    width: 208px;
+    margin-top: 1px;
+    border: solid 1px grey;
+    background: #f2f2f2
+}
+
+#exChangeManage .groupClass {
+    width: 68px;
+    height: 29px;
+    text-align: center;
+    font-size: 12px;
+    overflow: hidden;
+    border-top-style: none;
+    cursor: pointer;
+    float: left;
+    color: #003497
+}
+
+#exChangeManage input {
+    margin-top: 11px
+}
+
+#exChangeManage .hr3 {
+    height: 3px;
+    background-color: #40669F;
+    line-height: 3px;
+    clear: both;
+    display: block;
+    overflow: hidden
+}
+
+#exChangeManage .hr {
+    height: 2px;
+    background-color: #40669F;
+    line-height: 1px;
+    clear: both;
+    display: block;
+    overflow: hidden
+}
+
+#exChangeManage .hr1 {
+    height: 2px;
+    background-color: #bbd4e8;
+    line-height: 2px;
+    clear: both;
+    display: block;
+    overflow: hidden
+}
+
+#exChangeManage .leftexChange .big {
+    font-size: 15px;
+    font-weight: 800
+}
+
+#exChangeManage .leftexChange .small,.exChangewrite,.rightexChange .small {
+    font-size: 13px
+}
+
+#exChangeStock span {
+    margin-left: 3px
+}
+
+#exChangeManage table thead tr td {
+    border-bottom: #bbd4e8 2px solid;
+    line-height: 30px;
+    padding: 0;
+    text-align: center;
+    border-collapse: collapse
+}
+
+#exChangeManage table tbody tr {
+    line-height: 30px
+}
+
+#exChangeManage .cssInput {
+    border: 1px solid #7A6F6F;
+    border: 1px solid #7A6F6F \9;
+    height: 20px;
+    height: 20px \9;
+    padding-left: 5px;
+    line-height: 20px \9;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #fff;
+    outline: 0;
+    width: 49px
+}
+
+#exChangeManage .cssInput:focus {
+    border-color: #78BAED;
+    outline: 1px solid #78BAED
+}
+
+#tixinglight {
+    position: absolute;
+    z-index: 501;
+    border: 1px solid #B1D1E6;
+    background-color: #fff
+}
+
+#tixinglight .tixingtitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    background-color: #DEEBF9;
+    padding: 8px 0 8px 12px;
+    padding-right: 40px
+}
+
+#tixinglight .tixingclose {
+    position: absolute;
+    right: 15px;
+    top: 8px;
+    width: 9px;
+    height: 9px;
+    cursor: pointer;
+    color: #33649E;
+    font-size: 18px;
+    font-family: Arial;
+    z-index: 1003
+}
+
+#tixinglight .tixingclose:hover {
+    text-decoration: underline
+}
+
+#tixinglight .tixingttab {
+    height: 34px;
+    background-color: #DEEBF9;
+    border-bottom: 1px solid #7BABEE;
+    _height: auto;
+    _padding: 34px 0
+}
+
+#tixinglight .tixingttab ul {
+    position: absolute;
+    top: 9px;
+    left: 9px
+}
+
+#tixinglight .tixingttab ul li {
+    float: left;
+    font-size: 14px;
+    padding: 0 14px;
+    height: 24px;
+    line-height: 24px;
+    color: #33649E;
+    cursor: pointer
+}
+
+#tixinglight .tixingttab ul li:hover {
+    text-decoration: underline
+}
+
+#tixinglight .tixingttab ul li.on {
+    border-left: 1px solid #7BABEE;
+    border-right: 1px solid #7BABEE;
+    border-top: 2px solid #FFAE00;
+    background-color: #fff;
+    font-weight: 700;
+    cursor: default
+}
+
+#tixinglight .tixingttab ul li.on:hover {
+    text-decoration: none
+}
+
+#tixinglight .red {
+    color: #fe0000
+}
+
+#stockalarm {
+    padding: 9px 13px;
+    width: 600px
+}
+
+#stockalarm .stockalarmbody {
+    height: 480px
+}
+
+#stockalarm .datatable {
+    border-collapse: collapse;
+    border-bottom: 2px solid #DEEBF9;
+    width: 600px
+}
+
+#stockalarm .datatable th {
+    border-bottom: 2px solid #DEEBF9;
+    text-align: center;
+    height: 25px;
+    line-height: 25px;
+    font-weight: 400;
+    overflow: hidden
+}
+
+#stockalarm .datatable td {
+    height: 29px;
+    line-height: 29px;
+    padding: 0 5px;
+    border-bottom: 1px dashed #CCC;
+    text-align: center;
+    overflow: hidden
+}
+
+#stockalarm .datatable td.l {
+    text-align: left
+}
+
+#stockalarm .datatable td.setup a {
+    color: red;
+    visibility: hidden
+}
+
+#stockalarm .stockalarmbottom {
+    position: relative;
+    width: 600px;
+    height: 33px
+}
+
+#stockalarm .stockalarmbottom .sbtext {
+    position: absolute;
+    color: red;
+    top: 12px
+}
+
+#stockalarm .alarmpager {
+    text-align: right;
+    padding-top: 8px;
+    width: 600px
+}
+
+#stockalarm .alarmpager a,#stockalarm .alarmpager span {
+    display: inline-block;
+    padding: 5px 9px;
+    margin-right: 1px
+}
+
+#stockalarm .alarmpager a:hover {
+    background-color: #9FCBF9
+}
+
+#stockalarm .alarmpager a.on {
+    display: inline-block;
+    padding: 5px 9px;
+    background-color: #9FCBF9
+}
+
+#stockalarm .alarmpager a.on:hover {
+    background-color: #9FCBF9
+}
+
+#stockalarmset {
+    padding: 0 4px;
+    width: 450px;
+    overflow: hidden
+}
+
+#stockalarmset .sastitle {
+    border-bottom: 1px solid #D9E1F6;
+    padding: 8px
+}
+
+#stockalarmset .sastitle .stockname {
+    font-size: 20px;
+    font-family: "Microsoft YaHei","??"
+}
+
+#stockalarmset .sasaset {
+    padding: 8px 25px;
+    border-bottom: 1px dashed #CCC;
+    width: 400px
+}
+
+#stockalarmset .sasaset .item {
+    padding: 8px 0
+}
+
+#stockalarmset .sasaset .item input {
+    vertical-align: middle
+}
+
+#stockalarmset .sasalarm {
+    padding: 8px 25px;
+    border-bottom: 1px solid #D9E1F6
+}
+
+#stockalarmset .sasalarm .sasalarmtitle {
+    padding: 10px 0;
+    font-weight: 700
+}
+
+#stockalarmset .sasalarm .item {
+    padding: 5px 0
+}
+
+#stockalarmset .sasalarm .item input {
+    vertical-align: middle
+}
+
+#stockalarmset .sasalarm .item label {
+    display: inline-block;
+    width: 95px;
+    margin-left: 8px
+}
+
+#stockalarmset .sasalarm .item .inty {
+    width: 70px;
+    padding: 3px
+}
+
+#stockalarmset .sasbtns {
+    padding: 15px 25px 35px;
+    width: 400px;
+    *padding-bottom: 15px
+}
+
+#stockalarmset #sasclear {
+    padding-left: 4px;
+    padding-top: 4px;
+    float: left
+}
+
+#stockalarmset .sasbtns .btnsdiv {
+    float: right
+}
+
+#stockalarmset .sasbtns button {
+    width: 63px;
+    height: 23px;
+    border: 0;
+    cursor: pointer;
+    *margin-right: 5px
+}
+
+#stockalarmset #sassubmit {
+    background-color: #467BC2;
+    color: #fff;
+    margin-right: 20px
+}
+
+#stockalarmset #sassubmit:hover {
+    background-color: #6D97CD
+}
+
+#stockalarmset #sascancel {
+    background-color: #DCDCDC;
+    color: #3F3F3F
+}
+
+#stockalarmset #sascancel:hover {
+    background-color: #B8B8B8
+}
+
+em.alarmbell {
+    display: inline-block;
+    width: 14px;
+    height: 15px;
+    background: url(http://guba.eastmoney.com/images/bg.png?v=4) no-repeat -90px -660px;
+    vertical-align: -2px;
+    *vertical-align: middle;
+    *padding-right: 4px
+}
+
+em.alarmbellno {
+    display: inline-block;
+    width: 14px;
+    height: 15px;
+    background: url(http://guba.eastmoney.com/images/bg.png?v=4) no-repeat -120px -660px;
+    vertical-align: -2px;
+    *vertical-align: middle;
+    *padding-right: 4px
+}
+
+#stocklistaddalarm {
+    display: inline-block;
+    height: 20px;
+    background: url(http://guba.eastmoney.com/images/bg.png?v=4) no-repeat -150px -660px;
+    border: 1px solid #4388E9;
+    padding-left: 19px;
+    line-height: 20px;
+    color: #007DFF;
+    padding-right: 10px;
+    cursor: pointer;
+    vertical-align: 3px
+}
+
+#tixinglight {
+    color: #333;
+    font: 12px/20px "宋体";
+    left: 450px;
+    top: 100px
+}
+
+#feedback {
+    cursor: pointer;
+    width: 18px;
+    position: fixed;
+    bottom: 212px;
+    margin-left: -20px;
+    text-align: center;
+    _position: absolute;
+    _top: expression(documentElement.scrollTop+documentElement.clientHeight - this.offsetHeight-160);
+    _left: expression((documentElement.clientWidth-1000)/2)
+}
+
+#backtop {
+    display: none;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    cursor: pointer;
+    width: 18px;
+    position: fixed;
+    bottom: 75px;
+    margin-left: -20px;
+    text-align: center;
+    _position: absolute;
+    _top: expression(documentElement.scrollTop+documentElement.clientHeight - this.offsetHeight-20);
+    _left: expression((documentElement.clientWidth-1000)/2)
+}
+
+#feedback em {
+    display: block;
+    width: 18px;
+    height: 15px;
+    background: url(../../img/east/zxgbg.png) no-repeat -8px -92px;
+    margin-bottom: 4px
+}
+
+#backtop em {
+    display: block;
+    width: 18px;
+    height: 46px;
+    background: url(../../img/east/zxgbg.png) no-repeat -7px -30px
+}
+
+#tixing {
+    width: 17px;
+    position: fixed;
+    bottom: 326px;
+    margin-left: -20px;
+    text-align: center;
+    z-index: 380;
+    _position: absolute;
+    _top: expression(documentElement.scrollTop+documentElement.clientHeight - this.offsetHeight-270);
+    _left: expression((documentElement.clientWidth-1000)/2)
+}
+
+#tixing em {
+    display: block;
+    width: 20px;
+    height: 25px;
+    background: url(../../img/east/zxgbg.png) no-repeat -8px -7px;
+    margin-bottom: 4px
+}
+
+#tixingTips {
+    position: absolute;
+    left: 18px;
+    text-align: center;
+    height: 130px;
+    width: 147px;
+    z-index: 110;
+    background: #FFF;
+    line-height: 25px;
+    border: solid 1px #003598
+}
+
+#tixingTips div {
+    cursor: pointer
+}
+
+#tixingTips .tixing {
+    cursor: pointer;
+    margin-left: 10px;
+    color: #003598
+}
+
+#tixingTips .tixingClose {
+    height: 13px;
+    width: 9px;
+    background: url(../../img/east/zxgbg.png) no-repeat;
+    cursor: pointer;
+    background-position: -75px -84px;
+    overflow: hidden;
+    margin-left: 134px
+}
+
+#tixingTips .tixingDiv {
+    width: 116px;
+    border-bottom: 1px dotted #000;
+    margin-left: 15px;
+    _margin-left: 5px
+}
+
+#loader_all_bg {
+    margin: 0;
+    padding: 0;
+    display: block;
+    background-color: #999;
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    z-index: 381
+}
+
+li,ol,ul {
+    list-style: none
+}
+
+#fixedTiXing {
+    position: absolute;
+    z-index: 500;
+    border: 1px solid #B1D1E6;
+    background-color: #fff;
+    color: #333;
+    font: 12px/20px "宋体";
+    top: 74px;
+    left: 30%
+}
+
+#fixedTiXing .fixedTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    background-color: #DEEBF9;
+    padding: 8px 0 8px 12px;
+    padding-right: 40px
+}
+
+#fixedTiXing .fixedClose {
+    position: absolute;
+    right: 15px;
+    top: 8px;
+    width: 9px;
+    height: 9px;
+    cursor: pointer;
+    color: #33649E;
+    font-size: 18px;
+    font-family: Arial;
+    z-index: 1003
+}
+
+#fixedTiXing .fixedClose:hover {
+    text-decoration: underline
+}
+
+#fixedTiXing .fixedTab {
+    height: 34px;
+    background-color: #DEEBF9;
+    border-bottom: 1px solid #7BABEE;
+    _height: auto;
+    _padding: 34px 0
+}
+
+#fixedTiXing .fixedTab ul {
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    margin: 0;
+    padding: 0
+}
+
+#fixedTiXing .fixedTab ul li {
+    float: left;
+    font-size: 14px;
+    padding: 0 14px;
+    height: 24px;
+    line-height: 24px;
+    color: #33649E;
+    cursor: pointer
+}
+
+#fixedTiXing .fixedTab ul li:hover {
+    text-decoration: underline
+}
+
+#fixedTiXing .fixedTab ul li.on {
+    border-left: 1px solid #7BABEE;
+    border-right: 1px solid #7BABEE;
+    border-top: 2px solid #FFAE00;
+    background-color: #fff;
+    font-weight: 700;
+    cursor: default
+}
+
+#fixedTiXing .fixedTab ul li.on:hover {
+    text-decoration: none
+}
+
+#fixedTable {
+    padding: 9px 13px;
+    width: 635px;
+    overflow: hidden
+}
+
+#fixedTable .fixedTablebody {
+    height: 480px
+}
+
+#fixedTable .datatable {
+    border-collapse: collapse;
+    border-bottom: 2px solid #DEEBF9;
+    width: 654px;
+    white-space: nowrap
+}
+
+#fixedTable .datatable th {
+    border-bottom: 2px solid #DEEBF9;
+    text-align: center;
+    height: 25px;
+    line-height: 25px;
+    font-weight: 400;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+#fixedTable .datatable td {
+    height: 29px;
+    line-height: 29px;
+    padding: 0 5px;
+    border-bottom: 1px dashed #CCC;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+#fixedTable .datatable td.l {
+    text-align: left
+}
+
+#fixedTable .datatable td.setup a {
+    color: red;
+    visibility: hidden
+}
+
+#fixedTable .fixedTablebottom {
+    position: relative;
+    width: 657px;
+    height: 30px
+}
+
+#fixedTable .fixedTablebottom .sbtext {
+    position: absolute;
+    color: red;
+    top: 12px
+}
+
+#fixedTable .alarmpager {
+    text-align: right;
+    padding-top: 8px;
+    width: 600px;
+    width: 428px;
+    float: right
+}
+
+#fixedTable .alarmpager span {
+    display: inline-block;
+    padding: 5px 9px;
+    margin-right: 1px
+}
+
+#fixedTable .alarmpager a:hover {
+    background-color: #9FCBF9
+}
+
+#fixedTable .alarmpager a.on {
+    display: inline-block;
+    padding: 5px 9px;
+    background-color: #9FCBF9
+}
+
+#fixedTable .alarmpager a.on:hover {
+    background-color: #9FCBF9
+}
+
+#pics .image_single {
+    width: 200px;
+    height: 190px;
+    margin-left: 48px;
+    display: inline;
+    float: left
+}
+
+#pics .image_single .btn_box img {
+    width: 61px;
+    height: 21px;
+    margin: 0 5px
+}
+
+#pics .image_single .btn_box a {
+    color: #003497;
+    cursor: pointer
+}
+
+.pages {
+    width: 100%;
+    margin: 0 auto;
+    clear: both;
+    line-height: 20px;
+    text-align: center;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none
+}
+
+.pages a {
+    cursor: pointer;
+    color: #0082cb;
+    background-color: #f5f4f4;
+    border: 1px solid #d4d3d3
+}
+
+.pages a,.pages span {
+    margin: 0 3px;
+    padding: 0 8px;
+    display: inline-block
+}
+
+.pages .box {
+    display: inline-block;
+    padding: 0 8px;
+    height: 20px;
+    line-height: 20px;
+    color: #0082cb;
+    background-color: #f5f4f4;
+    border: 1px solid #d4d3d3;
+    cursor: pointer
+}
+
+.pages .dis {
+    display: inline-block;
+    padding: 0 8px;
+    height: 20px;
+    line-height: 20px;
+    color: #939393;
+    background-color: #f5f4f4;
+    border: 1px solid #d4d3d3;
+    cursor: default;
+    text-decoration: none
+}
+
+.pages .dis:active,.pages .dis:focus,.pages .dis:hover {
+    text-decoration: none
+}
+
+.pages .acurrent {
+    margin: 0 3px;
+    padding: 0 8px;
+    display: inline-block;
+    background-color: #FFF;
+    border: 0
+}

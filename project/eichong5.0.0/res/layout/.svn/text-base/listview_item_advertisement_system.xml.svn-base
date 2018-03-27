@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_light_white"
+    android:orientation="vertical" >
+    <View 
+        android:id="@+id/listview_item_mynews_system_top"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="19dp"
+        android:background="@color/common_light_gray"
+        />
+    <ImageView 
+            android:id="@+id/im_advertisement"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:scaleType="fitXY"
+            />
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white"
+        > 
+        <TextView 
+            android:id="@+id/listview_item_mynews_system_title"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="70dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="充电装备市场将迎来大爆发"
+        	android:textColor="@color/common_black"
+        	android:paddingTop="10dp"
+        	android:paddingBottom="10dp"
+        	android:textSize="16sp"
+        	android:maxLines="2"
+			android:ellipsize="end"
+            />
+         <TextView 
+            android:id="@+id/listview_item_mynews_system_time"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+        	android:layout_height="wrap_content"
+        	android:paddingRight="20dp"
+        	android:text="10.24"
+        	android:textColor="@color/common_light_black"
+        	android:textSize="18sp"
+        	android:singleLine="true"
+            />
+        
+    </RelativeLayout>
+</LinearLayout>

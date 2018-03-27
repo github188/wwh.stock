@@ -1,0 +1,39 @@
+﻿/* slider */
+.cnBox .slider {display:block; border-bottom:1px solid #aaa; height:28px; padding:6px 0 0 20px; background-color:#FFFFFF; z-index:1; position:relative;}
+.cnBox .slider ul{ height:28px; position:absolute; top:6px; margin:0; padding:0;  left:20px; border-right:1px solid #aaa;}
+.cnBox .slider ul li{list-style:none outside none; border-color:#aaa;border-style:solid solid none; border-width:1px 0px 0px 1px; cursor:pointer; background-image:url(../images/seniormanage/liBg.png);
+    background-repeat:repeat-x; display:inline;float:left; font-size:14px; font-weight:normal; height:28px; line-height:28px;margin-left:0;overflow:hidden;padding:0 15px;}
+.cnBox .slider ul li.at{ height:28px;font-weight:bold; background-image:url(../images/seniormanage/li_atBg.png); background-repeat:repeat-x;cursor:default;}
+.cnBox .slider ul li a,
+.cnBox .slider ul li a:link{color:#333;}
+
+.maincont table.t1.scwzb {margin:-1px 0;width:471px}
+.maincont table.t1.scwzb td{height:28px;line-height:28px;}
+
+.bbsj-morelink {height:34px;line-height:34px;font-size:14px;border-left: 1px solid #BFD8EC;border-right: 1px solid #BFD8EC;border-bottom: 1px solid #BFD8EC;}
+.bbsj-morelink a:link,
+.bbsj-morelink a:visited,
+.bbsj-morelink a:hover,
+.bbsj-morelink a:active{font-size:12px;padding-right:10px;text-decoration:underline;}
+
+.bbsj-tips {height:30px;line-height:30px;padding-left:10px;}
+
+/*新版财报调用*/
+.tdnumber{text-align:right!important;padding-right:5px!important;}
+
+.maincont table.tab1.scwzb {
+    margin: -1px 0;
+    width: 471px;
+}
+.maincont table.tab1.scwzb td {
+    height: 28px;
+    line-height: 28px;
+}
+.maincont table.tab1.scwzb th {
+    height: 36px;
+    line-height: 14px;
+}
+
+.sjLink {float: left;margin-left: 10px;height: 34px;line-height: 34px;}
+.sjLink a{font-size: 13px;font-weight: bold;color: red !important;font-family:宋体;}
+.sjLink a:hover{font-size: 13px;font-weight: bold;color: red !important;font-family:宋体;}

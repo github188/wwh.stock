@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="zh-cn">
+<head>
+    <title>用户中心</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="generator" content="客客出品专业威客2.7.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/user.css" rel="stylesheet" type="text/css" id="active-style-user">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.82587500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+    <link href="${base}/static/css/style1.css" rel="stylesheet" type="text/css" id="active-style1">
+    <link href="${base}/static/css/style2.css" rel="stylesheet" type="text/css" id="active-style2">
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/model/user/addbank.js"></script>
+</head>
+<body id="user">
+
+<script src="${base}/static/js/model/user/user.js"></script>
+<script src="${base}/static/js/model/user/transaction.js"></script>
+<script>
+	base_url = '${base}';
+    citystr ='';
+    areastr = '';
+</script>
+<!-- /header -->
+    #parse("includes/member/home_manage.vm")
+<!-- nav end -->
+
+<div class="container">
+    <!-- nav-action end -->
+	<div class="payfor">
+
+<div class="payfor-money">
+<div class="alert alert-warning">
+您要支付的金额为：<strong class="money"><sub>￥</sub>$!amount <sub>元</sub></strong>
+</div>
+</div>
+<!-- payfor-money end -->
+
+<!-- payfor-progress end -->
+<div class="payfor-nav">
+<ul class="nav nav-tabs">
+  <li class="active"><a href="javascript:void(0);">支付方式</a></li>
+</ul>
+</div>
+<div class="payfor-body">
+ <form role="form" action="index.php?do=recharge&amp;cash=1000.00" method="post" class="form-horizontal" name="payForm" id="payForm" target="_blank">
+ 	<input type="hidden" name="formhash" id="formhash" value="d03921">
+<input name="cash" value="$cash" type="hidden">
+<div class="tab-content">
+  <div class="tab-pane active" id="online">
+  	<div class="payfor-selecter">
+<label style="width:200px;">
+  <input type="radio" value="yue" name="paytype"><span>余额支付（可使用余额：￥$balance）</span>
+</label>
+<label style="width:200px;">
+  <input type="radio" checked="checked" value="alipayjs" name="paytype">
+  <img src="${base}/static/images/alipayjs.gif" style="width:100px;" alt="">
+</label>
+<label style="width:200px;">
+  <input type="radio" value="weixin" name="paytype">
+  <img src="${base}/static/images/weixin.jpg" style="width:100px;height:42px;" alt="">
+</label>
+                </div>
+  </div>
+  </div>
+  	<div class="text-center mb_20">
+<button class="btn btn-primary" type="button" onclick="payTips();$('#payForm').submit();">确定，去付款</button>
+</div>
+</form></div>		
+</div>
+    <!-- content-panel end -->
+
+            </div><!-- media end -->
+        </div><!-- user-short end -->
+        <script type="text/javascript" src="${base}/static/js/model/user/account.js"></script>
+		<script >
+		function payTips(){
+	$("#payfor-progress-li-2").addClass('action');
+	tipsOp('<div  id="payTips"><p class="info">请您在新打开的页面上完成付款。<span class="text-danger">付款完成前请不要关闭此窗口。</span></p><p class="mb_20">完成付款后请根据您的情况点击下面的按钮：</p><p class="text-center"><a href="index.php?do=user&view=finance&op=details" class="btn btn-success mr_10" data-dismiss="modal">已完成付款</a><a href="index.php?do=help"  class="btn btn-danger"  data-dismiss="modal">付款遇到问题</a>	</p><p class="retry"><a href="javascript:void(0)" id="order-pay-dialog-back" class="back" data-dismiss="modal">返回选择其他支付方式</a></p></div>');
+			}
+        </script>
+    </div>
+</div>
+    #parse("includes/footer.vm")
+</body>
+</html>

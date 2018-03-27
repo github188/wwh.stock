@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/listview_area_province"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/common_white"
+    android:paddingBottom="@dimen/common_item_padding_10"
+    android:paddingTop="@dimen/common_item_padding_10"
+    android:textColor="@color/common_black"
+    android:paddingRight="@dimen/common_item_padding_20"
+   android:drawableRight="@drawable/btn_map_arrow"
+    android:textSize="16sp" >
+
+</TextView>

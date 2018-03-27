@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="https://10.9.3.100/svn/eichong"
+   revision="12952"
+   last-author="liuyahui"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/com/bm/wanma/net"
+   committed-rev="12707"
+   kind="dir"
+   committed-date="2017-10-16T02:26:18.919866Z"/>
+<entry
+   name="FunctionPictureUpload.java"
+   checksum="58f98ee35f34b87161f9b282a0b0f829"
+   last-author="liuyahui"
+   text-time="2017-03-10T07:02:01.235000Z"
+   committed-rev="6042"
+   kind="file"
+   committed-date="2017-03-10T07:02:01.235553Z"/>
+<entry
+   name="GetDataGet.java"
+   checksum="32798d65d7c777a1ac6be00ad951acac"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="GetDataPost.java"
+   checksum="429d38ce8858071a53f490e4c265cec4"
+   last-author="liuyahui"
+   text-time="2017-10-16T02:26:18.919000Z"
+   committed-rev="12707"
+   kind="file"
+   committed-date="2017-10-16T02:26:18.919866Z"/>
+<entry
+   name="HttpHelper.java"
+   checksum="8cbae9c17cd7824d337c3fb88c448b6b"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="HttpResult.java"
+   checksum="95a26fbcada90f00bfd5c8e58f1e7cef"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="HttpStringResult.java"
+   checksum="e536bbd3fa21b70c203aafe118b6cea6"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ImgBannerPictureUpload.java"
+   checksum="11b26391ad1b6720bfd2aa755e1c9f96"
+   last-author="liuyahui"
+   text-time="2017-03-01T01:29:08.076000Z"
+   committed-rev="5689"
+   kind="file"
+   committed-date="2017-03-01T01:29:08.076557Z"/>
+<entry
+   name="NetBase.java"
+   checksum="05ffe051592806ee995b715668c2a991"
+   last-author="chengmeng"
+   text-time="2017-03-08T04:09:22.877000Z"
+   committed-rev="5987"
+   kind="file"
+   committed-date="2017-03-08T04:09:22.877720Z"/>
+<entry
+   name="NetFile.java"
+   checksum="5777c86ecb156b5a910fc526422d827b"
+   last-author="chengmeng"
+   text-time="2016-12-19T02:37:21.822000Z"
+   committed-rev="4411"
+   kind="file"
+   committed-date="2016-12-19T02:37:21.822845Z"/>
+<entry
+   name="NetGet.java"
+   checksum="05178613435326fe1d321568cd1fe1d5"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="NetPost.java"
+   checksum="1386a5017922bf8d9849411fa2c93dcb"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="NetUtil.java"
+   checksum="94c5559cbb0f6884c3848b02ac204501"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="PictureUpload.java"
+   checksum="4968c2787e79708a0881fefd55e0f198"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ProgressMultiPartEntity.java"
+   checksum="f63d79f4f273a5f94b17f7b2881ca6f5"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="Protocol.java"
+   revision="13052"
+   checksum="4b74a96f041dab5dfe34aabbd4f6f59c"
+   last-author="liuyahui"
+   text-time="2017-10-21T06:05:16.648000Z"
+   committed-rev="13052"
+   kind="file"
+   committed-date="2017-10-21T06:57:50.386000Z"/>
+</wc-entries>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/com/bm/wanma/jpush"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="8692"
+   kind="dir"
+   committed-date="2017-08-01T05:10:59.180465Z"/>
+<entry
+   name="MyReceiver.java"
+   checksum="06bbf839c30e14c85c4b3f9bff9f855a"
+   last-author="liuyahui"
+   committed-rev="8692"
+   text-time="2017-08-01T05:10:59.180000Z"
+   kind="file"
+   committed-date="2017-08-01T05:10:59.180465Z"/>
+</wc-entries>

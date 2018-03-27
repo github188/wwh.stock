@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   	android:background="#50000000" 
+   	 android:clickable="true"
+    android:orientation="vertical" >
+<!-- 地图界面加载动画-透明度   -->
+ <com.bm.wanma.widget.RequstDataClipLoading
+     		android:layout_centerInParent="true"
+            android:id="@+id/customClipLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+       	 	android:paddingBottom="5dp"
+            />
+	<TextView 
+	    android:layout_below="@id/customClipLoading"
+	     android:layout_width="match_parent"  
+       	 android:layout_height="wrap_content"  
+	    android:text="数据加载中..."
+	    android:textSize="13sp"
+	    android:textColor="@color/common_light_white"
+	    android:gravity="center_horizontal"
+	    />
+</RelativeLayout>

@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>${plateInfo.plateName} _ ${name}板块 _ 资金流向明细</title>
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/master.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/default.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/layer2012.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/page_common.css">
+    <script type="text/javascript" src="${base}/static/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        var jQuery = $.noConflict();
+        var portalurl = "${portal_url}/";
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/base.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/pluginNoBind.js"></script>
+    <meta http-equiv="refresh" content="1200" />
+    <style>
+        #flash-cont {
+            min-height: 225px;
+        }
+
+        #flash-cont-1 {
+            min-height: 250px;
+        }
+
+        #flash-cont-2 {
+            min-height: 210px;
+        }
+
+        #flash-cont-3 {
+            min-height: 205px;
+        }
+
+        .blockColor {
+            float: left;
+            width: 15px;
+            height: 15px;
+            margin: 5px 5px;
+        }
+
+        .content2 {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<div id="page" class="page">
+    <div class="main">
+        <div class="framecontent">
+            <div class="linkNav">
+                <div id="Column_Navigation">
+                    <a href="${base}/">首页</a> &gt; <a href="${base}/stockeast/center/">数据中心</a> &gt; <a href="${base}/stockeast/zjlxcenter/">资金流向</a> &gt;
+                    <a href="${base}/stockeast/bkzj/list?code=GN">${name}资金流向</a> &gt;${plateInfo.plateName}${name}
+                </div>
+            </div>
+            <div class="sitebody">
+                <div class="maincont">
+                    <div class="contentBox" style="overflow: visible;">
+                        <div class="titbar" style="overflow: visible;">
+                            <b class="el"></b>
+                            <div class="tit">
+                                ${plateInfo.plateName}${name}资金流向明细
+                            </div>
+                            <div class="selector">
+                                <div id="selector">
+                                    <span class="val">更多板块资金流向 <b></b></span><span class="arr"></span>
+                                </div>
+                                <div class="pop" id="pop" style="display: none;">
+                                    <div class="pop_title">
+                                        <label id="close" class="pop_close" style="">
+                                            [×关闭]</label>
+                                        <ul id="pop-tab" class="pop_slider">
+                                            <li class="">行业</li>
+                                            <li class="at">概念</li>
+                                            <li class="">地域</li>
+                                        </ul>
+                                    </div>
+                                    <div id="pop-cont1">
+                                        <b>A</b>  <a href="/bkzj/BK0735.html">安防设备</a> <b>B</b>  <a href="/bkzj/BK0474.html">保险</a>  <a href="/bkzj/BK0546.html">玻璃陶瓷</a>  <a href="/bkzj/BK0733.html">包装材料</a> <b>C</b>  <a href="/bkzj/BK0729.html">船舶制造</a>  <a href="/bkzj/BK0537.html">材料行业</a> <b>D</b>  <a href="/bkzj/BK0738.html">多元金融</a>  <a href="/bkzj/BK0459.html">电子元件</a>  <a href="/bkzj/BK0447.html">电子信息</a>  <a href="/bkzj/BK0736.html">电信运营</a>  <a href="/bkzj/BK0428.html">电力行业</a> <b>F</b>  <a href="/bkzj/BK0451.html">房地产</a>  <a href="/bkzj/BK0436.html">纺织服装</a> <b>G</b>  <a href="/bkzj/BK0732.html">贵金属</a>  <a href="/bkzj/BK0450.html">港口水运</a>  <a href="/bkzj/BK0479.html">钢铁行业</a>  <a href="/bkzj/BK0440.html">工艺商品</a>  <a href="/bkzj/BK0427.html">公用事业</a>  <a href="/bkzj/BK0425.html">工程建设</a>  <a href="/bkzj/BK0421.html">高速公路</a>  <a href="/bkzj/BK0484.html">国际贸易</a> <b>H</b>  <a href="/bkzj/BK0728.html">环保工程</a>  <a href="/bkzj/BK0538.html">化工行业</a>  <a href="/bkzj/BK0471.html">化纤行业</a>  <a href="/bkzj/BK0480.html">航天航空</a>  <a href="/bkzj/BK0731.html">化肥行业</a> <b>J</b>  <a href="/bkzj/BK0739.html">金属制品</a>  <a href="/bkzj/BK0422.html">交运物流</a>  <a href="/bkzj/BK0545.html">机械行业</a>  <a href="/bkzj/BK0456.html">家电行业</a>  <a href="/bkzj/BK0429.html">交运设备</a> <b>L</b>  <a href="/bkzj/BK0485.html">旅游酒店</a> <b>M</b>  <a href="/bkzj/BK0420.html">民航机场</a>  <a href="/bkzj/BK0437.html">煤炭采选</a>  <a href="/bkzj/BK0476.html">木业家具</a> <b>N</b>  <a href="/bkzj/BK0477.html">酿酒行业</a>  <a href="/bkzj/BK0730.html">农药兽药</a>  <a href="/bkzj/BK0433.html">农牧饲渔</a> <b>Q</b>  <a href="/bkzj/BK0481.html">汽车行业</a>  <a href="/bkzj/BK0473.html">券商信托</a> <b>R</b>  <a href="/bkzj/BK0737.html">软件服务</a> <b>S</b>  <a href="/bkzj/BK0454.html">塑胶制品</a>  <a href="/bkzj/BK0457.html">输配电气</a>  <a href="/bkzj/BK0482.html">商业百货</a>  <a href="/bkzj/BK0438.html">食品饮料</a>  <a href="/bkzj/BK0464.html">石油行业</a>  <a href="/bkzj/BK0424.html">水泥建材</a> <b>T</b>  <a href="/bkzj/BK0448.html">通讯行业</a> <b>W</b>  <a href="/bkzj/BK0486.html">文化传媒</a>  <a href="/bkzj/BK0740.html">文教休闲</a> <b>Y</b>  <a href="/bkzj/BK0475.html">银行</a>  <a href="/bkzj/BK0478.html">有色金属</a>  <a href="/bkzj/BK0458.html">仪器仪表</a>  <a href="/bkzj/BK0465.html">医药制造</a>  <a href="/bkzj/BK0726.html">园林工程</a>  <a href="/bkzj/BK0727.html">医疗行业</a> <b>Z</b>  <a href="/bkzj/BK0539.html">综合行业</a>  <a href="/bkzj/BK0470.html">造纸印刷</a>  <a href="/bkzj/BK0910.html">专用设备</a>  <a href="/bkzj/BK0725.html">装修装饰</a>  <a href="/bkzj/BK0734.html">珠宝首饰</a>
+                                    </div>
+                                    <div id="pop-cont2" style="display: none;">
+                                        <b>A</b>  <a href="/bkzj/BK0689.html">阿里概念</a>  <a href="/bkzj/BK0498.html">AB股</a>  <a href="/bkzj/BK0499.html">AH股</a> <b>B</b>  <a href="/bkzj/BK0629.html">北斗导航</a>  <a href="/bkzj/BK0812.html">贬值受益</a>  <a href="/bkzj/BK0675.html">病毒防治</a>  <a href="/bkzj/BK0566.html">滨海新区</a>  <a href="/bkzj/BK0636.html">B股</a>  <a href="/bkzj/BK0717.html">北京冬奥</a> <b>C</b>  <a href="/bkzj/BK0679.html">超导概念</a>  <a href="/bkzj/BK0920.html">车联网</a>  <a href="/bkzj/BK0525.html">参股银行</a>  <a href="/bkzj/BK0506.html">创投</a>  <a href="/bkzj/BK0501.html">次新股</a>  <a href="/bkzj/BK0671.html">彩票概念</a>  <a href="/bkzj/BK0524.html">参股期货</a>  <a href="/bkzj/BK0583.html">触摸屏</a>  <a href="/bkzj/BK0811.html">超级品牌</a>  <a href="/bkzj/BK0514.html">参股券商</a>  <a href="/bkzj/BK0604.html">参股保险</a>  <a href="/bkzj/BK0700.html">充电桩</a>  <a href="/bkzj/BK0534.html">成渝特区</a>  <a href="/bkzj/BK0638.html">创业成份</a>  <a href="/bkzj/BK0950.html">草甘膦</a>  <a href="/bkzj/BK0703.html">超级电容</a>  <a href="/bkzj/BK0584.html">CDM项目</a> <b>D</b>  <a href="/bkzj/BK0634.html">大数据</a>  <a href="/bkzj/BK0676.html">独家药品</a>  <a href="/bkzj/BK0540.html">迪士尼</a>  <a href="/bkzj/BK0619.html">3D打印</a>  <a href="/bkzj/BK0553.html">低碳经济</a>  <a href="/bkzj/BK0716.html">大金融</a>  <a href="/bkzj/BK0587.html">大订单</a>  <a href="/bkzj/BK0622.html">地热能</a>  <a href="/bkzj/BK0870.html">单抗概念</a>  <a href="/bkzj/BK0665.html">电商概念</a>  <a href="/bkzj/BK0881.html">3D玻璃</a> <b>E</b>  <a href="/bkzj/BK0664.html">二胎概念</a> <b>F</b>  <a href="/bkzj/BK0526.html">分拆上市</a>  <a href="/bkzj/BK0690.html">氟化工</a>  <a href="/bkzj/BK0595.html">风能</a>  <a href="/bkzj/BK0741.html">钒电池</a>  <a href="/bkzj/BK0720.html">福州新区</a> <b>G</b>  <a href="/bkzj/BK0723.html">高送转</a>  <a href="/bkzj/BK0807.html">共享经济</a>  <a href="/bkzj/BK0803.html">股权转让</a>  <a href="/bkzj/BK0491.html">高校</a>  <a href="/bkzj/BK0639.html">4G概念</a>  <a href="/bkzj/BK0810.html">工业4.0</a>  <a href="/bkzj/BK0891.html">国产芯片</a>  <a href="/bkzj/BK0567.html">股权激励</a>  <a href="/bkzj/BK0696.html">国产软件</a>  <a href="/bkzj/BK0713.html">2025规划</a>  <a href="/bkzj/BK0714.html">5G概念</a>  <a href="/bkzj/BK0667.html">国家安防</a>  <a href="/bkzj/BK0683.html">国企改革</a> <b>H</b>  <a href="/bkzj/BK0623.html">海洋经济</a>  <a href="/bkzj/BK0500.html">HS300_</a>  <a href="/bkzj/BK0724.html">海绵城市</a>  <a href="/bkzj/BK0572.html">海峡西岸</a>  <a href="/bkzj/BK0585.html">合同能源</a>  <a href="/bkzj/BK0607.html">互联网</a>  <a href="/bkzj/BK0637.html">互联金融</a>  <a href="/bkzj/BK0601.html">海工装备</a>  <a href="/bkzj/BK0687.html">黄金水道</a>  <a href="/bkzj/BK0702.html">沪港通</a>  <a href="/bkzj/BK0672.html">沪企改革</a>  <a href="/bkzj/BK0715.html">航母概念</a>  <a href="/bkzj/BK0577.html">核能核电</a>  <a href="/bkzj/BK0707.html">沪股通</a>  <a href="/bkzj/BK0547.html">黄金概念</a>  <a href="/bkzj/BK0512.html">化工原料</a> <b>I</b>  <a href="/bkzj/BK0697.html">IPO受益</a>  <a href="/bkzj/BK0598.html">IPV6</a> <b>J</b>  <a href="/bkzj/BK0536.html">基金重仓</a>  <a href="/bkzj/BK0806.html">精准医疗</a>  <a href="/bkzj/BK0552.html">机构重仓</a>  <a href="/bkzj/BK0605.html">金融改革</a>  <a href="/bkzj/BK0808.html">军民融合</a>  <a href="/bkzj/BK0719.html">健康中国</a>  <a href="/bkzj/BK0685.html">举牌概念</a>  <a href="/bkzj/BK0561.html">基本金属</a>  <a href="/bkzj/BK0684.html">京津冀</a>  <a href="/bkzj/BK0694.html">金融机具</a>  <a href="/bkzj/BK0494.html">节能环保</a>  <a href="/bkzj/BK0693.html">基因测序</a>  <a href="/bkzj/BK0490.html">军工</a> <b>K</b>  <a href="/bkzj/BK0990.html">快递概念</a>  <a href="/bkzj/BK0820.html">壳资源</a> <b>L</b>  <a href="/bkzj/BK0710.html">量子通信</a>  <a href="/bkzj/BK0674.html">蓝宝石</a>  <a href="/bkzj/BK0580.html">LED</a>  <a href="/bkzj/BK0574.html">锂电池</a> <b>M</b>  <a href="/bkzj/BK0660.html">民营医院</a>  <a href="/bkzj/BK0698.html">免疫治疗</a>  <a href="/bkzj/BK0652.html">民营银行</a>  <a href="/bkzj/BK0626.html">美丽中国</a>  <a href="/bkzj/BK0492.html">煤化工</a> <b>N</b>  <a href="/bkzj/BK0618.html">宁波</a> <b>O</b>  <a href="/bkzj/BK0840.html">OLED</a> <b>P</b>  <a href="/bkzj/BK0721.html">PPP模式</a>  <a href="/bkzj/BK0666.html">苹果概念</a>  <a href="/bkzj/BK0608.html">PM2.5</a> <b>Q</b>  <a href="/bkzj/BK0535.html">QFII重仓</a>  <a href="/bkzj/BK0711.html">券商概念</a>  <a href="/bkzj/BK0630.html">前海概念</a>  <a href="/bkzj/BK0830.html">区块链</a>  <a href="/bkzj/BK0699.html">全息技术</a> <b>R</b>  <a href="/bkzj/BK0682.html">燃料电池</a>  <a href="/bkzj/BK0800.html">人工智能</a>  <a href="/bkzj/BK0596.html">融资融券</a>  <a href="/bkzj/BK0706.html">人脑工程</a> <b>S</b>  <a href="/bkzj/BK0597.html">水利建设</a>  <a href="/bkzj/BK0616.html">三沙概念</a>  <a href="/bkzj/BK0520.html">社保重仓</a>  <a href="/bkzj/BK0930.html">深港通</a>  <a href="/bkzj/BK0657.html">水域改革</a>  <a href="/bkzj/BK0568.html">深成500</a>  <a href="/bkzj/BK0804.html">深股通</a>  <a href="/bkzj/BK0642.html">手游概念</a>  <a href="/bkzj/BK0549.html">深圳特区</a>  <a href="/bkzj/BK0654.html">丝绸之路</a>  <a href="/bkzj/BK0573.html">三网融合</a>  <a href="/bkzj/BK0548.html">生物疫苗</a>  <a href="/bkzj/BK0970.html">生物识别</a>  <a href="/bkzj/BK0633.html">送转预期</a>  <a href="/bkzj/BK0624.html">涉矿概念</a>  <a href="/bkzj/BK0611.html">上证50_</a>  <a href="/bkzj/BK0541.html">三通概念</a>  <a href="/bkzj/BK0617.html">石墨烯</a>  <a href="/bkzj/BK0614.html">食品安全</a>  <a href="/bkzj/BK0669.html">生态农业</a>  <a href="/bkzj/BK0673.html">三旧改造</a>  <a href="/bkzj/BK0507.html">数字电视</a>  <a href="/bkzj/BK0511.html">ST概念</a>  <a href="/bkzj/BK0705.html">上证380</a>  <a href="/bkzj/BK0503.html">S股</a>  <a href="/bkzj/BK0643.html">上海自贸</a>  <a href="/bkzj/BK0709.html">赛马概念</a>  <a href="/bkzj/BK0612.html">上证180_</a>  <a href="/bkzj/BK0686.html">生命人寿</a> <b>T</b>  <a href="/bkzj/BK0625.html">通用航空</a>  <a href="/bkzj/BK0681.html">腾安价值</a>  <a href="/bkzj/BK0632.html">土地流转</a>  <a href="/bkzj/BK0592.html">铁路基建</a>  <a href="/bkzj/BK0644.html">特斯拉</a>  <a href="/bkzj/BK0588.html">太阳能</a>  <a href="/bkzj/BK0805.html">钛白粉</a>  <a href="/bkzj/BK0586.html">图们江</a>  <a href="/bkzj/BK0708.html">体育产业</a> <b>W</b>  <a href="/bkzj/BK0655.html">网络安全</a>  <a href="/bkzj/BK0940.html">网红直播</a>  <a href="/bkzj/BK0960.html">无线充电</a>  <a href="/bkzj/BK0659.html">王亚伟系</a>  <a href="/bkzj/BK0509.html">网络游戏</a>  <a href="/bkzj/BK0802.html">无人驾驶</a>  <a href="/bkzj/BK0554.html">物联网</a>  <a href="/bkzj/BK0589.html">皖江区域</a>  <a href="/bkzj/BK0704.html">无人机</a> <b>X</b>  <a href="/bkzj/BK0900.html">新能源车</a>  <a href="/bkzj/BK0523.html">新材料</a>  <a href="/bkzj/BK0519.html">稀缺资源</a>  <a href="/bkzj/BK0722.html">虚拟现实</a>  <a href="/bkzj/BK0600.html">新三板</a>  <a href="/bkzj/BK0695.html">小金属</a>  <a href="/bkzj/BK0590.html">西部开发</a>  <a href="/bkzj/BK0578.html">稀土永磁</a>  <a href="/bkzj/BK0493.html">新能源</a> <b>Y</b>  <a href="/bkzj/BK0603.html">页岩气</a>  <a href="/bkzj/BK0563.html">油价相关</a>  <a href="/bkzj/BK0668.html">医疗器械</a>  <a href="/bkzj/BK0556.html">移动支付</a>  <a href="/bkzj/BK0677.html">粤港自贸</a>  <a href="/bkzj/BK0570.html">预亏预减</a>  <a href="/bkzj/BK0712.html">一带一路</a>  <a href="/bkzj/BK0571.html">预盈预增</a>  <a href="/bkzj/BK0663.html">油改概念</a>  <a href="/bkzj/BK0653.html">养老概念</a>  <a href="/bkzj/BK0579.html">云计算</a>  <a href="/bkzj/BK0606.html">油气设服</a>  <a href="/bkzj/BK0610.html">央视50_</a> <b>Z</b>  <a href="/bkzj/BK0628.html">智慧城市</a>  <a href="/bkzj/BK0656.html">智能电视</a>  <a href="/bkzj/BK0718.html">证金持股</a>  <a href="/bkzj/BK0882.html">猪肉概念</a>  <a href="/bkzj/BK0701.html">中证500</a>  <a href="/bkzj/BK0980.html">债转股</a>  <a href="/bkzj/BK0528.html">转债标的</a>  <a href="/bkzj/BK0692.html">在线旅游</a>  <a href="/bkzj/BK0505.html">中字头</a>  <a href="/bkzj/BK0641.html">智能穿戴</a>  <a href="/bkzj/BK0680.html">智能家居</a>  <a href="/bkzj/BK0593.html">长株潭</a>  <a href="/bkzj/BK0609.html">中韩自贸</a>  <a href="/bkzj/BK0635.html">中超概念</a>  <a href="/bkzj/BK0801.html">增强现实</a>  <a href="/bkzj/BK0581.html">智能电网</a>  <a href="/bkzj/BK0594.html">长江三角</a>  <a href="/bkzj/BK0613.html">舟山群岛</a>  <a href="/bkzj/BK0662.html">在线教育</a>  <a href="/bkzj/BK0640.html">智能机器</a>  <a href="/bkzj/BK0615.html">中药</a>
+                                    </div>
+                                    <div id="pop-cont3" style="display: none;">
+                                        <b>A</b>  <a href="/bkzj/BK0149.html">安徽板块</a> <b>B</b>  <a href="/bkzj/BK0150.html">北京板块</a> <b>C</b>  <a href="/bkzj/BK0170.html">重庆板块</a> <b>F</b>  <a href="/bkzj/BK0151.html">福建板块</a> <b>G</b>  <a href="/bkzj/BK0153.html">广东板块</a>  <a href="/bkzj/BK0152.html">甘肃板块</a>  <a href="/bkzj/BK0154.html">广西板块</a>  <a href="/bkzj/BK0173.html">贵州板块</a> <b>H</b>  <a href="/bkzj/BK0146.html">黑龙江</a>  <a href="/bkzj/BK0158.html">湖南板块</a>  <a href="/bkzj/BK0157.html">湖北板块</a>  <a href="/bkzj/BK0155.html">河北板块</a>  <a href="/bkzj/BK0156.html">河南板块</a>  <a href="/bkzj/BK0176.html">海南板块</a> <b>J</b>  <a href="/bkzj/BK0148.html">吉林板块</a>  <a href="/bkzj/BK0160.html">江西板块</a>  <a href="/bkzj/BK0159.html">江苏板块</a> <b>L</b>  <a href="/bkzj/BK0161.html">辽宁板块</a> <b>N</b>  <a href="/bkzj/BK0162.html">宁夏板块</a>  <a href="/bkzj/BK0175.html">内蒙古</a> <b>Q</b>  <a href="/bkzj/BK0163.html">青海板块</a> <b>S</b>  <a href="/bkzj/BK0165.html">陕西板块</a>  <a href="/bkzj/BK0169.html">四川板块</a>  <a href="/bkzj/BK0167.html">山西板块</a>  <a href="/bkzj/BK0145.html">上海板块</a>  <a href="/bkzj/BK0164.html">山东板块</a> <b>T</b>  <a href="/bkzj/BK0166.html">天津板块</a> <b>X</b>  <a href="/bkzj/BK0147.html">新疆板块</a>  <a href="/bkzj/BK0174.html">西藏板块</a> <b>Y</b>  <a href="/bkzj/BK0171.html">云南板块</a> <b>Z</b>  <a href="/bkzj/BK0172.html">浙江板块</a>
+                                    </div>
+                                    <script type="text/javascript">
+                                        tiny.tabSliding("pop-tab", "li", "at", "pop-cont", "mouseover")
+                                    </script>
+                                </div>
+                                <div>
+                                </div>
+                            </div>
+                            <div class="more_search">
+                                <img src="${base}/static/img/east/btn_search_blue.gif" alt="查询" title="查询">
+                            </div>
+                            <div class="search" style="float: left;">
+                                <span class="txt">个股资金流向：</span>
+                                <input class="sinput" name="zjlx_bar" id="zjlx_bar" type="text" />
+                                <div onclick="javascript:ggzl_search('zjlx_bar')" class="btn" style="border: none;">
+                                    <img src="${base}/static/img/east/btn_search_blue.gif" title="查询" />
+                                </div>
+                            </div>
+
+                            <script type="text/javascript">
+                                var zz = new StockSuggest("zjlx_bar", {
+                                    text: "输代码、名称或拼音",
+                                    type: "ABSTOCK",
+                                    autoSubmit: false,
+                                    width: 190,
+                                    header: ["选项", "代码", "名称", "类型"],
+                                    body: [-1, 1, 4, -2],
+                                    callback: function (ag) {
+                                        var url = '${base}/stockeast/zjlx/detail?code=' + ag.code;
+                                        window.open(url);
+                                    }
+                                });
+                                function ggzl_search(bb) {
+                                    var s1 = document.getElementById(bb).value;
+                                    var s = escape(s1);
+                                    if (s1 == "输代码、名称或拼音" || s1 == "" || isNaN(parseInt(s1)) || s1.length != 6) {
+                                        alert("请输入所查询股票的代码！");
+                                        return false;
+                                    } else {
+                                        var url = '${base}/stockeast/zjlx/detail?code=' + s1;
+                                        window.open(url);
+                                    }
+                                }
+                                function getMarket(StockCode) {
+                                    var i = StockCode.substring(0, 1);
+                                    var j = StockCode.substring(0, 3);
+                                    if (i == "5" || i == "6" || i == "9") {
+                                        return "sh";
+                                    } else {
+                                        if (j == "009" || j == "126" || j == "110") {
+                                            return "sh";
+                                        } else {
+                                            return "sz";
+                                        }
+                                    }
+                                };
+                            </script>
+                        </div>
+                        <div class="sepe">
+                            <div class="left">
+                            </div>
+                            <div class="right">
+                            </div>
+                        </div>
+                        <div class="contentBox" style="border-top: 0; margin-top: -10px;">
+                            <table cellpadding="0" cellspacing="0" class="t2 ns2">
+                                <tr class="tgtb_head">
+                                    <td style="width: 11%">板块名称</td>
+                                    <td style="width: 15%">相关资料</td>
+                                    <td style="width: 11%">涨跌幅</td>
+
+                                    <td style="width: 11%">换手率</td>
+                                    <td style="width: 10%">上涨家数</td>
+                                    <td style="width: 10%">下跌家数</td>
+                                    <td style="width: 10%">领涨股票</td>
+                                    <td style="width: 10%">涨跌幅</td>
+                                </tr>
+                                <tr class="tgtb_data" id="tgtb_data">
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="s6">
+                    </div>
+                    <div class="c1">
+                        <div class="contentBox content1 zjlx">
+                            <div class="titbar shortbar">
+                                <div class="tit">
+                                    实时资金流向图
+                                </div>
+                                <div class="right-tips">
+                                    更新时间 <span id="updateTime_0"></span>
+                                </div>
+                            </div>
+                            <div class="content2">
+                                <div class="flash-dw">
+                                    单位（万元）
+                                </div>
+                                <div class="jsline-cont" id="flash-cont">
+                                </div>
+                                <div class="flash-data-cont flash-data-cont-line">
+                                    <ul style="margin-left: 10px;">
+                                        <li class="data-type" style="width: 150px;"><span class="blockColor" style="background-color: #FE3EE1;"></span>今日主力净流入：</li>
+                                        <li class="data-val" style="width: 120px;"><span id="data_jlr" class=""></span>万元</li>
+                                        <li class="data-val">主力净比：<span id="data_jzb" class=""></span></li>
+                                    </ul>
+                                    <ul style="margin-left: 10px;">
+                                        <li class="data-type" style="width: 150px;"><span class="blockColor" style="background-color: #650000;"></span>今日超大单净流入：</li>
+                                        <li class="data-val" style="width: 120px;"><span id="data_superjlr" class=""></span>万元</li>
+                                        <li class="data-val">超大单净比：<span id="data_superjzb" class=""></span></li>
+                                    </ul>
+                                    <ul style="margin-left: 10px;">
+                                        <li class="data-type" style="width: 150px;"><span class="blockColor" style="background-color: #FF1117;"></span>今日大单净流入：</li>
+                                        <li class="data-val" style="width: 120px;"><span id="data_ddjlr" class=""></span>万元</li>
+                                        <li class="data-val">大单净比：<span id="data_ddjzb" class=""></span></li>
+                                    </ul>
+                                    <ul style="margin-left: 10px;">
+                                        <li class="data-type" style="width: 150px;"><span class="blockColor" style="background-color: #FFB83D;"></span>今日中单净流入：</li>
+                                        <li class="data-val" style="width: 120px;"><span id="data_zdjlr" class=""></span>万元</li>
+                                        <li class="data-val">中单净比：<span id="data_zdjzb" class=""></span></li>
+                                    </ul>
+                                    <ul style="margin-left: 10px;">
+                                        <li class="data-type" style="width: 150px;"><span class="blockColor" style="background-color: #94C4EE;"></span>今日小单净流入：</li>
+                                        <li class="data-val" style="width: 120px;"><span id="data_xdjlr" class=""></span>万元</li>
+                                        <li class="data-val">小单净比：<span id="data_xdjzb" class=""></span></li>
+                                    </ul>
+                                </div>
+                                <script type="text/javascript">
+                                    // <![CDATA[
+                                    var url = location.href;
+                                    var swf_line = "http://g1.dfcfw.com/g1/201012/20101214085507.swf";
+                                    var swf_pie = "http://g1.dfcfw.com/g1/201104/20110412125826.swf";
+                                    var swf_column = "http://g1.dfcfw.com/g1/201104/20110412130313.swf";
+
+                                    //var data_baseurl = "http://dataapi.eastmoney.com/bkzj/";
+                                    var data_baseurl = "http://s1.dfcfw.com/";
+                                    var time_stamp = Math.floor((new Date().getTime()) / 60000);
+                                    // ]]>
+                                </script>
+                            </div>
+                        </div>
+
+                        <div class="contentBox content1 second_zjlx">
+                            <div class="titbar shortbar">
+                                <div class="tit">
+                                    盘后资金流向趋势
+                                </div>
+                                <div class="right-tips">
+                                    更新时间&nbsp;<span id="lsdatetime1"></span>
+                                    16:05
+                                </div>
+                            </div>
+                            <div class="content2">
+                                <div class="flash-dw">
+                                    单位（万元）
+                                </div>
+                                <div id="flash-cont-2" class="jsline-cont">
+                                </div>
+                                <div class="flash-data-cont">
+                                    <ul style="margin-left: 10px;">
+                                        <li class="data-type" style="width: 120px;"><span class="blockColor" style="background-color: #FE3EE1;"></span>主力净流入</li>
+                                        <li class="data-type" style="width: 120px;"><span class="blockColor" style="background-color: #650000;"></span>超大单净流入</li>
+                                        <li class="data-type" style="width: 120px;"><span class="blockColor" style="background-color: #FF1117;"></span>大单净流入</li>
+                                    </ul>
+                                    <ul style="margin-left: 10px;">
+                                        <li class="data-type" style="width: 120px;"><span class="blockColor" style="background-color: #FFB83D;"></span>中单净流入</li>
+                                        <li class="data-type" style="width: 120px;"><span class="blockColor" style="background-color: #94C4EE;"></span>小单净流入</li>
+                                    </ul>
+                                </div>
+                                <script type='text/javascript'>
+
+                                </script>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c2">
+                        <div class="contentBox content1 zjlx">
+                            <div class="titbar shortbar">
+                                <div class="tit">
+                                    实时成交分布图
+                                </div>
+                                <div class="right-tips" style="float: right;">
+                                    更新时间 <span id="updateTime_1"></span>
+                                </div>
+                            </div>
+                            <div class="content2">
+                                <div id="flash-cont-1" class="jsline-cont">
+                                </div>
+                                <script type="text/javascript">
+                                    // <![CDATA[
+
+                                    // ]]>
+                                </script>
+                                <div class="flash-legendrt" style="height: 120px;">
+                                    <table cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <th width="20%">类型
+                                            </th>
+                                            <th>流入
+                                            </th>
+                                            <th>流出
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>超大单
+                                            </td>
+                                            <td>
+                                                <span id="data_superlr" class="red"></span>万元
+                                            </td>
+                                            <td>
+                                                <span id="data_superlc" class="green"></span>万元
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>大单
+                                            </td>
+                                            <td>
+                                                <span id="data_ddlr" class="red"></span>万元
+                                            </td>
+                                            <td>
+                                                <span id="data_ddlc" class="green"></span>万元
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>中单
+                                            </td>
+                                            <td>
+                                                <span id="data_zdlr" class="red"></span>万元
+                                            </td>
+                                            <td>
+                                                <span id="data_zdlc" class="green"></span>万元
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>小单
+                                            </td>
+                                            <td>
+                                                <span id="data_xdlr" class="red"></span>万元
+                                            </td>
+                                            <td>
+                                                <span id="data_xdlc" class="green"></span>万元
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contentBox content1 second_zjlx">
+                            <div class="titbar shortbar">
+                                <div class="tit">
+                                    盘后资金流向统计
+                                </div>
+                                <div class="right-tips">
+                                    更新时间&nbsp;<span id="lsdatetime2"></span>
+                                    16:05
+                                </div>
+                            </div>
+                            <div class="content2">
+                                <div class="flash-dw" style="position: relative;">
+                                    单位（万元）
+
+                                </div>
+                                <div id="flash-cont-3">
+                                </div>
+
+                                <div style="text-align: center; height: 25px; margin: 10px 0;">
+                                    <div>
+                                        <div style="margin-bottom: 10px;">
+                                            <span style="height: 15px; width: 15px; background-color: #FE3EE1;">&nbsp;&nbsp;</span>&nbsp;主力净流入
+                                            <span style="height: 15px; width: 15px; margin-left: 10px; background-color: #650000;">&nbsp;&nbsp;</span>&nbsp;超大单净流入
+                                            <span style="height: 15px; width: 15px; margin-left: 10px; background-color: #FF1117;">&nbsp;&nbsp;</span>&nbsp;大单净流入
+                                        </div>
+                                        <div>
+                                            <span style="height: 15px; width: 15px; background-color: #FFB83D;">&nbsp;&nbsp;</span>&nbsp;中单净流入
+                                            <span style="height: 15px; width: 15px; margin-left: 10px; background-color: #94C4EE;">&nbsp;&nbsp;</span>&nbsp;小单净流入
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s6">
+                    </div>
+                </div>
+                <div class="maincont" id="datatitle">
+                    <div class="c100">
+                        <div class="catemk">
+                            <ul id="s1-tab">
+                                <li class="at" style="width: 180px;">${plateInfo.plateName}个股资金流</li>
+                                <li style="width: 180px;">${name}历史资金流</li>
+                            </ul>
+                        </div>
+                        <div id="s1-cont1">
+                            <div class="content2" id="zzdiv">
+                                <div class="cateday">
+                                    <ul id="mk_type">
+                                        <li data="DCFFITA" style="width: 150px;">今日排行</li>
+                                        <li data="DCFFITA5" style="width: 150px;">5日排行</li>
+                                        <li data="DCFFITA10" style="width: 150px;">10日排行</li>
+                                    </ul>
+                                </div>
+                                <table cellpadding="0" cellspacing="0" class="tab1" id="dt_1">
+                                    <thead class="h101">
+                                    <tr>
+                                        <th>加载中......
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="PageNav" class="PageNav" style="display: none;">
+                                <div class="Page" id="PageCont">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cont" id="s1-cont2" style="display: none;">
+                            <table id="tb_lishi" class="tab1" cellpadding="0" cellspacing="0" style="width: 100%;">
+                                <thead class="h101">
+                                <tr>
+                                    <th rowspan="2">日期
+                                    </th>
+                                    <th colspan="2">主力净流入
+                                    </th>
+                                    <th colspan="2">超大单净流入
+                                    </th>
+                                    <th colspan="2">大单净流入
+                                    </th>
+                                    <th colspan="2">中单净流入
+                                    </th>
+                                    <th colspan="2">小单净流入
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>净额
+                                    </th>
+                                    <th>净占比
+                                    </th>
+                                    <th>净额
+                                    </th>
+                                    <th>净占比
+                                    </th>
+                                    <th>净额
+                                    </th>
+                                    <th>净占比
+                                    </th>
+                                    <th>净额
+                                    </th>
+                                    <th>净占比
+                                    </th>
+                                    <th>净额
+                                    </th>
+                                    <th>净占比
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        tiny.tabSliding("s1-tab", "li", "at", "s1-cont", "mouseover")
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript" src="${base}/static/js/east/qphf.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/emcharts.min.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/BkzjlSelector.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/load_table_data.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/fn_zjlx.js"></script>
+
+    <script type="text/javascript">
+        var phzjtj={"d5zljsr":34613.0000,"d5cddjlr":58221.0016,"d5ddjlr":-23608.0016,"d5zdjlr":-42674.6640,"d5xdjlr":8061.6608,"d20zljsr":-254351.1049,"d20cddjlr":-82777.4505,"d20ddjlr":-171573.6544,"d20zdjlr":-14414.6768,"d20xdjlr":268765.7840};
+        var BkzjlxPop = Class.create();
+        Object.extend(BkzjlxPop.prototype, {
+            initialize: function(a) {
+                var b = this;
+                Object.extend(b.options, a || {});
+                b.popDiv()
+            },
+            options: {
+                obj: "selector",
+                objClose: "close",
+                objPop: "pop"
+            },
+            popDiv: function() {
+                var g = this;
+                var a = document.getElementById(g.options.obj);
+                var h = document.getElementById(g.options.objClose);
+                var j = document.getElementById(g.options.objPop);
+                var k = j.getElementsByTagName("a");
+                var g = this;
+                var e = function() {
+                    j.style.display = "none"
+                };
+                var c = function() {
+                    j.style.display = ""
+                };
+                var b = function(l, i) {
+                    if (i == "over") {
+                        if (!g.tools.hasClass(l, "hover")) {
+                            g.tools.addClass(l, "hover")
+                        }
+                    } else {
+                        g.tools.removeClass(l, "hover")
+                    }
+                };
+                g.tools.addEvent(a, "click", c);
+                g.tools.addEvent(h, "click", e);
+                for (var d = 0,
+                             f = k.length; d < f; d++) {
+                    g.tools.addEvent(k[d], "mouseover", b.bind(this, k[d], "over"));
+                    g.tools.addEvent(k[d], "mouseout", b.bind(this, k[d], "out"));
+                    g.tools.addEvent(k[d], "click", e)
+                }
+            },
+            tools: {
+                addEvent: function(e, b, c, a) {
+                    if (e.addEventListener) {
+                        e.addEventListener(b, c, a);
+                        return true
+                    } else {
+                        if (e.attachEvent) {
+                            var d = e.attachEvent("on" + b, c);
+                            return d
+                        } else {
+                            e["on" + b] = c
+                        }
+                    }
+                },
+                getArrayOfClassNames: function(a) {
+                    var b = [];
+                    if (a.className) {
+                        b = a.className.split(" ")
+                    }
+                    return b
+                },
+                addClass: function(a, b) {
+                    var c = this.getArrayOfClassNames(a);
+                    c.push(b);
+                    a.className = c.join(" ")
+                },
+                removeClass: function(b, c) {
+                    var e = this.getArrayOfClassNames(b);
+                    var d = [];
+                    for (var a = 0; a < e.length; a++) {
+                        if (c != e[a]) {
+                            d.push(e[a])
+                        }
+                    }
+                    if (d.length == 0) {
+                        b.className = null
+                    } else {
+                        b.className = d.join(" ")
+                    }
+                },
+                hasClass: function(c, d) {
+                    var b = false;
+                    var e = this.getArrayOfClassNames(c);
+                    for (var a = 0; a < e.length; a++) {
+                        if (d == e[a]) {
+                            b = true
+                        }
+                    }
+                    return b
+                }
+            }
+        });
+        var pop = new BkzjlxPop();
+        function getcolor_JS(a, b, c) {
+            if (a == '-'||a==""||a=="NaN") return "<span>-</span>";
+            var v;
+            if (b == "%") v = parseFloat(a).toFixed(2) + b;
+            else if (b == "w") {
+                var m = Math.abs(a);
+                if (m < 10000) {
+                    v = (a/1).toFixed(0);
+                } else if (m >= 10000 && m < 1000000) {
+                    v = (a / 10000).toFixed(2) + "万";
+                } else if (m >= 1000000 && m < 100000000) {
+                    v = (a / 10000).toFixed(0) + "万";
+                } else if (m >= 100000000 && m < 10000000000) {
+                    v = (a / 100000000).toFixed(2) + "亿";
+                } else {
+                    v = (a / 100000000).toFixed(0) + "亿";
+                }
+            } else v = (a * 100 / 100).toFixed(2);
+            if (c) a = c;
+            if (a.length > 0) {
+                if (a.substring(0, 1) == '-') return "<span class=\"green\">" + v + "</span>";
+                else if (a != 0) return "<span class=\"red\">" + v + "</span>";
+            }
+            return "<span>" + v + "</span>";
+        }
+        var tablelist = new LoadTable({
+            id: "dt_1",
+            sort: { id: "(BalFlowMain)", desc: true },
+            autoScrollRun: false,
+            cells: [{ "n": "序号" },{ "n": "代码", "s": "(Code)" ,"w":48}, { "n": "名称", "w": 54 }, { "n": "相关", "w": 118 }, { "n": "最新价", "s": "(Close)" }, { "n": "<span id=\"rq0\"></span>涨跌幅", "s": "(ChangePercent)" },
+                { "n": "<span id=\"rq1\"></span>主力净流入",cells:[{"n": "净额" ,"s":"(BalFlowMain)"},{"n": "净占比" ,"s":"(BalFlowNetRate)"}] },
+                { "n": "<span id=\"rq2\"></span>超大单净流入<i title=\"因为存在一笔大额的委托单仅成交小部分的情况，所以会导致超大单或者大单流入/流出的数额极小。\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>",cells:[{"n": "净额" ,"s":"(AmtNet3)"},{"n": "净占比" ,"s":"(AmtNetRate3)"}] },
+                { "n": "<span id=\"rq3\"></span>大单净流入",cells:[{"n": "净额" ,"s":"(AmtNet2)"},{"n": "净占比" ,"s":"(AmtNetRate2)"}] },
+                { "n": "<span id=\"rq4\"></span>中单净流入",cells:[{"n": "净额" ,"s":"(AmtNet1)"},{"n": "净占比" ,"s":"(AmtNetRate1)"}] },
+                { "n": "<span id=\"rq5\"></span>小单净流入",cells:[{"n": "净额" ,"s":"(AmtNet0)"},{"n": "净占比" ,"s":"(AmtNetRate0)"}] }],
+            cellcount:16,
+            dataurl:"http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?cmd=C.${plateInfo.plateCode}${plateInfo.plateType}&type=ct&st={sortType}&sr={sortRule}&p={page}&ps={pageSize}&js=var {jsname}={pages:(pc),data:[(x)]}&token=894050c76af8597a853f5b408b759f5d{param}",
+            //defjson:{pages:1,data:["1,600518,康美药业,19.00,2.93,12810.59,10.88,6406.59,5.44,6403.99,5.44,-7708.36,-6.55,-5102.22,-4.33,2017-03-23 15:00:00","2,000725,京东方A,3.32,0.00,10289.36,9.47,10201.96,9.39,87.40,0.08,-5419.51,-4.99,-4869.86,-4.48,2017-03-23 15:00:00","2,300288,朗玛信息,26.08,10.00,5508.02,45.42,6988.58,57.62,-1480.56,-12.21,-3403.65,-28.06,-2104.37,-17.35,2017-03-23 15:00:00","2,000999,华润三九,27.31,-0.33,950.57,5.19,-24.64,-0.13,975.22,5.32,-2399.08,-13.10,1448.51,7.91,2017-03-23 15:00:00","2,002612,朗姿股份,18.95,2.77,547.05,2.28,-58.16,-0.24,605.21,2.53,374.25,1.56,-921.30,-3.85,2017-03-23 15:00:00","2,300015,爱尔眼科,30.65,-0.36,476.43,7.31,417.08,6.40,59.34,0.91,150.48,2.31,-626.90,-9.62,2017-03-23 15:00:00","2,002173,*ST创疗,20.63,1.43,216.25,3.28,18.87,0.29,197.37,3.00,-336.00,-5.10,119.76,1.82,2017-03-23 15:00:00","1,600829,人民同泰,15.19,-0.78,87.49,4.27,-4.58,-0.22,92.07,4.49,-92.43,-4.51,4.95,0.24,2017-03-23 15:00:00","2,002172,澳洋科技,10.27,0.79,80.68,1.60,94.21,1.87,-13.53,-0.27,-189.05,-3.74,108.37,2.15,2017-03-23 15:00:00","2,000516,国际医学,-,-,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,2017-03-23 15:00:00","2,002219,恒康医疗,12.71,0.08,-5.31,-0.13,0.00,0.00,-5.31,-0.13,-56.96,-1.45,62.27,1.58,2017-03-23 15:00:00","2,300049,福瑞股份,20.55,0.34,-22.24,-0.52,102.70,2.39,-124.94,-2.91,90.26,2.10,-68.02,-1.58,2017-03-23 15:00:00","2,000990,诚志股份,16.16,0.06,-104.43,-3.88,0.00,0.00,-104.43,-3.88,-377.97,-14.03,482.39,17.90,2017-03-23 15:00:00","1,601567,三星医疗,12.11,-1.30,-112.87,-1.79,-98.19,-1.55,-14.68,-0.23,369.06,5.84,-256.19,-4.06,2017-03-23 15:00:00","1,600763,通策医疗,28.73,-0.17,-114.15,-2.22,-61.77,-1.20,-52.38,-1.02,-181.73,-3.53,295.88,5.75,2017-03-23 15:00:00","2,002086,东方海洋,10.39,0.10,-168.41,-5.02,0.00,0.00,-168.41,-5.02,-31.85,-0.95,200.25,5.97,2017-03-23 15:00:00","1,600594,益佰制药,18.75,2.07,-232.79,-0.50,740.35,1.58,-973.14,-2.08,680.05,1.46,-447.26,-0.96,2017-03-23 15:00:00","1,600993,马应龙,22.35,-0.93,-242.91,-0.56,-843.21,-1.94,600.30,1.38,-395.24,-0.91,638.15,1.47,2017-03-23 15:00:00","2,002424,贵州百灵,18.59,3.68,-395.94,-1.26,-829.38,-2.64,433.43,1.38,-292.78,-0.93,688.72,2.19,2017-03-23 15:00:00","2,002390,信邦制药,9.82,-0.61,-397.45,-5.94,-49.60,-0.74,-347.85,-5.20,268.57,4.02,128.88,1.93,2017-03-23 15:00:00","2,002344,海宁皮城,10.41,0.58,-453.16,-7.56,-477.56,-7.97,24.41,0.41,125.72,2.10,327.44,5.46,2017-03-23 15:00:00","1,600467,好当家,4.22,-0.47,-532.64,-9.96,92.86,1.74,-625.50,-11.70,340.02,6.36,192.62,3.60,2017-03-23 15:00:00","2,000919,金陵药业,13.36,-1.04,-607.27,-15.75,-1.76,-0.05,-605.51,-15.71,365.24,9.48,242.03,6.28,2017-03-23 15:00:00","1,600196,复星医药,28.40,-0.49,-705.33,-1.80,930.34,2.38,-1635.66,-4.18,292.82,0.75,412.50,1.05,2017-03-23 15:00:00","1,600157,永泰能源,3.97,-0.25,-984.09,-17.38,-445.90,-7.87,-538.18,-9.50,-284.09,-5.02,1268.18,22.39,2017-03-23 15:00:00","2,002478,常宝股份,16.68,0.54,-1095.99,-7.53,201.30,1.38,-1297.29,-8.92,-298.54,-2.05,1394.53,9.59,2017-03-23 15:00:00","2,000700,模塑科技,8.05,-1.71,-1105.05,-19.52,-466.51,-8.24,-638.54,-11.28,61.99,1.10,1043.06,18.43,2017-03-23 15:00:00","2,000633,*ST合金,11.50,-1.29,-1171.60,-26.42,-294.68,-6.64,-876.92,-19.77,395.64,8.92,775.97,17.50,2017-03-23 15:00:00","2,300143,星河生物,26.88,-4.00,-1282.03,-22.49,-82.56,-1.45,-1199.46,-21.05,705.53,12.38,576.49,10.12,2017-03-23 15:00:00","2,002579,中京电子,14.17,-0.84,-1303.51,-12.94,-291.62,-2.90,-1011.89,-10.05,420.15,4.17,883.36,8.77,2017-03-23 15:00:00","2,002038,双鹭药业,26.89,-0.96,-1721.28,-18.36,-1133.03,-12.08,-588.25,-6.27,606.33,6.47,1114.95,11.89,2017-03-23 15:00:00","2,300024,机器人,22.48,-1.36,-3055.62,-7.28,-1700.09,-4.05,-1355.52,-3.23,528.10,1.26,2527.51,6.02,2017-03-23 15:00:00"]},
+            param: {"mk_type":{cname: "li", type: "sty", value: "DCFFITA",cssclass:"at2"} },
+            afterdisplay:function(_t){
+                var text="今日";
+                switch(_t.options.param.mk_type.value.toUpperCase())
+                {case"DCFFITA3":text="3日";break;
+                    case "DCFFITA5":
+                        text="5日";
+                        break;
+                    case "DCFFITA10":
+                        text="10日";
+                        break;}
+                document.getElementById("rq0").innerHTML =document.getElementById("rq1").innerHTML =document.getElementById("rq2").innerHTML =document.getElementById("rq3").innerHTML =document.getElementById("rq4").innerHTML =document.getElementById("rq5").innerHTML = text;
+
+            },
+            maketr: function (row, data, i, c) {
+                var _class = (i % 2 == 0) ? "" : "odd";
+                row.className = _class;
+                row.onmouseover = function () {
+                    this.className = "over";
+                }
+                row.onmouseout = function (o, _c) {
+                    o.className = _c;
+                } .bind(this, row, _class)
+                row.cells[0].innerHTML = c;
+                row.cells[1].innerHTML = "<a href=\"http://quote.eastmoney.com/"+data[1]+".html\">"+data[1]+"</a>";
+                row.cells[2].innerHTML = "<a href=\"http://quote.eastmoney.com/"+data[1]+".html\">"+data[2]+"</a>"; //
+                row.cells[3].innerHTML = '<a href="/zjlx/' + data[1] + '.html" class="red">大单详情</a> <a href="http://guba.eastmoney.com/topic,' + data[1] + '.html">股吧</a> <a href="http://data.eastmoney.com/report/' + data[1] + '.html">研报</a>'; //
+                row.cells[4].innerHTML = getcolor_JS(data[3],"",data[4]); //
+                row.cells[5].innerHTML = getcolor_JS(data[4], "%"); //
+                row.cells[6].innerHTML = getcolor_JS((data[5]*10000).toString(), "w"); //
+                row.cells[7].innerHTML = getcolor_JS(data[6], "%"); //
+                row.cells[8].innerHTML = getcolor_JS((data[7]*10000).toString(), "w"); //
+                row.cells[9].innerHTML = getcolor_JS(data[8], "%"); //
+                row.cells[10].innerHTML = getcolor_JS((data[9]*10000).toString(), "w"); //
+                row.cells[11].innerHTML = getcolor_JS(data[10], "%"); //
+                row.cells[12].innerHTML = getcolor_JS((data[11]*10000).toString(), "w"); //
+                row.cells[13].innerHTML = getcolor_JS(data[12], "%"); //
+                row.cells[14].innerHTML = getcolor_JS((data[13]*10000).toString(), "w"); //
+                row.cells[15].innerHTML = getcolor_JS(data[14], "%"); //
+            }
+        });
+        tablelist.autoUpdate();
+        tablelist.parperUrl=function () {
+            var _t = this,
+                    _param = _t.options.param;
+            var tempsort=_t.options.sort.id;
+            switch(_t.options.param.mk_type.value)
+            {
+                case"DCFFITA3":
+                    switch(_t.options.sort.id)
+                    {
+                        case"(ChangePercent)":
+                            tempsort="(ChangePercent3Day)";break;
+                        case"(BalFlowMain)":
+                            tempsort="(BalFlowMainNet3)";break;
+                        case"(BalFlowNetRate)":
+                            tempsort="(BalFlowMainRate3)";break;
+                        case"(AmtNet3)":
+                            tempsort="(AmtOfUNet3)";break;
+                        case"(AmtNetRate3)":
+                            tempsort="(AmtOfURate3)";break;
+                        case"(AmtNet2)":
+                            tempsort="(AmtOfBNet3)";break;
+                        case"(AmtNetRate2)":
+                            tempsort="(AmtOfBRate3)";break;
+                        case"(AmtNet1)":
+                            tempsort="(AmtOfMNet3)";break;
+                        case"(AmtNetRate1)":
+                            tempsort="(AmtOfMRate3)";break;
+                        case"(AmtNet0)":
+                            tempsort="(AmtOfSNet3)";break;
+                        case"(AmtNetRate0)":
+                            tempsort="(AmtOfSRate3)";break;
+                    }
+                    break;
+                case "DCFFITA5":
+
+                    switch(_t.options.sort.id)
+                    {
+                        case"(ChangePercent)":
+                            tempsort="(ChangePercent5Day)";break;
+                        case"(BalFlowMain)":
+                            tempsort="(BalFlowMainNet5)";break;
+                        case"(BalFlowNetRate)":
+                            tempsort="(BalFlowMainRate5)";break;
+                        case"(AmtNet3)":
+                            tempsort="(AmtOfUNet5)";break;
+                        case"(AmtNetRate3)":
+                            tempsort="(AmtOfURate5)";break;
+                        case"(AmtNet2)":
+                            tempsort="(AmtOfBNet5)";break;
+                        case"(AmtNetRate2)":
+                            tempsort="(AmtOfBRate5)";break;
+                        case"(AmtNet1)":
+                            tempsort="(AmtOfMNet5)";break;
+                        case"(AmtNetRate1)":
+                            tempsort="(AmtOfMRate5)";break;
+                        case"(AmtNet0)":
+                            tempsort="(AmtOfSNet5)";break;
+                        case"(AmtNetRate0)":
+                            tempsort="(AmtOfSRate5)";break;
+                    }
+                    break;
+                case "DCFFITA10":
+
+                    switch(_t.options.sort.id)
+                    {
+                        case"(ChangePercent)":
+                            tempsort="(ChangePercent10Day)";break;
+                        case"(BalFlowMain)":
+                            tempsort="(BalFlowMainNet10)";break;
+                        case"(BalFlowNetRate)":
+                            tempsort="(BalFlowMainRate10)";break;
+                        case"(AmtNet3)":
+                            tempsort="(AmtOfUNet10)";break;
+                        case"(AmtNetRate3)":
+                            tempsort="(AmtOfURate10)";break;
+                        case"(AmtNet2)":
+                            tempsort="(AmtOfBNet10)";break;
+                        case"(AmtNetRate2)":
+                            tempsort="(AmtOfBRate10)";break;
+                        case"(AmtNet1)":
+                            tempsort="(AmtOfMNet10)";break;
+                        case"(AmtNetRate1)":
+                            tempsort="(AmtOfMRate10)";break;
+                        case"(AmtNet0)":
+                            tempsort="(AmtOfSNet10)";break;
+                        case"(AmtNetRate0)":
+                            tempsort="(AmtOfSRate10)";break;
+                    }
+                    break;
+            }
+            var param = "";
+            for (var key in _param) {
+                param += ("&" + _param[key].type + "=" + _param[key].value);
+            }
+            _url = _t.options.dataurl;
+            var _sort = "1";
+            _url = _url.replace("{pageSize}", _t.options.pagesize);
+            _url = _url.replace("{page}", _t.options.page);
+            _url = _url.replace("{sortType}", tempsort);
+            _url = _url.replace("{sortRule}", _t.options.sort.desc?"-1":"1");
+            _url = _url.replace("{param}", param);
+            return _url;
+        }
+    </script>
+    <script type="text/javascript">
+        var hqcode="${plateInfo.plateCode}1";
+        var typenum=('${plateInfo.plateType}'=='1')?3:(('${plateInfo.plateType}'=='2')?2:1);
+        var smcode=hqcode.substring(3,6);
+        //盘后趋势
+        var Dataphqs=["2017-01-18,-8708.816,-1394.5056,-7314.3104,2698.432,6010.384","2017-01-19,-13058.992,-11345.2448,-1713.7472,4882.6704,8176.32","2017-01-20,23205.0768,23104.8096,100.2672,-8191.28,-15013.7984","2017-01-23,17355.44,27576.568,-10221.128,-4097.8496,-13257.5904","2017-01-24,-11568.1648,-4946.7968,-6621.368,326.7088,11241.4576","2017-01-25,1470.9696,2585.9376,-1114.968,-3437.8592,1966.8912","2017-01-26,-1104.032,3711.1888,-4815.2208,-429.9536,1533.9856","2017-02-03,-57956.824,-67062.5536,9105.7296,24166.2528,33790.5728","2017-02-06,-10845.336,-10797.8624,-47.4736,1297.0464,9548.2864","2017-02-07,-23999.3616,-17720.6288,-6278.7328,9063.3328,14936.0288","2017-02-08,-7884.736,-2428.7712,-5455.9648,-1110.4992,8995.2336","2017-02-09,-5889.2336,-7292.6864,1403.4528,1470.0784,4419.1552","2017-02-10,6601.6736,16332.1936,-9730.52,-3374.8096,-3226.864","2017-02-13,-6366.112,4361.336,-10727.448,-497.6288,6863.7408","2017-02-14,-36815.2976,-38799.5888,1984.2912,10548.5104,26266.7872","2017-02-15,-7963.7648,3929.4544,-11893.2192,-2729.8848,10693.6512","2017-02-16,-19715.048,-7719.0432,-11996.0048,2218.472,17496.5776","2017-02-17,-24897.3083,-17810.3531,-7086.9552,7389.8096,17507.4992","2017-02-20,-25878.1712,-20188.0144,-5690.1568,791.8784,25086.2896","2017-02-21,15719.3968,14480.0336,1239.3632,-13482.6736,-2236.7216","2017-02-22,12709.744,13677.8896,-968.1456,-7656.3712,-5053.3728","2017-02-23,21148.472,19359.3712,1789.1008,-16525.9728,-4622.4992","2017-02-24,-2233.5904,6559.736,-8793.3264,-8496.4832,10730.0736","2017-02-27,-19394.736,-12563.4144,-6831.3216,-555.8032,19950.5408","2017-02-28,-21235.6665,-16374.7529,-4860.9136,5271.6208,15964.0464","2017-03-01,-35466.088,-24152.4608,-11313.6272,8934.808,26531.2784","2017-03-02,-48832.6512,-32536.4976,-16296.1536,13402.72,35429.9328","2017-03-03,-416.7328,9480.6192,-9897.352,-7972.5568,8389.2896","2017-03-06,-11176.0992,4920.1296,-16096.2288,-446.8704,11622.9712","2017-03-07,-37957.6672,-34920.7376,-3036.9296,14590.528,23367.1392","2017-03-08,-43052.9536,-21837.104,-21215.8496,6901.864,36151.0896","2017-03-09,-35553.9456,-24009.7792,-11544.1664,5311.5872,30242.3568","2017-03-10,-35286.4128,-20356.848,-14929.5648,7278.1632,28008.2496","2017-03-13,5375.2448,10029.8304,-4654.5856,-11339.496,5964.2512","2017-03-14,-8794.7936,-1681.4784,-7113.3152,820.8512,7973.944","2017-03-15,8023.8096,16588.1984,-8564.3888,-6250.752,-1773.0576","2017-03-16,-2961.8224,-143.8928,-2817.9296,809.8064,2152.0176","2017-03-17,-13032.984,-10114.7296,-2918.2544,551.3168,12481.6672","2017-03-20,-7112.5408,2628.6256,-9741.1664,-3091.1408,10203.68","2017-03-21,19384.8688,21294.8672,-1909.9984,-9236.1088,-10148.76","2017-03-22,20221.2736,25080.6592,-4859.3856,-15205.7152,-5015.5584","2017-03-23,15152.3824,19331.5792,-4179.1968,-15693.016,540.632"];
+
+        function ZjlxUpdate() {
+
+            var url1="http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&cmd="+hqcode+"&sty=DCFFICBK&st=z&sr=&p=&ps=&cb=&js=var%20bkdetail1=(x)&token=894050c76af8597a853f5b408b759f5d&rt=" + Math.random();
+            var url2="http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&cmd=C."+hqcode+"&sty=CPRFGB&st=c&sr=-1&p=1&ps=1&cb=&js=var%20bkdetail2=(x)&token=894050c76af8597a853f5b408b759f5d&rt=" + Math.random();
+            tiny.loadJs(url1, "utf-8",
+                    function () {
+                        if (!(typeof bkdetail1 == "undefined" || bkdetail1 == null)) {
+                            var data = bkdetail1.split(",");
+                            var row1=$("tgtb_data").getElementsByTagName("td");;
+                            row1[0].innerHTML = '<a href="${base}/stockeast/marketlist#2800' + typenum + smcode + '_0_2" target="_self">' + data[2] + '</a>';
+                            if (typenum == 2){
+                                row1[1].innerHTML = '<a href="http://stock.eastmoney.com/hangye/hy' + smcode + '.html" target="_blank" style="color:#FF0000">行业专区</a>';
+                            }
+                            else{
+                                row1[1].innerHTML = '';
+                            }
+                            row1[1].innerHTML += ' <a href="http://quote.eastmoney.com/center/list.html#2800' + typenum + smcode + '_0_2" target="_blank">行情</a>' + ' <a href="http://guba.eastmoney.com/list,BK0660.html" target="_blank">股吧</a>';
+                            if (typenum == 2) {
+                                row1[1].innerHTML += ' <a href="http://data.eastmoney.com/report/' + smcode + 'yb.html" target="_blank">研报</a>';
+                            }
+                            row1[2].innerHTML = getColor(data[3]);
+                            //row1[3].innerHTML = data[4];
+                            row1[3].innerHTML = data[5] + "%";
+                            row1[4].innerHTML = data[6].split("|")[0];
+                            row1[4].style.color = "#f00";
+                            row1[5].innerHTML = data[6].split("|")[2];
+                            row1[5].style.color = "#090";
+                        }
+                    });
+            tiny.loadJs(url2, "utf-8",
+                    function () {
+                        if (!(typeof bkdetail2 == "undefined" || bkdetail2 == null)) {
+                            var data = bkdetail2.split(",");
+                            var row1=$("tgtb_data").getElementsByTagName("td");;
+
+                            row1[6].innerHTML = "<a href=\"${base}/stockeast/detail?stockCode="+data[0]+"\" target=\"_self\">"+data[1]+"</a>";
+                            row1[7].innerHTML =getColor(data[2]);;
+                        }
+                    });
+            var a = "http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&cmd="+hqcode+"&sty=DCFF&st=z&sr=&p=&ps=&lvl=&cb=&js=var zjlx_detail=(x)&token=894050c76af8597a853f5b408b759f5d&rt=" + Math.random();
+            tiny.loadJs(a, "utf-8",
+                    function() {
+                        if (! (typeof zjlx_detail == "undefined" || zjlx_detail == null)) {
+                            try {
+                                var data = zjlx_detail.split(",");
+                                $("updateTime_0").innerHTML = dateFormat(data[22], "HH:mm");
+                                $("updateTime_1").innerHTML = dateFormat(data[22], "HH:mm");
+                                $("data_jlr").innerHTML = data[12];
+                                $("data_jlr").className = (data[12] > 0) ? "red": ((data[12] < 0) ? "green": "");
+                                $("data_jzb").innerHTML = data[17] ;
+                                $("data_jzb").className = (data[17].replace('%','') > 0) ? "red": ((data[17].replace('%','') < 0) ? "green": "");
+                                $("data_superjlr").innerHTML = data[13];
+                                $("data_superjlr").className = (data[13] > 0) ? "red": ((data[13] < 0) ? "green": "");
+                                $("data_superjzb").innerHTML = data[18] ;
+                                $("data_superjzb").className = (data[18].replace('%','') > 0) ? "red": ((data[18].replace('%','') < 0) ? "green": "");
+                                $("data_ddjlr").innerHTML = data[14];
+                                $("data_ddjlr").className = (data[14] > 0) ? "red": ((data[14] < 0) ? "green": "");
+                                $("data_ddjzb").innerHTML = data[19] ;
+                                $("data_ddjzb").className = (data[19].replace('%','') > 0) ? "red": ((data[19].replace('%','') < 0) ? "green": "");
+                                $("data_zdjlr").innerHTML = data[15];
+                                $("data_zdjlr").className = (data[15] > 0) ? "red": ((data[15] < 0) ? "green": "");
+                                $("data_zdjzb").innerHTML = data[20] ;
+                                $("data_zdjzb").className = (data[20].replace('%','') > 0) ? "red": ((data[20].replace('%','') < 0) ? "green": "");
+                                $("data_xdjlr").innerHTML = data[16];
+                                $("data_xdjlr").className = (data[16] > 0) ? "red": ((data[16] < 0) ? "green": "");
+                                $("data_xdjzb").innerHTML = data[21] ;
+                                $("data_xdjzb").className = (data[21].replace('%','') > 0) ? "red": ((data[21].replace('%','') < 0) ? "green": "");
+                                $("data_superlr").innerHTML = (data[4]/10000).toFixed(2);
+                                $("data_ddlr").innerHTML = (data[6]/10000).toFixed(2);
+                                $("data_zdlr").innerHTML = (data[8]/10000).toFixed(2);
+                                $("data_xdlr").innerHTML = (data[10]/10000).toFixed(2);
+                                $("data_superlc").innerHTML = (data[5]/10000).toFixed(2);
+                                $("data_ddlc").innerHTML = (data[7]/10000).toFixed(2);
+                                $("data_zdlc").innerHTML = (data[9]/10000).toFixed(2);
+                                $("data_xdlc").innerHTML = (data[11]/10000).toFixed(2) + "";
+                            } catch(b) {}
+                        }
+                    },
+                    true)
+        }
+        function ZjlxInterval() {
+            var c = new Date();
+            try {
+                c = Eastmoney.Time.now()
+            } catch(f) {}
+            var d = parseInt(tiny.dateFormat(c, "HHmm") * 1);
+            var b = c.getDay();
+            if (! (d <= 924 || (d >= 1145 && d <= 1259) || d >= 1515 || b > 5)) {
+                try {
+                    ZjlxUpdate();
+                    time_stamp = Math.floor((new Date().getTime()) / 60000);
+                    var a = new SWFObject(swf_line, "so1", "468", "225", "8", "");
+                    a.addVariable("path", "/");
+                    a.addVariable("settings_file", encodeURIComponent("/settings/zjlx_line_settings_csv.xml"));
+                    a.addVariable("data_file", encodeURIComponent(data_baseurl + "allXML/" + smcode + ".xml?rt=" + time_stamp));
+                    a.write("flash-cont");
+                    var f = new SWFObject(swf_pie, "so30", "468", "250", "8", "");
+                    f.addVariable("path", "/");
+                    f.addVariable("settings_file", encodeURIComponent("/settings/zjlx_pie.xml"));
+                    f.addVariable("data_file", encodeURIComponent(data_baseurl + "xml/" + smcode + ".xml?rt=" + time_stamp));
+                    f.write("flash-cont-1")
+                } catch(f) {}
+            }
+        }
+        //setInterval(ZjlxInterval, 60000);//放下面去了
+        ZjlxUpdate();
+
+        function loadlishi(){
+            var url3="http://datainterface.eastmoney.com/EM_DataCenter/js.aspx?type=FF&sty=BKHFF&js=var%20lishidata=[(x)]&code=${plateInfo.plateCode}";
+            tiny.loadJs(url3, "utf-8",
+                    function () {
+                        if (!(typeof (lishidata) == "undefined" || lishidata == null || lishidata == "" || lishidata[0].stats == false)) {
+                            var _table = document.getElementById("tb_lishi");
+                            var _body = _table.getElementsByTagName("tbody")[0];
+                            var trs = _body.childNodes;
+                            for (var i = trs.length - 1; i >= 0; i--) {
+                                _body.removeChild(trs[i])
+                            }
+                            var rowTp = _body.insertRow(-1);
+                            for (var i = 0; i < 11; i++) {
+                                var cell = rowTp.insertCell(i)
+                            }
+                            for (var i = lishidata.length-1; i >= 0; i--) {
+                                var data=lishidata[i].split(',');
+                                var row = rowTp.cloneNode(true);
+                                _body.appendChild(row);
+                                var _class = (i % 2 == 0) ? "" : "odd";
+                                row.className = _class;
+                                row.onmouseover = function () {
+                                    this.className = "over";
+                                }
+                                row.onmouseout = function (o, _c) {
+                                    o.className = _c;
+                                } .bind(this, row, _class)
+                                row.cells[0].innerHTML = data[11].substring(0, data[11].indexOf(" "));
+                                row.cells[1].innerHTML = getcolor_JS(data[1],"w"); //
+                                row.cells[2].innerHTML = getcolor_JS(data[2], "%"); //
+                                row.cells[3].innerHTML = getcolor_JS(data[3], "w"); //
+                                row.cells[4].innerHTML = getcolor_JS(data[4], "%"); //
+                                row.cells[5].innerHTML = getcolor_JS(data[5], "w"); //
+                                row.cells[6].innerHTML = getcolor_JS(data[6], "%"); //
+                                row.cells[7].innerHTML = getcolor_JS(data[7], "w"); //
+                                row.cells[8].innerHTML = getcolor_JS(data[8], "%"); //
+                                row.cells[9].innerHTML = getcolor_JS(data[9], "w"); //
+                                row.cells[10].innerHTML = getcolor_JS(data[10], "%"); //
+                                if(i==lishidata.length-1)
+                                {
+                                    document.getElementById("lsdatetime1").innerHTML=document.getElementById("lsdatetime2").innerHTML=data[11].substring(0, data[11].indexOf(" "));
+                                }
+
+                            }
+                            _body.removeChild(rowTp);
+                        }
+                    });
+        }
+        loadlishi();
+        function getColor(sj)
+        {
+            var span = "";
+            sj = parseFloat(sj);
+            if (sj > 0){
+                span = '<span style="color:#f00">' + sj + '%</span>';
+            }
+            else if (sj < 0){
+                span = '<span style="color:#090">' + sj + '%</span>';
+            }
+            else if (sj == 0){
+                span = sj + "%";
+            }
+            return span;
+        }
+
+        //新的折线图
+        var chart = new EmchartsWebLine({
+            container: "flash-cont",
+            width: 420,
+            height: 225,
+            showflag: true,
+            sepeNum: 6,
+            font: {
+                fontFamily: 'Microsoft Yahei',
+                fontSize: "12",
+                color: "#000"
+            },
+            xaxis: [""],
+            series: [""]
+        });
+        var chartPH = new EmchartsWebLine({
+            container: "flash-cont-2",
+            width: 420,
+            height: 210,
+            showflag: true,
+            sepeNum: 6,
+            font: {
+                fontFamily: 'Microsoft Yahei',
+                fontSize: "12",
+                color: "#000"
+            },
+            xaxis: [""],
+            series: [""]
+        });
+        //新的饼图
+        var chartPie = new EmchartsPie({
+            container: "flash-cont-1",
+            width: 430,
+            height: 250,
+            startOffset: Math.PI / 2,
+            onPie: false,
+            data: "",
+            point: {
+                x: 215,
+                y: 140
+            },
+            radius: 90
+        });
+        function ZjlxEmIn() {
+            opChart.initByMtk(hqcode);
+            opChart.pieByCode(hqcode);
+        }
+        function ZjlxImg() {
+            opChart.IntsZjlImg(hqcode);
+        }
+        function IeLoad() {
+            opChart.flash(hqcode, true);
+            setInTime = setInterval(ZjlxImg, 60000);//新的JS记载
+        }
+        var isIE = !!window.ActiveXObject;
+        var isIE6 = isIE && !window.XMLHttpRequest;
+        var isIE8 = !+'\v1';
+        if (isIE) {//IE的方向
+            if (isIE6 || isIE8) {
+                //IeLoad();
+                ZjlxEmIn();
+                opChart.dataSpilt(Dataphqs, '万元');
+                //opChart.phByMtk(hqcode);
+                setInterval(ZjlxEmIn, 60000);//新的JS记载
+            }
+            else {
+                ZjlxEmIn();
+                opChart.dataSpilt(Dataphqs, '万元');
+                //opChart.phByMtk(hqcode);
+                setInterval(ZjlxEmIn, 60000);//新的JS记载
+            }
+        }
+        else {
+            ZjlxEmIn();
+            opChart.dataSpilt(Dataphqs, '万元');
+            //opChart.phByMtk(hqcode);
+            setInterval(ZjlxEmIn, 60000);//新的JS记载
+        }
+
+
+
+        var ChartGeneral=null;
+        try{
+            LoadTJ();
+        }
+        catch(ex)
+        {
+
+        }
+        //盘后资金流向统计
+        function LoadTJ()
+        {
+            var width=430;
+            var height=205;
+            var t = 500 * width / 1000;
+            var a = ((t - height) / 2 - 30) * -1;
+            if (phzjtj == null|| phzjtj=="") {
+
+                jQuery("#flash-cont-3").html("");
+                jQuery("#flash-cont-3").css("background", 'url("/images/ChartNoData.jpg")  0px ' + a + 'px no-repeat');
+                jQuery("#flash-cont-3").css("background-size", width + 'px ' + t + 'px');
+                jQuery("#flash-cont-3").css("width", '' + width + 'px');
+                jQuery("#flash-cont-3").css("height", '' + height + 'px');
+            }
+            else{
+                var FiveData={
+                    //主力净流入
+                    zljsr:0,
+                    //超大单净流入
+                    cddjlr:0,
+                    //大单净流入
+                    ddjlr:0,
+                    //中单净流入
+                    zdjlr:0,
+                    //小单净流入
+                    xdjlr:0
+                };
+                //5日
+                var TwentyData={
+                    //主力净流入
+                    zljsr:0,
+                    //超大单净流入
+                    cddjlr:0,
+                    //大单净流入
+                    ddjlr:0,
+                    //中单净流入
+                    zdjlr:0,
+                    //小单净流入
+                    xdjlr:0
+                };
+
+                //5日
+                FiveData.zljsr=(phzjtj.d5zljsr/1).toFixed(4);
+                FiveData.cddjlr=(phzjtj.d5cddjlr/1).toFixed(4);
+                FiveData.ddjlr=(phzjtj.d5ddjlr/1).toFixed(4);
+                FiveData.zdjlr=(phzjtj.d5zdjlr/1).toFixed(4);
+                FiveData.xdjlr=(phzjtj.d5xdjlr/1).toFixed(4);
+                //20日
+                TwentyData.zljsr=(phzjtj.d20zljsr/1).toFixed(4);
+                TwentyData.cddjlr=(phzjtj.d20cddjlr/1).toFixed(4);
+                TwentyData.ddjlr=(phzjtj.d20ddjlr/1).toFixed(4);
+                TwentyData.zdjlr=(phzjtj.d20zdjlr/1).toFixed(4);
+                TwentyData.xdjlr=(phzjtj.d20xdjlr/1).toFixed(4);
+                series=[{
+                    prefix:'主力净流入',
+                    suffix:'亿元',
+                    color: '#FE3EE1',
+                    data:[FiveData.zljsr,TwentyData.zljsr]
+                },{
+                    prefix:'超大单净流入',
+                    suffix:'亿元',
+                    color: '#650000',
+                    data:[FiveData.cddjlr,TwentyData.cddjlr]
+                },{
+                    prefix:'大单净流入',
+                    suffix:'亿元',
+                    color: '#FF1117',
+                    data:[FiveData.ddjlr,TwentyData.ddjlr]
+                },{
+                    prefix:'中单净流入',
+                    suffix:'亿元',
+                    color: '#FFB83D',
+                    data:[FiveData.zdjlr,TwentyData.zdjlr]
+                },{
+                    prefix:'小单净流入',
+                    suffix:'亿元',
+                    color: '#94C4EE',
+                    data:[FiveData.xdjlr,TwentyData.xdjlr]
+                }];
+                yaxis=[];
+                yaxis.push({
+                    value:"一周(5日)\n资金流入",
+                    show:true,
+                    showline:true
+                },{
+                    value:"一月(20日)\n资金流入",
+                    show:true,
+                    showline:true
+                });
+
+                if (ChartGeneral == null) {
+                    ChartGeneral = new EmchartsWebHorizontalGroupBar({
+                        container: "flash-cont-3",
+                        'width': width,
+                        'height': height,
+                        sepeNum: 5,
+                        color:"#6890D5",
+                        hoverColor:"#7EA1DA",
+                        yaxis: yaxis,
+                        series: series
+                    });
+                }
+                else {
+                    ChartGeneral.options.yaxis = yaxis;
+                    ChartGeneral.options.series = series;
+                }
+                //调用绘图方法
+                ChartGeneral.draw();
+
+            }
+
+
+        }
+    </script>
+</body>
+</html>

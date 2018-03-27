@@ -1,0 +1,150 @@
+#parse("includes/header_home.vm")
+<link href="${base}/static/css/style.css" rel="stylesheet" type="text/css">
+<div class="container">
+<div id="main">
+  <div class="release">
+    <div class="release-progress">
+		#parse("task/publish/task-step.vm")
+    </div>
+    
+    <!-- release-progress end-->
+    <div class="release-body">
+		<!-- release-help end  -->
+		<!-- 加载各任务对应步骤  -->
+		<div class="release-form">
+			<form class="form-horizontal" role="form" action="${base}/taskpub/pubsubmit" method="post" id="pubTaskFormstep2" name="pubTaskFormstep2" novalidate="novalidate">
+				<input type="hidden" name="step2" value="step2">
+				<input type="hidden" name="formhash" id="formhash" value="6a5086">
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-3 control-label">
+						担保金
+						<span class="text-danger"></span>
+					</label>
+					<div class="col-sm-4">
+						<div class="input-group">
+							<input type="text" class="form-control placeholder" id="txt_mobile" name="guarantee" value="$!model.guarantee" placeholder="担保金">
+							<span class="input-group-addon">元</span>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<p class="form-control-static">请详细了解&nbsp;&nbsp;<a href="http://www.baidu.com" target="_blank">担保金规则</a></p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-3 control-label">
+						完成保障
+					</label>
+					<div class="col-sm-4">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" value="1" name="guaranteeServe">
+								需提供 "保证完成" 服务
+							</label>
+							</br>
+							<label>
+								<input type="checkbox" value="2" name="guaranteeServe">
+								需提供 "不侵权保证" 服务
+							</label>
+							</br>
+							<label>
+								<input type="checkbox" value="3" name="guaranteeServe">
+								其他服务
+							</label>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<p class="form-control-static">
+							服务商保证按时完成并修改到满意为止，若违背承诺，雇主可获&nbsp;<a href="http://www.baidu.com" target="_blank">双倍赔付</a>
+						</p>
+						<p class="form-control-static">
+							服务商保证提供原创作品，若违背承诺，雇主可获双倍赔付
+						</p>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-3 control-label">
+						其他服务
+						<span class="text-danger"></span>
+					</label>
+					<div class="col-sm-6">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" value="1">
+								服务1
+							</label>
+							</br>
+							<label>
+								<input type="checkbox" value="2">
+								服务2
+							</label>
+							</br>
+							<label>
+								<input type="checkbox" value="3">
+								服务3
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+						<button type="submit" class="btn btn-primary" value="下一步" onclick="return isAgreementChecked();">下一步</button>
+						<a href="/taskpub/config" class="btn btn-link">返回上一步</a>
+						<input type="hidden" id="guaranteeServeHidden" name="guaranteeServeHidden" value="$!model.guaranteeServeHidden"/>
+					</div>
+				</div>
+				<!-- form-group end -->
+			</form>
+		</div>      <!-- 加载各任务对应步骤  -->
+    </div>
+    <!-- release-body end -->
+  </div>
+  <!-- release end-->
+</div>
+</div>
+#parse("includes/footer.vm")
+<script type="text/javascript">
+	$(function() {
+		$("#active-style-rework").remove();
+		
+		//企业支付方式设置
+		var paymentHidden = $("#guaranteeServeHidden").val();
+		var paymentType = paymentHidden.split("_");
+		if(paymentType && paymentType.length > 0){
+			for(var i = 0; i < paymentType.length; i++){
+				$("input[name='guaranteeServe'][value='"+paymentType[i]+"']").attr("checked", "checked");
+			}
+		}
+		
+	});
+	
+	
+	function isAgreementChecked(){
+		var guaranteeServe = [];
+		$("input[name='guaranteeServe']").each(function(){
+			if($(this).attr("checked")){
+				guaranteeServe.push($(this).val());
+			}
+		});
+		$("#guaranteeServeHidden").val(guaranteeServe.join("_"));
+		return true;
+	}
+	
+	$(function(){
+			$('#pubTaskFormstep2').scojs_valid({
+			    rules: {
+			    	guarantee: ['numeric']
+			    },
+			    messages: {
+					guarantee: {
+						numeric: "请输入有效的金额数字"
+					}
+			    },
+		    	wrapper:'.form-group',
+		    	onSuccess: function(response, validator, $form) {
+		    		window.location.href = "${base}/taskpub/confirm";
+		    	}
+			});
+		});
+	
+</script>

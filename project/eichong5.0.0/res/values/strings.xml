@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">爱充</string>
+    <string name="viewpager_indicator">%1$d/%2$d</string>
+    <string name="scan_tips">将屏幕上的二维码放入框内,即可自动扫描</string>
+    <string name="server_time_out">服务器连接超时</string>
+    <string name="connect_failed">网络连接失败</string>
+    <string name="connect_server_failed">服务器连接失败</string>
+    <string name="request_data">正在请求数据\u2026</string>
+    <string name="invoice_role">&#160;?&#160;开票规则</string>
+   
+    <string name="coupon_info">%1$s张优惠券即将过期</string>
+     <string name="estimate_money">估计充电 &#160;%1$s&#160;分钟,行驶约 &#160;%2$s&#160;公里</string>
+    <string name="current_balance">可用余额 &#160;%1$s&#160;元</string>
+    <string name="invoice_total">已选 &#160;%1$d&#160;笔，共&#160;%2$s&#160;元</string>
+    <string name="invoice_detail_consume">含 &#160;%1$s&#160;条消费记录</string>
+    <string name="invoice_consume">- ¥%1$s</string>
+    <string name="coupon_condition">满 &#160;%1$s&#160;使用</string>
+    <string name="bespoke_price_explain">用户预约之后，可以买断从当前时间开始到用户本人预计到达充电点的这段时间，以确保用户到了以后可以顺利充电。设置时间：以30分钟为最小单位，最大预约时长为6小时。</string>
+    <string name="network_tips">亲，网络不稳，请检查网络连接</string>
+    
+     <string name="tip_error_110">连接充电桩失败,拒绝</string>
+     <string name="tip_error_1002"> 用户金额不足,不能充电</string>
+     <string name="tip_error_6000">亲，充电失败，信号漂移\n请筛选&#8211;&#8211;空闲中的电桩使用</string>
+     <string name="tip_error_6001">亲，充电失败，信号堵塞\n请重新开始充电。</string>
+     <string name="tip_error_6100">亲，充电失败，电桩编码无效\n请筛选&#8211;&#8211;空闲中的其它电桩使用</string>
+     <string name="tip_error_6101">亲，充电失败，电桩枪口编码无效\n请筛选&#8211;&#8211;空闲中的其它电桩使用</string>
+     <string name="tip_error_6102">亲，充电失败，电桩无费率\n请筛选&#8211;&#8211;空闲中的电桩使用</string>
+     <string name="tip_error_6104">亲，充电失败，电桩在升级\n请稍等片刻使用或筛选&#8211;&#8211;空闲中的电桩使用</string>
+     <string name="tip_error_6105">报文错误</string>
+     <string name="tip_error_6200">亲，充电失败，枪口停用中\n请筛选&#8211;&#8211;空闲中的电桩使用</string>
+     <string name="tip_error_6201">亲，充电失败，电桩未上线\n请筛选&#8211;&#8211;空闲中的电桩使用</string>
+     <string name="tip_error_6202">亲，充电失败，电桩不开放\n请筛选&#8211;&#8211;空闲中的电桩使用</string>
+     <string name="tip_error_6203">没有充电权限</string>
+     <string name="tip_error_6300">亲，充电失败，电桩已占用\n请筛选&#8211;&#8211;空闲中的电桩使用</string>
+     <string name="tip_error_6301">亲，充电失败，电桩已占用（设置中）\n请筛选&#8211;&#8211;空闲中的电桩使。</string>
+     <string name="tip_error_6401">亲，充电失败，用户长度无效\n请致电我们检查用户是否有效</string>
+     <string name="tip_error_6402">亲，充电失败，用户密码错误\n请想想您的用户密码</string>
+     <string name="tip_error_6403">亲，充电失败，手机通讯校验码失败\n请重新开始充电</string>
+     <string name="tip_error_6404">亲，充电失败，您的账户无效\n请致电我们检查您的账户是否有效</string>
+     <string name="tip_error_6405">亲，充电失败，您的用户已冻结\n请致电我们检查您的账户冻结原因</string>
+     <string name="tip_error_6406">亲，充电失败，您的账户已有预约、充电操作\n请结束之前操作后重新开始充电</string>
+     <string name="tip_error_6600">亲，充电失败，您的账户已有预约操作\n请结束之前操作后重新开始充电</string>
+     <string name="tip_error_6601">亲，充电失败，电桩已占用（预约中）\n请筛选&#8211;&#8211;空闲中的电桩使用</string>
+     <string name="tip_error_6633">亲，充电失败，电桩已占用（预约中）\n请筛选&#8211;&#8211;空闲中的电桩使用</string>
+     <string name="tip_error_6700">充电方式错误</string>
+     <string name="tip_error_6701">亲，充电失败，充电订单未完成或未结算\n请结束之前充电操作或联系我们</string>
+     <string name="tip_error_6702">充电枪没插好,不能充电</string>
+     <string name="tip_error_6703">充电枪盖没盖好,不能充电</string>
+     <string name="tip_error_6704">车与桩未建立通讯</string>
+     <string name="tip_error_6705">故障，不能充电</string>
+     <string name="tip_error_6706">枪盖已经打开,不能重复打开</string>
+     <string name="tip_error_6800">亲，充电失败，您的账户已有充电操作，请结束之前操作后重新开始充电。</string>
+     <string name="tip_error_6801">亲，充电失败，电桩已占用（充电中）\n请筛选&#8211;&#8211;空闲中的电桩使用</string>
+     <string name="tip_error_6802">亲，充电失败，电桩已占用（预约中）\n请筛选&#8211;&#8211;空闲中的电桩使用</string>
+     <string name="tip_error_6803">亲，停止充电失败，未有充电操作\n请筛选&#8211;&#8211;空闲中的电桩使用</string>
+     <string name="tip_error_6804">亲，充电失败，电桩已占用（故障中）\n请筛选&#8211;&#8211;空闲中的电桩使用</string>
+    
+     <string name="charge_error_order">订单异常，暂不计费。\n如有疑问，请拨打客服电话：400&#8211;085&#8211;0006</string>
+    
+     <!-- 下拉刷新，上拉加载更多 -->
+     <!-- 自定义组件 -->
+    <string name="pull_to_refresh">下拉可以刷新</string>
+    <string name="release_to_refresh">松开可以刷新</string>
+    <string name="lastUpdateTime">最近更新：%s</string>
+    <!-- <string name="load_full">已加载全部</string> -->
+    <string name="load_full"></string>
+    <string name="no_data">暂无数据</string>
+    <string name="more">加载中</string>
+    <!-- 导航 讯飞语音 -->
+<string name="start_hud_navi">HUD显示</string>
+    <string name="complex_function">综合展示</string>
+
+	<string name="navi_car">驾车</string>
+    <string name="navi_foot">步行</string>
+    <string name="navi_empty_car">"驾   车"</string>
+    <string name="navi_empty_foot">"步   行"</string>
+    <string name="navi_start">"起    点"</string>
+    <string name="navi_middle">途经点</string>
+    <string name="navi_end">"终    点"</string>
+    <string name="navi_strategy">"策    略"</string>
+    <string name="navi_route">路径规划</string>
+    <string name="navi_navi">模拟导航</string>
+    <string name="start_navi_navi">实时导航</string>
+    <string name="navi_strategy_speed">速度最快</string>
+    <string name="navi_strategy_cost">避免收费</string>
+    <string name="navi_strategy_distance">距离最短</string>
+    <string name="navi_strategy_nohighway">不走高速快速路</string>
+    <string name="navi_strategy_timenojam">时间最短且躲避拥堵</string>
+    <string name="navi_strategy_costnojam">避免收费且躲避拥堵</string>
+
+    <string name="theme_blue">经典蓝</string>
+    <string name="theme_pink">可爱粉</string>
+    <string name="theme_white">简约白</string>
+
+    <string name="setting">设置</string>
+    <string name="day">白天</string>
+    <string name="night">夜间</string>
+    <string name="yes">"  是  "</string>
+    <string name="no">"  否  "</string>
+    <string name="open">打开</string>
+    <string name="close">关闭</string>
+    <string name="daynightmode">"昼夜模式    "</string>
+    <string name="deviationrecalculation">"偏航重算    "</string>
+    <string name="jamrecalculation">"拥堵重算    "</string>
+    <string name="trafficbroadcast">"交通播报    "</string>
+    <string name="camerabroadcast">摄像头播报</string>
+    <string name="screenon">"屏幕常亮    "</string>
+    <string name="routeshow">线路展示</string>
+    <string name="tapmap">点击地图设置</string>
+    <string name="starttapmap">我的位置（可点击地图设置）</string>
+    <string name="walkdescription">步行状态不可用</string>
+    <string name="routeinfo">全程   --公里/--分钟    收费 --元</string>
+    <string name="routeinfo_1">全程 </string>
+    <string name="routeinfo_2">公里/</string>
+    <string name="routeinfo_3">"分钟    收费"</string>
+    <string name="routeinfo_4">元</string>
+    <string name="routeinfo_default">--</string>
+    <string name="app_id">输入您讯飞的appid</string>
+    <string name="mypoistion">我的位置</string>
+    <string name="mappoistion">地图点选</string>
+    <string name="positioninfo">位置信息</string>
+
+
+    <string name="preference_default_tts_role">xiaoyan</string>
+    <string name="preference_key_tts_speed">tts_speed</string>
+    <string name="preference_title_tts_speed">语速</string>
+    <string name="preference_default_tts_speed">50</string>
+    <string name="preference_dialog_title_tts_speed">选择语速</string>
+    <string name="preference_key_tts_volume">tts_volume</string>
+    <string name="preference_title_tts_volume">音量</string>
+    <string name="preference_default_tts_volume">50</string>
+    <string name="preference_dialog_title_tts_volume">选择音量</string>
+    <string name="preference_key_tts_pitch">tts_pitch</string>
+    <string name="preference_title_tts_pitch">语调</string>
+    <string name="preference_default_tts_pitch">50</string>
+    
+<!-- WXPayEntryActivity -->
+	<string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
+	<string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+    <string name="getting_prepayid">正在获取预支付订单...</string>
+    <string name="wx_tip">提示</string>
+
+    
+ <string name="invoice_role_content">1、目前只能为您开具90天内的预约消费、充电消费发票，代金券、抵用券消费不能开具发票；\n2、您可以选择开具公司发票或者个人发票；\n3、为了保证发票能快递到您手上，请填写正确的内容，例如收件人姓名等；\n4、开具的发票将在收到申请次日起的七个工作日内寄出；\n5、如果您没有支付快递费用，爱充网无法为您寄出发票，所以请务必支付；\n6、目前支持微信、支付宝、快递货到付款三种方式；\n7、如果您选择了微信或者支付宝支付方式，快递费用发票将一起寄送给您；\n8、如果您选择了快递货到付款的方式，请记得找快递员要您的快递费用发票
+     </string>
+     
+     
+     
+     
+     
+     
+     
+     
+   <string name="pull_to_refresh_pull_label">下拉刷新…</string>
+   <string name="pull_to_refresh_release_label">松开立即刷新…</string>
+   <string name="pull_to_refresh_refreshing_label">正在刷新…</string>
+
+    <!-- Just use standard Pull Down String when pulling up. These can be set for languages which require it -->
+    <string name="pull_to_refresh_from_bottom_pull_label">上拉加载…</string>
+    <string name="pull_to_refresh_from_bottom_release_label">松开立即刷新…</string>
+    <string name="pull_to_refresh_from_bottom_refreshing_label">正在载入…</string>  
+     
+    
+    
+    
+    
+    
+    
+    
+    
+    <string name="facebook_app_id">1266254913438718</string>
+
+
+    <string name="umeng_update_content">版本号：6.4.5\n1.更新了QQ精简版与完整版支持轻聊\n2.更新了新浪SDK，修复了授权在部分rom上不能唤起客户端的bug\n3.有道云笔记更新为官方SDK</string>
+    <string name="umeng_home_title">U-Share产品Demo</string>
+    <string name="umeng_home_update">新版更新内容</string>
+    <string name="umeng_share_title">分享</string>
+    <string name="umeng_auth_title">授权</string>
+    <string name="umeng_delauth_title">删除授权</string>
+    <string name="umeng_getinfo_title">获取用户信息</string>
+    <string name="umeng_check_title">自检工具</string>
+    <string name="umeng_menu_title">分享菜单模板</string>
+
+    <string name="umeng_check_sign">检查签名</string>
+    <string name="umeng_check_sina">检查新浪</string>
+    <string name="umeng_check_wx">检查微信</string>
+    <string name="umeng_check_alipay">检查支付宝</string>
+    <string name="umeng_check_qq">检查qq</string>
+    <string name="umeng_check_fb">检查facebook</string>
+    <string name="umeng_check_vk">vkontakte</string>
+    <string name="umeng_choose_style">选择分享类型</string>
+
+    <string name="umeng_sharebutton_copy">复制文本</string>
+    <string name="umeng_sharebutton_copyurl">复制连接</string>
+    
+
+</resources>

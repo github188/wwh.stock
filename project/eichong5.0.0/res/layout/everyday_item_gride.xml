@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/keybord_btn_keys"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/common_white"
+    android:orientation="vertical"
+    >
+	<ImageView
+	    android:id="@+id/bt"
+	    android:layout_width="20dp"
+	    android:layout_height="10dp"
+	    android:background="@drawable/img_huangguan"
+	    android:layout_marginBottom="3dp"
+	    android:layout_gravity="center_horizontal"
+	    />
+    <RelativeLayout
+        android:id="@+id/delete_to"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/common_everyday_shape_white"
+        android:layout_marginBottom="5dp"
+         >
+        <TextView
+            android:id="@+id/t_integrate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="50"
+            android:textColor="@color/common_orange"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/keybord_btn_data_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        android:textColor="@color/common_light_black"
+        android:textSize="12sp" 
+        android:layout_marginBottom="7dp"
+        android:text="今天"
+        />
+
+</LinearLayout>

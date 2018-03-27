@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>沪深A股公告一览表 </title>
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/master.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/default.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/layer2012.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/page_common.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/hqPopDialog.css">
+    <script type="text/javascript" src="${base}/static/js/jquery.min.1.8.3.js"></script>
+    <script type="text/javascript">
+        var jQuery = $.noConflict();
+        var portalurl = "${portal_url}/";
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/base.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/pluginNoBind.js"></script>
+    <style>
+        .search-input {border: 1px solid #7f9db9;vertical-align: middle;overflow: hidden;font-family: Arial;width: 110px;color: #454545;height: 16px;line-height: 16px;padding-left: 3px;}
+        .search-btn {display: inline-block;background: url("/images/btn_search_blue.gif") no-repeat;height: 20px;width: 52px;vertical-align: middle;}
+        #ggMenu li {width: 94.8px;}
+        .overflow{display:block; overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin: 0 auto;}
+    </style>
+</head>
+<body>
+<div id="page" class="page">
+    <div class="main">
+<div class="framecontent">
+    <div class="linkNav">
+        <div id="Column_Navigation">
+            <a href="${base}/stockeast/marketcentre/" target="_self">行情首页</a> &gt; <a href="${base}/stockeast/center/">数据中心</a> &gt; <a href="${base}/stockeast/notices/">公告大全</a> &gt; 沪深A股公告
+        </div>
+    </div>
+    <div class="sitebody">
+        <div class="maincont">
+            <div class="contentBox">
+                <div class="titbar" id="datatitle">
+                    <b class="el"></b>
+                    <div class="tit">
+                        沪深A股公告
+                    </div>
+                    <div class="search" style="float: right;margin-right: 10px;">
+                        <span class="txt">个股公告查询：</span>
+                        <input class="sinput" name="ggdq_StockCode" id="ggdq_StockCode" type="text" />
+                        <div onclick="gggg_Search()" class="btn" style="border: none;"> </div>
+
+                        <span class="txt" style="margin-left:100px;">公告日期：</span>
+                        <div class="date-region" onclick="WdatePicker({ dchanged: dateChange,onpicked:dateChange,el:'inputDate' })">
+                            <input type="text" id="inputDate" class="dll" value="" readonly="readonly" />
+                            <b class="date-icon"></b>
+                        </div>
+                        <script type="text/javascript" src="${base}/static/js/east/WdatePicker.js"></script>
+
+                    </div>
+                    <script type="text/javascript">
+                        var jsType = "ABSTOCK";
+                        //个股公告查询
+                        function gggg_Search() {
+                            var val = document.getElementById("ggdq_StockCode").value;
+                            if (val == "输代码、名称或拼音" || val == "") {
+                                alert("请输入所查询股票的代码!");
+                                return;
+                            }
+
+                            //ab股是6位数字
+                            var r = /^\d{6}$/;
+                            //港股是5位数字
+                            if (jsType == "HKSTOCK"){
+                                r = /^\d{5}$/;
+                            }
+                            //美股是字母
+                            else if (jsType == "USASTOCK") {
+                                r = /^[a-z]+$/i;
+                            }
+
+                            if (r.test(val))
+                                window.open("/stockeast/notices/detail?code=" + val);
+                            else
+                                alert("请输入所查询股票的代码!");
+                        }
+                        var zz = new StockSuggest("ggdq_StockCode", {
+                            text: "输代码、名称或拼音",
+                            type: jsType,
+                            autoSubmit: false,
+                            width: 210,
+                            header: ["选项", "代码", "名称", "类型"],
+                            body: [-1, 1, 4, -2],
+                            callback: function (ag) {
+                                window.open("/stockeast/notices/detail?code=" + ag.code);
+                            }
+                        });
+                    </script>
+                </div>
+                <div class="sepe">
+                    <div class="left">
+                    </div>
+                    <div class="right">
+                    </div>
+                </div>
+                <div class="content" id="contetn_t">
+                    <style>
+                        .maincont .catemk ul li {width: 106.8px;padding: 0;font-size: 16px;}
+                        .maincont .cateday {padding-bottom: 5px;border-bottom: 1px solid #2f5795;}
+                        .maincont .cateday ul li {width: 87px;}
+                    </style>
+
+                    <div id="tabMenu" class="catemk" style="_height: 30px">
+                        <ul>
+                            <li data-type="0" #if($!type=="0")class='at'#end>全部</li>
+                            <li data-type="5" data-ul="zdsx_ul" #if($!type=="5")class='at'#end >重大事项</li>
+                            <li data-type="1" data-ul="cwbg_ul" #if($!type=="1")class='at'#end >财务报告</li>
+                            <li data-type="2" data-ul="rzgg_ul" #if($!type=="2")class='at'#end >融资公告</li>
+                            <li data-type="3" #if($!type=="3")class='at'#end >风险提示</li>
+                            <li data-type="6" data-ul="zccz_ul" #if($!type=="6")class='at'#end >资产重组</li>
+                            <li data-type="4" #if($!type=="4")class='at'#end >信息变更</li>
+                            <li data-type="7" #if($!type=="7")class='at'#end >持股变动</li>
+                        </ul>
+                    </div>
+                    #if($!type=="5")
+                        <div class="cateday" id="secType">
+                            <ul id="zdsx_ul">
+                                <li class="at2" data="0">全部<i></i></li>
+                                <li data="7">重大合同<i></i></li>
+                                <li data="8">投资相关<i></i></li>
+                                <li data="9">股权激励<i></i></li>
+                            </ul>
+                        </div>
+                    #elseif($!type=="1")
+                        <div class="cateday" id="secType">
+                            <ul id="cwbg_ul">
+                                <li class="at2" data="0">全部<i></i></li>
+                                <li data="1">定期报告<i></i></li>
+                                <li data="13">利润分配<i></i></li>
+                                <li data="5">业绩预告<i></i></li>
+                                <li data="6">业绩快报<i></i></li>
+                            </ul>
+                        </div>
+                    #elseif($!type=="2")
+                        <div class="cateday" id="secType">
+                            <ul id="rzgg_ul">
+                                <li class="at2" data="0">全部<i></i></li>
+                                <li data="3">增发<i></i></li>
+                                <li data="2">新股发行<i></i></li>
+                                <li data="4">配股<i></i></li>
+                            </ul>
+                        </div>
+                    #elseif($!type=="6")
+                        <div class="cateday" id="secType">
+                            <ul id="zccz_ul">
+                                <li class="at2" data="0">全部<i></i></li>
+                                <li data="10">要约收购<i></i></li>
+                                <li data="11">吸收合并<i></i></li>
+                                <li data="12">回购<i></i></li>
+                            </ul>
+                        </div>
+                    #end
+                    <table cellpadding="0" cellspacing="0" class="noborder" id="dt_1">
+                        <thead class="h101"></thead>
+                        <tbody>
+                        <tr><td colspan="6" class="loading">加载中......</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div id="PageNav" class="PageNav">
+                        <div class="Page" id="PageCont">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+<div class="qphox">
+    <script type="text/javascript" src="${base}/static/js/east/emcharts.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/load_table_data.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/hqPopDialog.js"></script>
+    <script type="text/javascript">
+        //function searchAll() {
+        //    var v = document.getElementById("search_key").value;
+        //    if (v == '' || v == '请输入关键词') {
+        //        alert('请输入检索关键词');
+        //        return;
+        //    }
+        //    window.open("/notices/search.aspx?kwd=" + encodeURIComponent(v));
+        //}
+
+        var market = '$!market', stockTypeCode = '058001001';
+
+        var firstTypeName = '全部', secTypeName = '';
+        (function ($) {
+            //美股、三板 没有一级、二级标签
+            if (market != 'mg' && market != "sb"){
+                var firstType = $("#ggMenu,#tabMenu"), secType = $("#secType");
+                if(secType.length > 0){
+                    secTypeName = '全部';
+                    secType.find("li").on("click", function(){
+                        secTypeName = $.trim($(this).text());
+                    });
+                }
+
+                if(firstType.length > 0){
+                    firstTypeName = $.trim(firstType.find(".at").text());
+
+                    $("#ggMenu,#tabMenu").on("click", "li", function () {
+                        var type = $(this).data("type"),
+                                date = $("#inputDate").val();
+                        var url = "${base}/stockeast/notices?market=" + market;
+                        if(date)
+                            url += "&type=" + type + "&date=" + date;
+                        else if(type)
+                            url += "&type=" + type;
+                        location.href = url;
+                    });
+                }
+            }
+        })(jQuery);
+
+        //选择日期改变
+        function dateChange(obj) {
+            list.options.param.Time.value = obj.cal.getNewDateStr() || '';
+            list.options.page = 1;
+            list.update();
+        }
+
+        // 动态加载table
+        var list = new LoadTable({
+            id: "dt_1",
+            page: 1,
+            pagesize: 100,
+            param: { "secType": { cname: "li", type: "SecNodeType", value: "0", cssclass: "at2" }, "Time": { type: "Time", value: ""}},
+            cells: [{ "n": "代码", "w": 60 }, { "n": "名称", "w": 110 }, { "n": "相关资料", "w": 120 }, { "n": "公告标题", "w": 385 }, { "n": "公告类型", "w": 110 },  { "n": "公告日期", "w": 80 }],
+            dataurl: "http://data.eastmoney.com/notices/getdata.ashx?StockCode=&FirstNodeType=${type}&CodeType=1&PageIndex={page}&PageSize={pageSize}&jsObj={jsname}{param}",
+            //defjson: {"data":[{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":244,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"600614:鹏起科技2017年第二次临时股东大会会议资料","INFOCODE":"AN201704290540660229","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000000904","SECURITYTYPECODE":"058001001","SECURITYCODE":"600614","SECURITYFULLNAME":"鹏起科技","SECURITYSHORTNAME":"鹏起科技","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000421","Eid":0},{"SECURITYVARIETYCODE":"1000000905","SECURITYTYPECODE":"058001002","SECURITYCODE":"900907","SECURITYFULLNAME":"鹏起B股","SECURITYSHORTNAME":"鹏起B股","SECURITYTYPE":"B股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000421","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002003004002","COLUMNNAME":"股东大会资料","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"600614","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001002","CODEMARKET":"069001001001","SECURITYCODE":"900907","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T05:04:01+08:00","TABLEID":160000002736550812,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":97,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"600614:鹏起科技关于2017第二次临时股东大会增加临时提案的补充公告","INFOCODE":"AN201704290540660209","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000000904","SECURITYTYPECODE":"058001001","SECURITYCODE":"600614","SECURITYFULLNAME":"鹏起科技","SECURITYSHORTNAME":"鹏起科技","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000421","Eid":0},{"SECURITYVARIETYCODE":"1000000905","SECURITYTYPECODE":"058001002","SECURITYCODE":"900907","SECURITYFULLNAME":"鹏起B股","SECURITYSHORTNAME":"鹏起B股","SECURITYTYPE":"B股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000421","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002003002001","COLUMNNAME":"增加股东大会议案","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"600614","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001002","CODEMARKET":"069001001001","SECURITYCODE":"900907","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T05:04:01+08:00","TABLEID":160000002736550683,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":432,"ENDDATE":"2016-12-31T00:00:00+08:00","NOTICETITLE":"600661:新南洋2016年年度报告摘要","INFOCODE":"AN201704290540660251","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000002213","SECURITYTYPECODE":"058001001","SECURITYCODE":"600661","SECURITYFULLNAME":"新南洋","SECURITYSHORTNAME":"新南洋","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000468","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001001001001002","COLUMNNAME":"年度报告摘要","NodeName":null,"Eid":0,"Order":3}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"600661","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T05:03:27+08:00","TABLEID":160000002736551063,"Order":3},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":307,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"600686:金龙汽车关于召开2016年度股东大会的通知","INFOCODE":"AN201704290540660196","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000001730","SECURITYTYPECODE":"058001001","SECURITYCODE":"600686","SECURITYFULLNAME":"金龙汽车","SECURITYSHORTNAME":"金龙汽车","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000493","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002003001002","COLUMNNAME":"召开股东大会通知","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"600686","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T05:03:27+08:00","TABLEID":160000002736550606,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":377,"ENDDATE":"2016-12-31T00:00:00+08:00","NOTICETITLE":"600686:金龙汽车2016年年度报告摘要","INFOCODE":"AN201704290540660203","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000001730","SECURITYTYPECODE":"058001001","SECURITYCODE":"600686","SECURITYFULLNAME":"金龙汽车","SECURITYSHORTNAME":"金龙汽车","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000493","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001001001001002","COLUMNNAME":"年度报告摘要","NodeName":null,"Eid":0,"Order":3}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"600686","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T05:02:53+08:00","TABLEID":160000002736550669,"Order":3},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":48,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"600614:鹏起科技关于公司5%以上股东股份被司法冻结的公告","INFOCODE":"AN201704290540660202","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000000904","SECURITYTYPECODE":"058001001","SECURITYCODE":"600614","SECURITYFULLNAME":"鹏起科技","SECURITYSHORTNAME":"鹏起科技","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000421","Eid":0},{"SECURITYVARIETYCODE":"1000000905","SECURITYTYPECODE":"058001002","SECURITYCODE":"900907","SECURITYFULLNAME":"鹏起B股","SECURITYSHORTNAME":"鹏起B股","SECURITYTYPE":"B股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000421","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002006010","COLUMNNAME":"股份质押、冻结","NodeName":null,"Eid":0,"Order":301}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"600614","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001002","CODEMARKET":"069001001001","SECURITYCODE":"900907","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T05:02:53+08:00","TABLEID":160000002736550743,"Order":301},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":572,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"600881:亚泰集团2016年度社会责任报告","INFOCODE":"AN201704290540523719","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000004054","SECURITYTYPECODE":"058001001","SECURITYCODE":"600881","SECURITYFULLNAME":"亚泰集团","SECURITYSHORTNAME":"亚泰集团","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000830","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001003003003","COLUMNNAME":"社会责任报告","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"600881","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T05:02:27+08:00","TABLEID":160000002736515565,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":133,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"600877:中国嘉陵独立董事关于非标准无保留审计意见涉及事项的独立意见","INFOCODE":"AN201704290540523732","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000004049","SECURITYTYPECODE":"058001001","SECURITYCODE":"600877","SECURITYFULLNAME":"中国嘉陵","SECURITYSHORTNAME":"中国嘉陵","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000826","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001003001001003","COLUMNNAME":"专项说明/独立意见","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"600877","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T05:02:27+08:00","TABLEID":160000002736515606,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":470,"ENDDATE":"2017-03-31T00:00:00+08:00","NOTICETITLE":"600405:动力源2017年第一季度报告(修订版)","INFOCODE":"AN201704290540404091","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000002290","SECURITYTYPECODE":"058001001","SECURITYCODE":"600405","SECURITYFULLNAME":"动力源","SECURITYSHORTNAME":"动力源","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"10001341","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001001001003001","COLUMNNAME":"一季度报告全文","NodeName":null,"Eid":0,"Order":25}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"600405","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T05:01:57+08:00","TABLEID":160000002736488056,"Order":25},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":242,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"600477:杭萧钢构关于与邢台日盛房地产开发有限公司签署合作协议的公告","INFOCODE":"AN201704290540404078","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000001247","SECURITYTYPECODE":"058001001","SECURITYCODE":"600477","SECURITYFULLNAME":"杭萧钢构","SECURITYSHORTNAME":"杭萧钢构","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"10001315","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002006005","COLUMNNAME":"签订协议","NodeName":null,"Eid":0,"Order":291}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"600477","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T05:01:35+08:00","TABLEID":160000002736487484,"Order":291},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":140,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"兴源环境:关于资产重组进展公告(2017/4/29)","INFOCODE":"AN201704280539029883","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000009879","SECURITYTYPECODE":"058001001","SECURITYCODE":"300266","SECURITYFULLNAME":"兴源环境","SECURITYSHORTNAME":"兴源环境","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002002","TRADEMARKET":"深交所创业板","LISTINGSTATE":"0","COMPANYCODE":"80183629","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002007003007","COLUMNNAME":"重组进展公告","NodeName":null,"Eid":0,"Order":405},{"COLUMNCODE":"001002004008","COLUMNNAME":"停牌公告","NodeName":null,"Eid":0,"Order":229}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002002","SECURITYCODE":"300266","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001001","CODEMARKET":"069001002002","SECURITYCODE":"300266","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:57:05+08:00","TABLEID":160000002735297217,"Order":229},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":226,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"雪人股份:第三届董事会第十五次会议决议公告(2017/4/29)","INFOCODE":"AN201704280539632285","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000008338","SECURITYTYPECODE":"058001001","SECURITYCODE":"002639","SECURITYFULLNAME":"雪人股份","SECURITYSHORTNAME":"雪人股份","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80187887","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002009","COLUMNNAME":"董事会决议公告","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002639","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:56:33+08:00","TABLEID":160000002736315609,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":220,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"雪人股份:第三届监事会第十二次会议决议(2017/4/29)","INFOCODE":"AN201704280539632280","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000008338","SECURITYTYPECODE":"058001001","SECURITYCODE":"002639","SECURITYFULLNAME":"雪人股份","SECURITYSHORTNAME":"雪人股份","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80187887","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002010","COLUMNNAME":"监事会决议公告","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002639","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:55:54+08:00","TABLEID":160000002736315596,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":177,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"赞宇科技:关于产业并购基金进展及对外投资的公告(2017/4/29)","INFOCODE":"AN201704280539037627","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000008226","SECURITYTYPECODE":"058001001","SECURITYCODE":"002637","SECURITYFULLNAME":"赞宇科技","SECURITYSHORTNAME":"赞宇科技","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80185948","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002006012001001","COLUMNNAME":"对外项目投资","NodeName":null,"Eid":0,"Order":309}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002637","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:55:25+08:00","TABLEID":160000002735309191,"Order":309},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":132,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"亚夏汽车:关于持股5%以上股东股份质押的公告(2017/4/29)","INFOCODE":"AN201704280539055028","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000008135","SECURITYTYPECODE":"058001001","SECURITYCODE":"002607","SECURITYFULLNAME":"亚夏汽车","SECURITYSHORTNAME":"亚夏汽车","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80176358","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002006010","COLUMNNAME":"股份质押、冻结","NodeName":null,"Eid":0,"Order":301}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002607","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:55:25+08:00","TABLEID":160000002735318857,"Order":301},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":118,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"证通电子:关于控股股东办理股权质押的公告(2017/4/29)","INFOCODE":"AN201704280539055024","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000006848","SECURITYTYPECODE":"058001001","SECURITYCODE":"002197","SECURITYFULLNAME":"证通电子","SECURITYSHORTNAME":"证通电子","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80102731","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002006010","COLUMNNAME":"股份质押、冻结","NodeName":null,"Eid":0,"Order":301}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002197","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:54:53+08:00","TABLEID":160000002735318847,"Order":301},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":162,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"中环股份:关于继续停牌及重大事项进展的公告(2017/4/29)","INFOCODE":"AN201704280539653598","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000008428","SECURITYTYPECODE":"058001001","SECURITYCODE":"002129","SECURITYFULLNAME":"中环股份","SECURITYSHORTNAME":"中环股份","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80093127","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002004008","COLUMNNAME":"停牌公告","NodeName":null,"Eid":0,"Order":229}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002129","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:54:24+08:00","TABLEID":160000002736322796,"Order":229},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":116,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"万泽股份:关于大股东股权质押情况的公告(2017/4/29)","INFOCODE":"AN201704280539209166","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000002267","SECURITYTYPECODE":"058001001","SECURITYCODE":"000534","SECURITYFULLNAME":"万泽股份","SECURITYSHORTNAME":"万泽股份","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002001","TRADEMARKET":"深交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000876","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002006010","COLUMNNAME":"股份质押、冻结","NodeName":null,"Eid":0,"Order":301}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002001","SECURITYCODE":"000534","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:51:26+08:00","TABLEID":160000002735410415,"Order":301},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":373,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"腾信股份:招商证券股份有限公司关于公司2016年度募集资金使用情况的专项核查意见(1)","INFOCODE":"AN201704280539856727","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000311367","SECURITYTYPECODE":"058001001","SECURITYCODE":"300392","SECURITYFULLNAME":"腾信股份","SECURITYSHORTNAME":"腾信股份","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002002","TRADEMARKET":"深交所创业板","LISTINGSTATE":"0","COMPANYCODE":"80198913","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001003002001","COLUMNNAME":"保荐/核查意见","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002002","SECURITYCODE":"300392","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:50:52+08:00","TABLEID":160000002736372647,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":374,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"腾信股份:招商证券股份有限公司关于公司2016年度募集资金使用情况的专项核查意见(2)","INFOCODE":"AN201704280539867366","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000311367","SECURITYTYPECODE":"058001001","SECURITYCODE":"300392","SECURITYFULLNAME":"腾信股份","SECURITYSHORTNAME":"腾信股份","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002002","TRADEMARKET":"深交所创业板","LISTINGSTATE":"0","COMPANYCODE":"80198913","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001003002001","COLUMNNAME":"保荐/核查意见","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002002","SECURITYCODE":"300392","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:50:52+08:00","TABLEID":160000002736374587,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":167,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"深物业A:董事会决议公告(2017/4/29)","INFOCODE":"AN201704280539037703","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000001648","SECURITYTYPECODE":"058001001","SECURITYCODE":"000011","SECURITYFULLNAME":"深物业A","SECURITYSHORTNAME":"深物业A","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002001","TRADEMARKET":"深交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000600","Eid":0},{"SECURITYVARIETYCODE":"1000001649","SECURITYTYPECODE":"058001002","SECURITYCODE":"200011","SECURITYFULLNAME":"深物业B","SECURITYSHORTNAME":"深物业B","SECURITYTYPE":"B股","TRADEMARKETCODE":"069001002001","TRADEMARKET":"深交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000600","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002009","COLUMNNAME":"董事会决议公告","NodeName":null,"Eid":0,"Order":999},{"COLUMNCODE":"001002005002","COLUMNNAME":"高管人员任职变动","NodeName":null,"Eid":0,"Order":275}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002001","SECURITYCODE":"000011","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001002","CODEMARKET":"069001002001","SECURITYCODE":"200011","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001001","CODEMARKET":"069001002001","SECURITYCODE":"000011","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001002","CODEMARKET":"069001002001","SECURITYCODE":"200011","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:50:24+08:00","TABLEID":160000002735309990,"Order":275},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":339,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"山西证券:2016年度风险控制指标情况报告(2017/4/29)","INFOCODE":"AN201704280539824875","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000000062","SECURITYTYPECODE":"058001001","SECURITYCODE":"002500","SECURITYFULLNAME":"山西证券","SECURITYSHORTNAME":"山西证券","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80000080","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002008","COLUMNNAME":"其他","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002500","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:50:24+08:00","TABLEID":160000002736364796,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":163,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"全新好:关于重大资产重组进展公告(2017/4/29)","INFOCODE":"AN201704280539769654","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000001643","SECURITYTYPECODE":"058001001","SECURITYCODE":"000007","SECURITYFULLNAME":"全新好","SECURITYSHORTNAME":"全新好","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002001","TRADEMARKET":"深交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000596","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002007003007","COLUMNNAME":"重组进展公告","NodeName":null,"Eid":0,"Order":405},{"COLUMNCODE":"001002004008","COLUMNNAME":"停牌公告","NodeName":null,"Eid":0,"Order":229}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002001","SECURITYCODE":"000007","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001001","CODEMARKET":"069001002001","SECURITYCODE":"000007","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:49:49+08:00","TABLEID":160000002736349575,"Order":229},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":249,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"克明面业:关于使用闲置募集资金购买理财产品的进展公告(2017/4/29)","INFOCODE":"AN201704280539581389","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000009290","SECURITYTYPECODE":"058001001","SECURITYCODE":"002661","SECURITYFULLNAME":"克明面业","SECURITYSHORTNAME":"克明面业","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80194340","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002006012002002","COLUMNNAME":"募集资金使用进展情况","NodeName":null,"Eid":0,"Order":319},{"COLUMNCODE":"001002006012003","COLUMNNAME":"投资理财","NodeName":null,"Eid":0,"Order":327}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002661","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002661","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:49:00+08:00","TABLEID":160000002736232005,"Order":319},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":119,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"杰赛科技:公司与中华通信系统有限责任公司之关于公司发行股份购买资产协议之补充协议(2)","INFOCODE":"AN201704280539698337","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000006404","SECURITYTYPECODE":"058001001","SECURITYCODE":"002544","SECURITYFULLNAME":"杰赛科技","SECURITYSHORTNAME":"杰赛科技","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80100869","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002006004","COLUMNNAME":"重大合同","NodeName":null,"Eid":0,"Order":289}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002544","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:47:53+08:00","TABLEID":160000002736334280,"Order":289},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":114,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"杰赛科技:公司与中华通信系统有限责任公司之关于公司发行股份购买资产协议之补充协议(1)","INFOCODE":"AN201704280539698345","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000006404","SECURITYTYPECODE":"058001001","SECURITYCODE":"002544","SECURITYFULLNAME":"杰赛科技","SECURITYSHORTNAME":"杰赛科技","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80100869","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002006004","COLUMNNAME":"重大合同","NodeName":null,"Eid":0,"Order":289}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002544","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:47:53+08:00","TABLEID":160000002736334301,"Order":289},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":123,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"和佳股份:独立董事对相关事项的独立意见(2017/4/29)","INFOCODE":"AN201704280539142983","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000009181","SECURITYTYPECODE":"058001001","SECURITYCODE":"300273","SECURITYFULLNAME":"和佳股份","SECURITYSHORTNAME":"和佳股份","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002002","TRADEMARKET":"深交所创业板","LISTINGSTATE":"0","COMPANYCODE":"80180702","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001003001001003","COLUMNNAME":"专项说明/独立意见","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002002","SECURITYCODE":"300273","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:46:16+08:00","TABLEID":160000002735342862,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":113,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"键桥通讯:关于重大资产重组的停牌进展公告(2017/4/29)","INFOCODE":"AN201704280539839931","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000008336","SECURITYTYPECODE":"058001001","SECURITYCODE":"002316","SECURITYFULLNAME":"键桥通讯","SECURITYSHORTNAME":"键桥通讯","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80077923","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002004008","COLUMNNAME":"停牌公告","NodeName":null,"Eid":0,"Order":229},{"COLUMNCODE":"001002007003007","COLUMNNAME":"重组进展公告","NodeName":null,"Eid":0,"Order":405}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002316","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002316","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:46:16+08:00","TABLEID":160000002736368287,"Order":229},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":292,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"航天电器:关于筹划资产重组的停牌进展公告(2017/4/29)","INFOCODE":"AN201704280539219268","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000002021","SECURITYTYPECODE":"058001001","SECURITYCODE":"002025","SECURITYFULLNAME":"航天电器","SECURITYSHORTNAME":"航天电器","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"10001411","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002004008","COLUMNNAME":"停牌公告","NodeName":null,"Eid":0,"Order":229},{"COLUMNCODE":"001002007003007","COLUMNNAME":"重组进展公告","NodeName":null,"Eid":0,"Order":405}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002025","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002025","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:45:47+08:00","TABLEID":160000002735414937,"Order":229},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":121,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"海兰信:关于重大资产重组进展的公告(2017/4/29)","INFOCODE":"AN201704280539844249","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000007857","SECURITYTYPECODE":"058001001","SECURITYCODE":"300065","SECURITYFULLNAME":"海兰信","SECURITYSHORTNAME":"海兰信","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002002","TRADEMARKET":"深交所创业板","LISTINGSTATE":"0","COMPANYCODE":"80126848","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002007003007","COLUMNNAME":"重组进展公告","NodeName":null,"Eid":0,"Order":405},{"COLUMNCODE":"001002004008","COLUMNNAME":"停牌公告","NodeName":null,"Eid":0,"Order":229}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002002","SECURITYCODE":"300065","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001001","CODEMARKET":"069001002002","SECURITYCODE":"300065","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:45:15+08:00","TABLEID":160000002736368358,"Order":229},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":225,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"国盛金控:2016年公司债券临时受托管理事务报告(2017/4/29)","INFOCODE":"AN201704280539632248","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000008924","SECURITYTYPECODE":"058001001","SECURITYCODE":"002670","SECURITYFULLNAME":"国盛金控","SECURITYSHORTNAME":"国盛金控","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80194933","Eid":0},{"SECURITYVARIETYCODE":"1000841363","SECURITYTYPECODE":"060","SECURITYCODE":"112485","SECURITYFULLNAME":"广东国盛金控集团股份有限公司2016年面向合格投资者公开发行公司债券","SECURITYSHORTNAME":"16国盛金","SECURITYTYPE":"债券","TRADEMARKETCODE":"069001002","TRADEMARKET":"深圳证券交易所","LISTINGSTATE":"0","COMPANYCODE":"80194933","Eid":0},{"SECURITYVARIETYCODE":"1000855135","SECURITYTYPECODE":"060","SECURITYCODE":"114079","SECURITYFULLNAME":"广东国盛金控集团股份有限公司2016年非公开发行公司债券","SECURITYSHORTNAME":"16国盛控","SECURITYTYPE":"债券","TRADEMARKETCODE":"069001002","TRADEMARKET":"深圳证券交易所","LISTINGSTATE":"0","COMPANYCODE":"80194933","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002008","COLUMNNAME":"其他","NodeName":null,"Eid":0,"Order":999},{"COLUMNCODE":"003017","COLUMNNAME":"受托机构报告","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002670","COMPANYCODE":null,"Eid":0},{"CODETYPE":"060","CODEMARKET":"069001002","SECURITYCODE":"112485","COMPANYCODE":null,"Eid":0},{"CODETYPE":"060","CODEMARKET":"069001002","SECURITYCODE":"114079","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002670","COMPANYCODE":null,"Eid":0},{"CODETYPE":"060","CODEMARKET":"069001002","SECURITYCODE":"112485","COMPANYCODE":null,"Eid":0},{"CODETYPE":"060","CODEMARKET":"069001002","SECURITYCODE":"114079","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:44:48+08:00","TABLEID":160000002736315447,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":77,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"东方园林:关于控股股东进行股票质押的公告(2017/4/29)","INFOCODE":"AN201704280539839897","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000008571","SECURITYTYPECODE":"058001001","SECURITYCODE":"002310","SECURITYFULLNAME":"东方园林","SECURITYSHORTNAME":"东方园林","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80133738","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002006010","COLUMNNAME":"股份质押、冻结","NodeName":null,"Eid":0,"Order":301}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002310","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:44:48+08:00","TABLEID":160000002736368204,"Order":301},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":190,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"东方电子:关于重大资产重组停牌进展及延期复牌公告(2017/4/29)","INFOCODE":"AN201704280539625872","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000002423","SECURITYTYPECODE":"058001001","SECURITYCODE":"000682","SECURITYFULLNAME":"东方电子","SECURITYSHORTNAME":"东方电子","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002001","TRADEMARKET":"深交所主板","LISTINGSTATE":"0","COMPANYCODE":"10001002","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002004008","COLUMNNAME":"停牌公告","NodeName":null,"Eid":0,"Order":229},{"COLUMNCODE":"001002007003007","COLUMNNAME":"重组进展公告","NodeName":null,"Eid":0,"Order":405}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002001","SECURITYCODE":"000682","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001001","CODEMARKET":"069001002001","SECURITYCODE":"000682","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:44:13+08:00","TABLEID":160000002736314140,"Order":229},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":89,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"艾派克:独立董事关于相关事项的独立意见(2)","INFOCODE":"AN201704280539900364","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000007699","SECURITYTYPECODE":"058001001","SECURITYCODE":"002180","SECURITYFULLNAME":"艾派克","SECURITYSHORTNAME":"艾派克","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80100301","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001003001001003","COLUMNNAME":"专项说明/独立意见","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002180","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:43:47+08:00","TABLEID":160000002736387058,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":705,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"常山股份:关于公司控股股东及其他关联方占用资金情况的专项说明(2)","INFOCODE":"AN201704280539991684","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000001985","SECURITYTYPECODE":"058001001","SECURITYCODE":"000158","SECURITYFULLNAME":"常山股份","SECURITYSHORTNAME":"常山股份","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002001","TRADEMARKET":"深交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000668","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001003002001","COLUMNNAME":"保荐/核查意见","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002001","SECURITYCODE":"000158","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:43:47+08:00","TABLEID":160000002736416033,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":705,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"常山股份:关于公司控股股东及其他关联方占用资金情况的专项说明(1)","INFOCODE":"AN201704280540022406","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000001985","SECURITYTYPECODE":"058001001","SECURITYCODE":"000158","SECURITYFULLNAME":"常山股份","SECURITYSHORTNAME":"常山股份","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002001","TRADEMARKET":"深交所主板","LISTINGSTATE":"0","COMPANYCODE":"10000668","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001003002001","COLUMNNAME":"保荐/核查意见","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002001","SECURITYCODE":"000158","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:43:47+08:00","TABLEID":160000002736418957,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":472,"ENDDATE":"2017-03-31T00:00:00+08:00","NOTICETITLE":"603690:至纯科技2017年第一季度报告(2017/4/29)","INFOCODE":"AN201704290540455175","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000313050","SECURITYTYPECODE":"058001001","SECURITYCODE":"603690","SECURITYFULLNAME":"至纯科技","SECURITYSHORTNAME":"至纯科技","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"80198434","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001001001003001","COLUMNNAME":"一季度报告全文","NodeName":null,"Eid":0,"Order":25}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"603690","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:43:25+08:00","TABLEID":160000002736502441,"Order":25},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":104,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"艾派克:独立董事关于相关事项的独立意见(1)","INFOCODE":"AN201704280539915740","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000007699","SECURITYTYPECODE":"058001001","SECURITYCODE":"002180","SECURITYFULLNAME":"艾派克","SECURITYSHORTNAME":"艾派克","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001002003","TRADEMARKET":"深交所中小板","LISTINGSTATE":"0","COMPANYCODE":"80100301","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001003001001003","COLUMNNAME":"专项说明/独立意见","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001002003","SECURITYCODE":"002180","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:43:13+08:00","TABLEID":160000002736390326,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":134,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"603232:格尔软件股票交易异常波动公告(2017/4/29)","INFOCODE":"AN201704280540068751","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000492267","SECURITYTYPECODE":"058001001","SECURITYCODE":"603232","SECURITYFULLNAME":"格尔软件","SECURITYSHORTNAME":"格尔软件","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"80038010","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002004007","COLUMNNAME":"股票交易异常波动","NodeName":null,"Eid":0,"Order":227}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"603232","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:42:14+08:00","TABLEID":160000002736432045,"Order":227},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":133,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"603232:格尔软件:关于上海格尔软件股份有限公司股票交易异常波动有关事项的征询函(2017/4/29)","INFOCODE":"AN201704280540068727","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000492267","SECURITYTYPECODE":"058001001","SECURITYCODE":"603232","SECURITYFULLNAME":"格尔软件","SECURITYSHORTNAME":"格尔软件","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"80038010","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002004007","COLUMNNAME":"股票交易异常波动","NodeName":null,"Eid":0,"Order":227}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"603232","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:41:47+08:00","TABLEID":160000002736431979,"Order":227},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":5550,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"603232:格尔软件:《关于上海格尔软件股份有限公司股票交易异常波动有关事项的征询函》的回函(2017/4/29)","INFOCODE":"AN201704280540068746","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000492267","SECURITYTYPECODE":"058001001","SECURITYCODE":"603232","SECURITYFULLNAME":"格尔软件","SECURITYSHORTNAME":"格尔软件","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"80038010","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002004007","COLUMNNAME":"股票交易异常波动","NodeName":null,"Eid":0,"Order":227}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"603232","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:41:19+08:00","TABLEID":160000002736432017,"Order":227},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":152,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"603139:康惠制药股票交易异常波动公告(2017/4/29)","INFOCODE":"AN201704290540489552","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000498860","SECURITYTYPECODE":"058001001","SECURITYCODE":"603139","SECURITYFULLNAME":"康惠制药","SECURITYSHORTNAME":"康惠制药","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"80436735","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002004007","COLUMNNAME":"股票交易异常波动","NodeName":null,"Eid":0,"Order":227}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"603139","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:41:19+08:00","TABLEID":160000002736512398,"Order":227},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":667,"ENDDATE":"2017-03-31T00:00:00+08:00","NOTICETITLE":"601901:方正证券2017年第一季度报告(1)","INFOCODE":"AN201704290540455232","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000000058","SECURITYTYPECODE":"058001001","SECURITYCODE":"601901","SECURITYFULLNAME":"方正证券","SECURITYSHORTNAME":"方正证券","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"80000068","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001001001003001","COLUMNNAME":"一季度报告全文","NodeName":null,"Eid":0,"Order":25}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"601901","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:40:53+08:00","TABLEID":160000002736502657,"Order":25},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":547,"ENDDATE":"2017-03-31T00:00:00+08:00","NOTICETITLE":"601901:方正证券2017年第一季度报告(2)","INFOCODE":"AN201704290540455203","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000000058","SECURITYTYPECODE":"058001001","SECURITYCODE":"601901","SECURITYFULLNAME":"方正证券","SECURITYSHORTNAME":"方正证券","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"80000068","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001001001003001","COLUMNNAME":"一季度报告全文","NodeName":null,"Eid":0,"Order":25}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"601901","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:40:53+08:00","TABLEID":160000002736502562,"Order":25},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":986,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"601669:中国电建:内部控制审计报告(2017/4/29)","INFOCODE":"AN201704280539095041","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000006345","SECURITYTYPECODE":"058001001","SECURITYCODE":"601669","SECURITYFULLNAME":"中国电建","SECURITYSHORTNAME":"中国电建","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"80140483","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001003002005","COLUMNNAME":"审计报告","NodeName":null,"Eid":0,"Order":999},{"COLUMNCODE":"001003003004","COLUMNNAME":"内部控制报告","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"601669","COMPANYCODE":null,"Eid":0},{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"601669","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:40:16+08:00","TABLEID":160000002735330451,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":789,"ENDDATE":"2017-03-31T00:00:00+08:00","NOTICETITLE":"601228:广州港2017年第一季度报告(2)","INFOCODE":"AN201704290540332161","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000402179","SECURITYTYPECODE":"058001001","SECURITYCODE":"601228","SECURITYFULLNAME":"广州港","SECURITYSHORTNAME":"广州港","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"80179506","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001001001003001","COLUMNNAME":"一季度报告全文","NodeName":null,"Eid":0,"Order":25}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"601228","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:40:16+08:00","TABLEID":160000002736476314,"Order":25},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":488,"ENDDATE":"2017-03-31T00:00:00+08:00","NOTICETITLE":"601228:广州港2017年第一季度报告(1)","INFOCODE":"AN201704290540332165","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000402179","SECURITYTYPECODE":"058001001","SECURITYCODE":"601228","SECURITYFULLNAME":"广州港","SECURITYSHORTNAME":"广州港","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"80179506","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001001001003001","COLUMNNAME":"一季度报告全文","NodeName":null,"Eid":0,"Order":25}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"601228","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:39:52+08:00","TABLEID":160000002736476258,"Order":25},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":243,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"601222:林洋能源关于重大经营合同预中标的提示性公告(2017/4/29)","INFOCODE":"AN201704280539478928","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000008243","SECURITYTYPECODE":"058001001","SECURITYCODE":"601222","SECURITYFULLNAME":"林洋能源","SECURITYSHORTNAME":"林洋能源","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"80173429","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002006004","COLUMNNAME":"重大合同","NodeName":null,"Eid":0,"Order":289}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"601222","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:39:41+08:00","TABLEID":160000002735476960,"Order":289},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":186,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"601011:宝泰隆关联交易公告(2017/4/29)","INFOCODE":"AN201704280539054060","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000008288","SECURITYTYPECODE":"058001001","SECURITYCODE":"601011","SECURITYFULLNAME":"宝泰隆","SECURITYSHORTNAME":"宝泰隆","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"80168888","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002007005","COLUMNNAME":"关联交易","NodeName":null,"Eid":0,"Order":999}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"601011","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:39:12+08:00","TABLEID":160000002735316241,"Order":999},{"NOTICEDATE":"2017-04-29T00:00:00+08:00","ATTACHTYPE":"0","ATTACHSIZE":229,"ENDDATE":"2017-04-29T00:00:00+08:00","NOTICETITLE":"600992:贵绳股份关于对部分闲置募集资金进行现金管理的进展公告(2017/4/29)","INFOCODE":"AN201704290540489588","CDSY_SECUCODES":[{"SECURITYVARIETYCODE":"1000002351","SECURITYTYPECODE":"058001001","SECURITYCODE":"600992","SECURITYFULLNAME":"贵绳股份","SECURITYSHORTNAME":"贵绳股份","SECURITYTYPE":"A股","TRADEMARKETCODE":"069001001001","TRADEMARKET":"上交所主板","LISTINGSTATE":"0","COMPANYCODE":"10001364","Eid":0}],"ANN_RELCOLUMNS":[{"COLUMNCODE":"001002006012002002","COLUMNNAME":"募集资金使用进展情况","NodeName":null,"Eid":0,"Order":319}],"ANN_RELCODES":[{"CODETYPE":"058001001","CODEMARKET":"069001001001","SECURITYCODE":"600992","COMPANYCODE":null,"Eid":0}],"EUTIME":"2017-04-29T04:38:40+08:00","TABLEID":160000002736512475,"Order":319}],"TotalCount":50000,"pages":1000,"rc":1,"me":null,"dataUrl":"http://newsnotice.eastmoney.com/webapi/api/Notice?Time=&CodeType=1&StockCode=&FirstNodeType=0&SecNodeType=0&PageIndex=1&PageSize=50&Token=WZSJPD161130"},
+            charset: "gb2312",
+            maketr: function (row, data, i, c) {
+                var _class = (i % 2 == 0) ? "" : "odd";
+                row.className = _class;
+                row.onmouseover = function () {
+                    this.className = "over";
+                }
+                row.onmouseout = function (o, _c) {
+                    o.className = _c;
+                }.bind(this, row, _class);
+
+                // 【返回数据字段：NOTICEDATE, NOTICETITLE, INFOCODE, ANN_RELCOLUMNS.COLUMNNAME, CDSY_SECUCODES.SECURITYCODE, CDSY_SECUCODES.SECURITYSHORTNAME, CDSY_SECUCODES.SECURITYTYPECODE, CDSY_SECUCODES.TRADEMARKETCODE】
+                // 【数据字段含义：公告日期,   公告标题,    资讯编码, 公告类型,                  股票代码,                    股票简称,                         股票类型代码,                        交易所代码】
+
+                var code = '', name = '', marketCode = '', typeName = '', date = '';
+                if (market != 'mg'){//美股无公告类型
+                    if(secTypeName) //有二级标签
+                        typeName = secTypeName == '全部' ? '' : secTypeName;
+                    else //没有二级标签就取一级标签
+                        typeName = firstTypeName == '全部' ? '' : firstTypeName;
+                    if(typeName == ''){ //如果没有一二级标签或者选中【全部】，取接口返回的公告类型
+                        if(data.ANN_RELCOLUMNS && data.ANN_RELCOLUMNS.length > 0)
+                            typeName = data.ANN_RELCOLUMNS[0] && data.ANN_RELCOLUMNS[0].COLUMNNAME;
+                    }
+                    typeName = typeName || '公司公告';
+                }
+                if(data.CDSY_SECUCODES && data.CDSY_SECUCODES.length > 0){
+                    var temp = data.CDSY_SECUCODES[0];
+                    if(data.CDSY_SECUCODES.length > 1 && stockTypeCode){//多个股票信息的情况
+                        for (var i in data.CDSY_SECUCODES) {
+                            if(data.CDSY_SECUCODES[i].SECURITYTYPECODE == stockTypeCode){
+                                temp = data.CDSY_SECUCODES[i];
+                                break;
+                            }
+                        }
+                    }
+                    if(temp){
+                        code = temp.SECURITYCODE;
+                        name = temp.SECURITYSHORTNAME;
+                        marketCode = temp.TRADEMARKETCODE;
+                    }
+                }
+                date = data.NOTICEDATE && data.NOTICEDATE.substr(0, data.NOTICEDATE.indexOf('T'));
+
+                var hqLink = '';//行情链接
+                var xgzlLink = '<a href="/notices/stock/' + code + '.html">更多公告</a>';//相关资料链接
+                var detailLink = '/notices/detail/' + code + '/' + data.INFOCODE + ',' + btoa(encodeURIComponent(name)) + '.html';//公告正文链接
+
+                if (market == 'gg') {
+                    hqLink = 'http://quote.eastmoney.com/hk/' + code + '.html';
+                    xgzlLink += ' <a href="http://guba.eastmoney.com/list,hk' + code + '.html">股吧</a> <a href="http://data.eastmoney.com/notice_n/reporthk_gs_' + code + '.html">研报</a>';
+                }
+                else if (market == 'mg') {
+                    hqLink = 'http://quote.eastmoney.com/us/' + code + '.html';
+                    xgzlLink += ' <a href="http://guba.eastmoney.com/list,us' + code + '.html">股吧</a>';
+                    detailLink = 'http://pdf.dfcfw.com/pdf/H2_' + data.INFOCODE + '_1.html';
+                }
+                else {
+                    xgzlLink += ' <a href="http://guba.eastmoney.com/list,' + code + '.html">股吧</a>';
+                    if (market == 'sb'){
+                        hqLink = 'http://quote.eastmoney.com/3ban/sz' + code + '.html';
+                        xgzlLink += ' <a href="http://data.eastmoney.com/report/ReportSBStock.aspx?code=' + code + '">研报</a>';
+                    }
+                    else {
+                        var m = marketCode.indexOf('069001001') >= 0 ? 'sh' : 'sz';
+                        hqLink = 'http://quote.eastmoney.com/' + m + code + '.html';
+                        xgzlLink += ' <a href="http://data.eastmoney.com/report/' + code + '.html">研报</a>';
+                    }
+                }
+
+                if(market=="hsa" || market=="sha" ||market=="sza" ||market=="zxb" ||market=="cyb" ){
+                    row.cells[0].innerHTML = '<a href="' + hqLink + '" class="hqPopCls" data_code="' + code+ '" data_name="' + name + '">' + code + '</a>';//股票代码
+                    row.cells[1].innerHTML = '<a style="width:100px;" href="' + hqLink + '" title="' + name + '" class="hqPopCls"  data_code="' + code+ '" data_name="' + name + '">' + (name || '-') + '</a>';//股票简称
+                }else{
+                    row.cells[0].innerHTML = '<a href="' + hqLink + '" >' + code + '</a>';//股票代码
+                    row.cells[1].innerHTML = '<a style="width:100px;" href="' + hqLink + '" title="' + name + '" >' + (name || '-') + '</a>';//股票简称
+
+                }
+                row.cells[2].innerHTML = xgzlLink;//相关资料链接
+                row.cells[3].innerHTML = '<a class="overflow" style="text-align:left;width:350px" href="' + detailLink + '" title="' + data.NOTICETITLE + '">' + data.NOTICETITLE + '</a>';//公告标题
+                if (market == 'mg') {
+                    row.cells[4].innerHTML = '<span>' + date + '</span>';//公告日期
+                }
+                else {
+                    row.cells[4].innerHTML = '<span style="width:100px;" class="overflow" title="' + typeName + '">' + typeName + '</span>';//公告类型
+                    row.cells[5].innerHTML = '<span>' + date + '</span>';//公告日期
+                }
+
+            }
+        });
+
+        window.onload = function () {
+            initDrawPopHq();
+        }
+    </script>
+    <script>
+        SeoGa();
+        window.adDataType = "data"; //共3个值：quote，data，guba不写默认表示其他频道；
+        window.adSwitch = "both";//共3个值：both,left,right 不写默认both；
+        window.fixedBodyWidth = 1000;//950,1000 不写默认1000
+    </script>
+</div>
+</body>
+</html>

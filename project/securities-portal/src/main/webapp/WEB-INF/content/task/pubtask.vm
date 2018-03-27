@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7]> <html dir="ltr" lang="zh-cn" id="ie6"> <![endif]-->
+<!--[if IE 7]>    <html dir="ltr" lang="zh-cn" id="ie7"> <![endif]-->
+<!--[if IE 8]>    <html dir="ltr" lang="zh-cn" id="ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html dir="ltr" lang="zh-cn">
+<!--<![endif]-->
+
+<head>
+    <title>发布任务-客客专业威客系统</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="发布任务,客客专业威客系统">
+    <meta name="description" content="客客-专业威客建站系统，国内外最知名使用站长最多的威客系统，做威客平台，选威客系统，就选客客专业威客建站系统。">
+    <meta name="generator" content="客客出品专业威客2.7.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <!--[if lt IE 9]>
+    <script src="static/js/html5.js" type="text/javascript"></script>
+    <script src="static/js/respond.min.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/style1.css" rel="stylesheet" type="text/css" id="active-style1"><link href="${base}/static/css/style2.css" rel="stylesheet" type="text/css" id="active-style2">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.48212500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="tpl/default/css/font-awesome-ie7.min.css">
+    <link href="tpl/default/css/ie7.css" rel="stylesheet" type="text/css">
+    <![endif]-->
+
+    <!--[if IE 8]>
+    <link href="tpl/default/css/ie8.css" rel="stylesheet" type="text/css">
+    <script src="${base}/static/js/IE8.js" type="text/javascript"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        var SITEURL = 'http://localhost/test',
+                SKIN_PATH = 'tpl/default',
+                LANG = 'cn',
+                INDEX = 'pubtask',
+                CHARSET = 'utf-8';
+
+        function closeErrors() {
+            return true;
+        }
+        window.onerror = closeErrors;
+    </script>
+</head>
+
+<body id="pubtask">
+    #parse("includes/header_home.vm")
+<div class="container">
+    <div id="main">
+        <div class="release">
+            <div class="release-msg">
+                <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i>
+                    联系客服
+                    电话：	暂未填写      	QQ：		暂未填写      	邮箱：	  admin@admin.com        </div>
+            </div>
+            <div class="release-progress">
+                <ul class="step step4">
+                    <li class="step-item action">
+                        <span class="step-num">1</span>
+                        <div class="step-text step-bottom">
+                            <p><strong class="step-title" title="选择交易模式">选择交易模式</strong></p>
+                        </div>
+                    </li>
+                    <li class="step-item ">
+                        <span class="step-num">2</span>
+                        <div class="step-text step-bottom">
+                            <p><strong class="step-title" title="描述任务需求">描述任务需求</strong></p>
+                        </div>
+                    </li>
+                    <li class="step-item ">
+                        <span class="step-num">3</span>
+                        <div class="step-text step-bottom">
+                            <p><strong class="step-title" title="核对交易清单">核对交易清单</strong></p>
+                        </div>
+                    </li>
+                    <li class="step-item ">
+                        <span class="step-num">4</span>
+                        <div class="step-text step-bottom">
+                            <p><strong class="step-title" title="成功发布任务">成功发布任务</strong></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- release-progress end-->
+
+            <div class="release-body">
+                <nav class="release-nav">
+                    <ul>
+                        <li class="selected">
+                            <a href="index.php?do=pubtask&id=1&step=step1">
+                                单人悬赏                  <span class="arrow_b"></span>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="index.php?do=pubtask&id=2&step=step1">
+                                多人悬赏                  <span class="arrow_b"></span>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="index.php?do=pubtask&id=3&step=step1">
+                                计件悬赏                  <span class="arrow_b"></span>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="index.php?do=pubtask&id=4&step=step1">
+                                普通招标                  <span class="arrow_b"></span>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="index.php?do=pubtask&id=5&step=step1">
+                                订金招标                  <span class="arrow_b"></span>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="index.php?do=pubtask&id=12&step=step1">
+                                速配任务                  <span class="arrow_b"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- release-nav end-->
+
+
+
+                <div class="release-help">
+                    <h3 class="release-help-title">什么是单人悬赏？</h3>
+
+                    <div class="hidden" id="DivTaskDesc">
+
+                        <p>计件悬赏任务的一般流程是：</p><p>1、雇主发布任务将任务金额托管到网站平台</p><p>2、众多威客参与并提交方案</p><p>3、雇主选择满意方案，设置方案入围状态，商议最终价格</p><p>4、雇主从入围方案中选择中标方案</p><p>5、方案中标发放赏金。如果议价金额小于托管金额网站返还雇主多余赏金。<br/></p>      	</div>
+
+                </div>
+                <div class="release-help-ctrl">
+                    <a href="javascript:void(0);" id="toggleTaskDesc">任务说明 <i class="fa fa-caret-down"></i></a>
+                </div>
+
+                <!-- release-help end  -->
+
+                <!-- 加载各任务对应步骤  -->
+                <div class="release-form">
+                    <form class="form-horizontal" role="form" action="${base}/task/step1" method="post"  id="pubTaskFormstep1" name="pubTaskFormstep1">
+                        <input type="hidden" name="step1" value="step1">
+                        <input type="hidden" name="formhash" id="formhash" value="d03921">
+                        <div class="form-group">
+                            <label for="txt_task_cash" class="col-sm-3 control-label">您的预算</label>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">￥</span>
+                                    <input type="text" class="form-control" id="txt_task_cash" name="txt_task_cash" placeholder="您的预算" value="0.01" onkeyup="clearstr(this);">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 您的预算 end -->
+
+                        <div class="form-group">
+                            <label for="txt_task_day" class="col-sm-3 control-label">结束日期</label>
+                            <div class="col-sm-6">
+                                <div class="input-group date form_date ">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input id="txt_task_day" name="txt_task_day" class="form-control form_datetime" size="16" type="text" value="2017-05-17" placeholder="结束日期" data-date="2016-04-13" data-date-format="yyyy-mm-dd">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txt_task_cash" class="col-sm-3 control-label"></label>
+                            <div class="col-sm-6">
+                                <div class="input-group date form_date ">
+                                    <span id="dayabc"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 结束日期 end -->
+                        <div class="form-group ">
+                            <label class="col-sm-3 control-label">赏金分配</label>
+                            <div class="col-sm-6">
+                                <p class="form-control-static">单人中标</p>
+                            </div>
+                        </div>
+                        <!-- 赏金分配 end -->
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-6">
+                                <button type="submit" class="btn btn-primary" value="1" >下一步</button>
+                            </div>
+                        </div>
+                        <!-- form-group end -->
+                    </form>
+                </div>
+                <script type="text/javascript">
+                    var id = "1";
+                    $("#txt_task_cash").blur(function(){
+                        var txt_task_cash = $("#txt_task_cash").val();
+                        jQuery.post('${base}/task/taskcash',{txt_task_cash:txt_task_cash,id:id},function(data){
+                            var span_block = $("#txt_task_cash").closest(".input-group").next('span.help-block');
+                            if(span_block.length>0){
+                                span_block.html(data);
+                            }else{
+                                $("#txt_task_cash").closest(".input-group").after('<span class="help-block">'+data+'</span>');
+                            }
+                        })
+                    });
+                    function clicktime(){
+                        var txt_task_cash = $("#txt_task_cash").val();
+                        var url = 'index.php?do=lookday&id='+id+'&txt_task_cash='+txt_task_cash;
+                        var modal = jQuery.scojs_modal({
+                            remote : url,
+                            title : '查看日期'
+                        });
+                        modal.show();
+                    }
+                </script>      <!-- 加载各任务对应步骤  -->
+
+            </div>
+            <!-- release-body end -->
+        </div>
+        <!-- release end-->
+    </div>
+</div>
+
+
+<!-- 每个任务模型对应的JS -->
+<script type="text/javascript" src="${base}/static/js/sreward.js"></script>
+<script type="text/javascript" src="${base}/static/js/model/user/user.js"></script>
+<!-- 每个任务模型对应的JS -->
+
+<script type="text/javascript">
+    var strUrl = "index.php?do=pubtask&id=1&step=step1";
+    var splitStr = "|";
+    //var isReturn='';
+    /* $(function(){
+    if(isReturn=='2'){
+    tipsOp('<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i>你已经发布成功！</div>');
+    window.location.href="index.php?do=pubtask";
+    }
+    }); */
+    /**
+     * 日期选择插件*/
+    $('.form_datetime').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+
+
+    $(function(){
+        /**
+         *切换任务说明*/
+        $("#toggleTaskDesc").click(function(){
+            if($(this).children('i').hasClass('fa-caret-down')){
+                $(this).children('i').removeClass('fa-caret-down');
+                $(this).children('i').addClass('fa-caret-up');
+            }else{
+                $(this).children('i').removeClass('fa-caret-up');
+                $(this).children('i').addClass('fa-caret-down');
+            }
+            $("#DivTaskDesc").toggleClass('hidden');
+        });
+
+        /**
+         *查看发布协议*/
+        $("#viewPubAgreement").click(function(){
+            $('.release-agreement').toggleClass('hidden');
+        });
+    });
+
+    /**
+     *检查是否选中发布协议*/
+    function isAgreementChecked(){
+        if($("#agreementchecked" ).is(":checked")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
+    #parse("includes/footer.vm")
+</body>
+</html>

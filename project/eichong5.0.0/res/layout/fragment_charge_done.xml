@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pulltorefresh.PullToRefreshScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/charge_done_finish_refresh"  
+    android:background="@color/common_light_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    ptr:ptrAnimationStyle="flip"
+    ptr:ptrMode="both"
+    ptr:ptrHeaderBackground="@color/common_light_white"
+    ptr:ptrHeaderTextColor="@color/common_light_black"
+    ptr:ptrHeaderSubTextColor="@color/common_light_black">
+    <FrameLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+       <pulltorefresh.ListViewCustom 
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+    			android:layout_marginRight="20dp"
+		        android:id="@+id/charge_done_finish_listview"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:divider="@color/common_light_white"
+		        android:dividerHeight="10dp"
+		        android:listSelector="#00000000"/> 
+     
+<!-- 		<TextView -->
+<!-- 		        android:visibility="gone" -->
+<!-- 		        android:id="@+id/charge_done_nodata" -->
+<!-- 		        android:layout_width="match_parent" -->
+<!-- 		        android:layout_height="match_parent" -->
+<!-- 		        android:gravity="center"   -->
+<!-- 		        android:layout_marginTop="50dp" -->
+<!-- 		        android:textSize="15sp" -->
+<!-- 		        android:drawableTop="@drawable/img_vouchers" -->
+<!-- 		        android:drawablePadding="20dp" -->
+<!-- 		        android:textColor="@color/common_light_black" -->
+<!-- 		        /> -->
+        
+    </FrameLayout>
+   
+
+</pulltorefresh.PullToRefreshScrollView>
+

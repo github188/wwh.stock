@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>沪深两市实时资金流向排行</title>
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/master.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/default.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/layer2012.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/page_common.css">
+    <script type="text/javascript" src="${base}/static/js/jquery.min.1.8.3.js"></script>
+    <script type="text/javascript">
+        var jQuery = $.noConflict();
+        var portalurl = "${portal_url}/";
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/base.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/plugin.js"></script>
+</head>
+<body>
+<div id="page" class="page">
+    <div class="main">
+    <div class="framecontent">
+        <div class="linkNav">
+            <div id="Column_Navigation">
+                <a href="${base}/">首页</a> &gt; <a href="${base}/stockeast/center/">数据中心</a> &gt; <a href="${base}/stockeast/zjlxcenter/">资金流向</a> &gt; 实时资金流向排行
+            </div>
+        </div>
+        <div class="sitebody">
+            <div class="maincont">
+                <div class="contentBox">
+                    <div class="titbar" id="datatitle">
+                        <b class="el"></b>
+                        <div class="tit" style="width: 270px;">
+                            实时资金流向排行 <span id="datatime" style="font-weight: normal;">(-)</span>
+                        </div>
+                        <div class="search" style="float: right;">
+                            <span class="txt">个股资金流向：</span>
+                            <input class="sinput" name="zjlx_bar" id="zjlx_bar" type="text" />
+                            <div onclick="javascript:ggzl_search('zjlx_bar')" class="btn" style="border: none;">
+                                <img src="${base}/static/img/east/btn_search_blue.gif" title="查询" />
+                            </div>
+                        </div>
+                        <div class="tips" style="float: right; padding-right: 10px;">
+                            <b class="arr_01"></b><a href="${base}/stockeast/zllxlist" class="link2"
+                                                     title="实时大单净流入排行榜">点击查看主力净流入排名</a>
+                        </div>
+                        <script type="text/javascript">
+                            var zz = new StockSuggest("zjlx_bar", {
+                                text: "输代码、名称或拼音",
+                                type: "ABSTOCK",
+                                autoSubmit: false,
+                                width: 190,
+                                header: ["选项", "代码", "名称", "类型"],
+                                body: [-1, 1, 4, -2],
+                                callback: function (ag) {
+                                    var url = '${base}/stockeast/zjlx/detail?code=' + ag.code;
+                                    window.open(url);
+                                }
+                            });
+                            function ggzl_search(bb) {
+                                var s1 = document.getElementById(bb).value;
+                                var s = escape(s1);
+                                if (s1 == "输代码、名称或拼音" || s1 == "" || isNaN(parseInt(s1)) || s1.length != 6) {
+                                    alert("请输入所查询股票的代码！");
+                                    return false;
+                                } else {
+                                    var url = '${base}/stockeast/zjlx/detail?code=' + s1;
+                                    window.open(url);
+                                }
+                            }
+                            function getMarket(StockCode) {
+                                var i = StockCode.substring(0, 1);
+                                var j = StockCode.substring(0, 3);
+                                if (i == "5" || i == "6" || i == "9") {
+                                    return "sh";
+                                } else {
+                                    if (j == "009" || j == "126" || j == "110") {
+                                        return "sh";
+                                    } else {
+                                        return "sz";
+                                    }
+                                }
+                            };
+                        </script>
+                    </div>
+                    <div class="sepe">
+                        <div class="left">
+                        </div>
+                        <div class="right">
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="catemk">
+                            <ul id="mk_type">
+                                <li data="C._AB">全部股票</li>
+                                <li data="C._A">沪深A股</li>
+                                <li data="C.2">沪市A股</li>
+                                <li data="C._SZAME">深市A股</li>
+                                <li data="C.80">创业板</li>
+                                <li data="C.13">中小板</li>
+                                <li data="C.3">沪市B股</li>
+                                <li data="C.7">深市B股</li>
+                            </ul>
+                            <div class="help_advice">
+                                [<a href="http://stock.eastmoney.com/news/1423,20110101117172217.html">帮助说明</a>]
+                            </div>
+                        </div>
+                        <div class="cateday">
+                            <ul id="stat_type">
+                                <li data="DCFFITA">今日排行<i></i></li>
+                                <li data="DCFFITA3">3日排行<i></i></li>
+                                <li data="DCFFITA5">5日排行<i></i></li>
+                                <li data="DCFFITA10">10日排行<i></i></li>
+                            </ul>
+                        </div>
+                        <table cellpadding="0" cellspacing="0" class="tab1" id="dt_1">
+                            <thead class="h101">
+                            <tr>
+                                <th>加载中......
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="PageNav" class="PageNav" style="display: none;">
+                        <div class="Page" id="PageCont">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="qphox">
+    <script type="text/javascript" src="${base}/static/js/east/qphf.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/load_table_data.js"></script>
+    <script type="text/javascript">
+        function getcolor_JS(a, b, c) {
+            if (a == '-'||a==""||a=="NaN") return "<span>-</span>";
+            var v;
+            if (b == "%") v = parseFloat(a).toFixed(2) + b;
+            else if (b == "w") {
+                var m = Math.abs(a);
+                if (m < 10000) {
+                    v = (a/1).toFixed(0);
+                } else if (m >= 10000 && m < 1000000) {
+                    v = (a / 10000).toFixed(2) + "万";
+                } else if (m >= 1000000 && m < 100000000) {
+                    v = (a / 10000).toFixed(0) + "万";
+                } else if (m >= 100000000 && m < 10000000000) {
+                    v = (a / 100000000).toFixed(2) + "亿";
+                } else {
+                    v = (a / 100000000).toFixed(0) + "亿";
+                }
+            } else v = (a * 100 / 100).toFixed(2);
+            if (c) a = c;
+            if (a.length > 0) {
+                if (a.substring(0, 1) == '-') return "<span class=\"green\">" + v + "</span>";
+                else if (a != 0) return "<span class=\"red\">" + v + "</span>";
+            }
+            return "<span>" + v + "</span>";
+        }
+        var tablelist = new LoadTable({
+            id: "dt_1",
+            sort: { id: "(BalFlowMain)", desc: true },
+            autoScrollRun: false,
+            cells: [{ "n": "序号" },{ "n": "代码", "s": "(Code)" ,"w":48}, { "n": "名称", "w": 54 }, { "n": "相关", "w": 90 }, { "n": "最新价", "s": "(Close)" }, { "n": "<span id=\"rq0\"></span><br />涨跌幅", "s": "(ChangePercent)" },
+                { "n": "<span id=\"rq1\"></span>主力净流入",cells:[{"n": "净额" ,"s":"(BalFlowMain)"},{"n": "净占比" ,"s":"(BalFlowNetRate)"}] },
+                { "n": "<span id=\"rq2\"></span>超大单净流入<i title=\"因为存在一笔大额的委托单仅成交小部分的情况，所以会导致超大单或者大单流入/流出的数额极小。\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>",cells:[{"n": "净额" ,"s":"(AmtNet3)"},{"n": "净占比" ,"s":"(AmtNetRate3)"}] },
+                { "n": "<span id=\"rq3\"></span>大单净流入",cells:[{"n": "净额" ,"s":"(AmtNet2)"},{"n": "净占比" ,"s":"(AmtNetRate2)"}] },
+                { "n": "<span id=\"rq4\"></span>中单净流入",cells:[{"n": "净额" ,"s":"(AmtNet1)"},{"n": "净占比" ,"s":"(AmtNetRate1)"}] },
+                { "n": "<span id=\"rq5\"></span>小单净流入",cells:[{"n": "净额" ,"s":"(AmtNet0)"},{"n": "净占比" ,"s":"(AmtNetRate0)"}] }],
+            cellcount:16,
+            dataurl:"http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx/JS.aspx?type=ct&st={sortType}&sr={sortRule}&p={page}&ps={pageSize}&js=var {jsname}={pages:(pc),date:\"2014-10-22\",data:[(x)]}&token=894050c76af8597a853f5b408b759f5d{param}",
+            param: { "mk_type": { cname: "li", type: "cmd", value: "C._AB"},"stat_type":{cname: "li", type: "sty", value: "DCFFITA",cssclass:"at2"} },
+            afterdisplay:function(_t){
+                var text="今日";
+                switch(_t.options.param.stat_type.value)
+                {case"DCFFITA3":text="3日";break;case "DCFFITA5":text="5日";break;case "DCFFITA10":text="10日";break;}
+                document.getElementById("rq0").innerHTML =document.getElementById("rq1").innerHTML =document.getElementById("rq2").innerHTML =document.getElementById("rq3").innerHTML =document.getElementById("rq4").innerHTML =document.getElementById("rq5").innerHTML = text;
+                document.getElementById("datatime").innerHTML='('+_t.options.data.date+')';
+            },
+            maketr: function (row, data, i, c) {
+                var _class = (i % 2 == 0) ? "" : "odd";
+                row.className = _class;
+                row.onmouseover = function () {
+                    this.className = "over";
+                }
+                row.onmouseout = function (o, _c) {
+                    o.className = _c;
+                } .bind(this, row, _class)
+                row.cells[0].innerHTML = c;
+                row.cells[1].innerHTML = "<a href=\""+portalurl+"stockeast/detail?stockCode="+data[1]+"\">"+data[1]+"</a>";
+                row.cells[2].innerHTML = "<a href=\""+portalurl+"stockeast/detail?stockCode="+data[1]+"\">"+data[2]+"</a>"; //
+                //row.cells[3].innerHTML = '<a href="/zjlx/' + data[1] + '.html" class="red">大单详情</a> <a href="http://guba.eastmoney.com/topic,' + data[1] + '.html">股吧</a> <a href="http://data.eastmoney.com/report/' + data[1] + '.html">研报</a>'; //
+                row.cells[3].innerHTML = '<a href="/zjlx/' + data[1] + '.html" class="red">大单详情</a> <a href="http://guba.eastmoney.com/topic,' + data[1] + '.html">股吧</a>'; //
+                row.cells[4].innerHTML = getcolor_JS(data[3],"",data[4]); //
+                row.cells[5].innerHTML = getcolor_JS(data[4], "%"); //
+                row.cells[6].innerHTML = getcolor_JS((data[5]*10000).toString(), "w"); //
+                row.cells[7].innerHTML = getcolor_JS(data[6], "%"); //
+                row.cells[8].innerHTML = getcolor_JS((data[7]*10000).toString(), "w"); //
+                row.cells[9].innerHTML = getcolor_JS(data[8], "%"); //
+                row.cells[10].innerHTML = getcolor_JS((data[9]*10000).toString(), "w"); //
+                row.cells[11].innerHTML = getcolor_JS(data[10], "%"); //
+                row.cells[12].innerHTML = getcolor_JS((data[11]*10000).toString(), "w"); //
+                row.cells[13].innerHTML = getcolor_JS(data[12], "%"); //
+                row.cells[14].innerHTML = getcolor_JS((data[13]*10000).toString(), "w"); //
+                row.cells[15].innerHTML = getcolor_JS(data[14], "%"); //
+                this.options.data.date=data[15].substring(0, data[15].indexOf(" "));
+            }
+        });
+        tablelist.autoUpdate();
+        tablelist.parperUrl=function () {
+            var _t = this,
+                    _param = _t.options.param;
+            var tempsort=_t.options.sort.id;
+            switch(_t.options.param.stat_type.value)
+            {
+                case"DCFFITA3":
+                    switch(_t.options.sort.id)
+                    {
+                        case"(ChangePercent)":
+                            tempsort="(ChangePercent3Day)";break;
+                        case"(BalFlowMain)":
+                            tempsort="(BalFlowMainNet3)";break;
+                        case"(BalFlowNetRate)":
+                            tempsort="(BalFlowMainRate3)";break;
+                        case"(AmtNet3)":
+                            tempsort="(AmtOfUNet3)";break;
+                        case"(AmtNetRate3)":
+                            tempsort="(AmtOfURate3)";break;
+                        case"(AmtNet2)":
+                            tempsort="(AmtOfBNet3)";break;
+                        case"(AmtNetRate2)":
+                            tempsort="(AmtOfBRate3)";break;
+                        case"(AmtNet1)":
+                            tempsort="(AmtOfMNet3)";break;
+                        case"(AmtNetRate1)":
+                            tempsort="(AmtOfMRate3)";break;
+                        case"(AmtNet0)":
+                            tempsort="(AmtOfSNet3)";break;
+                        case"(AmtNetRate0)":
+                            tempsort="(AmtOfSRate3)";break;
+                    }
+                    break;
+                case "DCFFITA5":
+
+                    switch(_t.options.sort.id)
+                    {
+                        case"(ChangePercent)":
+                            tempsort="(ChangePercent5Day)";break;
+                        case"(BalFlowMain)":
+                            tempsort="(BalFlowMainNet5)";break;
+                        case"(BalFlowNetRate)":
+                            tempsort="(BalFlowMainRate5)";break;
+                        case"(AmtNet3)":
+                            tempsort="(AmtOfUNet5)";break;
+                        case"(AmtNetRate3)":
+                            tempsort="(AmtOfURate5)";break;
+                        case"(AmtNet2)":
+                            tempsort="(AmtOfBNet5)";break;
+                        case"(AmtNetRate2)":
+                            tempsort="(AmtOfBRate5)";break;
+                        case"(AmtNet1)":
+                            tempsort="(AmtOfMNet5)";break;
+                        case"(AmtNetRate1)":
+                            tempsort="(AmtOfMRate5)";break;
+                        case"(AmtNet0)":
+                            tempsort="(AmtOfSNet5)";break;
+                        case"(AmtNetRate0)":
+                            tempsort="(AmtOfSRate5)";break;
+                    }
+                    break;
+                case "DCFFITA10":
+
+                    switch(_t.options.sort.id)
+                    {
+                        case"(ChangePercent)":
+                            tempsort="(ChangePercent10Day)";break;
+                        case"(BalFlowMain)":
+                            tempsort="(BalFlowMainNet10)";break;
+                        case"(BalFlowNetRate)":
+                            tempsort="(BalFlowMainRate10)";break;
+                        case"(AmtNet3)":
+                            tempsort="(AmtOfUNet10)";break;
+                        case"(AmtNetRate3)":
+                            tempsort="(AmtOfURate10)";break;
+                        case"(AmtNet2)":
+                            tempsort="(AmtOfBNet10)";break;
+                        case"(AmtNetRate2)":
+                            tempsort="(AmtOfBRate10)";break;
+                        case"(AmtNet1)":
+                            tempsort="(AmtOfMNet10)";break;
+                        case"(AmtNetRate1)":
+                            tempsort="(AmtOfMRate10)";break;
+                        case"(AmtNet0)":
+                            tempsort="(AmtOfSNet10)";break;
+                        case"(AmtNetRate0)":
+                            tempsort="(AmtOfSRate10)";break;
+                    }
+                    break;
+            }
+            var param = "";
+            for (var key in _param) {
+                param += ("&" + _param[key].type + "=" + _param[key].value);
+            }
+            _url = _t.options.dataurl;
+            var _sort = "1";
+            _url = _url.replace("{pageSize}", _t.options.pagesize);
+            _url = _url.replace("{page}", _t.options.page);
+            _url = _url.replace("{sortType}", tempsort);
+            _url = _url.replace("{sortRule}", _t.options.sort.desc?"-1":"1");
+            _url = _url.replace("{param}", param);
+            return _url;
+        }
+    </script>
+    #*<script>
+        SeoGa();
+        window.adDataType = "data"; //共3个值：quote，data，guba不写默认表示其他频道；
+        window.adSwitch = "both";//共3个值：both,left,right 不写默认both；
+        window.fixedBodyWidth = 1000;//950,1000 不写默认1000
+    </script>*#
+</div>
+</body>
+</html>

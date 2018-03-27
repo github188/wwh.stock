@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+    
+     <RelativeLayout 
+        android:background="@color/common_orange"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        >
+        <ImageButton
+            android:id="@+id/commit_device_error_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/nav_btn_back"
+            android:background="@android:color/transparent"/>
+        <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="纠错"
+             android:textColor="@color/common_white"
+             android:textSize="18sp"
+             android:padding="5dp"
+             android:layout_centerVertical="true"
+             android:layout_centerInParent="true"
+            
+            />
+        </RelativeLayout>
+     <!-- gridview 电桩数量  listselector 要和父容器背景色一直，防止出现点击有背景-->
+	<FrameLayout 
+	     android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_margin="30dp"
+	     android:background="@color/common_white"
+	    >
+	 	<com.bm.wanma.view.MyDetailGridView 
+        	android:id="@+id/commit_device_error_gridview"
+        	android:layout_width="match_parent"
+        	android:layout_height="match_parent"
+        	android:numColumns="2"
+        	android:verticalSpacing="20dp"
+        	android:horizontalSpacing="18dp" 
+        	android:listSelector="@color/common_white"
+       					 >
+    	</com.bm.wanma.view.MyDetailGridView>
+	</FrameLayout>   
+	
+		<EditText 
+	     	android:id="@+id/commit_device_error_edit"
+	    	android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:hint="请输入内容"
+            android:visibility="gone"
+            android:textColorHint="@color/common_gray"
+            android:gravity="top"
+            android:textSize="14sp"
+            android:textColor="@color/common_gray"
+            android:layout_marginRight="30dp"
+            android:maxLength="250"
+            android:background="@drawable/common_edit_shape_selector"
+	    
+	    />
+     
+      <TextView
+            android:id="@+id/commit_device_error_commit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:gravity="center"
+            android:background="@drawable/popup_select_shape_confirm"
+            android:text="提交"
+            android:textColor="@color/common_white"
+            android:textSize="19sp" />
+
+</LinearLayout>

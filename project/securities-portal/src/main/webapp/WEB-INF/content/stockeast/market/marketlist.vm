@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>行情中心</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script type="text/javascript" src="${base}/static/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/base.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/core.css">
+</head>
+<body>
+
+<!--layout page-main-->
+<div class="page-main fn-clear">
+    <!-- layout section-main -->
+    <div class="section-main">
+
+        <div class="mod-section-header fn-clear">
+            <div class="brendnav" id="brendnav">
+                <a href="${base}/stockeast/marketcentre/">行情中心首页</a>
+            </div>
+            <div class="fn-right options">
+                <div class="inner-box">
+            <span class="select">
+            自选指标：<select id="change">
+                <option value="{$dataRow[23]}">换手率</option>
+                <option value="{$dataRow[24]|peRation}">市盈率</option>
+                <option value="{$dataRow[22]}">量比</option>
+                <option selected="selected" value="{$dataRow[21]}">5分钟涨跌</option>
+            </select>
+            </span><span class="views">
+            <a id="v1"><b class="vm vm-list"></b>列表</a> <a id="v2"><b class="vm vm-pic"></b>多股同列</a>
+            </span>
+                </div>
+                <a class="btn-refresh" id="refresh"></a><a class="btn-favor" id="bookMark"></a>
+            </div>
+        </div>
+        <div class="space-5"></div>
+
+        <div  id="tui">
+        </div>
+
+        <div class="fn-clear mod-section-content" id="bklistheader">
+            <div class="mod-item">
+                <div class="item-header">
+                    <h4 id="bkhqtitle">行情</h4>
+                </div>
+                <div class="item-content">
+                    <img  id="bkhqimg" width="240" height="135"  data-src="http://hqchart.eastmoney.com/chartbk/{$id}.png">
+                </div>
+            </div>
+            <div class="mod-item">
+                <div class="item-header">
+                    <h4 id="zjlxtitle">资金流向</h4>
+                </div>
+                <div class="item-content">
+                    <a target="_blank"><img id="zjlximg" width="240" height="135" data-src="http://hq2qt.eastmoney.com/EM_New_CapitalPictureProducter/Picture/{$id}rs.png" /></a>
+                </div>
+            </div>
+            <div class="mod-item lzbk">
+                <div class="item-header">
+                    <h4 id="zjlxphtitle">资金流向排行</h4>
+                </div>
+                <div id="bkggph" class="mod-datas">
+                    <table class="data-table">
+                        <tr>
+                            <th>排序</th>
+                            <th>名称</th>
+                            <th>相关资讯</th>
+                            <th>净流入(万)</th>
+                        </tr>
+                        <tr>
+                            <td>-</td>
+                            <td>-</td>
+                            <td><a target="_blank">股吧</a> <a target="_blank">资金流</a> <a  target="_blank">研报</a></td>
+                            <td><span class="numeric red">-</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="space-5"></div>
+        </div>
+
+        #*<div class="bgutip">
+            <div id="bgutip">
+                说明:{$market}B股以{$unit}计价,1{$unit}=<span class="red">{$rmb}</span>人民币。<a href="http://quote.eastmoney.com/center/list.html#forex_6" target="_blank">每日更多汇率变动&gt;&gt;</a>
+            </div>
+            <div class="space-5"></div>
+        </div>*#
+
+        <div class="mod-datas">
+            <div  id="listview"></div>
+            <div class="space-5"></div>
+            <div class="mod-pagenav" id="pagenav"></div>
+        </div>
+
+    </div>
+    <!-- layout section-main 结束 -->
+
+</div>
+<!--layout page-main 结束 -->
+<script type="text/javascript" src="${base}/static/js/east/base.min.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/function.min.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/share.min.js"></script>
+
+<script type="text/javascript">
+    var baseSrc = "${base}/static/js/east";
+    var portalurl = "${portal_url}/";
+</script>
+<script type="text/javascript" src="${base}/static/js/east/listview.min.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/tgdata.min.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/list.min.js"></script>
+
+</body>
+</html>

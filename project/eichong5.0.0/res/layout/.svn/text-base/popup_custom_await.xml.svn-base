@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null" >
+    <LinearLayout
+        android:layout_centerInParent="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    android:layout_marginLeft="25dp"
+    android:layout_marginRight="25dp"
+    android:orientation="vertical" >
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_common_dialog_top"
+        android:orientation="vertical"
+        >
+        <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/common_black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_margin="15dp"
+        android:text="等待充电 "
+        android:gravity="center"
+        /> 
+        <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#dcdcdc"   
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:text="该桩正在为其他车辆充电\n开始等待，完成之后自动为您的车充电 "
+            android:textColor="@color/common_black"
+            android:textSize="15sp" />
+ 
+        <TextView 
+        android:id="@+id/t_explain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/common_light_black"
+        android:textSize="15sp"
+        android:text="• 您可以开始等待充电\n• 前车充完之后,电桩会自动为您充电\n• 等待时间与前车充电进度有关\n• 等待充电时,爱充不会收取任何费用\n• 等待时取消充电,预充金额会全额返还 "
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"
+        />
+        <TextView 
+         android:id="@+id/t_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/common_light_black"
+        android:textSize="15sp"
+        android:text="了解更多 "
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="20dp"
+        /> 
+    </LinearLayout>
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dcdcdc"   
+            />
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/custom_common_dialog_bottom"
+        >
+        <TextView 
+        android:id="@+id/custom_know"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        
+        android:textColor="@color/common_orange"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:textSize="18sp"
+        android:text="结束等待"
+        android:gravity="center"
+        />
+        <View 
+        android:id="@+id/v_await"
+        android:layout_width="1dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_vertical"
+        android:background="#dcdcdc"   
+            />
+        <TextView 
+        android:id="@+id/cust_await"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textColor="@color/common_orange"
+        android:textSize="18sp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="继续等待"
+        android:gravity="center"
+        />
+    </LinearLayout>
+	</LinearLayout>
+</RelativeLayout>

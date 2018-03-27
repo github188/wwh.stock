@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_light_white"
+    android:orientation="vertical" >
+    <View 
+        android:id="@+id/listview_item_mynews_system_top"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/common_light_gray"
+        />
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/common_white"
+        > 
+        <TextView 
+            android:id="@+id/listview_item_mynews_system_title"
+            android:layout_marginLeft="14dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="230dp"
+        	android:layout_height="wrap_content"
+        	android:text="充电装备市场将迎来大爆发"
+        	android:textColor="@color/common_black"
+        	android:textSize="19sp"
+        	android:ellipsize="end"
+        	android:singleLine="true"
+            />
+         <TextView 
+            android:id="@+id/listview_item_mynews_system_time"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@id/listview_item_mynews_system_title"
+        	android:layout_height="wrap_content"
+        	android:paddingRight="14dp"
+        	android:text="10/24  21:00"
+        	android:textColor="@color/common_black"
+        	android:textSize="14sp"
+        	android:singleLine="true"
+            />
+        
+    </RelativeLayout>
+    <TextView 
+            android:id="@+id/listview_item_mynews_system_content"
+            android:layout_width="match_parent"
+        	android:layout_height="60dp"
+        	android:layout_marginTop="1dp"
+        	android:gravity="center_vertical"
+        	android:text="具体内容展示具体内容展示具体内容展示具体内容展示具体内容展示具体内容展示具体内容展示具体内容展示"
+        	android:textColor="@color/common_light_black"
+        	android:textSize="15sp"
+        	android:background="@color/common_white"
+        	android:paddingLeft="14dp"
+        	android:paddingRight="14dp"
+        	android:maxLines="2"
+        	android:ellipsize="end"
+        	android:lineSpacingExtra="5dp"
+            />
+    
+    
+    
+
+</LinearLayout>

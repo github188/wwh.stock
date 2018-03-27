@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/com/bm/wanma/ui"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="12947"
+   kind="dir"
+   committed-date="2017-10-18T08:57:33.847005Z"/>
+<entry
+   name="activity"
+   kind="dir"/>
+<entry
+   name="fragment"
+   kind="dir"/>
+<entry
+   name="navigation"
+   kind="dir"/>
+<entry
+   name="scan"
+   kind="dir"/>
+<entry
+   name="shareactivity"
+   kind="dir"/>
+</wc-entries>

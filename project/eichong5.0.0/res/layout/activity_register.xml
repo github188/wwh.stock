@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/common_light_white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/login_regist_top_bg"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/common_orange" >   
+		<ImageButton
+            android:id="@+id/register_close"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/nav_btn_back" />
+        <TextView
+            android:id="@+id/login_register_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="注册"
+            android:textColor="@color/common_white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="35dp"
+        android:padding="13dp"
+        android:background="@drawable/common_bg_shape_selector"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/img_call" />
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="1dp"
+            android:background="@null" />
+
+        <EditText
+            android:id="@+id/register_userphone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="手机号"
+            android:inputType="number"
+            android:maxLength="13"
+            android:textColor="@color/common_black"
+            android:textColorHint="@color/common_light_gray"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/img_regist_clear"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="-20dp"
+            android:background="@drawable/btn_shut_down" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/common_light_white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/common_white"
+        android:orientation="horizontal"
+        android:padding="9dp" >
+
+        <ImageButton
+            android:id="@+id/img_lock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/img_lock" />
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="1dp"
+            android:background="@null" />
+
+        <EditText
+            android:id="@+id/register_set_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="数字密码"
+            android:inputType="numberPassword"
+            android:maxLength="8"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/common_black"
+            android:textColorHint="@color/common_light_gray"
+            android:textSize="18sp" />
+        <ImageView
+            android:id="@+id/img_eyes"
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="-35dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_eyes" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/common_light_white" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/common_white" >
+
+        <EditText
+            android:id="@+id/register_et_captcha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:hint="验证码"
+            android:inputType="number"
+            android:maxLength="8"
+            android:padding="13dp"
+            android:textColor="@color/common_black"
+            android:textColorHint="@color/common_light_gray"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/register_btn_captcha"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="5dp"
+            android:padding="8dp"
+            android:background="@color/common_orange"
+            android:text="获取验证码 "
+            android:textColor="@color/common_white"
+            android:textSize="15sp" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/common_light_white" />
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="13dp"
+        android:background="@drawable/common_bg2_shape_selector"
+        android:orientation="horizontal" >
+    <EditText
+        android:id="@+id/register_userphone2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="邀请人手机号(可不填)"
+        android:inputType="number"
+        android:maxLength="13"
+        android:textColor="@color/common_black"
+        android:textColorHint="@color/common_light_gray"
+        android:textSize="18sp" />
+    <ImageButton
+            android:id="@+id/img_clear2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="-20dp"
+            android:background="@drawable/btn_shut_down" />
+	</LinearLayout>
+    <Button
+        android:id="@+id/register_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/popup_select_shape_confirm"
+        android:padding="12dp"
+        android:text="提交"
+        android:textColor="@color/common_white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:text="注册爱充网账号即代表您已经查阅并同意"
+        android:textColor="@color/common_gray"
+        android:textSize="14sp" />
+    <!-- <TextView -->
+    <!-- android:id="@+id/login_interface" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_marginTop="15dp" -->
+    <!-- android:layout_marginLeft="30dp" -->
+    <!-- android:text="已有账号，立刻登录" -->
+    <!-- android:textColor="@color/common_gray" -->
+    <!-- android:textSize="14sp" -->
+    <!-- /> -->
+    <!-- <LinearLayout -->
+    <!-- android:layout_width="match_parent" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_marginTop="20dp" -->
+    <!-- android:layout_marginLeft="30dp" -->
+    <!-- android:layout_marginRight="30dp" -->
+    <!-- android:orientation="horizontal" > -->
+
+
+    <!-- <CheckBox -->
+    <!-- android:id="@+id/register_checkbox_protocol" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:checked="true" -->
+    <!-- android:scaleX="0.8" -->
+    <!-- android:scaleY="0.8" /> -->
+
+    <TextView
+        android:id="@+id/register_commit_tv_protocol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="《爱充网用户协议》"
+        android:textColor="@color/common_orange"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="126dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-3dp"
+        android:background="@color/common_orange" />
+    <!-- </LinearLayout> -->
+
+</LinearLayout>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 分享电桩 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/common_white"
+    android:orientation="vertical" >
+    
+     <RelativeLayout 
+        android:background="@color/common_orange"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        >
+        <ImageButton
+            android:id="@+id/share_pile_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/nav_btn_back"
+            android:background="@android:color/transparent"/>
+        <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="分享电桩"
+             android:textColor="@color/common_white"
+             android:textSize="18sp"
+             android:padding="5dp"
+             android:layout_centerVertical="true"
+             android:layout_centerInParent="true"
+            />
+        </RelativeLayout>
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        >
+        <LinearLayout
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+             android:layout_width="match_parent"
+        	android:layout_height="wrap_content" 
+            android:orientation="vertical"
+            >
+           <!-- 拍照布局 -->
+     <FrameLayout 
+         android:layout_width="match_parent"
+         android:layout_height="100dp"
+         android:layout_marginLeft="80dp"
+         android:layout_marginRight="80dp"
+         android:layout_marginTop="50dp"
+         android:background="@drawable/common_edit_shape_selector"
+         >
+          <ImageView 
+            android:id="@+id/share_pile_photo_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            />
+         <ImageButton 
+	        android:id="@+id/share_pile_photo_btn"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:src="@drawable/btn_help_upload"
+	        android:background="@android:color/transparent"
+	        />
+     </FrameLayout>
+     
+     <RelativeLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_margin="20dp"
+         >
+         <ImageView 
+             android:id="@+id/share_pile_icon_addr"
+              android:layout_width="wrap_content"
+         	  android:layout_height="wrap_content"
+              android:src="@drawable/btn_help_address"
+             />
+         <TextView 
+              android:id="@+id/share_pile_tv_addr"
+              android:layout_toRightOf="@id/share_pile_icon_addr"
+              android:layout_marginLeft="5dp"
+              android:layout_width="wrap_content"
+         	  android:layout_height="wrap_content"
+              android:textColor="@color/common_light_black"
+              android:textSize="15sp"
+              android:layout_marginBottom="5dp"
+             />
+         <TextView 
+              android:id="@+id/share_pile_lng_tag"
+              android:layout_below="@id/share_pile_tv_addr"
+              android:layout_width="wrap_content"
+         	  android:layout_height="wrap_content"
+              android:text="经度:"
+              android:layout_alignStart="@id/share_pile_tv_addr"
+              android:textColor="@color/common_orange"
+              android:textSize="15sp"
+             />
+         <TextView 
+              android:id="@+id/share_pile_lng"
+              android:layout_below="@id/share_pile_tv_addr"
+              android:layout_toRightOf="@id/share_pile_lng_tag"
+              android:layout_width="wrap_content"
+         	  android:layout_height="wrap_content"
+              android:textColor="@color/common_orange"
+              android:textSize="15sp"
+             />
+         <TextView 
+              android:id="@+id/share_pile_lat_tag"
+              android:layout_below="@id/share_pile_tv_addr"
+              android:layout_toRightOf="@id/share_pile_lng"
+              android:layout_width="wrap_content"
+         	  android:layout_height="wrap_content"
+              android:text="纬度:"
+              android:layout_marginLeft="20dp"
+              android:textColor="@color/common_orange"
+              android:textSize="15sp"
+             />
+         <TextView 
+              android:id="@+id/share_pile_lat"
+              android:layout_below="@id/share_pile_tv_addr"
+              android:layout_toRightOf="@id/share_pile_lat_tag"
+              android:layout_width="wrap_content"
+         	  android:layout_height="wrap_content"
+              android:textColor="@color/common_orange"
+              android:textSize="15sp"
+             />
+         
+     </RelativeLayout>
+     
+      <EditText 
+         android:id="@+id/share_pile_content"
+         android:layout_width="match_parent"
+         android:layout_height="150dp"
+         android:textSize="15sp"
+         android:layout_marginLeft="25dp"
+         android:layout_marginRight="25dp"
+         android:hint="桩体信息： 您需要输入当前位置的充电设备数量，快充/慢充，额定功率，最大输入电流等信息"
+         android:maxLength="300"
+         android:gravity="top"
+         android:textColorHint="@color/common_light_gray"
+          android:background="@drawable/common_edit_shape_selector"
+         />
+     <TextView 
+         android:id="@+id/commit_feedback_commit"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="30dp"
+          android:layout_marginLeft="25dp"
+         android:layout_marginRight="25dp"
+         android:textColor="@color/common_white"
+         android:gravity="center"
+         android:textSize="19sp"
+         android:text="立即分享"
+         android:background="@drawable/recharge_commit_bg_light_white"
+         />
+     
+     
+     
+     
+     
+     
+     
+         </LinearLayout>
+    </ScrollView>  
+</LinearLayout>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:orientation="vertical" >
+    
+     <RelativeLayout 
+        android:id="@+id/bespoke_rl_top"
+        android:background="@color/common_orange"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        >
+        <ImageButton
+            android:id="@+id/bespoke_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/nav_btn_back"
+            android:background="@android:color/transparent"/>
+        <TextView 
+             android:id="@+id/bespoke_title"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="枪口名称"
+             android:textColor="@color/common_white"
+             android:textSize="18sp"
+             android:padding="5dp"
+             android:layout_centerVertical="true"
+             android:layout_centerInParent="true"
+            />
+        </RelativeLayout>
+    
+    <TextView 
+        android:id="@+id/bespoke_time"
+        android:layout_below="@id/bespoke_rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="44dp"
+        android:gravity="center"
+        android:text="请选择预约时间"
+        android:textColor="@color/common_orange"
+        android:textSize="24sp"
+        />
+    <RelativeLayout 
+        android:id="@+id/bespoke_ll_seekbar"
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_marginLeft="30dp"
+    	android:layout_marginRight="10dp"
+        android:layout_below="@id/bespoke_time"
+        >
+    <com.bm.wanma.view.CustomSeekBar 
+        android:id="@+id/bespoke_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:max="12"
+        android:progress="0"
+        android:progressDrawable="@android:color/transparent"
+        android:thumb="@drawable/bespoke_seekbar_thumb"
+        />
+    </RelativeLayout>
+    
+        <TextView 
+            android:layout_below="@id/bespoke_ll_seekbar"
+            android:layout_width="wrap_content"
+         	android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/common_black"
+            android:textSize="13sp"
+            android:layout_alignParentLeft="true"
+            />
+        <TextView 
+            android:id="@+id/bespoke_tv_num"
+            android:layout_below="@id/bespoke_ll_seekbar"
+            android:layout_width="wrap_content"
+         	android:layout_height="wrap_content"
+            android:text="6"
+            android:textColor="@color/common_black"
+            android:textSize="13sp"
+            android:layout_alignParentRight="true"
+            />
+        
+    <!-- 预约费用 -->
+    <LinearLayout 
+        android:id="@+id/bespoke_ll_price"
+        android:layout_below="@id/bespoke_tv_num"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:gravity="center_horizontal"
+         android:layout_marginTop="44dp"
+         android:orientation="horizontal"
+        >
+        <TextView 
+            android:layout_width="wrap_content"
+         	android:layout_height="wrap_content"
+            android:text="预约费用： "
+            android:visibility="gone"
+            android:textColor="@color/common_orange"
+            android:textSize="24sp"
+            />
+        <TextView 
+            android:id="@+id/bespoke_price"
+            android:layout_width="wrap_content"
+         	android:layout_height="wrap_content"
+            android:text="0.00元 "
+            android:textColor="@color/common_orange"
+            android:textSize="24sp"
+            />
+        <ImageView 
+            android:id="@+id/bespoke_price_question"
+             android:layout_width="wrap_content"
+         	 android:layout_height="wrap_content"
+             android:src="@drawable/bg_map_question"
+             
+            />
+        
+    </LinearLayout>
+     <TextView
+            android:layout_above="@id/bespoke_ll_price"
+            android:id="@+id/bespoke_commit"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:background="@drawable/popup_select_shape_confirm"
+            android:text="预约"
+            android:textColor="@color/common_white"
+            android:textSize="19sp" />
+
+</RelativeLayout>

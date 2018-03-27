@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="prediction-pu" transaction-type="JTA">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.spstudio.stock.entity.DailyPrice</class>
+    <class>com.spstudio.stock.entity.Groups</class>
+    <class>com.spstudio.stock.entity.Market</class>
+    <class>com.spstudio.stock.entity.RealtimeTrade</class>
+    <class>com.spstudio.stock.entity.Stock</class>
+    <class>com.spstudio.stock.entity.Users</class>
+    <class>com.spstudio.stock.entity.MarketIndex</class>
+    <class>com.spstudio.stock.entity.UserStockRef</class>
+  </persistence-unit>
+</persistence>

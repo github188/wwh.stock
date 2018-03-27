@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>沪深证券业绩披露时间新增</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/net/profit-publish/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <table width="100%" cellpadding="5">
+                            <tr>
+                    <td align="left">
+                        报告期
+                    </td>
+                    <td>
+                                                <input name="dt" class="easyui-textbox" value="$!{model.dt}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        代码
+                    </td>
+                    <td>
+                                                <input name="stockCode" class="easyui-textbox" value="$!{model.stockCode}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        简称
+                    </td>
+                    <td>
+                                                <input name="stockName" class="easyui-textbox" value="$!{model.stockName}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        预约日期
+                    </td>
+                    <td>
+                                                <input name="orderDate" class="easyui-textbox" value="$!{model.orderDate}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        一次变更日期
+                    </td>
+                    <td>
+                                                <input name="onceChangeDate" class="easyui-textbox" value="$!{model.onceChangeDate}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        二次变更日期
+                    </td>
+                    <td>
+                                                <input name="secondChangeDate" class="easyui-textbox" value="$!{model.secondChangeDate}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        三次变更日期
+                    </td>
+                    <td>
+                                                <input name="thirdChangeDate" class="easyui-textbox" value="$!{model.thirdChangeDate}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        公告日期
+                    </td>
+                    <td>
+                                                <input name="reportDate" class="easyui-textbox" value="$!{model.reportDate}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        备注
+                    </td>
+                    <td>
+                                                <input name="memo" class="easyui-textbox" value="$!{model.memo}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        顺序
+                    </td>
+                    <td>
+                                                <input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+                    </td>
+                </tr>
+                    </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

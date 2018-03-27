@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pop_detail_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:orientation="vertical" >
+<View 
+    android:id="@+id/v"
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
+    android:visibility="gone"
+    android:background="@color/common_light_grey"/>
+    <RelativeLayout
+        
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp" >
+
+        <TextView
+            android:id="@+id/listview_charging_point"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/common_black"
+            android:textSize="16sp"
+             />
+
+        <TextView
+            android:id="@+id/listview_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/common_black"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/common_light_grey" />
+
+    <RelativeLayout
+        android:id="@+id/listview_rl_addr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+         >
+        <TextView
+            android:id="@+id/listview_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:text="电价"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/common_light_black"
+            android:textSize="15sp" />
+        
+        <TextView
+            android:id="@+id/listview_tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/listview_text"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/common_black"
+            android:textSize="15sp" />
+         
+            <TextView
+                android:id="@+id/leisure_text"
+                android:layout_below="@id/listview_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="空闲"
+                android:textColor="@color/common_light_black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/rapid_charge_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="直流"
+                android:layout_toRightOf="@id/leisure_text"
+            	android:layout_alignBottom="@id/leisure_text"
+            	android:background="@drawable/common_shape_green"
+                android:textColor="@color/common_white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/listview_fast_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/rapid_charge_text"
+            	android:layout_alignBottom="@id/rapid_charge_text"
+                android:gravity="center"
+                android:textColor="@color/common_black"
+                android:textSize="15sp" />
+			<TextView
+			    android:id="@+id/trickle_charge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="交流"
+                android:background="@drawable/common_shape_green"
+                android:layout_toRightOf="@id/listview_fast_num"
+            	android:layout_alignBottom="@id/listview_fast_num"
+                android:textColor="@color/common_white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/listview_slow_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/trickle_charge"
+            	android:layout_alignBottom="@id/trickle_charge"
+                android:gravity="center"
+                 android:layout_marginLeft="5dp"
+                android:textColor="@color/common_black"
+                android:textSize="15sp" />
+        <!-- 箭头 -->
+          <ImageView
+            android:id="@+id/navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/btn_navigation" />
+        
+        
+		
+      
+    </RelativeLayout>
+
+    <TextView
+                android:id="@+id/listview_addr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/common_light_light_black"
+                android:layout_marginBottom="10dp"
+                android:textSize="14sp" />
+    
+
+</LinearLayout>

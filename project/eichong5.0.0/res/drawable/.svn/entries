@@ -1,0 +1,1499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/res/drawable"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="12701"
+   kind="dir"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="aa.jpg"
+   checksum="5c0df79de78ec9d46e38905928b80bd0"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.463000Z"/>
+<entry
+   name="actionsheet_bottom_selector.xml"
+   checksum="1260f229f5543865de5bce3270ad3bc9"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="actionsheet_middle_selector.xml"
+   checksum="23dbcd4f7b36a225f8ab1f80ccb6285d"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="actionsheet_single_selector.xml"
+   checksum="eb17395b2755fbc9798a3fa461ceb29d"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="actionsheet_top_selector.xml"
+   checksum="932e9b4ca9c7324a44190f4ccb9cfa2c"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="alertdialog_left_selector.xml"
+   checksum="5526d4e69132f23ce39800ec8ff4bafe"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="alertdialog_right_selector.xml"
+   checksum="7127fdcd8f29f392b6077cfcd4435fee"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="alertdialog_single_selector.xml"
+   checksum="705f222b461aba267d45e1897672a949"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="bespoke_detail_led_gray.xml"
+   checksum="76d1754654a546538c44fdcc33df0298"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="bespoke_detail_led_light_gray.xml"
+   checksum="275f34f576b9c7590c4902672572ab12"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="bespoke_detail_led_white.xml"
+   checksum="71bc72ec81ef8e4b2cf75f4252bc5149"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="bespoke_seekbar_thumb.xml"
+   checksum="ae4ff923d55fd06dad50a2a4ab53b07b"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="border.xml"
+   checksum="e19691d7488da7992c740e6a6b4b59e5"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="btnbg.xml"
+   checksum="7273b5360ac05e25c58c2fa358b68fa6"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="circle_shape_confirm.xml"
+   checksum="01b026320b8e57241f232f51ebd48f33"
+   last-author="liuyahui"
+   committed-rev="5684"
+   text-time="2017-03-01T01:18:20.238000Z"
+   kind="file"
+   committed-date="2017-03-01T01:18:20.238619Z"/>
+<entry
+   name="com_facebook_close.png"
+   checksum="19197bc1106487deb858531cafe2ca25"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.430000Z"/>
+<entry
+   name="common_advertisement_button_shape.xml"
+   checksum="8d6f28ac743d7d5471768a6a630c4ed3"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_bespoke_circle.xml"
+   checksum="4e146eaf13c83a302a1d9ceab77e5aaa"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_bg2_shape_selector.xml"
+   checksum="2351fdb5ee749ad301e6850f414cf42b"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_bg_information.xml"
+   checksum="925632026ff6e7d83a25a333111db01d"
+   last-author="liuyahui"
+   committed-rev="4273"
+   text-time="2016-12-14T09:49:55.214000Z"
+   kind="file"
+   committed-date="2016-12-14T09:49:55.214861Z"/>
+<entry
+   name="common_bg_shape_selector.xml"
+   checksum="f2caa85b7c1cee77b88d0dbe4b3e3e1f"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_bgleft_shape.xml"
+   checksum="37f8854a2ae7471fcdccd2e71a28759f"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_bgright_shape.xml"
+   checksum="dfde1753a0851dba7b2c9437c915f1cf"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_button_shape.xml"
+   checksum="59c89b5dcc0aeed772d418ea03363ee9"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_button_shape_activate.xml"
+   checksum="452eee294fd2d10a93157010b47b4a83"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_button_shape_activate_recharge.xml"
+   checksum="2ebe95d1219133a11d647890f91913cc"
+   last-author="liuyahui"
+   committed-rev="9712"
+   text-time="2017-08-25T04:19:55.936000Z"
+   kind="file"
+   committed-date="2017-08-25T04:19:55.936370Z"/>
+<entry
+   name="common_button_shape_kong.xml"
+   checksum="8e46aede8485f8ac1f5d302711bd5c73"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="common_button_shape_orange.xml"
+   checksum="5a94c0aade5c0c6ef7f47444a9c92c48"
+   last-author="liuyahui"
+   committed-rev="9712"
+   text-time="2017-08-25T04:19:55.936000Z"
+   kind="file"
+   committed-date="2017-08-25T04:19:55.936370Z"/>
+<entry
+   name="common_button_shape_recharge.xml"
+   checksum="9d6876fb4f4fef3cdc3bbb8f51cef7a0"
+   last-author="liuyahui"
+   committed-rev="9712"
+   text-time="2017-08-25T04:19:55.936000Z"
+   kind="file"
+   committed-date="2017-08-25T04:19:55.936370Z"/>
+<entry
+   name="common_button_shape_san.xml"
+   checksum="d4ecf66aa796070ca45b83994fdf1f4d"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="common_button_shape_white.xml"
+   checksum="80fe177af03f3056f337ee8252509eff"
+   last-author="liuyahui"
+   committed-rev="9712"
+   text-time="2017-08-25T04:19:55.936000Z"
+   kind="file"
+   committed-date="2017-08-25T04:19:55.936370Z"/>
+<entry
+   name="common_circle_little_red.xml"
+   checksum="fa9714339fe7a1e665e0620fba27a226"
+   last-author="chengmeng"
+   committed-rev="4257"
+   text-time="2016-12-14T09:43:51.781000Z"
+   kind="file"
+   committed-date="2016-12-14T09:43:51.781023Z"/>
+<entry
+   name="common_edit_shape.xml"
+   checksum="3687abca63b99d16e6ce26c741f3ac8d"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_edit_shape_selector.xml"
+   checksum="d5c15a7c77d9138c8e1b76c4a63059ba"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_everyday_shape_white.xml"
+   checksum="5a4789b6b635b0364adaf9f57403cdb8"
+   last-author="liuyahui"
+   committed-rev="9712"
+   text-time="2017-08-25T04:19:55.936000Z"
+   kind="file"
+   committed-date="2017-08-25T04:19:55.936370Z"/>
+<entry
+   name="common_framelayoutbg_shape_selector.xml"
+   checksum="c176e4197118e81e9d9c242e0e65c0cc"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_hollow_circle.xml"
+   checksum="7fe01057ba1832b8c4c66af98126096a"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_marker_bg.xml"
+   checksum="01a29dfbdfb4006715a7a392f9ed1c22"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_orange_circle.xml"
+   checksum="b0f18450a1e5a5c3429fc70c25329272"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_orange_guashi_circle.xml"
+   checksum="16817413eba79bdf617c7e292cab345d"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_orange_guashi_rectangle.xml"
+   checksum="8aa7180d4bfe7dc269630be9c28bff77"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_red_circle.xml"
+   checksum="59497d46906a6c223979293c6907577f"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_shape_confirm_light_orange.xml"
+   checksum="28038f7ff6382d8d57648ef7300a0d64"
+   last-author="liuyahui"
+   committed-rev="6016"
+   text-time="2017-03-09T02:52:07.894000Z"
+   kind="file"
+   committed-date="2017-03-09T02:52:07.894132Z"/>
+<entry
+   name="common_shape_corner_gray.xml"
+   checksum="85add10392c2284c4466c3c85d355077"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_shape_corner_orange.xml"
+   checksum="28038f7ff6382d8d57648ef7300a0d64"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_shape_dialog.xml"
+   checksum="e6560265ffc450f2c088bc370c29253e"
+   last-author="chengmeng"
+   committed-rev="3932"
+   text-time="2016-11-24T02:31:24.169000Z"
+   kind="file"
+   committed-date="2016-11-24T02:31:24.169848Z"/>
+<entry
+   name="common_shape_edittext_border3_rect.xml"
+   checksum="e1d5c437c0ad7c4452e8d758a7e2116d"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_shape_green.xml"
+   checksum="5631e8cf6a94a15383c7a53ba14116f7"
+   last-author="liuyahui"
+   committed-rev="5144"
+   text-time="2017-01-17T08:27:07.644000Z"
+   kind="file"
+   committed-date="2017-01-17T08:27:07.644032Z"/>
+<entry
+   name="common_shape_light_orange.xml"
+   checksum="dc16ea215a04570d1df0fc229d8ad901"
+   last-author="liuyahui"
+   committed-rev="5143"
+   text-time="2017-01-17T08:27:00.015000Z"
+   kind="file"
+   committed-date="2017-01-17T08:27:00.015618Z"/>
+<entry
+   name="common_station_white_circle.xml"
+   checksum="9bca9cf8f9593495ad2a6180c3a832a4"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="common_white_circle.xml"
+   checksum="320ccb304e2395b90a8d90bfc862a65a"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="coupon_listview_background.xml"
+   checksum="0d4a915a5f3b47be83ee41c5ba22b9b0"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="coupon_status_background.xml"
+   checksum="b428d0679b81d957a1bef07412416752"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="coupon_status_usable_background.xml"
+   checksum="7b82f421f3d22be1ec28256d05db36d2"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="custom_common_dialog_bottom.xml"
+   checksum="bdc31a5265657b8a2ae6f8dd9dd5b60e"
+   last-author="chengmeng"
+   committed-rev="3932"
+   text-time="2016-11-24T02:31:24.169000Z"
+   kind="file"
+   committed-date="2016-11-24T02:31:24.169848Z"/>
+<entry
+   name="custom_common_dialog_top.xml"
+   checksum="b93f2b58cdf8ba203d7903c43f991da2"
+   last-author="chengmeng"
+   committed-rev="3932"
+   text-time="2016-11-24T02:31:24.169000Z"
+   kind="file"
+   committed-date="2016-11-24T02:31:24.169848Z"/>
+<entry
+   name="custom_input_key_del.xml"
+   checksum="6deb5b039253174427a7eeb3f3703604"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="custom_input_keybord.xml"
+   checksum="b2e5e1d57e94ccb6d2ad07046bb73d54"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="dadadatu.jpg"
+   checksum="a1b1df6eac70be84e4b201e7ad427df6"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.876000Z"/>
+<entry
+   name="datu.jpg"
+   checksum="8b208164b33291da77b4f890cc157d69"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.536000Z"/>
+<entry
+   name="dialog_select_shape_confirm.xml"
+   checksum="8206fe944ec1a9bc551bebf3a1cea3b6"
+   last-author="liuyahui"
+   committed-rev="3666"
+   text-time="2016-11-08T06:11:42.790000Z"
+   kind="file"
+   committed-date="2016-11-08T06:11:42.790958Z"/>
+<entry
+   name="edit_view_bg.xml"
+   checksum="323b4bba1b38a5b3a9860d52a546ab78"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="editbg.xml"
+   checksum="5abe74c8655ffc66907e31f43f9a83df"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="feedback_commit_bg_gray.xml"
+   checksum="85add10392c2284c4466c3c85d355077"
+   last-author="chengmeng"
+   committed-rev="4405"
+   text-time="2016-12-19T02:36:17.971000Z"
+   kind="file"
+   committed-date="2016-12-19T02:36:17.971932Z"/>
+<entry
+   name="fenxiang.png"
+   checksum="204919708d44e119ecca202c4739aa11"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.607000Z"/>
+<entry
+   name="gengxin.png"
+   checksum="dedbcc147920cb31de495aea591d315e"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.938000Z"/>
+<entry
+   name="home_search_bg.xml"
+   checksum="dc7285b92c5c7b8f40e74cc4cd878f7e"
+   last-author="liuyahui"
+   committed-rev="5984"
+   text-time="2017-03-08T03:20:44.549000Z"
+   kind="file"
+   committed-date="2017-03-08T03:20:44.549394Z"/>
+<entry
+   name="huoqu.png"
+   checksum="43b5ce2957422160f995cc57881afa8b"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.682000Z"/>
+<entry
+   name="ic_ab_app.png"
+   checksum="253c1ebdb4fd317500dec9ac087222cb"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.676000Z"/>
+<entry
+   name="ic_ab_done.png"
+   checksum="ddb4b0d27e22ac332ddcd8c99282f922"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.399000Z"/>
+<entry
+   name="indicator_bg_bottom.xml"
+   checksum="55d3bf1ebb167ab2f0434641ba406ded"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="indicator_bg_top.xml"
+   checksum="447460073ce024b2de6618479afc45b8"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="info_icon_1.png"
+   checksum="3e5e0bc8e118094e678b3c4dd61dfe00"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.578000Z"/>
+<entry
+   name="invoice_check.xml"
+   checksum="ceed210857ded318d90c018ec57b310f"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="invoice_shape_corner_next_gray.xml"
+   checksum="57670ab22447010ffcc973e06253d7d1"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="invoice_shape_corner_next_orange.xml"
+   checksum="a8994197b0e0aa57211c1b86f3b6208a"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="logo.png"
+   checksum="914e70ac5d68373c69e9eb2509febf0c"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.488000Z"/>
+<entry
+   name="longlong.jpg"
+   checksum="e1dde60bf38e98fdb5fc171f1e625d95"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.118000Z"/>
+<entry
+   name="longtu.jpg"
+   checksum="66a2df8349a970968e8e28d07790c204"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.554000Z"/>
+<entry
+   name="myorder_shape_left_radius_orange.xml"
+   checksum="7f646029bd1b874f57cb0b1a5bee1207"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="myorder_shape_left_radius_white.xml"
+   checksum="81dcb3dd571c98b2ff0d561eef15a9cf"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="myorder_shape_right_radius_orange.xml"
+   checksum="b74bb105bcd2f835642a94951c3fdc45"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="myorder_shape_right_radius_white.xml"
+   checksum="95008bc03b875a6947786990c38768e4"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="nav_search_backgroud.xml"
+   checksum="d1964c7b1752edd0e7b93441e4a4c5b6"
+   last-author="liuyahui"
+   committed-rev="6208"
+   text-time="2017-03-17T05:58:54.005000Z"
+   kind="file"
+   committed-date="2017-03-17T05:58:54.005469Z"/>
+<entry
+   name="nav_search_pull_bg.xml"
+   checksum="17b18087c56392460702dc7b638a16fa"
+   last-author="chengmeng"
+   committed-rev="5988"
+   text-time="2017-03-08T04:12:49.500000Z"
+   kind="file"
+   committed-date="2017-03-08T04:12:49.500083Z"/>
+<entry
+   name="popup_detail_arc_bg.xml"
+   checksum="74bdc0f2d8c55665618e13a0e4c6707b"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="popup_detaile_circle_gray.xml"
+   checksum="d2f79fb91a919ae1ba2f48f4175d26be"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="popup_detaile_circle_green.xml"
+   checksum="1b67f77fc122d5484655a023da2a623f"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="popup_select_shape_checked.xml"
+   checksum="a0460bac1b0c0b55231bb7111ff0f8be"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="popup_select_shape_confirm.xml"
+   checksum="9b8958ba781d3562fa79263046c8877e"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="popup_select_shape_uncheck.xml"
+   checksum="a392acd50c37130915a14e6b1fb44f8e"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="precharge_money_selector.xml"
+   checksum="6255c97960a0a154ef55c384533ae220"
+   last-author="chengmeng"
+   committed-rev="3932"
+   text-time="2016-11-24T02:31:24.169000Z"
+   kind="file"
+   committed-date="2016-11-24T02:31:24.169848Z"/>
+<entry
+   name="pulltofresh_progress_bar.xml"
+   checksum="6208b6b38d58b51351368b35083eae28"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="recharge_commit_bg_light_white.xml"
+   checksum="f4bb1f1f54f56e3da6d0cdf1eeb91a4d"
+   last-author="chengmeng"
+   committed-rev="3932"
+   text-time="2016-11-24T02:31:24.169000Z"
+   kind="file"
+   committed-date="2016-11-24T02:31:24.169848Z"/>
+<entry
+   name="recharge_shape_confirm.xml"
+   checksum="398b5bc2d1432bb543caec702c77fab6"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="requst_data_clip_loading.xml"
+   checksum="50663457d3e1cb4d0553f33343984017"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="retry_btn_default.xml"
+   checksum="71648d34c76de5bfc55fe006ca8782c0"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="retry_btn_press.xml"
+   checksum="5a030c2bd2368d49032b91eb1425b236"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="retry_btn_selector.xml"
+   checksum="5cd16147a3500667d5d401bcbc4ff555"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="scan_lamp__light_black_circle.xml"
+   checksum="2aa0c5f9822fc9b5d957b0b3f3322434"
+   last-author="liuyahui"
+   committed-rev="6016"
+   text-time="2017-03-09T02:52:07.894000Z"
+   kind="file"
+   committed-date="2017-03-09T02:52:07.894132Z"/>
+<entry
+   name="scan_light_white_bg.xml"
+   checksum="db6b2b04da0e8e71bad78a1717afcf1f"
+   last-author="liuyahui"
+   committed-rev="6016"
+   text-time="2017-03-09T02:52:07.894000Z"
+   kind="file"
+   committed-date="2017-03-09T02:52:07.894132Z"/>
+<entry
+   name="search_bar_edit_selector.xml"
+   checksum="8b2651c940f7535d919b65d4f3aaa81e"
+   last-author="liuyahui"
+   committed-rev="5095"
+   text-time="2017-01-17T06:40:59.868000Z"
+   kind="file"
+   committed-date="2017-01-17T06:40:59.868847Z"/>
+<entry
+   name="search_point_shape_clear.xml"
+   checksum="07557d38a9cdd57cdc45008ef1e61a20"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="select_btn_circle.xml"
+   checksum="59564b597722cfcb14355e727bc627ba"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="select_btn_circle_orange.xml"
+   checksum="5fa84bff44f836c064672cd897bdcce2"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="shape_loading_dialog.xml"
+   checksum="fbde51bfe7a2348ab12f0fb47fbe1954"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="shouquan.png"
+   checksum="59847a19f2ef8761e83162ee29ee108e"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.549000Z"/>
+<entry
+   name="sort_sidebar_background.xml"
+   checksum="e974253ad75c6a88bf76318e5bca04c9"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="station_detail_arc_orange.xml"
+   checksum="d925c0fd8e77eb5f97ca04d2a3f287d7"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="take_photot_dialog.xml"
+   checksum="e05cb6a3d7b6405f207ccc6850b0e823"
+   last-author="chengmeng"
+   committed-rev="4405"
+   text-time="2016-12-19T02:36:17.971000Z"
+   kind="file"
+   committed-date="2016-12-19T02:36:17.971932Z"/>
+<entry
+   name="thumb.png"
+   checksum="0caad4e0f0f34bbdf33fd3e0069c3afa"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.712000Z"/>
+<entry
+   name="tsetshape.xml"
+   checksum="c27dca1208a74ddf3ce40d8bd5b9bf68"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="umeng.jpg"
+   checksum="5e9adab11fe5a746314958632157855b"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.428000Z"/>
+<entry
+   name="umeng_app_icon.png"
+   checksum="9151ecd706f06d48428f9f0cb5ee5e28"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.719000Z"/>
+<entry
+   name="umeng_arrow.png"
+   checksum="0523e1061c71cb9cbb2ff7a84c3dcee4"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.757000Z"/>
+<entry
+   name="umeng_back_icon.png"
+   checksum="026aca854e8cc2607d0117c6c4d1f353"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.601000Z"/>
+<entry
+   name="umeng_share_solid_icon.png"
+   checksum="345fbcae4fa87bc6ec74eba18ac74c09"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.602000Z"/>
+<entry
+   name="umeng_share_watermark.png"
+   checksum="8eb557c05d10a9f8866b0ddcea203864"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.555000Z"/>
+<entry
+   name="umeng_socialize_alipay.png"
+   checksum="271e54087fd594297dc3a42085b068ec"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.703000Z"/>
+<entry
+   name="umeng_socialize_back_icon.png"
+   checksum="026aca854e8cc2607d0117c6c4d1f353"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.615000Z"/>
+<entry
+   name="umeng_socialize_btn_bg.xml"
+   checksum="3f86e8e8948a2a238b642059644ed5ac"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="umeng_socialize_copy.png"
+   checksum="a12d2da53496155ee6d625ff3acbe94e"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.420000Z"/>
+<entry
+   name="umeng_socialize_copyurl.png"
+   checksum="720c74724db6bdf56e86069202cc2221"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:09:00.195000Z"/>
+<entry
+   name="umeng_socialize_delete.png"
+   checksum="7bce856d9f108d431d1de325291694f0"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.434000Z"/>
+<entry
+   name="umeng_socialize_ding.png"
+   checksum="fab776aa5ec10554bb4ca7f4b28ebc08"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.434000Z"/>
+<entry
+   name="umeng_socialize_douban.png"
+   checksum="ffe1c7ed26935b235745ecfe0a1695f0"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.611000Z"/>
+<entry
+   name="umeng_socialize_dropbox.png"
+   checksum="9d866c70c52d787da0f2fde6bcc1e04d"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.963000Z"/>
+<entry
+   name="umeng_socialize_edit_bg.xml"
+   checksum="f18c01ed885f2582a2f049043b07082a"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="umeng_socialize_evernote.png"
+   checksum="732da1f6bad4a4f00a403965e25fec0b"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:09:00.177000Z"/>
+<entry
+   name="umeng_socialize_facebook.png"
+   checksum="ff5b9697ae892b4384127b45be864ae8"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.449000Z"/>
+<entry
+   name="umeng_socialize_fav.png"
+   checksum="fdf32ff54b875df0a9e96cbd5e330b47"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.628000Z"/>
+<entry
+   name="umeng_socialize_fbmessage.png"
+   checksum="47dc33456431eeb9ab1732807409911f"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.584000Z"/>
+<entry
+   name="umeng_socialize_flickr.png"
+   checksum="571022361d7276d88aed2d324a8c6d84"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.455000Z"/>
+<entry
+   name="umeng_socialize_foursquare.png"
+   checksum="099facfde87371262055d25c37d40298"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.931000Z"/>
+<entry
+   name="umeng_socialize_gmail.png"
+   checksum="1675a0ef8f91923cd66a09da03b56c1b"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:09:00.183000Z"/>
+<entry
+   name="umeng_socialize_google.png"
+   checksum="54fbb4950417bf334bac1832d6319a65"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.958000Z"/>
+<entry
+   name="umeng_socialize_instagram.png"
+   checksum="3c2e97e84cee30b22caccfc3a7608baa"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.570000Z"/>
+<entry
+   name="umeng_socialize_kakao.png"
+   checksum="6dd02314176540ac425d4de63d3624cb"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.727000Z"/>
+<entry
+   name="umeng_socialize_laiwang.png"
+   checksum="a760d96d468b4e3adaac373f396e09f2"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.131000Z"/>
+<entry
+   name="umeng_socialize_laiwang_dynamic.png"
+   checksum="4b40e0e043e82ead09079acbcfda4951"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.651000Z"/>
+<entry
+   name="umeng_socialize_line.png"
+   checksum="c41325d7841571e39ffc92e3dd28deee"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.453000Z"/>
+<entry
+   name="umeng_socialize_linkedin.png"
+   checksum="ce4be1c610b6d137fadafb22de127472"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.579000Z"/>
+<entry
+   name="umeng_socialize_menu_default.png"
+   checksum="dda841b8a8636a4f61d5b70f19587be0"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.619000Z"/>
+<entry
+   name="umeng_socialize_more.png"
+   checksum="c02061d9c5b8a33337590941f1aa18dd"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.395000Z"/>
+<entry
+   name="umeng_socialize_pinterest.png"
+   checksum="7c5edda4d431519aa9bfa4c68896a292"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.634000Z"/>
+<entry
+   name="umeng_socialize_pocket.png"
+   checksum="faf974ca20447286be11fb2106979d14"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.647000Z"/>
+<entry
+   name="umeng_socialize_qq.png"
+   checksum="4da09782f43ac939f8f25f9e4684a1c8"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.640000Z"/>
+<entry
+   name="umeng_socialize_qzone.png"
+   checksum="d6ff5561300698f56071e2f0fe2fc1cf"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.152000Z"/>
+<entry
+   name="umeng_socialize_renren.png"
+   checksum="4f5924c73115116713883ddb86c856cc"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.917000Z"/>
+<entry
+   name="umeng_socialize_share_music.png"
+   checksum="6c86a3f0866b92318e8906e7c7ed59b1"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.621000Z"/>
+<entry
+   name="umeng_socialize_share_video.png"
+   checksum="58c9c565a73ae6e47ebf2df26548b54d"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.145000Z"/>
+<entry
+   name="umeng_socialize_share_web.png"
+   checksum="ee034f15dda20a87528837b88ebf01cd"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.593000Z"/>
+<entry
+   name="umeng_socialize_sina.png"
+   checksum="7ef476d5c1730f402975bf68064ce302"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.573000Z"/>
+<entry
+   name="umeng_socialize_sms.png"
+   checksum="ba315f27ff2e7920df0603d4db30cda9"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.544000Z"/>
+<entry
+   name="umeng_socialize_tumblr.png"
+   checksum="3eff938f5ed55a626c7a161f94c9b588"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.597000Z"/>
+<entry
+   name="umeng_socialize_twitter.png"
+   checksum="f82f4f5808935ac75644c62cbcdabb4c"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.443000Z"/>
+<entry
+   name="umeng_socialize_tx.png"
+   checksum="36ebcff9542ccee02a4d6a8dd5cac090"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.459000Z"/>
+<entry
+   name="umeng_socialize_wechat.png"
+   checksum="5cff5ae08d283b61f2be742602d1b6d4"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.697000Z"/>
+<entry
+   name="umeng_socialize_whatsapp.png"
+   checksum="6bba9df893e339e3bfaf3bcdc6cbfea3"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.141000Z"/>
+<entry
+   name="umeng_socialize_wxcircle.png"
+   checksum="064f2987a9737ddb0d9f5bc6e9e78e29"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.707000Z"/>
+<entry
+   name="umeng_socialize_yixin.png"
+   checksum="8db16255a5c80e7096c81afc0bc1d58a"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.597000Z"/>
+<entry
+   name="umeng_socialize_yixin_circle.png"
+   checksum="c28ea4e9ea463ae82e2e252e7dce7dbc"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.469000Z"/>
+<entry
+   name="umeng_socialize_ynote.png"
+   checksum="4a26b595ca90c9bd296939adaef611fd"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.583000Z"/>
+<entry
+   name="umsocial_defaultwatermark.png"
+   checksum="dda947dfbf7ea45261b9aa4dbd3ff852"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.592000Z"/>
+<entry
+   name="vk_clear_shape.xml"
+   checksum="823a55767b2e00fe218d9e499fa39792"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="vk_gray_transparent_shape.xml"
+   checksum="11c8c874622c1724a391dedf0d4b29ae"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="vk_icon.png"
+   checksum="aaf79411f0c7dad39f15a6202e8d2b13"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.463000Z"/>
+<entry
+   name="vk_share_send_button_background.xml"
+   checksum="0d63372279ede14524f555420af5be87"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="vpi__tab_indicator.xml"
+   checksum="f893eea9449a6ff8ee169ab47ab0e3df"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="water.png"
+   checksum="2645b4a0ec7f4360a6a6c7a6d9d0c13d"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.137000Z"/>
+<entry
+   name="weibosdk_common_shadow_top.9.png"
+   checksum="ece281aa2972f5cfadbde8d700f5c230"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:59.127000Z"/>
+<entry
+   name="wheel_bg.xml"
+   checksum="daf6b354a8d3c5a3f866f36c3e046222"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="wheel_val.xml"
+   checksum="da758b13aeca7c9340e00428fab1a77e"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="whiteborder.xml"
+   checksum="6ade6e1513f10336af5c302e72a153cc"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="whitedownborder.xml"
+   checksum="15e20f2f5418a22abdea8926672dc3f5"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="whitenooutborder.xml"
+   checksum="84f3078117166314a3ef2f8fd7e64c4f"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="zijian.png"
+   checksum="1a1b1c4243078d593421b871207584ec"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"
+   prop-time="2017-10-18T09:08:58.657000Z"/>
+</wc-entries>

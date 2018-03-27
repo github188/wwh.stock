@@ -1,0 +1,52 @@
+<ul class="step step4">
+	<!-- $!model.step -->
+	
+	#set($step = $NumberTool.toNumber($!model.step))
+	
+	#set($bool = true)
+	
+	#if($!model.link=='0')
+		#set($bool = false)	
+	#end
+	
+	<li class="step-item #if($!step >= 1)action #end">
+		<span class="step-num"> #if($!step > 1)  <i class="fa fa-check"></i> #else 1 #end</span>
+		<div class="step-text step-bottom">
+			#if($!step > 1 && $bool) 
+			<p><a href="$!{base}/taskpub/step?usrType=$!usrType&step=1"><strong class="step-title" title="需求描述">类型选择</strong></a></p>
+			#else 
+			<p><strong class="step-title" title="需求描述">类型选择</strong></p>
+			#end
+		</div>
+	</li>
+	<li class="step-item #if($!step >= 2) action #end">
+		<span class="step-num">#if($!step > 2) <i class="fa fa-check"></i>  #else 2 #end</span>
+		<div class="step-text step-bottom">
+			#if($!step >= 3 && $bool) 
+			<p><a href="$!{base}/taskpub/step?usrType=$!usrType&step=2"><strong class="step-title" title="招募信息">招募信息</strong></a></p>
+			#else 
+			<p><strong class="step-title" title="招募信息">招募信息</strong></p>
+			#end
+		</div>
+	</li>
+	<li class="step-item #if($!step >=3) action #end">
+		<span class="step-num">#if($!step > 3)<i class="fa fa-check"></i> #else 3 #end</span>
+		<div class="step-text step-bottom">
+			#if($!step >= 4 && $bool)
+				<p><a href="$!{base}/taskpub/step?usrType=$!usrType&step=3"><strong class="step-title" title="支付发布费用">支付发布费用</strong></a></p>
+			#else
+				<p><strong class="step-title" title="支付发布费用">支付发布费用</strong></p>
+			#end
+		</div>
+	</li>
+	<li class="step-item #if($!step >= 4) action #end">
+		<span class="step-num">#if($!step > 4) <i class="fa fa-check"></i> #else 4 #end</span>
+		<div class="step-text step-bottom">
+			#if($!step >= 4 && $bool)
+				<p><a href="$!{base}/taskpub/step?usrType=$!usrType&step=4"><strong class="step-title" title="需求确认">需求确认</strong></a></p>
+			#else
+				<p><strong class="step-title" title="需求确认">需求确认</strong></p>
+			#end
+		</div>
+	</li>
+</ul>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>收支明细新增</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/financial/finance/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <table width="100%" cellpadding="5">
+                            <tr>
+                    <td align="left">
+                        进出方向
+                    </td>
+                    <td>
+                                                <input name="finaType" class="easyui-textbox" value="$!{model.finaType}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        收支说明
+                    </td>
+                    <td>
+                                                <input name="finaAction" class="easyui-textbox" value="$!{model.finaAction}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        订单编号
+                    </td>
+                    <td>
+                                                <input name="orderId" class="easyui-textbox" value="$!{model.orderId}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        用户编号
+                    </td>
+                    <td>
+                                                <input name="uid" class="easyui-textbox" value="$!{model.uid}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        用户名
+                    </td>
+                    <td>
+                                                <input name="username" class="easyui-textbox" value="$!{model.username}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        对象类型
+                    </td>
+                    <td>
+                                                <input name="objType" class="easyui-textbox" value="$!{model.objType}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        对象编号
+                    </td>
+                    <td>
+                                                <input name="objId" class="easyui-textbox" value="$!{model.objId}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        交易金额
+                    </td>
+                    <td>
+                                                <input name="finaCash" class="easyui-textbox" value="$!{model.finaCash}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        用户余额
+                    </td>
+                    <td>
+                                                <input name="userBalance" class="easyui-textbox" value="$!{model.userBalance}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        交易代金券
+                    </td>
+                    <td>
+                                                <input name="finaCredit" class="easyui-textbox" value="$!{model.finaCredit}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        用户余券
+                    </td>
+                    <td>
+                                                <input name="userCredit" class="easyui-textbox" value="$!{model.userCredit}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        来源
+                    </td>
+                    <td>
+                                                <input name="finaSource" class="easyui-textbox" value="$!{model.finaSource}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        提交时间
+                    </td>
+                    <td>
+                                                <input name="finaTime" class="easyui-textbox" value="$!{model.finaTime}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        充值金额
+                    </td>
+                    <td>
+                                                <input name="rechargeCash" class="easyui-textbox" value="$!{model.rechargeCash}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        站长利润
+                    </td>
+                    <td>
+                                                <input name="siteProfit" class="easyui-textbox" value="$!{model.siteProfit}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        财务去向说明
+                    </td>
+                    <td>
+                                                <input name="finaMem" class="easyui-textbox" value="$!{model.finaMem}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        是否已托管
+                    </td>
+                    <td>
+                                                <input name="isTrust" class="easyui-textbox" value="$!{model.isTrust}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        托管类型
+                    </td>
+                    <td>
+                                                <input name="trustType" class="easyui-textbox" value="$!{model.trustType}">
+                    </td>
+                </tr>
+                    </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_light_white"
+    android:orientation="vertical" >
+    
+	<com.bm.wanma.view.ContentScrollView 
+	    android:id="@+id/scroll"
+	    android:layout_width="match_parent"
+	    android:scrollbars="none"
+	    android:layout_height="0dp"
+        android:layout_weight="12.6"
+	    >
+
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" >
+	     
+        <ImageView
+	    android:id="@+id/detail_image"
+	    android:layout_width="match_parent"
+	    android:layout_height="200dp"
+	    android:scaleType="fitXY"
+	    android:src="@drawable/imgno" />
+        
+
+	<!-- 左图 右地址 名称 -->
+        <View android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/common_white"
+            />
+	        <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white"
+        
+        >
+        <TextView 
+             android:id="@+id/electricize_address"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textColor="@color/common_black"
+             android:textSize="18sp"
+             android:layout_marginLeft="20dp"
+             android:layout_marginRight="70dp"
+             android:ellipsize="end"
+             android:maxLines="2"
+             android:layout_centerVertical="true" 
+             android:layout_alignParentLeft="true"
+            />
+        <TextView
+		        android:id="@+id/detail_distance"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentRight="true"
+           		android:layout_marginRight="20dp"
+		        android:gravity="center"  
+		        android:textSize="15sp"
+		        android:textColor="@color/common_light_black"
+		        android:text="34km"
+		        />
+        
+        </RelativeLayout>
+	<RelativeLayout
+        android:id="@+id/listview_rl_addr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@color/common_white"
+         >
+        <TextView
+            android:id="@+id/listview_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="电        价"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/common_light_light_black"
+            android:textSize="16sp" />
+        
+        <TextView
+            android:id="@+id/electricity_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/listview_text"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/common_black"
+            android:text="22552"
+            android:textSize="16sp" />
+        <ImageView
+            android:id="@+id/iv_price_referral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/electricity_price"
+            android:src="@drawable/bg_map_question"
+			/>
+         
+            <TextView
+                android:id="@+id/leisure_text"
+                android:layout_below="@id/listview_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="停  车  费"
+                android:textColor="@color/common_light_light_black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/parking_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="6"
+                android:layout_toRightOf="@id/leisure_text"
+            	android:layout_alignBottom="@id/leisure_text"
+                android:textColor="@color/common_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/listview_fast_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/leisure_text"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="开放时间"
+                android:gravity="center"
+                android:textColor="@color/common_light_light_black"
+                android:textSize="16sp" />
+			<TextView
+			    android:id="@+id/open_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="24小时"
+                android:layout_toRightOf="@id/listview_fast_num"
+            	android:layout_alignBottom="@id/listview_fast_num"
+            	android:layout_marginRight="70dp"
+                android:textColor="@color/common_black"
+                android:textSize="16sp" />
+    
+          <ImageView
+		        android:id="@+id/detail_navgation"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentRight="true"
+           		android:layout_marginRight="20dp"
+            	android:layout_centerVertical="true"
+		        android:gravity="center"  
+		        android:src="@drawable/btn_navigation"
+		        />
+    </RelativeLayout>
+	
+	<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@color/common_white" >
+<!-- cocurrent -->
+        <TextView
+            android:id="@+id/service_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="客服电话"
+            android:textColor="@color/common_light_black"
+            android:textSize="16sp" />
+
+
+	<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/service_phone"
+            android:layout_alignBottom="@id/service_phone"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/common_black"
+            android:text="400 - 085 - 0006"
+            android:textSize="16sp" />
+    </RelativeLayout>
+	
+	<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/common_white" >
+<!-- cocurrent -->
+        <TextView
+            android:id="@+id/cocurrent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_item_padding_20"
+            android:layout_marginTop="@dimen/common_item_padding_15"
+            android:layout_marginBottom="@dimen/common_item_padding_15"
+            android:drawablePadding="10dp"
+            android:text="直流充电桩"
+            android:textColor="@color/common_light_black"
+            android:textSize="16sp" />
+
+
+
+        <View
+            android:id="@+id/cocurrent_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/cocurrent"
+            android:layout_marginLeft="20dp"
+            android:background="@color/common_light_white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cocurrent_line"
+            android:orientation="horizontal" >
+		
+            <TextView
+                android:id="@+id/cocurrent_employview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.4"
+                android:gravity="right"
+                
+                android:layout_gravity="center_vertical"
+                android:text="总共"
+                android:textColor="@color/common_light_black"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/cocurrent_employ"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+				android:layout_gravity="center_vertical"
+				android:paddingLeft="7dp"
+                android:text="10"
+                android:textColor="@color/common_black"
+                android:textSize="16sp" />
+		
+			
+			<View
+		    android:id="@+id/centetview"
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/common_light_gray" />
+            <TextView
+                android:id="@+id/cocurrent_leisureview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.3"
+                android:gravity="right"
+                android:text="空闲"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/common_light_black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/cocurrent_leisure"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="7dp"
+                android:text="10"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/common_black"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </RelativeLayout>
+    
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/common_white" >
+        <TextView
+            android:id="@+id/exchange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_item_padding_20"
+            android:layout_marginTop="@dimen/common_item_padding_15"
+            android:layout_marginBottom="@dimen/common_item_padding_15"
+            android:drawablePadding="10dp"
+            android:text="交流充电桩"
+            android:textColor="@color/common_light_black"
+            android:textSize="16sp" />
+
+
+        <View
+            android:id="@+id/exchange_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/exchange"
+            android:layout_marginLeft="20dp"
+            android:background="@color/common_light_white" />
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/exchange_line"
+            android:orientation="horizontal" >
+		
+            <TextView
+                android:id="@+id/exchange_employview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.4"
+                android:gravity="right"
+                android:layout_gravity="center_vertical"
+                android:text="总共"
+                android:textColor="@color/common_light_black"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/exchange_employ"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="7dp"
+				android:layout_gravity="center_vertical"
+                android:text="10"
+                android:textColor="@color/common_black"
+                android:textSize="16sp" />
+			<View
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/common_light_gray" />
+            <TextView
+                android:id="@+id/exchange_leisureview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.3"
+                android:gravity="right"
+                android:text="空闲"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/common_light_black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/exchange_leisure"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="7dp"
+                android:text="10"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/common_black"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </RelativeLayout>
+<!--     扫码充电入口       -->
+	<com.amap.api.maps.TextureMapView
+        android:id="@+id/map"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp" 
+        
+        />
+	
+	 </LinearLayout>
+   </com.bm.wanma.view.ContentScrollView >
+
+
+	<RelativeLayout 
+        android:id="@+id/scan_entrance"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/common_orange"
+
+        android:padding="10dp"
+        >
+		<TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+           		android:layout_marginRight="20dp"
+            	android:layout_centerVertical="true"
+		        android:gravity="center"  
+		        android:textSize="18sp"
+		        android:drawableLeft="@drawable/img_sao2"
+		        android:drawablePadding="5dp"
+		        android:textColor="@color/common_white"
+		        android:text="扫码充电"
+		        />
+	</RelativeLayout>
+</LinearLayout>
+<View 
+    android:id="@+id/detail_title_background"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/common_orange"
+    android:alpha="0"
+    />
+<!-- <RelativeLayout  -->
+<!--         android:background="@null" -->
+<!--         android:layout_width="match_parent" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_marginTop="15dp" -->
+<!--         > -->
+<!--         <ImageView -->
+<!--             android:id="@+id/detail_back" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:layout_alignParentLeft="true" -->
+<!--             android:layout_centerVertical="true" -->
+<!--             android:layout_marginLeft="10dp" -->
+<!--             android:src="@drawable/nav_btn_back" -->
+<!--             android:background="@android:color/transparent"/> -->
+        <TextView 
+             android:id="@+id/detail_charging_point"
+             android:layout_width="match_parent"
+             android:layout_height="60dp"
+             android:text="天际大厦充电点"
+             
+             android:textColor="@color/common_white"
+             android:textSize="18sp"
+             android:paddingTop="20dp"  
+             android:layout_marginLeft="5dp"
+             android:layout_marginRight="20dp"
+             android:gravity="center_vertical|center_horizontal" 
+             android:drawableLeft="@drawable/nav_btn_back"
+            />
+<!--         </RelativeLayout> -->
+</FrameLayout>

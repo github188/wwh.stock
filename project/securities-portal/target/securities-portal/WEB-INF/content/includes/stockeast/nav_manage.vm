@@ -1,0 +1,35 @@
+
+    <div class="nav-action">
+        <a href="javascript:void(0);" class="nav-toggle"><i class="fa fa-reorder"></i></a>
+        <dl class="nav-list">
+            <dt class="nav-list-title"><i class="fa fa-minus"></i> 基本资料</dt>
+            <dd class="nav-list-body">
+                <a href="${base}/member/account_manage" >资料完善</a>
+                <a href="${base}/member/account_headimg"  >用户头像</a>
+            </dd>
+            <dt class="nav-list-title"><i class="fa fa-minus"></i> 账号安全</dt>
+            <dd class="nav-list-body">
+                <a href="${base}/member/passwordedit"  >登录密码</a>
+                <a href="${base}/member/paypasswordedit"  >支付密码</a>
+                <a href="${base}/member/account_auth"  >账号认证</a>
+            </dd>
+            <dt class="nav-list-title"><i class="fa fa-minus"></i> 财务管理</dt>
+            <dd class="nav-list-body">
+                <a href="${base}/financial/financelist" >收支明细</a>
+                <a href="/financial/withdraw"  >我要提现</a>
+                <a href="/financial/charge_index" >账号充值</a>
+            </dd>
+        </dl>
+        <script type="javascript">
+            $(function(){
+                var winWidth = $(window).width();
+                if(winWidth<641) {
+                    $('#user .nav-list').fadeOut();
+                    $('#user .nav-action').click(function(){
+                        $('#user .nav-list').toggle(100);
+                    });
+                }
+            })
+        </script>
+    </div>
+

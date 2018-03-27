@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>沪深证券业绩报表管理</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        $(function () {
+            jQuery('#dg').datagrid({
+                url: 'profit-report/queryPaged',
+                columns: [[
+                    {field: 'id', checkbox: true, hidden:true}
+                   ,{field: 'dt', title: '报告期', width: 100,align:'center'}
+                   ,{field: 'stockCode', title: '代码', width: 100,align:'center'}
+                   ,{field: 'stockName', title: '简称', width: 100,align:'center'}
+                   ,{field: 'perProfit', title: '每股收益', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'businessProfit', title: '营业收入', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'yearGrowth', title: '同比增长', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'chainGrowth', title: '季度环比增长', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'netProfit', title: '净利润', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'netYearGrowth', title: '净利润同比增长', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'netChainGrowth', title: '净利润季度环比增长', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'netAssets', title: '每股净资产', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'assetsYield', title: '净资产收益率', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'cashFlow', title: '每股经营现金流量', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'grossProfit', title: '销售毛利率', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'reportDate', title: '公告日期', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'memo', title: '备注', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                ]],
+                pagination: true,
+                pageSize:Magic.PAGE_SIZE,
+                pageList:Magic.PAGE_LIST,
+                rownumbers:true,
+                singleSelect: false,
+                remoteSort:false,
+                fitColumns: true,
+                fit: true,
+                toolbar: '#toolbar',
+                onDblClickRow: function (rowid, rowdata) {
+                    editForm();
+                }
+            });
+        });
+        function optionFun(value, row, index) {
+            if (!!value) {
+                return Highcharts.numberFormat(value, 2);
+            } else {
+                return '';
+            }
+        }
+        function newForm() {
+            Magic.openWin('新增沪深证券业绩报表', 'profit-report/add', 600, 200);
+        }
+        function editForm() {
+            var row = jQuery('#dg').datagrid('getSelected');
+            if (row) {
+                Magic.openWin('编辑沪深证券业绩报表', 'profit-report/edit/' + row.id, 600, 300);
+            }
+        }
+        function destroyForm() {
+            var rows = jQuery('#dg').datagrid('getSelections');
+            if (rows.length > 0) {
+                jQuery.messager.confirm('确认删除', '确定删除该记录?', function (r) {
+                    if (r) {
+                        var ids = [];
+                        jQuery.each(rows, function (index, row) {
+                            ids.push(row.id);
+                        });
+                        jQuery.post('profit-report/delete', {'ids': ids.toString()}, function (result) {
+                            if (result.success) {
+                                jQuery('#dg').datagrid('reload');    // reload the user data
+                            } else {
+                                jQuery.messager.show({    // show error message
+                                    title: '错误',
+                                    msg: result.message
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        function dataRefresh() {
+            $.dream.tip("加载中...");
+            var dt=jQuery('#filter_dt').val();
+            var stockCode=jQuery('#filter_stockCode').val();
+            jQuery.post('profit-report/dataRefresh',{'dt':dt,'stockCode':stockCode},function(result){
+                if(!result.success){
+                    $.dream.closetip();
+                    jQuery.messager.show({title: '错误', msg: result.message });
+
+                } else {
+                    jQuery('#dg').datagrid('load', {'dt':dt,'stockCode':stockCode});
+                    $.dream.closetip();
+                }
+            });
+        }
+
+        function contentSearch() {
+            var dt=jQuery('#filter_dt').val();
+            var stockCode=jQuery('#filter_stockCode').val();
+            jQuery('#dg').datagrid('load', {
+                'dt':dt,'stockCode':stockCode})
+        }
+
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+<table id="dg" data-options="toolbar:'#toolbar'"></table>
+<div id="toolbar">
+    <div class="search_box">
+        报告期：<input id="filter_dt" class="easyui-validatebox">
+        代码：<input id="filter_stockCode" class="easyui-validatebox">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+           onclick="contentSearch()">搜索</a>
+    </div>
+    <div class="btn_box">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"
+           onclick="newForm()">新增</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+           onclick="editForm()">编辑</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="destroyForm()">删除</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-mini-refresh" plain="true"
+           onclick="dataRefresh()">重新生成</a>
+    </div>
+</div>
+</body>
+</html>

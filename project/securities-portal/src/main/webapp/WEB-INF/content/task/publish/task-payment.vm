@@ -1,0 +1,160 @@
+#parse("includes/header_home.vm")
+<link href="${base}/static/css/style.css" rel="stylesheet" type="text/css">
+<div class="container">
+<div id="main">
+  <div class="release">
+    <div class="release-progress">
+		#parse("task/publish/task-step.vm")
+    </div>
+    
+    <!-- release-progress end-->
+    <div class="release-body">
+		<!-- release-help end  -->
+		<!-- 加载各任务对应步骤  -->
+		<div class="release-form">
+			<form class="form-horizontal" role="form" action="${base}/taskpub/ordered" method="post" id="pubTaskFormstep2" name="pubTaskFormstep2" novalidate="novalidate">
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						支付金额
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-6">
+						<p class="form-control-static">
+							$!model.guarantee
+						</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-8">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" checked="checked" value="true" id="agreementchecked">
+								同意并遵守《北斗天工需求发布与处理规则》
+							</label>
+						</div>
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						金额确认
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-1">
+						<p class="form-control-static">
+							$!model.guarantee元
+						</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						支付方式选择
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-8">
+						<div class="checkbox">
+							<label>
+								<input type="radio" name="guaranteeType" value="8">
+								余额支付
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="1">
+								银行转账
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="2">
+								支付宝
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="4">
+								快捷方式
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="5">
+								微信支付
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="6">
+								电子承兑汇票
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="7">
+								纸质承兑汇票
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+						<button type="submit" class="btn btn-primary" onclick="return submitcheck();">
+							确认支付
+						</button>
+						<a href="${base}/taskpub/confirm" class="btn btn-link">返回上一步</a>
+					</div>
+				</div>
+				<!-- form-group end -->
+			</form>
+		</div>      <!--加载各任务对应步骤  -->
+    </div>
+    <!-- release-body end -->
+  </div>
+  <!-- release end-->
+</div>
+</div>
+#parse("includes/footer.vm")
+<script type="text/javascript">
+	$(function() {
+		$("#active-style-rework").remove();
+	});
+	
+	function submitcheck(){
+		var guaranteeType = $("input[name='guaranteeType']:checked").val();
+		if(!guaranteeType || guaranteeType == ''){
+			tipsOp("请选择担保金支付方式！！", "warning");
+			return false;
+		}
+		if(guaranteeType == '8'){
+			payBybalance(8);
+		}
+		else {
+			tipsOp("服务开发中！！", "warning");
+		}
+		return false;
+	}
+	
+	function payBybalance(guaranteeType){
+	
+		var param = {"guaranteeType" : guaranteeType};
+		var url = "${base}/taskpub/orderPay";
+		var success = function(data){
+			if(data && data.success){
+				if(confirm) confirm.destroy();
+				$.scojs_confirm({
+					content : "支付成功！！",
+					action : function() {
+						window.location.href = "${base}/taskpub/ordered";
+					}
+				}).show();
+			}
+			if(data && !data.success){
+				if(data.type == '1') {
+					tipsOp("请设置任务担保金额！！", "warning");
+				}
+				if(data.type == '2') {
+					tipsOp("账户余额不足，请进行<a href='${base}/financial/offline_charge'>账户充值</a>！！", "warning");
+				}
+			}
+		};
+		var confirm = $.scojs_confirm({
+			content : "请确定是否要进行支付操作",
+			action : function() {
+				$.post(url, param, success, "json");
+			}
+		});
+		confirm.show();
+	}
+	
+	
+	
+	
+</script>

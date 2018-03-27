@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>沪深证券自选行情管理</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        $(function () {
+            jQuery('#dg').datagrid({
+                url: 'self-select/queryPaged',
+                columns: [[
+                    {field: 'id', checkbox: true, hidden:true}
+                    ,{field: 'dt', title: '日期', width: 120,align:'center', hidden:true}
+                    ,{field: 'stockCode', title: '代码', width: 100,align:'center',sortable:true,formatter:optionStockFun}
+                    ,{field: 'stockName', title: '名称', width: 100,align:'center'}
+                    ,{field: 'changeWidth', title: '涨幅', width: 100,align:'right',sortable:true,formatter:optionColorFun}
+                    ,{field: 'price', title: '现价', width: 100,align:'right',sortable:true,formatter:optionColorFun}
+                    ,{field: 'changeAmount', title: '涨跌', width: 100,align:'right',sortable:true,formatter:optionColorFun}
+                    ,{field: 'averagePrice', title: '均价', width: 100,align:'right',sortable:true,formatter:optionColorFun}
+                    ,{field: 'salePrice', title: '卖价', width: 100, hidden:true}
+                    ,{field: 'totalVolume', title: '总量', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                    ,{field: 'volume', title: '现量', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                    ,{field: 'changeRate', title: '涨速', width: 100,align:'right',sortable:true,formatter:optionColorFun}
+                    ,{field: 'turnOver', title: '换手', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                    ,{field: 'curOpen', title: '今开', width: 100,align:'right',sortable:true,formatter:optionColorFun}
+                    ,{field: 'high', title: '最高', width: 100,align:'right',sortable:true,formatter:optionColorFun}
+                    ,{field: 'low', title: '最低', width: 100,align:'right',sortable:true,formatter:optionColorFun}
+                    ,{field: 'preClose', title: '昨收', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                    ,{field: 'pe', title: '市盈(动)', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                    ,{field: 'amount', title: '总金额', width: 100,align:'right',sortable:true,formatter:optionRoundFun}
+                    ,{field: 'volumeRatio', title: '量比', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                ]],
+                pagination: true,
+                pageSize:Magic.PAGE_SIZE,
+                pageList:Magic.PAGE_LIST,
+                rownumbers:true,
+                singleSelect: false,
+                remoteSort:false,
+                fitColumns: true,
+                fit: true,
+                toolbar: '#toolbar',
+                onDblClickRow: function (rowid, rowdata) {
+                    editForm();
+                }
+            });
+        });
+        function optionFun(value, row, index) {
+            if (!!value) {
+                return Highcharts.numberFormat(value, 2);
+            } else {
+                return '';
+            }
+        }
+        function newForm() {
+            Magic.openWin('新增沪深证券自选行情', 'self-select/add', 600, 200);
+        }
+        function editForm() {
+            var row = jQuery('#dg').datagrid('getSelected');
+            if (row) {
+                Magic.openWin('编辑沪深证券自选行情', 'self-select/edit/' + row.id, 600, 300);
+            }
+        }
+        function destroyForm() {
+            var rows = jQuery('#dg').datagrid('getSelections');
+            if (rows.length > 0) {
+                jQuery.messager.confirm('确认删除', '确定删除该记录?', function (r) {
+                    if (r) {
+                        var ids = [];
+                        jQuery.each(rows, function (index, row) {
+                            ids.push(row.id);
+                        });
+                        jQuery.post('self-select/delete', {'ids': ids.toString()}, function (result) {
+                            if (result.success) {
+                                jQuery('#dg').datagrid('reload');    // reload the user data
+                            } else {
+                                jQuery.messager.show({    // show error message
+                                    title: '错误',
+                                    msg: result.message
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        function dataImport() {
+            $.dream.tip("加载中...");
+            jQuery.post('self-select/dataImport',function(result){
+                if(!result.success){
+                    $.dream.closetip();
+                    jQuery.messager.show({title: '错误', msg: result.message });
+
+                } else {
+                    jQuery('#dg').datagrid('load');
+                    $.dream.closetip();
+                }
+            });
+        }
+
+        function dataRefresh() {
+            $.dream.tip("加载中...");
+            var siteUrl = $("[name=siteUrl]").val();
+            var dt=jQuery('#filter_dt').datebox('getValue');
+            var stockCode=jQuery('#filter_stockCode').val();
+            var subTitle=jQuery('#subTitle').val();
+            jQuery.post('self-select/dataRefresh',{'siteUrl':siteUrl,'dt':dt,'stockCode':stockCode,'subTitle':subTitle},function(result){
+                if(!result.success){
+                    $.dream.closetip();
+                    jQuery.messager.show({title: '错误', msg: result.message });
+
+                } else {
+                    jQuery('#dg').datagrid('load', {'dt':dt,'stockCode':stockCode});
+                    $.dream.closetip();
+                }
+            });
+        }
+
+        function contentSearch() {
+            var dt=jQuery('#filter_dt').datebox('getValue');
+            var stockCode=jQuery('#filter_stockCode').val();
+            jQuery('#dg').datagrid('load', {
+                'dt':dt,'stockCode':stockCode})
+        }
+
+        setTimeout(function() {
+            var arg = {
+                text: "输代码、名称或简拼",
+                autoSubmit: true,
+                width: 195,
+                header: ["选项", "代码", "名称", "类型"],
+                body: [-1, 1, 4, -2],
+                callback: function(arg) { }
+            };
+            var ss = new StockSuggest("filter_stockCode", arg);
+        }, 500);
+
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+<table id="dg" data-options="toolbar:'#toolbar'"></table>
+<div id="toolbar">
+    <form method="get" target="_blank">
+    <div class="search_box">
+        参考网址:#combobox('siteUrl',${siteUrl},'content','content')
+        日期：<input id="filter_dt" value="$!{currentDate}" class="easyui-datebox">
+        代码：<input id="filter_stockCode" class="easyui-validatebox">
+        子标题：<input id="subTitle" class="easyui-validatebox">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+           onclick="contentSearch()">搜索</a>
+    </div>
+    </form>
+    <div class="btn_box">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"
+           onclick="newForm()">新增</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+           onclick="editForm()">编辑</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="destroyForm()">删除</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-import" plain="true"
+           onclick="dataImport()">导入</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-mini-refresh" plain="true"
+           onclick="dataRefresh()">重新生成</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 站 桩详情界面，listview item布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    android:orientation="vertical" >
+   <LinearLayout 
+       android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:paddingTop="10dp"
+    	android:paddingBottom="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+       >
+        <TextView 
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/listview_station_detail_name"
+        android:text="枪口A"
+        android:textSize="14sp"
+        android:textColor="@color/common_gray"
+        />
+   
+         <LinearLayout 
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"	
+        >
+        <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="车位号:"
+        android:textSize="14sp"
+        android:textColor="@color/common_gray"
+        />
+        <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/listview_station_detail_parknum"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="@color/common_gray" />
+        
+    </LinearLayout>
+    <TextView 
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:id="@+id/listview_station_detail_status"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="@color/common_gray"
+        />
+    <LinearLayout
+        android:id="@+id/listview_station_detail_icon_ll" 
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"	
+        >
+        <ImageView 
+            android:id="@+id/listview_station_detail_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:src="@drawable/pop_anchor_unbespoke"
+            />
+        <TextView 
+        android:id="@+id/listview_station_detail_bespoke"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="预约"
+        android:textSize="14sp"
+        android:textColor="@color/common_gray"
+        />
+        
+    </LinearLayout>
+       
+       
+   </LinearLayout> 
+    <View 
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/common_light_gray"
+    />
+    
+   
+
+</LinearLayout>

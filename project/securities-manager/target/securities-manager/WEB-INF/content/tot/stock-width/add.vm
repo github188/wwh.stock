@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>沪深证券涨幅统计信息新增</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/tot/stock-width/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <table width="100%" cellpadding="5">
+                            <tr>
+                    <td align="left">
+                        代码
+                    </td>
+                    <td>
+                                                <input name="stockCode" class="easyui-textbox" value="$!{model.stockCode}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        名称
+                    </td>
+                    <td>
+                                                <input name="stockName" class="easyui-textbox" value="$!{model.stockName}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        开始日期
+                    </td>
+                    <td>
+                                                <input name="startDt" class="easyui-textbox" value="$!{model.startDt}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        当前价格
+                    </td>
+                    <td>
+                                                <input name="curPrice" class="easyui-textbox" value="$!{model.curPrice}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        最高价格
+                    </td>
+                    <td>
+                                                <input name="maxPrice" class="easyui-textbox" value="$!{model.maxPrice}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        最高涨跌幅
+                    </td>
+                    <td>
+                                                <input name="maxWidth" class="easyui-textbox" value="$!{model.maxWidth}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        最低价格
+                    </td>
+                    <td>
+                                                <input name="minPrice" class="easyui-textbox" value="$!{model.minPrice}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        最低涨跌幅
+                    </td>
+                    <td>
+                                                <input name="minWidth" class="easyui-textbox" value="$!{model.minWidth}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        当天涨跌幅
+                    </td>
+                    <td>
+                                                <input name="upWidth" class="easyui-textbox" value="$!{model.upWidth}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        上一天涨跌幅
+                    </td>
+                    <td>
+                                                <input name="upWidth1" class="easyui-textbox" value="$!{model.upWidth1}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        上二天涨跌幅
+                    </td>
+                    <td>
+                                                <input name="upWidth2" class="easyui-textbox" value="$!{model.upWidth2}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        上三天涨跌幅
+                    </td>
+                    <td>
+                                                <input name="upWidth3" class="easyui-textbox" value="$!{model.upWidth3}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        下跌天数
+                    </td>
+                    <td>
+                                                <input name="downTotal" class="easyui-textbox" value="$!{model.downTotal}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        上涨天数
+                    </td>
+                    <td>
+                                                <input name="upTotal" class="easyui-textbox" value="$!{model.upTotal}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        上涨天数3
+                    </td>
+                    <td>
+                                                <input name="up3Total" class="easyui-textbox" value="$!{model.up3Total}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        上涨天数9
+                    </td>
+                    <td>
+                                                <input name="up9Total" class="easyui-textbox" value="$!{model.up9Total}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        顺序
+                    </td>
+                    <td>
+                                                <input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+                    </td>
+                </tr>
+                    </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

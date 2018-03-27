@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="zh-cn">
+<head>
+    <title>用户中心</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/user.css" rel="stylesheet" type="text/css" id="active-style-user">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.82587500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+</head>
+<body id="user">
+
+<script src="${base}/static/js/model/user/user.js"></script>
+<script src="${base}/static/js/model/user/transaction.js"></script>
+
+<!-- /header -->
+    #parse("includes/owner/home_manage.vm")
+<!-- nav end -->
+
+<div class="container">
+    #parse("includes/owner/nav_manage.vm")
+    <!-- nav-action end -->
+    <div class="content-panel">
+		<div class="tab">
+        	<a href="javascript:void(0)" class="selected">任务金额分期支付</a>
+    	</div>
+		<div class="tab_detail">
+			<form role="form" action="" method="post" class="form-horizontal" name="editBasicForm" id="editBasicForm">
+				<br/>
+				<br/>
+				<div class="form-group">
+                    <label class="col-sm-2 control-label">
+                    	支付金额
+                    	<span class="text-danger">:</span>
+                    </label>
+                    <div class="col-sm-6">
+                        <p class="form-control-static">
+							$!NumberTool.format('#0.00', $!model.pyCash)
+						</p>
+                    </div>
+                </div>
+                <div class="form-group">
+					<div class="col-sm-offset-2 col-sm-8">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" checked="checked" value="true" id="agreementchecked">
+								同意并遵守《北斗天工需求发布与处理规则》
+							</label>
+						</div>
+					</div>
+				</div>
+                <hr/>
+                <div class="form-group">
+					<label class="col-sm-2 control-label">
+						金额确认
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-1">
+						<p class="form-control-static">
+							$!NumberTool.format('#0.00', $!model.pyCash)
+						</p>
+					</div>
+				</div>
+                <div class="form-group">
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						支付方式
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-8">
+						<div class="checkbox">
+							<label>
+								<input type="radio" name="guaranteeType" value="1">
+								银行转账
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="2">
+								支付宝
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="4">
+								快捷方式
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="5">
+								微信支付
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="6">
+								电子承兑汇票
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="7">
+								纸质承兑汇票
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="8">
+								余额支付
+							</label>
+						</div>
+					</div>
+				</div>
+                <div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+						<button type="submit" class="btn btn-primary" onclick="return submitcheck();">
+							确认支付
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+    </div>
+</div>
+    #parse("includes/footer.vm")
+</body>
+<script type="text/javascript">
+
+	function loan(id){
+		var param = {"id" : id};
+		var url = "${base}/owner/contractloan";
+		var success = function(data){
+			alert(data);
+		}
+		$.post(url, param, success, "json");
+	}
+	
+	function submitcheck(){
+		var guaranteeType = $("input[name='guaranteeType']:checked").val();
+		if(guaranteeType == '8'){
+			payBybalance(8);
+		}
+		else {
+			tipsOp("服务开发中！！", "warning");
+		}
+		return false;
+	}
+	
+	function payBybalance(guaranteeType){
+		var param = {"id" : $!{id}};
+		var url = "${base}/owner/contractPay";
+		var success = function(data){
+			if(data && data.success){
+				window.location.href = "${base}/owner/constractlist?tkId=$!model.tkId";
+			}
+			if(data && !data.success){
+				if(data.type == '1') {
+					tipsOp("请设置任务担保金额！！", "warning");
+				}
+				if(data.type == '2') {
+					tipsOp("账户余额不足，请进行<a href='${base}/financial/offline_charge'>账户充值</a>！！", "warning");
+				}
+			}
+		};
+		$.post(url, param, success, "json");
+	}
+
+</script>
+</html>

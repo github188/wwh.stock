@@ -1,0 +1,807 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>${stocksInfo.name}(${stocksInfo.code})</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="refresh" content="480" />
+    <link rel="stylesheet" href="${base}/static/css/east/style-zs.css"/>
+    <script src="http://hqres.eastmoney.com/EM15AGIndex/js/chart.js" type="text/javascript"></script>
+</head>
+<body>
+    #parse("includes/stockeast/home_manage.vm")
+<div class="qphox header-title mb7">
+    <h2 class="header-title-h2 fl" id="name">${stocksInfo.name}</h2>
+    <b class="header-title-c fl" id="code">${stocksInfo.code}</b>
+    <span id="hqstat" class="hqstat"></span>
+    <span id="hqday" class="hqday"></span>
+
+    <div class="header-title-btns-mg">
+        <a class="header-title-a" href="http://guba.eastmoney.com/list,zssh000001.html" target="_blank">上证指数吧</a>
+        <a class="header-title-a" href="http://data.eastmoney.com/rzrq/sh.html" target="_blank">融资融券</a>
+        <a class="header-title-a" href="http://data.eastmoney.com/stock/lhb.html" target="_blank">龙虎榜单</a>
+        <a class="header-title-a" href="http://data.eastmoney.com/executive/" target="_blank">高管持股</a>
+        <a class="header-title-a" href="http://data.eastmoney.com/zlsj/" target="_blank">主力数据</a>
+    </div>
+</div>
+<div class="qphox layout mb7">
+    <div class="fl xt1 data-left">
+        <div id="arrowud" xid="0">
+            <span class="ar a"><strong id="price9" class="xp1" style="">--</strong><i id="arrow-find" class="xp2"></i></span>
+            <span class="ar b"><b id="km1" class="xp3" style="">--</b><b id="km2" class="xp4" style="">--</b></span>
+        </div>
+    </div>
+
+    <div class="fr quote_right"><div id="rstocka"></div><div id="rstockinfo"><span id="rstockb"></span><span id="rstockc"></span></div></div>
+    <div class="data-middle">
+        <table cellspacing="0" cellpadding="0" class="yfw">
+            <tbody><tr>
+                <td>今开：</td><td id="gt1" class="txtl">-</td>
+                <td>最高：</td><td id="gt2" class="txtl">-</td>
+                <td>涨跌幅：</td><td id="gt3" class="txtl">-</td>
+                <td>换手：</td><td id="gt4" class="txtl">-</td>
+                <td>成交量：</td><td id="gt5" class="txtl">-</td>
+            </tr>
+            <tr>
+                <td>昨收：</td><td id="gt7" class="txtl">-</td>
+                <td>最低：</td><td id="gt8" class="txtl">-</td>
+                <td>涨跌额：</td><td id="gt9" class="txtl">-</td>
+                <td>振幅：</td><td id="gt10" class="txtl">-</td>
+                <td>成交额：</td><td id="gt11" class="txtl">-</td>
+            </tr>
+            </tbody></table>
+    </div>
+</div>
+<div class="qphox layout mb7">
+    <ul class="gsbw">
+        <li class="tit">股市备忘</li>
+        <li><a href="http://stock.eastmoney.com/news/cjyts.html" target="_blank">交易提示</a></li>
+        <li><a href="http://stock.eastmoney.com/news/cscyw.html" target="_blank">市场要闻</a></li>
+        <li><a href="http://stock.eastmoney.com/news/cyzbw.html" target="_blank">一周备忘</a></li>
+        <li><a href="http://data.eastmoney.com/notice/" target="_blank">两市公告</a></li>
+        <li><a href="http://data.eastmoney.com/tfpxx/" target="_blank">两市停牌</a></li>
+        <li><a href="http://stock.eastmoney.com/news/cbktt.html" target="_blank">报刊头条</a></li>
+        <li><a href="http://stock.eastmoney.com/news/cwjkx.html" target="_blank">晚间快讯</a></li>
+        <li><a href="http://data.eastmoney.com/report/ylyc.html" target="_blank">盈利预测</a></li>
+        <li><a href="http://data.eastmoney.com/cjsj/yzgptjnew.html" target="_blank">股票账户</a></li>
+        <li><a href="http://data.eastmoney.com/cmjzd/" target="_blank">股东人数</a></li>
+        <li><a href="http://data.eastmoney.com/report/qsch.html" target="_blank">券商晨会</a></li>
+        <li><a href="http://data.eastmoney.com/zlsj/jj.html" target="_blank">基金持仓</a></li>
+        <li><a href="http://data.eastmoney.com/zlsj/sb.html" target="_blank">社保持仓</a></li>
+    </ul>
+</div>
+<div class="qphox layout mb10">
+    <div class="fl w200">
+        <div class="title1"><h3><a href="http://data.eastmoney.com/zjlx/" target="_blank">两市资金流入流出图</a></h3></div>
+        <div class="box-x1 mb10 lszjlr"><a href="http://data.eastmoney.com/zjlx/" target="_blank"><img src="http://hqchart.eastmoney.com/chartbk/quote.png" border="0" id="agzjsclt"></a></div>
+        <div class="title1"><a class="more fr f12" href="${base}/stockeast/list" target="_blank">更多</a><h3><a href="http://quote.eastmoney.com/favor/default.html" target="_blank">我的自选</a></h3></div>
+        <div class="box-x1 mb10">
+            <table class="linehleft w100p text-indent10" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr><td class="txtc">名称</td><td class="txtc">最新价</td><td class="txtc">涨跌幅</td></tr>
+                </thead>
+                <tbody id="favorlist">
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                </tbody>
+                <tfoot>
+                <tr><td colspan="3"><a class="fr mr10" href="${base}/stockeast/list" target="_blank">进入我的自选股&gt;&gt;</a></td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="title1"><a class="more fr f12" href="http://quote.eastmoney.com/center/index.html#zyzs_0_1" target="_blank">更多</a><h3><a href="http://quote.eastmoney.com/center/index.html#zyzs_0_1" target="_blank">重要指数</a></h3></div>
+        <div class="box-x1 mb10">
+            <table class="linehleft w100p text-indent10" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr><td class="txtc">名称</td><td class="txtc">最新价</td><td class="txtc">涨跌幅</td></tr>
+                </thead>
+                <tbody id="zyzslist">
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="title1"><a class="more fr f12" href="http://quote.eastmoney.com/center/list.html#12.1.1_5_3" target="_blank">更多</a><h3><a href="http://quote.eastmoney.com/center/list.html#12.1.1_5_3" target="_blank">股指期货</a></h3></div>
+        <div class="box-x1 mb10">
+            <table class="linehleft w100p text-indent10" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr><td class="txtc">名称</td><td class="txtc">最新价</td><td class="txtc">涨跌幅</td></tr>
+                </thead>
+                <tbody id="gzqhlist">
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="title1 nonal ie rtab">
+            <ul class="tab1" id="tab_hyzdfb">
+                <li class="w84 cur" value="1"><h3><a href="http://quote.eastmoney.com/center/BKList.html#trade_0_0?sortRule=0" target="_blank">行业涨幅榜</a></h3></li>
+                <li class="w84" value="2"><h3><a href="http://quote.eastmoney.com/center/BKList.html#trade_0_0?sortRule=1" target="_blank">行业跌幅榜</a></h3></li>
+            </ul>
+        </div>
+        <div class="box-x1">
+            <div value="1" id="cnt_hyzfb" style="display: block;">
+                <table class="line25 w100p text-indent10 txtUL" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr><td class="txtc">名称</td><td class="txtc">涨跌幅</td><td class="txtc">领涨股</td></tr>
+                    </thead>
+                    <tbody id="cnt_hyzfb_list">
+                    <tr><td>-</td><td class="green">-</td><td>-</td></tr><tr><td>-</td><td class="green">-</td><td>-</td></tr><tr><td>-</td><td class="green">-</td><td>-</td></tr>
+                    <tr><td>-</td><td class="green">-</td><td>-</td></tr><tr><td>-</td><td class="green">-</td><td>-</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="cnt_hydfb" value="2" style="display: none;">
+                <table class="line25 w100p text-indent10 txtUL" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr><td class="txtc">名称</td><td class="txtc">涨跌幅</td><td class="txtc">领跌股</td></tr>
+                    </thead>
+                    <tbody id="cnt_hydfb_list">
+                    <tr><td>-</td><td class="green">-</td><td>-</td></tr><tr><td>-</td><td class="green">-</td><td>-</td></tr><tr><td>-</td><td class="green">-</td><td>-</td></tr>
+                    <tr><td>-</td><td class="green">-</td><td>-</td></tr><tr><td>-</td><td class="green">-</td><td>-</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="title1 nonal ie rtab">
+            <ul class="tab1" id="tab_gnzdfb">
+                <li class="w84 cur" value="1"><h3><a href="http://quote.eastmoney.com/center/BKList.html#notion_0_0?sortRule=0" target="_blank">概念涨幅榜</a></h3></li>
+                <li class="w84" value="2"><h3><a href="http://quote.eastmoney.com/center/BKList.html#notion_0_0?sortRule=1" target="_blank">概念跌幅榜</a></h3></li>
+            </ul>
+        </div>
+        <div class="box-x1">
+            <div value="1" id="cnt_gnzfb" style="display: block;">
+                <table class="line25 w100p text-indent10 txtUL" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr><td class="txtc">名称</td><td class="txtc">涨跌幅</td><td class="txtc">领涨股</td></tr>
+                    </thead>
+                    <tbody id="cnt_gnzfb_list">
+                    <tr><td>-</td><td class="green">-</td><td>-</td></tr><tr><td>-</td><td class="green">-</td><td>-</td></tr><tr><td>-</td><td class="green">-</td><td>-</td></tr>
+                    <tr><td>-</td><td class="green">-</td><td>-</td></tr><tr><td>-</td><td class="green">-</td><td>-</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="cnt_gndfb" value="2" style="display: none;">
+                <table class="line25 w100p text-indent10 txtUL" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr><td class="txtc">名称</td><td class="txtc">涨跌幅</td><td class="txtc">领跌股</td></tr>
+                    </thead>
+                    <tbody id="cnt_gndfb_list">
+                    <tr><td>-</td><td class="green">-</td><td>-</td></tr><tr><td>-</td><td class="green">-</td><td>-</td></tr><tr><td>-</td><td class="green">-</td><td>-</td></tr>
+                    <tr><td>-</td><td class="green">-</td><td>-</td></tr><tr><td>-</td><td class="green">-</td><td>-</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="fr w790">
+        <div class="fr w202">
+            <div class="title1 ttrtab">
+                <ul class="tab1" id="tab_zjlfb">
+                    <li class="w83 cur" value="1"><h3><a href="http://data.eastmoney.com/zjlx/zs000001.html" target="_blank">沪市资金流</a></h3></li>
+                    <li class="w83" value="2"><h3>分笔</h3></li>
+                </ul>
+            </div>
+            <div id="cnt_zjl" value="1">
+                <div class="box-x1 lifl bt oh">
+                    <ul><li>主力流入</li><li class="txR"><span id="hz_a" class="red">-</span></li></ul>
+                    <ul style="clear:both;"><li>主力流出</li><li class="txR"><span id="hz_b" class="green">-</span></li></ul>
+                    <ul style="clear:both;"><li id="hz_c_t">主力净流入</li><li class="txR"><span id="hz_c">-</span></li></ul>
+                </div>
+                <div class="box-x1 txtc lifl">
+                    <table class="line20 w100p" cellspacing="0" cellpadding="0">
+                        <thead>
+                        <tr><td class="txtl">(亿元)</td><td>流入</td><td>流出</td></tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="txtl">超大</td><td><span id="hz_d" class="red">-</span></td><td><span id="hz_e" class="green">-</span></td></tr>
+                        <tr><td class="txtl">大单</td><td><span id="hz_f" class="red">-</span></td><td><span id="hz_g" class="green">-</span></td></tr>
+                        <tr><td class="txtl">中单</td><td><span id="hz_h" class="red">-</span></td><td><span id="hz_i" class="green">-</span></td></tr>
+                        <tr><td class="txtl">小单</td><td><span id="hz_j" class="red">-</span></td><td><span id="hz_k" class="green">-</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="box-x1 lifl picNum">
+                    <ul>
+                        <div class="up" id="hz_0l"></div>
+                        <div class="down" id="hz_0r"></div>
+                        净超大
+                    </ul>
+                    <ul>
+                        <div class="up" id="hz_1l"></div>
+                        <div class="down" id="hz_1r"></div>
+                        净大单
+                    </ul>
+                    <ul>
+                        <div class="up" id="hz_2l"></div>
+                        <div class="down" id="hz_2r"></div>
+                        净中单
+                    </ul>
+                    <ul>
+                        <div class="up" id="hz_3l">
+                            <div class="box"></div>
+                        </div>
+                        <div class="down" id="hz_3r">
+                            <div class="box"></div>
+                            <span class="green"></span>
+                        </div>
+                        净小单
+                    </ul>
+                </div>
+            </div>
+            <div id="cnt_fb" style="display: none;" value="2">
+                <div class="box-x1" style="padding-bottom:2px;">
+                    <table cellspacing="0" cellpadding="0" class="w100p text-indent10 line22">
+                        <tbody id="fblist">
+                        <tr><td class="nm"><span class="a">-</span></td><td>-</td><td>-</td></tr><tr><td class="nm"><span class="a">-</span></td><td>-</td><td>-</td></tr>
+                        <tr><td class="nm"><span class="a">-</span></td><td>-</td><td>-</td></tr><tr><td class="nm"><span class="a">-</span></td><td>-</td><td>-</td></tr>
+                        <tr><td class="nm"><span class="a">-</span></td><td>-</td><td>-</td></tr><tr><td class="nm"><span class="a">-</span></td><td>-</td><td>-</td></tr>
+                        <tr><td class="nm"><span class="a">-</span></td><td>-</td><td>-</td></tr><tr><td class="nm"><span class="a">-</span></td><td>-</td><td>-</td></tr>
+                        <tr><td class="nm"><span class="a">-</span></td><td>-</td><td>-</td></tr><tr><td class="nm"><span class="a">-</span></td><td>-</td><td>-</td></tr>
+                        <tr><td class="nm"><span class="a">-</span></td><td>-</td><td>-</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="box-x1 line24">
+                <table cellspacing="0" cellpadding="0" class="w100p text-indent5">
+                    <tbody>
+                    <tr>
+                        <td>最新：<span id="rgt1">-</span></td>
+                        <td>开盘：<span id="rgt2">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>最高：<span id="rgt3">-</span></td>
+                        <td>最低：<span id="rgt4">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>涨幅：<span id="rgt5">-</span></td>
+                        <td>涨跌：<span id="rgt6">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>总量：<span id="rgt7">-</span></td>
+                        <td>总额：<span id="rgt8">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>换手：<span id="rgt9">-</span></td>
+                        <td>流值：<span id="rgt10">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>内盘：<span id="rgt11" class="green">-</span></td>
+                        <td>外盘：<span id="rgt12" class="red">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>振幅：<span id="rgt13">-</span></td>
+                        <td>涨家数：<span id="rgt14">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>跌家数：<span id="rgt15">-</span></td>
+                        <td>平家数：<span id="rgt16">-</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-x1 line24 mb10">
+                <table cellspacing="0" cellpadding="0" class="w100p text-indent10">
+                    <tbody>
+                    <tr><td colspan="2">阶段涨幅</td></tr>
+                    <tr><td>5日：<span id="rgt17">-</span></td><td>20日：<span id="rgt18">-</span></td></tr>
+                    <tr><td>60日：<span id="rgt19">-</span></td><td>今年：<span id="rgt20">-</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="title1"><a class="more fr f12" href=#if(${stocksInfo.place}=='sh')"${base}/stockeast/marketlist#10"#else"${base}/stockeast/marketlist#20"#end target="_self">更多</a><h3><a href=#if(${stocksInfo.place}=='sh')"${base}/stockeast/marketlist#10"#else"${base}/stockeast/marketlist#20"#end target="_self">#if(${stocksInfo.place}=='sh') 上证A股涨幅排行#else 深证A股涨幅排行#end</a></h3></div>
+            <div class="box-x1 mb10">
+                <table class="linehleft w100p text-indent10" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr><td class="txtc">名称</td><td class="txtc">最新价</td><td class="txtc">涨跌幅</td></tr>
+                    </thead>
+                    <tbody id="pylist">
+                    <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                    <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                    <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                    <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                    <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                    <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                    <tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="w578">
+            <div class="gszb mb10">
+                <div class="lox">
+                    <div class="tit"><a href="http://kuaixun.eastmoney.com/zhibo.html" target="_blank">全球直播</a></div>
+                    <div class="cnt"><ul><li id="ScrollMIIRBox"></li></ul></div>
+                </div>
+            </div>
+            <ul class="topnav">
+                <li class="a"><b></b><a href="http://guba.eastmoney.com/list,zssh000001.html" target="_blank">上证指数吧</a></li>
+                <li class="b"><b></b><a href="http://so.eastmoney.com/Search.htm?q=(000001)(%u4e0a%u8bc1%u6307%u6570)&m=0&t=2" target="_blank">上证指数资讯</a></li>
+                <li id="RefPR" class="g"></li>
+            </ul>
+            <div id="flash_box">
+                <div class="ml10 height35 mt10">
+                    <div class="fl pryxzR" id="actTab1">
+                        <span class="cur"><div></div>一天</span>
+                        <span class=""><div></div>二天</span>
+                        <span class=""><div></div>三天</span>
+                        <span class=""><div></div>四天</span>
+                        <span class=""><div></div>五天</span>
+                    </div>
+                    #*<div class="tg241">
+                        <iframe width="200" height="30" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="http://same.eastmoney.com/s?z=eastmoney&c=1460&op=1" ></iframe>
+                    </div>*#
+                    <a href="javascript:;" id="image_show" class="fr header-title-b"><b></b>图片版</a>
+                    <a href="javascript:;" class="fr header-title-b cur"><b></b>flash版</a>
+                </div>
+                <div class="picrbox">
+                    <div id="flashPR"></div>
+                </div>
+                <div class="ml10 height35">
+                    <div class="fl pryxz mt10" id="actTab2">
+                        <span class="cur" index="0"><div></div>日K</span>
+                        <span class="" index="1"><div></div>周K</span>
+                        <span class="" index="2"><div></div>月K</span>
+                        <span class="" index="3"><div></div>5分钟</span>
+                        <span class="" index="4"><div></div>15分钟</span>
+                        <span class="" index="5"><div></div>30分钟</span>
+                        <span class="" index="6"><div></div>60分钟</span>
+                    </div>
+
+                    <span onclick="stock.zoomTech(1);return false;" class="fr header-title-a mt10 h22 mr10 b2F5">缩短K线</span>
+                    <span onclick="stock.zoomTech(-1);return false;" class="fr header-title-a mt10 h22 b2F5">拉长K线</span>
+                </div>
+                <div class="flsk mt9">
+                    <div id="flashPK"></div>
+                </div>
+                <ul class="flskbom mt5">
+                    <li class="h"><h3 class="fz12">股票叠加：</h3></li>
+                    <li class="a">上证指数 <span>vs</span></li>
+                    <li class="b"><input type="radio" name="pkdb" class="radio" checked="checked"></li>
+                    <li class="c">
+                        <div id="select_flsdb" class="myselect w79">
+                            <i></i>
+                            <span value="A">上证指数</span>
+                            <dl><dd value="A">上证指数</dd><dd value="B">深证成指</dd><dd value="C">上证B指</dd><dd value="D">创业板指</dd></dl>
+                        </div>
+                    </li>
+                    <li class="d"><input type="radio" name="pkdb" class="radio"></li>
+                    <li class="e"><input type="text" value="拼音/代码/名称" name="CompareCode" id="CompareCode" autocomplete="off" style="width: 90px" onfocus="pkgetfs()"></li>
+                    <li class="f" onclick="dbkck()"><a class="header-title-d b2F5">对&nbsp;&nbsp;比</a></li>
+                    <li class="g" onclick="hykck('${stocksInfo.code}','1','${stocksInfo.name}',678,415,'1','0')"><a class="header-title-d">清除叠加</a></li>
+                </ul>
+            </div>
+            <div id="image_box" style="display: none;">
+                <div class="ml10 height35 mt10">
+                    <div class="fl pryxzR" id="tab_picr">
+                        <span class="cur"><div></div>一天</span>
+                        <span class=""><div></div>二天</span>
+                        <span class=""><div></div>三天</span>
+                        <span class=""><div></div>四天</span>
+                        <span class=""><div></div>五天</span>
+                    </div>
+
+                    <a href="javascript:;" class="fr header-title-b cur"><b></b>图片版</a>
+                    <a href="javascript:;" id="flash_show" class="fr header-title-b"><b></b>flash版</a>
+                </div>
+                <div class="picrbox">
+                    <a href="http://quote.eastmoney.com/flash/zsflash.html?st=r&c=000001&amp;m=1&amp;n=上证指数" target="_blank"><img border="0" width="678" height="276" id="picr" alt="上证指数"(000001)" src="http://pifm3.eastmoney.com/EM_Finance2014PictureInterface/Index.aspx?id=0000011&imageType=r&token=44c9d251add88e27b65ed86506f6e5da"></a>
+                </div>
+                <div class="ml10 height35">
+                    <div class="fl pryxz mt10" id="tab_pick">
+                        <span class="cur" value=""><div></div>日K</span>
+                        <span class="" value="W"><div></div>周K</span>
+                        <span class="" value="M"><div></div>月K</span>
+                        <span class="" value="M5"><div></div>5分钟</span>
+                        <span class="" value="M15"><div></div>15分钟</span>
+                        <span class="" value="M30"><div></div>30分钟</span>
+                        <span class="" value="M60"><div></div>60分钟</span>
+                    </div>
+
+                    <span id="picklc" class="fr header-title-a mt10 h22 mr10 b2F5">缩短K线</span>
+                    <span id="picksd" class="fr header-title-a mt10 h22 b2F5">拉长K线</span>
+                </div>
+                <div class="flsk mt10 pickbox mb10">
+                    <div class="tox">
+                        <a target="_blank" class="pkox" href="http://quote.eastmoney.com/flash/zsflash.html?st=k&c=000001&amp;m=1&amp;n=上证指数"><img border="0" width="620" height="365" alt="上证指数(000001)" id="pick" src="http://pifm3.eastmoney.com/EM_Finance2014PictureInterface/Index.aspx?id=0000011&imageType=KXL&token=44c9d251add88e27b65ed86506f6e5da" /></a>
+                        <div class="rox">
+                            <ul id="zkeya">
+                                <<li>主要指标</li>
+                                <li class="at" value="EXTENDED_MA"><b></b>均线</li>
+                                <li value="EXTENDED_BOLL"><b></b>BOLL</li>
+                                <li value="EXTENDED_SAR"><b></b>SAR</li>
+                                <li value="EXTENDED_BBI"><b></b>BBI</li>
+                            </ul>
+                            <ul id="zkeyb" class="bottom">
+                                <li class="at" value="RSI"><b></b>RSI</li>
+                                <li value="KDJ"><b></b>KDJ</li>
+                                <li value="MACD"><b></b>MACD</li>
+                                <li value="WR"><b></b>W%R</li>
+                                <li value="DMI"><b></b>DMI</li>
+                                <li value="BIAS"><b></b>BIAS</li>
+                                <li value="OBV"><b></b>OBV</li>
+                                <li value="CCI"><b></b>CCI</li>
+                                <li value="ROC"><b></b>ROC</li>
+                                <li value="CR"><b></b>CR</li>
+                                <li value="BOll"><b></b>BOLL</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class="bom" id="zkeyc">
+                        <li class="at" value="RSI"><b></b>RSI</li>
+                        <li value="KDJ"><b></b>KDJ</li>
+                        <li value="MACD"><b></b>MACD</li>
+                        <li value="WR"><b></b>W%R</li>
+                        <li value="DMI"><b></b>DMI</li>
+                        <li value="BIAS"><b></b>BIAS</li>
+                        <li value="OBV"><b></b>OBV</li>
+                        <li  value="CCI"><b></b>CCI</li>
+                        <li value="ROC"><b></b>ROC</li>
+                        <li value="CR"><b></b>CR</li>
+                        <li value="BOll"><b></b>BOLL</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bglabox mb10">
+                <ul><li><a href="http://js1.eastmoney.com/tg.aspx?ID=961" target="_blank" class="red">最新基金重仓股</a></li><li><a href="http://js1.eastmoney.com/tg.aspx?ID=468" target="_blank" >沪深两市龙虎榜</a></li><li><a href="http://js1.eastmoney.com/tg.aspx?ID=383" target="_blank" >高管增减持股明细</a></li><li><a href="http://js1.eastmoney.com/tg.aspx?ID=104" target="_blank" class="red">18只大资金注入股</a></li><li class="last"><a href="http://js1.eastmoney.com/tg.aspx?ID=967" target="_blank" >个股资金流向</a></li></ul>
+            </div>
+            <div class="title1">
+                <div class="kx_utils">
+                    <span class="kx_more"><a href="http://kuaixun.eastmoney.com/zhibo.html" target="_blank">更多&gt;&gt;</a></span>
+                    <span class="kx_refresh" id="kx_refresh">刷新</span>
+                    <span class="kx_auto kx_autoing" id="kx_auto"><span id="kx_auto_sec" class="kx_auto_sec">60</span>秒后刷新</span>
+                    <span class="kx_fontsize" id="kx_fontsize">大字+</span>
+                </div>
+                <h3><a href="http://kuaixun.eastmoney.com/zhibo.html" target="_blank">股市直播</a></h3>
+            </div>
+            <div class="kx_list" id="kx_list"><div class="tipstr" id="tipstr">直播中...</div><ul id="kx_lists"></ul></div>
+        </div>
+    </div>
+</div>
+<div class="qphox layout">
+    <div class="fl w200">
+        <div class="title1"><a class="more fr f12" href="http://data.eastmoney.com/bkzj/hy.html" target="_blank">更多</a><h3><a href="http://data.eastmoney.com/bkzj/hy.html" target="_blank">行业资金流排行</a></h3></div>
+        <div class="box-x1 mb10">
+            <table class="linehleft w100p text-indent10" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr><td class="txtc">名称</td><td class="txtc">净流入</td><td class="txtc">流入最大股</td></tr>
+                </thead>
+                <tbody id="hyzjlpy">
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr><tr><td class="nm">-</td><td>-</td><td>-</td></tr><tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr><tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="title1"><a class="more fr f12" href="http://data.eastmoney.com/bkzj/gn.html" target="_blank">更多</a><h3><a href="http://data.eastmoney.com/bkzj/gn.html" target="_blank">概念资金流排行</a></h3></div>
+        <div class="box-x1 mb10">
+            <table class="linehleft w100p text-indent10" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr><td class="txtc">名称</td><td class="txtc">净流入</td><td class="txtc">流入最大股</td></tr>
+                </thead>
+                <tbody id="gnzjlpy">
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr><tr><td class="nm">-</td><td>-</td><td>-</td></tr><tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                <tr><td class="nm">-</td><td>-</td><td>-</td></tr><tr><td class="nm">-</td><td>-</td><td>-</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="fr w790">
+        <div class="fl w390 mb10">
+            <div class="title1">
+                <a href="http://finance.eastmoney.com/yaowen_czqyw.html" target="_blank" class="more fr f12">更多</a>
+                <a href="http://finance.eastmoney.com/yaowen_czqyw.html" target="_blank" class="titlea tunderlineno"><h3>证券要闻</h3></a>
+            </div>
+            <div class="borderstyle2 pt1">
+                <div class="nlist">
+
+                    <ul>
+                        <li><span>01-11 </span><a href="http://finance.eastmoney.com/news/1353,20170111702120684.html" target="_blank" title="上交所：交易所回购利率不宜简单与银行间市场比较">上交所：交易所回购利率不宜简单与银行间市场...</a></li>
+
+                        <li><span>01-11 </span><a href="http://finance.eastmoney.com/news/1353,20170111701989383.html" target="_blank" title="沪指收盘小幅下挫 创业板五连阴刷新10个月新低">沪指收盘小幅下挫 创业板五连阴刷新10个月新低</a></li>
+
+                        <li><span>01-11 </span><a href="http://finance.eastmoney.com/news/1353,20170111702108785.html" target="_blank" title="券商这一年猛拼资产证券化 企业ABS领域德邦证券爆冷成黑马">券商这一年猛拼资产证券化 企业ABS领域德邦证...</a></li>
+
+                        <li><span>01-11 </span><a href="http://finance.eastmoney.com/news/1353,20170111702108462.html" target="_blank" title="内地人投资港股猛烈：港股通16天净流入 南下资金已是北上3倍">内地人投资港股猛烈：港股通16天净流入 南下资...</a></li>
+
+                        <li><span>01-11 </span><a href="http://finance.eastmoney.com/news/1353,20170111701736220.html" target="_blank" title="中国平均每天3家公司IPO 股民不赚钱巨量融资谁会买单">中国平均每天3家公司IPO 股民不赚钱巨量融资谁...</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="fr w390 mb10">
+            <div class="title1">
+                <a href="http://stock.eastmoney.com/news/cdpfx.html" target="_blank" class="more fr f12" id="tit_dpfx" style="display: block;">更多</a>
+                <a href="http://blog.eastmoney.com/" target="_blank" class="more fr f12" style="display: none;" id="tit_mb">更多</a>
+                <ul class="tab1" id="tab_fxmb">
+                    <li class="w79 cur" value="1"><h3><a href="http://stock.eastmoney.com/news/cdpfx.html" target="_blank">大盘分析</a></h3></li>
+                    <li class="w79" value="2"><h3><a href="http://blog.eastmoney.com/" target="_blank">名博论市</a></h3></li>
+                </ul>
+            </div>
+
+            <div class="borderstyle2 pt1">
+                <div class="nlist" id="cnt_dpfx" value="1" style="display: block;">
+
+                    <ul>
+                        <li><span>01-11 </span><a href="http://stock.eastmoney.com/news/1407,20170111701989383.html" target="_blank" title="沪指收盘小幅下挫 创业板五连阴刷新10个月新低">沪指收盘小幅下挫 创业板五连阴刷新10个月新低</a></li>
+
+                        <li><span>01-11 </span><a href="http://stock.eastmoney.com/news/1407,20170111702080182.html" target="_blank" title="长江证券：A股调整格局未结束 春节前下跌概率大">长江证券：A股调整格局未结束 春节前下跌概率...</a></li>
+
+                        <li><span>01-11 </span><a href="http://stock.eastmoney.com/news/1407,20170111702030964.html" target="_blank" title="大盘震荡欲横盘 主线题材股放异彩">大盘震荡欲横盘 主线题材股放异彩</a></li>
+
+                        <li><span>01-11 </span><a href="http://stock.eastmoney.com/news/1407,20170111702019619.html" target="_blank" title="创业板盘中创出新低">创业板盘中创出新低</a></li>
+
+                        <li><span>01-11 </span><a href="http://stock.eastmoney.com/news/1407,20170111702019318.html" target="_blank" title="大盘指数无量上攻 警惕主力逢高出货">大盘指数无量上攻 警惕主力逢高出货</a></li>
+                    </ul>
+
+                </div>
+                <div class="nlist" id="cnt_mb" value="2" style="display: none;">
+                    <ul><ul><li><a target="_blank" href="http://blog.eastmoney.com/" ><strong>目前行情说明两件事</strong></a>&nbsp;<a target="_blank" href="http://blog.eastmoney.com/czwangzhigang/blog_587211086.html" ><strong>短期杀跌超乎预料怎么办</strong></a></li><li><a target="_blank" href="http://blog.eastmoney.com/wwcocoww/blog_587204458.html" >资金调仓忙 指数调调更健康</a>&nbsp;<a target="_blank" href="http://blog.eastmoney.com/pgshyy/blog_587208881.html" >大盘尾市缘何快速回落</a></li><li><a target="_blank" href="http://blog.eastmoney.com/dsesmm/blog_587211471.html" >两市单边下挫 底部渐行渐近</a>&nbsp;<span class="red"><a target="_blank" href="http://blog.eastmoney.com/laoguaizhongguo/blog_587205417.html" >几件大事或将疯狂上演</a></span></li><li><a target="_blank" href="http://blog.eastmoney.com/meitaof/blog_587203810.html" >反常气候催生行情大分化</a>&nbsp;<a target="_blank" href="http://blog.eastmoney.com/dliandw/blog_587208302.html" >联通尾盘跳水预示着什么</a></li><li><a target="_blank" href="http://blog.eastmoney.com/liexiongze/blog_587272640.html" >为春节红包行情挖坑</a>&nbsp;<a target="_blank" href="http://blog.eastmoney.com/zhangcluo/blog_587222356.html" >A股最后一个隐形炸弹还未引爆</a></li></ul>
+                </div>
+            </div>
+        </div>
+        <div class="fl w390 mb10">
+            <div class="title1">
+                <a href="http://finance.eastmoney.com/news/cssgs.html" target="_blank" class="more fr f12">更多</a>
+                <a href="http://finance.eastmoney.com/news/cssgs.html" target="_blank" class="titlea tunderlineno"><h3>公司快讯</h3></a>
+            </div>
+            <div class="borderstyle2 pt1">
+                <div class="nlist">
+
+                    <ul>
+                        <li><span>01-11 </span><a href="http://finance.eastmoney.com/news/1349,20170111702118916.html" target="_blank" title="股东巨量减持重组前景不明 *ST景谷凭什么成为*ST板块第一高价股？">股东巨量减持重组前景不明 *ST景谷凭什么成为...</a></li>
+
+                        <li><span>01-11 </span><a href="http://finance.eastmoney.com/news/1349,20170111702117183.html" target="_blank" title="赵薇入主万家文化与“阿里系”无关 借债买股权的“小燕子”身家几何？">赵薇入主万家文化与“阿里系”无关 借债买股权...</a></li>
+
+                        <li><span>01-11 </span><a href="http://finance.eastmoney.com/news/1349,20170111702117015.html" target="_blank" title="老虎汇成嘉应制药第一大股东后欲用分红还债 嘉应制药：我没钱">老虎汇成嘉应制药第一大股东后欲用分红还债 嘉...</a></li>
+
+                        <li><span>01-11 </span><a href="http://finance.eastmoney.com/news/1349,20170111702116568.html" target="_blank" title="是什么吸引了他 鲜露面的“私募教父”赵丹阳亲自出马探究这家公司">是什么吸引了他 鲜露面的“私募教父”赵丹阳亲...</a></li>
+
+                        <li><span>01-11 </span><a href="http://finance.eastmoney.com/news/1349,20170111702115529.html" target="_blank" title="凯撒文化：2016年度分配拟10转20派0.5元">凯撒文化：2016年度分配拟10转20派0.5元</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="fr w390 mb10">
+            <div class="title1">
+                <a href="http://data.eastmoney.com/report/hyyb.html" target="_blank" class="more fr f12">更多</a>
+                <a href="http://data.eastmoney.com/report/hyyb.html" target="_blank" class="titlea tunderlineno"><h3>研究报告</h3></a>
+            </div>
+
+            <div class="borderstyle2 pt1 nlist1 txtUL">
+                <div class="fz14">
+                    <table class="linehleft w100p" cellspacing="0" cellpadding="0">
+                        <tbody>
+                        <tr>
+                            <td align="center">机构</td>
+                            <td align="center">评级</td>
+                            <td class="text-indent10">研报</td>
+                        </tr>
+                        <tr><td align="center"><a target="_blank" title="国金证券" href="http://data.eastmoney.com/report/10000082_0.html" class="lightBlue">国金证券</a></td><td align="center"><span title="买入">买入</span></td><td class="text-indent10"><span class="dt">01-11</span><a target="_blank" title="有色金属行业2017年日常报告" href="http://data.eastmoney.com/report/20170111/hy,APPHhLyVJQ7eIndustry.html">有色金属行业2017年日常...</a></td></tr><tr><td align="center"><a target="_blank" title="国金证券" href="http://data.eastmoney.com/report/10000082_0.html" class="lightBlue">国金证券</a></td><td align="center"><span title="增持">增持</span></td><td class="text-indent10"><span class="dt">01-11</span><a target="_blank" title="交通运输产业2017年日常报告：民航铁路混改&sbquo;仍有较大空间" href="http://data.eastmoney.com/report/20170111/hy,APPHhLyVJi8BIndustry.html">交通运输产业2017年日常...</a></td></tr><tr><td align="center"><a target="_blank" title="国金证券" href="http://data.eastmoney.com/report/10000082_0.html" class="lightBlue">国金证券</a></td><td align="center"><span title="增持">增持</span></td><td class="text-indent10"><span class="dt">01-11</span><a target="_blank" title="国金医药政策周报：《&quot;十三五&quot;全国卫生计生人才发展规划》多方位推动深化医改" href="http://data.eastmoney.com/report/20170111/hy,APPHhLyVJi8CIndustry.html">国金医药政策周报：《&q...</a></td></tr><tr><td align="center"><a target="_blank" title="申万宏源" href="http://data.eastmoney.com/report/80000075_0.html" class="lightBlue">申万宏源</a></td><td align="center"><span title="中性">中性</span></td><td class="text-indent10"><span class="dt">01-11</span><a target="_blank" title="商业贸易/一般零售行业点评：阿里溢价私有化银泰推动百货板块估值修复" href="http://data.eastmoney.com/report/20170111/hy,APPHhLyVK2uSIndustry.html">商业贸易/一般零售行业点...</a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="qphox title2 mb10" style="height: 37px">
+    <span class="more4 fr mr10">
+        <a target="_blank" href="http://guba.eastmoney.com/"><b></b>股吧首页</a>
+        &nbsp;|&nbsp;
+        <a target="_blank" href="http://guba.eastmoney.com/remenba.aspx?type=1">热门个股吧</a>
+        &nbsp;|&nbsp;
+        <a target="_blank" href="http://guba.eastmoney.com/remenba.aspx?type=2">热门主题吧</a>
+        &nbsp;|&nbsp;
+        <a target="_blank" href="http://guba.eastmoney.com/list,zssh000001.html">更多</a>
+    </span>
+    <h3 class="fd8"><a href="http://guba.eastmoney.com/list,zssh000001.html" target="_blank">上证指数吧</a></h3>
+</div>
+<div class="qphox layout mb10">
+    <div class="fr w200">
+        <div class="title1">
+            <div class="ttt"><h3>调查</h3></div>
+            <ul class="tab1" id="tab_dkdc">
+                <li value="1" class="cur"><h3>多空</h3></li>
+                <li value="2"><h3>持仓</h3></li>
+                <li value="3"><h3>机构</h3></li>
+            </ul>
+        </div>
+        <div class="box-x1 wydc">
+            <div class="dcoxa" id="dcoxa" value="1">
+                <form name="vote_a" method="post" action="http://vote.eastmoney.com/vote_look1.asp?action=vote" target="_blank">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td class="ax"><img src="http://cmsjs.eastmoney.com/data/voteimg/vote11.png" width="130" height="100" alt="" border="0"></td>
+                            <td class="bx"><label><input id="vote_sz" type="radio" name="radio2" value="1" class="vote" checked="checked">上涨</label><label><input id="vote_pz" type="radio" name="radio2" value="2" class="vote">盘整</label><label><input id="vote_xd" type="radio" name="radio2" value="3" class="vote">下跌</label></td>
+                        </tr>
+                        <tr><td colspan="2"><cite class="mon"><b class="v-red"></b><span>上涨</span><b></b><span>盘整</span><b class="v-green"></b><span>下跌</span></cite></td></tr>
+                        <tr><td colspan="2" class="cx"><span class="btnn"><button type="submit">投  票</button></span><span class="btnn"><button type="button" id="lookVote1">查  看</button></span></td></tr>
+                    </table>
+                </form>
+            </div>
+            <div class="dcoxb" id="dcoxb" value="2" style="display: none;">
+                <form name="vote_b" method="post" action="http://vote.eastmoney.com/vote_look2.asp?action=vote" target="_blank">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td class="ax"><img src="http://cmsjs.eastmoney.com/data/voteimg/vote21.png" width="130" height="100" alt="" border="0"></td>
+                            <td class="bx"><label><input id="Radio1" type="radio" name="radio" value="1" class="vote" checked="checked">≥70%</label><label><input id="Radio2" type="radio" name="radio" value="2" class="vote">30%～70%</label><label><input id="Radio3" type="radio" name="radio" value="3" class="vote">≤30%</label></td>
+                        </tr>
+                        <tr><td colspan="2"><cite class="mon b"><b class="v-red"></b><span>≥70%</span><b></b><span>30%～70%</span><b class="v-green"></b><span>≤30%</span></cite></td></tr>
+                        <tr><td colspan="2" class="cx"><span class="btnn"><button type="submit">投  票</button></span><span class="btnn"><button type="button" id="lookVote2">查  看</button></span></td></tr>
+                    </table>
+                </form>
+            </div>
+            <div class="dcoxc" id="dcoxc" value="3" style="display: none;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td class="v-red"><div><span style="height:100%;"></span></div></td>
+                        <td class="v-gray"><div><span style="height:86.3636363636364%;"></span></div></td>
+                        <td class="v-green"><div><span style="height:100%;"></span></div></td>
+                    </tr>
+                    <tr><td>22家看多</td><td>19家看平</td><td>22家看空</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="title1 mt10">
+            <span class="refresh" id="refgbauls"></span>
+            <h3>上证指数吧人气用户</h3>
+        </div>
+    </div>
+    <div class="fl w790">
+        <div class="title1">
+            <a href="#gubasend" class="btn1 fr f12 ml10 b2F5">发新帖</a>
+
+            <div id="select3" class="myselect f12 fr ml10 w79">
+                <i></i>
+                <span>回复时间</span>
+                <dl>
+                    <dd value="回复"><a href="http://guba.eastmoney.com/list,zssh000001.html" target="_blank">回复时间</a></dd>
+                    <dd value="发帖"><a href="http://guba.eastmoney.com/list,zssh000001,f.html" target="_blank">发帖时间</a></dd>
+                </dl>
+            </div>
+            <span class="fr f12 fx">排序方式：</span>
+
+            <ul class="tab4">
+                <li class="first cur" value="1"><h3><a href="http://guba.eastmoney.com/list,zssh000001.html" target="_blank">全部</a></h3></li>
+                <li class="" value="2"><h3><a href="http://guba.eastmoney.com/list,zssh000001,99,f.html" target="_blank" class="red">热帖</a></h3></li>
+            </ul>
+
+        </div>
+
+        <div class="borderstyle2 pt1 fz14 borderstyle3">
+            <table class="line30 w100p text-indent10 txtN" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr class="fz12 gbtit">
+                    <td class="">点击&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="text-indent0">回复</td>
+                    <td class="text-indent10">标题</td>
+                    <td>作者</td>
+                    <td>发表日期</td>
+                    <td align="center">最后更新</td>
+                </tr>
+                </thead>
+                <tbody id="gubalisttable"></tbody>
+            </table>
+        </div>
+        <div class="borderstyle2 pt1 mb7 gbalr">
+            <a href="http://guba.eastmoney.com/list,zssh000001.html" target="_blank">点击查看更多上证指数吧热贴&gt;&gt;</a>
+        </div>
+
+        <div class="mb5" style="overflow:auto;">
+            <div class="title1">
+                <span id="loginstate"><a href="http://guba.eastmoney.com/reg.aspx?url=http://quote.eastmoney.com/zssh000001.html" class="fr f12 yellow"><b>快速注册</b></a>
+                <span class="shu f12 fr">|</span>
+                <a href="http://guba.eastmoney.com/login.aspx?url=http://quote.eastmoney.com/zssh000001.html" class="fr f12"><b>登录</b></a>
+                <span class="fr f12">作者您目前是匿名发表</span>
+                </span>
+                <h3><a name="gubasend"></a>发表新主题</h3>
+            </div>
+            <div id="sendnew"></div>
+        </div>
+
+    </div>
+</div>
+<div class="qphox layout mb10">
+    <div class="iafur">
+        <div class="lox">
+            <div class="title1"><span class="fr normal">2017年01月11日 收盘</span><h3>市场总貌</h3></div>
+            <div class="cnt">
+                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                    <tr>
+                        <th>类别</th>
+                        <th>成交量(万股)</th>
+                        <th>成交金额(亿元)</th>
+                        <th>总市值(亿元)</th>
+                        <th>流通市值(亿元)</th>
+                        <th>上市公司(家)</th>
+                        <th>平均市盈率</th>
+                    </tr>
+                    <tr><td>沪市</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>深市</td><td>1524617.00</td><td>2171.30</td><td>223844.84</td><td>155130.02</td><td>1879</td><td>41.20</td></tr><tr><td>中小板</td><td>561742.00</td><td>870.04</td><td>98272.13</td><td>64645.79</td><td>824</td><td>50.25</td></tr><tr><td>创业板</td><td>269130.00</td><td>563.94</td><td>51722.94</td><td>30570.26</td><td>577</td><td>71.88</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="rox">
+            <div class="title1"><a class="more fr f12" href="http://quote.eastmoney.com/center/BKList.html#trade_0_0?sortRule=0" target="_blank">更多</a><h3><a href="http://quote.eastmoney.com/center/BKList.html#trade_0_0?sortRule=0" target="_blank">领涨板块</a></h3></div>
+            <div class="cnt" id="lzbkinfo"></div>
+        </div>
+    </div>
+</div>
+<div class="qphox layout mb10">
+    <div class="iarzrq">
+        <div class="title1"><div class="rzrqinput"><b id="zjlx_bars"></b><input name="zjlx_bar" id="zjlx_bar" type="text"></div><h3><a href="http://data.eastmoney.com/rzrq/sh.html" target="_blank">2017年01月10日融资融券交易总量</a></h3></div>
+        <div class="cnt">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                <tr><th>交易日期</th><th>市场类别</th><th>本日融资余额(元)</th><th>本日融资买入额(元)</th><th>本日融券余量(元)</th><th>本日融资融券余额(元)</th></tr>
+                <tr><td rowspan="3">2017-01-10</td><td>上海</td><td>5366.49亿</td><td>202.13亿</td><td>31.59亿</td><td>5398.08亿</td></tr><tr><td>深圳</td><td>3911.76亿</td><td>131.58亿</td><td>6.21亿</td><td>3917.96亿</td></tr><tr><td>两市合计</td><td>9278.24亿</td><td>333.70亿</td><td>37.80亿</td><td>9316.04亿</td></tr>
+                <tr><td align="right" colspan="6" class="more"><a href="http://data.eastmoney.com/rzrq/sh.html" target="_blank">点击查看历史数据>></a></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="qphox layout">
+    <div class="iafiv">
+        <div class="title1"><a class="more fr f12" href="http://data.eastmoney.com/bkzj/hy.html" target="_blank">更多</a><h3><a href="http://data.eastmoney.com/bkzj/hy.html" target="_blank">行业资金流向</a></h3></div>
+        <div class="cnt" id="hqzschart">
+            <script type="text/javascript">chart({ url: "http://data.eastmoney.com/bkzj/rank/hy/alljson.html", appendHTML: "<span class='danwei'>单位：亿元</span><div class='shuoming'><i class='sup'>&nbsp;</i>主力净流入 <i class='sdown'>&nbsp;</i>主力净流出</div>", many: 45 })</script>
+        </div>
+    </div>
+</div>
+
+<script>
+    if(document.all && !window.XMLHttpRequest){
+        $(".qrli").hover(function(){
+            $(".icon_qr",this).show();
+        },function(){
+            $(".icon_qr",this).hide();
+        });
+    }
+</script>
+</body>
+<script type="text/javascript" charset="utf-8">
+    setTimeout(function () {
+        var arg = { text: "拼音/代码/名称", width: 190, type: "CNSTOCK", autoSubmit: false, header: ["选项", "代码", "名称", "类型"], body: [-1, 1, 4, -2], callback: function (arg) { } };
+        var ss = new StockSuggest("CompareCode", arg);
+    }, 500);
+    var kLine = {}; kLine.stockCode = '${stocksInfo.code}'; kLine.stockMarket = ('${stocksInfo.place}'=='sh')?'1':'2'; stockcode = 'zs'+'${stocksInfo.place}'+'${stocksInfo.code}';
+</script>
+<script type="text/javascript" src="${base}/static/js/jquery.min.1.8.3.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/quote-min-zs.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/flash-min.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/fucs-min.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/data-min-zs.js"></script>
+<script src="http://hqres.eastmoney.com/EM15AGIndex/js/require.js" data-main="http://hqres.eastmoney.com/EM15AGIndex/js/main-min.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/node-min.js"></script>
+<script type="text/javascript">
+    var reshost = "http://hqres.eastmoney.com/EM15AGIndex/";
+    var portalurl = "${portal_url}/";
+    var m12 = ('${stocksInfo.place}'=='sh')?'1':'2';
+    var m10 = ('${stocksInfo.place}'=='sh')?'1':'0';
+    var styleid = ('${stocksInfo.place}'=='sh')?'2':'_SZAME';
+    var zdpcode = ('${stocksInfo.place}'=='sh')?'SH':'SZ';
+    var Def = new QaDefault('${stocksInfo.code}', m12, m10, '${stocksInfo.name}', styleid, '${stocksInfo.code}'+m12, zdpcode);
+    Def.init();
+    window.emRightBodyWidth = 1100;//950,1000 不写默认1000
+</script>
+
+</html>

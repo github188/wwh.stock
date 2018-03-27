@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/res/layout-sw550dp-large"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="12701"
+   kind="dir"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="umeng_socialize_oauth_dialog.xml"
+   checksum="bbbc4105e543367fc990c0acc683562c"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+</wc-entries>

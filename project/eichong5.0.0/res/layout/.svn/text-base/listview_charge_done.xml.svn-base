@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/common_bg_information"
+    android:fitsSystemWindows="true"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    >
+
+	<TextView
+        android:id="@+id/datatimeleft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="时间"
+        android:textColor="@color/common_light_light_black"
+        android:textSize="14sp" />
+    <TextView
+        android:id="@+id/datatime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/common_black"
+        android:layout_alignBottom="@id/datatimeleft"
+	    android:layout_toRightOf="@id/datatimeleft"
+        android:textSize="14sp" />
+<RelativeLayout 
+    android:id="@+id/siteleft"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/datatimeleft"
+    android:layout_marginTop="10dp"
+    >
+    <TextView
+        android:id="@+id/siteleft2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="地点"
+        android:layout_centerVertical="true"
+        android:textColor="@color/common_light_light_black"
+        android:textSize="14sp" />
+    
+    <TextView
+        android:id="@+id/site"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@id/siteleft2"
+        android:layout_marginRight="20dp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textColor="@color/common_black"
+        android:textSize="14sp" />
+</RelativeLayout>
+    <TextView
+        android:id="@+id/moneyleft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="金额"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/siteleft"
+        android:textColor="@color/common_light_light_black"
+        android:textSize="14sp" />
+    
+    <TextView
+        android:id="@+id/money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_alignBottom="@id/moneyleft"
+        android:layout_toRightOf="@id/moneyleft"
+        android:textColor="@color/common_black"
+        android:textSize="14sp" />
+
+
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="状态"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/common_light_black"
+        android:textSize="14sp" />
+</RelativeLayout>

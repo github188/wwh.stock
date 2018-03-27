@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/common_light_white"
+    android:orientation="vertical"
+     >
+   <include layout="@layout/common_invoice_head"/>
+   <TextView
+		        android:layout_marginTop="60dp"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="快递费用暂未支付"
+		        android:textSize="18sp"
+		        android:layout_gravity="center_horizontal"
+		        android:drawableTop="@drawable/img_pay_failure"
+		        android:drawablePadding="30dp"
+		        android:textColor="@color/common_orange"
+		        />
+ 
+      <TextView 
+             android:id="@+id/invoice_error_pay"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:textColor="@color/common_white"
+             android:textSize="16sp"
+       		 android:text="支付"
+       		 android:layout_marginLeft="40dp"
+       		 android:layout_marginRight="40dp"
+       		 android:padding="10dp"
+       		 android:gravity="center"
+       		 android:layout_marginTop="20dp"
+       		 android:background="@drawable/common_shape_corner_orange"
+            />
+       <TextView 
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:textColor="@color/common_black"
+             android:textSize="13sp"
+       		 android:text="支付成功后，发票将在7个工作日内为您开具并寄出"
+       		 android:layout_margin="20dp"
+       		 android:gravity="center"
+       		
+            />
+</LinearLayout>

@@ -1,0 +1,1247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.bm.wanma"
+    android:versionCode="22"
+    android:versionName="5.0.0">
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="20" 
+        tools:overrideLibrary="com.umeng.socialize.evernote,com.umeng.socialize.pinterest"
+        />
+    <!-- 添加高德地图权限 -->
+   
+ 	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" /> 
+    <!-- 扫码权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <!-- 来电消音 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- SDK1.5需要android.permission.GET_TASKS权限判断本程序是否为当前运行的应用? -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+  
+     <!-- 结束程序需要权限 -->
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+   
+    <!-- 极光推送需要权限 -->
+    <permission
+        android:name="com.bm.wanma.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+  
+    <uses-permission android:name="com.bm.wanma.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 拨打电话所需权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 【必须】 信鸽SDK所需权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 【可选】 信鸽SDK所需权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BATTERY_STATS" />
+    <!-- 扫描需求 -->
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+ 	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <application
+        android:name="com.bm.wanma.utils.ProjectApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/eichong_icon"
+        android:label="@string/app_name" >
+    
+        <!-- 高德地图 --> 
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="544bb806e031b46a46ca0e728cd379d9" />
+        <!-- Launch 界面  StartActivity -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.StartActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+             <intent-filter>  
+                <action android:name="android.intent.action.VIEW"/>     
+                <category android:name="android.intent.category.DEFAULT"/>               
+                <category android:name="android.intent.category.BROWSABLE"/>  
+                <data android:scheme="eichong"
+                />  
+            </intent-filter>  
+        </activity>
+         <!-- 主界面 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.HomeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+	<!-- 引导页 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.GuideActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <!-- 站桩点详情界面 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.StationStiltDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+      
+        <!-- 爱充网协议 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.AboutProtolActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+       
+        <!-- 扫码二维码获取桩体信息 -->
+        <activity
+            android:name="com.bm.wanma.ui.scan.ScanSucessActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+          <!-- 扫码二维码获取桩体信息 下一步  android:launchMode="singleTop"-->
+        <activity
+            android:name="com.bm.wanma.ui.scan.ScanSucessNextActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <!-- 扫码二维码界面 android:windowSoftInputMode="stateHidden|adjustResize"-->
+        <activity
+            android:name="com.bm.wanma.ui.scan.CaptureActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:theme="@android:style/Theme.Light.NoTitleBar"  >
+        </activity>
+            <!-- 搜索充电点界面 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.SearchPointActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Light.NoTitleBar"  >
+        </activity>
+         <!--地址 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.AddressActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Light.NoTitleBar"  >
+        </activity>
+          <!--地区-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.AreaActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Light.NoTitleBar"  >
+        </activity>
+            <!--地区,城市-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.CityActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Light.NoTitleBar"  >
+        </activity>
+        <!--昵称 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.NickActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Light.NoTitleBar"  >
+        </activity>
+         <!--性别 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.SexActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Light.NoTitleBar"  >
+        </activity>
+        <!-- 充电列表 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.ChargeListActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+        <!-- 全部功能按钮 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MoreActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+        <!-- 全部功能按钮 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MalfunctionActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+        <!-- 登录界面 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysVisible"
+            android:theme="@style/AnimActivityTheme" >
+        </activity>
+		<!--注册 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.RegisterActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AnimActivityThemelfte" >
+        </activity>
+        <!-- 强制下线界面 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.ForceOffline"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Dialog">
+        </activity>
+        <!-- 经纬度校验 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.CheckLatLng"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+			android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+       
+        <!-- 忘记密码 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.ForgetPasswordActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AnimActivityThemelfte" >
+        </activity>
+         <!-- 修改密码 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.ModifyPasswordActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+           <!-- 设置支付密码 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.SetPayPasswordActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+           <!-- 修改支付密码 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.ModifyPayPasswordActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+           <!-- 找回支付密码 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.FindBackPayPwdActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+         <!-- 站桩评分详情 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.CommentDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+         <!-- 纠错界面 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.CommitDeviceErrorActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <!-- 点击浏览大图 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.ImagePagerActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+          <!-- 扫码后桩信息界面  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.PileDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme" >
+        </activity> 
+
+        <!-- 我的充电  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyChargeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+        <!-- 我的充电状态说明  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.StateDeclareActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <!-- 充电订单详情界面  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.ChargeDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+        <!-- 详情里 关于服务费详情 界面  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.AboutPriceActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+          <!-- 我的个人资料 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyUserInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AppTheme" >
+        </activity> 
+           <!-- 我的消息 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyNewsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.bm.wanma.ui.activity.MySystemNoticeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+         <activity
+            android:name="com.bm.wanma.ui.activity.MyOrderStatusActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+           <!--我的钱包 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyWalletActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+           <!--我的账单-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyBillActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+        <!--账单明细-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyBillDetailsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+        <!--我的优惠券-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyCouponActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+         <!--兑换优惠券-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.CouponExchangeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+           <!--兑换优惠券规则-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.CouponRoleActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+        
+      <!--开发票-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.InvoiceActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+          <!--开票提醒-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.InvoiceTipActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+           <!--开票规则-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.InvoiceRoleActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+        <!--开票类型-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.InvoiceTypeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+      <!--填写发票详情 公司-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.InvoiceCompanyActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>   
+       <!--填写发票详情 个人-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.InvoicePersonalActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>  
+         <!--开票成功-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.InvoiceSuccessActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+           <!--开票失败-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.InvoiceErrorActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+            <!--开票记录-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyInvoiceRecordActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <!--开票记录详情包含消费记录-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyInvoiceRecordConsumeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <!--开票记录详情-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyInvoiceRecordDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+         <!--开票记录详情 未支付-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyInvoiceRecordDetailPayActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+      
+          <!--联系我们-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.ContactUsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+      <!--设置 界面-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.SettingsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <!--关于我们 界面-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.AboutWeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+         <!--安全设置 界面-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.SecuritySettingsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+          <!--选择车的品牌4.0-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.CarBrandActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+          <!--选择车的品牌-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.SelectCarBrandActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+          <!--选择车的类型-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.SelectCarNameActivity"
+           android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+
+         <!--充电实时信息界面  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.RealTimeChargeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+        <!--充电结束界面  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.ChargeFinishActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>  
+ 
+           <!--充值界面  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.RechargeActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>  
+        <!--充值界面  -->
+<!--         <activity -->
+<!--             android:name="com.bm.wanma.ui.activity.RechargeSucceedActivity" -->
+<!--             android:launchMode="singleTop" -->
+<!--             android:screenOrientation="portrait" -->
+<!--             android:exported="false" -->
+<!--             android:theme="@android:style/Theme.Black.NoTitleBar" > -->
+<!--         </activity>   -->
+         <!--充值记录界面  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.RechargeRecordActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+        
+         <!--系统消息详情  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyNewsSystemDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>  
+         <!--动态列表  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyDynamicListActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AnimActivityThemeDynamiclfte" >
+        </activity>  
+           <!--动态详情列表  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyDynamicDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/AnimActivityThemeDynamiclfte" >
+        </activity>  
+          <!--分享电桩 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.SharePileActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>  
+          <!--申领建桩  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.ApplyBuildPileActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>     
+           <!--我的电卡  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.MyIcCardActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+            <!--我的电卡申请  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.ApplyCardActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+       
+         <!-- 意见反馈  -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.CommitFeedbackActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>    
+       <!--急救电话 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.BackEmergencyCallActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+        <activity
+            android:name="com.bm.wanma.ui.activity.EmergencyCallSortActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>  
+         <!--车俩维修 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.CarRepairActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+         <!--操作说明 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.InstructionActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>    
+          <!--扫描洗车-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.WashCarActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>   
+         <!--扫描开门 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.OpenDoorActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+        
+     <!--搜索当前位置-分享电桩界面 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.PoiKeywordSearchActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>   
+        
+        <!--h5通用 -->
+        <activity
+            android:name="com.bm.wanma.ui.activity.CommonH5Activity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity> 
+       
+        
+        <!--积分——每日领取-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.EverydayGetActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <!--积分——详情-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.IntegralDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <!--积分——充值送积分-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.RechargeSucceedActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <!--积分——车牌号-->
+        <activity
+            android:name="com.bm.wanma.ui.activity.CarActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        
+        
+         <!-- 导航 -->
+        <activity
+            android:name="com.bm.wanma.ui.navigation.SimpleNaviActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+             android:exported="false"
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
+        <activity
+            android:name="com.bm.wanma.ui.navigation.SimpleGPSNaviActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:exported="false"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.bm.wanma.ui.navigation.NaviSettingActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.bm.wanma.ui.navigation.NaviRouteActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:exported="false"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.bm.wanma.ui.navigation.NaviCustomActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:exported="false"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+        
+        
+         <!-- 支付宝 alipay -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+        <!-- qq 和 空间 分享 -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="1104471069" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:exported="false"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+	 <!-- 必须注册，在微博授权，分享微博时候用到 -->
+        <activity android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser" 
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" >
+        </activity>
+         <!-- 微博分享界面 -->
+         <activity
+            android:name="com.bm.wanma.ui.activity.Shareweibo"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- 微信支付 -->
+         <receiver
+            android:name="com.bm.wanma.weixin.AppRegister">
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
+            </intent-filter>
+        </receiver>
+         <activity
+            android:name="com.bm.wanma.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" 
+            android:launchMode="singleTop"/>
+        
+
+		<!-- 注册网络变化广播接收 --> 
+<!--         <receiver android:name="com.bm.wanma.broadcast.NetWorkChangeBroadcastReceiver" -->
+<!--             android:enabled="true" -->
+<!--             >  -->
+<!--             <intent-filter>  -->
+<!--                  <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />  -->
+<!--              </intent-filter>  -->
+<!--         </receiver>  -->
+        <!-- 内部类注册广播 -->
+    
+        
+        <!-- 以下是极光推送 -->
+        <!-- Required SDK核心功能 -->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.bm.wanma" />
+            </intent-filter>
+        </activity>
+        <!-- Required  SDK核心功能 -->
+        <service
+            android:name="cn.jpush.android.service.DownloadService"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
+
+        <!-- Required SDK 核心功能 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+
+        <!-- Required SDK核心功能 -->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true" >
+            <intent-filter android:priority="1000" >
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+                <!-- Required  显示通知栏 -->
+                <category android:name="com.bm.wanma" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required SDK核心功能 -->
+        <service
+            android:name="cn.jpush.android.service.DownloadService"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
+
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
+
+        <!-- User defined.  For test only  用户自定义的广播接收器 -->
+        <receiver
+            android:name="com.bm.wanma.jpush.MyReceiver"
+            android:enabled="true" >
+            <intent-filter>
+                
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <!-- Required  用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.UNREGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <!-- Required  用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <!-- Required  用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <!-- Required  用户打开自定义通知栏的intent -->
+                <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK" />
+                <!-- Optional 用户接受Rich Push Javascript 回调函数的intent -->
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+                <!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="com.bm.wanma" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required  . Enable it you can get statistics data with channel -->
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" />
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="ed4477671a9298e1599cc145" />
+        <!-- 值来自开发者平台取得的AppKey 27a1ea28f24ac82649e2d9bf -->
+		
+		<!--友盟 -->
+		<meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5912d049a3251130ae0003d4" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Umeng" >
+        </meta-data>
+
+
+<activity
+            android:name="com.bm.wanma.ui.shareactivity.ShareDetailActivity"
+            android:configChanges="orientation|keyboard"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar">
+        </activity>
+        <!-- above activity that demo required,has nothing to with umeng sdk  -->
+        <!-- *************************    related to Share START **************************** -->
+        <!-- Share edit page-->
+        <!--<activity-->
+        <!--android:name=".WBShareActivity"-->
+        <!--android:configChanges="keyboardHidden|orientation"-->
+        <!--android:screenOrientation="portrait" >-->
+        <!--<intent-filter>-->
+        <!--<action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />-->
+        <!--<category android:name="android.intent.category.DEFAULT" />-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+        <!--<activity-->
+        <!--android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"-->
+        <!--android:configChanges="keyboardHidden|orientation"-->
+        <!--android:windowSoftInputMode="adjustResize"-->
+        <!--android:exported="false" >-->
+        <!--</activity>-->
+        <!-- 易信回调activity -->
+        <activity
+            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="false"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:launchMode="singleTask"
+            android:name="com.sina.weibo.sdk.share.WbShareTransActivity">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".yxapi.YXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
+
+        <activity
+            android:name="com.umeng.socialize.editorpage.ShareActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.UMDefault"
+            />
+        <!-- wechat callback-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <!--dingding-->
+        <activity
+            android:name=".ddshare.DDShareActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <!-- alipay callback-->
+        <activity
+            android:name=".apshare.ShareEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
+        <!-- vk -->
+        <activity
+            android:name="com.vk.sdk.VKServiceActivity"
+            android:label="ServiceActivity"
+            android:theme="@style/VK.Transparent"/>
+        <!--line-->
+        <!--登录回调-->
+        <activity
+            android:name="jp.line.android.sdk.activity.LineAuthCompleteActivity"
+            android:configChanges="keyboard|orientation"
+            android:exported="true"
+            android:screenOrientation="sensor">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="line.1471474450"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.kakao.auth.authorization.authcode.KakaoWebViewActivity"/>
+        <!--没安装客户端下登录-->
+        <activity
+            android:name="jp.line.android.sdk.activity.WebLoginActivity"
+            android:configChanges="keyboard|orientation"
+            android:exported="false"
+            android:screenOrientation="sensor">
+        </activity>
+        <!-- tencent -->
+        <activity
+            android:name="com.umeng.qq.tencent.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="tencent1104471069"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.umeng.qq.tencent.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <!--<activity-->
+        <!--android:name="com.tencent.tauth.AuthActivity"-->
+        <!--android:launchMode="singleTask"-->
+        <!--android:noHistory="true" >-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.VIEW" />-->
+
+        <!--<category android:name="android.intent.category.DEFAULT" />-->
+        <!--<category android:name="android.intent.category.BROWSABLE" />-->
+
+        <!--<data android:scheme="tencent100424468" />-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+        <!--<activity-->
+        <!--android:name="com.tencent.connect.common.AssistActivity"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"-->
+        <!--android:configChanges="orientation|keyboardHidden|screenSize"/>-->
+        <uses-library
+            android:name="com.google.android.maps"
+            android:required="false"/>
+        <uses-library android:name="android.test.runner"/>
+        <!-- facebook -->
+<!--         <activity -->
+<!--             android:name="com.umeng.facebook.FacebookActivity" -->
+<!--             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" -->
+<!--             android:label="@string/app_name" -->
+<!--             android:theme="@android:style/Theme.Translucent.NoTitleBar"/> -->
+<!--         1104087112943046 -->
+<!--         <provider -->
+<!--             android:name="com.umeng.facebook.FacebookContentProvider" -->
+<!--             android:authorities="com.facebook.app.FacebookContentProvider1266254913438718" -->
+<!--             android:exported="true"/> -->
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"
+            />
+        <!--LINE 连我-->
+        <meta-data
+            android:name="jp.line.sdk.ChannelId"
+            android:value="1471474450"/>
+        <meta-data
+            android:name="jp.line.sdk.AuthScheme"
+            android:value="line.1471474450"/>
+        <!-- twitter -->
+        <activity
+            android:name="com.umeng.socialize.handler.TwitterWebActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <!-- *************************     related to Share END **************************** -->
+        <!-- umengAppKey，replace to yours -->
+<!--         <meta-data -->
+<!--             android:name="UMENG_APPKEY" -->
+<!--             android:value="5912d049a3251130ae0003d4"> -->
+<!--         </meta-data> -->
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Umeng">
+        </meta-data>
+        <!--<service android:name="com.sina.weibo.sdk.net.DownloadService"-->
+        <!--android:exported="false"></service>-->
+        <activity
+            android:name="com.dropbox.client2.android.AuthActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <!-- Change this to be db- followed by your app key -->
+                <data android:scheme="db-oz8v5apet3arcdy"/>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

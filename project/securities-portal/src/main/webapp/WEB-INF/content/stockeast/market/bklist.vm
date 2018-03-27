@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>沪深板块行情</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    #parse("commons/commonEastCss.vm")
+</head>
+<body>
+
+<!--layout page-main-->
+<div class="page-main fn-clear">
+    <!-- layout section-main -->
+    <div class="section-main">
+
+        <div class="mod-section-header fn-clear">
+            <div class="brendnav">
+                <a href="${base}/stockeast/marketcentre/">行情中心首页</a> &gt; <a href="${base}/stockeast/bankuai">板块</a> &gt; <span id="current"></span>
+            </div>
+            <div class="fn-right options">
+                <a class="btn-refresh" id="refresh"></a><a class="btn-favor" id="bookMark"></a>
+            </div>
+        </div>
+        <div class="space-5">
+        </div>
+        <div id="tuiguang">
+        </div>
+        <div class="space-5">
+        </div>
+        <div class="mod-datas" id="listview">
+
+        </div>
+
+    </div>
+    <!-- layout section-main 结束 -->
+
+</div>
+<!--layout page-main 结束 -->
+<script type="text/javascript" src="${base}/static/js/east/base.min.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/function.min.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/share.min.js"></script>
+
+<script src="${base}/static/js/east/bklist.min.js"></script>
+
+<!--layout page-footer-->
+<div class="space-5"></div>
+
+</body>
+</html>

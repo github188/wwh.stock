@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null" >
+    <LinearLayout
+        android:layout_centerInParent="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    android:layout_marginLeft="25dp"
+    android:layout_marginRight="25dp"
+    android:orientation="vertical" >
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_light_white"
+        android:orientation="vertical"
+        >
+        <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/common_black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_margin="15dp"
+        android:text="开票须知"
+        android:gravity="center"
+        /> 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:text="应国家税务总局要求，自2017年7月1日起，您若开具增值税普通发票，须同时提供企业抬头及纳税人识别号，否则发票不能用于企业报销。 "
+            android:textColor="@color/common_black"
+            android:textSize="15sp" />
+ 
+
+    </LinearLayout>
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dcdcdc"   
+            />
+    
+        <TextView 
+        android:id="@+id/custom_know"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"    
+        android:background="@color/common_light_gray"    
+        android:textColor="@color/common_black"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:textSize="18sp"
+        android:padding="20dp"
+        android:text="我知道了"
+        android:gravity="center"
+        />
+
+	</LinearLayout>
+</RelativeLayout>

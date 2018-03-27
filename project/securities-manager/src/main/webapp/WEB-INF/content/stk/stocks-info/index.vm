@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>股票信息表管理</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        $(function () {
+            jQuery('#dg').datagrid({
+                url: 'stocks-info/queryPaged',
+                columns: [[
+                    {field: 'id', checkbox: true, hidden:true}
+                   ,{field: 'name', title: '股票名称  股票中文名称', width: 100,align:'center'}
+                   ,{field: 'code', title: '股票代码  股票数字代码', width: 100,align:'center'}
+                   ,{field: 'abbreviation', title: '股票简称  股票简易代码', width: 100,align:'center'}
+                   ,{field: 'place', title: '交易场所  上交所：sh 深交所：sz', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'stype', title: '股票类型  指数:z A股:a B股:b', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'area', title: '所在地区  省级地区', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'openDate', title: '上市日期', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'status', title: '状态  交易中:0 停牌:1 下市:2', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                ]],
+                pagination: true,
+                pageSize:Magic.PAGE_SIZE,
+                pageList:Magic.PAGE_LIST,
+                rownumbers:true,
+                singleSelect: false,
+                remoteSort:false,
+                fitColumns: true,
+                fit: true,
+                toolbar: '#toolbar',
+                onDblClickRow: function (rowid, rowdata) {
+                    editForm();
+                }
+            });
+        });
+        function optionFun(value, row, index) {
+            if (!!value) {
+                return Highcharts.numberFormat(value, 2);
+            } else {
+                return '';
+            }
+        }
+        function newForm() {
+            Magic.openWin('新增股票信息表', 'stocks-info/add', 600, 200);
+        }
+        function editForm() {
+            var row = jQuery('#dg').datagrid('getSelected');
+            if (row) {
+                Magic.openWin('编辑股票信息表', 'stocks-info/edit/' + row.id, 600, 300);
+            }
+        }
+        function destroyForm() {
+            var rows = jQuery('#dg').datagrid('getSelections');
+            if (rows.length > 0) {
+                jQuery.messager.confirm('确认删除', '确定删除该记录?', function (r) {
+                    if (r) {
+                        var ids = [];
+                        jQuery.each(rows, function (index, row) {
+                            ids.push(row.id);
+                        });
+                        jQuery.post('stocks-info/delete', {'ids': ids.toString()}, function (result) {
+                            if (result.success) {
+                                jQuery('#dg').datagrid('reload');    // reload the user data
+                            } else {
+                                jQuery.messager.show({    // show error message
+                                    title: '错误',
+                                    msg: result.message
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        function dataRefresh() {
+            $.dream.tip("加载中...");
+            var name=jQuery('#filter_name').val();
+            var code=jQuery('#filter_code').val();
+            jQuery.post('stocks-info/dataRefresh',{'name':name,'code':code},function(result){
+                if(!result.success){
+                    $.dream.closetip();
+                    jQuery.messager.show({title: '错误', msg: result.message });
+
+                } else {
+                    jQuery('#dg').datagrid('load', {'name':name,'code':code});
+                    $.dream.closetip();
+                }
+            });
+        }
+
+        function contentSearch() {
+            var name=jQuery('#filter_name').val();
+            var code=jQuery('#filter_code').val();
+            jQuery('#dg').datagrid('load', {
+                'name':name,'code':code})
+        }
+
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+<table id="dg" data-options="toolbar:'#toolbar'"></table>
+<div id="toolbar">
+    <div class="search_box">
+        股票名称  股票中文名称：<input id="filter_name" class="easyui-validatebox">
+        股票代码  股票数字代码：<input id="filter_code" class="easyui-validatebox">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+           onclick="contentSearch()">搜索</a>
+    </div>
+    <div class="btn_box">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"
+           onclick="newForm()">新增</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+           onclick="editForm()">编辑</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="destroyForm()">删除</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-mini-refresh" plain="true"
+           onclick="dataRefresh()">重新生成</a>
+    </div>
+</div>
+</body>
+</html>

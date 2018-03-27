@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/com/bm/wanma/popup"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="12701"
+   kind="dir"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="AnchorPopupWindow.java"
+   checksum="797cac1311cef1ea173f1c0fae4aea3a"
+   last-author="chengmeng"
+   committed-rev="5193"
+   text-time="2017-01-19T08:07:27.835000Z"
+   kind="file"
+   committed-date="2017-01-19T08:07:27.835467Z"/>
+<entry
+   name="BasePopupWindow.java"
+   checksum="5e6108f930e1843e982e6a8b8a7c2287"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CustomShareBoard.java"
+   checksum="160ae5a0767eb1cf5bb408884a58db64"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="CustomTipAwaitPopuWindow.java"
+   checksum="5c2170deba2a00714ba84cf8f001424b"
+   last-author="liuyahui"
+   committed-rev="7628"
+   text-time="2017-06-22T01:40:56.000000Z"
+   kind="file"
+   committed-date="2017-06-22T01:40:56.000546Z"/>
+<entry
+   name="CustomTipInvoicePopuWindow.java"
+   checksum="3da949cedd74498595f6070f074c509e"
+   last-author="liuyahui"
+   committed-rev="7872"
+   text-time="2017-07-03T02:08:26.640000Z"
+   kind="file"
+   committed-date="2017-07-03T02:08:26.640734Z"/>
+<entry
+   name="InterstitialPopupWindow.java"
+   checksum="3a80432a5c4e62dc90f53459475b802d"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MywalletTypePop.java"
+   checksum="738777ac9f77d3368e3a77e9e2b2559c"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ScanEntrancePopupWindow.java"
+   checksum="2f5f33a52148dd8abc0c369dec540768"
+   last-author="liuyahui"
+   committed-rev="5067"
+   text-time="2017-01-16T08:10:22.328000Z"
+   kind="file"
+   committed-date="2017-01-16T08:10:22.328512Z"/>
+<entry
+   name="SearchPop.java"
+   checksum="10281a339d7ded1b158b170244327f58"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="SelectPatternPopupWindow.java"
+   checksum="39c6a9268a4c57849cfd65d84e2fceac"
+   last-author="liuyahui"
+   committed-rev="4832"
+   text-time="2017-01-04T03:14:36.180000Z"
+   kind="file"
+   committed-date="2017-01-04T03:14:36.180450Z"/>
+</wc-entries>

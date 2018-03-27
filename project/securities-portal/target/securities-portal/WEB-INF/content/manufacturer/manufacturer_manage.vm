@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="zh-cn">
+<head>
+    <title>用户中心</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="generator" content="客客出品专业威客2.7.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/user.css" rel="stylesheet" type="text/css" id="active-style-user">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.82587500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+</head>
+<body id="user">
+
+<script src="${base}/static/js/model/user/user.js"></script>
+<script src="${base}/static/js/model/user/transaction.js"></script>
+
+<!-- /header -->
+    #parse("includes/manufacturer/home_manage.vm")
+<!-- nav end -->
+
+<div class="container">
+    #parse("includes/manufacturer/nav_manage.vm")
+    <!-- nav-action end -->
+	 <div class="content-panel">
+        <div class="user-short">
+
+            <div class="media">
+                <div class="user-avatar">
+                    <a href="$base/ips/ips_manage">
+                        <img src="$!{model.userPic}" uid="1" class="pic_larger">          </a>
+                </div>
+                <div class="media-body">
+                    <div class="user-info">
+                        <h2 class="media-heading username">$!{model.userName}</h2>
+                        <div class="top-left">
+                            <div class="p-row1">
+                                账号认证：
+                                #if($!{model.emailStatus}=="0")
+                                    <a href="${base}/member/account_email"><img class="mar0" src="${base}/static/img/1458154d1c49ff3426.gif" width="16px" height="16px" alt="" title="邮箱认证"></a>
+                                #else
+                                    <a href="${base}/member/account_email"><img class="mar0" src="${base}/static/img/577054d1c4a43944c.gif" width="16px" height="16px" alt="" title="邮箱认证"></a>
+                                #end
+                                #if($!{authbank}==1)
+                                    <a href="${base}/financial/banklist"><img class="mar0" src="${base}/static/img/1417254d1c7201a313.gif" width="16px" height="16px" alt="" title="银行认证"></a>
+                                #else
+                                    <a href="${base}/financial/banklist"><img class="mar0" src="${base}/static/img/2913554d1c71d1d6bc.gif" width="16px" height="16px" alt="" title="银行认证"></a>
+                                #end
+                                #if($!{model.authStatus}==1)
+                                    <a href="${base}/member/account_auth"><img class="mar0" src="${base}/static/img/2353154d1c73aafa2c.gif" width="16px" height="16px" alt="" title="实名认证"></a>
+                                #else
+                                    <a href="${base}/member/account_auth"><img class="mar0" src="${base}/static/img/901854d1c735cb645.gif" width="16px" height="16px" alt="" title="实名认证"></a>
+                                #end
+                            </div>
+                            <div class="p-row1">
+                                手机：
+                                #if($!{model.mobile})
+                                    $!{model.mobile}
+                                #else
+                                    暂无
+                                #end
+                            </div>
+                            <div class="p-row1">
+                                邮箱：
+                                #if($!{model.email})
+                                    $!{model.email}
+                                #else
+                                    暂无
+                                #end
+                            </div>
+                            </div>
+##                        <div class="top-right">
+##                            <div class="notice">
+##                                <i class="fa fa-flag"></i>
+##                                <a href="index.php?do=user&amp;view=transaction&amp;op=sold&amp;intModelId=7&amp;strStatus=seller_confirm">新服务订单</a>
+##                                <span class="number">0</span>
+##                            </div>
+##                            <div class="notice">
+##                                <i class="fa fa-flag"></i>
+##                                <a href="index.php?do=user&amp;view=wk&amp;op=gy&amp;s=seller_confirm">新雇佣</a>
+##                                <span class="number">0</span>
+##                            </div>
+##                            <div class="notice">
+##                                <i class="fa fa-comment"></i>
+##                                <a href="index.php?do=user&amp;view=wk&amp;op=mark&amp;type=1">待评价</a>
+##                                <span class="number">0</span>
+##                            </div>
+##                        </div><!-- top-right end -->
+##
+##                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- user-short end -->
+
+        <div class="horizontal-row" style="float: left">
+            <div class="user-type">
+
+                <div class="type-heading">
+                    <h3 class="type-title">评价信息</h3>
+                </div>
+                <div class="type-body1">
+                    <ul class="count">
+                        <li class="item"><span class="num">2700</span>能力值：</li>
+                        <li class="item"><span class="num">100<sub>%</sub></span>好评率：</li>
+                        <li class="item"><span class="num">1</span>中标任务数：</li>
+                        <li class="item"><span class="num"><sub></sub>￥2,700.00元</span>获得任务款：</li>
+                        <li class="item"><span class="num">0</span>出售服务数：</li>
+                        <li class="item"><span class="num"><sub></sub>￥0.00元</span>获得服务款：</li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- user-type end -->
+
+            <div class="user-type">
+
+                <div class="type-heading">
+                    <h3 class="type-title">最近动态</h3>
+                </div>
+                <div class="type-body1">
+                    <ul class="count">
+                        <li class="item1"><span class="desc">你发布作品<a href="#">创意撒</a></span><div class="time">12月前</div></li>
+                        <li class="item1"><span class="desc">你在任务<a href="#">LED 灯产品手册设计</a>中标了</span><div class="time">13月前</div></li>
+                        <li class="item1"><span class="desc">你向任务<a href="#">LED 灯产品手册设计</a>投递了稿件</span><div class="time">13月前</div></li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- user-type end -->
+        </div>
+        <!-- row end -->
+
+        <div class="horizontal-row">
+            <div class="user-type">
+
+                <div class="type-heading">
+                    <h3 class="type-title">我收藏的任务</h3>
+                </div>
+                <div class="type-list">
+
+                    <table class="table table-hover count1">
+                        <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>金额（元）</th>
+                            <th>店家</th>
+                            <!--  <th>状态</th> -->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+            <!-- user-type end -->
+
+            <div class="user-type">
+
+                <div class="type-heading">
+                    <h3 class="type-title">我卖出的商品信息</h3>
+                </div>
+                <div class="type-list">
+                    <table class="table table-hover count1">
+                        <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>数量</th>
+                            <th>售出时间</th>
+                            <th>总价</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <!-- user-type end -->
+        </div>
+        <!-- row end -->
+
+
+
+
+    </div>
+</div>
+    #parse("includes/footer.vm")
+</body>
+</html>

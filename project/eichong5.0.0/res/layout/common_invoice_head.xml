@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@color/common_orange"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" >
+          <ImageButton
+            android:id="@+id/invoice_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/nav_btn_back"
+            android:background="@android:color/transparent"/>
+         <ImageButton
+            android:id="@+id/invoice_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/invoice_back"
+            android:layout_centerVertical="true"
+            android:src="@drawable/nav_btn_close"
+            android:background="@android:color/transparent"/>
+        <TextView 
+            android:id="@+id/common_invoice_title"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textColor="@color/common_white"
+             android:textSize="18sp"
+             android:layout_centerVertical="true" 
+             android:layout_centerInParent="true"
+            />
+        </RelativeLayout>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>沪深证券核心数据编辑</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/net/core-info/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <input type="hidden" name="id" value="$!{model.id}">
+        <table width="100%" cellpadding="5">
+                            <tr>
+                    <td align="left">
+                        日期
+                    </td>
+                    <td>
+                        <input name="dt" class="easyui-textbox" value="$!{model.dt}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        代码
+                    </td>
+                    <td>
+                        <input name="stockCode" class="easyui-textbox" value="$!{model.stockCode}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        简称
+                    </td>
+                    <td>
+                        <input name="stockName" class="easyui-textbox" value="$!{model.stockName}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        每股收益
+                    </td>
+                    <td>
+                        <input name="perProfit" class="easyui-textbox" value="$!{model.perProfit}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        市盈(动)
+                    </td>
+                    <td>
+                        <input name="pe" class="easyui-textbox" value="$!{model.pe}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        每股净资产
+                    </td>
+                    <td>
+                        <input name="netAssets" class="easyui-textbox" value="$!{model.netAssets}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        市净率
+                    </td>
+                    <td>
+                        <input name="pbRatio" class="easyui-textbox" value="$!{model.pbRatio}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        主营业务收入
+                    </td>
+                    <td>
+                        <input name="mainRevenue" class="easyui-textbox" value="$!{model.mainRevenue}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        营收同比
+                    </td>
+                    <td>
+                        <input name="mainYoy" class="easyui-textbox" value="$!{model.mainYoy}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        净利润
+                    </td>
+                    <td>
+                        <input name="netProfit" class="easyui-textbox" value="$!{model.netProfit}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        净利润同比
+                    </td>
+                    <td>
+                        <input name="netYoy" class="easyui-textbox" value="$!{model.netYoy}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        毛利率
+                    </td>
+                    <td>
+                        <input name="grossProfitYield" class="easyui-textbox" value="$!{model.grossProfitYield}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        净利率
+                    </td>
+                    <td>
+                        <input name="netProfitRatio" class="easyui-textbox" value="$!{model.netProfitRatio}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        净资产收益率
+                    </td>
+                    <td>
+                        <input name="assetsYield" class="easyui-textbox" value="$!{model.assetsYield}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        负债率
+                    </td>
+                    <td>
+                        <input name="debitRatio" class="easyui-textbox" value="$!{model.debitRatio}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        总股本
+                    </td>
+                    <td>
+                        <input name="totalEquity" class="easyui-textbox" value="$!{model.totalEquity}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        总值
+                    </td>
+                    <td>
+                        <input name="totalAmount" class="easyui-textbox" value="$!{model.totalAmount}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        流通股本
+                    </td>
+                    <td>
+                        <input name="circulationEquity" class="easyui-textbox" value="$!{model.circulationEquity}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        流值
+                    </td>
+                    <td>
+                        <input name="flowAmount" class="easyui-textbox" value="$!{model.flowAmount}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        每股未分配利润
+                    </td>
+                    <td>
+                        <input name="ndistribProfit" class="easyui-textbox" value="$!{model.ndistribProfit}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        上市日期
+                    </td>
+                    <td>
+                        <input name="openDate" class="easyui-textbox" value="$!{model.openDate}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        备注
+                    </td>
+                    <td>
+                        <input name="memo" class="easyui-textbox" value="$!{model.memo}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        顺序
+                    </td>
+                    <td>
+                        <input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+                    </td>
+                </tr>
+                    </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

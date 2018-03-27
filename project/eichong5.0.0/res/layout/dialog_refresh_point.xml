@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:padding="30dp" >
+    
+    <ImageView 
+         android:id="@+id/dialog_refresh_icon"
+         android:layout_width="wrap_content"
+    	 android:layout_height="wrap_content"
+    	 android:src="@drawable/img_set_refresh2"
+    	 android:layout_centerHorizontal="true"
+        />
+     <TextView 
+         android:id="@+id/dialog_refresh_title"
+          android:layout_below="@id/dialog_refresh_icon"
+         android:layout_width="match_parent"
+    	 android:layout_height="wrap_content"
+    	 android:layout_marginTop="20dp"
+         android:text="正在更新充电点，请稍后！"
+         android:textColor="@color/common_gray"
+         android:textSize="18sp"
+         android:gravity="center"
+        />
+
+    <TextView 
+         android:id="@+id/dialog_refresh_cancel"
+         android:layout_below="@id/dialog_refresh_title"
+         android:layout_centerInParent="true"
+         android:layout_marginTop="30dp"
+         android:layout_width="wrap_content"
+    	 android:layout_height="wrap_content"
+         android:text="取消"
+         android:textColor="@color/common_white"
+         android:textSize="18sp"
+         android:gravity="center"
+         android:paddingLeft="25dp"
+         android:paddingRight="25dp"
+         android:background="@drawable/bespoke_detail_led_gray"
+        />
+    
+    
+    
+    
+    
+
+</RelativeLayout>

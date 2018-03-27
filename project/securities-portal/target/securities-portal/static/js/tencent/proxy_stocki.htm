@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="gb2312"/>
+	<title>自选股V4.0 proxy</title>
+	<script>
+		//document.domain = 'qq.com';
+		var action = getHashValue('action');
+		switch (action) {
+			case 'close':
+			parent.parent.ptlogin2_onClose();
+			break;
+
+			case 'resize':
+			var width = parseInt(getHashValue('width')),
+				height = parseInt(getHashValue('height'));
+			parent.parent.ptlogin2_onResize(width, height);
+			break;
+		}
+
+		function getHashValue(n){
+		    var m = window.location.hash.replace(/^#/g,"");
+		    m = m.match(new RegExp("(^|&)" + n + "=([^&]*)(&|$)"));
+		    return ! m ? "": decodeURIComponent(m[2]);
+		}
+</script>
+</head>
+<body>
+
+</body>
+</html><!--[if !IE]>|xGv00|3ba59566b900a7974257954ad0dadf9c<![endif]-->

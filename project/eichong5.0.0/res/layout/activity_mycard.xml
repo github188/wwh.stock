@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 我的电卡 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/common_white"
+    android:orientation="vertical" >
+    <RelativeLayout
+        android:background="@color/common_orange"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        >
+        <ImageButton
+            android:id="@+id/activity_my_card_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/nav_btn_back"
+            android:background="@android:color/transparent"/>
+        <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="我的电卡"
+             android:textColor="@color/common_white"
+             android:textSize="18sp"
+             android:padding="5dp"
+             android:layout_centerVertical="true"
+             android:layout_centerInParent="true"
+            />
+        </RelativeLayout>
+         <!-- title_bar -->
+     <!-- 卡信息  申请信息 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:background="@color/common_light_gray"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/my_card_rl_info"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="1dp"
+                android:layout_weight="1"
+                android:background="@color/common_white"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/my_card_tv_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="卡信息"
+                    android:textColor="@color/common_orange"
+                    android:textSize="16sp" />
+
+                <View
+                    android:id="@+id/my_card_v_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/common_orange" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/my_card_rl_apply"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="1dp"
+                android:layout_weight="1"
+                android:background="@color/common_white"
+                android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/my_card_tv_apply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="申请信息"
+                    android:textColor="@color/common_light_black"
+                    android:textSize="16sp" />
+                <View
+                    android:id="@+id/my_card_v_apply"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/common_middle_gray" />
+            </RelativeLayout>
+
+        </LinearLayout>
+     <!-- 内容部分， fragment切换 -->
+    <LinearLayout
+        android:id="@+id/myCard_content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+    </LinearLayout>
+    
+</LinearLayout>

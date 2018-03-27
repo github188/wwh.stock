@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center_vertical"
+     >
+    
+ <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+         android:gravity="center_horizontal"
+         >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/navi_start"
+           
+            />
+         <TextView 
+             android:id="@+id/gps_start_position_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="39.989614, 116.481763"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            />
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        >
+            <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/navi_end"
+          
+            />
+         <TextView 
+             android:id="@+id/gps_end_position_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="39.989614, 116.481763"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            />
+        
+    </LinearLayout>
+
+    <Button
+         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:id="@+id/gps_start_navi_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/start_navi_navi" />
+    
+</LinearLayout>

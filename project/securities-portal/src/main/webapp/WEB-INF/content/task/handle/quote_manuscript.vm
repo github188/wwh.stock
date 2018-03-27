@@ -1,0 +1,175 @@
+#parse("includes/header_home.vm")
+<link href="${base}/static/css/style.css" rel="stylesheet" type="text/css">
+<div class="container">
+<div id="main">
+  <div  class="container">
+  <div id="main">
+		<div class="buy-user-info">
+      		<div class="media">
+				<div class="avatar">
+          			<img src='http://10.80.11.246/test/data/avatar/system/2_middle.jpg' uid='1' class='pic_middle'>        
+        		</div>
+        		<div class="media-body">
+					<strong class="meida-heading">
+		  				<span class="money">
+		  	  				<sub>￥</sub>$!NumberTool.format('#0.00', $!model.taskCash)
+		  	  			</span> $!{model.taskTitle}
+  	  				</strong>
+		          	<ul class="user-meta">
+		            	<li>普通招标模式</li>
+		            	<li>
+		              		<i class="fa fa-money"></i>已托管：<sub>￥</sub>$!NumberTool.format('#0.00', $!model.taskCash)
+		              	</li>
+		          	</ul>
+        		</div>
+      		</div>
+    	</div>
+    	
+		<div class="turnaround">
+    		<h2 class="min-title">我来报价</h2>
+    		<div class="turnaround-body">
+      			<div class="col-sm-8">
+        			<form role="form" class="turnaround-form" action="${base}/taskHandle/quotesubmit" method="post"
+        				id = "editQuoteForm" name = "editQuoteForm" enctype="application/x-www-form-urlencoded">
+          				<input type="hidden" name="taskId" id="formhash" value="$!{model.id}">
+			          	<div class="form-group">
+			            	<label for="exampleInputPrice1">报价</label>
+			            	<div class="input-group">
+			              		<span class="input-group-addon">￥</span>
+			              		<input type="text" id="price" name="quote" class="form-control" placeholder="0.00" onkeyup="clearstr(this);">
+			            	</div>
+			          	</div>
+			          	<div class="form-group">
+			            	<label for="exampleInputDate1">工作周期</label>
+			            	<div class="input-group">
+			              		<input type="hidden" name="area" id="adress"/> 
+			              		<input type="text" id="cycle" name="cycle" class="form-control" placeholder="0" onkeyup="clearstr(this);">
+			              		<span class="input-group-addon">天</span>
+			            	</div>
+			          	</div>
+
+			          	<div class="form-group">
+			            	<label for="exampleInputDesc">描述</label>
+			            	<textarea name="message" id = "tar_content" class="form-control" rows="5"></textarea>
+			            	<p class="help-block">最多可以输入:100字</p>
+			          	</div>
+			   				<!-- 需求描述 end -->
+						<div class="form-group">
+							<input type="file" id="upload" name="upload">
+							<input type="hidden" name="file_ids" id="fileid" class="form-control">
+						</div>
+						<script src="$!{base}/static/js/uploadify/jquery.uploadify.min.js?r=0.01708000" type="text/javascript"></script>
+						<link href="$!{base}/static/js/uploadify/uploadify.css" rel="stylesheet">
+						<script type="text/javascript">
+							$(function() {
+								setTimeout(function() {
+									uploadify({
+										swf : "$!{base}/static/js/uploadify/uploadify.swf",
+										debug:false,
+										text : '上传附件',
+										auto : true,
+										hide : false,
+										exts : '*.pdf;*.doc;*.docx;*.xls;*.ppt;*.wps;*.zip;*.rar;*.txt;*.jpg;*.jpeg;*.gif;*.bmp;*.swf;*.png;*.lsp;*.mp3',
+										size : "2MB",
+										limit : 5,
+										uploader:"$!{base}/taskHandle/upload?random="+Math.random(),
+										deleter:"$!{base}/taskHandle/deleteFile?random="+Math.random()
+									}, {
+										objType : 'task',
+										sessionId:""
+									}, uploadResponse);
+								}, 500);
+							});
+							
+							function uploadResponse(json) {
+								
+							}
+							
+						</script>
+						<div class="form-group ">
+							<div class="col-sm-offset-3 col-sm-6">
+								<ul class="affix-list" id="fileList">
+								</ul>
+							</div>
+						</div>
+			          	<div class="form-group ">
+			            	<a href="javascript:history.back();">返回</a>
+			            	<button type="submit" class="btn btn-default" onclick="return address();">交稿</button>
+			          	</div>
+        			</form>
+      			</div>
+    		</div>
+  		</div>
+    </div>
+  </div>
+	<script type="text/javascript">
+		$(function(){
+			//基本资料
+			$('#editQuoteForm').scojs_valid({
+			    rules: {
+					price:['not_empty','decimal',{regex: /^((\d{1,8}\.\d{1,2})|(\d{1,8}))$/}],
+					cycle:['not_empty','digit'],
+			    	tar_content: ['not_empty',{'min_length': 10},{'max_length': 1000}]
+			    },
+			    messages: {
+					price: {
+						not_empty: "请输入您的报价",
+						decimal:'请输入有效的打款金额',
+						regex:'你输入的预算只能从0-99999999.99元'
+					},
+					cycle: {
+						not_empty: "请输入工作周期",
+						decimal:'请输入有效的工作周期'
+					},
+			    	tar_content: {
+						not_empty: "请输入任务描述",
+						min_length: "最少输入10字符",
+						max_length: "最多可以输入:1000个字）"
+					}
+			    },
+			    wrapper:'.form-group',
+			    onSuccess: function(response, validator, form) {
+			    	  tipsOp(response.data,response.status);
+			    	  if(response.url){
+							window.location.href=response.url;
+			    	  }
+			    }
+			});
+		});
+		
+		function address(){
+			$("#adress").val("");
+			submitBid();
+			return false;
+		}
+		
+		function submitBid(){
+			var params = {
+				"taskId": "$!{model.id}",
+				"quote": $("#price").val(),
+				"cycle": $("#cycle").val(),
+				"area" : $("#adress").val(),
+				"message" : $("#tar_content").val(),
+				"file_ids":$("#fileid").val()
+			};
+			var url = "${base}/taskHandle/quotesubmit";
+			var success = function(data) {
+				if(data && data.success){
+					window.location.href = "${base}/task-detail-work?id=$!{model.id}";
+				}
+			}
+			$.post(url, params, success, "json");
+		}
+
+	</script>
+  <!-- release end-->
+</div>
+</div>
+#parse("includes/footer.vm")
+<script type="text/javascript">
+	$(function() {
+		$("#active-style-rework").remove();
+		$("#indus_pid").val("$!model.indus_pid");
+		$("#indus_id").val("$!model.indus_id");
+	});
+</script>

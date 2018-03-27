@@ -1,0 +1,281 @@
+#parse("includes/header_home.vm")
+<link href="${base}/static/css/style.css" rel="stylesheet" type="text/css">
+<style>
+	.talentType_1, .talentType_2, .talentType_3 {
+		display:none;
+	}
+</style>
+<div class="container">
+<div id="main">
+  <div class="release">
+    <div class="release-progress">
+		#parse("task/publish/task-step.vm")
+    </div>
+    
+    <!-- release-progress end-->
+    <div class="release-body">
+		<!-- release-help end  -->
+		<!-- 加载各任务对应步骤  -->
+		<div class="release-form">
+			<form class="form-horizontal" role="form" action="/taskpub/payment" method="post" id="pubTaskFormstep2" name="pubTaskFormstep2" novalidate="novalidate">
+				<input type="hidden" name="step2" value="step2">
+				<input type="hidden" name="formhash" id="formhash" value="6a5086">
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						订单号
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<p class="form-control-static">
+							$!model.orderNum
+						</p>
+					</div>
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						联系方式
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<p class="form-control-static">
+							$!model.contact
+						</p>
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						标题
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-6">
+						<p class="form-control-static">
+							$!model.taskTitle
+						</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						具体描述
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-8">
+						<textarea id="tar_content" name="task_desc" placeholder="需求描述">$!model.taskDesc</textarea>
+					</div>
+					<script type="text/javascript" src="$!{base}/static/js/ueditor/ueditor.config.js"></script>
+					<!-- 编辑器源码文件 -->
+					<script type="text/javascript" src="$!{base}/static/js/ueditor/ueditor.all.min.js"></script>
+					<script type="text/javascript" src="$!{base}/static/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+					<!-- 实例化编辑器 -->
+					<script type="text/javascript">
+						var ue = UE.getEditor('tar_content', {
+							initialFrameWidth : '100%',
+							initialFrameHeight : '200',
+							toolbars:[],
+							wordCount:false,
+							elementPathEnabled:false,
+							readonly:true
+						});
+					</script>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						产品
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control placeholder" readonly="readonly" id="txt_mobile" value="$!model.productName" placeholder="产品">
+					</div>
+					<label class="col-sm-2 control-label">
+						专业
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control placeholder" readonly="readonly" id="txt_mobile" value="$!model.professionName" placeholder="专业">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						人才模式
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control placeholder" readonly="readonly" value="$!model.choseTypeName" placeholder="人才模式">
+					</div>
+					<label class="col-sm-2 control-label">
+						截止日期
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control placeholder" readonly="readonly" value="$!model.subTime" placeholder="截止日期">
+					</div>
+				</div>
+				<hr/>
+				
+				<div class="form-group talentType_1">
+					<label class="col-sm-2 control-label">
+						资格要求
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control placeholder" readonly="readonly" id="txt_mobile" name="txt_mobile" value="$!model.persionalName" placeholder="要求">
+					</div>
+				</div>
+				<hr class="talentType_1"/>
+				<div class="form-group talentType_2">
+					<label class="col-sm-2 control-label">
+						团队要求
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control placeholder" readonly="readonly" id="txt_mobile" name="txt_mobile" value="$!model.team_requiredName" placeholder="要求">
+					</div>
+				</div>
+				<div class="form-group talentType_2">
+					<label class="col-sm-2 control-label">
+						团队人数
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control placeholder" readonly="readonly" id="txt_mobile" name="txt_mobile" value="$!model.teamNum" placeholder="要求">
+					</div>
+				</div>
+				<hr class="talentType_2"/>
+				
+				<div class="form-group talentType_3">
+					<label class="col-sm-2 control-label">
+						企业资质
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control placeholder" readonly="readonly" id="txt_mobile" name="txt_mobile" value="$!model.talentEnt" placeholder="要求">
+					</div>
+				</div>
+				<div class="form-group talentType_3">
+					<label class="col-sm-2 control-label">
+						支付类型
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control placeholder" readonly="readonly" id="txt_mobile" name="txt_mobile" value="$!model.paymentTypeName" placeholder="要求">
+					</div>
+				</div>
+				<hr class="talentType_3"/>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						预算费用
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<div class="input-group">
+							<input type="text" class="form-control placeholder" readonly="readonly" id="txt_mobile" value="$!model.taskCash" placeholder="预算">
+							<span class="input-group-addon">元</span>
+						</div>
+					</div>
+					<label class="col-sm-2 control-label">
+						基本要求
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control placeholder" readonly="readonly" id="txt_mobile" name="txt_mobile" value="$!model.taskCycleName" placeholder="任务周期">
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group" id="stagespay_hidden">
+					<label class="col-sm-2 control-label">
+						支付方式
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-1">
+						<p class="form-control-static">
+							#if($!model.crashPayType)
+								#if($!model.crashPayType == '1')
+									全款
+								#elseif($!model.crashPayType == '2')
+									分$!model.stagespay_num期付款
+									<script type="text/javascript">
+										var persent = "$!model.stagesHidden".split("_");
+										for(var i=0; i<persent.length; i++){
+											var html = "<div class=\"col-sm-1\">";
+												html += "<p class=\"form-control-static\">"+persent[i]+"%</p>";
+												html += "</div>";
+											$("#stagespay_hidden").append(html);
+										}
+									</script>
+								#end
+							#end
+						</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						担保金额
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<div class="input-group">
+							<input type="text" class="form-control placeholder" readonly="readonly" id="txt_mobile" name="txt_mobile" value="$!model.guarantee" placeholder="担保金额">
+							<span class="input-group-addon">元</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						完成保障
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-6">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" disabled="true" name="securityserve" value="1">
+								需提供 "保证完成"服务
+							</label>
+							</br>
+							<label>
+								<input type="checkbox" disabled="true" name="securityserve" value="2">
+								需提供 "不侵权保证" 服务
+							</label>
+							</br>
+							<label>
+								<input type="checkbox" disabled="true" name="securityserve" value="3">
+								其他服务
+							</label>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+						<button type="submit" class="btn btn-primary" onclick="return isAgreementChecked();">需求确认并支付担保金</button>
+						<a href="/taskpub/security" class="btn btn-link">返回上一步</a>
+					</div>
+				</div>
+				<!-- form-group end -->
+			</form>
+		</div>      <!-- 加载各任务对应步骤  -->
+    </div>
+    <!-- release-body end -->
+  </div>
+  <!-- release end-->
+</div>
+</div>
+#parse("includes/footer.vm")
+<script type="text/javascript">
+	$(function() {
+		$("#active-style-rework").remove();
+		//企业支付方式设置
+		var paymentHidden = "$!model.guaranteeServeHidden";
+		var paymentType = paymentHidden.split("_");
+		if(paymentType && paymentType.length > 0){
+			for(var i = 0; i < paymentType.length; i++){
+				$("input[name='securityserve'][value='"+paymentType[i]+"']").attr("checked", "checked");
+			}
+		}
+		
+		var talentType = "$!model.talentType".split(",");
+		for(var i=0; i<talentType.length; i++){
+			var cls = "talentType_" + talentType[i];
+			$("." + cls).removeClass(cls);
+		}
+		
+	});
+</script>

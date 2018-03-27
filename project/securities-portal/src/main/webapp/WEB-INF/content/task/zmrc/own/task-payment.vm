@@ -1,0 +1,234 @@
+#parse("includes/header_home.vm")
+<link href="${base}/static/css/style.css" rel="stylesheet" type="text/css">
+<div class="container">
+<div id="main">
+  <div class="release">
+    <div class="release-progress">
+		#parse("task/zmrc/own/task-step.vm")
+    </div>
+    <!-- release-progress end-->
+    <div class="release-body">
+		<!-- release-help end  -->
+		<!-- 加载各任务对应步骤  -->
+		<div class="release-form">
+			<form class="form-horizontal" role="form" method="post" id="pubTaskFormstep2" name="pubTaskFormstep2" novalidate="novalidate">
+				<input type="hidden" name="step" value="$!taskstep">
+				<input type="hidden" name="usrType" value="$!usrType">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						赏金托管
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-4">
+						<div class="checkbox">
+							<label>
+								<input #if($!model.paystatus == '1') checked #end type="radio" value="0" name="paystatus" onclick="radioClick('0');">
+								否
+							</label>
+							&nbsp;&nbsp;&nbsp;
+							<label>
+								<input #if($!model.paystatus == '2') checked #end type="radio" value="1" name="paystatus" onclick="radioClick('1');">
+								是
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group" id="cash">
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						支付金额
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<div class="input-group">
+							<input type="text" class="form-control placeholder" id="txt_mobile" name="cash" value="$!model.guarantee" placeholder="托管金额">
+							<span class="input-group-addon">元</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group" id="payType">
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						支付方式
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-6">
+						<div class="checkbox">
+							<label>
+								<input type="radio" name="guaranteeType" value="8">
+								余额支付
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="1">
+								银行转账
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="2">
+								支付宝
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="4">
+								快捷方式
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="5">
+								微信支付
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="6">
+								电子承兑汇票
+							</label>
+							<label>
+								<input type="radio" name="guaranteeType" value="7">
+								纸质承兑汇票
+							</label>
+						</div>
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+						<button class="btn btn-primary" onclick="return submitcheck();">
+							确认发布
+						</button>
+						<a href="$!{base}/taskpub/zmrc?usrType=$!model.usrType&step=2" class="btn btn-link">返回上一步</a>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-8">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" checked="checked" value="true" id="agreementchecked">
+								同意并遵守《北斗天工需求发布与处理规则》
+							</label>
+						</div>
+					</div>
+				</div>
+				<!-- form-group end -->
+			</form>
+		</div>      <!--加载各任务对应步骤  -->
+    </div>
+    <!-- release-body end -->
+  </div>
+  <!-- release end-->
+</div>
+</div>
+#parse("includes/footer.vm")
+<script type="text/javascript">
+	$(function() {
+		$("#active-style-rework").remove();
+		#if($model.paystatus)
+			$("input[name='paystatus'][value='$model.paystatus']").attr("checked", true);
+			radioClick("$model.paystatus");
+		#else
+			$("input[name='paystatus'][value='0']").attr("checked", true);
+			radioClick("0");
+		#end
+	});
+	
+	function radioClick(status){
+	
+		$("#cash input").val("");
+		$("#payType :radio").attr("checked", false);
+		if(status == "0"){
+			$("#cash").hide();
+			$("#payType").hide();
+		}
+		if(status == "1"){
+			$("#cash").show();
+			$("#payType").show();
+		}
+	}
+	
+	function submitcheck(){
+		var paystatus = $("input[name='paystatus']:checked").val();
+		if(("0"!=paystatus) && ("1"!=paystatus)){
+			tipsOp("请选择是否托管赏金！！", "warning")
+			return false;
+		}
+		
+		var cash = $("input[name='cash']").val(); 
+		if("1" == paystatus){
+			var regex = /^([\+\-]?[0-9]+(\.[0-9]+)?)?$/;
+			if(!regex.test(cash)){
+				tipsOp("请输入有效的托管金额！！", "warning")
+				return false;
+			}
+			
+			var paytype = $("input[name='guaranteeType']:checked").val();
+			if(paytype==null || paytype == ""){
+				tipsOp("请选择支付方式！！", "warning")
+				return false;
+			}
+			
+			if(paytype != "8"){
+				tipsOp("服务开发中，请选择其他支付方式！！", "warning")
+				return false;
+			}
+		
+			var url = "${base}/taskpub/saveZmrc";
+			var param = {"paystatus" : paystatus, "cash" : cash, "paytype" : paytype};
+			var success = function(result){
+				if(!result.success && result.error){
+					if(result.error == '3'){
+						tipsOp("账户余额不足，请进行<a href='${base}/financial/offline_charge'>账户充值</a>！！", "warning")
+						return false;
+					}
+				}
+				if(result.success){
+					tipsOp("信息发布成功！！", "success");
+					return false;
+				}
+			};
+			$.post(url, param, success, "json");
+		}
+		
+		if("0" == paystatus){
+			var url = "${base}/taskpub/saveZmrc";
+			var param = {"paystatus" : paystatus};
+			var success = function(result){
+				if(result.success){
+					tipsOp("信息发布成功！！", "success")
+					return false;
+				}
+			};
+			$.post(url, param, success, "json");
+		}
+		return false;
+	}
+	
+	function payBybalance(guaranteeType){
+	
+		var param = {"guaranteeType" : guaranteeType};
+		var url = "${base}/taskpub/orderPay";
+		var success = function(data){
+			if(data && data.success){
+				if(confirm) confirm.destroy();
+				$.scojs_confirm({
+					content : "支付成功！！",
+					action : function() {
+	    				window.location.href = "$!{base}/taskpub/pubsuc?indusPid=" + data.indusPid;
+					}
+				}).show();
+			}
+			if(data && !data.success){
+				if(data.type == '1') {
+					tipsOp("请设置任务担保金额！！", "warning");
+				}
+				if(data.type == '2') {
+					tipsOp("账户余额不足，请进行<a href='${base}/financial/offline_charge'>账户充值</a>！！", "warning");
+				}
+			}
+		};
+		
+		var confirm = $.scojs_confirm({
+			content : "请确定是否要进行支付操作",
+			action : function() {
+				$.post(url, param, success, "json");
+			}
+		});
+		confirm.show();
+	}
+	
+	
+	
+	
+</script>

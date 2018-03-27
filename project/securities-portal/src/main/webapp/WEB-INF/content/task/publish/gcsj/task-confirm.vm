@@ -1,0 +1,299 @@
+#parse("includes/header_home.vm")
+<link href="${base}/static/css/style.css" rel="stylesheet" type="text/css">
+<style>
+	.talentType_1, .talentType_2, .talentType_3 {
+		display:none;
+	}
+</style>
+<div class="container">
+<div id="main">
+  <div class="release">
+    <div class="release-progress">
+		#parse("task/publish/gcsj/task-step.vm")
+    </div>
+    
+    <!-- release-progress end-->
+    <div class="release-body">
+		<!-- release-help end  -->
+		<!-- 加载各任务对应步骤  -->
+		<div class="release-form">
+			<form class="form-horizontal" role="form" action="${base}/taskpub/pubsubmit" method="post" id="pubTaskFormstep2" name="pubTaskFormstep2" novalidate="novalidate">
+				<input type="hidden" name="step" value="$!taskstep">
+				<input type="hidden" name="usrType" value="$!usrType">
+				<hr/>
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						订单号
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<p class="form-control-static">
+							$!model.orderNum
+						</p>
+					</div>
+					<!--
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						雇主类型
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<p class="form-control-static">
+							#if($!model.usrType == 1)
+								业主
+							#else if($!model.usrType == 2)
+								设计院
+							#end
+						</p>
+					</div>
+					-->
+				</div>
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						联系人
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<p class="form-control-static">
+							$!model.contactor
+						</p>
+					</div>
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						联系方式
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<p class="form-control-static">
+							$!model.contact
+						</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						任务类别
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<p class="form-control-static">
+							$!industryName
+						</p>
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						需求简短描述
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-6">
+						<p class="form-control-static">
+							$!model.taskTitle
+						</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						具体描述
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">
+							$!model.taskDesc
+						</p>
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						产品
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">
+							$!productName
+						</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						资质要求
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<p class="form-control-static">
+							$!zzyq.content
+						</p>
+					</div>
+					<label class="col-sm-2 control-label">
+						业绩要求
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<p class="form-control-static">
+							$!yjyq.content
+						</p>
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						投标截止日期
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<p class="form-control-static">
+							$!model.subTime
+						</p>
+					</div>
+					<label class="col-sm-2 control-label">
+						任务周期
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<p class="form-control-static">
+							$!model.endTime
+						</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						最高限价
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<p class="form-control-static">
+							#if($!model.taskCash!='')
+								$!model.taskCash 元
+							#end
+						</p>
+					</div>
+					<label class="col-sm-2 control-label">
+						担保金
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-3">
+						<p class="form-control-static">
+							#if($!model.guarantee!='')
+								$!model.guarantee 元
+							#end
+						</p>
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group" id="stagespay_hidden">
+					<label class="col-sm-2 control-label">
+						支付方式
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-1">
+						<p class="form-control-static">
+							#if($!model.crashPayType)
+								#if($!model.crashPayType == '1')
+									全款
+								#elseif($!model.crashPayType == '2')
+									分$!model.crashPayNum期付款
+									<script type="text/javascript">
+										var persent = "$!model.stagesHidden".split("_");
+										for(var i=0; i<persent.length; i++){
+											var html = "<div class=\"col-sm-1\">";
+												html += "<p class=\"form-control-static\">"+persent[i]+"%</p>";
+												html += "</div>";
+											$("#stagespay_hidden").append(html);
+										}
+									</script>
+								#end
+							#end
+						</p>
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						业主承诺
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-4">
+						<div class="checkbox">
+							#foreach($dict in $!yzcn)
+								<label>
+									<input type="checkbox" disabled="true" value="$!dict.value" name="securityserve">
+									$!dict.content
+								</label>
+								</br>
+							#end
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="txt_mobile" class="col-sm-2 control-label">
+						其他服务
+						<span class="text-danger">:</span>
+					</label>
+					<div class="col-sm-4">
+						<div class="checkbox">
+							#foreach($dict in $!qtfw)
+								<label>
+									<input type="checkbox" disabled="true" value="$!dict.value" name="qtfwOpt">
+									$!dict.content
+								</label>
+								</br>
+							#end
+						</div>
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+						<button type="submit" class="btn btn-primary" onclick="return isAgreementChecked();">下一步</button>
+						<button type="submit" class="btn btn-primary" onclick="return false;">打印</button>
+						<a href="$!{base}/taskpub/step?usrType=$!{usrType}&step=4" class="btn btn-link">返回上一步</a>
+					</div>
+				</div>
+				<!-- form-group end -->
+			</form>
+		</div>      <!-- 加载各任务对应步骤  -->
+    </div>
+    <!-- release-body end -->
+  </div>
+  <!-- release end-->
+</div>
+</div>
+#parse("includes/footer.vm")
+<script type="text/javascript">
+	$(function() {
+		$("#active-style-rework").remove();
+		//企业支付方式设置
+		var paymentHidden = "$!model.yzcn";
+		var paymentType = paymentHidden.split(",");
+		if(paymentType && paymentType.length > 0){
+			for(var i = 0; i < paymentType.length; i++){
+				$("input[name='securityserve'][value='"+paymentType[i]+"']").attr("checked", "checked");
+			}
+		}
+		
+		var qtfwType = "$!model.qtfw".split(",");
+		if(qtfwType && qtfwType.length > 0){
+			for(var i = 0; i < qtfwType.length; i++){
+				$("input[name='qtfwOpt'][value='"+qtfwType[i]+"']").attr("checked", "checked");
+			}
+		}
+		
+		$('#pubTaskFormstep2').scojs_valid({
+		    rules: {
+		    },
+		    messages: {
+		    },
+	    	wrapper:'.form-group',
+	    	onSuccess: function(response, validator, $form) {
+	    		#set($num = $NumberTool.toNumber($!taskstep)+1)
+	    		window.location.href = "$!{base}/taskpub/step?usrType=$!usrType&step=$num";
+	    	}
+		});
+		
+	});
+	
+	function isAgreementChecked(){
+	
+		return true;
+	}
+
+</script>

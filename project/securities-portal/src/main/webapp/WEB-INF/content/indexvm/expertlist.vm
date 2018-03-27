@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" type="text/css" href="$!{base}/static/newindex/css/expert.css" />
+    <link rel="stylesheet" type="text/css" href="$!{base}/static/newindex/css/newIndex.css" />
+    <script src="$!{base}/static/newindex/js/jquery.js"></script>
+    #parse("includes/index-header.vm")
+
+<body>
+<div class="nav">
+    <ul class="wrap clearfix">
+        #set($classNum = 5)
+			#parse("includes/index-navmanage.vm")
+    </ul>
+</div>
+	<!-- <div class="crumbs"><div class="wrap"><i class="icon_arrow"></i>当前位置：首页  >  VIP库</div></div> -->
+	<img src="$!{base}/static/newindex/images/lunbo_1.jpg" width="100%;" style="display:block;">
+	<div class="wrap module">
+		<h2  class="icon_title_x"><i></i>领域专家推荐</h2>
+		<ul class="expertList clearfix">
+			<li>
+				<div class="img"><img src="$!{base}/static/newindex/images/expert/img1.png"></div>
+				<div class="listContent">
+					<h3>石油化工技术创新的先行者和绿色化学的开拓者</h3>
+					<p class="content">石油化工专家闵恩泽院士获2007年度国家最高科学技术奖，他是石油化工技术自主创新的先行者和绿色化学的开拓者，他研制的多种…<a href="">[详情]</a></p>
+					<p class="pInfo"><span class="name">胡刚</span> | 湖南省，长沙市，望城县</p>
+					<a class="employBtn">雇用 TA</a>
+				</div>
+			</li>
+			<li>
+				<div class="img"><img src="$!{base}/static/newindex/images/expert/img2.png"></div>
+				<div class="listContent">
+					<h3>建筑设计研究院首席建筑师</h3>
+					<p class="content">一九九三年七月毕业于西北建筑工程学院建筑系建筑学专业，同年参加工作，在甘肃省建筑设计研究院从事建筑设计工作....<a href="">[详情]</a></p>
+					<p class="pInfo"><span class="name">周林</span> | 浙江省，杭州市，萧山区</p>
+					<a class="employBtn">雇用 TA</a>
+				</div>
+			</li>
+			<li>
+				<div class="img"><img src="$!{base}/static/newindex/images/expert/img3.png"></div>
+				<div class="listContent">
+					<h3>著名的石油化工专家，一级教授，总设计师</h3>
+					<p class="content">著名的石油化工专家，一级教授，总设计师，毕业于华东化工学院(现改为华东理工大学)化学工程和化工机械专业…<a href="">[详情]</a></p>
+					<p class="pInfo"><span class="name">王松汉</span> | 浙江省，义乌市，佛堂镇</p>
+					<a class="employBtn">雇用 TA</a>
+				</div>
+			</li>
+            <li>
+                <div class="img"><img src="$!{base}/static/newindex/images/expert/img1.png"></div>
+                <div class="listContent">
+                    <h3>石油化工技术创新的先行者和绿色化学的开拓者</h3>
+                    <p class="content">石油化工专家闵恩泽院士获2007年度国家最高科学技术奖，他是石油化工技术自主创新的先行者和绿色化学的开拓者，他研制的多种…<a href="">[详情]</a></p>
+                    <p class="pInfo"><span class="name">胡刚</span> | 湖南省，长沙市，望城县</p>
+                    <a class="employBtn">雇用 TA</a>
+                </div>
+            </li>
+            <li>
+                <div class="img"><img src="$!{base}/static/newindex/images/expert/img2.png"></div>
+                <div class="listContent">
+                    <h3>建筑设计研究院首席建筑师</h3>
+                    <p class="content">一九九三年七月毕业于西北建筑工程学院建筑系建筑学专业，同年参加工作，在甘肃省建筑设计研究院从事建筑设计工作....<a href="">[详情]</a></p>
+                    <p class="pInfo"><span class="name">周林</span> | 浙江省，杭州市，萧山区</p>
+                    <a class="employBtn">雇用 TA</a>
+                </div>
+            </li>
+            <li>
+                <div class="img"><img src="$!{base}/static/newindex/images/expert/img3.png"></div>
+                <div class="listContent">
+                    <h3>著名的石油化工专家，一级教授，总设计师</h3>
+                    <p class="content">著名的石油化工专家，一级教授，总设计师，毕业于华东化工学院(现改为华东理工大学)化学工程和化工机械专业…<a href="">[详情]</a></p>
+                    <p class="pInfo"><span class="name">王松汉</span> | 浙江省，义乌市，佛堂镇</p>
+                    <a class="employBtn">雇用 TA</a>
+                </div>
+            </li><li>
+            <div class="img"><img src="$!{base}/static/newindex/images/expert/img1.png"></div>
+            <div class="listContent">
+                <h3>石油化工技术创新的先行者和绿色化学的开拓者</h3>
+                <p class="content">石油化工专家闵恩泽院士获2007年度国家最高科学技术奖，他是石油化工技术自主创新的先行者和绿色化学的开拓者，他研制的多种…<a href="">[详情]</a></p>
+                <p class="pInfo"><span class="name">胡刚</span> | 湖南省，长沙市，望城县</p>
+                <a class="employBtn">雇用 TA</a>
+            </div>
+        </li>
+            <li>
+                <div class="img"><img src="$!{base}/static/newindex/images/expert/img2.png"></div>
+                <div class="listContent">
+                    <h3>建筑设计研究院首席建筑师</h3>
+                    <p class="content">一九九三年七月毕业于西北建筑工程学院建筑系建筑学专业，同年参加工作，在甘肃省建筑设计研究院从事建筑设计工作....<a href="">[详情]</a></p>
+                    <p class="pInfo"><span class="name">周林</span> | 浙江省，杭州市，萧山区</p>
+                    <a class="employBtn">雇用 TA</a>
+                </div>
+            </li>
+            <li>
+                <div class="img"><img src="$!{base}/static/newindex/images/expert/img3.png"></div>
+                <div class="listContent">
+                    <h3>著名的石油化工专家，一级教授，总设计师</h3>
+                    <p class="content">著名的石油化工专家，一级教授，总设计师，毕业于华东化工学院(现改为华东理工大学)化学工程和化工机械专业…<a href="">[详情]</a></p>
+                    <p class="pInfo"><span class="name">王松汉</span> | 浙江省，义乌市，佛堂镇</p>
+                    <a class="employBtn">雇用 TA</a>
+                </div>
+            </li>
+            <li>
+                <div class="img"><img src="$!{base}/static/newindex/images/expert/img3.png"></div>
+                <div class="listContent">
+                    <h3>著名的石油化工专家，一级教授，总设计师</h3>
+                    <p class="content">著名的石油化工专家，一级教授，总设计师，毕业于华东化工学院(现改为华东理工大学)化学工程和化工机械专业…<a href="">[详情]</a></p>
+                    <p class="pInfo"><span class="name">王松汉</span> | 浙江省，义乌市，佛堂镇</p>
+                    <a class="employBtn">雇用 TA</a>
+                </div>
+            </li>
+		</ul>
+	</div>
+		#parse("includes/footer.vm")
+</body>
+</html>

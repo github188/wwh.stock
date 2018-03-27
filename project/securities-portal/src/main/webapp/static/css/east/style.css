@@ -1,0 +1,1593 @@
+﻿html {
+    _background-image: url(about:blank);
+    _background-attachment: fixed
+}
+
+#divContents {
+    font-size: 12px;
+    font-family: 宋体
+}
+
+#divContents a {
+    text-decoration: none;
+    cursor: pointer
+}
+
+#divContents .divRegForm {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    _position: absolute;
+    _top: expression(eval(document.documentElement.scrollTop))
+}
+
+#divContents .divRegForm .divRegZheZhao {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    filter: alpha(opacity=50);
+    opacity: .5;
+    _position: absolute;
+    _top: 0;
+    _height: expression(eval(document.documentElement.clientHeight))
+}
+
+#divContents .divRegForm .divRegBox {
+    position: relative;
+    width: 100%;
+    height: 50%;
+    z-index: 10000
+}
+
+#bindmailcheckaspx .divJDDW,#changealiasaspx .divJDDW,#changeapaspx .divJDDW,#divContents .divRegForm .divRegBox .divXDDW,#setnicknameaspx .divJDDW,#setnickpwdaspx .divJDDW {
+    position: relative;
+    margin: 0 auto;
+    top: 50%;
+    border: 3px solid #B3D0E4;
+    background-color: #F5FAFE
+}
+
+#divContents .a {
+    cursor: pointer
+}
+
+#divContents .divJDDW div {
+    position: absolute
+}
+
+#divContents .divXDDW div {
+    position: relative
+}
+
+#divContents .divXDDW .right {
+    float: right
+}
+
+#divContents #divClose {
+    position: relative;
+    float: right;
+    right: 4px;
+    top: 2px
+}
+
+#divContents .divAlertMsg {
+    z-index: 10007;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    _position: absolute;
+    _top: expression(eval(document.documentElement.scrollTop))
+}
+
+#divContents .divAlertMsg .divAlertZheZhao {
+    z-index: 10001;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    filter: alpha(opacity=40);
+    opacity: .4;
+    _position: absolute;
+    _top: 0;
+    _height: expression(eval(document.documentElement.clientHeight));
+    background-color: #000
+}
+
+#divContents .divAlertMsg .divMsg {
+    position: fixed;
+    z-index: 10008;
+    top: 30%;
+    left: 28%;
+    width: 500px;
+    height: 220px;
+    background-color: #F5FAFE;
+    border: 3px solid #B3D0E4;
+    _position: absolute;
+    _top: expression(eval((document.documentElement.clientHeight-220) / 2))
+}
+
+#divTopO {
+    height: 24px;
+    line-height: 24px;
+    z-index: 10004
+}
+
+#divTopN {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10005;
+    _position: absolute;
+    _top: expression(eval(document.documentElement.scrollTop))
+}
+
+#divTopInfo {
+    top: 0;
+    margin: 0 auto;
+    background: #FFF8C1;
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px
+}
+
+#divTopInfo .tipInfo {
+    position: relative;
+    padding: 0 10px
+}
+
+#divTopInfo .tipInfo .qhyyzh {
+    float: right
+}
+
+#divTopInfo .tipInfo .qhyyzh a {
+    display: block;
+    margin-top: 2px;
+    width: 80px;
+    height: 19px;
+    background: url(http://passport.eastmoney.com/onekey/image/qiehuan.png)
+}
+
+#divTopInfo .tipInfo .qipaoyy {
+    position: absolute;
+    right: 0
+}
+
+#divTopInfo .tipInfo .qipaoyy .qipaoyyx {
+    position: relative;
+    cursor: pointer;
+    margin: -38px 0 0 122px
+}
+
+#divTopInfo .tipInfo a {
+    color: #0158A7
+}
+
+#bindaspx .divXDDW {
+    width: 464px;
+    height: 270px
+}
+
+#bindaspx .divXDDW .yqts {
+    color: #FF4900;
+    text-align: center;
+    font-size: 20px;
+    font-family: 宋体;
+    height: 50px;
+    top: 15px;
+    font-weight: 700
+}
+
+#bindaspx .divXDDW .tit {
+    text-align: center;
+    font-size: 14px;
+    height: 30px;
+    top: 15px
+}
+
+#bindaspx .divXDDW .bindContent {
+    top: 20px
+}
+
+#bindaspx .divXDDW .bindContent .bindphone {
+    width: 130px;
+    height: 100px;
+    background-color: #3A5E95;
+    float: left;
+    left: 82px;
+    cursor: pointer
+}
+
+#bindaspx .divXDDW .bindContent .bindphone .img {
+    text-align: center;
+    top: 10px;
+    height: 70px
+}
+
+#bindaspx .divXDDW .bindContent .bindphone .txt {
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700
+}
+
+#bindaspx .divXDDW .bindContent .bindsina {
+    width: 130px;
+    height: 32px;
+    background-color: #CF6672;
+    position: absolute;
+    left: 82px;
+    top: 120px;
+    cursor: pointer
+}
+
+#bindaspx .divXDDW .bindContent .bindsina .sinaimg {
+    top: 6px;
+    left: 10px;
+    float: left
+}
+
+#bindaspx .divXDDW .bindContent .bindsina .sinatxt {
+    top: 10px;
+    left: 14px;
+    float: left;
+    color: #fff;
+    font-size: 12px
+}
+
+#bindaspx .divXDDW .bindContent .bindmail {
+    width: 130px;
+    height: 100px;
+    background-color: #3A5E95;
+    float: right;
+    right: 82px;
+    cursor: pointer
+}
+
+#bindaspx .divXDDW .bindContent .bindmail .img {
+    text-align: center;
+    top: 25px;
+    height: 70px
+}
+
+#bindaspx .divXDDW .bindContent .bindmail .txt {
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700
+}
+
+#bindaspx .divXDDW .bindContent .bindqq {
+    width: 130px;
+    height: 32px;
+    background-color: #7FBFC7;
+    position: absolute;
+    left: 252px;
+    top: 120px;
+    cursor: pointer
+}
+
+#bindaspx .divXDDW .bindContent .bindqq .qqimg {
+    top: 6px;
+    left: 10px;
+    float: left
+}
+
+#bindaspx .divXDDW .bindContent .bindqq .qqtxt {
+    top: 10px;
+    left: 14px;
+    float: left;
+    color: #fff;
+    font-size: 12px
+}
+
+#bindaspx .divXDDW .bindContent .nobind {
+    position: absolute;
+    top: 120px;
+    left: 280px;
+    _left: 180px
+}
+
+#bindaspx .divXDDW .bindContent .nobind a {
+    color: #003598;
+    text-decoration: underline;
+    width: 125px
+}
+
+#bindaspx .divXDDW .bindContent .nobind a:hover {
+    color: red
+}
+
+#bindmailaspx .divXDDW {
+    width: 438px;
+    height: 208px
+}
+
+#bindmailaspx .tit {
+    text-align: center;
+    font-family: 宋体;
+    height: 50px;
+    top: 35px
+}
+
+#bindmailaspx .divXDDW .bindContent {
+    top: 20px;
+    font-size: 12px
+}
+
+#bindmailaspx .bindmail {
+    float: left;
+    width: 140px
+}
+
+#bindmailaspx .bindmail .titmail {
+    top: 6px;
+    height: 30px
+}
+
+#bindmailaspx .bindtxt {
+    left: 6px;
+    height: 30px;
+    line-height: 30px
+}
+
+#bindmailaspx .bindtxt .txt {
+    height: 25px;
+    line-height: 25px;
+    width: 220px;
+    font-size: 14px
+}
+
+#bindmailaspx .emailerr {
+    left: 146px;
+    top: 10px;
+    color: Red
+}
+
+#bindmailaspx .bindbtn {
+    left: 146px;
+    top: 20px
+}
+
+#bindmailaspx .bindbtn .ok {
+    color: #fff;
+    background-color: #FF4900;
+    height: 30px;
+    font-size: 18px;
+    width: 80px;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer
+}
+
+#bindmailaspx .bindbtn .ok .titok {
+    top: 6px
+}
+
+#bindmailcheckaspx .divJDDW {
+    width: 468px;
+    height: 208px
+}
+
+#bindmailcheckaspx .mailtit {
+    font-size: 15px;
+    top: 35px;
+    left: 16px;
+    width: 99%
+}
+
+#bindmailcheckaspx .mailtit a {
+    font-weight: 700;
+    color: #003598;
+    text-decoration: underline
+}
+
+#bindmailcheckaspx .mailtit .temp {
+    top: 29px
+}
+
+#bindmailcheckaspx .mailtit2 {
+    top: 139px;
+    font-size: 13px;
+    color: #626262;
+    left: 16px;
+    width: 99%
+}
+
+#bindmailcheckaspx .mailtit2 .temp {
+    top: 29px
+}
+
+#bindmailcheckaspx .mailtit2 .temp a {
+    color: #003598;
+    text-decoration: underline
+}
+
+#bindmailcheckaspx .mailtit2 .temp .sendOK {
+    left: 170px;
+    top: 0;
+    width: 260px
+}
+
+#bindmailcheckaspx .look {
+    top: 95px;
+    width: 99%;
+    float: rigth
+}
+
+#bindmailcheckaspx .look .lookmail {
+    float: right;
+    font-family: 宋体;
+    font-size: 15px;
+    right: 25px
+}
+
+#bindmailcheckaspx .look .lookmail a {
+    color: #003598;
+    text-decoration: underline
+}
+
+#bindphoneaspx .divXDDW {
+    width: 438px;
+    height: 258px
+}
+
+#bindphoneaspx .titbindphone {
+    text-align: center;
+    font-family: 宋体;
+    height: 50px;
+    top: 25px
+}
+
+#bindphoneaspx .bindphoneContent {
+    top: 20px;
+    font-size: 12px
+}
+
+#bindphoneaspx .bindphoneContent .leftContent {
+    float: left;
+    width: 140px
+}
+
+#bindphoneaspx .bindphoneContent .leftContent .phone {
+    top: 6px;
+    height: 30px;
+    line-height: 20px
+}
+
+#bindphoneaspx .bindphoneContent .leftContent .jhm {
+    top: 35px;
+    height: 30px;
+    line-height: 20px
+}
+
+#bindphoneaspx .bindphoneContent .txtphone {
+    left: 6px;
+    height: 30px
+}
+
+#bindphoneaspx .bindphoneContent .txtphone .txt {
+    height: 25px;
+    line-height: 25px;
+    width: 220px;
+    font-size: 14px
+}
+
+#bindphoneaspx .bindphoneContent .divTS {
+    left: 6px;
+    top: 8px;
+    color: gray
+}
+
+#bindphoneaspx .bindphoneContent .txtjhm {
+    left: 6px;
+    top: 20px
+}
+
+#bindphoneaspx .bindphoneContent .txtjhm .getjhm {
+    z-index: 10001;
+    cursor: pointer;
+    float: left;
+    width: 100px;
+    height: 30px;
+    color: #fff;
+    background-color: #3A5E95
+}
+
+#bindphoneaspx .bindphoneContent .txtjhm .getjhm .tit {
+    top: 8px;
+    left: 8px
+}
+
+#bindphoneaspx .bindphoneContent .txtjhm .jhm {
+    left: 6px
+}
+
+#bindphoneaspx .bindphoneContent .txtjhm .jhm .txt2 {
+    height: 25px;
+    line-height: 25px;
+    width: 114px;
+    font-size: 14px
+}
+
+#bindphoneaspx .bindphoneContent .divTS2 {
+    left: 140px;
+    top: 8px;
+    color: gray
+}
+
+#bindphoneaspx .bindphoneContent .divTS2 a {
+    color: #003598;
+    text-decoration: underline
+}
+
+#bindphoneaspx .bindphoneContent .bindbtn {
+    left: 146px;
+    top: 40px;
+    width: 80px
+}
+
+#bindphoneaspx .bindphoneContent .bindbtn .btnok {
+    color: #fff;
+    background-color: #FF4900;
+    height: 30px;
+    font-size: 18px;
+    width: 80px;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer
+}
+
+#bindphoneaspx .bindphoneContent .bindbtn .btnok .btnokitem {
+    position: absolute;
+    top: 6px;
+    left: 20px
+}
+
+#changepwdaspx .divXDDW {
+    width: 438px;
+    height: 248px
+}
+
+#changepwdaspx .divXDDW .changepwdtit {
+    text-align: center;
+    font-family: 宋体;
+    height: 50px;
+    top: 35px
+}
+
+#changepwdaspx .divXDDW .changepwdContent {
+    top: 20px;
+    font-size: 12px
+}
+
+#changepwdaspx .divXDDW .changepwdContent .contentleft {
+    float: left;
+    width: 140px
+}
+
+#changepwdaspx .divXDDW .changepwdContent .contentleft .xmm {
+    top: 8px;
+    height: 30px
+}
+
+#changepwdaspx .divXDDW .changepwdContent .contentleft .qrmm {
+    top: 35px;
+    height: 30px
+}
+
+#changepwdaspx .divXDDW .changepwdContent .txtxmm {
+    left: 6px;
+    height: 25px
+}
+
+#changepwdaspx .divXDDW .changepwdContent .txtxmm .txt {
+    height: 25px;
+    line-height: 25px;
+    width: 220px;
+    font-size: 14px
+}
+
+#changepwdaspx .divXDDW .changepwdContent .mmTS {
+    top: 8px;
+    left: 6px;
+    color: gray
+}
+
+#changepwdaspx .divXDDW .changepwdContent .txtqrmm {
+    top: 0
+}
+
+#changepwdaspx .divXDDW .changepwdContent .txtqrmm .qrmmitem {
+    position: absolute;
+    left: 146px
+}
+
+#changepwdaspx .divXDDW .changepwdContent .txtqrmm .qrmmitem .txt {
+    height: 25px;
+    line-height: 25px;
+    width: 220px;
+    font-size: 14px
+}
+
+#changepwdaspx .divXDDW .changepwdContent .qrmmTS {
+    top: 50px;
+    left: 6px;
+    color: gray
+}
+
+#changepwdaspx .divXDDW .changepwdContent .changepwdbtn {
+    position: absolute;
+    left: 146px;
+    top: 110px;
+    _left: 6px;
+    _top: 120px
+}
+
+#changepwdaspx .divXDDW .changepwdContent .changepwdbtn .changepwditem {
+    color: #fff;
+    background-color: #FF4900;
+    height: 30px;
+    font-size: 18px;
+    width: 80px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center
+}
+
+#changepwdaspx .divXDDW .changepwdContent .changepwdbtn .changepwditem .txt {
+    top: 6px
+}
+
+#login2aspx .divXDDW {
+    width: 672px;
+    height: 320px
+}
+
+#login2aspx .divLoginLeft {
+    top: 15px;
+    width: 288px;
+    height: 290px;
+    float: left;
+    text-align: center;
+    border-right: 1px solid #A0A0A0
+}
+
+#login2aspx .divLoginLeft .tit1 {
+    top: 60px
+}
+
+#login2aspx .divLoginLeft .tit2 {
+    position: absolute;
+    top: 100px;
+    left: 52px;
+    width: 180px;
+    height: 38px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #3A5E95;
+    color: #fff
+}
+
+#login2aspx .divLoginLeft .tit3 {
+    position: absolute;
+    top: 165px;
+    left: 52px;
+    width: 180px;
+    height: 38px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #DCDCDC;
+    color: #3F3F3F;
+    display: #000
+}
+
+#login2aspx .divLoginLeft .tit6 {
+    position: absolute;
+    top: 155px;
+    left: 52px;
+    width: 180px;
+    height: 38px;
+    font-size: 12px;
+    color: #626262;
+    display: none
+}
+
+#login2aspx .divLoginLeft .tit4 {
+    position: absolute;
+    top: 175px;
+    left: 52px;
+    width: 180px;
+    height: 38px;
+    font-size: 16px;
+    text-align: left;
+    display: none
+}
+
+#login2aspx .divLoginLeft .tit5 {
+    position: absolute;
+    top: 215px;
+    left: 52px;
+    width: 64px;
+    height: 28px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #3A5E95;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+    display: none
+}
+
+#login2aspx .divLoginLeft .tit5 .okItem {
+    position: absolute;
+    top: 6px;
+    left: 14px
+}
+
+#login2aspx .divLoginLeft .tit7 {
+    position: absolute;
+    top: 248px;
+    left: 52px;
+    color: Red;
+    font-size: 12px;
+    height: 20px;
+    text-align: left
+}
+
+#login2aspx .divLoginLeft .tit4 .item {
+    position: absolute
+}
+
+#login2aspx .divLoginLeft .tit4 .item .txtgyg {
+    height: 25px;
+    line-height: 25px;
+    width: 60px;
+    font-size: 12px;
+    color: #959595
+}
+
+#login2aspx .divLoginLeft .tit4 .divgygyzm {
+    position: absolute;
+    left: 80px;
+    width: 200px
+}
+
+#login2aspx .divLoginLeft .tit4 .divgygyzm #yzmgyg {
+    height: 60px
+}
+
+#login2aspx .divLoginLeft .tit2 .item,#login2aspx .divLoginLeft .tit3 .item {
+    top: 10px
+}
+
+#login2aspx .divLoginRight {
+    top: 15px;
+    width: 360px;
+    height: 252px;
+    float: right
+}
+
+#login2aspx .userLogintit {
+    top: 10px;
+    left: 25px;
+    height: 30px;
+    font-size: 20px;
+    color: #3F3F3F;
+    font-weight: 700
+}
+
+#login2aspx .loginhrtit {
+    top: 15px;
+    left: 25px
+}
+
+#login2aspx .loginForm {
+    top: 35px;
+    font-size: 14px
+}
+
+#login2aspx .txtdlm,#login2aspx .txtmm {
+    height: 25px;
+    line-height: 25px;
+    width: 190px;
+    font-size: 12px;
+    color: #959595
+}
+
+#login2aspx .txtyzm {
+    height: 25px;
+    line-height: 25px;
+    width: 80px;
+    font-size: 12px;
+    color: #959595
+}
+
+#login2aspx .yzm {
+    position: absolute;
+    height: 40px;
+    left: 160px;
+    top: 115px
+}
+
+#login2aspx .dlmerr,#login2aspx .mmerr,#login2aspx .yzmerr {
+    color: Red;
+    font-size: 12px;
+    height: 20px
+}
+
+#login2aspx .dlmnoerr {
+    color: #333;
+    font-size: 12px
+}
+
+#login2aspx .divLoginRight .loginbtn {
+    top: 160px;
+    _left: 85px
+}
+
+#login2aspx .divLoginRight .loginbtn .loginOK {
+    left: 95px;
+    _left: 100px;
+    _left: 6px;
+    color: #fff;
+    background-color: #FF4900;
+    height: 34px;
+    font-size: 18px;
+    width: 100px;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer
+}
+
+#login2aspx .divLoginRight .loginbtn .loginOK .okItem {
+    position: absolute;
+    top: 8px;
+    left: 26px
+}
+
+#login2aspx .divLoginRight .loginbtn .wjmm {
+    position: absolute;
+    left: 230px;
+    _left: 136px;
+    width: 50px;
+    font-size: 12px;
+    top: 8px;
+    cursor: pointer;
+    color: #003598;
+    text-decoration: underline
+}
+
+#login2aspx .divLoginRight .loginqt {
+    top: 110px
+}
+
+#login2aspx .divLoginRight .loginqt .sinaItem {
+    float: left;
+    width: 130px;
+    height: 32px;
+    background-color: #CF6672;
+    left: 44px;
+    cursor: pointer
+}
+
+#login2aspx .divLoginRight .loginqt .sinaItem .sinaImg {
+    top: 6px;
+    left: 10px;
+    float: left
+}
+
+#login2aspx .divLoginRight .loginqt .sinaItem .sinatit {
+    top: 10px;
+    left: 14px;
+    float: left;
+    color: #fff;
+    font-size: 12px
+}
+
+#login2aspx .divLoginRight .loginqt .qqItem {
+    width: 130px;
+    height: 32px;
+    background-color: #7FBFC7;
+    float: right;
+    right: 44px;
+    cursor: pointer
+}
+
+#login2aspx .divLoginRight .loginqt .qqItem .qqImg {
+    top: 6px;
+    left: 10px;
+    float: left
+}
+
+#login2aspx .divLoginRight .loginqt .qqItem .qqtit {
+    top: 10px;
+    left: 14px;
+    float: left;
+    color: #fff;
+    font-size: 12px
+}
+
+#login3aspx .divXDDW {
+    width: 382px;
+    height: 300px
+}
+
+#login3aspx .divLoginRight {
+    top: 15px;
+    width: 360px;
+    height: 252px;
+    float: right
+}
+
+#login3aspx .userLogintit {
+    top: 10px;
+    left: 25px;
+    height: 30px;
+    font-size: 20px;
+    color: #3F3F3F;
+    font-weight: 700
+}
+
+#login3aspx .loginhrtit {
+    top: 15px;
+    left: 25px
+}
+
+#login3aspx .loginForm {
+    top: 35px;
+    font-size: 14px
+}
+
+#login3aspx .txtdlm,#login3aspx .txtmm {
+    height: 25px;
+    line-height: 25px;
+    width: 190px;
+    font-size: 12px;
+    color: #959595
+}
+
+#login3aspx .txtyzm {
+    height: 25px;
+    line-height: 25px;
+    width: 80px;
+    font-size: 12px;
+    color: #959595
+}
+
+#login3aspx .yzm {
+    position: absolute;
+    height: 40px;
+    left: 160px;
+    top: 115px
+}
+
+#login3aspx .dlmerr,#login3aspx .mmerr,#login3aspx .yzmerr {
+    color: Red;
+    font-size: 12px;
+    height: 20px
+}
+
+#login3aspx .dlmnoerr {
+    color: #333;
+    font-size: 12px
+}
+
+#login3aspx .divLoginRight .loginbtn {
+    top: 160px;
+    _left: 85px
+}
+
+#login3aspx .divLoginRight .loginbtn .loginOK {
+    left: 95px;
+    _left: 100px;
+    _left: 6px;
+    color: #fff;
+    background-color: #FF4900;
+    height: 34px;
+    font-size: 18px;
+    width: 100px;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer
+}
+
+#login3aspx .divLoginRight .loginbtn .loginOK .okItem {
+    position: absolute;
+    top: 8px;
+    left: 26px
+}
+
+#login3aspx .divLoginRight .loginbtn .wjmm {
+    position: absolute;
+    left: 230px;
+    _left: 136px;
+    width: 50px;
+    font-size: 12px;
+    top: 8px;
+    cursor: pointer;
+    color: #003598;
+    text-decoration: underline
+}
+
+#login3aspx .divLoginRight .loginqt {
+    top: 110px
+}
+
+#login3aspx .divLoginRight .loginqt .sinaItem {
+    float: left;
+    width: 130px;
+    height: 32px;
+    background-color: #CF6672;
+    left: 44px;
+    cursor: pointer
+}
+
+#login3aspx .divLoginRight .loginqt .sinaItem .sinaImg {
+    top: 6px;
+    left: 10px;
+    float: left
+}
+
+#login3aspx .divLoginRight .loginqt .sinaItem .sinatit {
+    top: 10px;
+    left: 14px;
+    float: left;
+    color: #fff;
+    font-size: 12px
+}
+
+#login3aspx .divLoginRight .loginqt .qqItem {
+    width: 130px;
+    height: 32px;
+    background-color: #7FBFC7;
+    float: right;
+    right: 44px;
+    cursor: pointer
+}
+
+#login3aspx .divLoginRight .loginqt .qqItem .qqImg {
+    top: 6px;
+    left: 10px;
+    float: left
+}
+
+#login3aspx .divLoginRight .loginqt .qqItem .qqtit {
+    top: 10px;
+    left: 14px;
+    float: left;
+    color: #fff;
+    font-size: 12px
+}
+
+#login4aspx .divXDDW {
+    width: 672px;
+    height: 320px
+}
+
+#login4aspx .divLoginLeft {
+    top: 15px;
+    width: 288px;
+    height: 290px;
+    float: left;
+    text-align: center;
+    border-right: 1px solid #A0A0A0
+}
+
+#login4aspx .divLoginLeft .tit1 {
+    top: 60px;
+    font-size: 14px
+}
+
+#login4aspx .divLoginLeft .tit2 {
+    position: absolute;
+    top: 100px;
+    left: 52px;
+    width: 180px;
+    height: 38px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #3A5E95;
+    color: #fff
+}
+
+#login4aspx .divLoginLeft .tit3 {
+    position: absolute;
+    top: 165px;
+    left: 52px;
+    width: 180px;
+    height: 38px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #3A5E95;
+    color: #fff
+}
+
+#login4aspx .divLoginLeft .tit7 {
+    position: absolute;
+    top: 248px;
+    left: 52px;
+    color: Red;
+    font-size: 12px;
+    height: 20px;
+    text-align: left
+}
+
+#login4aspx .divLoginLeft .tit4 .item {
+    position: absolute
+}
+
+#login4aspx .divLoginLeft .tit4 .item .txtgyg {
+    height: 25px;
+    line-height: 25px;
+    width: 60px;
+    font-size: 12px;
+    color: #959595
+}
+
+#login4aspx .divLoginLeft .tit4 .divgygyzm {
+    position: absolute;
+    left: 80px;
+    width: 200px
+}
+
+#login4aspx .divLoginLeft .tit4 .divgygyzm #yzmgyg {
+    height: 60px
+}
+
+#login4aspx .divLoginLeft .tit2 .item,#login4aspx .divLoginLeft .tit3 .item {
+    top: 10px
+}
+
+#login4aspx .divLoginRight {
+    top: 15px;
+    width: 360px;
+    height: 252px;
+    float: right
+}
+
+#login4aspx .userLogintit {
+    top: 10px;
+    left: 25px;
+    height: 30px;
+    font-size: 20px;
+    color: #3F3F3F;
+    font-weight: 700
+}
+
+#login4aspx .loginhrtit {
+    top: 15px;
+    left: 25px
+}
+
+#login4aspx .loginForm {
+    top: 35px;
+    font-size: 14px
+}
+
+#login4aspx .txtdlm,#login4aspx .txtmm {
+    height: 25px;
+    line-height: 25px;
+    width: 190px;
+    font-size: 12px;
+    color: #959595
+}
+
+#login4aspx .txtyzm {
+    height: 25px;
+    line-height: 25px;
+    width: 80px;
+    font-size: 12px;
+    color: #959595
+}
+
+#login4aspx .yzm {
+    position: absolute;
+    height: 40px;
+    left: 160px;
+    top: 115px
+}
+
+#login4aspx .dlmerr,#login4aspx .mmerr,#login4aspx .yzmerr {
+    color: Red;
+    font-size: 12px;
+    height: 20px
+}
+
+#login4aspx .dlmnoerr {
+    color: #333;
+    font-size: 12px
+}
+
+#login4aspx .divLoginRight .loginbtn {
+    top: 160px;
+    _left: 85px
+}
+
+#login4aspx .divLoginRight .loginbtn .loginOK {
+    left: 95px;
+    _left: 100px;
+    _left: 6px;
+    color: #fff;
+    background-color: #FF4900;
+    height: 34px;
+    font-size: 18px;
+    width: 100px;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer
+}
+
+#login4aspx .divLoginRight .loginbtn .loginOK .okItem {
+    position: absolute;
+    top: 8px;
+    left: 26px
+}
+
+#login4aspx .divLoginRight .loginbtn .wjmm {
+    position: absolute;
+    left: 230px;
+    _left: 136px;
+    width: 50px;
+    font-size: 12px;
+    top: 8px;
+    cursor: pointer;
+    color: #003598;
+    text-decoration: underline
+}
+
+#login4aspx .divLoginRight .loginqt {
+    top: 110px
+}
+
+#login4aspx .divLoginRight .loginqt .sinaItem {
+    float: left;
+    width: 130px;
+    height: 32px;
+    background-color: #CF6672;
+    left: 44px;
+    cursor: pointer
+}
+
+#login4aspx .divLoginRight .loginqt .sinaItem .sinaImg {
+    top: 6px;
+    left: 10px;
+    float: left
+}
+
+#login4aspx .divLoginRight .loginqt .sinaItem .sinatit {
+    top: 10px;
+    left: 14px;
+    float: left;
+    color: #fff;
+    font-size: 12px
+}
+
+#login4aspx .divLoginRight .loginqt .qqItem {
+    width: 130px;
+    height: 32px;
+    background-color: #7FBFC7;
+    float: right;
+    right: 44px;
+    cursor: pointer
+}
+
+#login4aspx .divLoginRight .loginqt .qqItem .qqImg {
+    top: 6px;
+    left: 10px;
+    float: left
+}
+
+#login4aspx .divLoginRight .loginqt .qqItem .qqtit {
+    top: 10px;
+    left: 14px;
+    float: left;
+    color: #fff;
+    font-size: 12px
+}
+
+em.qqicon {
+    display: inline-block;
+    background: url(http://passport.eastmoney.com/onekey/image/bg.png) no-repeat -240px -540px;
+    width: 18px;
+    height: 17px;
+    vertical-align: middle
+}
+
+em.sinaicon {
+    display: inline-block;
+    background: url(http://passport.eastmoney.com/onekey/image/bg.png) no-repeat -270px -540px;
+    width: 24px;
+    height: 17px;
+    vertical-align: middle
+}
+
+#changeapaspx .divJDDW {
+    width: 416px;
+    height: 298px;
+    font-size: 12px
+}
+
+#changeapaspx .divJDDW .divAliasItem {
+    top: 45px;
+    height: 30px
+}
+
+#changeapaspx .divJDDW .divAliasItem .titAlias {
+    left: 74px;
+    width: 110px
+}
+
+#changeapaspx .divJDDW .divAliasItem .txtAlias {
+    left: 120px;
+    top: -8px
+}
+
+#changeapaspx .divJDDW .divAliasItem .txtAlias .txt {
+    height: 25px;
+    line-height: 25px;
+    width: 200px;
+    font-size: 14px
+}
+
+#changeapaspx .txtTS {
+    z-index: 99;
+    left: 120px;
+    top: 80px;
+    color: gray
+}
+
+#changeapaspx .pwd {
+    top: 110px;
+    width: 100%
+}
+
+#changeapaspx .pwd .xmml {
+    left: 62px;
+    top: 8px
+}
+
+#changeapaspx .pwd .xmmr {
+    left: 120px
+}
+
+#changeapaspx .pwd .txt {
+    height: 25px;
+    line-height: 25px;
+    width: 200px;
+    font-size: 14px
+}
+
+#changeapaspx .pwd .mmTS {
+    top: 40px;
+    left: 120px;
+    color: gray
+}
+
+#changeapaspx .pwd .qrmml {
+    top: 78px;
+    left: 50px
+}
+
+#changeapaspx .pwd .qrmmr {
+    top: 70px;
+    left: 120px
+}
+
+#changeapaspx .pwd .qrmmTS {
+    top: 110px;
+    left: 120px;
+    color: gray
+}
+
+#changeapaspx .divJDDW .divBtn .loginOK {
+    left: 120px;
+    top: 246px;
+    width: 90px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    background-color: #FF4900;
+    color: #fff
+}
+
+#changeapaspx .divJDDW .divBtn .loginOK .btnOK {
+    position: relative;
+    top: 6px
+}
+
+#changeapaspx #nametip {
+    z-index: 100;
+    left: 120px;
+    top: 75px;
+    display: inline;
+    float: left
+}
+
+#changeapaspx #recommu {
+    margin: 0;
+    padding: 10px 0;
+    display: block;
+    width: 236px;
+    height: 94px;
+    background: url(http://passport.eastmoney.com/onekey/image/ico_bg_comm_y.gif) no-repeat scroll 0 0 transparent;
+    z-index: 99;
+    font-size: 12px;
+    font-family: "宋体",Arial;
+    color: #3C3C3C
+}
+
+#changeapaspx #recommu label {
+    display: block;
+    margin-left: 15px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+    overflow: hidden;
+    cursor: pointer
+}
+
+#changeapaspx #recommu input {
+    margin: 0 5px;
+    _margin: 0;
+    width: auto;
+    height: auto;
+    border: 0;
+    float: left
+}
+
+#changeapaspx #recommu label span {
+    float: left
+}
+
+#changealiasaspx .divJDDW {
+    width: 396px;
+    height: 188px;
+    font-size: 12px
+}
+
+#changealiasaspx .divJDDW .divAliasItem {
+    top: 55px;
+    height: 30px
+}
+
+#changealiasaspx .divJDDW .divAliasItem .titAlias {
+    left: 35px;
+    width: 110px
+}
+
+#changealiasaspx .divJDDW .divAliasItem .txtAlias {
+    left: 140px;
+    top: -8px
+}
+
+#changealiasaspx .divJDDW .divAliasItem .txtAlias .txt {
+    height: 25px;
+    line-height: 25px;
+    width: 200px;
+    font-size: 14px
+}
+
+#changealiasaspx .divJDDW .divBtn .loginOK {
+    left: 140px;
+    top: 120px;
+    width: 90px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    background-color: #FF4900;
+    color: #fff
+}
+
+#changealiasaspx .divJDDW .divBtn .loginOK .btnOK {
+    position: relative;
+    top: 6px
+}
+
+#changealiasaspx .txtTS {
+    z-index: 99;
+    left: 140px;
+    top: 90px;
+    color: gray
+}
+
+#changealiasaspx #nametip {
+    z-index: 100;
+    left: 140px;
+    top: 85px;
+    display: inline;
+    float: left
+}
+
+#changealiasaspx #recommu {
+    margin: 0;
+    padding: 10px 0;
+    display: block;
+    width: 236px;
+    height: 94px;
+    background: url(http://passport.eastmoney.com/onekey/image/ico_bg_comm_y.gif) no-repeat scroll 0 0 transparent;
+    z-index: 99;
+    font-size: 12px;
+    font-family: "宋体",Arial;
+    color: #3C3C3C
+}
+
+#changealiasaspx #recommu label {
+    display: block;
+    margin-left: 15px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+    overflow: hidden;
+    cursor: pointer
+}
+
+#changealiasaspx #recommu input {
+    margin: 0 5px;
+    _margin: 0;
+    width: auto;
+    height: auto;
+    border: 0;
+    float: left
+}
+
+#changealiasaspx #recommu label span {
+    float: left
+}
+
+.gpal {
+    margin-left: 5px;
+    margin-top: 2px;
+    line-height: 20px;
+    position: absolute;
+    right: 220px;
+    top: 5px;
+}
+
+.gpal.nlg {
+    right: 0;
+    left: 100px;
+}
+
+.gpal b {
+    margin-right: 1px;
+    float: left;
+    display: block;
+    width: 69px;
+    height: 20px;
+    line-height: 20px;
+    background: url(http://hqres.eastmoney.com/EMQuote_A/img/gpal.png) no-repeat;
+    font-weight: normal;
+    text-align: center;
+}
+
+.gpal a {
+    text-decoration: none;
+}
+
+.gpal a b {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.stock_c_icon {
+    display: inline-block;
+    width: 200px;
+    height: 30px;
+    position: absolute;
+    right: 350px;
+    top: 5px;
+}

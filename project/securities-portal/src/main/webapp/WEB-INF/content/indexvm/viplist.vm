@@ -1,0 +1,86 @@
+#parse("includes/index-header.vm")
+<link rel="stylesheet" type="text/css" href="$!{base}/static/newindex/css/newIndex.css" />
+<link rel="stylesheet" type="text/css" href="$!{base}/static/newindex/css/vip.css" />
+<script src="$!{base}/static/newindex/js/jquery.js"></script>
+<body>
+<div class="nav">
+    <ul class="wrap clearfix">
+        #set($classNum = 6)
+			#parse("includes/index-navmanage.vm")
+    </ul>
+</div>
+	<!-- <div class="crumbs"><div class="wrap"><i class="icon_arrow"></i>当前位置：首页  >  VIP库</div></div> -->
+	<img src="$!{base}/static/newindex/images/lunbo_1.jpg" width="100%;" style="display:block;">
+	<div class="wrap module">
+		<h2  class="icon_title_7"><i></i>优质服务商推荐</h2>
+		<ul class="providerList clearfix">
+        <li>
+            <div class="libox">
+                <div class="provider_logo"><img src="/static/newindex/images/provider_1.png"></div>
+                <div class="followAndstars clearfix"><span>24人关注</span><span>50人收藏</span></div>
+                <div class="followAndstarsBtn clearfix"><a class="current"><i class="icon_follow"></i>关注</a><a class="current"><i class="icon_star"></i>收藏</a></div>
+                <p class="company">STI中国设计咨询有限公司</p>
+                <p class="provider_form"><span class="name">好评</span><span class="stars star_5"></span></p>
+                <p class="provider_form"><span class="name">性质:</span>企业</p>
+                <p class="provider_form"><span class="name">地址:</span>北京</p>
+            </div>
+        </li>
+        <li>
+            <div class="libox">
+                <div class="provider_logo"><img src="/static/newindex/images/provider_2.png"></div>
+                <div class="followAndstars clearfix"><span>24人关注</span><span>50人收藏</span></div>
+                <div class="followAndstarsBtn clearfix"><a><i class="icon_follow"></i>关注</a><a><i class="icon_star"></i>收藏</a></div>
+                <p class="company">青海省化工设计研究院有限公司</p>
+                <p class="provider_form"><span class="name">好评</span><span class="stars star_5"></span></p>
+                <p class="provider_form"><span class="name">性质:</span>企业</p>
+                <p class="provider_form"><span class="name">地址:</span>北京</p>
+            </div>
+        </li>
+        <li>
+            <div class="libox">
+                <div class="provider_logo"><img src="/static/newindex/images/provider_3.png"></div>
+                <div class="followAndstars clearfix"><span>24人关注</span><span>50人收藏</span></div>
+                <div class="followAndstarsBtn clearfix"><a><i class="icon_follow"></i>关注</a><a><i class="icon_star"></i>收藏</a></div>
+                <p class="company">中国石油工程建设(集团)公司</p>
+                <p class="provider_form"><span class="name">好评</span><span class="stars star_5"></span></p>
+                <p class="provider_form"><span class="name">性质:</span>企业</p>
+                <p class="provider_form"><span class="name">地址:</span>北京</p>
+            </div>
+        </li>
+        <li>
+            <div class="libox">
+                <div class="provider_logo"><img src="/static/newindex/images/provider_1.png"></div>
+                <div class="followAndstars clearfix"><span>24人关注</span><span>50人收藏</span></div>
+                <div class="followAndstarsBtn clearfix"><a class="current"><i class="icon_follow"></i>关注</a><a class="current"><i class="icon_star"></i>收藏</a></div>
+                <p class="company">STI中国设计咨询有限公司</p>
+                <p class="provider_form"><span class="name">好评</span><span class="stars star_5"></span></p>
+                <p class="provider_form"><span class="name">性质:</span>企业</p>
+                <p class="provider_form"><span class="name">地址:</span>北京</p>
+            </div>
+        </li>
+        <li>
+            <div class="libox">
+                <div class="provider_logo"><img src="/static/newindex/images/provider_2.png"></div>
+                <div class="followAndstars clearfix"><span>24人关注</span><span>50人收藏</span></div>
+                <div class="followAndstarsBtn clearfix"><a class="current"><i class="icon_follow"></i>关注</a><a class="current"><i class="icon_star"></i>收藏</a></div>
+                <p class="company">青海省化工设计研究院有限公司</p>
+                <p class="provider_form"><span class="name">好评</span><span class="stars star_5"></span></p>
+                <p class="provider_form"><span class="name">性质:</span>企业</p>
+                <p class="provider_form"><span class="name">地址:</span>北京</p>
+            </div>
+        </li>
+        <li>
+            <div class="libox">
+                <div class="provider_logo"><img src="/static/newindex/images/provider_3.png"></div>
+                <div class="followAndstars clearfix"><span>24人关注</span><span>50人收藏</span></div>
+                <div class="followAndstarsBtn clearfix"><a class="current"><i class="icon_follow"></i>关注</a><a class="current"><i class="icon_star"></i>收藏</a></div>
+                <p class="company">中国石油工程建设(集团)公司</p>
+                <p class="provider_form"><span class="name">好评</span><span class="stars star_5"></span></p>
+                <p class="provider_form"><span class="name">性质:</span>企业</p>
+                <p class="provider_form"><span class="name">地址:</span>北京</p>
+            </div>
+        </li>
+    </ul>
+	</div>
+		#parse("includes/footer.vm")
+</body>

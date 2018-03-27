@@ -1,0 +1,54 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost
+Source Server Version : 50610
+Source Host           : 127.0.0.1:3306
+Source Database       : stock
+
+Target Server Type    : MYSQL
+Target Server Version : 50610
+File Encoding         : 65001
+
+Date: 2015-10-20 17:07:40
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for net_core_info
+-- ----------------------------
+DROP TABLE IF EXISTS `net_core_info`;
+CREATE TABLE `net_core_info` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `dt` varchar(10) DEFAULT NULL COMMENT '日期',
+  `stock_code` varchar(6) DEFAULT NULL COMMENT '代码',
+  `stock_name` varchar(30) DEFAULT NULL COMMENT '简称',
+  `per_profit` varchar(10) DEFAULT NULL COMMENT '每股收益',
+  `pe` varchar(10) DEFAULT NULL COMMENT '市盈(动)',
+  `net_assets` varchar(10) DEFAULT NULL COMMENT '每股净资产',
+  `pb_ratio` varchar(10) DEFAULT NULL COMMENT '市净率',
+  `main_revenue` varchar(15) DEFAULT NULL COMMENT '主营业务收入',
+  `main_yoy` varchar(10) DEFAULT NULL COMMENT '营收同比',
+  `net_profit` varchar(15) DEFAULT NULL COMMENT '净利润',
+  `net_yoy` varchar(10) DEFAULT NULL COMMENT '净利润同比',
+  `gross_profit_yield` varchar(10) DEFAULT NULL COMMENT '毛利率',
+  `net_profit_ratio` varchar(10) DEFAULT NULL COMMENT '净利率',
+  `assets_yield` varchar(10) DEFAULT NULL COMMENT '净资产收益率',
+  `debit_ratio` varchar(10) DEFAULT NULL COMMENT '负债率',
+  `total_equity` varchar(15) DEFAULT NULL COMMENT '总股本',
+  `total_amount` varchar(15) DEFAULT NULL COMMENT '总值',
+  `circulation_equity` varchar(15) DEFAULT NULL COMMENT '流通股本',
+  `flow_amount` varchar(15) DEFAULT NULL COMMENT '流值',
+  `ndistrib_profit` varchar(10) DEFAULT NULL COMMENT '每股未分配利润',
+  `open_date` varchar(10) DEFAULT NULL COMMENT '上市日期',
+  `memo` varchar(100) DEFAULT NULL COMMENT '备注',
+  `order_by` int(10) DEFAULT NULL COMMENT '顺序',
+  `creator` bigint(20) DEFAULT NULL COMMENT '创建者',
+  `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updator` bigint(20) DEFAULT NULL COMMENT '更新者',
+  `update_date` timestamp NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `valid` char(1) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `dt_index` (`stock_code`,`dt`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='沪深A股核心数据';

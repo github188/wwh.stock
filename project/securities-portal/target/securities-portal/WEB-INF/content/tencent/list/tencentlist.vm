@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+    <title>WEB自选股</title>
+    <script>
+        window.Qtimes = (new Date).getTime();
+    </script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/tencent/tencentlist.css">
+</head>
+<body>
+<div class="zxg-wrapper-header" id="zxg-wrapper-header" style="display:none;"><div class="header-v1">
+    <div class="logonav">
+        <div class="col-1-3">
+            <a href="">收藏本页</a>
+            <span>|</span>
+            <a target="_blank" href="http://stock.finance.qq.com/help.php">帮助中心</a>
+            <span>|</span>
+            <a target="_blank" href="http://stock.qq.com/l/stock/xingu/xgxt/list2015052081440.htm ">股民学堂</a>
+            <span>|</span>
+            <a target="_blank" href="http://stock.qzone.qq.com/">官方博客</a>
+            <span>|</span>
+            <a target="_blank" href="http://support.qq.com/beta2/simple/write.html?fid=614">意见反馈</a>
+        </div>
+    </div>
+    <div class="nav">
+        <div class="nav-1 d-clear">
+            <a target="_blank" href="http://finance.qq.com/stock/?pgv_ref=fi_quote_navi_bar" data-boss="nav_index">证券首页</a>
+            <span></span>
+            <a target="_blank" href="http://stockapp.finance.qq.com/mstats/?pgv_ref=fi_quote_navi_bar&amp;id=bd_ind" data-boss="nav_lzbk">领涨板块</a>
+            <span></span>
+            <a target="_blank" href="http://stockapp.finance.qq.com/mstats/?pgv_ref=fi_quote_navi_bar&amp;id=sha_zf" data-boss="nav_zdph">涨跌排行</a>
+            <span></span>
+            <a target="_blank" href="http://stock.qq.com/zjlx/#?pgv_ref=fi_quote_navi_bar#ggzlzc" data-boss="nav_zjlx">资金流向</a>
+            <span></span>
+            <a target="_blank" href="http://stock.qq.com/data/#ljzf?pgv_ref=fi_quote_navi_bar#ljzf" data-boss="nav_jsxg">技术选股</a>
+            <span></span>
+            <a target="_blank" href="http://stock.qq.com/stock/xingu?pgv_ref=fi_quote_navi_bar" data-boss="nav_xg">新股</a>
+            <span></span>
+            <a target="_blank" href="http://stock.qq.com/data/#qgqp" data-boss="nav_qgqp">千股千评</a>
+            <span></span>
+            <a target="_blank" href="http://stockapp.finance.qq.com/doctor/?pgv_ref=fi_quote_navi_bar" data-boss="nav_gpys">股票医生</a>
+            <span class="st2"></span>
+            <a target="_blank" href="http://stockapp.finance.qq.com/mstats/?pgv_ref=fi_quote_navi_bar" data-boss="nav_hqzx">行情中心</a>
+            <span class="st2"></span>
+            <a target="_blank" href="http://finance.qq.com/products/portfolio/?pgv_ref=fi_quote_navi_bar" data-boss="nav_zxgapp">自选股APP</a>
+            <span class="st2"></span>
+            <a target="_blank" href="http://finance.qq.com/products/licaivip/index.htm?pgv_ref=zxg_navi_bar" data-boss="nav_dsjjj"> 大数据基金<img src="http://mat1.gtimg.com/finance/stock/quotpage/new.gif"></a>
+        </div>
+    </div>
+</div></div>
+</body>
+
+
+
+<script type="text/javascript">
+    function getCookie(cookieName) {
+        var re = new RegExp("\\b"+cookieName+"=([^;]*)\\b");
+        var arr =  re.exec(document.cookie);
+        return arr?arr[1]:"";
+    }
+    if(!getCookie('w_r_token') && !getCookie('uin')){
+        document.getElementById('zxg-wrapper-header').style.display='none';
+    }
+    else{
+        document.getElementById('zxg-wrapper-header').style.display='block';
+    }
+</script>
+<script type="text/javascript" src="${base}/static/js/tencent/aio_zixuangu.js"></script>
+
+<script id="app-qr" data-bw="1500" data-sw="1300" src="${base}/static/js/tencent/tencentlist.js"></script>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="$!{base}/static/newindex/css/newIndex.css" />
+<link rel="stylesheet" type="text/css" href="$!{base}/static/newindex/css/database.css" />
+<script src="$!{base}/static/newindex/js/jquery.js"></script>
+	#parse("includes/index-header.vm")
+<script>
+    $(function(){
+        window.location.hash="anchor";
+    })
+</script>
+<body>
+<div class="nav">
+    <ul class="wrap clearfix">
+        #set($classNum = 8)
+			#parse("includes/index-navmanage.vm")
+    </ul>
+</div>
+	<!-- <div class="crumbs"><div class="wrap"><i class="icon_arrow"></i>当前位置：首页  >  VIP库</div></div> -->
+	<img src="$!{base}/static/newindex/images/lunbo_1.jpg" width="100%;" style="display:block;">
+    <a name="anchor" style="padding-top: 10px"> </a>
+	<form action="${base}/indexvm/database" method="post" id="databasesearch">
+        <input type="hidden" name="page" id="page" value="$!maps.page"/>
+        <input type="hidden" name="size" id="size" value="$!maps.size"/>
+	<div class="wrap module">
+		<div class="database_SearchBar">
+			<div class="selectBox"><span class="name">分类查询</span><select id="treePath" name="treePath"><option value="">全部</option>#foreach($obj in $!{categorys})
+																									#if($!{obj.treePath}==$!{maps.treePath})
+                                                                                                        <option selected value="$!{obj.treePath}">$!{obj.catName}</option>
+																									#else
+                                                                                                        <option value="$!{obj.treePath}">$!{obj.catName}</option>
+																									#end
+																								#end</select></div>
+			<a class="searchBtn" href="javascript:search()" >查询</a>
+		</div>
+		<div class="clearfix" style="margin-top:25px;">
+			<div class="fl tableBox">
+				<table>
+					<tr>
+                        <th></th><th>名称</th><th>下载次数</th>
+					</tr>
+					#set($num=0)
+					#foreach($obj in $!{pagenation.list})
+						#set($num=$num+1)
+                        <tr>
+                            <td>$!num</td>
+                            <td class="textLeft"><a title="$!{obj.fileName}" style="color: black;text-decoration: inherit" href='javascript:down("$!{obj.id}","$!{obj.url}")'>$!{obj.fileName}</a></td>
+                            <td>$!{obj.uploadSize}</td>
+                        </tr>
+					#end
+				</table>
+				<div class="pages">
+                    #set($t1=0)
+                    #set($t2=0)
+                    #set($t1=$!pagenation.total/1)
+                    #set($t2=$!maps.size/1)
+                    #if($!t1 > $!t2)
+                        <ul class="pagination pagination-sm pull-right">
+							#if($pagenation.hasPreviousPage)
+                                <li><a onclick="prevPage('$!pagenation.pageNum');" href="javascript:void(0);">&laquo;</a></li>
+							#end
+							#foreach($num in $pagenation.navigatepageNums)
+                                <li #if($pagenation.pageNum == $num) class="active" #end><a onclick="goPage('$num');" href="javascript:void(0);">$num</a></li>
+							#end
+							#if($!pagenation.hasNextPage)
+                                <li><a onclick="nextPage('$!pagenation.pageNum');" href="javascript:void(0);">&raquo;</a></li>
+							#end
+                            <li><span class="fl_l">$!pagenation.pageNum/$!pagenation.pages页</span></li>
+                        </ul>
+
+					#end
+				</div>
+			</div>
+			<div class="fr recommendBox">
+				<h2>文件下载热榜</h2>
+				<ul>
+                    #set($index=1)
+                    #foreach($obj in $!{tops})
+                        <li><span class="index">$index</span><i class="pdf2"></i><a title="$!{obj.fileName}" style="color: black;" href='javascript:down("$!{obj.id}","$!{obj.url}")'>$!{obj.fileName}</a><span class="num">$!{obj.uploadSize}次下载</span></li>
+                        #set($index=$index+1)
+                    #end
+					</ul>
+			</div>
+		</div>
+	</div>
+    </form>
+	<script >
+		function search(){
+			$("#databasesearch").submit();
+
+		}
+	</script>
+    <script type="text/javascript">
+        function down(id,url){
+            $.ajax({url:'$!{base}/indexvm/download',
+                    beforeSend:function(){
+                        window.location.href=url;
+                    },
+                    data:{'id':id},
+                    type: "post",
+                    async:false,
+                    success: function(data){
+                }
+            })
+        }
+        function nextPage(num){
+            var page = parseInt(num) + 1;
+            $("#page").val(page);
+            $("#databasesearch").submit();
+        }
+
+        function prevPage(num){
+            var page = parseInt(num) - 1;
+            if(page < 1) page = 1;
+            $("#page").val(page);
+            $("#databasesearch").submit();
+        }
+
+        function goPage(num){
+            $("#page").val(num);
+            $("#databasesearch").submit();
+        }
+    </script>
+		#parse("includes/footer.vm")
+</body>
+</html>

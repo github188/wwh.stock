@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="https://10.9.3.100/svn/eichong"
+   revision="12952"
+   last-author="liuyahui"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/com/bm/wanma/ui/activity"
+   committed-rev="12946"
+   kind="dir"
+   committed-date="2017-10-18T08:56:50.775329Z"/>
+<entry
+   name="AboutPriceActivity.java"
+   checksum="ed64f68911d962a34e2eb356fe38bf70"
+   last-author="liuyahui"
+   text-time="2017-03-28T05:51:45.176000Z"
+   committed-rev="6383"
+   kind="file"
+   committed-date="2017-03-28T05:51:45.176855Z"/>
+<entry
+   name="AboutProtolActivity.java"
+   checksum="d644cf7560e64471282e8f2bbdb71f8c"
+   last-author="liuyahui"
+   text-time="2017-03-28T05:51:45.176000Z"
+   committed-rev="6383"
+   kind="file"
+   committed-date="2017-03-28T05:51:45.176855Z"/>
+<entry
+   name="AboutWeActivity.java"
+   checksum="68ca801d8b1c7513db2976ad5722f616"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="AddressActivity.java"
+   checksum="eee4d13fc363aa40b5de3160e9eada7f"
+   last-author="chengmeng"
+   text-time="2017-01-10T05:45:32.279000Z"
+   committed-rev="4958"
+   kind="file"
+   committed-date="2017-01-10T05:45:32.279199Z"/>
+<entry
+   name="ApplyBuildPileActivity.java"
+   checksum="d5afbdd9ad1e0405b7ad81c0bcdd5429"
+   last-author="liuyahui"
+   text-time="2017-03-28T05:51:45.176000Z"
+   committed-rev="6383"
+   kind="file"
+   committed-date="2017-03-28T05:51:45.176855Z"/>
+<entry
+   name="ApplyCardActivity.java"
+   checksum="f988c257c6e38357b1c471a0cd46ff22"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="AreaActivity.java"
+   checksum="9d1b9260f4c9db6ea80f0a0eee64e803"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="BackEmergencyCallActivity.java"
+   checksum="bdd598de754e8d8c68b74c5320a4732b"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="BaseActivity.java"
+   checksum="efac3bfe6c7967f451101d028e988120"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="CarActivity.java"
+   checksum="a72afb1b8c4008e543d0abb12e29ef8c"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="CarBrandActivity.java"
+   checksum="98ad63b4261121233132daf15ed076ad"
+   last-author="chengmeng"
+   text-time="2016-12-19T09:43:09.504000Z"
+   committed-rev="4470"
+   kind="file"
+   committed-date="2016-12-19T09:43:09.504117Z"/>
+<entry
+   name="CarRepairActivity.java"
+   checksum="48d390e916fc7125c9915b7e7955f5b0"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="ChargeDetailActivity.java"
+   checksum="8e0c62bc302aed586847ae586cadd6f5"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="ChargeFinishActivity.java"
+   checksum="cf869c0059b6b54f93a7074a19d9fc46"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="ChargeListActivity.java"
+   checksum="d80408efdac554c695e28b657b4e3431"
+   last-author="liuyahui"
+   text-time="2017-10-16T02:26:18.919000Z"
+   committed-rev="12707"
+   kind="file"
+   committed-date="2017-10-16T02:26:18.919866Z"/>
+<entry
+   name="CheckLatLng.java"
+   checksum="22eb78585a6652bb12a4c11cc0fcc6e9"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CityActivity.java"
+   checksum="0774c808029c4bf35f61eeccceb526c3"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="CommitDeviceErrorActivity.java"
+   checksum="1e34268c5cde07754d55c107f07227f2"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CommitFeedbackActivity.java"
+   checksum="b6336c11ad326997e214f3bc2bcc9107"
+   last-author="chengmeng"
+   text-time="2017-01-16T07:18:43.975000Z"
+   committed-rev="5051"
+   kind="file"
+   committed-date="2017-01-16T07:18:43.975870Z"/>
+<entry
+   name="CommonH5Activity.java"
+   checksum="0395e14dc18b55ecad5228f6a417b008"
+   last-author="liuyahui"
+   text-time="2017-03-28T05:51:45.176000Z"
+   committed-rev="6383"
+   kind="file"
+   committed-date="2017-03-28T05:51:45.176855Z"/>
+<entry
+   name="ContactUsActivity.java"
+   checksum="049ea32200050a2172db4e5a0dc82d79"
+   last-author="liuyahui"
+   text-time="2017-05-08T01:33:07.351000Z"
+   committed-rev="6734"
+   kind="file"
+   committed-date="2017-05-08T01:33:07.351710Z"/>
+<entry
+   name="CouponExchangeActivity.java"
+   checksum="ad3fca010062bc0f93bde78b2d3853f9"
+   last-author="liuyahui"
+   text-time="2017-05-19T05:21:29.356000Z"
+   committed-rev="6957"
+   kind="file"
+   committed-date="2017-05-19T05:21:29.356265Z"/>
+<entry
+   name="CouponRoleActivity.java"
+   checksum="de336eded4df967c645d82fd2b45c996"
+   last-author="liuyahui"
+   text-time="2017-03-28T05:51:45.176000Z"
+   committed-rev="6383"
+   kind="file"
+   committed-date="2017-03-28T05:51:45.176855Z"/>
+<entry
+   name="DistrictActivity.java"
+   checksum="0df976c9260e8165a04ac14df8b5504d"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="EmergencyCallSortActivity.java"
+   checksum="2537c5ed66905d9a65929dc5fb94febe"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="EverydayGetActivity.java"
+   checksum="331a736d0543ada283fcec11bde7d7d9"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="FindBackPayPwdActivity.java"
+   checksum="2cae7b48d7daa2cf11b43d7d6db0331e"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ForceOffline.java"
+   checksum="5f310d3bca61e2f9982553333da6a74e"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ForgetPasswordActivity.java"
+   checksum="5a9cab356afd3fecbbc2cc88bfb74c84"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="GuideActivity.java"
+   checksum="e16bc60c25543d01cb4b24764eb8abf3"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="HomeActivity.java"
+   checksum="f1331c891151167728a4d7eec80aa011"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="ITcpCallBack.java"
+   checksum="9a8da3c037d31277e0759cc2291076aa"
+   last-author="chengmeng"
+   text-time="2017-03-02T06:33:40.781000Z"
+   committed-rev="5761"
+   kind="file"
+   committed-date="2017-03-02T06:33:40.781605Z"/>
+<entry
+   name="ImagePagerActivity.java"
+   checksum="12c1349131783788e75821c83c7e5408"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="InstructionActivity.java"
+   checksum="7932b24fe0aa36e9936b3d8fcd6b6979"
+   last-author="liuyahui"
+   text-time="2017-03-28T05:51:45.176000Z"
+   committed-rev="6383"
+   kind="file"
+   committed-date="2017-03-28T05:51:45.176855Z"/>
+<entry
+   name="IntegralDetailActivity.java"
+   checksum="c916e87f6a23eeb554110e9273487026"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="InvoiceActivity.java"
+   checksum="9487bef9bee43a7bedeca84b3a58f5ee"
+   last-author="liuyahui"
+   text-time="2017-04-20T01:00:52.495000Z"
+   committed-rev="6577"
+   kind="file"
+   committed-date="2017-04-20T01:00:52.495734Z"/>
+<entry
+   name="InvoiceCompanyActivity.java"
+   checksum="07d603e208ae8414f4a79342ed231408"
+   last-author="liuyahui"
+   text-time="2017-10-18T08:55:14.039000Z"
+   committed-rev="12943"
+   kind="file"
+   committed-date="2017-10-18T08:55:14.039559Z"/>
+<entry
+   name="InvoiceErrorActivity.java"
+   checksum="9e80460dffc0332231f9d445f69077e5"
+   last-author="liuyahui"
+   text-time="2017-06-22T00:47:24.547000Z"
+   committed-rev="7627"
+   kind="file"
+   committed-date="2017-06-22T00:47:24.547705Z"/>
+<entry
+   name="InvoicePersonalActivity.java"
+   checksum="03fa2fd54de1ae05b256858a66b8bf9b"
+   last-author="liuyahui"
+   text-time="2017-10-18T08:56:00.090000Z"
+   committed-rev="12944"
+   kind="file"
+   committed-date="2017-10-18T08:56:00.090840Z"/>
+<entry
+   name="InvoiceRoleActivity.java"
+   checksum="ad74e7406a594d786bf690636be23ca9"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="InvoiceSuccessActivity.java"
+   checksum="724fbb3ae99b79c098dd44e3088352e1"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="InvoiceTipActivity.java"
+   checksum="a7208be50df2b6d35713b0972229f0c5"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="InvoiceTypeActivity.java"
+   checksum="025f89250963f535bb308292c09283e9"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="LoginActivity.java"
+   checksum="d8f3566ac617ea2e0d7d410a6b7564d3"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="MalfunctionActivity.java"
+   checksum="a92be8cdce08c55e1fec53a85ab5d22b"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="ModifyPasswordActivity.java"
+   checksum="fe533e5692c2895bb00e9ab65d63df8a"
+   last-author="chengmeng"
+   text-time="2016-12-19T09:43:09.504000Z"
+   committed-rev="4470"
+   kind="file"
+   committed-date="2016-12-19T09:43:09.504117Z"/>
+<entry
+   name="MoreActivity.java"
+   checksum="6c7df750bccd4085c86d0ad0cacb861b"
+   last-author="liuyahui"
+   text-time="2017-03-08T03:20:44.549000Z"
+   committed-rev="5984"
+   kind="file"
+   committed-date="2017-03-08T03:20:44.549394Z"/>
+<entry
+   name="MyBillActivity.java"
+   checksum="493edfaadc4be4a5bf5b8478732c7b7a"
+   last-author="liuyahui"
+   text-time="2017-05-19T05:21:29.356000Z"
+   committed-rev="6957"
+   kind="file"
+   committed-date="2017-05-19T05:21:29.356265Z"/>
+<entry
+   name="MyBillDetailsActivity.java"
+   checksum="b81b5ae676348ce4faae022e76bf81a2"
+   last-author="liuyahui"
+   text-time="2017-05-19T05:21:29.356000Z"
+   committed-rev="6957"
+   kind="file"
+   committed-date="2017-05-19T05:21:29.356265Z"/>
+<entry
+   name="MyChargeActivity.java"
+   checksum="6b351a10b72274cae5f42d782de8a818"
+   last-author="liuyahui"
+   text-time="2017-05-19T05:21:29.356000Z"
+   committed-rev="6957"
+   kind="file"
+   committed-date="2017-05-19T05:21:29.356265Z"/>
+<entry
+   name="MyCouponActivity.java"
+   checksum="c2b02a56361560d2f404d1a63391d278"
+   last-author="liuyahui"
+   text-time="2017-05-19T05:21:29.356000Z"
+   committed-rev="6957"
+   kind="file"
+   committed-date="2017-05-19T05:21:29.356265Z"/>
+<entry
+   name="MyDynamicDetailActivity.java"
+   checksum="64098ea748f642ebea5e591bd44c2093"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyDynamicListActivity.java"
+   checksum="bc56b56709cbd1b6c1d1fce75ad126dc"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyIcCardActivity.java"
+   checksum="389e1ce3f7080e43188e6ff732a63bb5"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyInvoiceRecordActivity.java"
+   checksum="a3fd9b2b016fc1ac3fb479f628ecfbcd"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyInvoiceRecordConsumeActivity.java"
+   checksum="6f7e580ed6c3e422264a2c0e223def96"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyInvoiceRecordDetailActivity.java"
+   checksum="518abc04b5ea738cb24d7f683d7d5f23"
+   last-author="liuyahui"
+   text-time="2017-10-18T08:56:25.347000Z"
+   committed-rev="12945"
+   kind="file"
+   committed-date="2017-10-18T08:56:25.347284Z"/>
+<entry
+   name="MyInvoiceRecordDetailPayActivity.java"
+   checksum="2f8da4dcf397374d2e393fe4e7940a04"
+   last-author="liuyahui"
+   text-time="2017-10-18T08:56:50.775000Z"
+   committed-rev="12946"
+   kind="file"
+   committed-date="2017-10-18T08:56:50.775329Z"/>
+<entry
+   name="MyNewsActivity.java"
+   checksum="c8dde348358d2549afbacfda93c173d1"
+   last-author="chengmeng"
+   text-time="2017-02-21T01:07:13.641000Z"
+   committed-rev="5491"
+   kind="file"
+   committed-date="2017-02-21T01:07:13.641649Z"/>
+<entry
+   name="MyNewsSystemDetailActivity.java"
+   checksum="c1e613cf0fd688ed3baabbc7a70bce5a"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyOrderStatusActivity.java"
+   checksum="1c1228b7a590a6e29e4f171bf7f8f6d9"
+   last-author="chengmeng"
+   text-time="2016-12-20T10:44:31.753000Z"
+   committed-rev="4534"
+   kind="file"
+   committed-date="2016-12-20T10:44:31.753138Z"/>
+<entry
+   name="MySystemNoticeActivity.java"
+   checksum="219b800f28b62278390c0b6755c63b04"
+   last-author="chengmeng"
+   text-time="2016-12-20T10:44:31.753000Z"
+   committed-rev="4534"
+   kind="file"
+   committed-date="2016-12-20T10:44:31.753138Z"/>
+<entry
+   name="MyUserInfoActivity.java"
+   checksum="8f325572120f41ef9470eba252b7cfcf"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="MyWalletActivity.java"
+   checksum="de74065c193022630b699d133c745199"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="NickActivity.java"
+   checksum="896795d7ee39c7463298cb57725030a6"
+   last-author="chengmeng"
+   text-time="2017-01-10T05:45:32.279000Z"
+   committed-rev="4958"
+   kind="file"
+   committed-date="2017-01-10T05:45:32.279199Z"/>
+<entry
+   name="OpenDoorActivity.java"
+   checksum="bf9c7d7f438da34e6cb4e86df2217e9d"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="PileDetailActivity.java"
+   checksum="e22a0ebc46526d46da35bde8cef88fcb"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="PoiKeywordSearchActivity.java"
+   checksum="cf280a8f8d4a945ec5a65840467b5275"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="RealTimeChargeActivity.java"
+   checksum="d1ca0b9ec5d0ead9c1105283706bfeef"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="RechargeActivity.java"
+   revision="13052"
+   checksum="f4714c12c3662a31059ca41ad2f3bcf2"
+   last-author="liuyahui"
+   text-time="2017-10-19T01:07:03.850000Z"
+   committed-rev="13052"
+   kind="file"
+   committed-date="2017-10-21T06:57:50.386000Z"/>
+<entry
+   name="RechargeRecordActivity.java"
+   checksum="01cfe8a991d3afeec1082e89a5b16745"
+   last-author="liuyahui"
+   text-time="2017-03-09T02:52:07.894000Z"
+   committed-rev="6016"
+   kind="file"
+   committed-date="2017-03-09T02:52:07.894132Z"/>
+<entry
+   name="RechargeSucceedActivity.java"
+   revision="13052"
+   checksum="8f079414d9d2a860add597c5c593e9b4"
+   last-author="liuyahui"
+   text-time="2017-10-18T09:33:04.908000Z"
+   committed-rev="13052"
+   kind="file"
+   committed-date="2017-10-21T06:57:50.386000Z"/>
+<entry
+   name="RegisterActivity.java"
+   checksum="58a93e168a9d1ea0e0e8688899c0399b"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="SearchPointActivity.java"
+   checksum="fb837d6a1ec64ca8a0ed97b6782f5d3e"
+   last-author="liuyahui"
+   text-time="2017-10-16T02:26:18.919000Z"
+   committed-rev="12707"
+   kind="file"
+   committed-date="2017-10-16T02:26:18.919866Z"/>
+<entry
+   name="SecuritySettingsActivity.java"
+   checksum="b2c23de142bec8c765f3cebbdf48ea10"
+   last-author="chengmeng"
+   text-time="2016-12-19T02:38:52.646000Z"
+   committed-rev="4419"
+   kind="file"
+   committed-date="2016-12-19T02:38:52.646204Z"/>
+<entry
+   name="SelectCarBrandActivity.java"
+   checksum="dd4be9722444f61ff234f936229d5741"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="SelectCarNameActivity.java"
+   checksum="0209c03f78cd9c4140667c6f0dac370c"
+   last-author="chengmeng"
+   text-time="2016-12-19T09:43:09.504000Z"
+   committed-rev="4470"
+   kind="file"
+   committed-date="2016-12-19T09:43:09.504117Z"/>
+<entry
+   name="SetPayPasswordActivity.java"
+   checksum="8afb77d0d3701865b730110e88e51ed0"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="SettingsActivity.java"
+   checksum="b1b6021609423eac4afd871298039b38"
+   last-author="liuyahui"
+   text-time="2017-03-01T08:50:51.696000Z"
+   committed-rev="5728"
+   kind="file"
+   committed-date="2017-03-01T08:50:51.696308Z"/>
+<entry
+   name="SexActivity.java"
+   checksum="b83cd1314c9c7a64c222142df8aa5554"
+   last-author="chengmeng"
+   text-time="2016-12-19T02:38:52.646000Z"
+   committed-rev="4419"
+   kind="file"
+   committed-date="2016-12-19T02:38:52.646204Z"/>
+<entry
+   name="SharePileActivity.java"
+   checksum="b8168e2c98c7b0f7b3990c8552dedcdf"
+   last-author="chengmeng"
+   text-time="2016-12-19T02:38:52.646000Z"
+   committed-rev="4419"
+   kind="file"
+   committed-date="2016-12-19T02:38:52.646204Z"/>
+<entry
+   name="Shareweibo.java"
+   checksum="053b0d82e1fb90615e07359ca38e0163"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="StartActivity.java"
+   checksum="bed6d6eb22d8178d954043263129bc7c"
+   last-author="liuyahui"
+   text-time="2017-10-16T01:41:28.523000Z"
+   committed-rev="12701"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="StateDeclareActivity.java"
+   checksum="4057fceaad8657253759993e072d072a"
+   last-author="liuyahui"
+   text-time="2017-03-28T05:51:45.176000Z"
+   committed-rev="6383"
+   kind="file"
+   committed-date="2017-03-28T05:51:45.176855Z"/>
+<entry
+   name="StationStiltDetailActivity.java"
+   checksum="062b1e4462925dac070c48fb540fe760"
+   last-author="liuyahui"
+   text-time="2017-05-19T05:21:29.356000Z"
+   committed-rev="6957"
+   kind="file"
+   committed-date="2017-05-19T05:21:29.356265Z"/>
+<entry
+   name="WashCarActivity.java"
+   checksum="19a671349366a435eb39af637987fd6a"
+   last-author="liuyahui"
+   text-time="2016-11-07T09:10:43.469000Z"
+   committed-rev="3652"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+</wc-entries>

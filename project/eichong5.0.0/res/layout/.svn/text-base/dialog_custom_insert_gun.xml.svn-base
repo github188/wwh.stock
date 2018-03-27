@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null"
+    android:orientation="vertical" >
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:layout_height="0dp"
+        android:background="@drawable/custom_common_dialog_top"
+        android:orientation="vertical"
+        >
+        <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="@color/common_black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_margin="15dp"
+        android:text="充电枪未连接 "
+        android:gravity="center"
+        /> 
+        <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="#dcdcdc"   
+            />
+      <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="@color/common_black"
+        android:textSize="13sp"
+        android:text="请连接充电枪 "
+        android:layout_margin="15dp"
+        android:gravity="center"
+        /> 
+    </LinearLayout>
+<TextView 
+        android:id="@+id/custom_positiveButton"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:background="@drawable/custom_common_dialog_bottom"
+        android:textColor="@color/common_orange"
+        android:textSize="15sp"
+        android:text="好"
+        android:gravity="center"
+        />
+</LinearLayout>

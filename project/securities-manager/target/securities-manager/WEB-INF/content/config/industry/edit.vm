@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>编辑</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+		$(function(){  
+		change();
+		});
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/config/industry/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+		
+		function change(){
+			if($("#pid").val()!=0){
+				$("#totask-tr").hide();
+				$("#totask-check").prop("checked",false);
+				$("#togoods-tr").hide();
+				$("#togoods-check").prop("checked",false);
+			}
+			if($("#pid").val()==0){
+				$("#totask-tr").show();
+				$("#togoods-tr").show();
+			}
+		}
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <input type="hidden" name="id" value="$!{model.id}">
+        <table width="100%" cellpadding="5">
+                            <tr>
+                    <td align="left">
+                        
+                    </td>
+                    <td>
+                                                <input name="id" type="hidden" value="$!{model.id}">
+                    </td>
+                </tr>
+					        <tr>
+                    <td align="left">
+                    父行业：    
+                    </td>
+                    <td>
+                                                <input class="easyui-textbox" value="$!{father}" readonly><input type=hidden name="indusPid" value="$!{model.indusPid}" readonly>
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                     行业名称：   
+                    </td>
+                    <td>
+                                                <input name="indusName" class="easyui-textbox" value="$!{model.indusName}">
+                    </td>
+                </tr>
+				            <tr>
+                    <td align="left">
+                    排序：
+                    </td>
+                    <td>
+                                                <input name="listorder" class="easyui-textbox" value="$!{model.listorder}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                    是否推荐：    
+                    </td>
+                    <td>
+						                           #if($!{model.isRecommend}==1)
+												<input id="recommend-check" name="isRecommend" checked=true type="checkbox" class="easyui-checkbox" value="1">
+												   #else
+                                                <input id="recommend-check" name="isRecommend" type="checkbox" class="easyui-checkbox" value="1">
+												   #end
+                    </td>
+                </tr>
+                            <tr id="totask-tr">
+                    <td align="left">
+                    适用任务：    
+                    </td>
+                    <td>
+						                           #if($!{model.totask}==1)
+												<input id="totask-check" name="totask" checked=true type="checkbox" class="easyui-checkbox" value="1">
+												   #else
+                                                <input id="totask-check" name="totask" type="checkbox" class="easyui-checkbox" value="1">
+												   #end
+                    </td>
+                </tr>
+                            <tr id="togoods-tr">
+                    <td align="left">
+                     适用商品：   
+                    </td>
+                    <td>
+						                         #if($!{model.togoods}==1)
+                                                <input id="togoods-check" name="togoods" checked=true type="checkbox" class="easyui-checkbox" value="1">
+												 #else
+												<input id="togoods-check" name="togoods" type="checkbox" class="easyui-checkbox" value="1">
+											     #end
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                    SEO标题：   
+                    </td>
+                    <td>
+                                                <input name="seoTitle" class="easyui-textbox" value="$!{model.seoTitle}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                    SEO关键字：   
+                    </td>
+                    <td>
+                                                <input name="seoKeyword" class="easyui-textbox" value="$!{model.seoKeyword}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                     SEO描述：   
+                    </td>
+                    <td>
+                                                <input name="seoDesc" class="easyui-textbox" value="$!{model.seoDesc}">
+                    </td>
+                </tr>
+                    </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

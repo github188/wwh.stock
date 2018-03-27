@@ -1,0 +1,8 @@
+<li #if($classNum==1) class="current" #end onclick="openUrl('${base}/stockeast/marketcentre','_self')">行情中心</li>
+<li #if($classNum==2) class="current" #end onclick="openUrl('${base}/stockeast/list','_self')">自选信息<i class="icon_tooltip">新</i></li>
+<li #if($classNum==3) class="current" #end onclick="openUrl('${base}/tencent/tencentlist','_self')">腾讯自选</li>
+<li #if($classNum==4) class="current" #end onclick="openUrl('${base}/stockeast/yjfp','_self')">分红送配</li>
+<li #if($classNum==5) class="current" #end onclick="openUrl('${base}/indexvm/expert','_self')">新股</li>
+<li #if($classNum==6) class="current" #end onclick="openUrl('${base}/indexvm/vip','_self')">板块</li>
+<li #if($classNum==7) class="current" #end onclick="javascript:openUrl('$bbs_url','_blank')">社区</li>
+<li #if($classNum==8) class="current" #end onclick="openUrl('${base}/stockeast/zsdetail?code=000001','_self')">上证指数</li>

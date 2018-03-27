@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>会员信息编辑</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/member/auth-space/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+        $(function () {
+            $('#indusId').combo({
+                onselect:function(record){
+                    alert($("#indusId").val());
+                }
+            });
+        })
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <input type="hidden" name="id" value="$!{model.id}">
+        <table width="100%" cellpadding="5">
+            <tr>
+                <td align="left">用户名</td>
+                <td><input name="userName" class="easyui-textbox" readonly value="$!{model.userName}"></td>
+            </tr>
+            <tr>
+                <td align="left">真实姓名</td>
+                <td><input name="name" class="easyui-textbox" value="$!{model.name}"></td>
+            </tr>
+            <tr>
+                <td align="left">所属行业</td>
+                <td>#combobox('indusPid',${indusid},'value','content')</td>
+            </tr>
+            <tr>
+                <td align="left">所属子行业</td>
+                <td>#combobox('indusId',${indusid},'value','content')</td>
+            </tr>
+            <tr>
+                <td align="left">出生日期</td>
+                <td><input name="birthday" class="easyui-" value="$!{model.birthday}"></td>
+            </tr>
+            <tr>
+                <td align="left">密码</td>
+                <td><input name="password" class="easyui-textbox" value="$!{model.password}"></td>
+            </tr>
+            <tr>
+                <td align="left">邮箱</td>
+                <td><input name="email" class="easyui-textbox" value="$!{model.email}"></td>
+            </tr>
+            <tr>
+                <td align="left">手机号</td>
+                <td><input name="mobile" class="easyui-textbox" value="$!{model.mobile}"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

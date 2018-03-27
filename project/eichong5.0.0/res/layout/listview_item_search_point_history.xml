@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:descendantFocusability="blocksDescendants"
+    android:paddingLeft="20dp"
+     android:paddingRight="20dp"
+     android:paddingTop="10dp"
+     android:paddingBottom="10dp">
+    
+   
+     <ImageButton
+            android:id="@+id/listview_item_search_point_history_del"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_height="20dp"
+             android:layout_width="20dp"
+            android:src="@drawable/btn_close"
+            android:layout_gravity="right"
+            android:background="@android:color/transparent"/>
+     <TextView 
+        android:id="@+id/listview_item_search_point_history_name"
+        android:layout_toLeftOf="@id/listview_item_search_point_history_del"
+         android:layout_width="wrap_content"
+    	 android:layout_height="wrap_content"
+    	 android:layout_alignParentLeft="true"
+    	 android:layout_marginRight="20dp"
+         android:textColor="@color/common_gray"
+         android:layout_centerVertical="true"
+         android:textSize="15sp"
+        />
+
+</RelativeLayout>

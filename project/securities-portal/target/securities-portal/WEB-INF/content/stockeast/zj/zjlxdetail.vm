@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>${stocksInfo.name}(${stocksInfo.code})资金流向全览</title>
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/master.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/default.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/layer2012.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/page_common.css">
+    <script type="text/javascript" src="${base}/static/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        var jQuery = $.noConflict();
+        var portalurl = "${portal_url}/";
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/base.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/pluginNoBind.js"></script>
+    <meta http-equiv="refresh" content="1200" />
+    <style>
+        #flash-cont {
+            min-height: 225px;
+        }
+
+        #flash-cont-1 {
+            min-height: 250px;
+        }
+
+        #flash-cont-2 {
+            min-height: 210px;
+        }
+
+        #flash-cont-3 {
+            min-height: 205px;
+        }
+
+        .blockColor {
+            float: left;
+            width: 15px;
+            height: 15px;
+            margin: 5px 5px;
+        }
+
+        .content2 {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<div id="page" class="page">
+    <div class="main">
+        <div class="framecontent">
+            <div class="linkNav">
+                <div id="Column_Navigation">
+                    <a href="${base}/">首页</a> &gt; <a href="${base}/stockeast/center/">数据中心</a> &gt; <a href="${base}/stockeast/zjlxcenter/">资金流向</a> &gt;
+                    ${stocksInfo.name}(${stocksInfo.code})资金流向
+                </div>
+            </div>
+            <div class="sitebody">
+                <div class="maincont">
+                    <div class="contentBox">
+                        <div class="titbar">
+                            <b class="el"></b>
+                            <div class="tit">
+                                <a href="${base}/stockeast/detail?stockCode=${stocksInfo.code}">
+                                    ${stocksInfo.name}(${stocksInfo.code})</a>资金流向
+                            </div>
+                            <div class="search" style="float: left; padding-left: 30px;">
+                                <span class="txt">个股资金流向：</span>
+                                <input class="sinput" name="zjlx_bar" id="zjlx_bar" type="text">
+                                <div id="search1" class="btn" style="border: none;">
+                                    <img src="${base}/static/img/east/btn_search_blue.gif" title="查询" />
+                                </div>
+                            </div>
+                            <div class="help_advice" style="padding-top: 3px;">
+                                [<a href="http://stock.eastmoney.com/news/1423,20110101117172217.html">帮助说明</a>]
+                            </div>
+
+                            <div class="tips" style="float: left; padding-left: 20px;">
+                                <b class="arr_01"></b><a href="${base}/stockeast/zjlx/list" class="link1"
+                                                         title="实时资金净流入排行榜">查看资金流向排名</a> <a href="http://data.eastmoney.com/zjlx/list.html"
+                                                                                            class="link2" title="实时大单净流入排行榜">主力流入排名</a>
+                            </div>
+
+                            <script type="text/javascript">
+                                var zz = new StockSuggest("zjlx_bar", {
+                                    text: "输代码、名称或拼音",
+                                    type: "ABSTOCK",
+                                    autoSubmit: false,
+                                    width: 200,
+                                    header: ["选项", "代码", "名称", "类型"],
+                                    body: [-1, 1, 4, -2],
+                                    callback: function (ag) {
+                                        var url = '${base}/stockeast/zjlx/detail?code=' + ag.code;
+                                        window.open(url);
+                                    }
+                                });
+                                window.onload = function () {
+                                    zz.BindSearchClick("search1");
+                                };
+                            </script>
+                        </div>
+                        <div class="sepe">
+                            <div class="left">
+                            </div>
+                            <div class="right">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contentBox" style="border-top: 0; margin-top: -10px;">
+                        <div class="content2" id="zjlx_hqcont">
+                        </div>
+                    </div>
+
+                    <div class="s6">
+                    </div>
+                    <div class="c1">
+                        <div class="contentBox content1 zjlx">
+                            <div class="titbar shortbar">
+                                <div class="tit">
+                                    实时资金流向图
+                                </div>
+                                <div class="right-tips">
+                                    更新时间 <span id="updateTime_0"></span>
+                                </div>
+                                <div class="right-tips" style="padding-right: 20px;">
+                                </div>
+                            </div>
+                            <div class="content2">
+                                <div>
+                                    <div class="flash-dw">
+                                        单位（万元）
+                                    </div>
+                                    <div class="jsline-cont" id="flash-cont">
+                                    </div>
+                                    <div class="flash-data-cont flash-data-cont-line">
+                                        <ul style="margin-left: 10px;">
+                                            <li class="data-type" style="width: 150px;"><span class="blockColor" style="background-color: #FE3EE1;"></span>今日主力净流入：</li>
+                                            <li class="data-val" style="width: 120px;"><span id="data_jlr" class=""></span>万元</li>
+                                            <li class="data-val">主力净比：<span id="data_jzb" class=""></span></li>
+                                        </ul>
+                                        <ul style="margin-left: 10px;">
+                                            <li class="data-type" style="width: 150px;"><span class="blockColor" style="background-color: #650000;"></span>今日超大单净流入：</li>
+                                            <li class="data-val" style="width: 120px;"><span id="data_superjlr" class=""></span>万元</li>
+                                            <li class="data-val">超大单净比：<span id="data_superjzb" class=""></span></li>
+                                        </ul>
+                                        <ul style="margin-left: 10px;">
+                                            <li class="data-type" style="width: 150px;"><span class="blockColor" style="background-color: #FF1117;"></span>今日大单净流入：</li>
+                                            <li class="data-val" style="width: 120px;"><span id="data_ddjlr" class=""></span>万元</li>
+                                            <li class="data-val">大单净比：<span id="data_ddjzb" class=""></span></li>
+                                        </ul>
+                                        <ul style="margin-left: 10px;">
+                                            <li class="data-type" style="width: 150px;"><span class="blockColor" style="background-color: #FFB83D;"></span>今日中单净流入：</li>
+                                            <li class="data-val" style="width: 120px;"><span id="data_zdjlr" class=""></span>万元</li>
+                                            <li class="data-val">中单净比：<span id="data_zdjzb" class=""></span></li>
+                                        </ul>
+                                        <ul style="margin-left: 10px;">
+                                            <li class="data-type" style="width: 150px;"><span class="blockColor" style="background-color: #94C4EE;"></span>今日小单净流入：</li>
+                                            <li class="data-val" style="width: 120px;"><span id="data_xdjlr" class=""></span>万元</li>
+                                            <li class="data-val">小单净比：<span id="data_xdjzb" class=""></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s6">
+                        </div>
+                        <div class="contentBox content1 second_zjlx">
+                            <div class="titbar shortbar">
+                                <div class="tit">
+                                    盘后资金流向趋势
+                                </div>
+                                <div class="right-tips">
+                                    更新时间 <span id="updateTime_2"></span>&nbsp;16:05
+                                </div>
+                            </div>
+                            <div class="content2">
+                                <div class="flash-dw">
+                                    单位（万元）
+                                </div>
+                                <div class="jsline-cont" id="flash-cont-2">
+                                </div>
+                                <div class="flash-data-cont">
+                                    <ul style="margin-left: 10px;">
+                                        <li class="data-type" style="width: 120px;"><span class="blockColor" style="background-color: #FE3EE1;"></span>主力净流入</li>
+                                        <li class="data-type" style="width: 120px;"><span class="blockColor" style="background-color: #650000;"></span>超大单净流入</li>
+                                        <li class="data-type" style="width: 120px;"><span class="blockColor" style="background-color: #FF1117;"></span>大单净流入</li>
+                                    </ul>
+                                    <ul style="margin-left: 10px;">
+                                        <li class="data-type" style="width: 120px;"><span class="blockColor" style="background-color: #FFB83D;"></span>中单净流入</li>
+                                        <li class="data-type" style="width: 120px;"><span class="blockColor" style="background-color: #94C4EE;"></span>小单净流入</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c2">
+                        <div class="contentBox content1 zjlx">
+                            <div class="titbar shortbar">
+                                <div class="tit">
+                                    实时成交分布图
+                                </div>
+                                <div class="right-tips" style="float: right;">
+                                    更新时间 <span id="updateTime_1"></span>
+                                </div>
+                            </div>
+                            <div class="content2">
+                                <div id="flash-cont-1" class="jsline-cont">
+                                </div>
+                                <script type="text/javascript">
+
+                                </script>
+                                <div class="flash-legendrt" style="height: 120px;">
+                                    <table cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <th width="20%">类型
+                                            </th>
+                                            <th>流入
+                                            </th>
+                                            <th>流出
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>超大单
+                                            </td>
+                                            <td>
+                                                <span id="data_superlr" class="red"></span>万元
+                                            </td>
+                                            <td>
+                                                <span id="data_superlc" class="green"></span>万元
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>大单
+                                            </td>
+                                            <td>
+                                                <span id="data_ddlr" class="red"></span>万元
+                                            </td>
+                                            <td>
+                                                <span id="data_ddlc" class="green"></span>万元
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>中单
+                                            </td>
+                                            <td>
+                                                <span id="data_zdlr" class="red"></span>万元
+                                            </td>
+                                            <td>
+                                                <span id="data_zdlc" class="green"></span>万元
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>小单
+                                            </td>
+                                            <td>
+                                                <span id="data_xdlr" class="red"></span>万元
+                                            </td>
+                                            <td>
+                                                <span id="data_xdlc" class="green"></span>万元
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s6">
+                        </div>
+                        <div class="contentBox content1 second_zjlx">
+                            <div class="titbar shortbar">
+                                <div class="tit">
+                                    盘后资金流向统计
+                                </div>
+                                <div class="right-tips">
+                                    更新时间 <span id="updateTime_3"></span>&nbsp;16:05
+                                </div>
+                            </div>
+                            <div class="content2">
+                                <div class="flash-dw" style="position: relative">
+                                    单位（万元）
+                                </div>
+                                <div id="flash-cont-3">
+                                </div>
+                                <div style="text-align: center; height: 25px; margin: 10px 0;">
+                                    <div>
+                                        <div style="margin-bottom: 10px;">
+                                            <span style="height: 15px; width: 15px; background-color: #FE3EE1;">&nbsp;&nbsp;</span>&nbsp;主力净流入
+                                            <span style="height: 15px; width: 15px; margin-left: 10px; background-color: #650000;">&nbsp;&nbsp;</span>&nbsp;超大单净流入
+                                            <span style="height: 15px; width: 15px; margin-left: 10px; background-color: #FF1117;">&nbsp;&nbsp;</span>&nbsp;大单净流入
+                                        </div>
+                                        <div>
+                                            <span style="height: 15px; width: 15px; background-color: #FFB83D;">&nbsp;&nbsp;</span>&nbsp;中单净流入
+                                            <span style="height: 15px; width: 15px; margin-left: 10px; background-color: #94C4EE;">&nbsp;&nbsp;</span>&nbsp;小单净流入
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s6">
+                    </div>
+                    <div class="contentBox">
+                        <div class="titbar shortbar">
+                            <div class="tit">
+                                ${stocksInfo.name}(${stocksInfo.code})历史资金流向一览
+                            </div>
+
+                            <div class="tips" style="float: left; margin-left: 50px;">
+                                <b class="arr_01"></b><a href="http://data.eastmoney.com/stockcomment/002102.html"
+                                                         class="link1" title="点击查看冠福股份(002102)的控盘程度">点击查看该股控盘程度</a>
+                                <a href="http://data.eastmoney.com/report/002102.html" class="link2"
+                                   title="点击查看冠福股份(002102)的最新研究报告">最新研报</a> <a href="http://data.eastmoney.com/stockcomment/002102.html"
+                                                                               class="link2" title="点击查看冠福股份(002102)的千股千评">千股千评</a>
+                                <a href="http://data.eastmoney.com/stock/lhb,2017-03-18,002102.html"
+                                   class="link2" title="点击查看冠福股份(002102)的龙虎榜单">龙虎榜单</a>
+                                <a href="http://data.eastmoney.com/bbsj/002102.html" class="link2"
+                                   title="点击查看冠福股份(002102)的最新业绩">最新业绩</a> <a href="http://data.eastmoney.com/dxf/q/002102.html"
+                                                                             class="link2" title="点击查看冠福股份(002102)的解禁情况一览">解禁一览</a>
+                            </div>
+                        </div>
+                        <div class="content2" id="content_zjlxtable">
+                            <table cellpadding="0" cellspacing="0" class="tab1" id="dt_1">
+                                <thead class="h101">
+                                <tr>
+                                    <th>加载中......
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript" src="${base}/static/js/east/qphf.js"></script>
+    #*<script src="http://emcharts.dfcfw.com/ec/2.5.0/emcharts.min.js" charset="utf-8"></script>*#
+    <script type="text/javascript" src="${base}/static/js/east/emcharts.min.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/load_table_data.js"></script>
+
+    <script type="text/javascript">
+        var _stockCode = "${stocksInfo.code}",
+                _stockMarke = ('${stocksInfo.place}'=='sh')?'1':'2',
+                _stockName = "${stocksInfo.name}";
+        var strUrl = 'http://ff.eastmoney.com/' + "/EM_CapitalFlowInterface/api/js?type=hff&rtntype=2&js=({data:(x)})&cb=var%20aff_data=&check=TMLBMSPROCR&id=" + _stockCode + _stockMarke;
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/fn_zjlxStock.js"></script>
+</body>
+</html>

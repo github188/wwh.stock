@@ -1,0 +1,254 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>沪深自选</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    #parse("commons/commonEastJs.vm")
+    #parse("commons/commonEastCss.vm")
+    <script type="text/javascript" src="${base}/static/js/east/onekey2.js"></script>
+#*<script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+<script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>*#
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/stock.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/window.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/base.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/core.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/style.css">
+    <script type="text/javascript">
+        jQuery(function(){
+            zxgInit(window.location.href);
+        })
+        var tmopid = "hszx";var onloadisreload=true;
+    </script>
+</head>
+<body>
+<div class="qphox">
+    <div class="aide">
+        <div class="global">
+            <div class="lbox"><div class="tit"><b></b><a href="http://quote.eastmoney.com/center/global.html#global_3" target="_blank">全球股市</a></div></div>
+            <div class="mbox"><b id="btn_down" class="up" title="下滚"></b><b id="btn_up" class="down" title="上滚"></b></div>
+            <div class="rbox">
+                <div id="qqgscont" xvs="0">
+                    <ul><li><a href="http://quote.eastmoney.com/zs000001.html" target="_blank" class="blue"><strong>上证</strong></a>：<span><b>-</b> <b>-</b>  <b>-</b></span>(涨:<b>-</b>平:<b>-</b> 跌:<b>-</b>)<a href="http://quote.eastmoney.com/zs399001.html" target="_blank" class="blue"><strong>深证</strong></a>：<span><b>-</b> <b>-</b>  <b>-</b></span>(涨:<b>-</b>平:<b>-</b> 跌:<b>-</b>)</li></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" language="JavaScript">
+
+    setTimeout(function() {
+        var arg = {
+            text: "输代码、名称或简拼",
+            autoSubmit: true,
+            width: 195,
+            header: ["选项", "代码", "名称", "类型"],
+            body: [-1, 1, 4, -2],
+            callback: function(arg) { }
+        };
+        var ss = new StockSuggest("StockCode", arg);
+
+        qphf.getIndexQuote(20);
+
+        var arg = { def: "", set: "",lns:0 }; var HV = new HistoryViews("historyest", arg);
+    }, 500);
+</script>
+<input type='hidden' id='myStockList' value='${myStkList}'/>
+<div class="gtallw clearfix" style="margin-bottom:5px;">
+
+    <div class="fr st-wrap" id="stockMain">
+        <div class="st-title">
+            <div id="sec-title" class="pt-title fl" style="display: none">
+                <a href="http://quote.eastmoney.com/favor/"><h3 class="cur">沪深自选<i></i></h3></a>
+                <a href="http://quote.eastmoney.com/hk/favor/" id="unLoginHideLink"><h3>港股自选</h3></a>
+            </div>
+            <h2 id="fir-title" class="st-title-h2 font-wryh fl">沪深自选</h2>
+
+            <input id="myOwnInputCode" class="st-title-input" type="text"/>
+
+            <span id="directAddStock" class="st-title-button click" href="javascript:void(0);">添加</span>
+        #*&nbsp;日期：<input type="text" name="filter_dt" value="$!currentDate" data-date-format="yyyy-mm-dd" class="form-control form_datetime"/>
+        <script type="text/javascript">
+            jQuery('.form_datetime').datetimepicker({
+                language:  'zh-CN',
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+        </script>*#
+            <span id="checkALL" class="st-title-button click" href="javascript:void(0);">查询</span>
+            <span id="addLot" class="dropInmyStock ml18 fl click" style="display:none;">导入我的自选股</span>
+
+        </div>
+
+        <div class="positionrelativemy" style="*z-index: 368;">
+            <a id="refreshALLALLALL" href="javascript:void(0);" class="st-title-refresh" style="position: absolute;top: -3px;z-index: 369;right: 6px;"><em></em>手动刷新</a>
+            <div class="gpal" id="gpal" style="display:none;">
+                <a style="margin-left:50px; " href="http://stattg.eastmoney.com/11283" target="_blank">上市公司公告查询</a>
+                <a style="margin-left:50px; " href="http://stattg.eastmoney.com/11284" target="_blank">7&#215;24小时全球财经直播</a>
+
+            </div>
+            <div class="fr jmbv2">
+               <span href="javascript:void(0)" id="topmoreCollectionSelect" class="click topmoreCollectionSelect">
+                   更多组合>>
+                   <div class="moreCollectionSelect" id="moreCollectionSelect">
+                       <span>123</span>
+                   </div>
+               </span>
+                <span id="addCollectionBtn" class="st-add-collection click"><em></em>新建组合</span>
+            </div>
+            <ul class="st-user-tab1" id="myStockCollection">
+            </ul>
+        </div>
+
+        <div class="positionrelativemy" style="*z-index:99">
+            <div class="jmbv1">
+                批量设置：
+                <span id="delLotOfStock" class="st-deletlots click"><em></em>删除</span>
+               <span id="moveLotOfStock" class="st-movelots click positionrelativemy"><em></em>移动到
+                   <div id="allSCollections" class="clearfix"></div>
+               </span>
+            </div>
+            <ul class="st-user-tab2" id="callBackTypes">
+                <li id="loginZX" class="cur" callName="CTALL">我的自选</li>
+                <!--<li callName="CTDF">增仓排名</li>-->
+                <li id="unloginZX" style="display: none" callName="CTF">我的自选</li>
+                <li callName="CTBF">资金流向</li>
+            #*<li callName="CTDDE">DDE决策</li>
+            <li callName="CTPF">盈利预测</li>
+            <li callName="CTFA">财务数据</li>*#
+                <li callName="DGTL">多股同列</li>
+                <li callName="YKYL">盈亏一览</li>
+            </ul>
+            <div id="xxxl">
+                <span id="dzCss" class="fl dzml5">大字</span>
+                <span id="xzCss" class="fl dzml5 dzbtnSelected">小字</span>
+            </div>
+            <div class="jmbv3" id="userReadUp">
+                <i></i>（排序状态不可拖动）
+            </div>
+        </div>
+
+        <div class="positionrelativemy">
+            <div class="st-table" id="stockDataTables">
+
+            </div>
+            <div id="pics" class="pics">
+            </div>
+        </div>
+        <div id="gagagc" class="st-ht w100p">
+            <table class="st-total-table" cellpadding="0" cellspacing="0">
+                <td style="padding-left: 12px">当页总计：</td>
+                <td>总持股 <b id="total_cyl">312312</b></td>
+                <td>总成本 <b id="total_mrcb">312312</b></td>
+                <td>总市值 <b id="total_dqsz">312312</b></td>
+                <td>总每股盈亏 <b id="total_mgyk">312312</b></td>
+                <td>总盈亏率 <b id="total_ykl">312312</b></td>
+                <td>总浮动盈亏 <b id="total_fdyk">312312</b></td>
+            </table>
+        </div>
+        <div id="morePages" class="more-pages">
+
+        </div>
+        <div class="st-table-info st-gray" id="st-table-sortInfo">
+            默认排序中，点击表头可更改排序状态（拖动每行可以自定义排序；拖动每行可以移动到另外组合）
+        </div>
+        <div style="position: relative; height: 0px;">
+            <div id="howTimeFly" class="st-gray" style="height: 30px; line-height: 30px; position: absolute; right: 10px; top: -40px;">2014年3月20日 星期一 13:16:18</div>
+        </div>
+        <script type="text/javascript">
+            var gs = document.getElementById("howTimeFly");
+            function xyh(a){
+                if(a<10){
+                    return "0"+a
+                }else{
+                    return a;
+                }
+            }
+
+            function getIyTime(){
+                var t = new Date();
+                var arr = ["日","一","二","三","四","五","六"]
+                var html = t.getFullYear() + "年" + (t.getMonth()+1) + "月" + t.getDate() + "日" + " 星期" + arr[t.getDay()] + " "+ xyh(t.getHours())+":"+ xyh(t.getMinutes())+":"+ xyh(t.getSeconds());
+                return html;
+            }
+            function stime(){
+                gs.innerHTML = getIyTime();
+                setTimeout(stime,1000)
+            }
+            stime()
+        </script>
+
+        <div class="st-all-news clearfix">
+            <div id="wp1" class="fl st-single-new">
+                <a target="_blank" class="yaya-a" href="http://roll.eastmoney.com/"><h3>自选股新闻</h3></a>
+                <ul id="newsNews">
+                    <!--<li><span class="fr">09-09</span><a class="st-a-black" href="#">[浦发银行]</a><a class="st-a-normal" href="#">5宗大宗交易解密：什么时候交易</a> </li>-->
+
+                </ul>
+            </div>
+            <div id="wp2" class="fr st-single-new">
+                <a target="_blank" class="yaya-a" href="http://iguba.eastmoney.com/"><h3>自选股吧</h3></a>
+                <ul id="newsMainPost">
+
+                </ul>
+            </div>
+        </div>
+        <div class="st-all-news clearfix">
+            <div id="wp3" class="fl st-single-new">
+                <a target="_blank" class="yaya-a" href="http://data.eastmoney.com/center/"><h3>自选数据</h3></a>
+                <ul id="newsData">
+
+                </ul>
+            </div>
+            <div id="wp4" class="fr st-single-new">
+                <a target="_blank" class="yaya-a" href="http://data.eastmoney.com/notice/"><h3>自选股公告/研报</h3></a>
+                <ul id="newsRn">
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <input type='hidden' id='myStockLoadImg' value='${base}/static/img/east/loading2.gif'/>
+
+    <div class="page-footer" style="clear:both;">
+        <div id="tixing">
+            <div id="tixingTips" style="display:none">
+                <div class="tixingClose"></div>
+                <div class="tixingDiv"><span>查看</span><span class="tixing">0个股价提醒</span></div>
+                <div class="tixingDiv"><span>查看</span><span class="tixing">0个公告提醒</span></div>
+                <div class="tixingDiv"><span>查看</span><span class="tixing">0个研报提醒</span></div>
+                <div class="tixingDiv"><span>查看</span><span class="tixing">0个数据提醒</span></div>
+            </div>
+
+            <div style="float: right;width: 17px;"><em></em>提醒</div>
+        </div>
+        <div class="navi-open" id="navigatorHide" style="display:none">收起导航</div>
+        <div id="backtop" onClick="window.scroll(0,0)"><em></em>回到顶部</div>
+
+    </div>
+
+</div>
+<div class="qphox">
+    <script type="text/javascript" src="${base}/static/js/east/base.min.js"></script>
+    <script type="text/javascript">    var tmopid = "hszx";</script>
+    <script type="text/javascript" src="${base}/static/js/east/function.min.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/stockAllInOne.js"></script>
+    <script type="text/javascript" defer="defer">
+        var flagScroll = !1; window.onscroll = function () { function f() { Browser.ie ? (b.style.filter = "alpha(opacity=" + e + ")", e += 10) : (b.style.opacity = e / 100, e++), 100 == e && clearInterval(d) } function i() { Browser.ie ? (b.style.filter = "alpha(opacity=" + h + ")", h -= 10) : (b.style.opacity = h / 100, h--), 0 == h && (b.style.display = "none", clearInterval(g)) } var d, e, g, h, a = document.documentElement.clientHeight, b = document.getElementById("backtop"), c = document.documentElement.scrollTop || document.body.scrollTop; flagScroll || c > a / 3 && (flagScroll = !0, b.style.display = "block", d = setInterval(f, 1), e = 0), flagScroll && a / 3 > c && (flagScroll = !1, g = setInterval(i, 1), h = 100) };
+    </script>
+</div>
+
+<script>_cpyno="c1"</script><script type="text/javascript" src="http://js4.eastmoney.com/counter.js?c=hq"></script>
+<script type="text/javascript" src="http://cmsjs.eastmoney.com/analysis/emtj.min.js"></script>
+</body>
+</html>

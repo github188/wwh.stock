@@ -1,0 +1,32 @@
+<ul class="step step2">
+	<!-- $!model.step -->
+	
+	#set($step = $NumberTool.toNumber($!model.step))
+	
+	#set($bool = true)
+	
+	#if($!model.link=='0')
+		#set($bool = false)	
+	#end
+	
+	<li class="step-item #if($!step >= 2) action #end">
+		<span class="step-num">#if($!step > 2) <i class="fa fa-check"></i>  #else 1 #end</span>
+		<div class="step-text step-bottom">
+			#if($!step >= 3 && $bool) 
+			<p><a href="$!{base}/taskpub/step?usrType=$!usrType&step=2"><strong class="step-title" title="需求描述">需求设置</strong></a></p>
+			#else 
+			<p><strong class="step-title" title="需求描述">需求描述</strong></p>
+			#end
+		</div>
+	</li>
+	<li class="step-item #if($!step >=3) action #end">
+		<span class="step-num">#if($!step > 3)<i class="fa fa-check"></i> #else 2 #end</span>
+		<div class="step-text step-bottom">
+			#if($!step >= 4 && $bool)
+				<p><a href="$!{base}/taskpub/step?usrType=$!usrType&step=3"><strong class="step-title" title="需求确认">需求确认</strong></a></p>
+			#else
+				<p><strong class="step-title" title="需求确认">需求确认</strong></p>
+			#end
+		</div>
+	</li>
+</ul>

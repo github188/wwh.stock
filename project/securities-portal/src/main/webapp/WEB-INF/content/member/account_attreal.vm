@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="zh-cn">
+<head>
+    <title>账号设置</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="generator" content="客客出品专业威客2.7.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/user.css" rel="stylesheet" type="text/css" id="active-style-user">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.82587500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+</head>
+<script>
+    window.onload = function(){
+        base_url="${base}";
+        if('$!{enab}'=='Y'){
+            $('input,',$('form[name="editRealnameForm"]')).prop('readonly',false);
+            $('button,',$('form[name="editRealnameForm"]')).prop('disabled', false);
+        }else {
+            $('input,', $('form[name="editRealnameForm"]')).prop('readonly', true);
+            $('button,',$('form[name="editRealnameForm"]')).prop('disabled', true);
+        }
+        if('$!{model.idpic}'){
+            $("#Upicker_img").show();
+        }
+        if('$!{model.idpicDown}'){
+            $("#Dpicker_img").show();
+        }
+    }
+</script>
+<body id="user">
+
+<script src="${base}/static/js/model/user/auth.js"></script>
+<script src="${base}/static/js/model/user/transaction.js"></script>
+<link rel="stylesheet" type="text/css" href="${base}/static/js/webuploader/webuploader.css">
+<script type="text/javascript" src="${base}/static/js/webuploader/webuploader.js?r=0.93525000"></script>
+<script type="text/javascript" src="${base}/static/js/webuploader/kppw.webuploader.js"></script>
+<!-- /header -->
+    #parse("includes/member/home_manage.vm")
+<!-- nav end -->
+
+<div class="container">
+    #parse("includes/member/nav_manage.vm")
+    <!-- nav-action end -->
+    <div class="content-panel">
+        <div class="tab">
+            <a href="${base}/member/account_email"> 邮箱认证 </a>
+            <a href="${base}/financial/banklist">银行认证</a>
+            <a class="selected" href="${base}/member/account_attreal"> 身份认证 </a>
+            <a href="${base}/member/account_mobile"> 手机认证 </a>
+##            <a href="javascript:void(0)"> 支付宝认证</a>
+        </div>
+        <div class="tab_detail">
+            #if($!{userType}=="0")
+                <ul class="nav nav-pills second-nav">
+                    <li  class="active" ><a href="${base}/member/account_attreal">实名认证</a></li>
+                    <li ><a href="${base}/member/account_attcomp">企业认证</a></li>
+                </ul>
+            #end
+            <form role="form" action="${base}/member/auth_save" method="post" name="editRealnameForm" id="editRealnameForm">
+                <input type="hidden"  name="id" id="id"  class="form-control" value="$!{model.id}">
+                <input type="hidden"  name="userType" id="userType"  class="form-control" value="1">
+                <div class="media">
+                    <div class="pull-left">
+                        <img class="media-object" src="${base}/static/img/1904554d1c73232550.gif" alt="实名认证">
+                    </div>
+                    <div class="media-body">
+                        <div class="form-group">
+                            <label class="control-label" for="username">用户名：</label>
+                            $!{username}</div>
+                        <div class="form-group">
+                            <label class="control-label" for="name">真实姓名：</label>
+                            <input type="text"  name="name" id="name"  class="form-control" value="$!{model.name}">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="code">身份证号：</label>
+                            <input type="text"  name="code" id="code"  class="form-control" value="$!{model.code}">
+                        </div>
+                        <div class="form-group">
+                            <label class=" control-label" for="img_path">证件图：</label>
+                            <div style="width: 800px;">
+                            <div style="float: left;width: 300px;">
+                                <div id="Upicker">上传身份证正面</div>
+                                <input type="hidden"  name="Upicker_fileid" id="Upicker_fileid"  class="form-control" value="">
+                                <input type="hidden"  name="idpic" id="idpic"  class="form-control" value="$!{model.idpic}">
+                                <img id="Upicker_img"  src="$!{model.idpic}" style="display:none;width: 230px;" >
+                                <div class="form-group" >
+                                <ul class="affix-list upload-file-list-info" id="fileList0" style="width:230px;padding-top: 15px;"></ul>
+                                </div>
+                            </div>
+                            <div style="float: left;width: 300px;">
+                                <div id="Dpicker">上传身份证反面</div>
+                                <input type="hidden"  name="Dpicker_fileid" id="Dpicker_fileid"  class="form-control" value="">
+                                <input type="hidden"  name="idpicDown" id="idpicDown"  class="form-control" value="$!{model.idpicDown}">
+                                <img id="Dpicker_img"  src="$!{model.idpicDown}" style="display:none;width: 230px;">
+                                <div class="form-group" >
+                                <ul class="affix-list upload-file-list-info" id="fileList1" style="width:230px;padding-top: 15px;"></ul>
+                                    </div>
+                            </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group" style="text-align: center;">
+                        <button class="btn btn-default" type="submit" value="1" onclick="return saveAuthInfo();" >提交</button>
+                        <span class="text-success" id="tipsUser"></span>
+                    </div>
+                </div>
+            </form>
+            <!-- end -->
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var uploadsize = parseInt("1");
+    uploadsize =  isNaN(uploadsize)? 1 : uploadsize;
+    $(function(){
+        $("#Upicker").KKUploader({
+                    accept: {
+                        extensions : 'jpg,gif,png,jpeg'  //可上传文件格式
+                    },
+                    ossType:'pic',
+                    fileNumLimit:1,			//上传数量限制
+                    listName		: 'fileList0', //文件上传完成显示列表区域id
+                    hiddenName:'Upicker_fileid',	//表单隐藏域id
+                    uploadEvents: {
+                        uploadComplete:function(file){
+                            var url =$("#"+file.id).find('.webuploader-pick-file-close').attr('data-fileurl');
+                            var defaultUrl=$("#Upicker_img").attr("src");
+                            $("#idpic").val(url);
+                            $("#Upicker_img").show();
+                            $('#Upicker_img').prop('src',url);
+                            $('.webuploader-pick-file-close').on('click','.close',function(){
+                                $('#Upicker_img').prop('src',defaultUrl);
+                            });
+                        }
+                    },
+                    separator:',',			//多文件上传时，指定分隔符，如不指定，默认为","
+                    fileSingleSizeLimit:uploadsize*1024*1024			//上传大小限制
+                },
+                {
+                    filename : 'file',//传递给服务端的参数指定上传文本域的name，如果未指定，上传不成功
+                });
+
+        $("#Dpicker").KKUploader({
+                    accept: {
+                        extensions : 'jpg,gif,png,jpeg'  //可上传文件格式
+                    },
+                    fileNumLimit:1,			//上传数量限制
+                    ossType:'pic',
+                    listName		: 'fileList1', //文件上传完成显示列表区域id
+                    hiddenName:'Dpicker_fileid',	//表单隐藏域id
+                    uploadEvents: {
+
+                        uploadComplete:function(file){
+                            var url =$("#"+file.id).find('.webuploader-pick-file-close').attr('data-fileurl');
+                            var defaultUrl=$("#Dpicker_img").attr("src");
+                            $("#idpicDown").val(url);
+                            $('#Dpicker_img').show();
+                            $('#Dpicker_img').prop('src',url);
+                            $('.webuploader-pick-file-close').on('click','.close',function(){
+                                $('#Dpicker_img').prop('src',defaultUrl);
+                            });
+                        }
+                    },
+                    separator:',',			//多文件上传时，指定分隔符，如不指定，默认为","
+                    fileSingleSizeLimit:uploadsize*1024*1024			//上传大小限制
+                },
+                {
+                    filename : 'file',//传递给服务端的参数指定上传文本域的name，如果未指定，上传不成功
+                });
+    });
+</script>
+    #parse("includes/footer.vm")
+</body>
+</html>

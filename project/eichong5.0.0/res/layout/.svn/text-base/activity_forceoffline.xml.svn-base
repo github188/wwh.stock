@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+     android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:background="@drawable/common_shape_dialog"
+    android:layout_height="fill_parent" >
+	 <TextView 
+	     android:layout_marginTop="10dp"
+         android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textColor="@color/common_gray"
+       android:textStyle="bold"
+       android:textSize="18sp"
+       android:text="提示"
+       android:gravity="center_horizontal"
+        />
+   <TextView 
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textColor="@color/common_gray"
+       android:textSize="15sp"
+       android:text="你的账户已在另外一台设备登录。如非本人操作，则密码可能已泄露，建议立即修改密码！"
+       android:gravity="center_horizontal"
+       android:paddingLeft="20dp"
+       android:paddingRight="20dp"
+       android:paddingBottom="10dp"
+       />
+   <View 
+       android:layout_width="match_parent"
+       android:layout_height="1dp"
+       android:background="@color/common_light_gray"
+       
+       />
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+          android:paddingLeft="20dp"
+          android:paddingRight="20dp"
+          android:paddingBottom="10dp"
+        >
+        <TextView 
+            android:id="@+id/forceoffline_quit"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+             android:layout_height="wrap_content"
+            android:text="退出"
+             android:textSize="17sp"
+             android:paddingTop="10dp"
+            android:textColor="@color/blue"
+            android:gravity="center_horizontal"
+            android:paddingRight="5dp"
+            />
+        <View 
+            android:layout_width="1dp"
+             android:layout_height="match_parent" 
+            android:background="@color/common_light_gray"
+            
+            />
+        <TextView 
+            android:id="@+id/forceoffline_again"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+             android:layout_height="wrap_content"
+            android:text="重新登录"
+            android:paddingTop="10dp"
+             android:gravity="center_horizontal"
+             android:textSize="17sp"
+            android:textColor="@color/blue"
+            android:paddingLeft="5dp"
+            />
+        
+        
+    </LinearLayout>
+    
+    
+</LinearLayout>

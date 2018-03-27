@@ -1,0 +1,39 @@
+
+.newsList{border-bottom: 1px #b7b7b7 solid;}
+.newsList li{
+	padding: 50px 0;
+	border: 1px #fff solid;
+}
+.newsList li:hover{
+	border: 1px #30a9de solid;
+	background: #f6f6f6;
+}
+.newsList li img{
+	float: left;
+	margin-right: 30px;
+}
+.listContent{
+	position: relative;
+	overflow: hidden;
+}
+.listContent h3{
+	font-size: 18px;
+	color: #30a9de;
+	line-height: 32px;
+}
+.listContent .content{
+	font-size: 12px;
+	margin-top: 28px;
+	color: #6c6c6c;
+	line-height: 26px;
+}
+.listContent .time{
+	font-size: 10.5px;
+	color: #929292;
+}
+.toolbar{
+	margin-top: 40px;
+	height: 20px;
+	line-height: 20px;
+	bottom: 0;
+}

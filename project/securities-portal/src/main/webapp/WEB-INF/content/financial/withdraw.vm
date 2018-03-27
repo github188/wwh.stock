@@ -1,0 +1,255 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="zh-cn">
+<head>
+    <title>用户中心</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="generator" content="客客出品专业威客2.7.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style” content=black" />
+    <meta name="author" content="kekezu" />
+    <meta name="copyright" content="" />
+    <meta property="qc:admins" content="1220311574763007636" />
+    <meta property="wb:webmaster" content="6b685cd5f06ba5f1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <script src="${base}/static/js/jquery.min.js"></script>
+    <script src="${base}/static/js/bootstrap.min.js"></script>
+    <script src="${base}/static/js/jquery.form.js"></script>
+    <script src="${base}/static/js/jquery.lazyload.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.js"></script>
+    <script src="${base}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${base}/static/js/sco.confirm.js"></script>
+    <script src="${base}/static/js/sco.modal.js"></script>
+    <script src="${base}/static/js/sco.valid.js"></script>
+    <script src="${base}/static/js/holder.min.js"></script>
+    <script src="${base}/static/js/model/common/base.js"></script>
+    <script src="${base}/static/js/jquery.bgiframe.pack.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.mousewheel.js"></script>
+    <script src="${base}/static/js/jqplugins/jscroll/jquery.jscrollpane.min.js"></script>
+    <script src="${base}/static/js/jquery.placeholder-enhanced.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HlkMGAhFgon122p5ucBmnoEG"></script>
+
+    <link href="${base}/static/css/user.css" rel="stylesheet" type="text/css" id="active-style-user">
+    <link href="${base}/static/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/rework.css" rel="stylesheet" type="text/css">
+    <link href="${base}/static/css/hongb.css" rel="stylesheet" type="text/css">
+    <!-- js超酷消息警告框插件  -->
+    <script type="text/javascript" src="${base}/static/js/swal/js/sweet-alert.min.js?r=0.82587500"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/js/swal/css/sweet-alert.css">
+</head>
+<body id="user">
+
+<script src="${base}/static/js/model/user/user.js"></script>
+<script src="${base}/static/js/model/user/transaction.js"></script>
+
+<!-- /header -->
+    #parse("includes/member/home_manage.vm")
+<!-- nav end -->
+
+<div class="container">
+    #parse("includes/member/nav_manage.vm")
+    <!-- nav-action end -->
+    <div class="content-panel">
+      <div class="tab">
+        <a class="selected" href="index.php?do=user&amp;view=finance&amp;op=withdraw">我要提现</a>
+      </div>
+      <div class="tab_detail">
+    	 <!--安全码验证 start-->
+    <p class="text-warning">
+        <i class="fa fa-exclamation-triangle"></i>
+        尊敬的用户，为了您的账号安全，在进行此操作前，请先输入支付密码
+    </p>
+    <form action="" class="form-horizontal" name="secodeForm" id="secodeForm" method="post" onload="document.form.autocomplete.setAttribute('autocomplete', 'off');" novalidate="novalidate">
+<div class="form-group mt_20">
+      <label class="col-sm-2 control-label" for="sec_code">支付密码：</label>
+        <div class="col-sm-8">
+          <input type="text" name="sec_code" id="sec_code" class="form-control" autocomplete="off" onfocus="this.type='password'">
+          <p class="help-block">个人初始支付密码为个人密码，请尽量修改。</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+           <input class="btn btn-default" id="btn" type="button" value="提交"/>
+           <span class="text-success" id="tipsUser"></span>
+        </div>
+    </div>
+    </form>
+
+
+
+
+<!--安全码验证 end-->
+<script type="text/javascript">
+window.load = function(){ 
+    document.getElementById('sec_code').value=''; 
+}; 
+</script>
+  
+  </div>
+  </div><!-- content-panel end -->
+
+            </div><!-- media end -->
+        </div><!-- user-short end -->
+        <script type="text/javascript" src="${base}/static/js/model/user/account.js"></script>
+        
+		
+    </div>
+</div>
+    #parse("includes/footer.vm")
+</body>
+</html>
+
+<script>
+/**
+*
+*  Base64 encode / decode
+*
+*  @author haitao.tu
+*  @date   2010-04-26
+*  @email  tuhaitao@foxmail.com
+*
+*/
+ 
+function Base64() {
+ 
+	// private property
+	_keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+ 
+	// public method for encoding
+	this.encode = function (input) {
+		var output = "";
+		var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+		var i = 0;
+		input = _utf8_encode(input);
+		while (i < input.length) {
+			chr1 = input.charCodeAt(i++);
+			chr2 = input.charCodeAt(i++);
+			chr3 = input.charCodeAt(i++);
+			enc1 = chr1 >> 2;
+			enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+			enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+			enc4 = chr3 & 63;
+			if (isNaN(chr2)) {
+				enc3 = enc4 = 64;
+			} else if (isNaN(chr3)) {
+				enc4 = 64;
+			}
+			output = output +
+			_keyStr.charAt(enc1) + _keyStr.charAt(enc2) +
+			_keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+		}
+		return output;
+	}
+ 
+	// public method for decoding
+	this.decode = function (input) {
+		var output = "";
+		var chr1, chr2, chr3;
+		var enc1, enc2, enc3, enc4;
+		var i = 0;
+		input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+		while (i < input.length) {
+			enc1 = _keyStr.indexOf(input.charAt(i++));
+			enc2 = _keyStr.indexOf(input.charAt(i++));
+			enc3 = _keyStr.indexOf(input.charAt(i++));
+			enc4 = _keyStr.indexOf(input.charAt(i++));
+			chr1 = (enc1 << 2) | (enc2 >> 4);
+			chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+			chr3 = ((enc3 & 3) << 6) | enc4;
+			output = output + String.fromCharCode(chr1);
+			if (enc3 != 64) {
+				output = output + String.fromCharCode(chr2);
+			}
+			if (enc4 != 64) {
+				output = output + String.fromCharCode(chr3);
+			}
+		}
+		output = _utf8_decode(output);
+		return output;
+	}
+ 
+	// private method for UTF-8 encoding
+	_utf8_encode = function (string) {
+		string = string.replace(/\r\n/g,"\n");
+		var utftext = "";
+		for (var n = 0; n < string.length; n++) {
+			var c = string.charCodeAt(n);
+			if (c < 128) {
+				utftext += String.fromCharCode(c);
+			} else if((c > 127) && (c < 2048)) {
+				utftext += String.fromCharCode((c >> 6) | 192);
+				utftext += String.fromCharCode((c & 63) | 128);
+			} else {
+				utftext += String.fromCharCode((c >> 12) | 224);
+				utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+				utftext += String.fromCharCode((c & 63) | 128);
+			}
+ 
+		}
+		return utftext;
+	}
+ 
+	// private method for UTF-8 decoding
+	_utf8_decode = function (utftext) {
+		var string = "";
+		var i = 0;
+		var c = c1 = c2 = 0;
+		while ( i < utftext.length ) {
+			c = utftext.charCodeAt(i);
+			if (c < 128) {
+				string += String.fromCharCode(c);
+				i++;
+			} else if((c > 191) && (c < 224)) {
+				c2 = utftext.charCodeAt(i+1);
+				string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+				i += 2;
+			} else {
+				c2 = utftext.charCodeAt(i+1);
+				c3 = utftext.charCodeAt(i+2);
+				string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+				i += 3;
+			}
+		}
+		return string;
+	}
+}
+
+jQuery(document).ready(function(){
+		$('#sec_code').val('');
+		$('#sec_code').focus(function(){
+		$(this).prop('type','password');
+		});
+		
+		$("#btn").click(function(){	
+		var b = new Base64();  
+		var password = $('#sec_code').val();
+		var password64 = b.encode(password);
+		
+		jQuery.ajax({
+                cache: true,
+                type: "POST",
+                url:"withdraw_confirm",
+                data:{password:password64},// 你的formid
+                async: false,
+				dataType:'json',
+                error: function(request) {
+                    alert("Connection error");
+                },
+                success: function(result) {
+				if(result.status=="success"){
+				 setTimeout("window.location='${base}/financial/withdraw_submit/step/1'",2000);
+                }
+				if(result.status=="failed"){
+				alert("failed");
+                }
+				}
+            });
+			});
+		});
+</script>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>管理</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        $(function () {
+            jQuery('#dg').datagrid({
+                url: 'order-charge/queryPaged',
+                columns: [[
+                    {field: 'id', checkbox: true}
+                                            , {field: 'orderTypeStr', title: '冲值类型', width: 100}
+                                            , {field: 'uid', title: '用户编号', width: 100}
+                                            , {field: 'username', title: '用户名', width: 100}
+                                            , {field: 'payTime', title: '支付时间', width: 100}
+                                            , {field: 'payMoney', title: '支付金额', width: 100}
+                                            , {field: 'orderStatus', title: '订单状态', width: 100,formatter:function statusformatter(val){
+   																												if(val == 'wait'){
+	    																											return "待审核";
+																												}else if(val=='ok'){
+	    																											return "已付款";
+																													}}}
+                                            , {field: 'payInfo', title: '支付信息', width: 100}
+                                    ]],
+                pagination: true,
+                singleSelect: false,
+                fitColumns: true,
+                fit: true,
+                toolbar: '#toolbar'
+            });
+        });
+        function optionFun(value, row, index) {
+            return "";
+        }
+        function destroyForm() {
+            var rows = jQuery('#dg').datagrid('getSelections');
+            if (rows.length > 0) {
+                jQuery.messager.confirm('确认删除', '确定删除该记录?', function (r) {
+                    if (r) {
+                        var ids = [];
+                        jQuery.each(rows, function (index, row) {
+                            ids.push(row.id);
+                        });
+                        jQuery.post('order-charge/delete', {'ids': ids.toString()}, function (result) {
+                            if (result.success) {
+                                jQuery('#dg').datagrid('reload');    // reload the user data
+                            } else {
+                                jQuery.messager.show({    // show error message
+                                    title: '错误',
+                                    msg: result.message
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+		function confirm() {
+            var row = jQuery('#dg').datagrid('getSelected');
+	           if (row) {
+			   if(row.orderStatus=="ok"){
+			   jQuery.messager.show({    // show error message
+                            title: '提示',
+                            msg: '该纪录已经通过审核，不得重复审核'
+                        });
+			   }else{
+                jQuery.messager.confirm('确认审核', '确定已付款?', function (r) {
+                    if (r) {
+                        jQuery.post('order-charge/confirm', {'id': row.id}, function (result) {
+                            if (result.success) {
+                                jQuery('#dg').datagrid('reload');    // reload the user data
+                            } else {
+                                jQuery.messager.show({    // show error message
+                                    title: '错误',
+                                    msg: result.message
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+		}
+        function contentSearch() {
+            var username = jQuery('#username').val();
+            var orderType =
+                    jQuery('#orderType option:selected').val();
+            var orderStatus =
+                    jQuery('#orderStatus option:selected').val();
+            jQuery('#dg').datagrid('load', {
+                'orderStatus': orderStatus, 'username': username, 'orderType': orderType
+            })
+        }
+
+
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+<table id="dg" data-options="toolbar:'#toolbar'"></table>
+<div id="toolbar">
+    <form action="withdraw" method="get" name="searchTransactionForm" id="searchTransactionForm">
+        <div class="search_box" >
+            用户名：<input id="username" class="easyui-validatebox" type="text" name="username" value="">
+            充值类型：<select class="form-control" name="orderType" id="orderType" style="width: 140px">
+            <option value=""  selected="selected">所有的</option>
+            <option value="offline_charge" >线下充值</option>
+            <option value="0" >线上充值</option>
+        </select>
+            订单状态： <select class="form-control" name="orderStatus" id="orderStatus" style="width: 140px">
+            <option value=""  selected="selected">所有的</option>
+            <option value="ok" >已付款</option>
+            <option value="wait" >等待付款</option>
+        </select>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+               onclick="contentSearch()">搜索</a>
+        </div>
+    </form>
+    <div class="btn_box">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+           onclick="confirm()">审核</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="destroyForm()">删除</a>
+    </div>
+</div>
+<style>
+    select {
+        border: solid 1px #000;
+        appearance:none;
+        -moz-appearance:none;
+        -webkit-appearance:none;
+        background: url("/static/jquery-easyui-1.4.1/themes/default/images/combo_arrow.png") no-repeat scroll right center transparent;
+        padding-right: 14px;
+    }
+    select::-ms-expand { display: none; }
+</style>
+</body>
+</html>

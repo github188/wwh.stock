@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:padding="30dp" >
+    
+    <TextView 
+         android:id="@+id/dialog_select_value_title"
+         android:layout_width="match_parent"
+    	 android:layout_height="wrap_content"
+         android:text="请先去我的资料中\n输入品牌、车型"
+         android:textColor="@color/common_orange"
+         android:textSize="22sp"
+         android:textStyle="bold"
+         android:gravity="center"
+        />
+   
+	
+	<TextView 
+         android:id="@+id/dialog_select_value_back"
+         android:layout_alignParentLeft="true"
+         android:layout_below="@id/dialog_select_value_title"
+         android:layout_marginTop="30dp"
+         android:layout_width="90dp"
+    	 android:layout_height="wrap_content"
+         android:text="返回"
+         android:textColor="@color/common_white"
+         android:background="@drawable/bespoke_detail_led_gray"
+         android:textSize="18sp"
+         android:gravity="center"
+         android:layout_marginLeft="20dp"
+        />
+	<TextView 
+         android:id="@+id/dialog_select_value_go"
+         android:layout_alignParentRight="true"
+         android:layout_below="@id/dialog_select_value_title"
+         android:layout_marginTop="30dp"
+         android:layout_width="90dp"
+    	 android:layout_height="wrap_content"
+         android:text="去填写"
+         android:textColor="@color/common_white"
+         android:background="@drawable/dialog_select_shape_confirm"
+         android:textSize="18sp"
+         android:gravity="center"
+         android:layout_marginRight="20dp"
+         
+        />
+	
+ 
+    
+
+</RelativeLayout>

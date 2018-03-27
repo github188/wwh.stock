@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>沪深证券业绩报表新增</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/net/performance-data/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <table width="100%" cellpadding="5">
+                            <tr>
+                    <td align="left">
+                        业绩日期
+                    </td>
+                    <td>
+                                                <input name="dt" class="easyui-textbox" value="$!{model.dt}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        代码
+                    </td>
+                    <td>
+                                                <input name="stockCode" class="easyui-textbox" value="$!{model.stockCode}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        简称
+                    </td>
+                    <td>
+                                                <input name="stockName" class="easyui-textbox" value="$!{model.stockName}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        相关资料
+                    </td>
+                    <td>
+                                                <input name="relativeInfo" class="easyui-textbox" value="$!{model.relativeInfo}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        每股收益
+                    </td>
+                    <td>
+                                                <input name="perProfit" class="easyui-textbox" value="$!{model.perProfit}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        营业收入
+                    </td>
+                    <td>
+                                                <input name="mainRevenue" class="easyui-textbox" value="$!{model.mainRevenue}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        营业收入同比增长
+                    </td>
+                    <td>
+                                                <input name="mainGrowth" class="easyui-textbox" value="$!{model.mainGrowth}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        营业收入季度环比
+                    </td>
+                    <td>
+                                                <input name="mainQuarter" class="easyui-textbox" value="$!{model.mainQuarter}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        净利润
+                    </td>
+                    <td>
+                                                <input name="netProfit" class="easyui-textbox" value="$!{model.netProfit}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        净利润同比增长
+                    </td>
+                    <td>
+                                                <input name="netGrowth" class="easyui-textbox" value="$!{model.netGrowth}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        净利润季度环比
+                    </td>
+                    <td>
+                                                <input name="netQuarter" class="easyui-textbox" value="$!{model.netQuarter}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        每股净资产
+                    </td>
+                    <td>
+                                                <input name="netAssets" class="easyui-textbox" value="$!{model.netAssets}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        净资产收益率
+                    </td>
+                    <td>
+                                                <input name="assetsYield" class="easyui-textbox" value="$!{model.assetsYield}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        每股经营现金流量
+                    </td>
+                    <td>
+                                                <input name="opeCashflows" class="easyui-textbox" value="$!{model.opeCashflows}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        销售毛利率
+                    </td>
+                    <td>
+                                                <input name="saleGrossprofit" class="easyui-textbox" value="$!{model.saleGrossprofit}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        公告日期
+                    </td>
+                    <td>
+                                                <input name="reportDt" class="easyui-textbox" value="$!{model.reportDt}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        备注
+                    </td>
+                    <td>
+                                                <input name="memo" class="easyui-textbox" value="$!{model.memo}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        顺序
+                    </td>
+                    <td>
+                                                <input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+                    </td>
+                </tr>
+                    </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

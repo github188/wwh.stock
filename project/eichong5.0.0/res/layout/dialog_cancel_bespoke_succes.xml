@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:padding="20dp" >
+    
+    <TextView 
+         android:id="@+id/dialog_cancel_sucess_title"
+         android:layout_width="match_parent"
+    	 android:layout_height="wrap_content"
+         android:text="订单已取消"
+         android:textColor="@color/common_orange"
+         android:textSize="22sp"
+         android:textStyle="bold"
+         android:gravity="center"
+        />
+    <LinearLayout 
+        android:id="@+id/dialog_cancel_sucess_consume_ll"
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/dialog_cancel_sucess_title"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        >
+       <TextView 
+         android:layout_width="wrap_content"
+    	 android:layout_height="wrap_content"
+         android:textColor="@color/common_gray"
+         android:textSize="18sp"
+         android:text="本次消费:  "
+        />
+        <TextView 
+         android:id="@+id/dialog_cancel_sucess_consume_tv"
+         android:layout_width="wrap_content"
+    	 android:layout_height="wrap_content"
+         android:textColor="@color/common_gray"
+         android:textSize="18sp"
+         android:text="22元"
+        />
+        </LinearLayout>
+        
+        <LinearLayout 
+        android:id="@+id/dialog_cancel_sucess_balance_ll"
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/dialog_cancel_sucess_consume_ll"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+    <TextView 
+         android:layout_width="wrap_content"
+    	 android:layout_height="wrap_content"
+         android:textColor="@color/common_gray"
+         android:textSize="18sp"
+         android:text="账户余额:  "
+        />
+        <TextView 
+         android:id="@+id/dialog_cancel_sucess_balance_tv"
+         android:layout_width="wrap_content"
+    	 android:layout_height="wrap_content"
+         android:textColor="@color/common_gray"
+         android:textSize="18sp"
+         android:text="22元"
+        />
+        
+        
+    </LinearLayout>
+
+    <TextView 
+         android:id="@+id/dialog_cancel_sucess_confirm"
+         android:layout_centerInParent="true"
+         android:layout_below="@id/dialog_cancel_sucess_balance_ll"
+         android:layout_marginTop="30dp"
+         android:layout_width="wrap_content"
+    	 android:layout_height="wrap_content"
+         android:text="确定"
+         android:textColor="@color/common_white"
+         android:textSize="18sp"
+         android:gravity="center"
+         android:paddingLeft="25dp"
+         android:paddingRight="25dp"
+         android:background="@drawable/dialog_select_shape_confirm"
+        />
+    
+    
+    
+    
+    
+
+</RelativeLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+        <!-- title_bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/common_orange"
+        android:gravity="center"
+       >
+       <TextView 
+           android:id="@+id/fragment_myorder_bespoke"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="预约"
+           android:textColor="@color/common_orange"
+           android:textSize="16sp"
+           android:background="@drawable/myorder_shape_left_radius_white"
+           />
+        <TextView 
+           android:id="@+id/fragment_myorder_charge"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="充电"
+           android:textSize="16sp"
+           android:textColor="@color/common_white"
+           android:background="@drawable/myorder_shape_right_radius_orange"
+           />
+        
+        </LinearLayout>
+     <!-- 内容部分， fragment切换 -->
+
+    <LinearLayout
+        android:id="@+id/myorder_content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+</LinearLayout>

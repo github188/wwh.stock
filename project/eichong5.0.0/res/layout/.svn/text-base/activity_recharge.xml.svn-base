@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/common_light_white"
+     android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+    
+     <RelativeLayout
+        android:background="@color/common_orange"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        >
+        <ImageButton
+            android:id="@+id/recharge_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/nav_btn_back"
+            android:background="@android:color/transparent"/>
+        <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="充值"
+             android:textColor="@color/common_white"
+             android:textSize="18sp"
+             android:padding="5dp"
+             android:layout_centerVertical="true"
+             android:layout_centerInParent="true"
+            />
+        
+        <TextView 
+            android:id="@+id/recharge_record"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="充值记录"
+             android:paddingRight="10dp"
+             android:textColor="@color/common_white"
+             android:textSize="14sp"
+             android:padding="5dp"
+             android:layout_centerVertical="true"
+             android:layout_alignParentRight="true"
+            />
+        </RelativeLayout>
+        <TextView 
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:textSize="15dp"
+         android:layout_marginTop="20dp"
+         android:layout_marginBottom="20dp"
+         android:layout_marginLeft="20dp"
+         android:textColor="@color/common_black"
+         android:gravity="left"
+         android:background="@null"
+         android:text="金额   "
+             />
+<LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft = "20dp"    
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:background="@color/common_white"
+         >
+          
+         
+      
+          <EditText
+         android:id="@+id/recharge_money_et"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:textSize="16sp"
+         android:paddingRight="35dp"
+         android:layout_marginRight="20dp"
+         android:inputType="numberDecimal"
+         android:digits="0123456789"
+         android:hint="请输入充值金额"
+         android:gravity="left"
+         android:maxLength="8" 
+         android:longClickable="false"
+         android:textColorHint="#999999"
+         android:background="@null"
+         android:textColor="@color/common_black"
+         />
+
+     </LinearLayout>
+     <RelativeLayout
+         android:id="@+id/rl_jifen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        >
+        <TextView
+            android:id="@+id/biaoshi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="获取积分 ≈ "
+            android:textColor="@color/common_light_light_black"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/jifen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/biaoshi"
+            android:layout_marginLeft="5dp"
+            android:text="0"
+            android:textColor="@color/common_light_light_black"
+            android:textSize="16sp"/>
+
+         </RelativeLayout>
+     <LinearLayout 
+        
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+         >
+	<RelativeLayout
+	    android:id="@+id/select_pattern_alipay"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:background="@drawable/common_button_shape_activate_recharge"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="12dp"
+            android:drawableLeft="@drawable/img_zhifubao2"
+            android:text="支付宝"
+            android:gravity="center_vertical"
+            android:layout_centerInParent="true"
+            android:drawablePadding="10dp"
+            android:textColor="@color/common_white"
+            android:padding="10dp"
+            android:textSize="16sp"/>
+
+         </RelativeLayout>
+        </LinearLayout>
+
+
+         <LinearLayout 
+             
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+         >
+	<RelativeLayout
+	    android:id="@+id/select_pattern_wechat"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:background="@drawable/common_button_shape_recharge"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="12dp"
+            android:drawableLeft="@drawable/img_weixin2"
+            android:text="微信"
+            android:gravity="center_vertical"
+            android:layout_centerInParent="true"
+            android:drawablePadding="10dp"
+            android:textColor="@color/common_white"
+            android:textSize="16sp"/>
+
+         </RelativeLayout>
+        </LinearLayout>
+     
+     
+     <Button
+        android:id="@+id/recharge_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/popup_select_shape_confirm"
+        android:padding="12dp"
+        android:text="充值"
+        android:textColor="@color/common_white"
+        android:textSize="18sp"/>
+<TextView
+            android:id="@+id/biaoshi"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="bottom"
+            android:text="· 充值金额仅能用于本app使用 \n· 积分与充值金额有关，实计积分与充值成功有关"
+            android:textColor="@color/common_light_light_black"
+            android:textSize="16sp"/>
+</LinearLayout>

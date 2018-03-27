@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="chengmeng"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/net/tsz/afinal"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="5492"
+   kind="dir"
+   committed-date="2017-02-21T01:07:19.164058Z"/>
+<entry
+   name="FinalActivity.java"
+   checksum="bc7e2a8a52fb3b630fae207b435ffbe2"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="FinalBitmap.java"
+   checksum="3bec7d03e1dab8c2796b08d8279a7cf8"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="FinalDb.java"
+   checksum="0a694968936f8a44597fb99a03d3df6a"
+   last-author="chengmeng"
+   committed-rev="5492"
+   text-time="2017-02-21T01:07:19.164000Z"
+   kind="file"
+   committed-date="2017-02-21T01:07:19.164058Z"/>
+<entry
+   name="FinalHttp.java"
+   checksum="e80cd135735340d77461ca2a61ef0048"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="annotation"
+   kind="dir"/>
+<entry
+   name="bitmap"
+   kind="dir"/>
+<entry
+   name="core"
+   kind="dir"/>
+<entry
+   name="db"
+   kind="dir"/>
+<entry
+   name="exception"
+   kind="dir"/>
+<entry
+   name="http"
+   kind="dir"/>
+<entry
+   name="utils"
+   kind="dir"/>
+</wc-entries>

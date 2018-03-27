@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>选择权限</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        $(function () {
+            jQuery('#tt').tree({
+                method: 'get',
+                url: '/sys/permission/queryRoleTree?roleId=${roleId}',
+                checkbox: true,
+                lines:true,
+                onlyLeafCheck:true
+            });
+        });
+
+        function save() {
+            var rows = jQuery('#tt').tree('getChecked',['checked','indeterminate']);
+            var ids = [];
+            jQuery.each(rows,function(index,row) {
+                if(row.id != 0) {
+                    ids.push(row.id);
+                }
+            });
+            jQuery.post('${base}/sys/permission/saveRolePermissions',{'roleId':jQuery('#roleId').val(),'permissions':ids.toString()},function(result) {
+                Magic.closeWin();
+                if(!result.success){
+                    window.parent.jQuery.messager.show({title: '错误', msg: result.message });
+                } else {
+                    window.parent.jQuery.messager.show({title: '提示', msg: '操作成功！' });
+                }
+            });
+        }
+
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+<input type="hidden" id="roleId" value="${roleId}">
+<div data-options="region:'center',border:false">
+    <ul id="tt"></ul>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

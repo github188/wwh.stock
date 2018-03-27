@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:orientation="vertical"
+    >
+    <LinearLayout 
+        android:id="@+id/listview_mybill_title"
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:paddingTop="10dp"
+    	android:paddingBottom="10dp"
+    	android:paddingLeft="20dp"
+    	android:paddingRight="20dp"
+    	android:background="@color/common_light_white"
+    	android:gravity="center_vertical"
+        >
+        <TextView 
+        android:id="@+id/datatmie"
+	    android:layout_width="0dp"
+	    android:layout_weight="6.7"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:textSize="14sp"
+	    android:textColor="@color/common_black"
+	    />
+        <TextView 
+        android:id="@+id/examine_detail"
+	    android:layout_width="0dp"
+	    android:layout_weight="2.5"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:textSize="14sp"
+	    android:text="查看明细"
+	    android:gravity="right"
+	    android:layout_gravity="center_vertical"
+	    android:textColor="@color/common_light_black"
+	    />
+
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:paddingTop="10dp"
+    	android:paddingBottom="10dp"
+    	android:paddingLeft="20dp"
+    	android:paddingRight="20dp"
+    	android:background="@color/common_white"
+        >
+        <TextView 
+	    android:layout_width="0dp"
+	    android:layout_weight="0.2"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:textSize="14sp"
+	    android:text="电费"
+	    android:textColor="@color/common_light_black"
+	    />
+        <TextView 
+        android:id="@+id/electric_charge"
+	    android:layout_width="0dp"
+	    android:layout_weight="0.55"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:textSize="14sp"
+	    android:textColor="@color/common_black"
+	    android:gravity="left"
+	    android:layout_marginLeft="10dp"
+	    />
+<!-- 		<TextView  -->
+<!-- 	    android:layout_width="0dp" -->
+<!-- 	    android:layout_weight="0.35" -->
+<!-- 	    android:layout_height="wrap_content" -->
+<!-- 	    android:layout_alignParentLeft="true" -->
+<!-- 	    android:textSize="14sp" -->
+<!-- 	    android:paddingLeft="2dp" -->
+<!-- 	    android:paddingRight="10dp" -->
+<!-- 	    android:text="元" -->
+<!-- 	    android:textColor="@color/common_light_black" -->
+<!-- 	    /> -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="@color/common_light_grey" />
+		<TextView 
+	    android:layout_width="0dp"
+	    android:layout_weight="0.3"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_marginLeft="10dp"
+	    android:gravity="right"
+	    android:textSize="14sp"
+	    android:text="充电"
+	    android:textColor="@color/common_light_black"
+	    />
+        <TextView 
+        android:id="@+id/electricize_degree"
+	    android:layout_width="0dp"
+	    android:layout_weight="0.55"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+		android:gravity="left"
+	    android:layout_marginLeft="10dp"
+	    android:textSize="14sp"
+	    android:textColor="@color/common_black"
+	    />
+<!--         <TextView  -->
+<!-- 	    android:layout_width="0dp" -->
+<!-- 	    android:layout_weight="0.3" -->
+<!-- 	    android:layout_height="wrap_content" -->
+<!-- 	    android:layout_alignParentLeft="true" -->
+<!-- 	    android:textSize="14sp" -->
+<!-- 	    android:text="kwh(度)" -->
+<!-- 	    android:textColor="@color/common_light_black" -->
+<!-- 	    /> -->
+    </LinearLayout>
+    <View android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/common_light_grey"
+        android:layout_height="1dp"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:paddingTop="10dp"
+    	android:paddingBottom="10dp"
+    	android:paddingLeft="20dp"
+    	android:paddingRight="20dp"
+    	android:background="@color/common_white"
+        >
+        <TextView 
+	    android:layout_width="0dp"
+	    android:layout_weight="0.2"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:textSize="14sp"
+	    android:text="充值"
+	    android:textColor="@color/common_light_black"
+	    />
+        <TextView 
+        android:id="@+id/recharge_money"
+	    android:layout_width="0dp"
+	    android:layout_weight="0.55"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:gravity="left"
+	    android:layout_marginLeft="10dp"
+	    android:textSize="14sp"
+	    android:textColor="@color/common_black"
+	    />
+<!-- 		<TextView  -->
+<!-- 	    android:layout_width="0dp" -->
+<!-- 	    android:layout_weight="0.35" -->
+<!-- 	    android:layout_height="wrap_content" -->
+<!-- 	    android:layout_alignParentLeft="true" -->
+<!-- 	    android:textSize="14sp" -->
+<!-- 	    android:paddingRight="10dp" -->
+<!-- 	    android:paddingLeft="2dp" -->
+<!-- 	    android:text="元" -->
+<!-- 	    android:textColor="@color/common_light_black" -->
+<!-- 	    /> -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="@color/common_light_grey" />
+		<TextView 
+	    android:layout_width="0dp"
+	    android:layout_weight="0.3"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_marginLeft="10dp"
+	    android:textSize="14sp"
+	    android:gravity="right"
+	    android:text="优惠"
+	    android:textColor="@color/common_light_black"
+	    />
+        <TextView 
+        android:id="@+id/favorable_money"
+	    android:layout_width="0dp"
+	    android:layout_weight="0.55"
+	    android:layout_height="wrap_content"
+	    android:gravity="left"
+	    android:layout_marginLeft="10dp"
+	    android:layout_alignParentLeft="true"
+	    android:textSize="14sp"
+	    android:textColor="@color/common_black"
+	    />
+<!--         <TextView  -->
+<!-- 	    android:layout_width="0dp" -->
+<!-- 	    android:layout_weight="0.3" -->
+<!-- 	    android:layout_height="wrap_content" -->
+<!-- 	    android:layout_alignParentLeft="true" -->
+<!-- 	    android:textSize="14sp" -->
+<!-- 	    android:text="元" -->
+<!-- 	    android:textColor="@color/common_light_black" -->
+<!-- 	    /> -->
+    </LinearLayout>
+
+</LinearLayout>

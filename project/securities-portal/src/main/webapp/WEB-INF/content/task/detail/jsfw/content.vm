@@ -1,0 +1,325 @@
+		<!-- detail start-->
+		<div class="detail">
+			<div class="detail-header">
+				<div class="detail-header-pic">
+					<a href="javascript:void(0)" class="" title="zhangjf"> 
+						#if($!yz.userPic)
+							<img src="$!yz.userPic" uid="19" class="pic_middle">
+						#else
+							<img src="$!yz.userPic" uid="19" class="pic_middle">
+						#end
+					</a>  
+					<!--
+					<a href="javascript:sendMessage(19);void(0);" class="btn btn-default btn-xs">联系我</a> 
+					-->
+					<a href="#" class="btn btn-default btn-xs">联系我</a> 
+				</div>
+				<div class="detail-ctrl">
+					<div class="btn-group visible-xs">
+						<span class="btn btn-default btn-lg"> 
+							<span class="bdsharebuttonbox bdshare-button-style1-16" data-bd-bind="1461114344192"> 
+								<a href="javascript:void(0);" class="bds_more" data-cmd="more"></a>
+							</span>
+						</span>
+					</div>
+					<div class="btn-group"></div>
+					<div class="btn-group visible-xs">
+						<a id="favorite_mobile_70" href="javascript:addMobileFavorite('task',70);" title="收藏" class="action-collect btn btn-default btn-lg"> <i class="fa fa-star"></i>
+						</a> 
+					</div>
+					<div class="btn-group visible-xs">
+						<a href="javascript:report(2,'task','19','70','70');void(0);" title="举报" class="action-report btn btn-default btn-lg"> 
+							<i class="fa fa-bell"></i>
+						</a>
+					</div>
+					#set($step = 1)
+					#if($!model.taskStatus == 2)
+						#set($step = 2)			## 审批通过
+					#end
+					#if($!model.taskStatus == 'p4' || $!model.taskStatus == 's4')
+						#set($step = 4)			## 签署合同
+					#end
+					
+					#if($!model.taskStatus == 4)
+						#set($step = 5)			## 签署合同
+					#end
+					
+					#if($!model.taskStatus == 5)
+						#set($step = 6)			## 工作中
+					#end
+					#if($!model.taskStatus == 8)
+						#set($step = 7)			## 任务结束
+					#end
+					#if(($!model.uid != $usr.id) && ($!model.taskStatus == 2) && !$isbid)
+					<div class="btn-group">
+ 						<a href="$!{base}/taskHandle/quote?id=$!model.id" class="btn btn-primary btn-lg">我来报价</a>  
+ 					</div>
+ 					#end
+ 					<div class="btn-group visible-xs">
+ 						<a id="favorite_mobile_74" href="javascript:addMobileFavorite('task',74);" title="收藏" class="action-collect btn btn-default btn-lg">
+ 							<i class="fa fa-star"></i>
+						</a> 
+					</div>
+					<div class="btn-group visible-xs">
+						<a href="javascript:report(2,'task','1','74','74');void(0);" title="举报" class="action-report btn btn-default btn-lg">
+							<i class="fa fa-bell"></i>
+						</a>
+					</div>
+				</div>
+				<!-- detail-ctrl end -->
+				<div class="detail-header-body">
+					<h1 class="detail-title">
+						$!model.taskTitle
+					</h1>
+					<div class="detail-obj">
+						<div class="detail-obj-item">
+							<div class="method">
+								<a href="#" class="method-type" data-toggle="popover" data-placement="bottom" data-html="true" data-trigger="hover" data-content="单人中标,威客中标后将得到：￥90.00元" data-original-title="" title=""> 
+									项目招标
+									<i class="fa fa-angle-down"></i>
+								</a> 
+								#if($!model.taskCash!='')
+								<span> 
+									<i class="fa fa-money"></i>
+										最高限价：<sub>￥</sub>$!NumberTool.format('#0.00', $!model.taskCash)
+									<!--
+									<sub>￥</sub>$!NumberTool.format('#0.00', $!model.guarantee)
+									-->
+								</span>
+								#end
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- detail-header-body end -->
+			</div>
+			<!-- detail-header end -->
+			<div class="detail-progress">
+				<h2 class="detail-title-min">项目进度 </h2>
+				<ul class="step step4">
+					<li class="step-item #if($step >= 1) action #end">
+						<span class="step-num">
+							#if($step == 1) 
+								1 
+							#else
+								<i class="fa fa-check"></i>
+							#end
+						</span>
+						<div class="step-text step-bottom">
+							<p><strong class="step-title">发布需求</strong></p>
+						</div> 
+					</li> 
+					<li class="step-item #if($step >= 2) action #end">
+						<span class="step-num">
+							#if($step <= 2) 
+								2
+							#else
+								<i class="fa fa-check"></i>
+							#end
+						</span>
+						<div class="step-text step-bottom">
+							<p><strong class="step-title">服务商投标</strong></p>
+						</div> 
+						<div class="step-text step-top">
+							#if($!model.subTime && $step == 2)
+							<p>截止时间 </p>
+							<p>
+								<span class="red d_time">$!date.format('yyyy-MM-dd HH:mm:ss', $!model.subTime)</span>
+							</p>
+							#end
+						</div>
+					</li> 
+					<li class="step-item #if($step >= 3) action #end">
+						<span class="step-num">
+							#if($step <= 3) 
+								3
+							#else
+								<i class="fa fa-check"></i>
+							#end
+						</span>
+						<div class="step-text step-bottom">
+							<p><strong class="step-title">业主选标</strong></p>
+						</div> 
+						<div class="step-text step-top"></div> 
+					</li> 
+					<li class="step-item #if($step >= 4) action #end">
+						<span class="step-num">
+							#if($step <= 4) 
+								4
+							#else
+								<i class="fa fa-check"></i>
+							#end
+						</span>
+						<div class="step-text step-bottom">
+							<p><strong class="step-title">签署合同</strong></p>
+						</div> 
+						<div class="step-text step-top"></div> 
+					</li> 
+					<!--
+					<li class="step-item #if($step >= 5) action #end">
+						<span class="step-num">
+							#if($step <= 5) 
+								5
+							#else
+								<i class="fa fa-check"></i>
+							#end
+						</span>
+						<div class="step-text step-bottom">
+							<p><strong class="step-title">工作中</strong></p>
+						</div> 
+					</li>
+					<li class="step-item #if($step >= 6) action #end">
+						<span class="step-num">
+						   	#if($step <= 6) 
+								6
+							#else
+								<i class="fa fa-check"></i>
+							#end
+						</span>
+						<div class="step-text step-bottom">
+							<p><strong class="step-title">交付中</strong></p>
+						</div>
+					</li> 
+					<li class="step-item #if($step == 7) action #end">
+						<span class="step-num">   
+							#if($step < 6) 
+								7
+							#else
+								<i class="fa fa-check"></i>
+							#end  
+						</span>
+						<div class="step-text step-bottom">
+							<p><strong class="step-title">任务结束</strong></p>
+						</div> 
+					</li> 
+					-->
+				</ul>
+			</div>
+			<div class="detail-body">
+				<h2 class="detail-title-min">需求描述</h2>
+				<div class="detail-desc ws_break">
+					$!model.taskDesc
+ 				</div>
+ 				<hr/>
+ 				<h2 class="detail-title-min">项目周期</h2>
+				<div class="detail-desc ws_break">
+					$!date.format('yyyy-MM-dd HH:mm:ss', $!model.endTime)
+ 				</div>
+ 				<hr/>
+ 				<h2 class="detail-title-min">投标条件</h2>
+ 				<ul class="detail-affix">
+ 					#if($model.indusId != 31)
+					<li class="detail-affix-item">
+						业绩要求：$!yjyqName
+					</li> 
+					<br/>
+					#end
+					<li class="detail-affix-item">
+						产品要求：$!productName
+					</li> 
+				</ul>
+				<hr/>
+				#if($!attaches.size()>0)
+				<h2 class="detail-title-min">
+					项目信息
+					<span class="label label-default">$!attachNum</span>
+				</h2>
+				<ul class="detail-affix">
+					#foreach($!attach in $!attaches)
+					<li class="detail-affix-item">
+						<a href="$!attach.saveName" target="_blank">
+							<i class="fa fa-download"></i> $!attach.fileName
+						</a>
+					</li><br/> 
+					#end
+				</ul>
+				<hr/>
+				#end
+				#if($!attachBidfiles.size() > 0)
+				<h2 class="detail-title-min">
+					标书下载
+					<span class="label label-default">$!attachBidfiles.size()</span>
+				</h2>
+				<ul class="detail-affix">
+					#foreach($!attach in $!attachBidfiles)
+					<li class="detail-affix-item">
+						<a href="$!attach.saveName" target="_blank">
+							<i class="fa fa-download"></i> $!attach.fileName
+						</a>
+					</li><br/>
+					#end
+				</ul>
+				#end
+			</div><!-- detail-body end -->
+			<div class="detail-footer">
+				<ul class="detail-footer-meta for-poster">
+					<li class="for-poster-item">
+						发布人： <a href="javascript:void(0);" title="$!model.username">$!model.username</a>
+					</li>
+					<li class="for-poster-item">
+						<i class="fa fa-clock-o"></i> 发布时间： $!date.format('yyyy-MM-dd HH:mm:ss', $!model.createDate)
+					</li>
+					<li class="for-poster-item">编号：#$!model.id</li> 
+				</ul>
+				<ul class="detail-footer-meta for-user">
+					<li class="for-user-item">
+						<div class="bdsharebuttonbox bdshare-button-style1-16" data-bd-bind="1461114344192">
+							<a href="#" class="bds_more" data-cmd="more">分享到：</a> 
+							<a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a> 
+							<a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a> 
+							<a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a> 
+							<a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a> 
+							<a title="分享到复制网址" href="#" class="bds_copy" data-cmd="copy"></a> 
+							<a title="分享到打印" href="#" class="bds_print" data-cmd="print"></a>
+						</div> 
+						<script>
+							window._bd_share_config = {
+								"common" : {
+									"bdSnsKey" : {},
+									"bdText" : "",
+									"bdMini" : "2",
+									"bdMiniList" : false,
+									"bdPic" : "",
+									"bdStyle" : "1",
+									"bdSize" : "16"
+								},
+								"share" : {}
+							};
+							with (document)
+							0[(getElementsByTagName('head')[0] || body)
+							.appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='
+							+ ~(-new Date() / 36e5)];
+						</script>
+					</li> 
+					<li class="for-user-item"> 
+						<a id="favorite70" href="javascript:addFavorite('task',70);" title="收藏" class="action-collect"> 
+							<i class="fa fa-star"></i>
+						</a> 
+					</li> 
+				</ul>
+			</div>
+			<!-- detail-footer end -->
+		</div><!-- detail end-->
+		<div class="tab tab-darken" id="detail">
+			<a href="${base}/task-detail-work?id=$!model.id" class="selected"> 
+				投标 <span class="badge">$!bidNum</span>
+			</a> 
+			<!--
+			<a href="${base}/task-detail-comment?id=$!model.id">
+				留言 <span class="badge">0</span>
+			</a> 
+			-->
+			<a href="${base}/task-detail-mark?id=$!model.id">
+				评价 <span class="badge">$!maskNum</span>
+			</a>
+		</div>
+		<!-- tab end -->
+		<!-- second-nav end -->
+		<script type="text/javascript">
+			function selectTab(index){
+				$("#detail a").removeClass("selected");
+				$("#detail a").each(function(i){
+					if(index == i) $(this).addClass("selected");
+				});
+			}
+		</script>

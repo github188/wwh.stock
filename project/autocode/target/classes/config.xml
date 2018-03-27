@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config targetProject="E:\idea\wwh\project\securities-manager" targetPackage="cn.hzstk.securities">
+    <!--jdbcConnection 数据库连接信息
+        driverClass：数据库驱动程序
+        connectionURL：数据库连接串
+        userId:数据库用户名
+        password：用户密码
+        infSql:读取表信息的sql,mysql:"SELECT c.COLUMN_COMMENT ,c.COLUMN_NAME , c.COLUMN_TYPE , c.COLUMN_KEY ,c.DATA_TYPE , c.IS_NULLABLE ,c.COLUMN_DEFAULT  FROM information_schema.COLUMNS c WHERE c.TABLE_NAME = '${table_name}' AND c.TABLE_SCHEMA = '${TABLE_SCHEMA}'"
+     -->
+    <!-- mysql -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                    connectionURL="jdbc:mysql://127.0.0.1:3306/securities-manager?useUnicode=true&amp;characterset=utf-8"
+                    userId="root"
+                    password="hongcheng"
+                    infSql="SELECT   c.COLUMN_COMMENT ,c.COLUMN_NAME , c.COLUMN_TYPE , c.COLUMN_KEY ,c.DATA_TYPE , c.IS_NULLABLE ,c.COLUMN_DEFAULT   FROM information_schema.COLUMNS c WHERE c.TABLE_NAME = '${TABLE_NAME}' AND c.TABLE_SCHEMA = '${TABLE_SCHEMA}'"
+            >
+    </jdbcConnection>
+    <!-- oracle -->
+    <!--
+    <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+        connectionURL="jdbc:oracle:thin:@10.80.11.250:1521:jpsc"
+        userId="jpsc"
+        password="jpsc"
+        infSql = "select f.comments as COLUMN_COMMENT,a.column_name as COLUMN_NAME,a.data_type as COLUMN_TYPE,e.keyValue as COLUMN_KEY,a.data_type as DATA_TYPE, a.nullable as IS_NULLABLE,a.data_default as COLUMN_DEFAULT from user_tab_columns a, user_col_comments f,(select b.table_name, b.index_name,b.uniqueness, c.column_name,decode(d.constraint_name,NULL,'N','Y') keyValue from user_indexes b, user_ind_columns c,( select constraint_name from user_constraints where constraint_type='P' ) d where b.index_name=c.index_name and b.index_name=d.constraint_name(+) ) e where a.table_name='${TABLE_NAME}' and a.table_name=e.table_name(+) and a.column_name=e.column_name(+) and a.table_name=f.table_name and a.column_name=f.column_name order by a.column_id"
+        >
+    </jdbcConnection>
+     -->
+    <generators>
+        <!--generator，要生成的代码类型
+            targetProject:代码存放位置，
+            targetPackage:代码包路径，
+            template：使用渲染模板，
+            type:代码类型，xml:sql Map文件，domain：实体对象，dao：数据访问对象，service：服务对象，action，page:vm模板
+             -->
+        <!-- domain 文件生成 -->
+        <generator type="domain"/>
+         sql map 文件生成
+        <generator type="mapper"/>
+        <!--&lt;!&ndash; service 文件生成 &ndash;&gt;-->
+        <generator type="service"/>
+        <!--&lt;!&ndash; action 文件生成 &ndash;&gt;-->
+        <generator type="action"/>
+
+        <!--&lt;!&ndash; 页面  文件生成 &ndash;&gt;-->
+        <generator type="page"/>
+    </generators>
+    <tables>
+        <!--生成代码的表信息
+            schema：数据库schema
+            tableNmae：数据库表名
+            className:对应java实体名，如果按照数据库设计规范设计可不用配置，按照tableName安装驼峰规则转换得到
+            name:对应的实体名称，用于生成页面时展示使用
+         -->
+        <!--<table schema="securities-manager" tableName="east_select_first" name="选股器指标一层"/>
+        <table schema="securities-manager" tableName="east_select_list" name="选股器指标列表"/>
+        <table schema="securities-manager" tableName="east_select_detail" name="选股器指标明细"/>
+        <table schema="securities-manager" tableName="stk_hq_details" name="沪深证券行情"/>
+         <table schema="securities-manager" tableName="stk_rx_data" name="沪深证券日线"/>
+         <table schema="securities-manager" tableName="stk_self_select" name="沪深证券自选行情"/>
+         <table schema="securities-manager" tableName="stk_plate" name="沪深证券板块行情"/>
+         <table schema="securities-manager" tableName="stk_fund_details" name="沪深证券资金流入"/>
+         <table schema="securities-manager" tableName="sys_schedule_job" name="计划任务信息"/>
+         <table schema="securities-manager" tableName="stk_index_data" name="沪深证券指数行情"/>
+         <table schema="securities-manager" tableName="stk_plate_stock" name="板块股票代码关联"/>
+         <table schema="securities-manager" tableName="net_profit_shares" name="沪深证券分红送转"/>
+         <table schema="securities-manager" tableName="net_core_info" name="沪深证券核心数据"/>
+        <table schema="securities-manager" tableName="stk_basic_info" name="沪深证券基本信息"/>
+        <table schema="securities-manager" tableName="stk_suspended_info" name="沪深证券停复牌信息"/>
+        <table schema="securities-manager" tableName="sys_holiday" name="股市假日信息"/>
+        <table schema="securities-manager" tableName="stk_invest_calendar" name="沪深证券投资日历"/>
+        <table schema="securities-manager" tableName="stk_tiger" name="沪深证券龙虎榜"/>
+        <table schema="securities-manager" tableName="net_performance_data" name="沪深证券业绩报表"/>
+        <table schema="securities-manager" tableName="net_performance_forecast" name="沪深证券业绩预告"/>
+        <table schema="securities-manager" tableName="tot_stock_period" name="沪深证券阶段行情明细"/>
+        <table schema="securities-manager" tableName="net_tiger_data" name="沪深证券龙虎榜数据"/>
+        <table schema="securities-manager" tableName="net_stock_group" name="沪深证券股票组合"/>
+        <table schema="securities-manager" tableName="net_plate" name="沪深证券板块行情"/>
+        <table schema="securities-manager" tableName="net_plate_stock" name="板块股票代码关联"/>
+        <table schema="securities-manager" tableName="stk_stocks_info" name="股票信息表"/>
+        <table schema="securities-manager" tableName="net_fund_details" name="沪深证券资金流向"/>
+        <table schema="securities-manager" tableName="stk_rx_his" name="沪深证券日线历史"/>
+        <table schema="securities-manager" tableName="net_profit_report" name="沪深证券业绩报表"/>
+        <table schema="securities-manager" tableName="net_profit_express" name="沪深证券业绩快报"/>
+        <table schema="securities-manager" tableName="net_profit_forecast" name="沪深证券业绩预告"/>
+        <table schema="securities-manager" tableName="net_profit_publish" name="沪深证券业绩披露时间"/>-->
+        <table schema="securities-manager" tableName="tot_stock_width" name="沪深证券涨幅统计信息"/>
+    </tables>
+</config>

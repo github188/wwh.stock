@@ -1,0 +1,21 @@
+<link rel="stylesheet" type="text/css" href="${base}/static/js/webuploader/webuploader.css">
+<script type="text/javascript" src="${base}/static/js/webuploader/webuploader.js?r=0.93525000"></script>
+<script type="text/javascript" src="${base}/static/js/webuploader/kppw.webuploader.js"></script>
+<div class="tab_detail">
+    <h2 class="min-title">上传头像</h2>
+    <p class="text-info"><i class="fa fa-info-circle"></i>点击"选择图片"上传您自己的头像。 上传完成之后点击"更新图片"按钮即可看见实际效果</p>
+    <div class="img_cut mb_10 ">
+        <div style="width:520px; margin:auto;"><object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+                                                       codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0"
+                                                       width="520" height="280" id="mycamera" align="middle">
+            <param name="allowScriptAccess" value="always" />
+            <param name="scale" value="exactfit" />
+            <param name="wmode" value="transparent" />
+            <param name="quality" value="high" />
+            <param name="bgcolor" value="#ffffff" />
+            <param name="movie" value="${base}/static/img/system/camera.swf?inajax=1&appid=1&input=1&ucapi=http://localhost:8081/member/account_upload?uid=5&avatartype=virtual" />
+            <param name="menu" value="false" />
+            <embed src="${base}/static/img/system/camera.swf?inajax=1&appid=1&input=1&ucapi=http://localhost:8081/member/account_upload?uid=5&avatartype=virtual" quality="high" bgcolor="#ffffff" width="520" height="280" name="mycamera" align="middle" allowScriptAccess="always" allowFullScreen="false" scale="exactfit"  wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+        </object></div>
+    </div>
+</div>

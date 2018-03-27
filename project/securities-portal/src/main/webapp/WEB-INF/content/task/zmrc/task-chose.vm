@@ -1,0 +1,41 @@
+#parse("includes/header_home.vm")
+<link href="${base}/static/css/style.css" rel="stylesheet" type="text/css">
+<div class="container">
+<div id="main">
+  <div class="release">
+    	<div class="release-msg">
+      	<div class="alert alert-info">
+      		<i class="fa fa-exclamation-circle"></i>
+      		雇主类型设置
+      	</div>
+    </div>
+    
+    <!-- release-progress end-->
+    <div class="release-body">
+		<nav class="release-nav">
+	        <ul>
+                <li #if($!usrType==1 && $!taskstep >= 1) class="selected" #end>
+		            <a href="${base}/taskpub/zmrc?usrType=1&step=2">
+		             	我是<p>业主</p><span class="arrow_b"></span>
+		            </a>
+	            </li>
+	            &nbsp;&nbsp;&nbsp;&nbsp;
+	            <li #if($!usrType==2 && $!taskstep >= 1) class="selected" #end>
+	                <a href="${base}/taskpub/zmrc?usrType=2&step=2" style="width:5em;">
+	                 	我是<p>设计院</p><span class="arrow_b"></span>
+	                </a>
+	            </li>
+	        </ul>
+	      </nav>
+    </div>
+    <!-- release-body end -->
+  </div>
+  <!-- release end-->
+</div>
+</div>
+#parse("includes/footer.vm")
+<script type="text/javascript">
+	$(function() {
+		$("#active-style-rework").remove();
+	});
+</script>

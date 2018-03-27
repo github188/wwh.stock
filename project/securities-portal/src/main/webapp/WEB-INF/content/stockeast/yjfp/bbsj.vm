@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>数据大全</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/master.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/default.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/layer2012.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/page_common.css" media="all" >
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/bbsj.css">
+    <script type="text/javascript" src="${base}/static/js/jquery.min.1.8.3.js"></script>
+    <script type="text/javascript">
+        var jQuery = $.noConflict();
+        var portalurl = "${portal_url}/";
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/base.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/plugin.js"></script>
+    <script type="text/javascript">
+        var month = '${date_type.substring(5,7)}';
+        var pageStr = "";
+        var title = "";
+        var prefix = "${date_type.substring(0,4)}" + "年";
+        if (month == "12") {
+            pageStr = "年报大全";
+            title = "年报";
+        } else if (month == "06") {
+            pageStr = "中报大全";
+            title = "中报";
+        } else if (month == "03") {
+            pageStr = "季报大全";
+            title = "一季报";
+        } else {
+            pageStr = "季报大全";
+            title = "三季报";
+        }
+
+        var NavCache = { Page: pageStr, current_n: 5 };
+        document.title = prefix + title + "数据大全";
+    </script>
+    <style type="text/css">
+        .btn img, .qq_btn img {
+            height: auto;
+        }
+
+        .linkNav {
+            height: 0px;
+        }
+
+        .maincont .titbar .tips {
+            padding-top: 0px;
+        }
+        .maincont .shortbar {
+            margin-bottom: 10px;
+        }
+        .bbsj-morelink{
+            font-size:12px;
+        }
+    </style>
+</head>
+<body>
+<div id="page" class="page">
+    <div class="main">
+        <div class="framecontent">
+            <div class="linkNav">
+            </div>
+            <div class="sitebody">
+                <div class="maincont">
+                    <div class="contentBox">
+                        <div class="titbar">
+                            <b class="el"></b>
+                            <div class="tit" id="topTit">
+                                2017年一季报数据大全
+                            </div>
+                            <div class="search" style="float: right;">
+                                <span class="txt">个股业绩报表：</span>
+                                <form method="get" target="_self">
+                                    <input class="sinput" name="ggyj_bar" id="ggyj_bar" type="text" autocomplete="off">
+                                </form>
+                                <div onclick="javascript:ggyj_search('ggyj_bar')" class="btn">
+                                    <img src="/static/img/east/btn_search_blue.gif" title="查询" />
+                                </div>
+                                <span class="sec-txt" style="padding-left: 7px">数据日期：</span>
+                                <select class="slt" onchange="location.href=this.value;" style="height: 20px; line-height: 20px;">
+                                    #foreach($ym in $ymList)
+                                        <option value="$!ym[0]" #if($!ym[1]==$!date_type) selected="selected" #end>$ym[1]</option>
+                                    #end
+                                </select>
+                            </div>
+                            <script type="text/javascript">
+                                var zz = new StockSuggest("ggyj_bar", {
+                                    text: "输代码、名称或拼音",
+                                    type: "ABSTOCK",
+                                    autoSubmit: false,
+                                    width: 200,
+                                    header: ["选项", "代码", "名称", "类型"],
+                                    body: [-1, 1, 4, -2],
+                                    callback: function (ag) {
+                                        var url = '/stockeast/bbsj?code=' + ag.code;
+                                        window.open(url);
+                                    }
+                                });
+
+                                function ggyj_search(bb) {
+                                    var s1 = document.getElementById(bb).value;
+                                    var s = escape(s1);
+                                    if (s1 == "输代码、名称或拼音" || s1 == "" || isNaN(parseInt(s1)) || s1.length != 6) {
+                                        alert("请输入所有查询股票的代码！");
+                                        return false;
+                                    } else {
+                                        var url = '/stockeast/bbsj?code=' + s1;
+                                        window.open(url);
+                                    }
+                                }
+                            </script>
+                        </div>
+                        <div class="sepe">
+                            <div class="left">
+                            </div>
+                            <div class="right">
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="bbsj-morelink">
+                                <span style="padding-left: 8px;">排行榜：</span>
+                                <a href="/bbsj/201703/yjbb/0/2.html">每股收益排行</a>
+                                <a href="/bbsj/201703/yjbb/0/9.html">每股净资产排行</a>
+                                <a href="/bbsj/201703/yjbb/0/11.html">每股经营现金流量排行</a>
+                                <a href="/bbsj/201703/yjbb/0/10.html">净资产收益率排行</a>
+                                <a href="/bbsj/201703/yjbb/0/3.html">营业收入排行</a>
+
+                            </div>
+                            <div class="bbsj-morelink">
+                                <span style="padding-left: 8px;">更多报表：</span>
+                                <a href="/bbsj/201709.html">2017年三季报业绩大全</a><a href="/bbsj/201706.html">2017年中报业绩大全</a><a href="/bbsj/201612.html">2016年年报业绩大全</a><a href="/bbsj/201609.html">2016年三季报业绩大全</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s8"></div>
+                    <div class="s8"></div>
+                    <div class="contentBox">
+                        <div class="titbar shortbar">
+                            <div class="tit">
+                                <a href="${base}/stockeast/yjbb?date_type=$date_type">最新一季报业绩</a>
+                            </div>
+                            <div class="tips" style="padding-left: 310px; padding-right: 10px;">
+                                <b class="arr_01"></b>
+                                <a href="$!ymList.get(0)[0]">2017年中报业绩预告</a>
+                            </div>
+                            <div class="morecont">
+                                <a href="${base}/stockeast/yjbb?date_type=$date_type">更多&gt;&gt;</a>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <table cellpadding="0" cellspacing="0" class="tab1" id="dt_1">
+                                <thead class="h101">
+                                <tr>
+                                    <th rowspan="2"><a href="/bbsj/201703/yjbb/0/1.html">股票代码</a></th>
+                                    <th rowspan="2">股票简称</th>
+                                    <th rowspan="2">相关资料</th>
+                                    <th rowspan="2"><a href="/bbsj/201703/yjbb/0/2.html">每股收<br>
+                                        益(元)</a></th>
+                                    <th colspan="3">营业收入</th>
+                                    <th colspan="3">净利润</th>
+                                    <th rowspan="2"><a href="/bbsj/201703/yjbb/0/9.html">每股<br>
+                                        净资产<br>
+                                        (元)</a></th>
+                                    <th rowspan="2"><a href="/bbsj/201703/yjbb/0/10.html">净资产<br>
+                                        收益率<br>
+                                        (%)</a></th>
+                                    <th rowspan="2"><a href="/bbsj/201703/yjbb/0/11.html">每股经营<br>
+                                        现金流量<br>
+                                        (元)</a></th>
+                                    <th rowspan="2"><a href="/bbsj/201703/yjbb/0/12.html">销售<br>
+                                        毛利率<br>
+                                        (%)</a></th>
+
+                                    <th rowspan="2"><a href="/bbsj/201703/yjbb/0/13.html">公告<br>
+                                        日期</a></th>
+                                </tr>
+                                <tr>
+                                    <th><a href="/bbsj/201703/yjbb/0/3.html">营业收入<br>
+                                        (万元)</a></th>
+                                    <th><a href="/bbsj/201703/yjbb/0/4.html">同比增长<br>
+                                        (%)</a></th>
+                                    <th><a href="/bbsj/201703/yjbb/0/5.html">季度环比<br>
+                                        增长(%)</a></th>
+                                    <th><a href="/bbsj/201703/yjbb/0/6.html">净利润<br>
+                                        (万元)</a></th>
+                                    <th><a href="/bbsj/201703/yjbb/0/7.html">同比增长<br>
+                                        (%)</a></th>
+                                    <th><a href="/bbsj/201703/yjbb/0/8.html">季度环比<br>
+                                        增长(%)</a></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    #set($num=0)
+                                    #foreach($pr in $prlist)
+                                        #set($num=$num+1)
+                                        #if($num==1)
+                                            #set($odd="")
+                                        #else
+                                            #set($odd="odd")
+                                            #set($num=0)
+                                        #end
+                                        #if($!pr.yearGrowth=="-"||$!pr.yearGrowth=="")
+                                            #set($yearGrowth="")
+                                        #elseif($!pr.yearGrowth.substring(0,1)=="-")
+                                            #set($yearGrowth="green")
+                                        #else
+                                            #set($yearGrowth="red")
+                                        #end
+                                        #if($!pr.chainGrowth=="-"||$!pr.chainGrowth=="")
+                                            #set($chainGrowth="")
+                                        #elseif($!pr.chainGrowth.substring(0,1)=="-")
+                                            #set($chainGrowth="green")
+                                        #else
+                                            #set($chainGrowth="red")
+                                        #end
+                                        #if($!pr.netYearGrowth=="-"||$!pr.netYearGrowth=="")
+                                            #set($netYearGrowth="")
+                                        #elseif($!pr.netYearGrowth.substring(0,1)=="-")
+                                            #set($netYearGrowth="green")
+                                        #else
+                                            #set($netYearGrowth="red")
+                                        #end
+                                        #if($!pr.netChainGrowth=="-"||$!pr.netChainGrowth=="")
+                                            #set($netChainGrowth="")
+                                        #elseif($!pr.netChainGrowth.substring(0,1)=="-")
+                                            #set($netChainGrowth="green")
+                                        #else
+                                            #set($netChainGrowth="red")
+                                        #end
+                                        <tr class="$odd" onmouseover="this.className='over'" onmouseout="this.className=''">
+                                        <td>
+                                            <a href='${base}/stockeast/detail?stockCode=${pr.stockCode}'>$pr.stockCode</a>
+                                        </td>
+                                        <td>
+                                            <a href='${base}/stockeast/detail?stockCode=${pr.stockCode}'>$pr.stockName</a>
+                                        </td>
+                                        <td>
+                                            <a href='${base}/stockeast/bbsj?code=${pr.stockCode}' class='red'>详细</a> <a href='http://guba.eastmoney.com/${pr.stockCode},guba.html'>股吧</a>
+                                        </td>
+                                        <td>
+                                            <span>$!pr.perProfit</span>
+                                        </td>
+                                        <td>
+                                            <span>$!pr.businessProfit</span>
+                                        </td>
+                                        <td>
+                                            <span class="$yearGrowth">$!pr.yearGrowth</span>
+                                        </td>
+                                        <td>
+                                            <span class='$chainGrowth'>$!pr.chainGrowth</span>
+                                        </td>
+                                        <td>
+                                            <span>$!pr.netProfit</span>
+                                        </td>
+                                        <td>
+                                            <span class='$netYearGrowth'>$!pr.netYearGrowth</span>
+                                        </td>
+                                        <td>
+                                            <span class='$netChainGrowth'>$!pr.netChainGrowth</span>
+                                        </td>
+                                        <td>
+                                            <span>$!pr.netAssets</span>
+                                        </td>
+                                        <td>
+                                            <span>$!pr.assetsYield</span>
+                                        </td>
+                                        <td>
+                                            <span>$!pr.cashFlow</span>
+                                        </td>
+                                        <td>
+                                            <span>$!pr.grossProfit</span>
+                                        </td>
+                                        <td>
+                                            $!pr.reportDate
+                                        </td>
+                                    </tr>
+                                    #end
+                                </tbody>
+                            </table>
+                            <div class="list_summary">
+                                <span><a href="${base}/stockeast/yjbb?date_type=$date_type">点击查看全部一季报业绩&gt;&gt;</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s8"></div>
+                    <div class="contentBox">
+                        <div class="titbar shortbar">
+                            <div class="tit">
+                                <a href="${base}/stockeast/yjkb?date_type=$date_type">一季报业绩快报</a>
+                            </div>
+                            <div class="morecont">
+                                <a href="${base}/stockeast/yjkb?date_type=$date_type">更多&gt;&gt;</a>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <table cellpadding="0" cellspacing="0" class="tab1" id="Table1">
+                                <thead class="h101">
+                                <tr>
+                                    <th rowspan="2"><a href="/bbsj/201703/yjkb/1.html">股票代码</a></th>
+                                    <th rowspan="2">股票简称</th>
+                                    <th rowspan="2">相关资料</th>
+                                    <th rowspan="2"><a href="/bbsj/201703/yjkb/2.html">每股收<br>
+                                        益(元)</a></th>
+                                    <th colspan="4">营业收入</th>
+                                    <th colspan="4">净利润</th>
+                                    <th rowspan="2"><a href="/bbsj/201703/yjkb/11.html">每股<br>
+                                        净资产<br>
+                                        (元)</a></th>
+                                    <th rowspan="2"><a href="/bbsj/201703/yjkb/12.html">净资产<br>
+                                        收益率<br>
+                                        (%)</a></th>
+                                    <th rowspan="2"><a href="/bbsj/201703/yjkb/13.html">公告<br>
+                                        日期</a></th>
+                                </tr>
+                                <tr>
+                                    <th><a href="/bbsj/201703/yjkb/3.html">营业收入<br>
+                                        (万元)</a></th>
+                                    <th><a href="/bbsj/201703/yjkb/4.html">去年同期<br>
+                                        (万元)</a></th>
+                                    <th><a href="/bbsj/201703/yjkb/5.html">同比增长<br>
+                                        (%)</a></th>
+                                    <th><a href="/bbsj/201703/yjkb/6.html">季度环比<br>
+                                        增长(%)</a></th>
+                                    <th><a href="/bbsj/201703/yjkb/7.html">净利润<br>
+                                        (万元)</a></th>
+                                    <th><a href="/bbsj/201703/yjkb/8.html">去年同期<br>
+                                        (万元)</a></th>
+                                    <th><a href="/bbsj/201703/yjkb/9.html">同比增长<br>
+                                        (%)</a></th>
+                                    <th><a href="/bbsj/201703/yjkb/10.html">季度环比<br>
+                                        增长(%)</a></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                #foreach($pe in $pelist)
+                                    #if($!pe.yearGrowth=="-"||$!pe.yearGrowth=="")
+                                        #set($yearGrowth="")
+                                    #elseif($!pe.yearGrowth.substring(0,1)=="-")
+                                        #set($yearGrowth="green")
+                                    #else
+                                        #set($yearGrowth="red")
+                                    #end
+                                    #if($!pe.chainGrowth=="-"||$!pe.chainGrowth=="")
+                                        #set($chainGrowth="")
+                                    #elseif($!pe.chainGrowth.substring(0,1)=="-")
+                                        #set($chainGrowth="green")
+                                    #else
+                                        #set($chainGrowth="red")
+                                    #end
+                                    #if($!pe.netYearGrowth=="-"||$!pe.netYearGrowth=="")
+                                        #set($netYearGrowth="")
+                                    #elseif($!pe.netYearGrowth.substring(0,1)=="-")
+                                        #set($netYearGrowth="green")
+                                    #else
+                                        #set($netYearGrowth="red")
+                                    #end
+                                    #if($!pe.netChainGrowth=="-"||$!pe.netChainGrowth=="")
+                                        #set($netChainGrowth="")
+                                    #elseif($!pe.netChainGrowth.substring(0,1)=="-")
+                                        #set($netChainGrowth="green")
+                                    #else
+                                        #set($netChainGrowth="red")
+                                    #end
+                                <tr class="" onmouseover="this.className='over'" onmouseout="this.className=''">
+
+                                    <td>
+                                        <a href='${base}/stockeast/detail?stockCode=${pe.stockCode}'>$pe.stockCode</a>
+                                    </td>
+                                    <td>
+                                        <a href='${base}/stockeast/detail?stockCode=${pe.stockCode}'>$pe.stockName</a>
+                                    </td>
+                                    <td>
+                                        <a href='${base}/stockeast/bbsj?code=${pe.stockCode}' class='red'>详细</a> <a href='http://guba.eastmoney.com/${pe.stockCode},guba.html'>股吧</a>
+                                    </td>
+                                    <td>
+                                        <span>$!pe.perProfit</span>
+                                    </td>
+                                    <td>
+                                        <span>$!pe.businessProfit</span>
+                                    </td>
+                                    <td>
+                                        <span>$!pe.businessLastPeriod</span>
+                                    </td>
+                                    <td>
+                                        <span class='$yearGrowth'>$!pe.yearGrowth</span>
+                                    </td>
+                                    <td>
+                                        <span class='$chainGrowth'>$!pe.chainGrowth</span>
+                                    </td>
+                                    <td>
+                                        <span>$!pe.netProfit</span>
+                                    </td>
+                                    <td>
+                                        <span>$!pe.netLastPeriod</span>
+                                    </td>
+                                    <td>
+                                        <span class='$netYearGrowth'>$!pe.netYearGrowth</span>
+                                    </td>
+                                    <td>
+                                        <span class='$netChainGrowth'>$!pe.netChainGrowth</span>
+                                    </td>
+                                    <td>
+                                        <span>$!pe.netAssets</span>
+                                    </td>
+                                    <td>
+                                        <span>$!pe.AssetsYield</span>
+                                    </td>
+                                    <td>
+                                        $!pe.reportDate
+                                    </td>
+                                </tr>
+                                #end
+                                </tbody>
+                            </table>
+                            <div class="list_summary">
+                                <span><a href="${base}/stockeast/yjkb?date_type=$date_type">点击查看全部一季报业绩快报&gt;&gt;</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s8"></div>
+                    <div class="contentBox">
+                        <div class="titbar shortbar">
+                            <div class="tit">
+                                <a href="${base}/stockeast/yjyg?date_type=$date_type">一季报业绩预告</a>
+                            </div>
+                            <div class="morecont">
+                                <a href="${base}/stockeast/yjyg?date_type=$date_type">更多&gt;&gt;</a>
+                            </div>
+                        </div>
+                        <div class="catemk">
+                            <ul>
+                                <li class="at">业绩预告</li>
+                                <li><a href="/bbsj/201703/yjyg/1.html">业绩预增</a></li>
+                                <li><a href="/bbsj/201703/yjyg/2.html">业绩预减</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="s6"></div>
+                        <div class="content">
+                            <table cellpadding="0" cellspacing="0" class="tab1" id="Table2">
+                                <thead class="h101">
+                                <tr>
+                                    <th width="60px"><a href="/bbsj/201703/yjyg/0/1.html">股票代码</a></th>
+                                    <th width="60px">股票简称</th>
+                                    <th width="60px">相关资料</th>
+                                    <th>业绩变动</th>
+                                    <th width="100px"><a href="/bbsj/201703/yjyg/0/2.html">业绩变动幅度</a></th>
+                                    <th width="60px">预告类型</th>
+                                    <th width="60px">
+                                        <div>
+                                            <a href="/bbsj/201703/yjyg/0/3.html">上年同期<br>
+                                                净利润(万元)</a>
+                                        </div>
+                                    </th>
+                                    <th width="80px"><a href="/bbsj/201703/yjyg/0/4.html">公告日期</a></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                #foreach($pf in $pflist)
+                                    #if($!pf.profitChangeWidth=="-"||$!pf.profitChangeWidth=="")
+                                        #set($profitChangeWidth="")
+                                    #elseif($!pf.profitChangeWidth.substring(0,1)=="-")
+                                        #set($profitChangeWidth="green")
+                                    #else
+                                        #set($profitChangeWidth="red")
+                                    #end
+                                <tr class="" onmouseover="this.className='over'" onmouseout="this.className=''">
+                                    <td><a href='${base}/stockeast/detail?stockCode=${pf.stockCode}'>$pf.stockCode</a></td>
+                                    <td><a href='${base}/stockeast/detail?stockCode=${pf.stockCode}'>$pf.stockName</a></td>
+                                    <td><a href='${base}/stockeast/bbsj?code=${pf.stockCode}' class='red'>详细</a> <a href='http://guba.eastmoney.com/${pf.stockCode},guba.html'>股吧</a></td>
+                                    <td>$!pf.profitChange</td>
+                                    <td><span class='$profitChangeWidth'>$!pf.profitChangeWidth</span></td>
+                                    <td>$!pf.forecastType</td>
+                                    <td><span>$!pf.netLastPeriod</span></td>
+                                    <td>$!pf.reportDate</td>
+                                </tr>
+                                #end
+                                </tbody>
+                            </table>
+                            <div class="list_summary">
+                    <span>
+                        <a href="${base}/stockeast/yjyg?date_type=$date_type">点击查看全部一季报业绩预告&gt;&gt;</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s8"></div>
+                    <div class="contentBox">
+                        <div class="titbar shortbar">
+                            <div class="tit">
+                                <a href="${base}/stockeast/yysj?date_type=$date_type">一季报披露时间</a>
+                            </div>
+                            <div class="morecont">
+                                <a href="${base}/stockeast/yysj?date_type=$date_type">更多&gt;&gt;</a>
+                            </div>
+                        </div>
+                        <div class="catemk">
+                            <ul id="tab-yypl">
+                                <li class=" at" style="width: 130px;">预约披露时间表</li>
+                                <li style="width: 130px;"><a href="/bbsj/201703/yysj/1.html">沪市预约时间表</a></li>
+                                <li style="width: 130px;"><a href="/bbsj/201703/yysj/2.html">深市预约时间表</a></li>
+                            </ul>
+                        </div>
+                        <div class="s6"></div>
+                        <div class="content" id="cont-yypl1" style="display: block;">
+                            <table cellpadding="0" cellspacing="0" class="tab1" id="Table6">
+                                <thead class="h101">
+                                <tr>
+                                    <th><a href="/bbsj/201703/yysj/0/1.html">股票代码</a></th>
+                                    <th>股票简称</th>
+                                    <th>相关资料</th>
+                                    <th><a href="/bbsj/201703/yysj/0/2.html">首次预约时间</a></th>
+                                    <th>一次变更日期</th>
+                                    <th>二次变更日期</th>
+                                    <th>三次变更日期</th>
+                                    <th><a href="/bbsj/201703/yysj/0/3.html">实际披露时间</a></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                #foreach($pp in $pplist)
+                                <tr class="" onmouseover="this.className='over'" onmouseout="this.className=''">
+                                    <td>
+                                        <a href='${base}/stockeast/detail?stockCode=${pp.stockCode}'>$pp.stockCode</a>
+                                    </td>
+                                    <td>
+                                        <a href='${base}/stockeast/detail?stockCode=${pp.stockCode}'>$pp.stockName</a>
+                                    </td>
+                                    <td>
+                                        <a href='${base}/stockeast/bbsj?code=${pp.stockCode}' class='red'>详细</a> <a href='http://guba.eastmoney.com/${pp.stockCode},guba.html'>股吧</a>
+                                    </td>
+                                    <td>
+                                        $!pp.orderDate
+                                    </td>
+                                    <td>
+                                        $!pp.onceChangeDate
+                                    </td>
+                                    <td>
+                                        $!pp.secondChangeDate
+                                    </td>
+                                    <td>
+                                        $!pp.thirdChangeDate
+                                    </td>
+                                    <td>
+                                        $!pp.reportDate
+                                    </td>
+                                </tr>
+#end
+                                </tbody>
+                            </table>
+                            <div class="list_summary">
+                                <span>
+                        <a href="${base}/stockeast/yysj?date_type=$date_type">点击查看全部一季报预约披露时间&gt;&gt;</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="${base}/static/js/east/master.js"></script>
+<script type="text/javascript">
+    document.getElementById("topTit").innerHTML = prefix + title + "报业绩大全";
+    document.getElementsByClassName("tit")[1].innerHTML = "<a href=\"${base}/stockeast/yjbb?date_type=$date_type\">最新" + title + "业绩</a>";
+    document.getElementsByClassName("tit")[2].innerHTML = "<a href=\"${base}/stockeast/yjkb?date_type=$date_type\">" + title + "业绩快报</a>";
+    document.getElementsByClassName("tit")[3].innerHTML = "<a href=\"${base}/stockeast/yjyg?date_type=$date_type\">" + title + "业绩预告</a>";
+    document.getElementsByClassName("tit")[4].innerHTML = "<a href=\"${base}/stockeast/yysj?date_type=$date_type\">" + title + "披露时间</a>";
+    document.getElementsByClassName("list_summary")[0].innerHTML = "<span><a href=\"${base}/stockeast/yjbb?date_type=$date_type\">点击查看全部" + title + "业绩&gt;&gt;</a></span>";
+    document.getElementsByClassName("list_summary")[1].innerHTML = "<span><a href=\"${base}/stockeast/yjkb?date_type=$date_type\">点击查看全部" + title + "业绩快报&gt;&gt;</a></span>";
+    document.getElementsByClassName("list_summary")[2].innerHTML = "<span><a href=\"${base}/stockeast/yjyg?date_type=$date_type\">点击查看全部" + title + "业绩预告&gt;&gt;</a></span>";
+    document.getElementsByClassName("list_summary")[3].innerHTML = "<span><a href=\"${base}/stockeast/yysj?date_type=$date_type\">点击查看全部" + title + "业绩时间&gt;&gt;</a></span>";
+</script>
+</body>
+</html>

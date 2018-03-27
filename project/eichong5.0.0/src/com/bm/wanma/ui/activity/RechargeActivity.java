@@ -1,0 +1,741 @@
+package com.bm.wanma.ui.activity;
+
+import java.io.StringReader;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.xmlpull.v1.XmlPullParser;
+
+import com.alipay.sdk.app.PayTask;
+import com.bm.wanma.R;
+import com.bm.wanma.adapter.MyRechargeMoneyGridViewAdapter;
+import com.bm.wanma.alipay.PayResult;
+import com.bm.wanma.dialog.RechargeSuccesDialog;
+import com.bm.wanma.entity.IntegralEventBean;
+import com.bm.wanma.entity.IntegralProportionBean;
+import com.bm.wanma.net.GetDataPost;
+import com.bm.wanma.net.Protocol;
+import com.bm.wanma.popup.SelectPatternPopupWindow;
+import com.bm.wanma.popup.SelectPatternPopupWindow.selectpattern;
+import com.bm.wanma.utils.LogUtil;
+import com.bm.wanma.utils.PreferencesUtil;
+import com.bm.wanma.utils.ToastUtil;
+import com.bm.wanma.utils.Tools;
+import com.bm.wanma.view.MyDetailGridView;
+import com.bm.wanma.weixin.Constants;
+import com.bm.wanma.weixin.MD5;
+import com.bm.wanma.weixin.Util;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.umeng.analytics.MobclickAgent;
+
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Xml;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.PopupWindow.OnDismissListener;
+
+/**
+ * @author cm
+ * 充值界面
+ */
+public class RechargeActivity extends BaseActivity implements OnClickListener{
+	private String rtion;
+	private static final int DECIMAL_DIGITS = 0;//小数的位数
+	private static IsVisible isvisible2;
+	private SelectPatternPopupWindow popupWindow;
+	private ImageButton ib_back;
+//	private ImageView iv_payment_ioc;
+	private Button tv_commit;
+	private EditText et_recharge_money;
+	private RelativeLayout rl_select_pattern;
+	private TextView tv_recharge_record;
+	private String pkuserId,whichType,rechargemoney;
+	private boolean isSelectType;
+	private static boolean isback = true;
+	private RelativeLayout ll_select_pattern_alipay,ll_select_pattern_wechat,rl_jifen;
+	//alipay
+		private static final int SDK_PAY_FLAG = 1;
+		private String aliPayInfo;
+		private String WXpayInfo;
+		private String userPhone;
+		//weixin
+		private PayReq req;
+		final IWXAPI msgApi = WXAPIFactory.createWXAPI(this, null);
+		private Map<String,String> resultunifiedorder;
+		private String prepayId;
+		private RechargeSuccesDialog mSuccesDialog;
+		private String  provincecode, citycode;
+		private String proportion="0";
+		private String fixationproportion="0";
+		private TextView tv_jifen;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_recharge);
+		mPageName = "RechargeActivity";
+		pkuserId = PreferencesUtil.getStringPreferences(this,"pkUserinfo");
+		userPhone = PreferencesUtil.getStringPreferences(this, "usinPhone"); 
+		//默认支付宝支付
+//		whichType = "支付宝";
+//		isSelectType = true;
+		req = new PayReq();
+		msgApi.registerApp(Constants.APP_ID);
+		initView();
+		registerBoradcastReceiver();
+	}
+@Override
+protected void onResume() {
+	// TODO Auto-generated method stub
+	super.onResume();
+	MobclickAgent.onResume(mContext);
+	MobclickAgent.onPageStart(mPageName);
+}
+
+@Override
+protected void onPause() {
+	// TODO Auto-generated method stub
+	super.onPause();
+	MobclickAgent.onPause(mContext);
+	MobclickAgent.onPageEnd(mPageName);
+}
+	private void initView(){
+
+		tv_recharge_record = (TextView) findViewById(R.id.recharge_record);
+		tv_recharge_record.setOnClickListener(this);
+		ib_back = (ImageButton) findViewById(R.id.recharge_back);
+		ib_back.setOnClickListener(this);
+		et_recharge_money = (EditText) findViewById(R.id.recharge_money_et);
+		et_recharge_money.setOnClickListener(this);
+		et_recharge_money.addTextChangedListener(new MyRechargeTextWatch());
+		ll_select_pattern_alipay = (RelativeLayout) findViewById(R.id.select_pattern_alipay);
+		ll_select_pattern_wechat = (RelativeLayout) findViewById(R.id.select_pattern_wechat);
+//		rl_select_pattern.setOnClickListener(this);
+		tv_commit = (Button) findViewById(R.id.recharge_commit);
+		tv_commit.setOnClickListener(this);
+		tv_commit.setBackgroundResource(R.drawable.common_button_shape);
+		tv_commit.setFocusable(false);
+		
+		rl_jifen = (RelativeLayout) findViewById(R.id.rl_jifen);
+		tv_jifen = (TextView) findViewById(R.id.jifen);
+		
+		if(!PreferencesUtil.getBooleanPreferences(this, "pattern", false)){
+			//选择支付宝支付
+			whichType = "支付宝";
+			isSelectType = false;
+			ll_select_pattern_alipay.setBackgroundResource(R.drawable.common_button_shape_activate_recharge);
+			ll_select_pattern_wechat.setBackgroundResource(R.drawable.common_button_shape_recharge);
+			
+		}else{				
+			//选择微信支付
+			whichType = "微信";
+			isSelectType = true;
+			ll_select_pattern_alipay.setBackgroundResource(R.drawable.common_button_shape_recharge);
+			ll_select_pattern_wechat.setBackgroundResource(R.drawable.common_button_shape_activate_recharge);
+
+		}
+		
+		ll_select_pattern_alipay.setOnClickListener(this);
+		ll_select_pattern_wechat.setOnClickListener(this);
+		provincecode = PreferencesUtil.getStringPreferences(this,"provincecode");
+		citycode = PreferencesUtil.getStringPreferences(this, "citycode");
+		if (Tools.isEmptyString(provincecode)||Tools.isEmptyString(citycode)) {
+			provincecode = "330000";
+			citycode = "330100";
+		}
+		if (!Tools.isEmptyString(citycode)&&!Tools.isEmptyString(provincecode)) {			
+			GetDataPost.getInstance(getActivity()).getIntegralEvent(handler, pkuserId, provincecode, citycode, "1");
+		}
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		 unregisterReceiver(mBroadcastReceiver);
+	}
+	
+	@SuppressLint("HandlerLeak")
+	private Handler mHandler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 0:
+				isvisible2.isvisible(isSelectType);
+			break;
+			case SDK_PAY_FLAG: {
+				PayResult payResult = new PayResult((String) msg.obj);
+				// 支付宝返回此次支付结果及加签，建议对支付宝签名信息拿签约时支付宝提供的公钥做验签
+				String resultInfo = payResult.getResult();
+				String resultStatus = payResult.getResultStatus();
+				LogUtil.i("cm_alipay",resultInfo);
+				// 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
+				if (TextUtils.equals(resultStatus, "9000")) {
+					Intent intent = new Intent(RechargeActivity.this, RechargeSucceedActivity.class);
+					intent.putExtra("rechargemoney", rechargemoney);
+					intent.putExtra("rechargetype", "支付宝充值");
+					startActivityForResult(intent, 0x01);
+					
+//					mSuccesDialog = new RechargeSuccesDialog(RechargeActivity.this, "充值金额为： "+rechargemoney);
+//					mSuccesDialog.setCancelable(false);
+//					mSuccesDialog.setOnPositiveListener(new OnClickListener() {
+//						@Override
+//						public void onClick(View v) {
+//							setResult(RESULT_OK);
+//							mSuccesDialog.dismiss();
+//							finish();
+//						}
+//					});
+//					mSuccesDialog.show();
+					//GetDataPost.getInstance(RechargeActivity.this).getMyWallet(handler, userId);
+				} else {
+					// 判断resultStatus 为非“9000”则代表可能支付失败
+					// “8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
+					if (TextUtils.equals(resultStatus, "8000")) {
+						Toast.makeText(RechargeActivity.this, "支付结果确认中",
+								Toast.LENGTH_SHORT).show();
+					} else {
+						// 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
+						Toast.makeText(RechargeActivity.this, "支付失败",
+								Toast.LENGTH_SHORT).show();
+					}
+				}
+				break;
+				
+			}
+			}
+		};
+	};
+	@SuppressLint("NewApi")
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.select_pattern_alipay:
+				MobclickAgent.onEvent(mContext, "wode_chongzhi_1");
+				//选择支付宝支付
+				whichType = "支付宝";
+				isSelectType = false;
+				ll_select_pattern_alipay.setBackgroundResource(R.drawable.common_button_shape_activate_recharge);
+				ll_select_pattern_wechat.setBackgroundResource(R.drawable.common_button_shape_recharge);
+				PreferencesUtil.setPreferences(this,  "pattern", false);
+			break;
+		case R.id.select_pattern_wechat:
+			MobclickAgent.onEvent(mContext, "wode_chongzhi_2");
+			//选择微信支付
+			whichType = "微信";
+			isSelectType = true;
+			ll_select_pattern_alipay.setBackgroundResource(R.drawable.common_button_shape_recharge);
+			ll_select_pattern_wechat.setBackgroundResource(R.drawable.common_button_shape_activate_recharge);
+			PreferencesUtil.setPreferences(this,  "pattern", true);
+			break;
+		case R.id.recharge_money_et:
+			MobclickAgent.onEvent(mContext, "wode_chongzhi_jine");
+			break;
+		case R.id.recharge_back:
+			finish();
+			
+			break;
+		case R.id.recharge_record:
+			Intent intent = new Intent(this, RechargeRecordActivity.class);
+			startActivity(intent);
+			break;
+
+		case R.id.recharge_commit:
+			MobclickAgent.onEvent(mContext, "wode_chongzhi_next");
+			if(!isNetConnection()){
+				 showToast("网络异常");
+				 return;
+			 }
+			if(Double.parseDouble(et_recharge_money.getText().toString())<10){
+				showToast("充实金额不能小于10元");
+				return;
+			}
+			
+			//去充值
+			//rechargemoney = tv_recharge_money.getText().toString();
+			rechargemoney = et_recharge_money.getText().toString();
+//			rechargemoney = "0.01"; //充值类型：4充值 5开发票 订单id不需要时设成0
+			if("支付宝".equals(whichType)){
+				StringBuilder sBuilder = new StringBuilder(pkuserId);
+				sBuilder.append("_").append("4").append("_").append("0");
+				GetDataPost.getInstance(this).getAlipayInfo(handler, "电费及充电服务费",sBuilder.toString(), rechargemoney, userPhone);
+			}else if("微信".equals(whichType)){
+				 Double tempMoney = Double.valueOf(rechargemoney)*100;
+				 DecimalFormat df0 = new DecimalFormat("###");
+				 //判断是否安装了微信app
+				 if(msgApi.isWXAppInstalled()){
+					 if(isNetConnection()){
+						 showPD("正在获取微信支付信息");
+						 GetDataPost.getInstance(this).getWXPrepayInfo(handler,pkuserId,"196.168.1.1", "电费及充电服务费", ""+df0.format(tempMoney), userPhone, "APP","4","0");
+					 }else {
+						 showToast("请，网络不稳，请稍后再试");
+					 }
+				 } else {showToast("未安装微信客户端,请求失败");}
+			}
+			break;
+
+		default:
+			break;
+		}
+		
+	}
+
+	@Override
+	protected void getData() {
+		
+	}
+
+	@Override
+	public void onSuccess(String sign, Bundle bundle) {			
+		
+		if (sign.equals(Protocol.INTEGRAL_PROPORTION)) {
+			if(bundle != null){
+				@SuppressWarnings("unchecked")
+				ArrayList<IntegralProportionBean> integralProportionBeans =  (ArrayList<IntegralProportionBean>) bundle
+					.getSerializable(Protocol.DATA);
+			if (integralProportionBeans.size()>0) {
+				IntegralProportionBean proportionBean = integralProportionBeans.get(0);
+				if (!Tools.isEmptyString(proportionBean.getRatio_integral_value())&&!proportionBean.getRatio_integral_value().equals("0")) {					
+					proportion = proportionBean.getRatio_integral_value();
+//					rl_jifen.setVisibility(View.VISIBLE);
+				}else {
+					if (!Tools.isEmptyString(proportionBean.getFixed_integral_value())&&!proportionBean.getFixed_integral_value().equals("0")) {
+						fixationproportion = proportionBean.getFixed_integral_value();
+//						rl_jifen.setVisibility(View.VISIBLE);
+					}else {
+//						rl_jifen.setVisibility(View.GONE);
+					}
+				}
+			}
+		  }
+		}else if (sign.equals(Protocol.INTEGRAL_EVENT)) {
+			//用户详情信息 
+			if (bundle != null) {
+				ArrayList<IntegralEventBean> integralEventBeans = (ArrayList<IntegralEventBean>) bundle.getSerializable(Protocol.DATA);
+			if (integralEventBeans.size()>0) {
+				IntegralEventBean integralEventBean = integralEventBeans.get(0);
+				if(integralEventBean!= null){
+					rl_jifen.setVisibility(View.VISIBLE);
+					GetDataPost.getInstance(this).getIntegralProportion(handler, pkuserId,provincecode, citycode,"1");
+				}
+			}else {
+				rl_jifen.setVisibility(View.GONE);
+			}
+			}
+		}
+		//支付宝获取支付信息alipayInfo
+		if (Tools.judgeString(sign, Protocol.AliPayURL)) {
+			if(bundle != null){
+				aliPayInfo =  (String) bundle.getSerializable(Protocol.DATA);
+				callaliPay();
+			}
+		}
+	//微信获取支付信息WXpayInfo
+		if (Tools.judgeString(sign, Protocol.WeiXinPayURL)) {
+			cancelPD();
+			if(bundle != null){
+				WXpayInfo =  (String) bundle.getSerializable(Protocol.DATA);
+				LogUtil.i("cm_WXpaInfo", WXpayInfo);
+				Map<String, String> xml = decodeXml(WXpayInfo);
+				callWXpay(xml);
+				}
+			}
+		
+		}
+
+	@Override
+	public void onFaile(String sign, Bundle bundle) {
+		cancelPD();
+		if(LogUtil.isDebug){
+			showToast("错误码"+bundle.getString(Protocol.CODE)+"\n"+bundle.getString(Protocol.MSG));
+		}else {
+			showToast(bundle.getString(Protocol.MSG));
+		}
+
+		
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		finish();
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+	//weixin 调用
+		private class GetPrepayIdTask extends AsyncTask<Void, Void, Map<String,String>> {
+			private ProgressDialog dialog;
+			@Override
+			protected void onPreExecute() {
+				dialog = ProgressDialog.show(RechargeActivity.this, getString(R.string.wx_tip), getString(R.string.getting_prepayid));
+			}
+			@Override
+			protected void onPostExecute(Map<String,String> result) {
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+				LogUtil.i("cm_result", result.toString());
+				prepayId = result.get("prepay_id");
+				if(prepayId != null && !prepayId.isEmpty()){
+					LogUtil.i("cm_prepay_id", prepayId);
+					resultunifiedorder = result;
+					//根据prepayId生成微信支付参数
+					genPayReq();
+				}
+			}
+
+			@Override
+			protected void onCancelled() {
+				super.onCancelled();
+			}
+
+			@Override
+			protected Map<String,String>  doInBackground(Void... params) {
+
+				String url = String.format("https://api.mch.weixin.qq.com/pay/unifiedorder");
+				String entity = genProductArgs();
+				LogUtil.i("cm_wx_entity",entity);
+
+				byte[] buf = Util.httpPost(url, entity);
+
+				String content = new String(buf);
+				LogUtil.i("cm_wx_content", content);
+				Map<String,String> xml=decodeXml(content);
+				LogUtil.i("cm_map_xml",xml.toString());
+				return xml;
+			}
+		}
+		private void genPayReq() {
+			req.appId = Constants.APP_ID;
+			req.partnerId = Constants.MCH_ID;
+			req.prepayId = resultunifiedorder.get("prepay_id");
+			req.packageValue = "Sign=WXPay";
+			req.nonceStr = genNonceStr();
+			req.timeStamp = String.valueOf(genTimeStamp());
+			List<NameValuePair> signParams = new LinkedList<NameValuePair>();
+			signParams.add(new BasicNameValuePair("appid", req.appId));
+			signParams.add(new BasicNameValuePair("noncestr", req.nonceStr));
+			signParams.add(new BasicNameValuePair("package", req.packageValue));
+			signParams.add(new BasicNameValuePair("partnerid", req.partnerId));
+			signParams.add(new BasicNameValuePair("prepayid", req.prepayId));
+			signParams.add(new BasicNameValuePair("timestamp", req.timeStamp));
+			req.sign = genAppSign(signParams);
+			LogUtil.i("cm_signParams", signParams.toString());
+			//支付发送
+			sendPayReq();
+		}
+		
+		private void sendPayReq() {
+			msgApi.registerApp(Constants.APP_ID);
+			msgApi.sendReq(req);
+			
+		}
+		public Map<String,String> decodeXml(String content) {
+
+			try {
+				Map<String, String> xml = new HashMap<String, String>();
+				XmlPullParser parser = Xml.newPullParser();
+				parser.setInput(new StringReader(content));
+				int event = parser.getEventType();
+				while (event != XmlPullParser.END_DOCUMENT) {
+
+					String nodeName=parser.getName();
+					switch (event) {
+						case XmlPullParser.START_DOCUMENT:
+
+							break;
+						case XmlPullParser.START_TAG:
+
+							if("xml".equals(nodeName)==false){
+								//实例化student对象
+								xml.put(nodeName,parser.nextText());
+							}
+							break;
+						case XmlPullParser.END_TAG:
+							break;
+					}
+					event = parser.next();
+				}
+
+				return xml;
+			} catch (Exception e) {
+				LogUtil.i("orion",e.toString());
+			}
+			return null;
+
+		}
+		private String genNonceStr() {
+			Random random = new Random();
+			return MD5.getMessageDigest(String.valueOf(random.nextInt(10000)).getBytes());
+		}
+		
+		private long genTimeStamp() {
+			return System.currentTimeMillis() / 1000;
+		}
+		private String genOutTradNo() {
+			Random random = new Random();
+			return MD5.getMessageDigest(String.valueOf(random.nextInt(10000)).getBytes());
+		}
+		//微信支付调用
+		private void callWXpay(Map<String,String> wxpayinfo){
+			req.appId = wxpayinfo.get("appid");
+			req.partnerId = wxpayinfo.get("partnerid");
+			req.prepayId = wxpayinfo.get("prepayid");
+			req.packageValue = "Sign=WXPay";
+			req.nonceStr = wxpayinfo.get("noncestr");
+			req.timeStamp = wxpayinfo.get("timestamp");
+			/*req.appId = Constants.APP_ID;
+			req.partnerId = Constants.MCH_ID;
+			req.prepayId = wxpayinfo.get("prepayid");
+			req.packageValue = "Sign=WXPay";
+			req.nonceStr = genNonceStr();
+			req.timeStamp = String.valueOf(genTimeStamp());*/
+			/*LogUtil.i("cm_appid","" + wxpayinfo.get("appid"));
+			LogUtil.i("cm_partnerid","" + wxpayinfo.get("partnerid"));
+			LogUtil.i("cm_prepayid","" + wxpayinfo.get("prepayid"));
+			LogUtil.i("cm_noncestr","" + wxpayinfo.get("noncestr"));
+			LogUtil.i("cm_timestamp","" + wxpayinfo.get("timestamp"));*/
+			/*List<NameValuePair> signParams = new LinkedList<NameValuePair>();
+			signParams.add(new BasicNameValuePair("appid", req.appId));
+			signParams.add(new BasicNameValuePair("noncestr", req.nonceStr));
+			signParams.add(new BasicNameValuePair("package", req.packageValue));
+			signParams.add(new BasicNameValuePair("partnerid", req.partnerId));
+			signParams.add(new BasicNameValuePair("prepayid", req.prepayId));
+			signParams.add(new BasicNameValuePair("timestamp", req.timeStamp));
+			req.sign = genAppSign(signParams);*/
+			req.sign = wxpayinfo.get("sign");
+			LogUtil.i("cm_sign","" + wxpayinfo.get("sign"));
+			//调用微信支付接口
+			msgApi.registerApp(req.appId);
+			msgApi.sendReq(req);
+			
+		} 
+		private String genProductArgs() {
+			StringBuffer xml = new StringBuffer();
+
+			try {
+				String	nonceStr = genNonceStr();
+				xml.append("</xml>");
+	            List<NameValuePair> packageParams = new LinkedList<NameValuePair>();
+				packageParams.add(new BasicNameValuePair("appid", Constants.APP_ID));
+				packageParams.add(new BasicNameValuePair("body", "充充币"));
+				packageParams.add(new BasicNameValuePair("mch_id", Constants.MCH_ID));
+				packageParams.add(new BasicNameValuePair("nonce_str", nonceStr));
+				packageParams.add(new BasicNameValuePair("notify_url", "http://www.eichong.com/alipay/notify_url.do"));
+				packageParams.add(new BasicNameValuePair("out_trade_no",genOutTradNo()));
+				//packageParams.add(new BasicNameValuePair("spbill_create_ip","127.0.0.1"));
+				packageParams.add(new BasicNameValuePair("spbill_create_ip","196.168.1.1"));
+				packageParams.add(new BasicNameValuePair("total_fee", "1"));
+				packageParams.add(new BasicNameValuePair("trade_type", "APP"));
+				String sign = genPackageSign(packageParams);
+				packageParams.add(new BasicNameValuePair("sign", sign));
+
+			    String xmlstring = toXml(packageParams);
+				return xmlstring;
+
+			} catch (Exception e) {
+				LogUtil.i("cm_weixin", "genProductArgs fail, ex = " + e.getMessage());
+				return null;
+			}
+		}
+		@SuppressLint("DefaultLocale")
+		private String genAppSign(List<NameValuePair> params) {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < params.size(); i++) {
+				sb.append(params.get(i).getName());
+				sb.append('=');
+				sb.append(params.get(i).getValue());
+				sb.append('&');
+			}
+			sb.append("key=");
+			sb.append(Constants.API_KEY);
+
+	       // this.sb.append("sign str\n"+sb.toString()+"\n\n");
+			String appSign = MD5.getMessageDigest(sb.toString().getBytes()).toUpperCase();
+			LogUtil.i("cm_appSign",appSign);
+			return appSign;
+		}
+		/**
+		 生成签名
+		 */
+		@SuppressLint("DefaultLocale")
+		private String genPackageSign(List<NameValuePair> params) {
+			StringBuilder sb = new StringBuilder();
+			
+			for (int i = 0; i < params.size(); i++) {
+				sb.append(params.get(i).getName());
+				sb.append('=');
+				sb.append(params.get(i).getValue());
+				sb.append('&');
+			}
+			sb.append("key=");
+			sb.append(Constants.API_KEY);
+
+			String packageSign = MD5.getMessageDigest(sb.toString().getBytes()).toUpperCase();
+			LogUtil.i("cm_packageSign",packageSign);
+			return packageSign;
+		}
+		private String toXml(List<NameValuePair> params) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("<xml>");
+			for (int i = 0; i < params.size(); i++) {
+				sb.append("<"+params.get(i).getName()+">");
+				sb.append(params.get(i).getValue());
+				sb.append("</"+params.get(i).getName()+">");
+			}
+			sb.append("</xml>");
+			LogUtil.i("cm_wx_toXml",sb.toString());
+			return sb.toString();
+		}
+		/**
+		 * call alipay sdk pay. 调用SDK支付
+		 */
+		private void callaliPay() {
+			
+			Runnable payRunnable = new Runnable() {
+				@Override
+				public void run() {
+					// 构造PayTask 对象
+					PayTask alipay = new PayTask(RechargeActivity.this);
+					// 调用支付接口，获取支付结果
+					String result = alipay.pay(aliPayInfo);
+					LogUtil.i("cm_result", result);
+					Message msg = new Message();
+					msg.what = SDK_PAY_FLAG;
+					msg.obj = result;
+					mHandler.sendMessage(msg);
+				}
+			};
+
+			// 必须异步调用
+			Thread payThread = new Thread(payRunnable);
+			payThread.start();
+		}
+
+	public void registerBoradcastReceiver(){  
+	        IntentFilter myIntentFilter = new IntentFilter();  
+	        myIntentFilter.addAction("com.bm.wanma.recharge_wx_ok");  
+	        //注册广播        
+	        registerReceiver(mBroadcastReceiver, myIntentFilter);  
+	    }  
+		private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver(){  
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				String action = intent.getAction();
+				 if(action.equals("com.bm.wanma.recharge_wx_ok")){  
+					 //弹出充值成功对话框
+						Intent WIintent = new Intent(RechargeActivity.this, RechargeSucceedActivity.class);
+						WIintent.putExtra("rechargemoney", rechargemoney);
+						WIintent.putExtra("rechargetype", "微信充值");
+						startActivityForResult(WIintent, 0x01);
+//					 mSuccesDialog = new RechargeSuccesDialog(RechargeActivity.this, "充值金额为： "+rechargemoney);
+//						mSuccesDialog.setCancelable(false);
+//						mSuccesDialog.setOnPositiveListener(new OnClickListener() {
+//							@Override
+//							public void onClick(View v) {
+//								//setResult(RESULT_OK);
+//								Intent broadIn = new Intent("com.bm.wanma.recharge_wx_ok_refresh");
+//								sendBroadcast(broadIn);
+//								mSuccesDialog.dismiss();
+//								finish();
+//							}
+//						});
+//						mSuccesDialog.show();
+		         }  
+			}  
+	          
+	    };  
+
+
+
+		public static void isvisible(IsVisible isvisible){
+			isvisible2 = isvisible;
+		}
+		
+		public interface IsVisible{
+			void isvisible(boolean par);
+	 	}
+		
+		@Override
+		public boolean onKeyDown(int keyCode, KeyEvent event) {
+			if (keyCode == KeyEvent.KEYCODE_BACK
+					&& event.getAction() == KeyEvent.ACTION_DOWN) {
+				if(isback){
+					finish();
+				}
+				return isback;
+			}
+			return super.onKeyDown(keyCode, event);
+		}
+		
+		private class MyRechargeTextWatch implements TextWatcher{
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {}
+			@SuppressLint("NewApi")
+			@Override
+			public void onTextChanged(CharSequence str, int start, int before,
+					int count) {}
+			@SuppressLint("NewApi")
+			@Override
+			public void afterTextChanged(Editable s) {
+				String contents = s.toString().trim();
+				
+				if (!Tools.isEmptyString(contents)) {
+					//输入框没值，立即充值置灰
+					tv_commit.setEnabled(true);
+					tv_commit.setBackgroundResource(R.drawable.common_button_shape_activate);
+					if (!proportion.equals("0")) {	
+						rtion = String.valueOf((Float.parseFloat(contents)/Float.parseFloat(proportion)));
+						if (rtion.contains(".")) {
+		                    if (rtion.length() - 1 - rtion.indexOf(".") > DECIMAL_DIGITS) {
+		                    	rtion =  rtion.substring(0,rtion.indexOf(".") + DECIMAL_DIGITS);
+
+		                    }
+		                }
+						tv_jifen.setText(""+rtion);
+						
+					}else {
+						if (!fixationproportion.equals("0")) {		
+							tv_jifen.setText(""+fixationproportion);
+					}}
+				}else {
+					//输入框没值，立即充值置灰
+					tv_commit.setEnabled(false);
+					tv_commit.setBackgroundResource(R.drawable.common_button_shape);
+					tv_jifen.setText("0");
+				}
+			}
+	}
+}

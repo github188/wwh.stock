@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>数据中心</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/master.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/default.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/layer2012.css">
+    <script type="text/javascript" src="${base}/static/js/jquery.min.1.8.3.js"></script>
+    <script type="text/javascript">
+        var jQuery = $.noConflict();
+        var portalurl = "${portal_url}/";
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/base.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/pluginNoBind.js"></script>
+    <meta http-equiv="refresh" content="1200" />
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/page_common.css">
+    <script type="text/javascript" src="${base}/static/js/east/emcharts.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/BkzjlSelector.js"></script>
+    <style type="text/css">
+        .content {
+            background-color: #ffffff !important;
+        }
+
+        .etips {
+            overflow: hidden;
+        }
+
+        .bgcountry .checked {
+            background: url("/img/east/qg.png") no-repeat center;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .bgcountry .nochecked {
+            background: url("/img/east/qgnocheck.png") no-repeat center;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .bgcity .checked {
+            background: url("/img/east/cs.png") no-repeat center;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .bgcity .nochecked {
+            background: url("/img/east/csnocheck.png") no-repeat center;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .bgvillage .checked {
+            background: url("/img/east/nc.png") no-repeat center;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .bgvillage .nochecked {
+            background: url("/img/east/ncnocheck.png") no-repeat center;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .eword {
+            display: inline-block;
+            margin-bottom: 10px;
+            *margin-bottom: 0px;
+            vertical-align: middle;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="page" id="page">
+<div class="main">
+<div class="framecontent">
+    <div class="linkNav">
+        <div id="Column_Navigation">
+            <a href="${base}/">首页</a> &gt; 数据中心
+        </div>
+    </div>
+    <div class="sitebody">
+        <div class="maincont">
+            <div class="contentBox">
+                <div class="titbar" id="datatitle" style="overflow: visible;">
+                    <b class="el"></b>
+                    <div class="tit">
+                        <a style="text-decoration: none;" href="${base}/stockeast/zjlxcenter/">资金流向</a>
+                    </div>
+                    <div class="search" style="float: left; padding-left: 20px; width: 32%;">
+                        <span class="txt">个股资金流向：</span>
+                        <form method="get" target="_self"><input name="zjlx_bar" class="sinput" id="zjlx_bar" type="text" autocomplete="off"></form>
+                        <div class="btn" style="border: none;" onclick="javascript:zjlx_search('zjlx_bar')"></div>
+                    </div>
+                    <div class="tips1">
+                        板块资金流向：
+                    </div>
+                    <div class="selector">
+                        <div id="selector">
+                            <span class="val">更多板块资金流向 <b></b></span><span class="arr"></span>
+                        </div>
+                        <div class="pop" id="pop" style="display: none; width: 354px;">
+                            <div class="pop_title">
+                                <label class="pop_close" id="close">
+                                    [×关闭]</label>
+                                <ul class="pop_slider" id="pop-tab">
+                                    <li class="at">行业</li>
+                                    <li>概念</li>
+                                    <li>地域</li>
+                                </ul>
+                            </div>
+                            <div id="pop-cont1"> <b>A</b>  <a href="/bkzj/735.html">安防设备</a>  <b>B</b>  <a href="/bkzj/733.html">包装材料</a>  <a href="/bkzj/474.html">保险</a>  <a href="/bkzj/546.html">玻璃陶瓷</a>  <b>C</b>  <a href="/bkzj/537.html">材料行业</a>  <a href="/bkzj/729.html">船舶制造</a>  <b>D</b>  <a href="/bkzj/428.html">电力行业</a>  <a href="/bkzj/736.html">电信运营</a>  <a href="/bkzj/447.html">电子信息</a>  <a href="/bkzj/459.html">电子元件</a>  <a href="/bkzj/738.html">多元金融</a>  <b>F</b>  <a href="/bkzj/451.html">房地产</a>  <a href="/bkzj/436.html">纺织服装</a>  <b>G</b>  <a href="/bkzj/479.html">钢铁行业</a>  <a href="/bkzj/450.html">港口水运</a>  <a href="/bkzj/421.html">高速公路</a>  <a href="/bkzj/425.html">工程建设</a>  <a href="/bkzj/440.html">工艺商品</a>  <a href="/bkzj/427.html">公用事业</a>  <a href="/bkzj/732.html">贵金属</a>  <a href="/bkzj/484.html">国际贸易</a>  <b>H</b>  <a href="/bkzj/480.html">航天航空</a>  <a href="/bkzj/731.html">化肥行业</a>  <a href="/bkzj/538.html">化工行业</a>  <a href="/bkzj/471.html">化纤行业</a>  <a href="/bkzj/728.html">环保工程</a>  <b>J</b>  <a href="/bkzj/545.html">机械行业</a>  <a href="/bkzj/456.html">家电行业</a>  <a href="/bkzj/429.html">交运设备</a>  <a href="/bkzj/422.html">交运物流</a>  <a href="/bkzj/739.html">金属制品</a>  <b>L</b>  <a href="/bkzj/485.html">旅游酒店</a>  <b>M</b>  <a href="/bkzj/437.html">煤炭采选</a>  <a href="/bkzj/420.html">民航机场</a>  <a href="/bkzj/476.html">木业家具</a>  <b>N</b>  <a href="/bkzj/477.html">酿酒行业</a>  <a href="/bkzj/433.html">农牧饲渔</a>  <a href="/bkzj/730.html">农药兽药</a>  <b>Q</b>  <a href="/bkzj/481.html">汽车行业</a>  <a href="/bkzj/473.html">券商信托</a>  <b>R</b>  <a href="/bkzj/737.html">软件服务</a>  <b>S</b>  <a href="/bkzj/482.html">商业百货</a>  <a href="/bkzj/464.html">石油行业</a>  <a href="/bkzj/438.html">食品饮料</a>  <a href="/bkzj/457.html">输配电气</a>  <a href="/bkzj/424.html">水泥建材</a>  <a href="/bkzj/454.html">塑胶制品</a>  <b>T</b>  <a href="/bkzj/448.html">通讯行业</a>  <b>W</b>  <a href="/bkzj/486.html">文化传媒</a>  <a href="/bkzj/740.html">文教休闲</a>  <b>Y</b>  <a href="/bkzj/727.html">医疗行业</a>  <a href="/bkzj/465.html">医药制造</a>  <a href="/bkzj/458.html">仪器仪表</a>  <a href="/bkzj/475.html">银行</a>  <a href="/bkzj/478.html">有色金属</a>  <a href="/bkzj/726.html">园林工程</a>  <b>Z</b>  <a href="/bkzj/470.html">造纸印刷</a>  <a href="/bkzj/734.html">珠宝首饰</a>  <a href="/bkzj/910.html">专用设备</a>  <a href="/bkzj/725.html">装修装饰</a>  <a href="/bkzj/539.html">综合行业</a> </div><div id="pop-cont2" style="display: none;"> <b>A</b>  <a href="/bkzj/689.html">阿里概念</a>  <b>B</b>  <a href="/bkzj/629.html">北斗导航</a>  <a href="/bkzj/717.html">北京冬奥</a>  <a href="/bkzj/566.html">滨海新区</a>  <a href="/bkzj/675.html">病毒防治</a>  <b>C</b>  <a href="/bkzj/671.html">彩票概念</a>  <a href="/bkzj/604.html">参股保险</a>  <a href="/bkzj/524.html">参股期货</a>  <a href="/bkzj/514.html">参股券商</a>  <a href="/bkzj/525.html">参股银行</a>  <a href="/bkzj/950.html">草甘膦</a>  <a href="/bkzj/679.html">超导概念</a>  <a href="/bkzj/703.html">超级电容</a>  <a href="/bkzj/811.html">超级品牌</a>  <a href="/bkzj/920.html">车联网</a>  <a href="/bkzj/534.html">成渝特区</a>  <a href="/bkzj/700.html">充电桩</a>  <a href="/bkzj/583.html">触摸屏</a>  <a href="/bkzj/506.html">创投</a>  <a href="/bkzj/638.html">创业成份</a>  <a href="/bkzj/501.html">次新股</a>  <b>D</b>  <a href="/bkzj/587.html">大订单</a>  <a href="/bkzj/716.html">大金融</a>  <a href="/bkzj/634.html">大数据</a>  <a href="/bkzj/870.html">单抗概念</a>  <a href="/bkzj/553.html">低碳经济</a>  <a href="/bkzj/540.html">迪士尼</a>  <a href="/bkzj/622.html">地热能</a>  <a href="/bkzj/665.html">电商概念</a>  <a href="/bkzj/676.html">独家药品</a>  <b>E</b>  <a href="/bkzj/664.html">二胎概念</a>  <b>F</b>  <a href="/bkzj/741.html">钒电池</a>  <a href="/bkzj/526.html">分拆上市</a>  <a href="/bkzj/595.html">风能</a>  <a href="/bkzj/690.html">氟化工</a>  <a href="/bkzj/720.html">福州新区</a>  <b>G</b>  <a href="/bkzj/723.html">高送转</a>  <a href="/bkzj/491.html">高校</a>  <a href="/bkzj/810.html">工业4.0</a>  <a href="/bkzj/807.html">共享经济</a>  <a href="/bkzj/567.html">股权激励</a>  <a href="/bkzj/803.html">股权转让</a>  <a href="/bkzj/696.html">国产软件</a>  <a href="/bkzj/891.html">国产芯片</a>  <a href="/bkzj/667.html">国家安防</a>  <a href="/bkzj/683.html">国企改革</a>  <b>H</b>  <a href="/bkzj/601.html">海工装备</a>  <a href="/bkzj/724.html">海绵城市</a>  <a href="/bkzj/572.html">海峡西岸</a>  <a href="/bkzj/623.html">海洋经济</a>  <a href="/bkzj/715.html">航母概念</a>  <a href="/bkzj/585.html">合同能源</a>  <a href="/bkzj/577.html">核能核电</a>  <a href="/bkzj/637.html">互联金融</a>  <a href="/bkzj/607.html">互联网</a>  <a href="/bkzj/702.html">沪港通</a>  <a href="/bkzj/707.html">沪股通</a>  <a href="/bkzj/672.html">沪企改革</a>  <a href="/bkzj/512.html">化工原料</a>  <a href="/bkzj/547.html">黄金概念</a>  <a href="/bkzj/687.html">黄金水道</a>  <b>J</b>  <a href="/bkzj/552.html">机构重仓</a>  <a href="/bkzj/561.html">基本金属</a>  <a href="/bkzj/536.html">基金重仓</a>  <a href="/bkzj/693.html">基因测序</a>  <a href="/bkzj/719.html">健康中国</a>  <a href="/bkzj/494.html">节能环保</a>  <a href="/bkzj/605.html">金融改革</a>  <a href="/bkzj/694.html">金融机具</a>  <a href="/bkzj/684.html">京津冀</a>  <a href="/bkzj/806.html">精准医疗</a>  <a href="/bkzj/685.html">举牌概念</a>  <a href="/bkzj/490.html">军工</a>  <a href="/bkzj/808.html">军民融合</a>  <b>K</b>  <a href="/bkzj/820.html">壳资源</a>  <a href="/bkzj/990.html">快递概念</a>  <b>L</b>  <a href="/bkzj/674.html">蓝宝石</a>  <a href="/bkzj/574.html">锂电池</a>  <a href="/bkzj/710.html">量子通信</a>  <b>M</b>  <a href="/bkzj/492.html">煤化工</a>  <a href="/bkzj/626.html">美丽中国</a>  <a href="/bkzj/698.html">免疫治疗</a>  <a href="/bkzj/660.html">民营医院</a>  <a href="/bkzj/652.html">民营银行</a>  <b>N</b>  <a href="/bkzj/618.html">宁波</a>  <b>P</b>  <a href="/bkzj/666.html">苹果概念</a>  <b>Q</b>  <a href="/bkzj/630.html">前海概念</a>  <a href="/bkzj/830.html">区块链</a>  <a href="/bkzj/699.html">全息技术</a>  <a href="/bkzj/711.html">券商概念</a>  <b>R</b>  <a href="/bkzj/682.html">燃料电池</a>  <a href="/bkzj/800.html">人工智能</a>  <a href="/bkzj/706.html">人脑工程</a>  <a href="/bkzj/596.html">融资融券</a>  <b>S</b>  <a href="/bkzj/709.html">赛马概念</a>  <a href="/bkzj/673.html">三旧改造</a>  <a href="/bkzj/616.html">三沙概念</a>  <a href="/bkzj/541.html">三通概念</a>  <a href="/bkzj/573.html">三网融合</a>  <a href="/bkzj/643.html">上海自贸</a>  <a href="/bkzj/612.html">上证180_</a>  <a href="/bkzj/705.html">上证380</a>  <a href="/bkzj/611.html">上证50_</a>  <a href="/bkzj/520.html">社保重仓</a>  <a href="/bkzj/624.html">涉矿概念</a>  <a href="/bkzj/568.html">深成500</a>  <a href="/bkzj/930.html">深港通</a>  <a href="/bkzj/804.html">深股通</a>  <a href="/bkzj/549.html">深圳特区</a>  <a href="/bkzj/686.html">生命人寿</a>  <a href="/bkzj/669.html">生态农业</a>  <a href="/bkzj/970.html">生物识别</a>  <a href="/bkzj/548.html">生物疫苗</a>  <a href="/bkzj/617.html">石墨烯</a>  <a href="/bkzj/614.html">食品安全</a>  <a href="/bkzj/642.html">手游概念</a>  <a href="/bkzj/507.html">数字电视</a>  <a href="/bkzj/597.html">水利建设</a>  <a href="/bkzj/657.html">水域改革</a>  <a href="/bkzj/654.html">丝绸之路</a>  <a href="/bkzj/633.html">送转预期</a>  <b>T</b>  <a href="/bkzj/588.html">太阳能</a>  <a href="/bkzj/805.html">钛白粉</a>  <a href="/bkzj/644.html">特斯拉</a>  <a href="/bkzj/681.html">腾安价值</a>  <a href="/bkzj/708.html">体育产业</a>  <a href="/bkzj/592.html">铁路基建</a>  <a href="/bkzj/625.html">通用航空</a>  <a href="/bkzj/586.html">图们江</a>  <a href="/bkzj/632.html">土地流转</a>  <b>W</b>  <a href="/bkzj/589.html">皖江区域</a>  <a href="/bkzj/659.html">王亚伟系</a>  <a href="/bkzj/940.html">网红直播</a>  <a href="/bkzj/655.html">网络安全</a>  <a href="/bkzj/509.html">网络游戏</a>  <a href="/bkzj/704.html">无人机</a>  <a href="/bkzj/802.html">无人驾驶</a>  <a href="/bkzj/960.html">无线充电</a>  <a href="/bkzj/554.html">物联网</a>  <b>X</b>  <a href="/bkzj/590.html">西部开发</a>  <a href="/bkzj/519.html">稀缺资源</a>  <a href="/bkzj/578.html">稀土永磁</a>  <a href="/bkzj/695.html">小金属</a>  <a href="/bkzj/523.html">新材料</a>  <a href="/bkzj/493.html">新能源</a>  <a href="/bkzj/900.html">新能源车</a>  <a href="/bkzj/600.html">新三板</a>  <a href="/bkzj/722.html">虚拟现实</a>  <b>Y</b>  <a href="/bkzj/610.html">央视50_</a>  <a href="/bkzj/653.html">养老概念</a>  <a href="/bkzj/603.html">页岩气</a>  <a href="/bkzj/712.html">一带一路</a>  <a href="/bkzj/668.html">医疗器械</a>  <a href="/bkzj/556.html">移动支付</a>  <a href="/bkzj/663.html">油改概念</a>  <a href="/bkzj/563.html">油价相关</a>  <a href="/bkzj/606.html">油气设服</a>  <a href="/bkzj/570.html">预亏预减</a>  <a href="/bkzj/571.html">预盈预增</a>  <a href="/bkzj/677.html">粤港自贸</a>  <a href="/bkzj/579.html">云计算</a>  <b>Z</b>  <a href="/bkzj/662.html">在线教育</a>  <a href="/bkzj/692.html">在线旅游</a>  <a href="/bkzj/801.html">增强现实</a>  <a href="/bkzj/980.html">债转股</a>  <a href="/bkzj/594.html">长江三角</a>  <a href="/bkzj/593.html">长株潭</a>  <a href="/bkzj/718.html">证金持股</a>  <a href="/bkzj/628.html">智慧城市</a>  <a href="/bkzj/641.html">智能穿戴</a>  <a href="/bkzj/656.html">智能电视</a>  <a href="/bkzj/581.html">智能电网</a>  <a href="/bkzj/640.html">智能机器</a>  <a href="/bkzj/680.html">智能家居</a>  <a href="/bkzj/635.html">中超概念</a>  <a href="/bkzj/609.html">中韩自贸</a>  <a href="/bkzj/615.html">中药</a>  <a href="/bkzj/701.html">中证500</a>  <a href="/bkzj/505.html">中字头</a>  <a href="/bkzj/613.html">舟山群岛</a>  <a href="/bkzj/882.html">猪肉概念</a>  <a href="/bkzj/528.html">转债标的</a>  <b>其他</b>  <a href="/bkzj/713.html">2025规划</a> <a href="/bkzj/881.html">3D玻璃</a> <a href="/bkzj/619.html">3D打印</a> <a href="/bkzj/639.html">4G概念</a> <a href="/bkzj/714.html">5G概念</a> <a href="/bkzj/498.html">AB股</a> <a href="/bkzj/499.html">AH股</a> <a href="/bkzj/636.html">B股</a> <a href="/bkzj/584.html">CDM项目</a> <a href="/bkzj/500.html">HS300_</a> <a href="/bkzj/697.html">IPO受益</a> <a href="/bkzj/598.html">IPV6</a> <a href="/bkzj/580.html">LED</a> <a href="/bkzj/840.html">OLED</a> <a href="/bkzj/608.html">PM2.5</a> <a href="/bkzj/721.html">PPP模式</a> <a href="/bkzj/535.html">QFII重仓</a> <a href="/bkzj/511.html">ST概念</a> <a href="/bkzj/503.html">S股</a></div><div id="pop-cont3" style="display: none;"> <b>A</b>  <a href="/bkzj/149.html">安徽板块</a>  <b>B</b>  <a href="/bkzj/150.html">北京板块</a>  <b>F</b>  <a href="/bkzj/151.html">福建板块</a>  <b>G</b>  <a href="/bkzj/152.html">甘肃板块</a>  <a href="/bkzj/153.html">广东板块</a>  <a href="/bkzj/154.html">广西板块</a>  <a href="/bkzj/173.html">贵州板块</a>  <b>H</b>  <a href="/bkzj/176.html">海南板块</a>  <a href="/bkzj/155.html">河北板块</a>  <a href="/bkzj/156.html">河南板块</a>  <a href="/bkzj/146.html">黑龙江</a>  <a href="/bkzj/157.html">湖北板块</a>  <a href="/bkzj/158.html">湖南板块</a>  <b>J</b>  <a href="/bkzj/148.html">吉林板块</a>  <a href="/bkzj/159.html">江苏板块</a>  <a href="/bkzj/160.html">江西板块</a>  <b>L</b>  <a href="/bkzj/161.html">辽宁板块</a>  <b>N</b>  <a href="/bkzj/175.html">内蒙古</a>  <a href="/bkzj/162.html">宁夏板块</a>  <b>Q</b>  <a href="/bkzj/163.html">青海板块</a>  <b>S</b>  <a href="/bkzj/164.html">山东板块</a>  <a href="/bkzj/167.html">山西板块</a>  <a href="/bkzj/165.html">陕西板块</a>  <a href="/bkzj/145.html">上海板块</a>  <a href="/bkzj/169.html">四川板块</a>  <b>T</b>  <a href="/bkzj/166.html">天津板块</a>  <b>X</b>  <a href="/bkzj/174.html">西藏板块</a>  <a href="/bkzj/147.html">新疆板块</a>  <b>Y</b>  <a href="/bkzj/171.html">云南板块</a>  <b>Z</b>  <a href="/bkzj/172.html">浙江板块</a>  <b>C</b>  <a href="/bkzj/170.html">重庆板块</a> </div>
+                            <script type="text/javascript">
+                                tiny.tabSliding("pop-tab", "li", "at", "pop-cont", "mouseover")
+                            </script>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        var pop = new BkzjlxPop();
+                    </script>
+
+                    <script type="text/javascript">
+                        var zz = new StockSuggest("zjlx_bar", {
+                            text: "输代码、名称或拼音",
+                            type: "ABSTOCK",
+                            autoSubmit: false,
+                            width: 190,
+                            header: ["选项", "代码", "名称", "类型"],
+                            body: [-1, 1, 4, -2],
+                            callback: function (ag) {
+                                var url = '/zjlx/' + ag.code + '.html';
+                                window.open(url);
+                            }
+                        });
+                        function zjlx_search(bb) {
+                            var s1 = document.getElementById(bb).value;
+                            var s = escape(s1);
+                            if (s1 == "输代码、名称或拼音" || s1 == "" || isNaN(parseInt(s1)) || s1.length != 6) {
+                                alert("请输入所查询股票的代码！");
+                                return false;
+                            } else {
+                                var url = '${base}/stockeast/zjlx/detail?code=' + s1;
+                                window.open(url);
+                            }
+                        }
+                        function getMarket(StockCode) {
+                            var i = StockCode.substring(0, 1);
+                            var j = StockCode.substring(0, 3);
+                            if (i == "5" || i == "6" || i == "9") {
+                                return "sh";
+                            } else {
+                                if (j == "009" || j == "126" || j == "110") {
+                                    return "sh";
+                                } else {
+                                    return "sz";
+                                }
+                            }
+                        };
+                    </script>
+                </div>
+                <div class="sepe">
+                    <div class="left" style="width: 102px;">
+                    </div>
+                    <div class="right" style="width: 763px;">
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="contentBox">
+                        <div class="catemk width_auto">
+                            <ul>
+                                <li class="at border_left_1" style="cursor: pointer;" onclick="window.open('http://data.eastmoney.com/zjlx/dpzjlx.html');">沪深两市</li>
+                                <li onclick="window.open('http://data.eastmoney.com/zjlx/zs000001.html');">沪市</li>
+                                <li onclick="window.open('http://data.eastmoney.com/zjlx/zs399001.html');">深市</li>
+                                <li onclick="window.open('http://data.eastmoney.com/zjlx/zs399005.html');">中小板</li>
+                                <li onclick="window.open('http://data.eastmoney.com/zjlx/zs399006.html');">创业板</li>
+                                <li onclick="window.open('http://data.eastmoney.com/zjlx/zs000003.html');">沪B</li>
+                                <li onclick="window.open('http://data.eastmoney.com/zjlx/zs399003.html');">深B</li>
+                            </ul>
+                        <span class="more_link">
+                            <a class="a_link" href="${base}/stockeast/dpzjlx">更多</a>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="h195 content1">
+
+                        <div class="imgdiv">
+                            <a href="${base}/stockeast/dpzjlx">
+                                <img id="dpimg" src="http://cmsjs.eastmoney.com/data/images/A%E8%82%A1%E6%B5%81%E5%85%A5%E8%B5%84%E9%87%91.png?rt=0.7724865639731769" reload="true"></a>
+                        </div>
+                        <div class="lablediv">
+                            <ul class="piclable">
+                                <li onclick="window.open('http://quote.eastmoney.com/center/index.html')">行情 </li>
+                                <li onclick="window.open('http://data.eastmoney.com/report/clbg.html')">研报 </li>
+                                <li onclick="window.open('http://finance.eastmoney.com/news/czqyw.html')">资讯 </li>
+                                <li style="border-bottom: 1px solid #D1D1D1;" onclick="window.open('http://guba.eastmoney.com/topic,szzs.html')">股吧 </li>
+                            </ul>
+                        </div>
+                        <div class="tablediv">
+                            <table class="w530 tab2" id="dpzjl_dt" cellspacing="0" cellpadding="0">
+                                <thead class="h101">
+                                <tr>
+                                    <th>类型
+                                    </th>
+                                    <th>流入(亿)
+                                    </th>
+                                    <th>流出(亿)
+                                    </th>
+                                    <th>净流入(亿)
+                                    </th>
+                                    <th>净占比
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr onmouseover="this.className='over'" onmouseout="this.className=''">
+                                    <td>主力
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="red" id="data_zllr">1457.8625</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="green" id="data_zllc">-1559.9829</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="green" id="data_zljlr">-102.1205</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="green" id="data_zljzb">-5.20%</span>
+                                    </td>
+                                </tr>
+                                <tr class="odd" onmouseover="this.className='over odd'" onmouseout="this.className='odd'">
+                                    <td>超大单
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="red" id="data_cdlr">434.9986</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="green" id="data_cdlc">-434.6172</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="red" id="data_cdjlr">0.3814</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="green" id="data_cdjzb">-0.33%</span>
+                                    </td>
+                                </tr>
+                                <tr onmouseover="this.className='over'" onmouseout="this.className=''">
+                                    <td>大单
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="red" id="data_ddlr">1022.8639</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="green" id="data_ddlc">-1125.3658</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="green" id="data_ddjlr">-102.5019</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="green" id="data_ddjzb">-4.87%</span>
+                                    </td>
+                                </tr>
+                                <tr class="odd" onmouseover="this.className='over odd'" onmouseout="this.className='odd'">
+                                    <td>中单
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="red" id="data_zdlr">1481.6271</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="green" id="data_zdlc">-1516.5258</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="green" id="data_zdjlr">-34.8987</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="green" id="data_zdjzb">-1.52%</span>
+                                    </td>
+                                </tr>
+                                <tr onmouseover="this.className='over'" onmouseout="this.className=''">
+                                    <td>小单
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="red" id="data_xdlr">1248.8517</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="green" id="data_xdlc">-1111.8325</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="red" id="data_xdjlr">137.0191</span>
+                                    </td>
+                                    <td class="tdnumber">
+                                        <span class="red" id="data_xdjzb">6.72%</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="list_summary">
+                                <span><a href="${base}/stockeast/dpzjlx" target="_self">点击查看全部&gt;&gt;</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="contentBox">
+                        <div class="catemk width_auto">
+                            <ul>
+                                <li class="at w160 border_left_1" style="cursor: pointer;" onclick="window.open('http://data.eastmoney.com/bkzj/hy.html');">行业资金流向排行</li>
+                                <li class="w160" onclick="window.open('http://data.eastmoney.com/bkzj/gn.html');">概念资金流向排行</li>
+                                <li class="w160" onclick="window.open('http://data.eastmoney.com/bkzj/dy.html');">地域资金流向排行</li>
+                                <li class="w160" onclick="window.open('http://data.eastmoney.com/bkzj/jlr.html');">资金流向监测</li>
+                            </ul>
+                        <span class="more_link">
+                            <a class="a_link" href="http://data.eastmoney.com/bkzj/hy.html">更多</a></span>
+                        </div>
+                    </div>
+                    <div class="h195 content1">
+
+                        <div class="imgdiv">
+                            <a href="http://quote.eastmoney.com/center/list.html#28002456_0_2">
+                                <img id="hyimg" src="http://hq2qt.eastmoney.com/EM_CapitalPictureProducter/Picture/456rs.png?rt=636249334738547117" reload="true"></a>
+                        </div>
+                        <div class="lablediv">
+                            <ul class="piclable">
+                                <li id="hqli" onclick="window.open('http://quote.eastmoney.com/center/list.html#28002456_0_2')">行情 </li>
+                                <li id="ybli" onclick="window.open('http://data.eastmoney.com/report/456yb.html')">研报 </li>
+                                <li id="zxli" onclick="window.open('http://stock.eastmoney.com/hangye/456.html')">资讯 </li>
+                                <li id="gbli" style="border-bottom: 1px solid #D1D1D1;" onclick="window.open('http://guba.eastmoney.com/list,BK0456.html')">股吧 </li>
+                            </ul>
+                        </div>
+                        <div class="tablediv">
+                            <table class="w530 tab2" id="hyzjl_dt" cellspacing="0" cellpadding="0">
+                                <thead class="h101">
+                                <tr>
+                                    <th>序号
+                                    </th>
+                                    <th>名称
+                                    </th>
+                                    <th>相关链接
+                                    </th>
+                                    <th>涨跌幅
+                                    </th>
+                                    <th>主力净流入
+                                    </th>
+                                    <th>主力净占比
+                                    </th>
+                                    <th>主力净流入最大股
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr onmouseover="this.className='over'" onmouseout="this.className=''">
+                                    <td>
+                                        1
+                                    </td>
+                                    <td>
+                                        <a href="http://quote.eastmoney.com/center/list.html#28002456_0_2">家电行业</a>
+                                    </td>
+                                    <td>
+                                        <a class="red" href="/bkzj/BK0456.html">大单详情</a> <a href="http://guba.eastmoney.com/list,BK0456.html">股吧</a>
+                                    </td>
+                                    <td>
+                                        <span class="red">1.49%</span>
+                                    </td>
+                                    <td>
+                                        <span class="red">7.96亿</span>
+                                    </td>
+                                    <td>
+                                        <span class="red">9.12%</span>
+                                    </td>
+                                    <td>
+                                        <a href="/zjlx/000651.html">格力电器</a>
+                                    </td>
+                                </tr>
+                                <tr class="odd" onmouseover="this.className='over'" onmouseout="this.className='odd'">
+                                    <td>
+                                        2
+                                    </td>
+                                    <td>
+                                        <a href="http://quote.eastmoney.com/center/list.html#28002481_0_2">汽车行业</a>
+                                    </td>
+                                    <td>
+                                        <a class="red" href="/bkzj/BK0481.html">大单详情</a> <a href="http://guba.eastmoney.com/list,BK0481.html">股吧</a>
+                                    </td>
+                                    <td>
+                                        <span class="red">0.46%</span>
+                                    </td>
+                                    <td>
+                                        <span class="red">3.22亿</span>
+                                    </td>
+                                    <td>
+                                        <span class="red">2.30%</span>
+                                    </td>
+                                    <td>
+                                        <a href="/zjlx/300304.html">云意电气</a>
+                                    </td>
+                                </tr>
+                                <tr onmouseover="this.className='over'" onmouseout="this.className=''">
+                                    <td>
+                                        3
+                                    </td>
+                                    <td>
+                                        <a href="http://quote.eastmoney.com/center/list.html#28002733_0_2">包装材料</a>
+                                    </td>
+                                    <td>
+                                        <a class="red" href="/bkzj/BK0733.html">大单详情</a> <a href="http://guba.eastmoney.com/list,BK0733.html">股吧</a>
+                                    </td>
+                                    <td>
+                                        <span class="red">0.29%</span>
+                                    </td>
+                                    <td>
+                                        <span class="red">1.37亿</span>
+                                    </td>
+                                    <td>
+                                        <span class="red">5.79%</span>
+                                    </td>
+                                    <td>
+                                        <a href="/zjlx/000812.html">陕西金叶</a>
+                                    </td>
+                                </tr>
+                                <tr class="odd" onmouseover="this.className='over'" onmouseout="this.className='odd'">
+                                    <td>
+                                        4
+                                    </td>
+                                    <td>
+                                        <a href="http://quote.eastmoney.com/center/list.html#28002424_0_2">水泥建材</a>
+                                    </td>
+                                    <td>
+                                        <a class="red" href="/bkzj/BK0424.html">大单详情</a> <a href="http://guba.eastmoney.com/list,BK0424.html">股吧</a>
+                                    </td>
+                                    <td>
+                                        <span class="red">0.55%</span>
+                                    </td>
+                                    <td>
+                                        <span class="red">1.32亿</span>
+                                    </td>
+                                    <td>
+                                        <span class="red">1.40%</span>
+                                    </td>
+                                    <td>
+                                        <a href="/zjlx/000877.html">天山股份</a>
+                                    </td>
+                                </tr>
+                                <tr onmouseover="this.className='over'" onmouseout="this.className=''">
+                                    <td>
+                                        5
+                                    </td>
+                                    <td>
+                                        <a href="http://quote.eastmoney.com/center/list.html#28002471_0_2">化纤行业</a>
+                                    </td>
+                                    <td>
+                                        <a class="red" href="/bkzj/BK0471.html">大单详情</a> <a href="http://guba.eastmoney.com/list,BK0471.html">股吧</a>
+                                    </td>
+                                    <td>
+                                        <span class="red">0.72%</span>
+                                    </td>
+                                    <td>
+                                        <span class="red">6793万</span>
+                                    </td>
+                                    <td>
+                                        <span class="red">2.21%</span>
+                                    </td>
+                                    <td>
+                                        <a href="/zjlx/002098.html">浔兴股份</a>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <div class="list_summary">
+                                <span><a href="http://data.eastmoney.com/bkzj/hy.html" target="_blank">点击查看全部&gt;&gt;</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="contentBox">
+                        <div class="catemk width_auto">
+                            <ul>
+                                <li class="at w160 border_left_1" style="cursor: pointer;" onclick="window.open('${base}/stockeast/zjlx/list');">个股资金流向</li>
+                                <li class="w160" onclick="window.open('http://data.eastmoney.com/zjlx/list.html');">主力净流入排名</li>
+                                <li class="w160" onclick="window.open('http://quote.eastmoney.com/favor/');">自选股资金流向</li>
+                            </ul>
+                        <span class="more_link"><a class="a_link" href="${base}/stockeast/zjlx/list/">
+                            更多</a></span>
+                        </div>
+
+                        <table class="tab1" id="ggzjl_dt" cellspacing="0" cellpadding="0">
+                            <thead class="h101">
+                            <tr>
+                                <th rowspan="2">序号
+                                </th>
+                                <th style="width: 48px; padding: 0px;" rowspan="2">代码
+                                </th>
+                                <th style="width: 54px; padding: 0px;" rowspan="2">名称
+                                </th>
+                                <th style="width: 95px; padding: 0px;" rowspan="2">相关链接
+                                </th>
+                                <th rowspan="2">最新价
+                                </th>
+                                <th rowspan="2">今日<br>
+                                    涨跌幅
+                                </th>
+                                <th colspan="2">今日主力净流入
+                                </th>
+                                <th colspan="2">今日超大单净流入
+                                </th>
+                                <th colspan="2">今日大单净流入
+                                </th>
+                                <th colspan="2">今日中单净流入
+                                </th>
+                                <th colspan="2">今日小单净流入
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>净额
+                                </th>
+                                <th>净占比
+                                </th>
+                                <th>净额
+                                </th>
+                                <th>净占比
+                                </th>
+                                <th>净额
+                                </th>
+                                <th>净占比
+                                </th>
+                                <th>净额
+                                </th>
+                                <th>净占比
+                                </th>
+                                <th>净额
+                                </th>
+                                <th>净占比
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr onmouseover="this.className='over'" onmouseout="this.className=''">
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/300304.html">300304</a>
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/300304.html">云意电气</a>
+                                </td>
+                                <td>
+                                    <a class="red" href="/zjlx/300304.html">大单详情</a> <a href="http://guba.eastmoney.com/topic,300304.html">股吧</a>
+                                </td>
+                                <td>
+                                    <span class="red">19.05</span>
+                                </td>
+                                <td>
+                                    <span class="red">9.99%</span>
+                                </td>
+                                <td>
+                                    <span class="red">4.65亿</span>
+                                </td>
+                                <td>
+                                    <span class="red">22.92%</span>
+                                </td>
+                                <td>
+                                    <span class="red">5.06亿</span>
+                                </td>
+                                <td>
+                                    <span class="red">24.94%</span>
+                                </td>
+                                <td>
+                                    <span class="green">-4095万</span>
+                                </td>
+                                <td>
+                                    <span class="green">-2.02%</span>
+                                </td>
+                                <td>
+                                    <span class="green">-2.45亿</span>
+                                </td>
+                                <td>
+                                    <span class="green">-12.08%</span>
+                                </td>
+                                <td>
+                                    <span class="green">-2.20亿</span>
+                                </td>
+                                <td>
+                                    <span class="green">-10.84%</span>
+                                </td>
+                            </tr>
+                            <tr class="odd" onmouseover="this.className='over'" onmouseout="this.className='odd'">
+                                <td>
+                                    2
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/002460.html">002460</a>
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/002460.html">赣锋锂业</a>
+                                </td>
+                                <td>
+                                    <a class="red" href="/zjlx/002460.html">大单详情</a> <a href="http://guba.eastmoney.com/topic,002460.html">股吧</a>
+                                </td>
+                                <td>
+                                    <span class="red">37.48</span>
+                                </td>
+                                <td>
+                                    <span class="red">9.69%</span>
+                                </td>
+                                <td>
+                                    <span class="red">4.15亿</span>
+                                </td>
+                                <td>
+                                    <span class="red">12.23%</span>
+                                </td>
+                                <td>
+                                    <span class="red">4.39亿</span>
+                                </td>
+                                <td>
+                                    <span class="red">12.93%</span>
+                                </td>
+                                <td>
+                                    <span class="green">-2400万</span>
+                                </td>
+                                <td>
+                                    <span class="green">-0.71%</span>
+                                </td>
+                                <td>
+                                    <span class="green">-2.47亿</span>
+                                </td>
+                                <td>
+                                    <span class="green">-7.28%</span>
+                                </td>
+                                <td>
+                                    <span class="green">-1.68亿</span>
+                                </td>
+                                <td>
+                                    <span class="green">-4.94%</span>
+                                </td>
+                            </tr>
+                            <tr onmouseover="this.className='over'" onmouseout="this.className=''">
+                                <td>
+                                    3
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/000651.html">000651</a>
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/000651.html">格力电器</a>
+                                </td>
+                                <td>
+                                    <a class="red" href="/zjlx/000651.html">大单详情</a> <a href="http://guba.eastmoney.com/topic,000651.html">股吧</a>
+                                </td>
+                                <td>
+                                    <span class="red">28.96</span>
+                                </td>
+                                <td>
+                                    <span class="red">1.97%</span>
+                                </td>
+                                <td>
+                                    <span class="red">3.47亿</span>
+                                </td>
+                                <td>
+                                    <span class="red">13.02%</span>
+                                </td>
+                                <td>
+                                    <span class="red">3.48亿</span>
+                                </td>
+                                <td>
+                                    <span class="red">13.04%</span>
+                                </td>
+                                <td>
+                                    <span class="green">-61.65万</span>
+                                </td>
+                                <td>
+                                    <span class="green">-0.02%</span>
+                                </td>
+                                <td>
+                                    <span class="green">-1.86亿</span>
+                                </td>
+                                <td>
+                                    <span class="green">-6.99%</span>
+                                </td>
+                                <td>
+                                    <span class="green">-1.61亿</span>
+                                </td>
+                                <td>
+                                    <span class="green">-6.03%</span>
+                                </td>
+                            </tr>
+                            <tr class="odd" onmouseover="this.className='over'" onmouseout="this.className='odd'">
+                                <td>
+                                    4
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/002466.html">002466</a>
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/002466.html">天齐锂业</a>
+                                </td>
+                                <td>
+                                    <a class="red" href="/zjlx/002466.html">大单详情</a> <a href="http://guba.eastmoney.com/topic,002466.html">股吧</a>
+                                </td>
+                                <td>
+                                    <span class="red">39.46</span>
+                                </td>
+                                <td>
+                                    <span class="red">5.14%</span>
+                                </td>
+                                <td>
+                                    <span class="red">2.93亿</span>
+                                </td>
+                                <td>
+                                    <span class="red">10.85%</span>
+                                </td>
+                                <td>
+                                    <span class="red">3.32亿</span>
+                                </td>
+                                <td>
+                                    <span class="red">12.27%</span>
+                                </td>
+                                <td>
+                                    <span class="green">-3850万</span>
+                                </td>
+                                <td>
+                                    <span class="green">-1.42%</span>
+                                </td>
+                                <td>
+                                    <span class="green">-1.52亿</span>
+                                </td>
+                                <td>
+                                    <span class="green">-5.61%</span>
+                                </td>
+                                <td>
+                                    <span class="green">-1.42亿</span>
+                                </td>
+                                <td>
+                                    <span class="green">-5.24%</span>
+                                </td>
+                            </tr>
+                            <tr onmouseover="this.className='over'" onmouseout="this.className=''">
+                                <td>
+                                    5
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/603603.html">603603</a>
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/603603.html">博天环境</a>
+                                </td>
+                                <td>
+                                    <a class="red" href="/zjlx/603603.html">大单详情</a> <a href="http://guba.eastmoney.com/topic,603603.html">股吧</a>
+                                </td>
+                                <td>
+                                    <span class="red">40.01</span>
+                                </td>
+                                <td>
+                                    <span class="red">8.52%</span>
+                                </td>
+                                <td>
+                                    <span class="red">2.71亿</span>
+                                </td>
+                                <td>
+                                    <span class="red">27.63%</span>
+                                </td>
+                                <td>
+                                    <span class="red">1.12亿</span>
+                                </td>
+                                <td>
+                                    <span class="red">11.38%</span>
+                                </td>
+                                <td>
+                                    <span class="red">1.60亿</span>
+                                </td>
+                                <td>
+                                    <span class="red">16.25%</span>
+                                </td>
+                                <td>
+                                    <span class="red">896万</span>
+                                </td>
+                                <td>
+                                    <span class="red">0.91%</span>
+                                </td>
+                                <td>
+                                    <span class="green">-2.80亿</span>
+                                </td>
+                                <td>
+                                    <span class="green">-28.54%</span>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="list_summary">
+                            <span><a href="${base}/stockeast/zjlx/list/" target="_self">点击查看全部&gt;&gt;</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="s10">
+            </div>
+            <div class="contentBox">
+                <div class="titbar" id="Div1" style="overflow: visible;">
+                    <b class="el"></b>
+                    <div class="tit">
+                        <a style="text-decoration: none;" href="${base}/stockeast/xglist">新股数据</a>
+                    </div>
+                    <div class="tips" style="float: right; margin-right: 20px;">
+                        <a style="text-decoration: none;" href="${base}/stockeast/xglist">更多</a>
+                    </div>
+                </div>
+                <div class="sepe">
+                    <div class="left" style="width: 102px;">
+                    </div>
+                    <div class="right" style="width: 763px;">
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="contentBox">
+                        <div class="catemk width_auto">
+                            <ul>
+                                <li class="at border_left_1" style="cursor: pointer;" onclick="window.open('${base}/stockeast/xglist');">新股申购</li>
+                                <li onclick="window.open('http://data.eastmoney.com/xg/xg/calendar.html');">新股日历</li>
+                                <li onclick="window.open('http://data.eastmoney.com/xg/gh/default.html');">新股上会</li>
+                                <li onclick="window.open('http://data.eastmoney.com/xg/xg/sbqy.html');">首发申报信息</li>
+                                <li onclick="window.open('http://data.eastmoney.com/xg/xg/chart/zql.html');">新股解析</li>
+                                <li onclick="window.open('http://data.eastmoney.com/xg/xg/dxsyl.html');">打新收益率</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="contentBox">
+                        <table class="tab1" id="Table1" cellspacing="0" cellpadding="0">
+                            <thead class="h101">
+                            <tr>
+                                <th style="white-space: nowrap;">股票代码
+                                </th>
+                                <th width="58">股票简称
+                                </th>
+                                <th width="100">相关链接
+                                </th>
+                                <th width="44">申购<br>
+                                    代码
+                                </th>
+                                <th>发行<br>
+                                    总数<br>
+                                    (万股)
+                                </th>
+                                <th>网上<br>
+                                    发行<br>
+                                    (万股)
+                                </th>
+                                <th width="44">申购<br>
+                                    上限<br>
+                                    (万股)
+                                </th>
+                                <th width="50">申购资<br>
+                                    金上限<br>
+                                    (万元)
+                                </th>
+                                <th>发行<br>
+                                    价格
+                                </th>
+                                <th>首日<br>
+                                    收盘价
+                                </th>
+                                <th width="70">申购日期
+                                </th>
+                                <th>中签号<br>
+                                    公布日
+                                </th>
+                                <th>上市<br>
+                                    日期
+                                </th>
+                                <th>发行<br>
+                                    市盈率
+                                </th>
+                                <th>中签率<br>
+                                    (%)
+                                </th>
+                                <th>每中一<br>
+                                    签约<br>
+                                    (万元)
+                                </th>
+                                <th>询价累<br>
+                                    计报价<br>
+                                    倍数<i title="初步询价阶段累计报价股数除以初步询价阶段网下配售股数">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr title="绿色照明产品的研发、制造和销售。" onmouseover="this.className='over'" onmouseout="this.className=''">
+                                <td><a href="http://quote.eastmoney.com/603303.html">603303</a></td>
+                                <td><a href="http://quote.eastmoney.com/603303.html">得邦照明</a></td>
+                                <td><a class="red" href="/xg/xg/detail.aspx?code=603303">详细</a> <a href="http://guba.eastmoney.com/topic,603303.html">股吧</a> <a href="http://topic.eastmoney.com/HDJTDBZMIPO/">专题</a></td>
+                                <td>732303</td>
+                                <td>6000</td>
+                                <td>2400</td>
+                                <td>2.40</td>
+                                <td><span title="灰色斜体部分为预估值，申购资金上限的预估不涉及公司基本面分析，请谨慎参考。" style="color:#aaa;font-style:italic;background-image: url(/images/xg_gu.png);  background-repeat: no-repeat;padding-left: 20px;">44.71</span></td>
+                                <td><span title="灰色斜体部分为预估值，发行价格的预估不涉及公司基本面分析，请谨慎参考。" style="color:#aaa;font-style:italic;background-image: url(/images/xg_gu.png);  background-repeat: no-repeat;padding-left: 20px;">18.63</span></td>
+                                <td>&nbsp;</td>
+                                <td title="2017-03-20">03-20 周一</td>
+                                <td title="2017-03-22">03-22</td>
+                                <td title="">&nbsp;</td>
+                                <td><span></span></td>
+                                <td></td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+                            <tr title="聚氨酯泡沫稳定剂的研发、生产和销售" class="odd" onmouseover="this.className='over'" onmouseout="this.className='odd'">
+                                <td><a href="http://quote.eastmoney.com/603041.html">603041</a></td>
+                                <td><a href="http://quote.eastmoney.com/603041.html">美思德</a></td>
+                                <td><a class="red" href="/xg/xg/detail.aspx?code=603041">详细</a> <a href="http://guba.eastmoney.com/topic,603041.html">股吧</a> <a href="http://topic.eastmoney.com/JSMSDHXIPO/">专题</a></td>
+                                <td>732041</td>
+                                <td>2500</td>
+                                <td>1000</td>
+                                <td>1.00</td>
+                                <td><span title="灰色斜体部分为预估值，申购资金上限的预估不涉及公司基本面分析，请谨慎参考。" style="color:#aaa;font-style:italic;background-image: url(/images/xg_gu.png);  background-repeat: no-repeat;padding-left: 20px;">12.92</span></td>
+                                <td><span title="灰色斜体部分为预估值，发行价格的预估不涉及公司基本面分析，请谨慎参考。" style="color:#aaa;font-style:italic;background-image: url(/images/xg_gu.png);  background-repeat: no-repeat;padding-left: 20px;">12.92</span></td>
+                                <td>&nbsp;</td>
+                                <td title="2017-03-20">03-20 周一</td>
+                                <td title="2017-03-22">03-22</td>
+                                <td title="">&nbsp;</td>
+                                <td><span></span></td>
+                                <td></td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+                            <tr title="集装箱、煤炭、粮食、钢材、汽车、金属矿石、油品等货物的装卸及物流" onmouseover="this.className='over'" onmouseout="this.className=''">
+                                <td><a href="http://quote.eastmoney.com/601228.html">601228</a></td>
+                                <td><a href="http://quote.eastmoney.com/601228.html">广州港</a></td>
+                                <td><a class="red" href="/xg/xg/detail.aspx?code=601228">详细</a> <a href="http://guba.eastmoney.com/topic,601228.html">股吧</a> <a href="http://topic.eastmoney.com/GZGGFIPO/">专题</a></td>
+                                <td>780228</td>
+                                <td>69868</td>
+                                <td>20960</td>
+                                <td>20.90</td>
+                                <td><span title="灰色斜体部分为预估值，申购资金上限的预估不涉及公司基本面分析，请谨慎参考。" style="color:#aaa;font-style:italic;background-image: url(/images/xg_gu.png);  background-repeat: no-repeat;padding-left: 20px;">47.86</span></td>
+                                <td><span title="灰色斜体部分为预估值，发行价格的预估不涉及公司基本面分析，请谨慎参考。" style="color:#aaa;font-style:italic;background-image: url(/images/xg_gu.png);  background-repeat: no-repeat;padding-left: 20px;">2.29</span></td>
+                                <td>&nbsp;</td>
+                                <td title="2017-03-17">03-17 周五</td>
+                                <td title="2017-03-21">03-21</td>
+                                <td title="">&nbsp;</td>
+                                <td><span></span></td>
+                                <td></td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+                            <tr title="家具制造业" class="odd" onmouseover="this.className='over'" onmouseout="this.className='odd'">
+                                <td><a href="http://quote.eastmoney.com/603833.html">603833</a></td>
+                                <td><a href="http://quote.eastmoney.com/603833.html">欧派家居</a></td>
+                                <td><a class="red" href="/xg/xg/detail.aspx?code=603833">详细</a> <a href="http://guba.eastmoney.com/topic,603833.html">股吧</a> <a href="http://topic.eastmoney.com/OPJJJTIPO/">专题</a></td>
+                                <td>732833</td>
+                                <td>4151</td>
+                                <td>1241</td>
+                                <td>1.20</td>
+                                <td><span title="灰色斜体部分为预估值，申购资金上限的预估不涉及公司基本面分析，请谨慎参考。" style="color:#aaa;font-style:italic;background-image: url(/images/xg_gu.png);  background-repeat: no-repeat;padding-left: 20px;">60.10</span></td>
+                                <td><span title="灰色斜体部分为预估值，发行价格的预估不涉及公司基本面分析，请谨慎参考。" style="color:#aaa;font-style:italic;background-image: url(/images/xg_gu.png);  background-repeat: no-repeat;padding-left: 20px;">50.08</span></td>
+                                <td>&nbsp;</td>
+                                <td title="2017-03-16">03-16 周四</td>
+                                <td title="2017-03-20">03-20</td>
+                                <td title="">&nbsp;</td>
+                                <td><span></span></td>
+                                <td></td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+                            <tr title="从事汽车动力总成领域零部件的研发、生产和销售." onmouseover="this.className='over'" onmouseout="this.className=''">
+                                <td><a href="http://quote.eastmoney.com/603178.html">603178</a></td>
+                                <td><a href="http://quote.eastmoney.com/603178.html">圣龙股份</a></td>
+                                <td><a class="red" href="/xg/xg/detail.aspx?code=603178">详细</a> <a href="http://guba.eastmoney.com/topic,603178.html">股吧</a> <a href="http://topic.eastmoney.com/NBSLQCDLIXT/">专题</a></td>
+                                <td>732178</td>
+                                <td>5000</td>
+                                <td>2000</td>
+                                <td>2.00</td>
+                                <td>15.06</td>
+                                <td><span>7.53</span></td>
+                                <td>&nbsp;</td>
+                                <td title="2017-03-16">03-16 周四</td>
+                                <td title="2017-03-20">03-20</td>
+                                <td title="">&nbsp;</td>
+                                <td><span>22.99</span></td>
+                                <td></td>
+                                <td>&nbsp;</td>
+                                <td>958.82</td>
+                            </tr>
+                            <tr title="园林生态工程的设计、施工养护及苗木种植" class="odd" onmouseover="this.className='over'" onmouseout="this.className='odd'">
+                                <td><a href="http://quote.eastmoney.com/603717.html">603717</a></td>
+                                <td><a href="http://quote.eastmoney.com/603717.html">天域生态</a></td>
+                                <td><a class="red" href="/xg/xg/detail.aspx?code=603717">详细</a> <a href="http://guba.eastmoney.com/topic,603717.html">股吧</a> <a href="http://topic.eastmoney.com/TYSTYLIPO/">专题</a></td>
+                                <td>732717</td>
+                                <td>4318</td>
+                                <td>1727</td>
+                                <td>1.70</td>
+                                <td>24.87</td>
+                                <td><span>14.63</span></td>
+                                <td>&nbsp;</td>
+                                <td title="2017-03-15">03-15 周三</td>
+                                <td title="2017-03-17">03-17</td>
+                                <td title="">&nbsp;</td>
+                                <td><span>22.99</span></td>
+                                <td></td>
+                                <td>&nbsp;</td>
+                                <td>1291.24</td>
+                            </tr>
+                            <tr title="从事电梯、自动扶梯和自动人行道的研发设计、制造、销售及相关产品的安装、改造和维保服务。" onmouseover="this.className='over'" onmouseout="this.className=''">
+                                <td><a href="http://quote.eastmoney.com/002774.html">002774</a></td>
+                                <td><a href="http://quote.eastmoney.com/002774.html">快意电梯</a></td>
+                                <td><a class="red" href="/xg/xg/detail.aspx?code=002774">详细</a> <a href="http://guba.eastmoney.com/topic,002774.html">股吧</a> <a href="http://topic.eastmoney.com/KYDTIPO/">专题</a></td>
+                                <td>002774</td>
+                                <td>8370</td>
+                                <td>3348</td>
+                                <td>3.30</td>
+                                <td><span title="灰色斜体部分为预估值，申购资金上限的预估不涉及公司基本面分析，请谨慎参考。" style="color:#aaa;font-style:italic;background-image: url(/images/xg_gu.png);  background-repeat: no-repeat;padding-left: 20px;">20.13</span></td>
+                                <td><span title="灰色斜体部分为预估值，发行价格的预估不涉及公司基本面分析，请谨慎参考。" style="color:#aaa;font-style:italic;background-image: url(/images/xg_gu.png);  background-repeat: no-repeat;padding-left: 20px;">6.10</span></td>
+                                <td>&nbsp;</td>
+                                <td title="2017-03-15">03-15 周三</td>
+                                <td title="2017-03-17">03-17</td>
+                                <td title="">&nbsp;</td>
+                                <td><span></span></td>
+                                <td></td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+                            <tr title="汽车冲压及焊接零部件的开发、生产与销售" class="odd" onmouseover="this.className='over'" onmouseout="this.className='odd'">
+                                <td><a href="http://quote.eastmoney.com/603768.html">603768</a></td>
+                                <td><a href="http://quote.eastmoney.com/603768.html">常青股份</a></td>
+                                <td><a class="red" href="/xg/xg/detail.aspx?code=603768">详细</a> <a href="http://guba.eastmoney.com/topic,603768.html">股吧</a> <a href="http://topic.eastmoney.com/HFCQJXIPO/">专题</a></td>
+                                <td>732768</td>
+                                <td>5100</td>
+                                <td>2040</td>
+                                <td>2.00</td>
+                                <td>32.64</td>
+                                <td><span>16.32</span></td>
+                                <td>&nbsp;</td>
+                                <td title="2017-03-14">03-14 周二</td>
+                                <td title="2017-03-16">03-16</td>
+                                <td title="">&nbsp;</td>
+                                <td><span>22.99</span></td>
+                                <td></td>
+                                <td>&nbsp;</td>
+                                <td>4481.72</td>
+                            </tr>
+                            <tr title="从事园林绿化工程施工、绿化养护及苗木种植。" onmouseover="this.className='over'" onmouseout="this.className=''">
+                                <td><a href="http://quote.eastmoney.com/603388.html">603388</a></td>
+                                <td><a href="http://quote.eastmoney.com/603388.html">元成股份</a></td>
+                                <td><a class="red" href="/xg/xg/detail.aspx?code=603388">详细</a> <a href="http://guba.eastmoney.com/topic,603388.html">股吧</a> <a href="http://topic.eastmoney.com/ZJYCYLJTIPO/">专题</a></td>
+                                <td>732388</td>
+                                <td>2500</td>
+                                <td>1000</td>
+                                <td>1.00</td>
+                                <td>12.10</td>
+                                <td><span>12.10</span></td>
+                                <td>&nbsp;</td>
+                                <td title="2017-03-14">03-14 周二</td>
+                                <td title="2017-03-16">03-16</td>
+                                <td title="">&nbsp;</td>
+                                <td><span>22.99</span></td>
+                                <td></td>
+                                <td>&nbsp;</td>
+                                <td>4745.66</td>
+                            </tr>
+                            <tr title="药物研发、生产和销售" class="odd" onmouseover="this.className='over'" onmouseout="this.className='odd'">
+                                <td><a href="http://quote.eastmoney.com/300630.html">300630</a></td>
+                                <td><a href="http://quote.eastmoney.com/300630.html">普利制药</a></td>
+                                <td><a class="red" href="/xg/xg/detail.aspx?code=300630">详细</a> <a href="http://guba.eastmoney.com/topic,300630.html">股吧</a> <a href="http://topic.eastmoney.com/HNPLZYIPO/">专题</a></td>
+                                <td>300630</td>
+                                <td>3053</td>
+                                <td>1221</td>
+                                <td>1.20</td>
+                                <td><span title="灰色斜体部分为预估值，申购资金上限的预估不涉及公司基本面分析，请谨慎参考。" style="color:#aaa;font-style:italic;background-image: url(/images/xg_gu.png);  background-repeat: no-repeat;padding-left: 20px;">13.79</span></td>
+                                <td><span title="灰色斜体部分为预估值，发行价格的预估不涉及公司基本面分析，请谨慎参考。" style="color:#aaa;font-style:italic;background-image: url(/images/xg_gu.png);  background-repeat: no-repeat;padding-left: 20px;">11.49</span></td>
+                                <td>&nbsp;</td>
+                                <td title="2017-03-14">03-14 周二</td>
+                                <td title="2017-03-16">03-16</td>
+                                <td title="">&nbsp;</td>
+                                <td><span></span></td>
+                                <td></td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="list_summary">
+                            <span><a href="${base}/stockeast/xglist" target="_self">点击查看全部&gt;&gt;</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="s10">
+            </div>
+            <div class="contentBox">
+                <div class="titbar" id="Div4" style="overflow: visible;">
+                    <b class="el"></b>
+                    <div class="tit">
+                        <a style="text-decoration: none;" href="http://data.eastmoney.com/center/stock.html">特色数据</a>
+                    </div>
+                    <div class="search" style="float: left; padding-left: 45px; width: 330px;">
+                        <span class="txt">个股数据：</span>
+                        <form method="get" target="_self"><input name="stock_bar" class="sinput" id="stock_bar" type="text" autocomplete="off"></form>
+
+                        <div class="btn" style="border: none;" onclick="javascript:stock_search('stock_bar');"></div>
+                    </div>
+                    <div class="tips" style="float: right; margin-right: 20px;">
+                        <a style="text-decoration: none;" href="http://data.eastmoney.com/center/stock.html">更多</a>
+                    </div>
+                </div>
+                <div class="sepe">
+                    <div class="left" style="width: 102px;">
+                    </div>
+                    <div class="right" style="width: 763px;">
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    var lh = new StockSuggest("stock_bar", {
+                        text: "输代码、名称或拼音",
+                        type: "ABSTOCK",
+                        autoSubmit: false,
+                        width: 200,
+                        header: ["选项", "代码", "名称", "类型"],
+                        body: [-1, 1, 4, -2],
+                        callback: function (ag) {
+                            var url = '/stock/lhb/' + ag.code + '.html';
+                            window.open(url);
+                        }
+                    });
+                    function stock_search(bb) {
+                        var s1 = document.getElementById(bb).value;
+                        //var _slt = document.getElementById("tssj_type");
+                        //var s2 = _slt.options[_slt.selectedIndex].value;
+                        var s = escape(s1);
+                        if (s1 === "输代码、名称或拼音" || s1 === "" || isNaN(parseInt(s1)) || s1.length !== 6) {
+                            alert("请输入所要查询股票的代码！");
+                            return false;
+                        } else {
+                            //var url = 'http://data.eastmoney.com/Stock/lhb/' + s1 + '.html';
+                            //switch (s2.toUpperCase()) {
+                            //    case "A":
+                            //        url = 'http://data.eastmoney.com/Stock/lhb/' + s1 + '.html';
+                            //        break;
+                            //    case "B":
+                            //        url = 'http://data.eastmoney.com/stockcomment/' + s1 + '.html';
+                            //        break;
+                            //    case "C":
+                            //        url = 'http://data.eastmoney.com/executive/' + s1 + '.html';
+                            //        break;
+                            //    case "D":
+                            //        url = 'http://data.eastmoney.com/dxf/q/' + s1 + '.html';
+                            //        break;
+                            //    case "E":
+                            //        url = 'http://data.eastmoney.com/rzrq/detail/' + s1 + '.html';
+                            //        break;
+                            //    case "F":
+                            //        url = 'http://data.eastmoney.com/notice/' + s1 + '.html';
+                            //        break;
+                            //}
+                            var url = '/stock/lhb/' + s1 + '.html';
+                            window.open(url);
+                        }
+                    }
+                </script>
+
+                <div class="content">
+                    <div class="contentBox">
+                        <div class="catemk width_auto">
+                            <ul>
+                                <li class="at border_left_1" style="cursor: pointer;" onclick="window.open('http://data.eastmoney.com/stock/lhb.html');">龙虎榜单</li>
+                                <li onclick="window.open('http://data.eastmoney.com/executive/');">高管持股</li>
+                                <li onclick="window.open('http://data.eastmoney.com/dxf/default.html');">限售解禁</li>
+                                <li onclick="window.open('http://data.eastmoney.com/rzrq/sh.html');">融资融券</li>
+                                <li onclick="window.open('http://data.eastmoney.com/notices/');">公告大全</li>
+                                <li onclick="window.open('http://data.eastmoney.com/IF/Data/Contract.html');">期指持仓</li>
+                                <li onclick="window.open('http://data.eastmoney.com/zlsj/');">主力数据</li>
+                                <li onclick="window.open('${base}/stockeast/xuangu/');">选股器</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="contentBox">
+                        <table class="tab1" id="Table4" cellspacing="0" cellpadding="0">
+                            <thead class="h101">
+                            <tr>
+                                <th>序号
+                                </th>
+                                <th>代码
+                                </th>
+                                <th>名称
+                                </th>
+                                <th>相关链接
+                                </th>
+                                <th>涨跌幅
+                                </th>
+                                <th>龙虎榜成<br>
+                                    交额(万)
+                                </th>
+                                <th>买入额(万)
+                                </th>
+                                <th>占总成交<br>
+                                    比例
+                                </th>
+                                <th>卖出额(万)
+                                </th>
+                                <th>占总成交<br>
+                                    比例
+                                </th>
+                                <th>上榜原因
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="all " onmouseover="this.className='over all'" onmouseout="this.className='all '"><td>1</td><td><a href="http://quote.eastmoney.com/600208.html">600208</a></td><td><a href="http://quote.eastmoney.com/600208.html">新湖中宝</a></td><td><a class="red" href="/Stock/lhb/600208.html">交易明细</a> <a href="http://guba.eastmoney.com/topic,600208.html">股吧</a></td><td class="tdnumber"><span class="red">10.06%</span></td><td class="tdnumber"><span>29255.11</span></td><td class="tdnumber"><span class="red">15645.86</span></td><td class="tdnumber"><span>14.56%</span></td><td class="tdnumber"><span class="green">13609.25</span></td><td class="tdnumber"><span>12.67%</span></td><td class="tdtext">当日涨幅偏离值达7%的证券</td></tr><tr class="all odd" onmouseover="this.className='over all'" onmouseout="this.className='all odd'"><td>2</td><td><a href="http://quote.eastmoney.com/603138.html">603138</a></td><td><a href="http://quote.eastmoney.com/603138.html">海量数据</a></td><td><a class="red" href="/Stock/lhb/603138.html">交易明细</a> <a href="http://guba.eastmoney.com/topic,603138.html">股吧</a></td><td class="tdnumber"><span class="red">10.03%</span></td><td class="tdnumber"><span>25.07</span></td><td class="tdnumber"><span class="red">14.53</span></td><td class="tdnumber"><span>100.03%</span></td><td class="tdnumber"><span class="green">10.54</span></td><td class="tdnumber"><span>72.51%</span></td><td class="tdtext">当日涨幅偏离值达7%的证券</td></tr><tr class="all " onmouseover="this.className='over all'" onmouseout="this.className='all '"><td>3</td><td><a href="http://quote.eastmoney.com/603238.html">603238</a></td><td><a href="http://quote.eastmoney.com/603238.html">诺邦股份</a></td><td><a class="red" href="/Stock/lhb/603238.html">交易明细</a> <a href="http://guba.eastmoney.com/topic,603238.html">股吧</a></td><td class="tdnumber"><span class="green">-9.33%</span></td><td class="tdnumber"><span>4772.49</span></td><td class="tdnumber"><span class="red">2377.68</span></td><td class="tdnumber"><span>4.15%</span></td><td class="tdnumber"><span class="green">2394.81</span></td><td class="tdnumber"><span>4.18%</span></td><td class="tdtext">当日换手率达到20%的证券</td></tr><tr class="all odd" onmouseover="this.className='over all'" onmouseout="this.className='all odd'"><td>4</td><td><a href="http://quote.eastmoney.com/603345.html">603345</a></td><td><a href="http://quote.eastmoney.com/603345.html">安井食品</a></td><td><a class="red" href="/Stock/lhb/603345.html">交易明细</a> <a href="http://guba.eastmoney.com/topic,603345.html">股吧</a></td><td class="tdnumber"><span class="green">-5.91%</span></td><td class="tdnumber"><span>11476.39</span></td><td class="tdnumber"><span class="red">6608.84</span></td><td class="tdnumber"><span>7.24%</span></td><td class="tdnumber"><span class="green">4867.55</span></td><td class="tdnumber"><span>5.33%</span></td><td class="tdtext">当日换手率达到20%的证券</td></tr><tr class="all " onmouseover="this.className='over all'" onmouseout="this.className='all '"><td>5</td><td><a href="http://quote.eastmoney.com/603558.html">603558</a></td><td><a href="http://quote.eastmoney.com/603558.html">健盛集团</a></td><td><a class="red" href="/Stock/lhb/603558.html">交易明细</a> <a href="http://guba.eastmoney.com/topic,603558.html">股吧</a></td><td class="tdnumber"><span class="green">-10.01%</span></td><td class="tdnumber"><span>28098.24</span></td><td class="tdnumber"><span class="red">4460.43</span></td><td class="tdnumber"><span>12.88%</span></td><td class="tdnumber"><span class="green">23637.81</span></td><td class="tdnumber"><span>68.25%</span></td><td class="tdtext">当日跌幅偏离值达7%的证券</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="list_summary">
+                            <span><a href="http://data.eastmoney.com/center/stock.html" target="_blank">点击查看全部&gt;&gt;</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="s10">
+            </div>
+            <div class="contentBox">
+                <div class="titbar" id="Div3" style="overflow: visible;">
+                    <b class="el"></b>
+                    <div class="tit">
+
+                        <a style="text-decoration: none;" href="${base}/stockeast/yjbb">年报季报</a>
+                    </div>
+                    <div class="search" style="float: left; padding-left: 45px; width: 280px;">
+                        <span class="txt">个股业绩：</span>
+                        <form method="get" target="_self"><input name="bbsj_bar" class="sinput" id="bbsj_bar" type="text" autocomplete="off"></form>
+                        <div class="btn" style="border: none;" onclick="javascript:bbsj_search('bbsj_bar');"></div>
+                    </div>
+                    <div class="tips" style="float: right; margin-right: 20px;">
+                        <a style="text-decoration: none;" href="${base}/stockeast/yjbb">更多</a>
+                    </div>
+                </div>
+                <div class="sepe">
+                    <div class="left" style="width: 102px;">
+                    </div>
+                    <div class="right" style="width: 763px;">
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    var nb = new StockSuggest("bbsj_bar", {
+                        text: "输代码、名称或拼音",
+                        type: "ABSTOCK",
+                        autoSubmit: false,
+                        width: 200,
+                        header: ["选项", "代码", "名称", "类型"],
+                        body: [-1, 1, 4, -2],
+                        callback: function (ag) { window.open('/bbsj/' + ag["code"] + '.html'); }
+                    });
+                    function bbsj_search(bb) {
+                        var s1 = document.getElementById(bb).value;
+                        var s = escape(s1);
+                        if (s1 == "输代码、名称或拼音" || s1 == "" || isNaN(parseInt(s1)) || s1.length != 6) {
+                            alert("请输入所要查询股票的代码！");
+                            return false;
+                        } else {
+                            var url = '/bbsj/' + s1 + '.html';
+                            window.open(url);
+                        }
+                    }
+                </script>
+
+                <div class="content">
+                    <div class="contentBox">
+                        <div class="catemk width_auto">
+                            <ul>
+                                <li class="w120 at border_left_1" onclick="window.open('${base}/stockeast/yjbb');">业绩报表</li>
+                                <li class="w120" onclick="window.open('http://data.eastmoney.com/bbsj/201612/yjkb.html');">业绩快报</li>
+                                <li class="w120" onclick="window.open('${base}/stockeast/yjyg');">业绩预告</li>
+                                <li class="w120" onclick="window.open('http://data.eastmoney.com/bbsj/201612/yysj/sc/asc.html');">预约披露时间</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="contentBox">
+                        <table class="tab1" id="Table3" cellspacing="0" cellpadding="0">
+                            <thead class="h101">
+                            <tr>
+                                <th rowspan="2">股票代码
+                                </th>
+                                <th rowspan="2">股票简称
+                                </th>
+                                <th rowspan="2">相关链接
+                                </th>
+                                <th rowspan="2">每股收<br>
+                                    益(元)
+                                </th>
+                                <th colspan="3">营业收入
+                                </th>
+                                <th colspan="3">净利润
+                                </th>
+                                <th rowspan="2">每股<br>
+                                    净资产<br>
+                                    (元)
+                                </th>
+                                <th rowspan="2">净资产<br>
+                                    收益率<br>
+                                    (%)
+                                </th>
+                                <th rowspan="2">每股现<br>
+                                    金流量<br>
+                                    (元)
+                                </th>
+                                <th rowspan="2">销售<br>
+                                    毛利率<br>
+                                    (%)
+                                </th>
+                                <th rowspan="2">公告<br>
+                                    日期
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>营业收入<br>
+                                    (万元)
+                                </th>
+                                <th>同比增长<br>
+                                    (%)
+                                </th>
+                                <th>季度环比<br>
+                                    增长(%)
+                                </th>
+                                <th>净利润<br>
+                                    (万元)
+                                </th>
+                                <th>同比增长<br>
+                                    (%)
+                                </th>
+                                <th>季度环比<br>
+                                    增长(%)
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr onmouseover="this.className='over'" onmouseout="this.className=''">
+
+                                <td>
+                                    <a href="http://quote.eastmoney.com/603126.html">603126</a>
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/603126.html">中材节能</a>
+                                </td>
+                                <td>
+                                    <a class="red" href="http://data.eastmoney.com/bbsj/603126.html">详细</a> <a href="http://guba.eastmoney.com/603126,guba.html">股吧</a>
+                                </td>
+                                <td>
+                                    <span>0.2134</span>
+                                </td>
+                                <td>
+                                    <span>149711.62</span>
+                                </td>
+                                <td>
+                                    <span class="red">9.00</span>
+                                </td>
+                                <td>
+                                    <span class="red">19.63</span>
+                                </td>
+                                <td>
+                                    <span>13025.62</span>
+                                </td>
+                                <td>
+                                    <span class="red">21.63</span>
+                                </td>
+                                <td>
+                                    <span class="green">-3.17</span>
+                                </td>
+                                <td>
+                                    <span>2.4493</span>
+                                </td>
+                                <td>
+                                    <span>9.08</span>
+                                </td>
+                                <td>
+                                    <span>0.6072</span>
+                                </td>
+                                <td>
+                                    <span>26.81</span>
+                                </td>
+                                <td>
+                                    03-13
+                                </td>
+                            </tr>
+                            <tr class="odd" onmouseover="this.className='over'" onmouseout="this.className='odd'">
+
+                                <td>
+                                    <a href="http://quote.eastmoney.com/000514.html">000514</a>
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/000514.html">渝开发</a>
+                                </td>
+                                <td>
+                                    <a class="red" href="http://data.eastmoney.com/bbsj/000514.html">详细</a> <a href="http://guba.eastmoney.com/000514,guba.html">股吧</a>
+                                </td>
+                                <td>
+                                    <span>0.1454</span>
+                                </td>
+                                <td>
+                                    <span>68262.56</span>
+                                </td>
+                                <td>
+                                    <span class="green">-40.90</span>
+                                </td>
+                                <td>
+                                    <span class="red">20.90</span>
+                                </td>
+                                <td>
+                                    <span>12266.15</span>
+                                </td>
+                                <td>
+                                    <span class="red">1564.15</span>
+                                </td>
+                                <td>
+                                    <span class="red">1893.10</span>
+                                </td>
+                                <td>
+                                    <span>3.4694</span>
+                                </td>
+                                <td>
+                                    <span>4.28</span>
+                                </td>
+                                <td>
+                                    <span>0.2575</span>
+                                </td>
+                                <td>
+                                    <span>34.97</span>
+                                </td>
+                                <td>
+                                    03-11
+                                </td>
+                            </tr>
+                            <tr onmouseover="this.className='over'" onmouseout="this.className=''">
+
+                                <td>
+                                    <a href="http://quote.eastmoney.com/600665.html">600665</a>
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/600665.html">天地源</a>
+                                </td>
+                                <td>
+                                    <a class="red" href="http://data.eastmoney.com/bbsj/600665.html">详细</a> <a href="http://guba.eastmoney.com/600665,guba.html">股吧</a>
+                                </td>
+                                <td>
+                                    <span>0.2665</span>
+                                </td>
+                                <td>
+                                    <span>372507.73</span>
+                                </td>
+                                <td>
+                                    <span class="red">25.23</span>
+                                </td>
+                                <td>
+                                    <span class="red">309.93</span>
+                                </td>
+                                <td>
+                                    <span>23032.81</span>
+                                </td>
+                                <td>
+                                    <span class="red">11.31</span>
+                                </td>
+                                <td>
+                                    <span class="red">457.62</span>
+                                </td>
+                                <td>
+                                    <span>3.3104</span>
+                                </td>
+                                <td>
+                                    <span>8.29</span>
+                                </td>
+                                <td>
+                                    <span>1.5798</span>
+                                </td>
+                                <td>
+                                    <span>23.19</span>
+                                </td>
+                                <td>
+                                    03-11
+                                </td>
+                            </tr>
+                            <tr class="odd" onmouseover="this.className='over'" onmouseout="this.className='odd'">
+
+                                <td>
+                                    <a href="http://quote.eastmoney.com/600113.html">600113</a>
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/600113.html">浙江东日</a>
+                                </td>
+                                <td>
+                                    <a class="red" href="http://data.eastmoney.com/bbsj/600113.html">详细</a> <a href="http://guba.eastmoney.com/600113,guba.html">股吧</a>
+                                </td>
+                                <td>
+                                    <span>0.3100</span>
+                                </td>
+                                <td>
+                                    <span>35799.33</span>
+                                </td>
+                                <td>
+                                    <span class="green">-63.78</span>
+                                </td>
+                                <td>
+                                    <span class="red">24.62</span>
+                                </td>
+                                <td>
+                                    <span>9941.95</span>
+                                </td>
+                                <td>
+                                    <span class="red">7.53</span>
+                                </td>
+                                <td>
+                                    <span class="green">-26.96</span>
+                                </td>
+                                <td>
+                                    <span>1.7903</span>
+                                </td>
+                                <td>
+                                    <span>19.03</span>
+                                </td>
+                                <td>
+                                    <span>0.4987</span>
+                                </td>
+                                <td>
+                                    <span>53.47</span>
+                                </td>
+                                <td>
+                                    03-11
+                                </td>
+                            </tr>
+                            <tr onmouseover="this.className='over'" onmouseout="this.className=''">
+
+                                <td>
+                                    <a href="http://quote.eastmoney.com/600378.html">600378</a>
+                                </td>
+                                <td>
+                                    <a href="http://quote.eastmoney.com/600378.html">天科股份</a>
+                                </td>
+                                <td>
+                                    <a class="red" href="http://data.eastmoney.com/bbsj/600378.html">详细</a> <a href="http://guba.eastmoney.com/600378,guba.html">股吧</a>
+                                </td>
+                                <td>
+                                    <span>0.0900</span>
+                                </td>
+                                <td>
+                                    <span>39154.48</span>
+                                </td>
+                                <td>
+                                    <span class="green">-17.33</span>
+                                </td>
+                                <td>
+                                    <span class="red">59.66</span>
+                                </td>
+                                <td>
+                                    <span>2711.12</span>
+                                </td>
+                                <td>
+                                    <span class="green">-37.26</span>
+                                </td>
+                                <td>
+                                    <span class="red">544.23</span>
+                                </td>
+                                <td>
+                                    <span>2.5097</span>
+                                </td>
+                                <td>
+                                    <span>3.66</span>
+                                </td>
+                                <td>
+                                    <span>0.1278</span>
+                                </td>
+                                <td>
+                                    <span>27.72</span>
+                                </td>
+                                <td>
+                                    03-11
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="list_summary">
+                            <span><a href="${base}/stockeast/yjbb" target="_self">点击查看全部&gt;&gt;</a></span
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="s10">
+            </div>
+            <div class="contentBox">
+                <div class="titbar" id="Div2" style="overflow: visible;">
+                    <b class="el"></b>
+                    <div class="tit">
+                        <a style="text-decoration: none;" href="http://data.eastmoney.com/report/">研究报告</a>
+                    </div>
+                    <div class="search" style="float: left; padding-left: 45px; width: 280px;">
+                        <span class="txt">个股研究报告：</span>
+                        <form method="get" target="_self"><input name="report_bar" class="sinput" id="report_bar" type="text" autocomplete="off"></form>
+                        <div class="btn" style="border: none;" onclick="javascript:ggyb_search('report_bar');"></div>
+                    </div>
+                    <div class="tips" style="float: right; margin-right: 20px;">
+                        <a style="text-decoration: none;" href="http://data.eastmoney.com/report/">更多</a>
+                    </div>
+                </div>
+                <div class="sepe">
+                    <div class="left" style="width: 102px;">
+                    </div>
+                    <div class="right" style="width: 763px;">
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    var gg = new StockSuggest("report_bar", {
+                        text: "输代码、名称或拼音",
+                        type: "ABSTOCK",
+                        autoSubmit: false,
+                        width: 200,
+                        header: ["选项", "代码", "名称", "类型"],
+                        body: [-1, 1, 4, -2],
+                        callback: function (ag) {
+                            window.open('/report/' + ag["code"] + '.html');
+                        }
+                    });
+                    function ggyb_search(bb) {
+                        var s1 = document.getElementById(bb).value;
+                        var s = escape(s1);
+                        if (s1 == "输代码、名称或拼音" || s1 == "" || isNaN(parseInt(s1)) || s1.length != 6) {
+                            alert("请输入所要查询股票的代码！");
+                            return false;
+                        } else {
+                            window.open('/report/' + s1 + '.html');
+                        }
+                    }
+                </script>
+
+                <div class="content">
+                    <div class="contentBox">
+                        <div class="catemk width_auto">
+                            <ul>
+                                <li class="at border_left_1" style="cursor: pointer;" onclick="window.open('http://data.eastmoney.com/report/');">个股研报</li>
+                                <li onclick="window.open('http://data.eastmoney.com/report/ylyc.html');">盈利预测</li>
+                                <li onclick="window.open('http://data.eastmoney.com/report/hyyb.html');">行业研报</li>
+                                <li onclick="window.open('http://data.eastmoney.com/report/clbg.html');">策略报告</li>
+                                <li onclick="window.open('http://data.eastmoney.com/report/qsch.html');">券商晨会</li>
+                                <li onclick="window.open('http://data.eastmoney.com/report/hgyj.html');">宏观研究</li>
+                                <li onclick="window.open('http://data.eastmoney.com/report/jgyxl.html');">机构影响力</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+
+                    <div class="contentBox">
+                        <table class="tab1" id="Table2" cellspacing="0" cellpadding="0">
+                            <thead class="h101">
+                            <tr>
+                                <th rowspan="2">序号
+                                </th>
+                                <th rowspan="2">日期
+                                </th>
+                                <th rowspan="2">代码
+                                </th>
+                                <th rowspan="2">名称
+                                </th>
+                                <th rowspan="2">相关链接
+                                </th>
+                                <th width="280" rowspan="2">研报
+                                </th>
+                                <th rowspan="2">原文评级
+                                </th>
+                                <th rowspan="2">评级变动
+                                </th>
+                                <th rowspan="2">机构
+                                </th>
+                                <th colspan="2">
+                                    2016预测
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>&nbsp;收益&nbsp;
+                                </th>
+                                <th>市盈率
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ""="">
+                            <td>1</td>
+                            <td><span title="2017-03-12" class="txt">03-12</span></td>
+                            <td><a href="http://quote.eastmoney.com/002419.html">002419</a></td>
+                            <td><a href="http://quote.eastmoney.com/002419.html">天虹商场</a></td>
+                            <td><a class="red" href="/report/002419.html">详细</a> <a href="http://guba.eastmoney.com/topic,002419.html">股吧</a></td>
+                            <td><div class="report_tit tdtext"><a title="业绩符合预期，业态创新成绩斐然" href="/report/20170312/APPHiAdBzwY5ASearchReport.html">业绩符合预期，业态创新成绩斐然</a></div></td>
+                            <td>买入</td>
+                            <td>维持</td>
+                            <td><a href="/report/80000074_0.html">光大证券</a></td>
+                            <td>-</td>
+                            <td>-</td>
+                            </tr>
+                            <tr class="odd" "="">
+                            <td>2</td>
+                            <td><span title="2017-03-12" class="txt">03-12</span></td>
+                            <td><a href="http://quote.eastmoney.com/002081.html">002081</a></td>
+                            <td><a href="http://quote.eastmoney.com/002081.html">金螳螂</a></td>
+                            <td><a class="red" href="/report/002081.html">详细</a> <a href="http://guba.eastmoney.com/topic,002081.html">股吧</a></td>
+                            <td><div class="report_tit tdtext"><a title="历史三十倍牛股，三大因素现拐点" href="/report/20170312/APPHiAdBzwY6ASearchReport.html">历史三十倍牛股，三大因素现拐点</a></div></td>
+                            <td>买入</td>
+                            <td>维持</td>
+                            <td><a href="/report/80000073_0.html">华泰证券</a></td>
+                            <td>0.640</td>
+                            <td>17.18</td>
+                            </tr>
+                            <tr ""="">
+                            <td>3</td>
+                            <td><span title="2017-03-12" class="txt">03-12</span></td>
+                            <td><a href="http://quote.eastmoney.com/300628.html">300628</a></td>
+                            <td><a href="http://quote.eastmoney.com/300628.html">亿联网络</a></td>
+                            <td><a class="red" href="/report/300628.html">详细</a> <a href="http://guba.eastmoney.com/topic,300628.html">股吧</a></td>
+                            <td><div class="report_tit tdtext"><a title="细分科技行业的高成长龙头公司" href="/report/20170312/APPHiAdBzwY7ASearchReport.html">细分科技行业的高成长龙头公司</a></div></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td><a href="/report/10001075_0.html">广发证券</a></td>
+                            <td>-</td>
+                            <td>-</td>
+                            </tr>
+                            <tr class="odd" "="">
+                            <td>4</td>
+                            <td><span title="2017-03-12" class="txt">03-12</span></td>
+                            <td><a href="http://quote.eastmoney.com/600711.html">600711</a></td>
+                            <td><a href="http://quote.eastmoney.com/600711.html">盛屯矿业</a></td>
+                            <td><a class="red" href="/report/600711.html">详细</a> <a href="http://guba.eastmoney.com/topic,600711.html">股吧</a></td>
+                            <td><div class="report_tit tdtext"><a title="借贸易拓市场，靠并购助成长" href="/report/20170312/APPHiAdBzwYAASearchReport.html">借贸易拓市场，靠并购助成长</a></div></td>
+                            <td>买入</td>
+                            <td>维持</td>
+                            <td><a href="/report/10001075_0.html">广发证券</a></td>
+                            <td>-</td>
+                            <td>-</td>
+                            </tr>
+                            <tr ""="">
+                            <td>5</td>
+                            <td><span title="2017-03-12" class="txt">03-12</span></td>
+                            <td><a href="http://quote.eastmoney.com/603517.html">603517</a></td>
+                            <td><a href="http://quote.eastmoney.com/603517.html">绝味食品</a></td>
+                            <td><a class="red" href="/report/603517.html">详细</a> <a href="http://guba.eastmoney.com/topic,603517.html">股吧</a></td>
+                            <td><div class="report_tit tdtext"><a title="休闲卤制食品连锁品牌，加码自营和产能扩张带动增长" href="/report/20170312/APPHiAdBzwYBASearchReport.html">休闲卤制食品连锁品牌，加码自营和产能...</a></div></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td><a href="/report/10001075_0.html">广发证券</a></td>
+                            <td>-</td>
+                            <td>-</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="list_summary">
+                            <span><a href="http://data.eastmoney.com/report/" target="_blank">点击查看全部&gt;&gt;</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="s10">
+            </div>
+            #*<div class="contentBox">
+                <div class="titbar" id="Div5" style="overflow: visible;">
+                    <b class="el"></b>
+                    <div class="tit">
+                        <a style="text-decoration: none;" href="http://data.eastmoney.com/center/macro.html">经济数据</a>
+                    </div>
+                    <div class="tips" style="float: right; margin-right: 20px;">
+                        <a style="text-decoration: none;" href="http://data.eastmoney.com/center/macro.html">更多</a>
+                    </div>
+                </div>
+                <div class="sepe">
+                    <div class="left" style="width: 102px;">
+                    </div>
+                    <div class="right" style="width: 763px;">
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="contentBox">
+                        <div class="catemk width_auto">
+                            <ul class="spc">
+                                <li class="at border_left_1" style="cursor: pointer;" onclick="window.open('http://data.eastmoney.com/cjsj/cpi.html');">消费价格指数(CPI)</li>
+                                <li onclick="window.open('http://data.eastmoney.com/cjsj/pmi.html');">采购经理人指数(PMI)</li>
+                                <li onclick="window.open('http://data.eastmoney.com/cjsj/gdp.html');">国内生产总值(GDP)</li>
+                                <li onclick="window.open('http://data.eastmoney.com/cjsj/ckzbj.html');">存款准备金率</li>
+                                <li onclick="window.open('http://data.eastmoney.com/cjsj/xzxd.html');">新增信贷</li>
+                                <li onclick="window.open('http://data.eastmoney.com/cjsj/yhll.html');">基准利率</li>
+                                <li onclick="window.open('http://data.eastmoney.com/cjsj/yjtz/default.html');">成品油</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="contentBox">
+                        <div class="tbcustom" style="float: right;">
+                            <table class="w280 tab2" cellspacing="0" cellpadding="0">
+                                <thead class="h101">
+                                <tr>
+                                    <th width="40%">月份
+                                    </th>
+                                    <th width="30%">当月
+                                    </th>
+                                    <th>同比
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>2017年02月份</td>
+                                    <td><span>100.8</span></td>
+                                    <td><span style="color:red">0.80%</span></td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>2017年01月份</td>
+                                    <td><span>102.5</span></td>
+                                    <td><span style="color:red">2.50%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2016年12月份</td>
+                                    <td><span>102.1</span></td>
+                                    <td><span style="color:red">2.10%</span></td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>2016年11月份</td>
+                                    <td><span>102.3</span></td>
+                                    <td><span style="color:red">2.30%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2016年10月份</td>
+                                    <td><span>102.1</span></td>
+                                    <td><span style="color:red">2.10%</span></td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>2016年09月份</td>
+                                    <td><span>101.9</span></td>
+                                    <td><span style="color:red">1.90%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2016年08月份</td>
+                                    <td><span>101.3</span></td>
+                                    <td><span style="color:red">1.30%</span></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <div class="w280 list_summary">
+                                <span><a href="http://data.eastmoney.com/center/macro.html" target="_blank">点击查看全部&gt;&gt;</a></span>
+                            </div>
+                        </div>
+                        <div class="ecoright">
+                            <div class=" emcharts-container" id="flashcontent" style="position: relative;"><div class="event-div"></div><canvas width="550" height="205" style="border: 0px; border-image: none; width: 550px; height: 205px;"></canvas></div>
+                            <div class="sel_emchart" style="text-align: center;"><span class="etips bgcountry"><span class="checked"></span><span class="eword">全国</span></span><span class="etips bgcity"><span class="checked"></span><span class="eword">城市</span></span><span class="etips bgvillage"><span class="checked"></span><span class="eword">农村</span></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>*#
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div class="qphox">
+    <script type="text/javascript" src="${base}/static/js/east/datacenter_update.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/chart_common.js"></script>
+    <script type="text/javascript">
+        function loadFlash() {
+            var dataurl = 'http://data.eastmoney.com';
+            var so = new SWFObject(dataurl + '/plugin/frameworks/amline.swf', 'amline', '600', '205', '8', '');
+            so.addVariable('path', '/');
+            so.addVariable('wmode', 'transparent');
+            so.addVariable('settings_file', encodeURIComponent(dataurl + '/graph/cjsj/conf_cpi.xml?r=' + Math.random().toString()));
+            so.addVariable('data_file', encodeURIComponent(dataurl + '/graph/cjsj/data_cpi.xml?r=' + Math.random().toString()));
+            so.write("flashcontent");
+        }
+
+        //window.module.resetLayout.resetCss(function () { loadFlash(); });
+
+        //选择折线功能
+        function ChartSelect(items) {
+            if (!Array.isArray(items))
+                items = new Array();
+            var newdata = new Array();
+
+            for (var i = 0; i < emc_data.y.length; i++) {
+                if (items.indexOf(emc_data.y[i].name) > -1)
+                    newdata.push(emc_data.y[i]);
+            }
+
+            if (newdata.length > 0) {
+                jQuery("#flashcontent").css("background", '');
+                chart.options.xaxis = emc_data.x;
+                chart.options.series = newdata;
+                chart.reDraw();
+
+            }
+            else {
+                var width = 550;
+                var height = 205;
+                var t = 500 * width / 1000;
+                var a = ((t - height) / 2 - 30) * -1;
+                jQuery("#flashcontent").html("");
+                jQuery("#flashcontent").css("background", 'url("/images/ChartNoData.jpg")  0px ' + a + 'px no-repeat');
+                jQuery("#flashcontent").css("background-size", width + 'px ' + t + 'px');
+                jQuery("#flashcontent").css("width", '' + width + 'px');
+                jQuery("#flashcontent").css("height", '' + height + 'px');
+            }
+        }
+
+        //添加折线选择按钮，绑定选择事件
+        function SetSelectBtn() {
+            jQuery('.sel_emchart').empty();
+            var sel_html = '<span class="etips bgcountry"><span class="checked"></span><span class="eword">全国</span></span>';
+            sel_html += '<span class="etips bgcity"><span class="checked"></span><span class="eword">城市</span></span>';
+            sel_html += '<span class="etips bgvillage"><span class="checked"></span><span class="eword">农村</span></span>';
+            jQuery('.sel_emchart').append(sel_html);
+            jQuery(".etips").on("click", function () {
+                if (jQuery(this).find(".checked").length > 0)
+                    jQuery(this).find("span:eq(0)").removeClass("checked").addClass("nochecked");
+                else
+                    jQuery(this).find("span:eq(0)").removeClass("nochecked").addClass("checked");
+
+                var items = new Array();
+                jQuery(".checked + span").each(function () {
+                    items.push(jQuery(this).text());
+                });
+                ChartSelect(items);
+            });
+
+        }
+
+        var emc_data;
+        var chart
+        function LoadEMChart() {
+            jQuery.ajax({
+                url: 'http://data.eastmoney.com/DataCenter_V3/center/center.ashx?r=' + Math.random().toString(),
+                dataType: 'jsonp',
+                method: 'get',
+                success: function (json) {
+                    if (data) {
+                        emc_data = EMChartDataFormat(data, 16, true, ['全国', '城市', '农村'], 0);
+
+                        chart = new EmchartsWebLine({
+                            container: "flashcontent",
+                            width: 550,
+                            height: 205,
+                            showflag: true,
+                            pointRadius: 2,
+                            font: {
+                                fontFamily: 'Microsoft Yahei',
+                                fontSize: "12",
+                                color: "#000"
+                            },
+                            xaxis: emc_data.x,
+                            series: emc_data.y
+                        });
+
+                        chart.draw();
+                        SetSelectBtn();
+
+                    }
+                    else {
+                        var width = 550;
+                        var height = 205;
+                        var t = 500 * width / 1000;
+                        var a = ((t - height) / 2 - 30) * -1;
+                        jQuery("#flashcontent").html("");
+                        jQuery("#flashcontent").css("background", 'url("/images/ChartNoData.jpg")  0px ' + a + 'px no-repeat');
+                        jQuery("#flashcontent").css("background-size", width + 'px ' + t + 'px');
+                        jQuery("#flashcontent").css("width", '' + width + 'px');
+                        jQuery("#flashcontent").css("height", '' + height + 'px');
+                    }
+                },
+                error: function (error) {
+                    alert("图表加载异常！");
+                }
+            });
+        }
+
+        //-----判读IE版本
+        var isIE = !!window.ActiveXObject;
+        var isIE6 = isIE && !window.XMLHttpRequest;
+        var isIE8 = !+'\v1';
+
+        if (isIE6 || isIE8) {
+            loadFlash();
+
+        }
+        else {
+            //LoadEMChart();
+        }
+    </script>
+</div>
+</body>
+</html>

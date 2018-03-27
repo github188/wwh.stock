@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 设置界面 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_light_white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/common_orange" >
+
+        <ImageButton
+            android:id="@+id/settings_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/nav_btn_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="设置"
+            android:textColor="@color/common_white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_item_padding_15"
+        android:background="@color/common_white"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/settings_personal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/btn_map_arrow"
+            android:paddingBottom="@dimen/common_item_padding_15"
+            android:paddingLeft="@dimen/common_item_padding_20"
+            android:paddingRight="@dimen/common_item_padding_20"
+            android:paddingTop="@dimen/common_item_padding_15"
+            android:text="个人资料"
+            android:textColor="@color/common_black"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/common_item_padding_20"
+            android:background="@color/common_light_white" />
+
+        <TextView
+            android:id="@+id/settings_security"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/btn_map_arrow"
+            android:paddingBottom="@dimen/common_item_padding_15"
+            android:paddingLeft="@dimen/common_item_padding_20"
+            android:paddingRight="@dimen/common_item_padding_20"
+            android:paddingTop="@dimen/common_item_padding_15"
+            android:text="安全设置"
+            android:textColor="@color/common_black"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/common_item_padding_20"
+            android:background="@color/common_light_white" />
+
+        <TextView
+            android:id="@+id/settings_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/btn_map_arrow"
+            android:paddingBottom="@dimen/common_item_padding_15"
+            android:paddingLeft="@dimen/common_item_padding_20"
+            android:paddingRight="@dimen/common_item_padding_20"
+            android:paddingTop="@dimen/common_item_padding_15"
+            android:text="帮助和反馈"
+            android:textColor="@color/common_black"
+            android:textSize="16sp" />
+    </LinearLayout>
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_item_padding_15"
+        android:background="@color/common_white"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/settings_contact_us"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/btn_map_arrow"
+            android:paddingBottom="@dimen/common_item_padding_15"
+            android:paddingLeft="@dimen/common_item_padding_20"
+            android:paddingRight="@dimen/common_item_padding_20"
+            android:paddingTop="@dimen/common_item_padding_15"
+            android:text="联系我们"
+            android:textColor="@color/common_black"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/common_item_padding_20"
+            android:background="@color/common_light_white" />
+
+        <TextView
+            android:id="@+id/settings_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/btn_map_arrow"
+            android:paddingBottom="@dimen/common_item_padding_15"
+            android:paddingLeft="@dimen/common_item_padding_20"
+            android:paddingRight="@dimen/common_item_padding_20"
+            android:paddingTop="@dimen/common_item_padding_15"
+            android:text="关于爱充网"
+            android:textColor="@color/common_black"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/common_item_padding_20"
+            android:background="@color/common_light_white" />
+
+        <TextView
+            android:id="@+id/settings_mark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/btn_map_arrow"
+            android:paddingBottom="@dimen/common_item_padding_15"
+            android:paddingLeft="@dimen/common_item_padding_20"
+            android:paddingRight="@dimen/common_item_padding_20"
+            android:paddingTop="@dimen/common_item_padding_15"
+            android:text="去评分"
+            android:textColor="@color/common_black"
+            android:textSize="16sp" />
+    </LinearLayout>
+    <TextView 
+         android:id="@+id/settings_logout"
+         android:layout_marginTop="@dimen/common_item_padding_15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/common_item_padding_15"
+            android:text="退出登录"
+            android:textColor="@color/common_orange"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:background="@color/common_white"
+        
+        />
+
+</LinearLayout>

@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect TexAlLeft">
+                    <div class="Container100 Responsive100">
+                        <div class="ContainerIndent">
+                            <h2 class="BigTopic"><i class="icon-question Fs30 Fleft MarRight10 OvHidden"></i>问题与解答</h2>
+                            <h:form>
+                                <p:accordionPanel multiple="false">
+                                    <p:tab title="问题：你们是如何进行预测的？">
+                                        <h:panelGrid columns="2" cellpadding="10">
+                                            <h:outputText
+                                                value="人工智能的话题只字片语很难表达，首先是数据采集，数据是计算的基础，目前我们能做到每分钟采集一次全盘交易数据，随着项目发展和大家的付费支持，当我们有能力购买更昂贵的计算资源时可以做到每6秒抓取一次交易数据，与股市大盘同步这样就可以做到实时预测。其次是数据分析，每支股票我们都会为其建立不同参数优化的模型，进行上万甚至几十万次的迭代验证，优选出适合该股票的最佳模型，随后进行预测" />
+                                        </h:panelGrid>
+                                    </p:tab>
+                                    <p:tab title="问题：能不能讲讲你们运用了具体哪些知识？">
+                                        <h:panelGrid columns="1" cellpadding="10">
+                                            <h:outputText value="这又是一个很长的话题，我们混合使用了多种人工智能算法，以下是部分用到的算法" />
+                                            <h:outputText value="Hopfield Neural Network, They consist of a single layer of fully connected neurons. These neurons are connected to each other, but not to themselves. Hopfield neural networks can be trained to recognize patterns. You can see a hopfield neural network here" />
+                                            <h:graphicImage library="images" name="m1.jpg" />
+                                            <h:outputText value="Feedforward Backpropagation Neural Networks, Feedforward neural networks are one class of neural network. Backpropagation refers to a common method by which these networks can be trained. Training is the process by which the weight matrix of a neural network is adjusted automatically to produce desirable results. Though backpropagation is commonly used with feedforward neural networks, it is by no means the only training method available for the feedforward neural network." />
+                                            <h:graphicImage library="images" name="m2.jpg" />
+                                            <h:outputText value="Genetic Algorithms, Genetic algorithms attempt to solve computer problems by simulating the way that organisms evolve into new organifimsms that are better suited to their environment. A genetic algorithm evolves potential solutions." />
+                                        </h:panelGrid>
+                                    </p:tab>
+                                    <p:tab title="问题：你们系统预测的数字不是骗人的吧，准确率如何？">
+                                        <h:panelGrid columns="2" cellpadding="10">
+                                            <h:outputText
+                                                value="亲，我们系统完全采用100%人工智能算法对每支股票进行建模计算预测，过程不参假，您可以记录下预测数值转天看预测结果。预测准确率一般可达90%以上。我们可以提供每支股票计算过程的LOG输出。由于这不是项目主要功能，您可以联系我们索取。" />
+                                        </h:panelGrid>
+                                    </p:tab>
+                                    <p:tab title="问题：你们系统为什么收费，有没有合理解释？">
+                                        <h:panelGrid columns="1" cellpadding="10">
+                                            <h:outputText value="亲，我们使用阿里云服务器，对于人工智能及大数据运算所需要的服务器性能低了都跑不起来的，请参照阿里云服务器报价 https://buy.aliyun.com，一款中档机器配置报价如下，您支付的费用90%都用在了支付计算资源上，想象一下每天只需要1块钱就可以调用后端庞大的计算集群和专业的计算专家为您服务是一件多么令人愉快的事情" />
+                                            <h:graphicImage library="images" name="price.png" width="640" />
+                                        </h:panelGrid>
+                                    </p:tab>
+                                    <p:tab title="问题：为什么要分不同的付费用户？">
+                                        <h:panelGrid columns="2" cellpadding="10">
+                                            <h:outputText value="不同的付费级别代表着不同的使用计算资源的级别，想象一下您点击一个按钮或者做一个查询，后台的计算资源可能是经过几十万次的复杂计算而得出的" />
+                                        </h:panelGrid>
+                                    </p:tab>
+                                </p:accordionPanel>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,4 @@
+<script type="text/javascript" src="${base}/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/qphf.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/HisAcc.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/StockSuggest.js"></script>

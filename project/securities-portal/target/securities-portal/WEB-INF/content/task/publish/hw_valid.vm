@@ -1,0 +1,60 @@
+<script type="text/javascript">
+		//1业主2设计单位3设计人员4制造商
+		
+		/**
+		* $!{user.type}
+		* $!usrType
+		*/
+		
+		#if($!{user.type} != '1' && $!{user.type} != '2')
+	    	var confirm = $.scojs_modal({
+	    		title :"友情提示",
+	    		height: "300",
+				content : '<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i>只有业主和设计单位才能进行货物采购操作!!</div>',
+				onClose : function() {
+					#if($!referUrl)
+						var url = "$!referUrl";
+						if(url.indexOf("step")>-1) url = '${base}';
+						window.location.href = url;
+					#else
+						window.location.href = "${portal_url}";
+					#end
+				}
+			});
+			confirm.show();
+		#elseif($!user.type=='1' && $!usrType!='1')
+			var confirm = $.scojs_modal({
+	    		title :"友情提示",
+	    		height: "300",
+				content : '<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i>非业主类型的账号无法进行此操作!!</div>',
+				onClose : function() {
+					#if($!referUrl)
+						var url = "$!referUrl";
+						if(url.indexOf("step")>-1) url = '${base}';
+						window.location.href = url;
+					#else
+						window.location.href = "${portal_url}";
+					#end
+				}
+			});
+			confirm.show();
+		#elseif($!user.type=='2' && $!usrType!='2')
+			var confirm = $.scojs_modal({
+	    		title :"友情提示",
+	    		height: "300",
+				content : '<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i>非设计单位类型的账号无法进行此操作！！</div>',
+				onClose : function() {
+					#if($!referUrl)
+						var url = "$!referUrl";
+						if(url.indexOf("step")>-1) url = '${base}';
+						window.location.href = url;
+					#else
+						window.location.href = "${portal_url}";
+					#end
+				}
+			});
+			confirm.show();
+		#end
+		
+		
+</script>

@@ -1,0 +1,468 @@
+/* 登录弹出 红包 */
+.show-hb-close {
+    height: 34px;
+    left: 96%;
+    position: fixed;
+    top: 2%;
+    width: 36px;
+    z-index: 20001;
+}
+
+.show-hb-mask {
+    background-color: gray;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 20000;
+    opacity: 0.7;
+    filter: alpha(opacity = 70);
+    background-color: #000;
+}
+
+.show-hb-open {
+    position: absolute;
+    z-index: 20001;
+    left: 50%;
+    margin-left: -290px;
+    margin-top: -230px;
+    top: 50%;
+    width: 580px;
+    height: 573px;
+    text-align: center;
+}
+
+.show-hb-money {
+    position: absolute;
+    z-index: 20001;
+    left: 50%;
+    margin-left: -295px;
+    margin-top: -230px;
+    top: 50%;
+    width: 591px;
+    height: 573px;
+    text-align: center;
+}
+@media (max-width:768px){
+
+    .show-hb-money{width: 100%;margin-left: -180px;}
+    .show-hb-open{width: 100%;margin-left: -180px;}
+}
+.show-hb-money img,.show-hb-open img{
+    max-width: 100%;
+    height: auto;
+}
+.show-hb-money a,.show-hb-open a{
+   display:inline-block;
+}
+
+/* 发布福袋任务 */
+.release-form-step1 {
+    width: 550px;
+    height: 454px;
+    background: url('../img/hongb-login.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    background-size: 550px 454px/9;
+    margin: 0 auto;
+    margin-top: 20px;
+    position: relative
+}
+@media (max-width:768px){
+   .release-form-step1{width: 100%} 
+}
+
+#pubtask .release-form-step1 form{
+    padding-top: 110px;
+    margin-top: 0;
+}
+#pubtask .release-form-step1 form .form-group-text .input-group-text{
+    margin-left: 80px;
+}
+/* 下一步按钮 */
+.next-step {
+    position: absolute;
+    bottom: 28px;
+    left: 160px
+}
+.next-step_btn {
+    background-color: #f4e823;
+    color: #ff0737;
+    border: 1px solid #dfd30a;
+    padding: 10px 40px
+}
+/* 福袋任务详情页 福袋样式 (上) */
+.detail-left {
+    float: left;
+    width: 700px
+}
+@media (max-width:980px){    
+    .detail-left{width: 100%}
+}
+.detail-right {
+    float: right;
+    width: 230px
+}
+@media (max-width:980px){
+    .detail-right{display: none;}    
+}
+.detail-right-btn {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin-top: 10px
+}
+.detail-right-hongb {
+    width: 230px;
+   /*height: 330px;*//*jiake 2015/10/16改(福袋)任务详细页当地址过长导致分享栏掉下去所以注释*/
+    margin-top: 18px;
+    margin-left: 12px;
+    position: relative
+}
+.detail-right-hongbsl {
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    left: 110px;
+    top: 95px;
+    text-align: center;
+    font-family: "微软雅黑";
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+    text-shadow: 2px 2px 4px #fbb500
+}
+.hongb-yxmd {
+    text-align: center;
+    margin-top: 20px
+}
+
+/* 福袋任务详情页 福袋样式 (下) */
+.body-lf {
+    width: 820px;
+    float: left;
+    border: 1px solid #eee;
+    /*margin-left: 10px;*//*jiake 10-17 由于使参与者一栏超出容器，所以注释*/
+    position: relative;
+    z-index: 1
+}
+@media (max-width:980px){
+    .body-lf{width: 578px;}
+}
+.body-lf-right {
+    position: absolute;
+    z-index: 1;
+    right: 20px;
+    top: 5px;
+    width: 63px
+}
+@media (max-width:480px){
+    .body-lf-right {display: none;}
+}
+.body-lf-right img {
+    width: 63px;
+    height: 63px
+}
+/*  福袋任务详情页 福袋样式 (下) 下面的 编号&收藏*/
+.media-body-number {
+    border-top: 1px solid #eee;
+    background-color: #fafafa
+}
+.media-body-name {
+    height: 22px;
+    line-height: 22px;
+    font-family: "微软雅黑";
+    text-align: left;
+    font-size: 14px;
+    clear: both;
+    padding-left: 10px
+}
+.media-body-name .tp {
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    float: left
+}
+.media-body-name .tp>img {
+    max-width: auto
+}
+.media-body-name .btn-yxx {
+    float: right;
+    padding: 2px 8px
+}
+.media-body-appendix {
+    height: 44px
+}
+
+.media-body-number .number {
+    float: left;
+    width: 400px
+}
+.media-body-number .icon {
+    float: right;
+    margin-right: 35px
+}
+.hongb-text-text {
+    text-align: left;
+    clear: both;
+    padding: 10px
+}
+@media (max-width:480px){
+    .hongb-text-text {
+    width: 230px;
+    margin-top: 20px;
+    word-wrap:break-word;
+  }
+}
+@media (max-width:370px){
+    .hongb-text-text {
+    width: 170px;
+    margin-top: 20px;
+    word-wrap:break-word;
+  }
+}
+.media {
+    clear: both
+}
+.media-left-img a {
+    width: 100px;
+    display: block;
+    overflow: hidden
+}
+.media-object {
+    width: 90px
+} 
+.media-object-img {
+    width: 60px
+}
+.media-body-title {
+    width: auto;
+    margin-right: 5px;
+    float: left
+}
+.hongb-rx {
+    float: right;
+    margin-right: 50px;
+    margin-top: 2px
+}
+.hongb-zujg {
+    min-height: 300px;
+    line-height: 30px;
+    text-align: center;
+    font-family: "微软雅黑";
+    font-size: 18px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border: 1px solid #eee
+}
+/* 任务详细页 领取条件  测试框 */
+#pubtask .detail-conditions {
+    width: 690px;
+    height: 130px;
+    border: 1px solid #eee;
+    padding: 6px 10px
+}
+@media (max-width:980px){    
+    .detail-conditions{width: 100%}
+}
+/* 发布福袋任务 */
+#pubtask .input-group-text{
+    color: #f00;
+}
+
+@media (min-width:320px) and (max-width:768px){
+    #pubtask  .release-body .input-group-text{
+            margin-left:40px;
+        } 
+}
+#pubtask .release-form-step1  .form-horizontal .form-group{
+    padding-left: 40px;
+    margin-bottom: 10px;
+}
+#pubtask .release-form-step1  .form-horizontal .form-group .control-label-step1{
+    color: #f00;
+}
+#pubtask .release-form-step1 {
+    border: 0;
+    padding-top: 80px;
+}
+@media (max-width:768px){
+    #pubtask .release-form-step1 form{
+         padding-left: 40px;
+         padding-right: 40px;
+    }
+}
+#pubtask .next-step{
+    position: absolute;
+    bottom: 0px;
+}
+@media (min-width:320px) and (max-width:480px){
+    #pubtask  .hongbao-label, #pubtask .hongbao-input{
+            width: 100%;
+        } 
+}
+
+@media (min-width:640px) and (max-width:768px){
+    #pubtask .release-form-step1 .form-horizontal .form-group { 
+        padding-left: 100px;
+    }
+           
+}
+@media (min-width:480px) and (max-width:639px){
+    #pubtask .release-form-step1 .form-horizontal .form-group {
+        padding-left: 100px;
+    }
+    #pubtask .release-form-step1 .form-horizontal .form-group-text {
+        padding-left: 100px;
+    }
+}
+
+ @media (min-width:320px) and (max-width:479px){
+    #pubtask .release-form-step1 .form-horizontal .form-group{
+             padding: 0 40px;
+        } 
+} 
+@media (min-width:320px) and (max-width:768px){
+    #pubtask .release-body .next-step{
+              position: unset;
+              margin: 60px auto 0;
+              text-align: center;
+        } 
+}
+@media (min-width:480px) and (max-width:639px){
+    #pubtask .release-body .next-step{
+        margin-top: 100px;
+        margin-left: -40px;
+    }
+    #pubtask .release-body .next-step .btn{
+        margin-left: -40px;
+    }
+}
+@media (min-width:320px) and (max-width:768px){
+    .release-form-step1{
+        height: 500px;
+    } 
+}
+
+@media (min-width:320px) and (max-width:768px){
+    .release-body form{
+        padding-top: 130px;
+    } 
+}
+
+
+@media (min-width:640px) and (max-width:768px){
+    #pubtask .release-body .form-group-text .input-group-text{
+            padding: 0 150px;
+        } 
+}
+
+@media (min-width:640px) and (max-width:768px){
+    #pubtask .release-body .next-step{
+              position: unset;
+              margin: 100px auto 0;
+              text-align: center;
+        }
+    #pubtask .release-body .next-step .btn{
+        margin-left: -80px;
+    }
+}
+
+
+.hongb-detail{
+    position: relative;
+}
+.hongb-yxmd{
+    position: absolute;
+    right: 7%;
+    top: 10px;
+    margin-top: 0;
+}
+@media (max-width:374px){
+    .hongb-yxmd{margin-top: 30px;}
+}
+.detail-right-hongb{
+    margin-top: 50px;
+}
+.media{
+    position: relative;
+}
+.hongb-rx{
+    float: none;
+    position: absolute;
+    right:10px;
+    top: 0;
+    margin-right: 10px;
+}
+.body-lf{
+    width: 100%;
+}
+@media (min-width:481px) and (max-width:768px){
+    #task .modal-dialog{
+        width: 740px;
+        margin: auto;
+    }
+
+}
+@media (min-width:320px) and (max-width:480px){
+    #task .modal-dialog{
+        width: 300px;
+        margin: auto;
+    }
+}
+@media (min-width:320px) and (max-width:480px){
+    .media-body{width: auto;}
+}
+@media (min-width:320px) and (max-width:480px){
+    .media-body_details .title_lf{width: 50%}
+    .media-body_details .title_rg{width: 50%}
+}
+@media (min-width:320px) and (max-width:480px){
+     #task .detail-progress{    
+        word-wrap:break-word;
+     }
+}
+/**
+ * 发布页面的福袋
+ */
+@media (max-width:640px){
+     .fd-for-responsive{
+     	margin:0px !important;
+		padding:0px !important;
+     }
+	 .pub-task-fd1{
+	 	display:none;
+	 }
+	 .pub-task-fd2{
+	    display: inline-block;
+	    height: 35px;
+	    width: 106px;
+	 }
+}
+@media (min-width:640px){
+     .fd-for-pc{
+     	margin:0px !important;
+		padding:0px !important;
+     } 
+	 .pub-task-fd1{
+	    display: inline-block;
+	    height: 60px;
+	    width: 72px;
+	 }
+	 .pub-task-fd2{
+	 	display:none;
+	 }
+}
+.release-nav ul li{
+	vertical-align: middle;
+}
+/* 2015 10 9 moke 修改 */
+/*#task .media-body {
+    width: 10000px
+}*/
+.media-object {
+    width: auto;
+} 

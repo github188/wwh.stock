@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   	android:background="@color/common_white" 
+    android:orientation="vertical" >
+
+ <com.bm.wanma.widget.RequstDataClipLoading
+     		android:layout_centerInParent="true"
+            android:id="@+id/customClipLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+       	 	android:paddingBottom="5dp"
+            />
+	<TextView 
+	    android:layout_below="@id/customClipLoading"
+	     android:layout_width="match_parent"  
+       	 android:layout_height="wrap_content"  
+	    android:text="数据加载中..."
+	    android:textSize="13sp"
+	    android:textColor="@color/common_black"
+	    android:gravity="center_horizontal"
+	    />
+</RelativeLayout>

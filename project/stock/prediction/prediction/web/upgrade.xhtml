@@ -1,0 +1,91 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect ">
+                    <div class="Container100 Responsive100">
+                        <div class="ContainerIndent">
+                            <h2 class="BigTopic"><i class="icon-cloud305 Fs30 Fleft MarRight10 OvHidden"></i>升级用户级别，享受更好服务</h2>
+                        </div>
+                    </div>
+                    <div class="Container33 Responsive100">
+                        <div class="ContainerIndent">
+                            <h:form>
+                                <p:panel id="basic" header="免费用户" footer="Panel Footer" style="margin-bottom:20px">
+                                    <h:panelGrid columns="2" cellpadding="10">
+                                        <i class="icon-two385 Fs100 Green"></i>
+                                        <h:outputText value="我们将提供永久的免费用户服务 免费用户每天可以查询1支股票的最新预测" />
+                                    </h:panelGrid>
+
+                                </p:panel>
+                            </h:form>
+                        </div>
+                    </div>
+                    <div class="Container33 Responsive100">
+                        <div class="ContainerIndent">
+                            <h:form>
+                                <p:panel id="basic" header="初级会员" footer="Panel Footer" style="margin-bottom:20px">
+                                    <h:panelGrid columns="2" cellpadding="10">
+                                        <i class="icon-two385 Fs100 Blue"></i>
+                                        <h:outputText
+                                            value="我们将对初级会员提供更好的服务 初级会员每天可查询5支股票的最新预测结果 我们会提供初级会员每天5支强力股供参考" />
+                                    </h:panelGrid>
+                                    <div class="Card HeiAutoOnMobile">
+                                        <h2 class="CardTopic"><i class="icon-timelapse Fs20 Fleft MarRight10"></i> 价格一览</h2>
+                                        <div class="SeparatorFull"></div>
+                                        <div class="Wid100"><div class="ContainerIndent Fs16 BoldGray">按月计费 <span class="Fright Purple">29 元/月</span></div></div>
+                                        <div class="SeparatorFull"></div>
+                                        <div class="Wid100"><div class="ContainerIndent Fs16 BoldGray">按季度计费 <span class="Fright Red">69 元/季度（节省18元）</span></div></div>
+                                        <div class="SeparatorFull"></div>
+                                        <div class="Wid100"><div class="ContainerIndent Fs16 BoldGray">按半年计费 <span class="Fright Orange">129 元/半年（节省45元）</span></div></div>
+                                        <div class="SeparatorFull"></div>
+                                        <div class="Wid100"><div class="ContainerIndent Fs16 BoldGray">按全年计费 <span class="Fright Green">219 元/全年（节省129元）</span></div></div>
+                                        <div class="CardFooter TexAlRight">
+                                            <p:commandButton value="立即开通初级会员权限" styleClass="BlueButton RaisedButton"/>
+                                        </div>
+                                    </div>
+                                </p:panel>
+
+                            </h:form>
+                        </div>
+                    </div>
+                    <div class="Container33 Responsive100">
+                        <div class="ContainerIndent">
+                            <h:form>
+                                <p:panel id="basic" header="高级会员" footer="Panel Footer" style="margin-bottom:20px">
+                                    <h:panelGrid columns="2" cellpadding="10">
+                                        <i class="icon-two385 Fs100 Purple"></i>
+                                        <h:outputText
+                                            value="我们将对高级会员提供更好的服务 高级会员每天无限制查询所有股票的最新预测结果 我们会提供高级会员每天20支强力股供参考" />
+                                    </h:panelGrid>
+                                    <div class="Card HeiAutoOnMobile">
+                                        <h2 class="CardTopic"><i class="icon-timelapse Fs20 Fleft MarRight10"></i> 价格一览</h2>
+                                        <div class="SeparatorFull"></div>
+                                        <div class="Wid100"><div class="ContainerIndent Fs16 BoldGray">按月计费 <span class="Fright Purple">59 元/月</span></div></div>
+                                        <div class="SeparatorFull"></div>
+                                        <div class="Wid100"><div class="ContainerIndent Fs16 BoldGray">按季度计费 <span class="Fright Red">139 元/季度（节省38元）</span></div></div>
+                                        <div class="SeparatorFull"></div>
+                                        <div class="Wid100"><div class="ContainerIndent Fs16 BoldGray">按半年计费 <span class="Fright Orange">259 元/半年（节省95元）</span></div></div>
+                                        <div class="SeparatorFull"></div>
+                                        <div class="Wid100"><div class="ContainerIndent Fs16 BoldGray">按全年计费 <span class="Fright Green">439 元/全年（节省269元）</span></div></div>
+                                        <div class="CardFooter TexAlRight">
+                                            <p:commandButton value="立即开通高级会员权限" styleClass="PurpleButton RaisedButton"/>
+                                        </div>
+                                    </div>
+                                </p:panel>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

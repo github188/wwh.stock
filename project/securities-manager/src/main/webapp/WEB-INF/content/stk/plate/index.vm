@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>沪深证券板块行情管理</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        $(function () {
+            jQuery('#dg').datagrid({
+                url: 'plate/queryPaged',
+                columns: [[
+                    {field: 'id', checkbox: true, hidden:true}
+                   ,{field: 'dt', title: '日期', width: 100,align:'center', hidden:true}
+                   ,{field: 'plateCode', title: '代码', width: 100,align:'center'}
+                   ,{field: 'plateName', title: '名称', width: 100,align:'center'}
+                   ,{field: 'changeWidth', title: '涨幅', width: 100,align:'right',sortable:true,formatter:optionColorFun}
+                   ,{field: 'price', title: '现价', width: 100,align:'right',sortable:true,formatter:optionColorFun}
+                   ,{field: 'changeAmount', title: '涨跌', width: 100,align:'right',sortable:true,formatter:optionColorFun}
+                   ,{field: 'changeRate', title: '涨速', width: 100,align:'right',sortable:true,formatter:optionSelfFun}
+                   ,{field: 'volumeRatio', title: '量比', width: 100,align:'right',sortable:true,formatter:optionFun}
+                   ,{field: 'changeNum', title: '涨跌数', width: 100,align:'right',sortable:true}
+                   ,{field: 'evenUp', title: '连涨天', width: 100,align:'right',sortable:true,formatter:optionColorFun}
+                   ,{field: 'threeChangeWidth', title: '3日涨幅', width: 100,align:'right',sortable:true,formatter:optionSelfFun}
+                   ,{field: 'turnOver', title: '换手', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'amount', title: '净流入', width: 100,align:'right', hidden:true}
+                ]],
+                pagination: true,
+                pageSize:Magic.PAGE_SIZE,
+                pageList:Magic.PAGE_LIST,
+                rownumbers:true,
+                singleSelect: false,
+                remoteSort:false,
+                fitColumns: true,
+                fit: true,
+                toolbar: '#toolbar',
+                onDblClickRow: function (rowid, rowdata) {
+                    editForm();
+                }
+            });
+        });
+        function optionFun(value,row,index) {
+            value = optionNumFun(value,row,index);
+            if (value > 1) {
+                return '<span class="red">' + value + '</span>';
+            }
+            else if (value < 1) {
+                return '<span class="green">' + value + '</span>';
+            }
+            else {
+                return '<span>' + value + '</span>';
+            }
+        }
+        function newForm() {
+            Magic.openWin('新增沪深证券板块行情', 'plate/add', 600, 200);
+        }
+        function editForm() {
+            var row = jQuery('#dg').datagrid('getSelected');
+            if (row) {
+                Magic.openWin('编辑沪深证券板块行情', 'plate/edit/' + row.id, 600, 300);
+            }
+        }
+        function destroyForm() {
+            var rows = jQuery('#dg').datagrid('getSelections');
+            if (rows.length > 0) {
+                jQuery.messager.confirm('确认删除', '确定删除该记录?', function (r) {
+                    if (r) {
+                        var ids = [];
+                        jQuery.each(rows, function (index, row) {
+                            ids.push(row.id);
+                        });
+                        jQuery.post('plate/delete', {'ids': ids.toString()}, function (result) {
+                            if (result.success) {
+                                jQuery('#dg').datagrid('reload');    // reload the user data
+                            } else {
+                                jQuery.messager.show({    // show error message
+                                    title: '错误',
+                                    msg: result.message
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        function dataRefresh() {
+            $.dream.tip("加载中...");
+            var dt=jQuery('#filter_dt').datebox('getValue');
+            var plateCode=jQuery('#filter_plateCode').val();
+            jQuery.post('plate/dataRefresh',{'dt':dt,'plateCode':plateCode},function(result){
+                if(!result.success){
+                    $.dream.closetip();
+                    jQuery.messager.show({title: '错误', msg: result.message });
+
+                } else {
+                    jQuery('#dg').datagrid('load', {'dt':dt,'plateCode':plateCode});
+                    $.dream.closetip();
+                }
+            });
+        }
+
+        function contentSearch() {
+            var dt=jQuery('#filter_dt').datebox('getValue');
+            var plateCode=jQuery('#filter_plateCode').val();
+            jQuery('#dg').datagrid('load', {
+                'dt':dt,'plateCode':plateCode})
+        }
+
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+<table id="dg" data-options="toolbar:'#toolbar'"></table>
+<div id="toolbar">
+    <div class="search_box">
+        日期：<input id="filter_dt" value="$!{currentDate}" class="easyui-datebox">
+        代码：<input id="filter_plateCode" class="easyui-validatebox">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+           onclick="contentSearch()">搜索</a>
+    </div>
+    <div class="btn_box">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"
+           onclick="newForm()">新增</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+           onclick="editForm()">编辑</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="destroyForm()">删除</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-mini-refresh" plain="true"
+           onclick="dataRefresh()">重新生成</a>
+    </div>
+</div>
+</body>
+</html>

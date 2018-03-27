@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hzstk.securities.task.domain.TaskFile">
+
+	<resultMap id="get-TaskFile-result" type="cn.hzstk.securities.task.domain.TaskFile">
+		<id property="id" column="id" />
+		<!-- 对象类-->
+    	<result property="objType" column="obj_type" />
+		<!-- 对象编号-->
+    	<result property="objId" column="obj_id" />
+		<!-- 任务编号-->
+    	<result property="taskId" column="task_id" />
+		<!-- 稿件编号-->
+    	<result property="workId" column="work_id" />
+		<!-- 任务标题-->
+    	<result property="taskTitle" column="task_title" />
+		<!-- 保存前文件-->
+    	<result property="fileName" column="file_name" />
+		<!-- 保存后文件-->
+    	<result property="saveName" column="save_name" />
+		<!-- 用户编号-->
+    	<result property="uid" column="uid" />
+		<!-- 用户名-->
+    	<result property="username" column="username" />
+		<!-- 更新时间-->
+    	<result property="onTime" column="on_time" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+
+	
+	<sql id="TaskFile_Base_Column_List">
+		<!-- 附件编号-->
+    	id,
+		<!-- 对象类-->
+    	obj_type,
+		<!-- 对象编号-->
+    	obj_id,
+		<!-- 任务编号-->
+    	task_id,
+		<!-- 稿件编号-->
+    	work_id,
+		<!-- 任务标题-->
+    	task_title,
+		<!-- 保存前文件-->
+    	file_name,
+		<!-- 保存后文件-->
+    	save_name,
+		<!-- 用户编号-->
+    	uid,
+		<!-- 用户名-->
+    	username,
+		<!-- 更新时间-->
+    	on_time,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+	
+	<select id="TaskFile_select_all" resultMap="get-TaskFile-result">
+	    SELECT
+    		<include refid="TaskFile_Base_Column_List" />
+	 	FROM 
+			task_file
+		<where>
+		    <if test="taskId!=null and taskId!=''">
+		        and task_id = #{taskId}
+		    </if>
+		    <if test="workId!=null and workId!=''">
+		        and work_id = #{workId}
+		    </if>
+		    <if test="objType!=null and objType!=''">
+		        and obj_type = #{objType}
+		    </if>
+		</where>
+	</select>
+	
+	<delete id="TaskFile_remove">
+		delete from task_file where id=#{0}
+	</delete>
+	
+</mapper>

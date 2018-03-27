@@ -1,0 +1,506 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>板块资金流向</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/master.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/default.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/layer2012.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/page_common.css">
+    <script type="text/javascript" src="${base}/static/js/jquery.min.1.8.3.js"></script>
+    <script type="text/javascript">
+        var jQuery = $.noConflict();
+        var portalurl = "${portal_url}/";
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/base.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/plugin.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/highcharts.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/highcharts-3d.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/public_emchart.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/chart.js"></script>
+</head>
+<body>
+<div id="page" class="page">
+<div class="main">
+    <div class="framecontent">
+        <div class="linkNav">
+            <div id="Column_Navigation">
+                <a href="${base}/">首页</a> &gt; <a href="${base}/stockeast/center/">数据中心</a> &gt; <a href="${base}/stockeast/zjlxcenter/">资金流向</a> &gt; ${name}板块资金流向排行
+            </div>
+        </div>
+        <div class="sitebody">
+            <div class="maincont">
+                <div class="contentBox">
+                    <div class="titbar" id="datatitle" style="overflow: visible;">
+                        <b class="el"></b>
+                        <div class="tit">
+                            ${name}板块资金流向排行
+                        </div>
+                        <div class="selector">
+                            <div id="selector">
+                                <span class="val">更多板块资金流向 <b></b></span><span class="arr"></span>
+                            </div>
+                            <div class="pop" id="pop" style="display: none;">
+                                <div class="pop_title">
+                                    <label id="close" class="pop_close" style="">
+                                        [×关闭]</label>
+                                    <ul id="pop-tab" class="pop_slider">
+                                        <li class="at">行业</li>
+                                        <li class="">概念</li>
+                                        <li class="">地域</li>
+                                    </ul>
+                                </div>
+                                <div id="pop-cont1">
+                                    <b>A</b>  <a href="/bkzj/BK0735.html">安防设备</a> <b>B</b>  <a href="/bkzj/BK0546.html">玻璃陶瓷</a>  <a href="/bkzj/BK0733.html">包装材料</a>  <a href="/bkzj/BK0474.html">保险</a> <b>C</b>  <a href="/bkzj/BK0729.html">船舶制造</a>  <a href="/bkzj/BK0537.html">材料行业</a> <b>D</b>  <a href="/bkzj/BK0736.html">电信运营</a>  <a href="/bkzj/BK0428.html">电力行业</a>  <a href="/bkzj/BK0459.html">电子元件</a>  <a href="/bkzj/BK0447.html">电子信息</a>  <a href="/bkzj/BK0738.html">多元金融</a> <b>F</b>  <a href="/bkzj/BK0451.html">房地产</a>  <a href="/bkzj/BK0436.html">纺织服装</a> <b>G</b>  <a href="/bkzj/BK0440.html">工艺商品</a>  <a href="/bkzj/BK0479.html">钢铁行业</a>  <a href="/bkzj/BK0427.html">公用事业</a>  <a href="/bkzj/BK0484.html">国际贸易</a>  <a href="/bkzj/BK0425.html">工程建设</a>  <a href="/bkzj/BK0732.html">贵金属</a>  <a href="/bkzj/BK0421.html">高速公路</a>  <a href="/bkzj/BK0450.html">港口水运</a> <b>H</b>  <a href="/bkzj/BK0538.html">化工行业</a>  <a href="/bkzj/BK0480.html">航天航空</a>  <a href="/bkzj/BK0728.html">环保工程</a>  <a href="/bkzj/BK0731.html">化肥行业</a>  <a href="/bkzj/BK0471.html">化纤行业</a> <b>J</b>  <a href="/bkzj/BK0739.html">金属制品</a>  <a href="/bkzj/BK0422.html">交运物流</a>  <a href="/bkzj/BK0456.html">家电行业</a>  <a href="/bkzj/BK0429.html">交运设备</a>  <a href="/bkzj/BK0545.html">机械行业</a> <b>L</b>  <a href="/bkzj/BK0485.html">旅游酒店</a> <b>M</b>  <a href="/bkzj/BK0476.html">木业家具</a>  <a href="/bkzj/BK0437.html">煤炭采选</a>  <a href="/bkzj/BK0420.html">民航机场</a> <b>N</b>  <a href="/bkzj/BK0433.html">农牧饲渔</a>  <a href="/bkzj/BK0730.html">农药兽药</a>  <a href="/bkzj/BK0477.html">酿酒行业</a> <b>Q</b>  <a href="/bkzj/BK0481.html">汽车行业</a>  <a href="/bkzj/BK0473.html">券商信托</a> <b>R</b>  <a href="/bkzj/BK0737.html">软件服务</a> <b>S</b>  <a href="/bkzj/BK0464.html">石油行业</a>  <a href="/bkzj/BK0454.html">塑胶制品</a>  <a href="/bkzj/BK0457.html">输配电气</a>  <a href="/bkzj/BK0482.html">商业百货</a>  <a href="/bkzj/BK0438.html">食品饮料</a>  <a href="/bkzj/BK0424.html">水泥建材</a> <b>T</b>  <a href="/bkzj/BK0448.html">通讯行业</a> <b>W</b>  <a href="/bkzj/BK0740.html">文教休闲</a>  <a href="/bkzj/BK0486.html">文化传媒</a> <b>Y</b>  <a href="/bkzj/BK0726.html">园林工程</a>  <a href="/bkzj/BK0478.html">有色金属</a>  <a href="/bkzj/BK0458.html">仪器仪表</a>  <a href="/bkzj/BK0465.html">医药制造</a>  <a href="/bkzj/BK0475.html">银行</a>  <a href="/bkzj/BK0727.html">医疗行业</a> <b>Z</b>  <a href="/bkzj/BK0725.html">装修装饰</a>  <a href="/bkzj/BK0539.html">综合行业</a>  <a href="/bkzj/BK0910.html">专用设备</a>  <a href="/bkzj/BK0734.html">珠宝首饰</a>  <a href="/bkzj/BK0470.html">造纸印刷</a>
+                                </div>
+                                <div id="pop-cont2" style="display: none;">
+                                    <b>A</b>  <a href="/bkzj/BK0499.html">AH股</a>  <a href="/bkzj/BK0689.html">阿里概念</a>  <a href="/bkzj/BK0498.html">AB股</a> <b>B</b>  <a href="/bkzj/BK0717.html">北京冬奥</a>  <a href="/bkzj/BK0636.html">B股</a>  <a href="/bkzj/BK0675.html">病毒防治</a>  <a href="/bkzj/BK0566.html">滨海新区</a>  <a href="/bkzj/BK0629.html">北斗导航</a> <b>C</b>  <a href="/bkzj/BK0679.html">超导概念</a>  <a href="/bkzj/BK0703.html">超级电容</a>  <a href="/bkzj/BK0514.html">参股券商</a>  <a href="/bkzj/BK0534.html">成渝特区</a>  <a href="/bkzj/BK0671.html">彩票概念</a>  <a href="/bkzj/BK0950.html">草甘膦</a>  <a href="/bkzj/BK0920.html">车联网</a>  <a href="/bkzj/BK0811.html">超级品牌</a>  <a href="/bkzj/BK0501.html">次新股</a>  <a href="/bkzj/BK0506.html">创投</a>  <a href="/bkzj/BK0584.html">CDM项目</a>  <a href="/bkzj/BK0700.html">充电桩</a>  <a href="/bkzj/BK0638.html">创业成份</a>  <a href="/bkzj/BK0525.html">参股银行</a>  <a href="/bkzj/BK0583.html">触摸屏</a>  <a href="/bkzj/BK0604.html">参股保险</a>  <a href="/bkzj/BK0524.html">参股期货</a> <b>D</b>  <a href="/bkzj/BK0676.html">独家药品</a>  <a href="/bkzj/BK0622.html">地热能</a>  <a href="/bkzj/BK0553.html">低碳经济</a>  <a href="/bkzj/BK0881.html">3D玻璃</a>  <a href="/bkzj/BK0619.html">3D打印</a>  <a href="/bkzj/BK0540.html">迪士尼</a>  <a href="/bkzj/BK0587.html">大订单</a>  <a href="/bkzj/BK0665.html">电商概念</a>  <a href="/bkzj/BK0716.html">大金融</a>  <a href="/bkzj/BK0870.html">单抗概念</a>  <a href="/bkzj/BK0634.html">大数据</a> <b>E</b>  <a href="/bkzj/BK0664.html">二胎概念</a> <b>F</b>  <a href="/bkzj/BK0526.html">分拆上市</a>  <a href="/bkzj/BK0595.html">风能</a>  <a href="/bkzj/BK0720.html">福州新区</a>  <a href="/bkzj/BK0690.html">氟化工</a>  <a href="/bkzj/BK0741.html">钒电池</a> <b>G</b>  <a href="/bkzj/BK0803.html">股权转让</a>  <a href="/bkzj/BK0723.html">高送转</a>  <a href="/bkzj/BK0639.html">4G概念</a>  <a href="/bkzj/BK0810.html">工业4.0</a>  <a href="/bkzj/BK0713.html">2025规划</a>  <a href="/bkzj/BK0714.html">5G概念</a>  <a href="/bkzj/BK0667.html">国家安防</a>  <a href="/bkzj/BK0696.html">国产软件</a>  <a href="/bkzj/BK0807.html">共享经济</a>  <a href="/bkzj/BK0683.html">国企改革</a>  <a href="/bkzj/BK0567.html">股权激励</a>  <a href="/bkzj/BK0491.html">高校</a>  <a href="/bkzj/BK0891.html">国产芯片</a> <b>H</b>  <a href="/bkzj/BK0702.html">沪港通</a>  <a href="/bkzj/BK0687.html">黄金水道</a>  <a href="/bkzj/BK0637.html">互联金融</a>  <a href="/bkzj/BK0724.html">海绵城市</a>  <a href="/bkzj/BK0500.html">HS300_</a>  <a href="/bkzj/BK0577.html">核能核电</a>  <a href="/bkzj/BK0715.html">航母概念</a>  <a href="/bkzj/BK0512.html">化工原料</a>  <a href="/bkzj/BK0601.html">海工装备</a>  <a href="/bkzj/BK0623.html">海洋经济</a>  <a href="/bkzj/BK0672.html">沪企改革</a>  <a href="/bkzj/BK0607.html">互联网</a>  <a href="/bkzj/BK0707.html">沪股通</a>  <a href="/bkzj/BK0547.html">黄金概念</a>  <a href="/bkzj/BK0585.html">合同能源</a>  <a href="/bkzj/BK0572.html">海峡西岸</a> <b>I</b>  <a href="/bkzj/BK0598.html">IPV6</a>  <a href="/bkzj/BK0697.html">IPO受益</a> <b>J</b>  <a href="/bkzj/BK0684.html">京津冀</a>  <a href="/bkzj/BK0685.html">举牌概念</a>  <a href="/bkzj/BK0536.html">基金重仓</a>  <a href="/bkzj/BK0719.html">健康中国</a>  <a href="/bkzj/BK0494.html">节能环保</a>  <a href="/bkzj/BK0561.html">基本金属</a>  <a href="/bkzj/BK0552.html">机构重仓</a>  <a href="/bkzj/BK0694.html">金融机具</a>  <a href="/bkzj/BK0808.html">军民融合</a>  <a href="/bkzj/BK0605.html">金融改革</a>  <a href="/bkzj/BK0490.html">军工</a>  <a href="/bkzj/BK0806.html">精准医疗</a>  <a href="/bkzj/BK0693.html">基因测序</a> <b>K</b>  <a href="/bkzj/BK0990.html">快递概念</a>  <a href="/bkzj/BK0820.html">壳资源</a> <b>L</b>  <a href="/bkzj/BK0674.html">蓝宝石</a>  <a href="/bkzj/BK0574.html">锂电池</a>  <a href="/bkzj/BK0580.html">LED</a>  <a href="/bkzj/BK0710.html">量子通信</a> <b>M</b>  <a href="/bkzj/BK0652.html">民营银行</a>  <a href="/bkzj/BK0626.html">美丽中国</a>  <a href="/bkzj/BK0660.html">民营医院</a>  <a href="/bkzj/BK0698.html">免疫治疗</a>  <a href="/bkzj/BK0492.html">煤化工</a> <b>N</b>  <a href="/bkzj/BK0618.html">宁波</a> <b>O</b>  <a href="/bkzj/BK0840.html">OLED</a> <b>P</b>  <a href="/bkzj/BK0608.html">PM2.5</a>  <a href="/bkzj/BK0721.html">PPP模式</a>  <a href="/bkzj/BK0666.html">苹果概念</a> <b>Q</b>  <a href="/bkzj/BK0630.html">前海概念</a>  <a href="/bkzj/BK0535.html">QFII重仓</a>  <a href="/bkzj/BK0711.html">券商概念</a>  <a href="/bkzj/BK0830.html">区块链</a>  <a href="/bkzj/BK0699.html">全息技术</a> <b>R</b>  <a href="/bkzj/BK0682.html">燃料电池</a>  <a href="/bkzj/BK0706.html">人脑工程</a>  <a href="/bkzj/BK0800.html">人工智能</a>  <a href="/bkzj/BK0596.html">融资融券</a> <b>S</b>  <a href="/bkzj/BK0624.html">涉矿概念</a>  <a href="/bkzj/BK0597.html">水利建设</a>  <a href="/bkzj/BK0657.html">水域改革</a>  <a href="/bkzj/BK0709.html">赛马概念</a>  <a href="/bkzj/BK0616.html">三沙概念</a>  <a href="/bkzj/BK0673.html">三旧改造</a>  <a href="/bkzj/BK0541.html">三通概念</a>  <a href="/bkzj/BK0654.html">丝绸之路</a>  <a href="/bkzj/BK0520.html">社保重仓</a>  <a href="/bkzj/BK0669.html">生态农业</a>  <a href="/bkzj/BK0548.html">生物疫苗</a>  <a href="/bkzj/BK0633.html">送转预期</a>  <a href="/bkzj/BK0614.html">食品安全</a>  <a href="/bkzj/BK0686.html">生命人寿</a>  <a href="/bkzj/BK0642.html">手游概念</a>  <a href="/bkzj/BK0930.html">深港通</a>  <a href="/bkzj/BK0549.html">深圳特区</a>  <a href="/bkzj/BK0573.html">三网融合</a>  <a href="/bkzj/BK0617.html">石墨烯</a>  <a href="/bkzj/BK0611.html">上证50_</a>  <a href="/bkzj/BK0705.html">上证380</a>  <a href="/bkzj/BK0568.html">深成500</a>  <a href="/bkzj/BK0503.html">S股</a>  <a href="/bkzj/BK0612.html">上证180_</a>  <a href="/bkzj/BK0643.html">上海自贸</a>  <a href="/bkzj/BK0507.html">数字电视</a>  <a href="/bkzj/BK0970.html">生物识别</a>  <a href="/bkzj/BK0804.html">深股通</a>  <a href="/bkzj/BK0511.html">ST概念</a> <b>T</b>  <a href="/bkzj/BK0805.html">钛白粉</a>  <a href="/bkzj/BK0588.html">太阳能</a>  <a href="/bkzj/BK0681.html">腾安价值</a>  <a href="/bkzj/BK0592.html">铁路基建</a>  <a href="/bkzj/BK0644.html">特斯拉</a>  <a href="/bkzj/BK0586.html">图们江</a>  <a href="/bkzj/BK0632.html">土地流转</a>  <a href="/bkzj/BK0708.html">体育产业</a>  <a href="/bkzj/BK0625.html">通用航空</a> <b>W</b>  <a href="/bkzj/BK0655.html">网络安全</a>  <a href="/bkzj/BK0659.html">王亚伟系</a>  <a href="/bkzj/BK0802.html">无人驾驶</a>  <a href="/bkzj/BK0960.html">无线充电</a>  <a href="/bkzj/BK0589.html">皖江区域</a>  <a href="/bkzj/BK0554.html">物联网</a>  <a href="/bkzj/BK0940.html">网红直播</a>  <a href="/bkzj/BK0509.html">网络游戏</a>  <a href="/bkzj/BK0704.html">无人机</a> <b>X</b>  <a href="/bkzj/BK0590.html">西部开发</a>  <a href="/bkzj/BK0722.html">虚拟现实</a>  <a href="/bkzj/BK0695.html">小金属</a>  <a href="/bkzj/BK0600.html">新三板</a>  <a href="/bkzj/BK0493.html">新能源</a>  <a href="/bkzj/BK0578.html">稀土永磁</a>  <a href="/bkzj/BK0523.html">新材料</a>  <a href="/bkzj/BK0900.html">新能源车</a>  <a href="/bkzj/BK0519.html">稀缺资源</a> <b>Y</b>  <a href="/bkzj/BK0653.html">养老概念</a>  <a href="/bkzj/BK0570.html">预亏预减</a>  <a href="/bkzj/BK0556.html">移动支付</a>  <a href="/bkzj/BK0606.html">油气设服</a>  <a href="/bkzj/BK0603.html">页岩气</a>  <a href="/bkzj/BK0712.html">一带一路</a>  <a href="/bkzj/BK0571.html">预盈预增</a>  <a href="/bkzj/BK0668.html">医疗器械</a>  <a href="/bkzj/BK0563.html">油价相关</a>  <a href="/bkzj/BK0663.html">油改概念</a>  <a href="/bkzj/BK0610.html">央视50_</a>  <a href="/bkzj/BK0677.html">粤港自贸</a>  <a href="/bkzj/BK0579.html">云计算</a> <b>Z</b>  <a href="/bkzj/BK0593.html">长株潭</a>  <a href="/bkzj/BK0609.html">中韩自贸</a>  <a href="/bkzj/BK0701.html">中证500</a>  <a href="/bkzj/BK0581.html">智能电网</a>  <a href="/bkzj/BK0615.html">中药</a>  <a href="/bkzj/BK0718.html">证金持股</a>  <a href="/bkzj/BK0635.html">中超概念</a>  <a href="/bkzj/BK0613.html">舟山群岛</a>  <a href="/bkzj/BK0656.html">智能电视</a>  <a href="/bkzj/BK0628.html">智慧城市</a>  <a href="/bkzj/BK0662.html">在线教育</a>  <a href="/bkzj/BK0980.html">债转股</a>  <a href="/bkzj/BK0692.html">在线旅游</a>  <a href="/bkzj/BK0528.html">转债标的</a>  <a href="/bkzj/BK0594.html">长江三角</a>  <a href="/bkzj/BK0680.html">智能家居</a>  <a href="/bkzj/BK0801.html">增强现实</a>  <a href="/bkzj/BK0882.html">猪肉概念</a>  <a href="/bkzj/BK0641.html">智能穿戴</a>  <a href="/bkzj/BK0640.html">智能机器</a>  <a href="/bkzj/BK0505.html">中字头</a>
+                                </div>
+                                <div id="pop-cont3" style="display: none;">
+                                    <b>A</b>  <a href="/bkzj/BK0149.html">安徽板块</a> <b>B</b>  <a href="/bkzj/BK0150.html">北京板块</a> <b>C</b>  <a href="/bkzj/BK0170.html">重庆板块</a> <b>F</b>  <a href="/bkzj/BK0151.html">福建板块</a> <b>G</b>  <a href="/bkzj/BK0173.html">贵州板块</a>  <a href="/bkzj/BK0153.html">广东板块</a>  <a href="/bkzj/BK0154.html">广西板块</a>  <a href="/bkzj/BK0152.html">甘肃板块</a> <b>H</b>  <a href="/bkzj/BK0146.html">黑龙江</a>  <a href="/bkzj/BK0157.html">湖北板块</a>  <a href="/bkzj/BK0155.html">河北板块</a>  <a href="/bkzj/BK0158.html">湖南板块</a>  <a href="/bkzj/BK0156.html">河南板块</a>  <a href="/bkzj/BK0176.html">海南板块</a> <b>J</b>  <a href="/bkzj/BK0160.html">江西板块</a>  <a href="/bkzj/BK0148.html">吉林板块</a>  <a href="/bkzj/BK0159.html">江苏板块</a> <b>L</b>  <a href="/bkzj/BK0161.html">辽宁板块</a> <b>N</b>  <a href="/bkzj/BK0175.html">内蒙古</a>  <a href="/bkzj/BK0162.html">宁夏板块</a> <b>Q</b>  <a href="/bkzj/BK0163.html">青海板块</a> <b>S</b>  <a href="/bkzj/BK0167.html">山西板块</a>  <a href="/bkzj/BK0165.html">陕西板块</a>  <a href="/bkzj/BK0145.html">上海板块</a>  <a href="/bkzj/BK0164.html">山东板块</a>  <a href="/bkzj/BK0169.html">四川板块</a> <b>T</b>  <a href="/bkzj/BK0166.html">天津板块</a> <b>X</b>  <a href="/bkzj/BK0147.html">新疆板块</a>  <a href="/bkzj/BK0174.html">西藏板块</a> <b>Y</b>  <a href="/bkzj/BK0171.html">云南板块</a> <b>Z</b>  <a href="/bkzj/BK0172.html">浙江板块</a>
+                                </div>
+                                <script type="text/javascript">
+                                    tiny.tabSliding("pop-tab", "li", "at", "pop-cont", "mouseover")
+                                </script>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <div class="more_search">
+                            <img src="${base}/static/img/east/btn_search_blue.gif" alt="查询" title="查询">
+                        </div>
+                        <div class="search" style="float: left;">
+                            <span class="txt">个股资金流向：</span>
+                            <input class="sinput" name="zjlx_bar" id="zjlx_bar" type="text" />
+                            <div onclick="javascript:ggzl_search('zjlx_bar')" class="btn" style="border: none;">
+                                <img src="${base}/static/img/east/btn_search_blue.gif" title="查询" />
+                            </div>
+                        </div>
+
+                        <script type="text/javascript">
+                            var zz = new StockSuggest("zjlx_bar", {
+                                text: "输代码、名称或拼音",
+                                type: "ABSTOCK",
+                                autoSubmit: false,
+                                width: 190,
+                                header: ["选项", "代码", "名称", "类型"],
+                                body: [-1, 1, 4, -2],
+                                callback: function (ag) {
+                                    var url = '/zjlx/' + ag.code + '.html';
+                                    window.open(url);
+                                }
+                            });
+                            function ggzl_search(bb) {
+                                var s1 = document.getElementById(bb).value;
+                                var s = escape(s1);
+                                if (s1 == "输代码、名称或拼音" || s1 == "" || isNaN(parseInt(s1)) || s1.length != 6) {
+                                    alert("请输入所查询股票的代码！");
+                                    return false;
+                                } else {
+                                    var url = 'http://data.eastmoney.com/zjlx/' + s1 + '.html';
+                                    window.open(url);
+                                }
+                            }
+                            function getMarket(StockCode) {
+                                var i = StockCode.substring(0, 1);
+                                var j = StockCode.substring(0, 3);
+                                if (i == "5" || i == "6" || i == "9") {
+                                    return "sh";
+                                } else {
+                                    if (j == "009" || j == "126" || j == "110") {
+                                        return "sh";
+                                    } else {
+                                        return "sz";
+                                    }
+                                }
+                            };
+                        </script>
+                    </div>
+                    <div class="sepe">
+                        <div class="left">
+                        </div>
+                        <div class="right">
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="catemk">
+                            <ul id="mk_type">
+                                <li data="DCFFITABK" style="width: 150px;">今日${name}资金流向</li>
+                                <li data="DCFFITABK5" style="width: 150px;">5日${name}资金流向</li>
+                                <li data="DCFFITABK10" style="width: 150px;">10日${name}资金流向</li>
+                            </ul>
+                        </div>
+                        <div class="titbar shortbar" style="border-bottom: none;">
+                            <div class="tit SimSun14">
+                                ${name}资金流向图(动态数据)
+                            </div>
+                        </div>
+                        <div class="content1">
+                            <div class="flash-warp">
+                                <div class="flash-unit">
+                                    单位:亿元
+                                </div>
+                                <div class="flash-info">
+                                    <span class="flow-in"></span>
+                                    <span>主力净流入</span>
+                                    <span class="flow-out"></span>
+                                    <span>主力净流出</span>
+                                </div>
+                            </div>
+                            <div style="width: 1095px; overflow-x: scroll; position: relative;">
+                                <div id="container" style="width: ${width}; height: 200px; margin: 0 auto"></div>
+                            </div>
+                        </div>
+                        <div class="s6"></div>
+                        <table cellpadding="0" cellspacing="0" class="tab1" id="dt_1">
+                            <thead class="h101">
+                            <tr>
+                                <th>加载中......
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="PageNav" class="PageNav" style="display: none;">
+                        <div class="Page" id="PageCont">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="qphox">
+    <script type="text/javascript" src="${base}/static/js/east/qphf.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/BkzjlSelector.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/load_table_data.js"></script>
+    <script type="text/javascript">
+        var opt = {
+            template: {
+                "categories": "$$$",
+                "series": [
+                    {
+                        "data": "$$$"
+                    }]
+            },
+            url: "http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&cmd=C._BK${code}&sty=DCFFPBFM&st=(BalFlowMain)&sr=-1&p=1&ps=10000&js=&token=894050c76af8597a853f5b408b759f5d",
+            funcs: [
+                function (v) { return v[2].replace("_",""); },
+                function (v) {
+                    var item = { "name": "", "y": "", "color": "", "linkUrl": "" };
+                    if(isNaN(parseFloat(v[3])))return "NULL";
+                    var jlr = isNaN(parseFloat(v[3])) ? 0 : parseFloat((v[3] / 10000).toFixed(1));
+                    if (jlr >= 0) {
+                        item.name = "主力净流入(亿元)";
+                        item.color = "#ff3f3e";
+                    }
+                    else {
+                        item.name = "主力净流出(亿元)";
+                        item.color = "#06960A";
+                    }
+                    item.y = Math.abs(jlr);
+                    item.linkUrl = "${base}/stockeast/bkzj/detail?plateCode=" + v[1] + "&name=" + encodeURI(encodeURI("${name}"));
+                    return item;
+                }
+            ],
+            cb: function (data) {
+                var chart = emChart.models.BarChart({
+                    container: this.objid,
+                    type: "link",
+                    xLableSpace: 1,
+                    d3enabled: false,
+                    chartdata: data
+                });
+            }
+        }
+        var BkzjlxPop = Class.create();
+        Object.extend(BkzjlxPop.prototype, {
+            initialize: function(a) {
+                var b = this;
+                Object.extend(b.options, a || {});
+                b.popDiv()
+            },
+            options: {
+                obj: "selector",
+                objClose: "close",
+                objPop: "pop"
+            },
+            popDiv: function() {
+                var g = this;
+                var a = document.getElementById(g.options.obj);
+                var h = document.getElementById(g.options.objClose);
+                var j = document.getElementById(g.options.objPop);
+                var k = j.getElementsByTagName("a");
+                var g = this;
+                var e = function() {
+                    j.style.display = "none"
+                };
+                var c = function() {
+                    j.style.display = ""
+                };
+                var b = function(l, i) {
+                    if (i == "over") {
+                        if (!g.tools.hasClass(l, "hover")) {
+                            g.tools.addClass(l, "hover")
+                        }
+                    } else {
+                        g.tools.removeClass(l, "hover")
+                    }
+                };
+                g.tools.addEvent(a, "click", c);
+                g.tools.addEvent(h, "click", e);
+                for (var d = 0,
+                             f = k.length; d < f; d++) {
+                    g.tools.addEvent(k[d], "mouseover", b.bind(this, k[d], "over"));
+                    g.tools.addEvent(k[d], "mouseout", b.bind(this, k[d], "out"));
+                    g.tools.addEvent(k[d], "click", e)
+                }
+            },
+            tools: {
+                addEvent: function(e, b, c, a) {
+                    if (e.addEventListener) {
+                        e.addEventListener(b, c, a);
+                        return true
+                    } else {
+                        if (e.attachEvent) {
+                            var d = e.attachEvent("on" + b, c);
+                            return d
+                        } else {
+                            e["on" + b] = c
+                        }
+                    }
+                },
+                getArrayOfClassNames: function(a) {
+                    var b = [];
+                    if (a.className) {
+                        b = a.className.split(" ")
+                    }
+                    return b
+                },
+                addClass: function(a, b) {
+                    var c = this.getArrayOfClassNames(a);
+                    c.push(b);
+                    a.className = c.join(" ")
+                },
+                removeClass: function(b, c) {
+                    var e = this.getArrayOfClassNames(b);
+                    var d = [];
+                    for (var a = 0; a < e.length; a++) {
+                        if (c != e[a]) {
+                            d.push(e[a])
+                        }
+                    }
+                    if (d.length == 0) {
+                        b.className = null
+                    } else {
+                        b.className = d.join(" ")
+                    }
+                },
+                hasClass: function(c, d) {
+                    var b = false;
+                    var e = this.getArrayOfClassNames(c);
+                    for (var a = 0; a < e.length; a++) {
+                        if (d == e[a]) {
+                            b = true
+                        }
+                    }
+                    return b
+                }
+            }
+        });
+        var pop = new BkzjlxPop();
+        function getcolor_JS(a, b, c) {
+            if (a == '-'||a==""||a=="NaN") return "<span>-</span>";
+            var v;
+            if (b == "%") v = parseFloat(a).toFixed(2) + b;
+            else if (b == "w") {
+                var m = Math.abs(a);
+                if (m < 10000) {
+                    v = (a/1).toFixed(0);
+                } else if (m >= 10000 && m < 1000000) {
+                    v = (a / 10000).toFixed(2) + "万";
+                } else if (m >= 1000000 && m < 100000000) {
+                    v = (a / 10000).toFixed(0) + "万";
+                } else if (m >= 100000000 && m < 10000000000) {
+                    v = (a / 100000000).toFixed(2) + "亿";
+                } else {
+                    v = (a / 100000000).toFixed(0) + "亿";
+                }
+            } else v = (a * 100 / 100).toFixed(2);
+            if (c) a = c;
+            if (a.length > 0) {
+                if (a.substring(0, 1) == '-') return "<span class=\"green\">" + v + "</span>";
+                else if (a != 0) return "<span class=\"red\">" + v + "</span>";
+            }
+            return "<span>" + v + "</span>";
+        }
+        var tablelist = new LoadTable({
+            id: "dt_1",
+            sort: { id: "(BalFlowMain)", desc: true },
+            cells: [{ "n": "序号" }, { "n": "名称", "w": 60 }, { "n": "相关", "w": 100 }, { "n": "<span id=\"rq0\"></span>涨跌幅", "s": "(ChangePercent)" },
+                { "n": "<span id=\"rq1\"></span>主力净流入",cells:[{"n": "净额" ,"s":"(BalFlowMain)"},{"n": "净占比" ,"s":"(BalFlowNetRate)"}] },
+                { "n": "<span id=\"rq2\"></span>超大单净流入<i title=\"因为存在一笔大额的委托单仅成交小部分的情况，所以会导致超大单或者大单流入/流出的数额极小。\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>",cells:[{"n": "净额" ,"s":"(AmtNet3)"},{"n": "净占比" ,"s":"(AmtNetRate3)"}] },
+                { "n": "<span id=\"rq3\"></span>大单净流入",cells:[{"n": "净额" ,"s":"(AmtNet2)"},{"n": "净占比" ,"s":"(AmtNetRate2)"}] },
+                { "n": "<span id=\"rq4\"></span>中单净流入",cells:[{"n": "净额" ,"s":"(AmtNet1)"},{"n": "净占比" ,"s":"(AmtNetRate1)"}] },
+                { "n": "<span id=\"rq5\"></span>小单净流入",cells:[{"n": "净额" ,"s":"(AmtNet0)"},{"n": "净占比" ,"s":"(AmtNetRate0)"}] }, { "n": "<span id=\"rq6\"></span>主力净流入<br/>最大股", "w": 90 }],
+            cellcount:15,
+            dataurl:"http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?cmd=C._BK${code}&type=ct&st={sortType}&sr={sortRule}&p={page}&ps={pageSize}&js=var {jsname}={pages:(pc),data:[(x)]}&token=894050c76af8597a853f5b408b759f5d{param}",
+            param: {"mk_type":{cname: "li", type: "sty", value: "${sty}",cssclass:"at"} },
+            afterdisplay:function(_t){
+                var text="今日";
+                opt.url="http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&cmd=C._BK${code}&sty=DCFFPBFM&st=(BalFlowMain)&sr=-1&p=1&ps=999&js=&token=894050c76af8597a853f5b408b759f5d";
+                switch(_t.options.param.mk_type.value.toUpperCase())
+                {case"DCFFITABK3":text="3日";break;
+                    case "DCFFITABK5":
+                        text="5日";
+                        opt.url="http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&cmd=C._BK${code}&sty=DCFFPBFM5&st=(BalFlowMainNet5)&sr=-1&p=1&ps=10000&js=&token=894050c76af8597a853f5b408b759f5d";
+                        break;
+                    case "DCFFITABK10":
+                        text="10日";
+                        opt.url="http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&cmd=C._BK${code}&sty=DCFFPBFM10&st=(BalFlowMainNet10)&sr=-1&p=1&ps=10000&js=&token=894050c76af8597a853f5b408b759f5d";
+                        break;}
+                chartdata(opt);
+                document.getElementById("rq0").innerHTML =document.getElementById("rq1").innerHTML =document.getElementById("rq2").innerHTML =document.getElementById("rq3").innerHTML =document.getElementById("rq4").innerHTML =document.getElementById("rq5").innerHTML=document.getElementById("rq6").innerHTML = text;
+            },
+            maketr: function (row, data, i, c) {
+                var _class = (i % 2 == 0) ? "" : "odd";
+                row.className = _class;
+                row.onmouseover = function () {
+                    this.className = "over";
+                }
+                row.onmouseout = function (o, _c) {
+                    o.className = _c;
+                } .bind(this, row, _class)
+                var bkcode=data[1].replace("BK0", "").substring(0, 3);
+                var url=(data[1].length>3)?("${base}/stockeast/marketlist#28002"+data[1].replace("BK0", "").substring(0, 3)+"_0_2"):("${base}/stockeast/marketlist#"+data[0]+"1");
+                row.cells[0].innerHTML = c;
+                row.cells[1].innerHTML = '<a href="${base}/stockeast/marketlist#28002'+bkcode+'_0_2">'+data[2]+'</a>';
+                row.cells[2].innerHTML = '<a href="/bkzj/' + data[1] + '.html" class="red">大单详情</a> <a href="http://guba.eastmoney.com/list,' + data[1] + '.html">股吧</a>'; //
+                row.cells[3].innerHTML = getcolor_JS(data[3],"%"); //
+                row.cells[4].innerHTML = getcolor_JS((data[4]*10000).toString(), "w"); //
+                row.cells[5].innerHTML = getcolor_JS(data[5], "%"); //
+                row.cells[6].innerHTML = getcolor_JS((data[6]*10000).toString(), "w"); //
+                row.cells[7].innerHTML = getcolor_JS(data[7], "%"); //
+                row.cells[8].innerHTML = getcolor_JS((data[8]*10000).toString(), "w"); //
+                row.cells[9].innerHTML = getcolor_JS(data[9], "%"); //
+                row.cells[10].innerHTML = getcolor_JS((data[10]*10000).toString(), "w"); //
+                row.cells[11].innerHTML = getcolor_JS(data[11], "%"); //
+                row.cells[12].innerHTML = getcolor_JS((data[12]*10000).toString(), "w"); //
+                row.cells[13].innerHTML = getcolor_JS(data[13], "%"); //
+                if(data[15].length>5){
+                    row.cells[14].innerHTML = '<a href="${base}/stockeast/zjlx/detail?code='+data[15].substring(0,data[15].length-1)+'">'+data[14]+'</a>'; //
+                }
+            }
+        });
+        tablelist.autoUpdate();
+        tablelist.parperUrl=function () {
+            var _t = this,
+                    _param = _t.options.param;
+            var tempsort=_t.options.sort.id;
+            switch(_t.options.param.mk_type.value)
+            {
+                case"DCFFITABK3":
+                    switch(_t.options.sort.id)
+                    {
+                        case"(ChangePercent)":
+                            tempsort="(ChangePercent3Day)";break;
+                        case"(BalFlowMain)":
+                            tempsort="(BalFlowMainNet3)";break;
+                        case"(BalFlowNetRate)":
+                            tempsort="(BalFlowMainRate3)";break;
+                        case"(AmtNet3)":
+                            tempsort="(AmtOfUNet3)";break;
+                        case"(AmtNetRate3)":
+                            tempsort="(AmtOfURate3)";break;
+                        case"(AmtNet2)":
+                            tempsort="(AmtOfBNet3)";break;
+                        case"(AmtNetRate2)":
+                            tempsort="(AmtOfBRate3)";break;
+                        case"(AmtNet1)":
+                            tempsort="(AmtOfMNet3)";break;
+                        case"(AmtNetRate1)":
+                            tempsort="(AmtOfMRate3)";break;
+                        case"(AmtNet0)":
+                            tempsort="(AmtOfSNet3)";break;
+                        case"(AmtNetRate0)":
+                            tempsort="(AmtOfSRate3)";break;
+                    }
+                    break;
+                case "DCFFITABK5":
+
+                    switch(_t.options.sort.id)
+                    {
+                        case"(ChangePercent)":
+                            tempsort="(ChangePercent5Day)";break;
+                        case"(BalFlowMain)":
+                            tempsort="(BalFlowMainNet5)";break;
+                        case"(BalFlowNetRate)":
+                            tempsort="(BalFlowMainRate5)";break;
+                        case"(AmtNet3)":
+                            tempsort="(AmtOfUNet5)";break;
+                        case"(AmtNetRate3)":
+                            tempsort="(AmtOfURate5)";break;
+                        case"(AmtNet2)":
+                            tempsort="(AmtOfBNet5)";break;
+                        case"(AmtNetRate2)":
+                            tempsort="(AmtOfBRate5)";break;
+                        case"(AmtNet1)":
+                            tempsort="(AmtOfMNet5)";break;
+                        case"(AmtNetRate1)":
+                            tempsort="(AmtOfMRate5)";break;
+                        case"(AmtNet0)":
+                            tempsort="(AmtOfSNet5)";break;
+                        case"(AmtNetRate0)":
+                            tempsort="(AmtOfSRate5)";break;
+                    }
+                    break;
+                case "DCFFITABK10":
+
+                    switch(_t.options.sort.id)
+                    {
+                        case"(ChangePercent)":
+                            tempsort="(ChangePercent10Day)";break;
+                        case"(BalFlowMain)":
+                            tempsort="(BalFlowMainNet10)";break;
+                        case"(BalFlowNetRate)":
+                            tempsort="(BalFlowMainRate10)";break;
+                        case"(AmtNet3)":
+                            tempsort="(AmtOfUNet10)";break;
+                        case"(AmtNetRate3)":
+                            tempsort="(AmtOfURate10)";break;
+                        case"(AmtNet2)":
+                            tempsort="(AmtOfBNet10)";break;
+                        case"(AmtNetRate2)":
+                            tempsort="(AmtOfBRate10)";break;
+                        case"(AmtNet1)":
+                            tempsort="(AmtOfMNet10)";break;
+                        case"(AmtNetRate1)":
+                            tempsort="(AmtOfMRate10)";break;
+                        case"(AmtNet0)":
+                            tempsort="(AmtOfSNet10)";break;
+                        case"(AmtNetRate0)":
+                            tempsort="(AmtOfSRate10)";break;
+                    }
+                    break;
+            }
+            var param = "";
+            for (var key in _param) {
+                param += ("&" + _param[key].type + "=" + _param[key].value);
+            }
+            _url = _t.options.dataurl;
+            var _sort = "1";
+            _url = _url.replace("{pageSize}", _t.options.pagesize);
+            _url = _url.replace("{page}", _t.options.page);
+            _url = _url.replace("{sortType}", tempsort);
+            _url = _url.replace("{sortRule}", _t.options.sort.desc?"-1":"1");
+            _url = _url.replace("{param}", param);
+            return _url;
+        }
+    </script>
+</div>
+</body>
+</html>

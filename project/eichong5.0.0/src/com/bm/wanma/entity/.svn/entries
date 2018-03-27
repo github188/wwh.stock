@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/com/bm/wanma/entity"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="12701"
+   kind="dir"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="AdcodeBean.java"
+   checksum="23d5d493b3d606f24117bc6a4e9ee0a9"
+   last-author="liuyahui"
+   committed-rev="5684"
+   text-time="2017-03-01T01:18:20.238000Z"
+   kind="file"
+   committed-date="2017-03-01T01:18:20.238619Z"/>
+<entry
+   name="AdvertisementBean.java"
+   checksum="cff7000749fc2765d5b64e8f97b3db00"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="AnchorAll.java"
+   checksum="368f378838feee5e43e01686a7e1d87a"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="AnchorSummary.java"
+   checksum="bf8ed553b3c1c5d818519fa45b35bd6d"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="AreaBean.java"
+   checksum="a4cfd3beb7478fdbe672d4b90292dbce"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="BanlanceBean.java"
+   checksum="0a1ddd6c98e4b9b6f606526a95c9d5c3"
+   last-author="liuyahui"
+   committed-rev="8580"
+   text-time="2017-07-27T05:27:24.694000Z"
+   kind="file"
+   committed-date="2017-07-27T05:27:24.694988Z"/>
+<entry
+   name="BaseBean.java"
+   checksum="b10e2f264f9ed42136c06d0d926dcd3e"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="BillBean.java"
+   checksum="8c82a201946991cc62739503bdadc059"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="BillDetailsBean.java"
+   checksum="1c4248f39e2fde83fbc34e98782222d2"
+   last-author="liuyahui"
+   committed-rev="4275"
+   text-time="2016-12-14T09:52:08.423000Z"
+   kind="file"
+   committed-date="2016-12-14T09:52:08.423495Z"/>
+<entry
+   name="BillOneBean.java"
+   checksum="3db26b9cbe0d522abd07d32b440bab04"
+   last-author="liuyahui"
+   committed-rev="4275"
+   text-time="2016-12-14T09:52:08.423000Z"
+   kind="file"
+   committed-date="2016-12-14T09:52:08.423495Z"/>
+<entry
+   name="BillSectionBean.java"
+   checksum="b05d61297f765af00b5a4381643e2392"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CancleBespokeBean.java"
+   checksum="44d687fc46bc294f8f00ce8779fed63f"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CarNameBean.java"
+   checksum="f3ba12b2b68d69ca8d23bbd59e942699"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CarRepairBean.java"
+   checksum="e59cd8613ded91cd5102b538eeb671aa"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CarTypeBean.java"
+   checksum="3a6ea66c00484d508ab9dbdf8b38d58a"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ChargeFinishAndDoneBean.java"
+   checksum="0b21233ab4ffa34a1243ac9f5ae05bfb"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="ChargeIntegralBean.java"
+   checksum="5ba0b2da96d963daca09b8dc0968a892"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="ChargeOrderDetailsBean.java"
+   checksum="370c6495ff29ead6d6afaafa42d3d123"
+   last-author="liuyahui"
+   committed-rev="4275"
+   text-time="2016-12-14T09:52:08.423000Z"
+   kind="file"
+   committed-date="2016-12-14T09:52:08.423495Z"/>
+<entry
+   name="CheckInvoiceBean.java"
+   checksum="3bcca44f9a7a21956651f406cffd3f9e"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CityBean.java"
+   checksum="4abf45d78c8bcbe651572d390abb562c"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CouponBean.java"
+   checksum="cc06991a165d6055b863f4e8dee8d08c"
+   last-author="liuyahui"
+   committed-rev="6957"
+   text-time="2017-05-19T05:21:29.356000Z"
+   kind="file"
+   committed-date="2017-05-19T05:21:29.356265Z"/>
+<entry
+   name="CouponInfoBean.java"
+   checksum="e6a6091aaaa4fc767b19d4c999f16a75"
+   last-author="chengmeng"
+   committed-rev="4572"
+   text-time="2016-12-22T06:51:15.305000Z"
+   kind="file"
+   committed-date="2016-12-22T06:51:15.305262Z"/>
+<entry
+   name="CouponSizeBean.java"
+   checksum="aa3cbb07c36cd5302a804bf22c897a71"
+   last-author="liuyahui"
+   committed-rev="6957"
+   text-time="2017-05-19T05:21:29.356000Z"
+   kind="file"
+   committed-date="2017-05-19T05:21:29.356265Z"/>
+<entry
+   name="ElectricPileBean.java"
+   checksum="5e6df1649de771a9c8a5042a694b4c17"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ElectricPileDetailsBean.java"
+   checksum="d0c4b652bc09a566c931184f9dec4b63"
+   last-author="liuyahui"
+   committed-rev="5067"
+   text-time="2017-01-16T08:10:22.328000Z"
+   kind="file"
+   committed-date="2017-01-16T08:10:22.328512Z"/>
+<entry
+   name="EmergencyCallBean.java"
+   checksum="c6eef417350651e5b84cf7e22e14ddae"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="EnableInvoiceBean.java"
+   checksum="509f55d5bbcb669a11b3b88336b90f71"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="EnableInvoiceSectionBean.java"
+   checksum="6f5c7e2371e249edaa46521a5c4c01c1"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="EquipmentBean.java"
+   checksum="19a32798cb4d97aafd435fdfa2eaa28d"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="EverydayGetBean.java"
+   checksum="f2ea4e439c8acf81672f82b0ad01342f"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="FunctionButtonBean.java"
+   checksum="cf328bf69641f9dce2e402f43ace81b4"
+   last-author="liuyahui"
+   committed-rev="5919"
+   text-time="2017-03-07T06:27:49.826000Z"
+   kind="file"
+   committed-date="2017-03-07T06:27:49.826957Z"/>
+<entry
+   name="ImageCarouselBean.java"
+   checksum="56dd0d95ccaf2e5662d2534cbf6e4337"
+   last-author="liuyahui"
+   committed-rev="5684"
+   text-time="2017-03-01T01:18:20.238000Z"
+   kind="file"
+   committed-date="2017-03-01T01:18:20.238619Z"/>
+<entry
+   name="InformationBean.java"
+   checksum="49c32a4cc40aa53e2c6b10ebf21d9dc5"
+   last-author="liuyahui"
+   committed-rev="5978"
+   text-time="2017-03-08T02:45:21.276000Z"
+   kind="file"
+   committed-date="2017-03-08T02:45:21.276465Z"/>
+<entry
+   name="IntegralDetailBean.java"
+   checksum="4241ddcf418a3b62cc18d8b6bd9deacb"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="IntegralEventBean.java"
+   checksum="3453724e04549b2d9a3d88e35346abd4"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="IntegralProportionBean.java"
+   checksum="bb91167134777bbd36d595e79ca19827"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="IntegralRechargeBean.java"
+   checksum="9dc62a1d54bb4422300a14baa0b8a209"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="InvoiceCheckHold.java"
+   checksum="643122c70cd2b215af52cd77d4274d49"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="InvoiceConfigBean.java"
+   checksum="4279bcf3b6d8b806397dcee7dd4aaa54"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="InvoiceInfoDetailBean.java"
+   checksum="2a01aee91c91c5977517ed4e0f16d86c"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="InvoiceRecordBean.java"
+   checksum="cfee76f11200b1b7237373f2da81de7d"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="InvoiceRecordDetailBean.java"
+   checksum="71b817340835f274aa8e9a3c7f6b5e9f"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="InvoiceRecordSectionBean.java"
+   checksum="42d808e6bd5be9a74fea9ab3d56eb442"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ListModeBean.java"
+   checksum="22d697cf0c5d5c752cd3bb591e0be429"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="LoginBean.java"
+   checksum="9be250420fa655baa825a9345ffe76b7"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MalfunctionBean.java"
+   checksum="66ebca0f35bfc66a9c8cb14e1035d2fe"
+   last-author="liuyahui"
+   committed-rev="5684"
+   text-time="2017-03-01T01:18:20.238000Z"
+   kind="file"
+   committed-date="2017-03-01T01:18:20.238619Z"/>
+<entry
+   name="MapModeBean.java"
+   checksum="32a7b444daa1a0f8f86a39525cb5b6f8"
+   last-author="chengmeng"
+   committed-rev="5296"
+   text-time="2017-02-09T07:33:37.835000Z"
+   kind="file"
+   committed-date="2017-02-09T07:33:37.835346Z"/>
+<entry
+   name="MarkerCityBean.java"
+   checksum="d927e7ecca91386d83b155d6aece72d0"
+   last-author="chengmeng"
+   committed-rev="5296"
+   text-time="2017-02-09T07:33:37.835000Z"
+   kind="file"
+   committed-date="2017-02-09T07:33:37.835346Z"/>
+<entry
+   name="MyBillList.java"
+   checksum="d7926f6339b74ab05f8e2cf18fbde4b4"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyCardApplyInfo.java"
+   checksum="94bad4e6413906fb3589d22ab1e4d267"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyCardInfo.java"
+   checksum="6042c71a33e2360527d0dfc2d395be3f"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyCollectBean.java"
+   checksum="c95a6072ce972a25b14b07f973bd35e0"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyDynamicListBean.java"
+   checksum="3424c158c79ff87263dfef8c3554f5fa"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyNewsFeedbackBean.java"
+   checksum="22b1f4b2bc622e467e2bfb6da1ceb1c2"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyNewsSystemBean.java"
+   checksum="72c529d36917a89ef6f805ab515f505f"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyOrderParticularsBean.java"
+   checksum="08afc7410e4879ea01e658e173c64867"
+   last-author="liuyahui"
+   committed-rev="4275"
+   text-time="2016-12-14T09:52:08.423000Z"
+   kind="file"
+   committed-date="2016-12-14T09:52:08.423495Z"/>
+<entry
+   name="OrderStatusBean.java"
+   checksum="fd38ff3bd359299442c2d8b3e4795e60"
+   last-author="chengmeng"
+   committed-rev="4532"
+   text-time="2016-12-20T10:44:16.184000Z"
+   kind="file"
+   committed-date="2016-12-20T10:44:16.184310Z"/>
+<entry
+   name="PersonIntegralBean.java"
+   checksum="da4c42ad77147b5dc97f498c62bbdf66"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="PileCommentListBean.java"
+   checksum="283d8aedf8516e15d17826c056a1b1fb"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="PileHead.java"
+   checksum="ff36991e1101c0b59592a6e439162477"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="PoiAdcodeBean.java"
+   checksum="a14a8bfd2c0ec0dcc47b786b1eebd514"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="PoiLatLngBean.java"
+   checksum="77d171673a8fd5959d8703c5c5477437"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="PowerElectricpileListBean.java"
+   checksum="27b840a622a06fa803d2d8a953c32ec4"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="PowerStationBean.java"
+   checksum="ccc5cb1479a3dec4bbe857f1ff0aeeac"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ProvinceBean.java"
+   checksum="2e2b1df7aff681eb84ddddb85087f4db"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="RateBean.java"
+   checksum="da21328d5b78ee31e673a4f62a9165a8"
+   last-author="liuyahui"
+   committed-rev="4318"
+   text-time="2016-12-15T09:59:06.538000Z"
+   kind="file"
+   committed-date="2016-12-15T09:59:06.538383Z"/>
+<entry
+   name="RechargeRecordBean.java"
+   checksum="2d6c1e0ca60e38aac79bb6add85ff1cd"
+   last-author="liuyahui"
+   committed-rev="4253"
+   text-time="2016-12-14T09:43:11.907000Z"
+   kind="file"
+   committed-date="2016-12-14T09:43:11.907353Z"/>
+<entry
+   name="ScanInfoBean.java"
+   checksum="16d49cb63b929156af586402cd9b6f11"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="SelectValueBean.java"
+   checksum="78defb4ff7a1469748b0e381fe45a594"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ShareIntegralBean.java"
+   checksum="1d382f4a1e20c69e72a824195c28055b"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="ShareToThirdBean.java"
+   checksum="02007d7fcfdb209871522f81a16ac4e6"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="StationCommentListBean.java"
+   checksum="9640116cd82981cf7f89c5d2d7bb6471"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="SystemNoticeBean.java"
+   checksum="8c003e3a829828a838288af094408b2a"
+   last-author="chengmeng"
+   committed-rev="4532"
+   text-time="2016-12-20T10:44:16.184000Z"
+   kind="file"
+   committed-date="2016-12-20T10:44:16.184310Z"/>
+<entry
+   name="TextCarouselBean.java"
+   checksum="dbf9f11fa986138ddb353597aaab4d13"
+   last-author="liuyahui"
+   committed-rev="5684"
+   text-time="2017-03-01T01:18:20.238000Z"
+   kind="file"
+   committed-date="2017-03-01T01:18:20.238619Z"/>
+<entry
+   name="UserInfoBean.java"
+   checksum="fc67a21b6613465f40ac18cc1205ee1c"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="VersionInfoBean.java"
+   checksum="ab12f2f999e0a79619b53b56ca30e6af"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+</wc-entries>

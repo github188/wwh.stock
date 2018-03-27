@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>沪深证券资金流入新增</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/stk/fund-details/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <table width="100%" cellpadding="5">
+                            <tr>
+                    <td align="left">
+                        日期
+                    </td>
+                    <td>
+                                                <input name="dt" class="easyui-textbox" value="$!{model.dt}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        代码
+                    </td>
+                    <td>
+                                                <input name="stockCode" class="easyui-textbox" value="$!{model.stockCode}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        名称
+                    </td>
+                    <td>
+                                                <input name="stockName" class="easyui-textbox" value="$!{model.stockName}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        涨幅
+                    </td>
+                    <td>
+                                                <input name="changeWidth" class="easyui-textbox" value="$!{model.changeWidth}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        现价
+                    </td>
+                    <td>
+                                                <input name="price" class="easyui-textbox" value="$!{model.price}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        换手
+                    </td>
+                    <td>
+                                                <input name="turnOver" class="easyui-textbox" value="$!{model.turnOver}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        净买率
+                    </td>
+                    <td>
+                                                <input name="netRate" class="easyui-textbox" value="$!{model.netRate}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        净流入
+                    </td>
+                    <td>
+                                                <input name="netAmount" class="easyui-textbox" value="$!{model.netAmount}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        相对流量
+                    </td>
+                    <td>
+                                                <input name="relativeFlow" class="easyui-textbox" value="$!{model.relativeFlow}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        大宗流入
+                    </td>
+                    <td>
+                                                <input name="largeAmount" class="easyui-textbox" value="$!{model.largeAmount}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        大宗流量
+                    </td>
+                    <td>
+                                                <input name="largeFlow" class="easyui-textbox" value="$!{model.largeFlow}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        5分钟涨幅
+                    </td>
+                    <td>
+                                                <input name="changeWidth5" class="easyui-textbox" value="$!{model.changeWidth5}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        5分钟换手
+                    </td>
+                    <td>
+                                                <input name="turnOver5" class="easyui-textbox" value="$!{model.turnOver5}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        5分钟净流入
+                    </td>
+                    <td>
+                                                <input name="netAmount5" class="easyui-textbox" value="$!{model.netAmount5}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        5分钟相对流量
+                    </td>
+                    <td>
+                                                <input name="relativeFlow5" class="easyui-textbox" value="$!{model.relativeFlow5}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        5分钟大宗流入
+                    </td>
+                    <td>
+                                                <input name="largeAmount5" class="easyui-textbox" value="$!{model.largeAmount5}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        5分钟大宗流量
+                    </td>
+                    <td>
+                                                <input name="largeFlow5" class="easyui-textbox" value="$!{model.largeFlow5}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        顺序
+                    </td>
+                    <td>
+                                                <input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+                    </td>
+                </tr>
+                    </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

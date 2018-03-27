@@ -1,0 +1,153 @@
+package com.bm.wanma.ui.activity;
+
+import java.util.ArrayList;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.bm.wanma.R;
+import com.bm.wanma.adapter.EverydayGetAdapter;
+import com.bm.wanma.adapter.FunctionButtonAdapter;
+import com.bm.wanma.entity.ChargeFinishAndDoneBean;
+import com.bm.wanma.entity.EverydayGetBean;
+import com.bm.wanma.net.GetDataPost;
+import com.bm.wanma.net.Protocol;
+import com.bm.wanma.utils.LogUtil;
+import com.bm.wanma.utils.PreferencesUtil;
+import com.bm.wanma.utils.TimeUtil;
+import com.bm.wanma.utils.ToastUtil;
+import com.bm.wanma.utils.Tools;
+
+public class EverydayGetActivity extends BaseActivity implements
+		OnClickListener {
+	private GridView gridView;
+	private ArrayList<EverydayGetBean> everydayGetBeans;
+	private String pkUserId, provincecode, citycode;
+	private TextView t_datatime,t_receive,t_title;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_everyday_get);
+		pkUserId = PreferencesUtil.getStringPreferences(getActivity(),
+				"pkUserinfo");
+		initView();
+		initData();
+	}
+
+	private void initData() {
+
+		provincecode = PreferencesUtil.getStringPreferences(this,
+				"provincecode");
+		citycode = PreferencesUtil.getStringPreferences(this, "citycode");
+//		LogUtil.i("cm_netPost","pkUserId==" + pkUserId);
+		if (Tools.isEmptyString(citycode)||Tools.isEmptyString(provincecode)) {	
+			provincecode = "330000";
+			citycode = "330100";
+			PreferencesUtil.setPreferences(this, "provincecode", "330000");
+			PreferencesUtil.setPreferences(this, "citycode", "330100");
+		}
+		GetDataPost.getInstance(getActivity()).getSignIn(handler, pkUserId,provincecode, citycode);
+	}
+
+	private void initView() {
+		t_datatime = (TextView) findViewById(R.id.datatime);
+		t_title = (TextView) findViewById(R.id.title);
+		t_receive = (TextView) findViewById(R.id.receive);
+		t_receive.setOnClickListener(this);
+		gridView = (GridView) findViewById(R.id.custom_function);
+
+		findViewById(R.id.settings_back).setOnClickListener(this);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.receive:
+			if (!Tools.isEmptyString(citycode)&&!Tools.isEmptyString(provincecode)) {		
+			GetDataPost.getInstance(getActivity()).getEverydayGetIntegral(handler, pkUserId,provincecode, citycode);
+			}
+			break;
+		case R.id.settings_back:
+				finish();
+			break;
+		default:
+			break;
+		}
+	}
+
+	@Override
+	protected void getData() {
+	}
+
+	@SuppressLint("ResourceAsColor")
+	@SuppressWarnings("unchecked")
+	@Override
+	public void onSuccess(String sign, Bundle bundle) {
+		if (bundle != null) {
+			if (sign.equals(Protocol.SIGN_IN_GET)) {
+				everydayGetBeans = (ArrayList<EverydayGetBean>) bundle.getSerializable(Protocol.DATA);
+				if (everydayGetBeans.size()>0) {
+					t_datatime.setText(TimeUtil.parseDate(everydayGetBeans.get(0).getDate(),
+		    				   "yyyy-MM-dd", "yyyy-MM-dd"));
+					t_title.setText(everydayGetBeans.get(0).getPoint());
+					if (!Tools.isEmptyString(everydayGetBeans.get(0).getCanSign())&&everydayGetBeans.get(0).getCanSign().equals("0")) {
+						t_title.setTextColor(R.color.common_light_black);
+						t_receive.setVisibility(View.GONE);
+						findViewById(R.id.v).setVisibility(View.GONE);
+					}
+					EverydayGetAdapter adapter = new EverydayGetAdapter(getActivity(),
+							everydayGetBeans);
+					gridView.setAdapter(adapter);
+					// 功能按钮点击事件
+					gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+						@Override
+						public void onItemClick(AdapterView<?> parent, View view,
+								int position, long id) {
+							if (position==0) {
+								if (!Tools.isEmptyString(everydayGetBeans.get(0).getCanSign())&&everydayGetBeans.get(position).getCanSign().equals("0")) {
+									ToastUtil.TshowToast("您已签到!");
+								}else {	
+									if (!Tools.isEmptyString(citycode)&&!Tools.isEmptyString(provincecode)) {		
+									GetDataPost.getInstance(getActivity()).getEverydayGetIntegral(handler, pkUserId,provincecode, citycode);
+									}
+								}
+							}
+						}
+
+					});
+					adapter.notifyDataSetChanged();
+				}
+			}else if (sign.equals(Protocol.EVERY_DAY_GET_INTEGRAL)) {
+				t_receive.setVisibility(View.GONE);
+				findViewById(R.id.v).setVisibility(View.GONE);
+				t_title.setTextColor(R.color.common_light_black);
+				ToastUtil.TshowToast("领取成功");
+			}
+		}
+	}
+
+	@Override
+	public void onFaile(String sign, Bundle bundle) {
+		showToast(bundle.getString(Protocol.MSG));
+	}
+
+	// interface
+	@Override
+	protected void onResume() {
+		super.onResume();
+	}
+
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+	}
+}

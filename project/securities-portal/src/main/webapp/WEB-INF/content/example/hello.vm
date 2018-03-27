@@ -1,0 +1,6 @@
+#parse("includes/header_home.vm")
+<div class="container">
+    hello
+    <input type="button" value="helloworld" />
+</div>
+#parse("includes/footer.vm")

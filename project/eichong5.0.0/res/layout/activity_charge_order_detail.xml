@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/common_light_white">
+    <RelativeLayout
+        android:background="@color/common_orange"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        >
+        <ImageButton
+            android:id="@+id/activity_charge_detail_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/nav_btn_back"
+            android:background="@android:color/transparent"/>
+        <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="订单详情"
+             android:textColor="@color/common_white"
+             android:textSize="18sp"
+             android:padding="5dp"
+             android:layout_centerVertical="true"
+             android:layout_centerInParent="true"
+            />
+        </RelativeLayout>
+        <!-- 订单内容区域 -->
+        
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+    	android:focusable="true"
+        >
+     <LinearLayout 
+         android:layout_width="match_parent"
+       	 android:layout_height="wrap_content"
+       	 android:orientation="vertical"
+         >
+         
+         <RelativeLayout 
+         android:layout_width="match_parent"
+       	 android:layout_height="wrap_content"
+       	 android:background="@color/common_light_white"
+       	 android:paddingTop="10dp"
+       	 android:paddingLeft="20dp"
+       	 android:paddingRight="20dp"
+       	 android:paddingBottom="10dp"
+         >
+	<TextView 
+	     android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+       	 android:layout_alignParentLeft="true"
+       	 android:text="时间"
+	     android:textSize="14sp"
+	     android:textColor="@color/common_light_black"
+	    />
+	<TextView 
+	    android:id="@+id/charge_detail_duration"
+	     android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+       	 android:layout_alignParentRight="true"
+	     android:textSize="14sp"
+	     android:textColor="@color/common_black"
+	    />
+	</RelativeLayout>
+
+    <LinearLayout 
+         android:layout_width="match_parent"
+       	 android:layout_height="wrap_content"
+       	 android:paddingLeft="20dp"
+       	 
+       	 android:paddingBottom="10dp"
+       	 android:orientation="vertical"
+       	 android:background="@color/common_white"
+         >  
+         
+	<RelativeLayout 
+         android:layout_width="match_parent"
+       	 android:layout_height="wrap_content"
+       	 android:background="@color/common_white"
+       	 android:paddingTop="10dp"
+       	 android:paddingRight="20dp"
+       	 android:paddingBottom="10dp"
+         >
+	<TextView 
+	     android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+       	 android:layout_alignParentLeft="true"
+       	 android:text="开始时间"
+	     android:textSize="14sp"
+	     android:textColor="@color/common_light_black"
+	    />
+	<TextView 
+	    android:id="@+id/charge_detail_start"
+	     android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+       	 android:layout_alignParentRight="true"
+	     android:textSize="14sp"
+	     android:textColor="@color/common_black"
+	    />
+	</RelativeLayout>
+	<View 
+	    android:layout_width="match_parent"
+       	android:layout_height="1dp"
+       	android:background="@color/common_light_gray"
+	    />
+	<RelativeLayout 
+         android:layout_width="match_parent"
+       	 android:layout_height="wrap_content"
+       	 android:background="@color/common_white"
+       	 android:paddingTop="10dp"
+         >
+	<TextView 
+	     android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+       	 android:layout_alignParentLeft="true"
+       	 android:text="结束时间"
+	     android:textSize="14sp"
+	     android:textColor="@color/common_light_black"
+	    />
+	<TextView 
+	    android:id="@+id/charge_detail_end"
+	     android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+       	 android:paddingRight="20dp"
+       	 android:layout_alignParentRight="true"
+	     android:textSize="14sp"
+	     android:textColor="@color/common_black"
+	    />
+	</RelativeLayout>
+
+	</LinearLayout>
+	
+	
+	
+	<TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textSize="14sp"
+	    android:textColor="@color/common_light_black"
+	    android:text="地点"
+	    android:paddingTop="10dp"
+	    android:paddingBottom="10dp"
+	    android:paddingLeft="20dp"
+	    />
+	
+	
+    <LinearLayout 
+         android:layout_width="match_parent"
+       	 android:layout_height="wrap_content"
+       	 android:paddingLeft="20dp"
+       	 android:paddingRight="20dp"
+       	 android:paddingBottom="10dp"
+       	 android:paddingTop="10dp"
+       	 android:orientation="horizontal"
+       	 android:background="@color/common_white"
+         >
+         <TextView 
+        android:id="@+id/charge_detail_name"
+	    android:layout_width="0dp"
+	    android:layout_weight="1"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center_vertical"
+	    android:paddingRight="5dp"
+	    android:gravity="left"
+	    android:maxLines="2"
+	    android:ellipsize="end"
+	    android:textSize="14sp"
+	    android:textColor="@color/common_light_black"
+	    />
+        <TextView 
+        android:id="@+id/charge_detail_addr"
+	    android:layout_width="0dp"
+	    android:layout_weight="1"
+	    android:paddingLeft="5dp"
+	    android:gravity="right"
+	    android:layout_height="wrap_content"
+	    android:textSize="14sp"
+		android:layout_gravity="center_vertical"
+	    android:textColor="@color/common_black"
+	    />
+	
+	 </LinearLayout>
+	 
+    <RelativeLayout 
+         android:layout_width="match_parent"
+       	 android:layout_height="wrap_content"
+       	 android:paddingLeft="20dp"
+       	 android:paddingRight="20dp"
+       	 android:paddingBottom="10dp"
+       	 android:paddingTop="10dp"
+       	 android:background="@color/common_light_white"
+         >
+         <TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_centerVertical="true"
+	    android:textSize="14sp"
+	    android:textColor="@color/common_light_black"
+	    android:text="费用"
+	    />
+        <TextView 
+        android:id="@+id/charge_detail_payment_money"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textSize="14sp"
+	    android:layout_centerVertical="true"
+	    android:layout_alignParentRight="true"
+	    android:textColor="@color/common_black"
+	    />
+	
+	 </RelativeLayout>
+    
+    
+	<!-- 订单中间详情区域 -->
+	 <LinearLayout 
+         android:layout_width="match_parent"
+       	 android:layout_height="wrap_content"
+       	 android:paddingLeft="20dp"
+       	 android:paddingRight="20dp"
+       	 android:orientation="vertical"
+       	 android:background="@color/common_white"
+         >
+
+
+<RelativeLayout 
+         android:layout_width="match_parent"
+       	 android:layout_height="wrap_content"
+       	 android:background="@color/common_white"
+       	 android:paddingTop="10dp"
+       	 android:paddingBottom="10dp"
+         >
+	<TextView 
+	     android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+       	 android:layout_alignParentLeft="true"
+       	 android:text="电费"
+	     android:textSize="14sp"
+	     android:textColor="@color/common_light_black"
+	    />
+	<TextView 
+	    android:id="@+id/charge_detail_elctric_money"
+	     android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+       	 android:layout_alignParentRight="true"
+	     android:textSize="14sp"
+		 android:textColor="@color/common_black"
+	    />
+	</RelativeLayout>
+	<com.bm.wanma.view.CustomGridView
+                android:id="@+id/custom_function"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/common_white"
+                android:numColumns="2"
+                android:columnWidth="10dp"  
+ 
+				  android:horizontalSpacing="10dp"  
+				  android:verticalSpacing="10dp"  
+				  android:listSelector="@android:color/transparent"
+				  android:gravity="center" 
+	/>
+
+<!-- 	<LinearLayout  -->
+<!--          android:layout_width="match_parent" -->
+<!--        	 android:layout_height="wrap_content" -->
+<!--        	 android:background="@color/common_white" -->
+<!--        	 android:orientation="horizontal" -->
+<!--          > -->
+<!-- 	<TextView  -->
+<!-- 	     android:id="@+id/charge_detail_price1" -->
+<!-- 	     android:layout_width="0dp" -->
+<!-- 	    android:layout_weight="1" -->
+<!--        	 android:paddingBottom="10dp" -->
+<!--        	 android:paddingRight="5dp" -->
+<!-- 	    android:layout_height="wrap_content" -->
+<!-- 	    android:layout_gravity="center_vertical" -->
+<!-- 	    android:gravity="left" -->
+<!-- 	    android:textSize="14sp" -->
+<!-- 	    android:visibility="gone" -->
+<!-- 	    android:textColor="@color/common_light_black" -->
+<!-- 	    /> -->
+<!-- 	<TextView  -->
+<!-- 	    android:id="@+id/charge_detail_price2" -->
+<!-- 	     android:layout_width="0dp" -->
+<!-- 	    android:layout_weight="1" -->
+<!-- 	    android:paddingLeft="5dp" -->
+<!-- 	    android:gravity="right" -->
+<!--        	 android:paddingBottom="10dp" -->
+<!-- 	    android:layout_height="wrap_content" -->
+<!-- 	    android:layout_gravity="center_vertical" -->
+<!-- 	    android:textSize="14sp" -->
+<!-- 	    android:visibility="gone" -->
+<!-- 	    android:textColor="@color/common_light_black" -->
+<!-- 	    /> -->
+<!-- 	</LinearLayout> -->
+<!-- 	<LinearLayout  -->
+<!--          android:layout_width="match_parent" -->
+<!--        	 android:layout_height="wrap_content" -->
+<!--        	 android:background="@color/common_white" -->
+<!--        	 android:orientation="horizontal" -->
+<!--          > -->
+<!-- 	<TextView  -->
+<!-- 	    android:id="@+id/charge_detail_price3" -->
+<!-- 	     android:layout_width="0dp" -->
+<!-- 	    android:layout_weight="1" -->
+<!-- 	    android:layout_height="wrap_content" -->
+<!-- 	    android:paddingRight="5dp" -->
+<!--        	 android:paddingBottom="10dp" -->
+<!-- 	    android:visibility="gone" -->
+<!-- 	    android:gravity="left" -->
+<!-- 	    android:layout_gravity="center_vertical" -->
+<!-- 	    android:textSize="14sp" -->
+<!-- 	    android:textColor="@color/common_light_black" -->
+<!-- 	    /> -->
+<!-- 	<TextView  -->
+<!-- 	    android:id="@+id/charge_detail_price4" -->
+<!-- 	     android:layout_width="0dp" -->
+<!-- 	    android:layout_weight="1" -->
+<!--        	 android:paddingBottom="10dp" -->
+<!--        	 android:gravity="right" -->
+<!--        	 android:paddingLeft="5dp" -->
+<!-- 	    android:layout_height="wrap_content" -->
+<!-- 	    android:layout_gravity="center_vertical" -->
+<!-- 	    android:visibility="gone" -->
+<!-- 	    android:textSize="14sp" -->
+<!-- 	    android:textColor="@color/common_light_black" -->
+<!-- 	    /> -->
+<!-- 	</LinearLayout> -->
+	<View 
+	    android:layout_width="match_parent"
+       	android:layout_height="1dp"
+       	android:background="@color/common_light_gray"
+	    />
+	 
+	
+	<RelativeLayout 
+         android:layout_width="match_parent"
+       	 android:layout_height="wrap_content"
+       	 android:background="@color/common_white"
+       	 android:paddingTop="10dp"
+       	 android:paddingBottom="10dp"
+         >
+	<TextView 
+	     android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+       	 android:layout_alignParentLeft="true"
+       	 android:text="服务费"
+	     android:textSize="14sp"
+	     android:textColor="@color/common_light_black"
+	    />
+	<TextView 
+	    android:id="@+id/charge_detail_service_money"
+	     android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+       	 android:layout_alignParentRight="true"
+	     android:textSize="14sp"
+	     android:textColor="@color/common_light_black"
+	    />
+	</RelativeLayout>
+	<TextView 
+	    android:id="@+id/charge_detail_service_price"
+	     android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+       	 android:visibility="gone"
+       	 android:paddingBottom="10dp"
+       	 android:layout_alignParentRight="true"
+	     android:textSize="12sp"
+	     android:textColor="@color/common_light_black"
+	    />
+	<View 
+	    android:layout_width="match_parent"
+       	android:layout_height="1dp"
+       	android:background="@color/common_light_gray"
+	    />
+	<RelativeLayout 
+         android:layout_width="match_parent"
+       	 android:layout_height="wrap_content"
+       	 android:background="@color/common_white"
+       	 android:paddingTop="10dp"
+       	 android:paddingBottom="10dp"
+         >
+	<TextView 
+	     android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+       	 android:layout_alignParentLeft="true"
+       	 android:text="优惠券抵扣"
+	     android:textSize="14sp"
+	     android:textColor="@color/common_light_black"
+	    />
+	<TextView 
+	    android:id="@+id/charge_detail_coupon_money"
+	     android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+       	 android:layout_alignParentRight="true"
+	     android:textSize="14sp"
+	     android:textColor="@color/common_black"
+
+	    />
+	</RelativeLayout>
+	
+	</LinearLayout>
+	
+	 
+		<TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:text="订单状态"
+		        android:paddingTop="10dp"
+		        android:paddingBottom="10dp"
+		        android:paddingLeft="20dp"
+		        android:textColor="@color/common_light_black"
+		        android:textSize="14sp" />
+
+		    <TextView
+		        android:id="@+id/charge_detail_order_status"
+		        android:layout_width="match_parent"
+		        android:paddingTop="10dp"
+		        android:paddingBottom="10dp"
+		        android:paddingRight="20dp"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentRight="true"
+		        android:gravity="right"
+		        android:textColor="@color/common_black"
+		        android:background="@color/common_white"
+		        android:textSize="14sp"
+		        
+		         />
+
+	<TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:paddingBottom="10dp"
+	    android:paddingLeft="20dp"
+	    android:paddingTop="10dp"
+	    android:text="订单编号"
+	    android:textColor="@color/common_light_black"
+	    android:textSize="14sp" />
+
+	<TextView
+	    android:id="@+id/charge_detail_order"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:background="@color/common_white"
+	    android:gravity="right"
+	    android:paddingBottom="10dp"
+	    android:paddingRight="20dp"
+	    android:paddingTop="10dp"
+	    android:textColor="@color/common_black"
+	    android:textSize="14sp"
+	    android:layout_marginBottom="20dp"
+	     />
+	 
+	
+	
+<!-- 	</LinearLayout> -->
+
+
+
+		
+<!-- 		<TextView  -->
+<!-- 		    android:id="@+id/answer_questions" -->
+<!-- 		    android:layout_width="match_parent" -->
+<!-- 		    android:layout_height="wrap_content" -->
+<!-- 		    android:paddingLeft="20dp" -->
+<!--        	 	android:paddingRight="20dp" -->
+<!--        	 	android:visibility="gone" -->
+<!-- 		    android:text="\n本次预充金额暂时被冻结爱充网会在最多5个工作日内作出处理，请留意订单状态\n如果有疑问请拨打客服电话：400-085-0006" -->
+<!-- 		    /> -->
+	 </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

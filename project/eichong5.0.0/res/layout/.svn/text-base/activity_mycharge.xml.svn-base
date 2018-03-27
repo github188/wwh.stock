@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/common_light_white"
+    android:orientation="vertical" >
+     <RelativeLayout
+        android:background="@color/common_orange"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        >
+        <ImageButton
+            android:id="@+id/charge_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/nav_btn_back"
+            android:background="@android:color/transparent"/>
+        <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="我的充电"
+             android:textColor="@color/common_white"
+             android:textSize="18sp"
+             android:padding="5dp"
+             android:layout_centerVertical="true"
+             android:layout_centerInParent="true"
+            />
+<!--         <TextView  -->
+            
+<!--              android:layout_width="wrap_content" -->
+<!--              android:layout_height="wrap_content" -->
+<!--              android:text="状态说明" -->
+<!--              android:textColor="@color/common_white" -->
+<!--              android:textSize="15sp" -->
+<!--              android:padding="10dp" -->
+<!--              android:layout_centerVertical="true" -->
+<!--              android:layout_alignParentRight="true" -->
+<!--             /> -->
+        <ImageView 
+            android:id="@+id/state_explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_question"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:layout_marginRight="7dp"
+            />
+        </RelativeLayout>
+       <LinearLayout 
+           android:layout_width="match_parent"
+           android:layout_height="40dp"
+           android:background="@color/common_white"
+           android:orientation="horizontal"
+           android:baselineAligned="false"
+           >
+        <RelativeLayout 
+            android:id="@+id/chargeunfinished_rl"
+            android:layout_weight="1"
+           	 android:layout_height="match_parent"
+           	 android:layout_width="0dp"
+            >
+           <TextView 
+             android:id="@+id/chargeunfinished_tv"
+           	 android:layout_height="wrap_content"
+           	 android:layout_width="wrap_content"
+           	 android:gravity="center"
+             android:text="未完成"
+             android:textSize="16sp"
+             android:textColor="@color/common_black"
+             android:layout_centerInParent="true"/>
+            <View 
+             android:id="@+id/chargeunfinished_v"
+             android:layout_height="2dp"
+           	 android:layout_width="match_parent"
+             android:background="@color/common_orange"
+             android:layout_alignParentBottom="true"
+             android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+         <View 
+             android:layout_height="match_parent"
+             android:layout_marginTop="8dp"
+             android:layout_marginBottom="8dp"
+           	 android:layout_width="1dp"
+           	 android:layout_gravity="center_vertical"
+             android:background="@color/common_light_gray"/>
+   
+         <RelativeLayout 
+            android:id="@+id/chargedone_rl"
+            android:layout_weight="1"
+           	 android:layout_height="match_parent"
+           	 android:layout_width="0dp"
+            >
+           <TextView 
+             android:id="@+id/chargedone_tv"
+           	 android:layout_height="wrap_content"
+           	 android:layout_width="wrap_content"
+           	 android:gravity="center"
+             android:text="已完成"
+             android:textSize="16sp"
+             android:textColor="@color/common_gray"
+             android:layout_centerInParent="true"/>
+            <View 
+             android:id="@+id/chargedone_v"
+             android:layout_height="2dp"
+           	 android:layout_width="match_parent"
+           	 android:visibility="gone"
+             android:background="@color/common_orange"
+             android:layout_alignParentBottom="true"
+             android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+       </LinearLayout> 
+    	
+       
+      <LinearLayout
+        android:id="@+id/charge_content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:orientation="vertical" >
+      </LinearLayout>
+    
+
+</LinearLayout>

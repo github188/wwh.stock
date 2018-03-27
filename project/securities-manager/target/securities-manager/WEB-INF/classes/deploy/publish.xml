@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<portable-config>
+    <config-file path="WEB-INF/classes/spring/application.properties">
+        <replace key="jdbc.url"><![CDATA[jdbc:mysql://127.0.0.1:3306/securities-manager?useUnicode=true&characterEncoding=UTF-8]]></replace>
+        <replace key="jdbc.username">root</replace>
+        <replace key="jdbc.password">hongcheng</replace>
+    </config-file>
+    <config-file path="WEB-INF/classes/log4j.properties">
+        <replace key="log4j.rootCategory">INFO, stdout, logfile</replace>
+    </config-file>
+    <config-file path="WEB-INF/classes/sso/sso.properties">
+        <replace key="sso.cookie.domain">.securities.com</replace>
+        <replace key="sso.login.url">http://sso.securities.com:8085/login</replace>
+    </config-file>
+</portable-config>

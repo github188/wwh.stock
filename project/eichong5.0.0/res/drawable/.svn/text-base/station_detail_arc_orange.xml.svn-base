@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 弹出详情 圆角弧形背景  -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+     <solid android:color="@color/common_orange"/>
+      <corners android:radius="30dp"/>
+	 <padding android:left="6dp" android:right="6dp" android:bottom="6dp" android:top="6dp"></padding>
+</shape>

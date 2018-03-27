@@ -1,0 +1,525 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>行情中心</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <script type="text/javascript" src="${base}/static/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/base.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/core.css">
+</head>
+<body>
+    #parse("includes/stockeast/home_manage.vm")
+<!--layout page-main-->
+<div class="page-main fn-clear">
+    <!-- layout section-main -->
+    <div class="section-main">
+
+        <div class="mod-section-header fn-clear">
+            <ul class="fn-left fn-clear tabs" id="tab1">
+                <li class="current">沪深股市</li>
+                <li>今日热点</li>
+            </ul>
+            <div class="fn-right options">
+                <a class="btn-refresh" id="refresh"></a>
+                <a class="btn-favor" id="bookMark"></a>
+            </div>
+            <b class="icon-section-header"></b>
+        </div>
+        <div class="space-10"></div>
+        <div class="mod-section-content tab-panels" id="tab1panels">
+            <!-- 沪深股市 -->
+            <div class="tab-panel current" id="hsindex">
+                <div class="mod-item">
+                    <div class="item-header">
+                        <h4>上证指数</h4>
+                    </div>
+
+                    <div class="item-content">
+                        <a href="${base}/stockeast/zsdetail?code=000001" target="_self">
+                            <img width="340" height="190" id="qc_0000011Rs_1" src="http://hqpiczs.dfcfw.com/EM_Quote2010PictureProducter/Picture/0000011Rs.png">
+                        </a>
+                        <div class="buttons">
+                            <a href="${base}/stockeast/zsdetail?code=000001" target="_self" class="btn-bigimg" id="qc_0000011Rs_2"></a>&nbsp;
+                            <a href="http://guba.eastmoney.com/topic,szzs.html" target="_blank" class="btn-gubar" id="qc_0000011Rs_3"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mod-item">
+                    <div class="item-header">
+                        <h4>深圳指数</h4>
+                    </div>
+
+                    <div class="item-content">
+                        <a href="http://quote.eastmoney.com/zs399001.html" target="_blank">
+                            <img width="340" height="190" id="qc_3990012Rs_1" src="http://hqpiczs.dfcfw.com/EM_Quote2010PictureProducter/Picture/3990012Rs.png">
+                        </a>
+                        <div class="buttons">
+                            <a href="http://quote.eastmoney.com/zs399001.html" target="_blank" class="btn-bigimg" id="qc_3990012Rs_2"></a>&nbsp;
+                            <a href="http://guba.eastmoney.com/topic,399001.html" target="_blank" class="btn-gubar" id="qc_3990012Rs_3"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mod-item">
+                    <div class="item-header">
+                        <h4>股指期货</h4>
+                    </div>
+
+                    <div class="item-content">
+                        <a target="_blank" href="http://quote.eastmoney.com/gzqh/IF1701.html">
+                            <img width="340" height="190" id="qc_IF17011RS_1" src="http://hqgnqhpic.eastmoney.com/EM_Futures2010PictureProducter/Picture/IF17011RS.png">
+                        </a>
+                        <div class="buttons">
+                            <a class="btn-bigimg" target="_blank" href="http://quote.eastmoney.com/gzqh/IF1701.html" title="看大图" id="qc_IF17011RS_2"></a>&nbsp;
+                            <a href="http://guba.eastmoney.com/topic,IF01.html" target="_blank" class="btn-gubar" title="进股吧" id="qc_IF17011RS_3"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 今日热点 -->
+            <div class="tab-panel" id="hottoday">
+                <div class="mod-item">
+                    <div class="item-header">
+                        <h4>领涨</h4>
+                    </div>
+
+                    <div class="item-content" id="lzhy">
+                        <!--
+                           <img src="http://cmsjs.eastmoney.com/data/images/474.png" />
+                         <dl class="img-text">
+                             <dt>领涨股:</dt>
+                             <dd><a class="name" href="#">网宿科技</a> <span class="s2">14.29</span> <span class="s3">10.01%</span></dd>
+                             <dd><a class="name" href="#">华东电脑</a> <span>14.29</span> <span>10.01%</span></dd>
+                         </dl>
+                         -->
+                    </div>
+                </div>
+
+                <div class="mod-item">
+                    <div class="item-header">
+                        <h4>领跌</h4>
+                    </div>
+
+                    <div class="item-content" id="ldhy">
+                        <!--
+                           <img src="http://cmsjs.eastmoney.com/data/images/474.png" />
+                         <dl class="img-text">
+                             <dt>领跌股:</dt>
+                             <dd><a class="name" href="#">网宿科技</a> <span class="s2">14.29</span> <span class="s3">10.01%</span></dd>
+                             <dd><a class="name" href="#">华东电脑</a> <span>14.29</span> <span>10.01%</span></dd>
+                         </dl>
+                         -->
+                    </div>
+                </div>
+
+                <div class="mod-item">
+                    <div class="item-header">
+                        <h4>资金流</h4>
+                    </div>
+
+                    <div class="item-content" id="hyzjl">
+                        <!--
+                           <img src="http://cmsjs.eastmoney.com/data/images/A股流入资金.png" />
+                         <dl class="img-text">
+                             <dt>资金流入排名:</dt>
+                             <dd><a class="name" href="#">电子信息</a> <span class="s2">1.5499亿</span></dd>
+                             <dd><a class="name" href="#">酿酒行业</a> <span class="s2">0.6098亿</span></dd>
+                         </dl>
+                         -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 沪深股市/今日热点结束 -->
+        <div class="space-10"></div>
+        <!-- 最新消息.mod-msg 开始-->
+        <div class="mod-msg">
+            <h2>最新消息</h2>
+            <div class="msg-content" id="scrollNews"><div style="width: 6084px;">
+            </div></div>
+        </div>
+        <!-- 最新消息.mod-msg 结束-->
+        <div class="space-10"></div>
+        <!-- section 我的自选股-->
+        <div class="mod-section-header fn-clear">
+            <h2 class="fn-left">我的自选股</h2>
+            <div class="options form fn-right">
+                <div id="loginForm" class="none" style="display: none;">
+                    <a class="btn-login" style="display: none;" id="submitLogin"></a>&nbsp;
+                #*<a class="btn-reg" href="http://passport.eastmoney.com/MRegister.EmUser"></a>&nbsp;
+                <a target="_blank" href="http://passport.eastmoney.com/FindPwd.EmUser" style="vertical-align:middle">忘记密码</a>*#
+                </div>
+
+                <div id="userInfo" class="">
+                    欢迎 <strong id="userNameText">1</strong> [<a id="userExit">退出</a>]
+                </div>
+
+            </div>
+            <b class="icon-section-header"></b>
+        </div>
+        <div class="mod-datas">
+            <div id="mystocks"></div>
+
+            <div class="footer-more">
+                <a href="${base}/stockeast/list" target="_self">点击查看全部自选股&gt;&gt;</a>
+            </div>
+        </div>
+        <!--我的自选股结束-->
+        <div class="space-10"></div>
+        <!-- section 排行链接 -->
+        <div class="fn-clear mod-top-wrap">
+            <dl class="mod-top">
+                <dt>沪A:</dt>
+                <dd> <a href="${base}/stockeast/marketlist#10_0_0_u?sortType=C&amp;sortRule=-1" target="_blank">涨幅榜</a> <a href="${base}/stockeast/marketlist#10_0_0_d?sortType=C&amp;sortRule=1" target="_self">跌幅榜</a> <a href="${base}/stockeast/marketlist#10_0_0_u?sortType=F&amp;sortRule=-1" target="_self">成交量</a> <a href="${base}/stockeast/marketlist#10_0_0_u?sortType=E&amp;sortRule=-1" target="_self">成交额</a> <a href="${base}/stockeast/marketlist#10_0_0_u?sortType=G&amp;sortRule=-1" target="_self">五分钟涨跌榜</a> <a href="${base}/stockeast/marketlist#10_0_0_u?sortType=H&amp;sortRule=-1" target="_self">量比</a> <a href="${base}/stockeast/marketlist#10_0_0_u?sortType=B&amp;sortRule=-1" target="_self">成交价</a></dd>
+            </dl>
+
+            #*<dl class="mod-top">
+                <dt>沪B:</dt>
+                <dd><a href="${base}/stockeast/marketlist#11_0_0_u?sortType=C&amp;sortRule=-1" target="_blank">涨幅榜</a> <a href="${base}/stockeast/marketlist#11_0_0_d?sortType=C&amp;sortRule=1" target="_blank">跌幅榜</a> <a href="${base}/stockeast/marketlist#11_0_0_u?sortType=F&amp;sortRule=-1" target="_blank">成交量</a> <a href="${base}/stockeast/marketlist#11_0_0_u?sortType=E&amp;sortRule=-1" target="_blank">成交额</a> <a href="${base}/stockeast/marketlist#11_0_0_u?sortType=G&amp;sortRule=-1" target="_blank">五分钟涨跌榜</a> <a href="${base}/stockeast/marketlist#11_0_0_u?sortType=H&amp;sortRule=-1" target="_blank">量比</a> <a href="${base}/stockeast/marketlist#11_0_0_u?sortType=B&amp;sortRule=-1" target="_blank">成交价</a></dd>
+            </dl>*#
+
+            <dl class="mod-top">
+                <dt>深A:</dt>
+                <dd><a href="${base}/stockeast/marketlist#20_0_0_u?sortType=C&amp;sortRule=-1" target="_self">涨幅榜</a> <a href="${base}/stockeast/marketlist#20_0_0_d?sortType=C&amp;sortRule=1" target="_self">跌幅榜</a> <a href="${base}/stockeast/marketlist#20_0_0_u?sortType=F&amp;sortRule=-1" target="_self">成交量</a> <a href="${base}/stockeast/marketlist#20_0_0_u?sortType=E&amp;sortRule=-1" target="_self">成交额</a> <a href="${base}/stockeast/marketlist#20_0_0_u?sortType=G&amp;sortRule=-1" target="_self">五分钟涨跌榜</a> <a href="${base}/stockeast/marketlist#20_0_0_u?sortType=H&amp;sortRule=-1" target="_self">量比</a> <a href="${base}/stockeast/marketlist#20_0_0_u?sortType=B&amp;sortRule=-1" target="_self">成交价</a></dd>
+            </dl>
+
+            #*<dl class="mod-top">
+                <dt>深B:</dt>
+                <dd><a href="${base}/stockeast/marketlist#21_0_0_u?sortType=C&amp;sortRule=-1" target="_blank">涨幅榜</a> <a href="${base}/stockeast/marketlist#21_0_0_d?sortType=C&amp;sortRule=1" target="_blank">跌幅榜</a> <a href="${base}/stockeast/marketlist#21_0_2_u?sortType=F&amp;sortRule=-1" target="_blank">成交量</a> <a href="${base}/stockeast/marketlist#21_0_0_u?sortType=E&amp;sortRule=-1" target="_blank">成交额</a> <a href="${base}/stockeast/marketlist#21_0_0_u?sortType=G&amp;sortRule=-1" target="_blank">五分钟涨跌榜</a> <a href="${base}/stockeast/marketlist#21_0_0_u?sortType=H&amp;sortRule=-1" target="_blank">量比</a> <a href="${base}/stockeast/marketlist#21_0_0_u?sortType=B&amp;sortRule=-1" target="_blank">成交价</a></dd>
+            </dl>*#
+        </div>
+        <!-- section 排行链接结束-->
+        <div class="space-10"></div>
+        <!-- 个股综合排行 -->
+        <div class="mod-section-header fn-clear">
+            <h2 class="fn-left">个股综合排行</h2>
+            <div class="options fn-right form">
+                <form id="querytop" method="get" action="${base}/stockeast/marketlist#10_0_0_u?sortType=G&amp;sortRule=-1" target="_self">
+                    查询更多排行:
+                    <select id="sortField">
+                        <option value="10_0_0_u">上海A股</option>
+                        <option value="11_0_0_u">上海B股</option>
+                        <option value="20_0_0_u">深圳A股</option>
+                        <option value="21_0_0_u">深圳B股</option>
+                        <option value="15_0_1">上海指数</option>
+                        <option value="25_0_1">深圳指数</option>
+                    </select>
+                    <select id="sortType">
+                        <option value="C">涨跌幅</option>
+                        <option value="A">代码</option>
+                        <option value="D">涨跌</option>
+                        <option value="E">成交金额</option>
+                        <option value="F">成交量</option>
+                        <option value="G">5分钟涨跌</option>
+                        <option value="H">量比</option>
+                        <option value="B">成交价</option>
+                    </select>
+                    <input type="button" id="SortSubmit" class="btn-query" value="">
+                </form>
+            </div>
+            <b class="icon-section-header"></b>
+        </div>
+
+        <div class="space-10"></div>
+        <div class="">
+            <div class="mod-section-header mod-section-sub" id="tab2">
+                <ul class="fn-left tabs">
+                    <li class="current">沪A涨幅</li>
+                    <li>沪A跌幅</li>
+                </ul>
+                <div class="links" id="shlinks">
+                    <a href="${base}/stockeast/marketlist#10_0_0_u?sortType=I&amp;sortRule=-1" target="_self">沪A市盈率排行</a>
+                    <a href="${base}/stockeast/marketlist#10_0_0_u?sortType=J&amp;sortRule=-1" target="_self">沪A换手率排行</a>
+                    <a href="${base}/stockeast/marketlist#10_0_0_u?sortType=H&amp;sortRule=-1" target="_self">沪A量比排行</a>
+                    <a href="${base}/stockeast/marketlist#10_0_0_u?sortType=G&amp;sortRule=-1" target="_self">沪A5分钟排行</a>
+                </div>
+
+                <div class="fn-right options" id="shmore">
+                    <a href="${base}/stockeast/marketlist#10_0_0_u?sortType=C&amp;sortRule=-1" target="_self">更多</a>
+                </div>
+            </div>
+            <div class="space-5"></div>
+            <div class="mod-datas tab-panels" id="tab2panels">
+
+                <div class="tab-panel current">
+                    <div id="SHUP"><table width="100%" class="data-table"><tbody><tr><th>代码</th><th>名称</th><th>相关链接</th><th><a href="${base}/stockeast/marketlist#10_0_0_u?sortType=B&amp;sortRule=-1" target="_self">最新价</a></th><th><a href="${base}/stockeast/marketlist#10_0_0_u?sortType=D&amp;sortRule=-1" target="_self">涨跌额</a></th><th><a href="${base}/stockeast/marketlist#10_0_0_u?sortType=C&amp;sortRule=-1" target="_self">涨跌幅</a><b class="icon-change-up"></b></th><th><a href="${base}/stockeast/marketlist#10_0_0_u?sortType=K&amp;sortRule=-1" target="_self">振幅</a></th><th><a href="${base}/stockeast/marketlist#10_0_0_u?sortType=F&amp;sortRule=-1" target="_self">成交量(手)</a></th><th><a href="${base}/stockeast/marketlist#10_0_0_u?sortType=E&amp;sortRule=-1" target="_self">成交额(万)</a></th><th>昨收</th><th>今开</th><th>最高</th><th>最低</th><th><a href="${base}/stockeast/marketlist#10_0_0_u?sortType=G&amp;sortRule=-1" target="_self">5分钟涨跌</a></th><th>加自选</th></tr></tbody></table></div>
+
+                    <div class="footer-more bg">
+                        <a href="${base}/stockeast/marketlist#10_0_0_u?sortType=C&amp;sortRule=-1" target="_self">点击查看全部沪深A股涨幅&gt;&gt;</a>
+                    </div>
+                </div>
+
+                <div class="tab-panel">
+                    <div id="SHDOWN">
+                        <table width="100%" class="data-table">
+                            <tbody><tr>
+                                <th>代码</th>
+                                <th><a href="http://quote.eastmoney.com/center/#">名称</a></th>
+                                <th>相关链接</th>
+                                <th><a href="http://quote.eastmoney.com/center/#">最新价</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">涨跌额</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">涨跌幅</a><b class="icon-change-down"></b></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">振幅</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">成交量(手)</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">成交额(万)</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">昨收</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">今开</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">最高</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">最低</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">5分钟涨跌</a></th>
+                                <th>加自选</th>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td><a class="icon-plus"></a></td>
+                            </tr>
+                            </tbody></table>
+                    </div>
+                    <div class="footer-more bg">
+                        <a href="${base}/stockeast/marketlist#10_0_0_d?sortType=C&amp;sortRule=1" target="_self">点击查看全部沪深A股跌幅&gt;&gt;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-10"></div>
+            <div class="mod-section-header mod-section-sub">
+                <ul class="fn-left tabs" id="sztab">
+                    <li class="current">深A涨幅</li>
+                    <li>深A跌幅</li>
+                </ul>
+                <div class="links" id="szlinks">
+                    <a href="${base}/stockeast/marketlist#20_0_0_u?sortType=I&amp;sortRule=-1" target="_self">深A市盈率排行</a><a href="${base}/stockeast/marketlist#20_0_0_u?sortType=J&amp;sortRule=-1" target="_self">深A换手率排行</a><a href="${base}/stockeast/marketlist#20_0_0_u?sortType=H&amp;sortRule=-1" target="_self">深A量比排行</a><a href="${base}/stockeast/marketlist#20_0_0_u?sortType=G&amp;sortRule=-1" target="_self">深A5分钟排行</a>
+                </div>
+                <div class="fn-right options" id="szmore">
+                    <a href="${base}/stockeast/marketlist#20_0_0_u?sortType=C&amp;sortRule=-1">更多</a>
+                </div>
+            </div>
+            <div class="space-5"></div>
+            <div class="mod-datas tab-panels" id="szpanels">
+
+                <div class="tab-panel current">
+                    <div id="SZUP"><table width="100%" class="data-table"><tbody><tr><th>代码</th><th>名称</th><th>相关链接</th><th><a href="${base}/stockeast/marketlist#20_0_0_u?sortType=B&amp;sortRule=-1" target="_self">最新价</a></th><th><a href="${base}/stockeast/marketlist#20_0_0_u?sortType=D&amp;sortRule=-1" target="_self">涨跌额</a></th><th><a href="${base}/stockeast/marketlist#20_0_0_u?sortType=C&amp;sortRule=-1" target="_self">涨跌幅</a><b class="icon-change-up"></b></th><th><a href="${base}/stockeast/marketlist#20_0_0_u?sortType=K&amp;sortRule=-1" target="_self">振幅</a></th><th><a href="${base}/stockeast/marketlist#20_0_0_u?sortType=F&amp;sortRule=-1" target="_self">成交量(手)</a></th><th><a href="${base}/stockeast/marketlist#20_0_0_u?sortType=E&amp;sortRule=-1" target="_self">成交额(万)</a></th><th>昨收</th><th>今开</th><th>最高</th><th>最低</th><th><a href="${base}/stockeast/marketlist#20_0_0_u?sortType=G&amp;sortRule=-1" target="_self">5分钟涨跌</a></th><th>加自选</th></tr></tbody></table></div>
+
+                    <div class="footer-more bg">
+                        <a href="${base}/stockeast/marketlist/#20_0_0_u?sortType=C&amp;sortRule=-1" target="_self">点击查看全部沪深A股涨幅&gt;&gt;</a>
+                    </div>
+                </div>
+
+                <div class="tab-panel">
+                    <div id="SZDOWN">
+                        <table width="100%" class="data-table">
+                            <tbody><tr>
+                                <th>代码</th>
+                                <th><a href="http://quote.eastmoney.com/center/#">名称</a></th>
+                                <th>相关链接</th>
+                                <th><a href="http://quote.eastmoney.com/center/#">最新价</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">涨跌额</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">涨跌幅</a><b class="icon-change-down"></b></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">振幅</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">成交量(手)</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">成交额(万)</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">昨收</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">今开</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">最高</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">最低</a></th>
+                                <th><a href="http://quote.eastmoney.com/center/#">5分钟涨跌</a></th>
+                                <th>加自选</th>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td><a class="icon-plus"></a></td>
+                            </tr>
+                            </tbody></table>
+                    </div>
+                    <div class="footer-more bg">
+                        <a href="${base}/stockeast/marketlist#20_0_0_u?sortType=C&amp;sortRule=1" target="_self">点击查看全部沪深A股跌幅&gt;&gt;</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- 个股综合排行结束-->
+        <div class="space-10"></div>
+        <!-- 板块排行 -->
+        <div class="mod-section-header fn-clear">
+            <h2 class="fn-left">板块排行</h2>
+            <b class="icon-section-header"></b>
+        </div>
+        <div class="space-10"></div>
+        <div class="mod-section-header mod-section-sub">
+            <ul class="fn-left tabs" id="hybk">
+                <li class="current">行业板块涨幅</li>
+                <li>行业板块跌幅</li>
+            </ul>
+            <div class="links"><a href="${base}/stockeast/bkzj/list?code=HY" target="_self">行业板块资金流</a><a href="http://data.eastmoney.com/report/hyyb.html" target="_self">行业研报</a></div>
+            <div class="fn-right options" id="hymore"><a href="${base}/stockeast/bklist#trade_0_0?sortRule=0" target="_self">更多</a></div>
+        </div>
+        <div class="space-5"></div>
+        <div class="mod-datas tab-panels" id="hybkpanels">
+            <div class="tab-panel current" id="HYBKUP"><table class="data-table" width="100%"><tbody><tr><th>排名</th><th>板块名称</th><th>相关资讯</th><th>涨跌幅</th><th>成交量</th><th>换手率</th><th>上涨家数</th><th>下跌家数</th><th>涨跌股票</th><th>涨跌幅</th></tr></tbody></table></div>
+
+            <div class="tab-panel" id="HYBKDOWN">
+
+            </div>
+        </div>
+
+        <div class="space-10"></div>
+        <div class="mod-section-header mod-section-sub">
+            <ul class="fn-left tabs" id="gnbk">
+                <li class="current">概念板块涨幅</li>
+                <li>概念板块跌幅</li>
+            </ul>
+            <div class="links"><a href="${base}/stockeast/bkzj/list?code=GN" target="_self">概念板块资金流</a></div>
+            <div class="fn-right options" id="gnmore"><a href="${base}/stockeast/bklist#notion_0_0?sortRule=0" target="_self">更多</a></div>
+        </div>
+        <div class="space-5"></div>
+        <div class="mod-datas tab-panels" id="gnbkpanels">
+            <div class="tab-panel current" id="GNBKUP"><table class="data-table" width="100%"><tbody><tr><th>排名</th><th>板块名称</th><th>相关资讯</th><th>涨跌幅</th><th>成交量</th><th>换手率</th><th>上涨家数</th><th>下跌家数</th><th>涨跌股票</th><th>涨跌幅</th></tr></tbody></table></div>
+
+            <div class="tab-panel" id="GNBKDOWN">
+
+            </div>
+        </div>
+
+        <div class="space-10"></div>
+        <!-- 全球股市 -->
+        <div class="mod-section-header mod-section-sub">
+            <h2 class="fn-left">全球股市</h2>
+            <b class="icon-section-header"></b>
+        </div>
+        <ul class="mod-list-ul" id="globalstock">
+            <li>
+                <a href="http://quote.eastmoney.com/hk/zs110000.html" target="_blank"> <img width="340" height="190" data-trade="HK" src="http://hqhkpic.eastmoney.com/EM_Quote2010PictureProducter/Index.aspx?ImageType=RS&ID=1100005&Reference=rtj"></a>
+                <a class="btn-bigimg" href="http://quote.eastmoney.com/hk/zs110000.html" target="_blank"></a>
+            </li>
+            <li> <a href="http://quote.eastmoney.com/gb/zsINDU.html" target="_blank"><img width="340" height="190" src="${base}/static/img/east/INDU7RS.png" data-trade="INDU7"></a>
+                <a class="btn-bigimg" href="http://quote.eastmoney.com/gb/zsINDU.html" target="_blank"></a>
+            </li>
+            <li>
+                <a href="http://quote.eastmoney.com/gb/zsukx.html" target="_blank"><img width="340" height="190" data-trade="UKX7" src="${base}/static/img/east/UKX7RS.png"></a>
+                <a class="btn-bigimg" href="http://quote.eastmoney.com/gb/zsukx.html" target="_blank"></a>
+            </li>
+        </ul>
+        <div class="space-10"></div>
+        <!-- 亚太股市 -->
+        <div class="fn-left col-403">
+            <div class="mod-section-header mod-section-sub">
+                <h2>亚太股市</h2>
+            </div>
+            <div class="mod-datas" id="yatai">
+                <table class="data-table" width="100%">
+                    <tbody><tr>
+                        <th>指数名称</th>
+                        <th>最新价</th>
+                        <th>涨跌额</th>
+                        <th>涨跌幅</th>
+                        <th>最新行情时间</th>
+                    </tr>
+                    <tr id="0000011"><td class="txt-left"><img title="已收盘" src="${base}/static/img/east/20160816134557.gif" class="open-state"><a href="http://quote.eastmoney.com/zs000001.html" target="_blank">上证指数</a></td><td><span class="digi-down">3118.08</span></td><td><span class="digi-down">-4.90</span></td><td><span class="digi-down">-0.16%</span></td><td>12-19 15:38</td></tr>
+                    <tr id="3990012"><td class="txt-left"><img title="已收盘" src="${base}/static/img/east/20160816134557.gif" class="open-state"><a href="http://quote.eastmoney.com/zs399001.html" target="_blank">深证成指</a></td><td><span class="digi-down">10283.16</span></td><td><span class="digi-down">-51.60</span></td><td><span class="digi-down">-0.50%</span></td><td>12-19 15:38</td></tr>
+                    <tr id="1100005"><td class="txt-left"><img title="已收盘" src="${base}/static/img/east/20160816134557.gif" class="open-state"><a href="http://quote.eastmoney.com/hk/zs110000.html" target="_blank">恒生指数</a></td><td><span class="digi-down">21832.68</span></td><td><span class="digi-down">-188.07</span></td><td><span class="digi-down">-0.85%</span></td><td>12-19 16:10</td></tr>
+                    <tr id="NKY7"><td class="txt-left"><img title="已收盘" src="${base}/static/img/east/20160816134557.gif" class="open-state"><a href="http://quote.eastmoney.com/gb/zsNKY.html" target="_blank">日经225</a></td><td><span class="digi-down">19391.60</span></td><td><span class="digi-down">-9.55</span></td><td><span class="digi-down">-0.05%</span></td><td>12-19 14:00</td></tr>
+                    <tr id="KOSPI7"><td class="txt-left"><img title="已收盘" src="${base}/static/img/east/20160816134557.gif" class="open-state"><a href="http://quote.eastmoney.com/gb/zsKOSPI.html" target="_blank">韩国KOSPI</a></td><td><span class="digi-down">2038.39</span></td><td><span class="digi-down">-3.85</span></td><td><span class="digi-down">-0.19%</span></td><td>12-19 14:32</td></tr>
+                    </tbody></table>
+
+                <div class="footer-more bg">
+                    <a href="http://quote.eastmoney.com/center/asia.html#asia_3" target="_blank">点击查看全部亚太股市&gt;&gt;</a>
+                </div>
+            </div>
+        </div>
+        <!-- 欧美股市 -->
+        <div class="fn-right col-403">
+            <div class="mod-section-header mod-section-sub">
+                <h2>欧美股市</h2>
+            </div>
+            <div class="mod-datas" id="oumei">
+                <table class="data-table" width="100%">
+                    <tbody><tr>
+                        <th>指数名称</th>
+                        <th>最新价</th>
+                        <th>涨跌额</th>
+                        <th>涨跌幅</th>
+                        <th>最新行情时间</th>
+                    </tr>
+                    <tr id="INDU7"><td class="txt-left"><img title="已收盘" src="${base}/static/img/east/20160816134557.gif" class="open-state"><a href="http://quote.eastmoney.com/gb/zsINDU.html" target="_blank">道琼斯工业平均</a></td><td><span class="digi-down">19843.41</span></td><td><span class="digi-down">-8.83</span></td><td><span class="digi-down">-0.04%</span></td><td>12-17 05:56</td></tr>
+                    <tr id="CCMP7"><td class="txt-left"><img title="已收盘" src="${base}/static/img/east/20160816134557.gif" class="open-state"><a href="http://quote.eastmoney.com/gb/zsCCMP.html" target="_blank">纳斯达克综合</a></td><td><span class="digi-down">5437.16</span></td><td><span class="digi-down">-19.69</span></td><td><span class="digi-down">-0.36%</span></td><td>12-17 05:00</td></tr>
+                    <tr id="DAX7"><td class="txt-left"><img title="开盘中" src="${base}/static/img/east/20160816134547.gif" class="open-state"><a href="http://quote.eastmoney.com/gb/zsDAX.html" target="_blank">德国DAX30</a></td><td><span class="digi-down">11403.12</span></td><td><span class="digi-down">-0.89</span></td><td><span class="digi-down">-0.01%</span></td><td>12-19 20:29</td></tr>
+                    <tr id="CAC7"><td class="txt-left"><img title="开盘中" src="${base}/static/img/east/20160816134547.gif" class="open-state"><a href="http://quote.eastmoney.com/gb/zsCAC.html" target="_blank">法国CAC40</a></td><td><span class="digi-down">4825.05</span></td><td><span class="digi-down">-8.22</span></td><td><span class="digi-down">-0.17%</span></td><td>12-19 20:29</td></tr>
+                    <tr id="UKX7"><td class="txt-left"><img title="开盘中" src="${base}/static/img/east/20160816134547.gif" class="open-state"><a href="http://quote.eastmoney.com/gb/zsUKX.html" target="_blank">英国富时100</a></td><td><span class="digi-up">7018.15</span></td><td><span class="digi-up">6.51</span></td><td><span class="digi-up">0.09%</span></td><td>12-19 20:45</td></tr>
+                    </tbody></table>
+                <div class="footer-more bg">
+                    <a href="http://quote.eastmoney.com/center/europe.html#europe_3" target="_blank">点击查看全部欧美股市&gt;&gt;</a>
+                </div>
+            </div>
+        </div>
+        <!-- 全球股市 结束-->
+        <div class="space-10"></div>
+        <!-- 国际期货 -->
+        <div class="mod-section-header fn-clear">
+            <h2>国际期货</h2>
+            <b class="icon-section-header"></b>
+        </div>
+        <ul class="mod-list-ul" id="futures">
+            <li>
+                <a href="http://quote.eastmoney.com/qihuo/GLNC.html" target="_blank"><img height="190" width="340" data-src="http://hqgjqhpic.eastmoney.com/EM_Futures2010PictureProducter/Picture/glnc0RS.png?Reference=rtj&amp;dt=1" /></a>
+                <a class="btn-bigimg" href="http://quote.eastmoney.com/qihuo/GLNC.html" target="_blank"></a>&nbsp;<a class="btn-gubar" href="http://guba.eastmoney.com/topic,huangjin.html" target="_blank"></a>
+            </li>
+            <li>
+                <a href="http://quote.eastmoney.com/qihuo/CONC.html" target="_blank"><img height="190" width="340" data-src="http://hqgjqhpic.eastmoney.com/EM_Futures2010PictureProducter/Picture/conc0RS.png?Reference=rtj&amp;dt=1" /></a>
+                <a class="btn-bigimg" href="http://quote.eastmoney.com/qihuo/CONC.html" target="_blank"></a>&nbsp;<a class="btn-gubar" href="http://guba.eastmoney.com/topic,yuanyou.html" target="_blank"></a>
+            </li>
+            <li>
+                <a href="http://quote.eastmoney.com/qihuo/DINI.html" target="_blank">
+                    <img height="190" width="340" data-src="http://hqgjqhpic.eastmoney.com/EM_Futures2010PictureProducter/Picture/dini0RS.png?Reference=rtj&amp;v=0.1" />
+                </a>
+                <a class="btn-bigimg" href="http://quote.eastmoney.com/qihuo/DINI.html" target="_blank"></a>&nbsp;<a class="btn-gubar" href="http://guba.eastmoney.com/topic,meiyuan.html" target="_blank"></a>
+            </li>
+        </ul>
+        <div class="mod-datas" id="futurestable"><table width="100%" class="data-table  collapse-top"><tbody><tr><th>代码</th><th>品种</th><th>最新价</th><th>涨跌额</th><th>涨跌幅</th><th>今开</th><th>最高</th><th>最低</th><th>昨结</th><th>成交量(手)</th><th>买量(手)</th><th>卖量(手)</th><th>持仓(手)</th></tr></tbody></table></div>
+        <!-- 国际期货 结束 -->
+
+    </div>
+    <!-- layout section-main 结束 -->
+
+</div>
+<!--layout page-main 结束 -->
+<div class="qphox">
+    <script type="text/javascript" src="${base}/static/js/east/base.min.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/function.min.js"></script>
+    <script type="text/javascript">
+        var gjqh = "CONX0,GLNZ0,LCPS0,SBCX0";
+        var portalurl = "${portal_url}/";
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/index.min.js"></script>
+</div>
+</body>
+</html>

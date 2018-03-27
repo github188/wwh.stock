@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>报业绩预告</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="refresh" content="1200">
+    <base target="_self" />
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/master.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/default.css">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/layer2012.css">
+    <link rel="stylesheet" href="${base}/static/css/east/page_common.css" type="text/css" media="all">
+    <link rel="stylesheet" type="text/css" href="${base}/static/css/east/bbsj.css">
+
+    <script type="text/javascript" src="${base}/static/js/jquery.min.1.8.3.js"></script>
+    <script type="text/javascript">
+        var jQuery = $.noConflict();
+        var portalurl = "${portal_url}/";
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/base.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/plugin.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var NavCache = { Page: "业绩预告", current_n: 5 };
+</script>
+
+<div id="page" class="page">
+    <div class="main">
+        <div class="framecontent">
+        <div class="linkNav"><div id="Column_Navigation">
+            <a href="${base}/">首页</a> &gt; <a href="${base}/stockeast/center/">数据中心</a> &gt; <a href="${base}/stockeast/bbsj/">年报季报</a> &gt; 业绩预告
+        </div><div class="promotion_link">
+            <b class="arr_01"></b>
+            <ul><li><a href="http://data.eastmoney.com/bbsj/201512/yjyg/3.html">分配预告</a>&nbsp;<a href="http://data.eastmoney.com/bbsj/201512/yjbb/0/2.html">每股收益榜</a>&nbsp;<a href="http://data.eastmoney.com/bbsj/201512/yjbb/0/3.html">营业收入榜</a>&nbsp;<a href="http://data.eastmoney.com/bbsj/201512/yjbb/0/6.html">净利润榜</a>&nbsp;<a href="http://data.eastmoney.com/bbsj/201512/szbl.html">送转比例</a>&nbsp;<a href="http://data.eastmoney.com/bbsj/201512/xjfh.html">现金分红</a></li></ul>
+        </div></div>
+        <div class="sitebody">
+            <div class="maincont">
+                <div class="contentBox">
+                    <div class="titbar" id="datatitle">
+                        <b class="el"></b>
+                        <div class="tit" id="topTit">报业绩大全</div>
+                        <div class="search" style="float: left; padding-left: 160px;">
+                            <span class="txt">个股业绩报表：</span>
+                            <input class="sinput" name="zjlx_bar" id="zjlx_bar" type="text">
+                            <div onclick="javascript:ggzl_search('zjlx_bar')" class="btn" style="border: none;">
+                                <img src="${base}/static/img/east/btn_search_blue.gif" title="查询">
+                            </div>
+                        </div>
+                        <div class="search pr20" style="float: right; padding-left: 5px; padding-right: 5px;">
+                            <span class="sec-txt">截止日期：</span>
+                            <select class="slt" onchange="location.href=this.value;" id="date_type">
+                                #foreach($ym in $ymList)
+                                    <option value="$!ym[0]" #if($!ym[1]==$!date_type) selected="selected" #end>$ym[1]</option>
+                                #end
+                            </select>
+                        </div>
+                        <script type="text/javascript">
+                            var zz = new StockSuggest("zjlx_bar", {
+                                text: "输代码、名称或拼音",
+                                type: "ABSTOCK",
+                                autoSubmit: false,
+                                width: 190,
+                                header: ["选项", "代码", "名称", "类型"],
+                                body: [-1, 1, 4, -2],
+                                callback: function (ag) {
+                                    var url = '/stockeast/bbsj?code=' + ag.code;
+                                    window.open(url);
+                                }
+                            });
+                            function ggzl_search(bb) {
+                                var s1 = document.getElementById(bb).value;
+                                var s = escape(s1);
+                                if (s1 == "输代码、名称或拼音" || s1 == "" || isNaN(parseInt(s1)) || s1.length != 6) {
+                                    alert("请输入所查询股票的代码！");
+                                    return false;
+                                } else {
+                                    var url = '/stockeast/bbsj?code=' + s1;
+                                    window.open(url);
+                                }
+                            }
+                        </script>
+                    </div>
+                    <div class="content" style="min-height: 400px;">
+                        <div class="catemk">
+                            <ul>
+                                <li id="yjbbTab">业绩报表</li>
+                                <li id="yjkbTab">业绩快报</li>
+                                <li class="at">业绩预告</li>
+                                <li id="yysjTab">预约披露时间</li>
+                            </ul>
+                        </div>
+                        <div class="cateday">
+                            <ul id="stat_type">
+                                <li class="at2" data="0">业绩预告<i></i></li>
+                                <li data="1">业绩预增<i></i></li>
+                                <li data="2">业绩预减<i></i></li>
+                                <li data="3" id="fpygTab">分配预告<i></i></li>
+                            </ul>
+                        </div>
+                        <table cellpadding="0" cellspacing="0" class="tab1" id="dt_1">
+                            <thead class="h101">
+                            <tr>
+                                <th>加载中......
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div id="PageNav" class="PageNav" style="display: none;">
+                        <div class="Page" id="PageCont">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="${base}/static/js/east/load_table_data.js"></script>
+<script type="text/javascript">
+    // 获取颜色样式
+    function editBdfu(data) {
+        var str = "";
+        if (data && data != "") {
+            var da = data.split('～');
+            if (da.length > 0) {
+                var dl = da[0].replace("%", "");
+                if (dl > 0)
+                    str += "<span class='red'>" + dl + "%</span>";
+                else if (dl < 0)
+                    str += "<span class='green'>" + dl + "%</span>";
+                else
+                    str += "<span>" + dl + "%</span>";
+
+                if (da.length > 1) {
+                    str += "～";
+                    var dr = da[1].replace("%", "");
+                    if (dr > 0)
+                        str += "<span class='red'>" + dr + "%</span>";
+                    else if (dr < 0)
+                        str += "<span class='green'>" + dr + "%</span>";
+                    else
+                        str += "<span>" + dr + "%</span>";
+                }
+            }
+        } else {
+            str = "-";
+        }
+
+        return str;
+    }
+
+    var tablelist = new LoadTable({
+        id: "dt_1",
+        sort: { id: "4", desc: true },
+        cellcount: 9,
+        cells: [{ "n": "序号", "w": 32 }, { "n": "股票代码", "s": "1", "w": 60 }, { "n": "股票简称", "w": 70 }, { "n": "相关资料", "w": 80 },
+            { "n": "业绩变动", "w": 380 }, { "n": "业绩变动幅度", "s": "2", "w": 150 }, { "n": "预告<br />类型", "w": 59 },
+            { "n": "上年同期<br />净利润<br />(万元)", "s": "3", "w": 57 }, { "n": "公告日期", "s": "4", "w": 70 }],
+        param: { "stat_type": { cname: "li", type: "stat", value: "0", cssclass: "at2" } },
+        dataurl: "http://datainterface.eastmoney.com/EM_DataCenter/JS.aspx?type=SR&sty=YJYG&st={sortType}&sr={sortRule}&p={page}&ps={pageSize}&js=var {jsname}={pages:(pc),data:[(x)]}{param}",
+        beforeupdate: function (_t) {
+            //编辑表头
+            var thead = '';
+            if (_t.options.param.stat_type.value == "3") {
+                _t.options.cellcount = 5;
+                _t.options.dataurl = "http://datainterface.eastmoney.com/EM_DataCenter/JS.aspx?type=SR&sty=FPYA&fd=${date_type}&st={sortType}&sr={sortRule}&p={page}&ps={pageSize}&js=var {jsname}={pages:(pc),data:[(x)]}{param}";
+                thead = '[{ "n": "股票代码", "s": "1" ,"w":60}, { "n": "股票简称", "w": 70 }, { "n": "相关资料", "w": 80 }, { "n": "利润分配预案","w": 650 },{"n": "公告日期", "s": "2" ,"w":70}]';
+                _t.options.cells = eval('(' + thead + ')');
+                if (_t.options.sort.id == 4)
+                    _t.options.sort.id = 2;
+            } else {
+                _t.options.cellcount = 9;
+                _t.options.dataurl = "http://datainterface.eastmoney.com/EM_DataCenter/JS.aspx?type=SR&sty=YJYG&fd=${date_type}&st={sortType}&sr={sortRule}&p={page}&ps={pageSize}&js=var {jsname}={pages:(pc),data:[(x)]}{param}";
+                thead = '[{ "n": "序号","w":32 },{ "n": "股票代码", "s": "1" ,"w":60}, { "n": "股票简称", "w": 70 }, { "n": "相关资料", "w": 80 }, { "n": "业绩变动","w": 380 },{"n": "业绩变动幅度","s":"2","w":150},{"n": "预告<br />类型" ,"w":59},{"n": "上年同期<br />净利润<br />(万元)", "s": "3" ,"w":57},{"n": "公告日期", "s": "4" ,"w":70}]';
+                _t.options.cells = eval('(' + thead + ')');
+            }
+        },
+        beforedisplay: function (_t) {
+            var dateStr = document.getElementById("date_type").options[document.getElementById("date_type").selectedIndex].text;
+            var quarter = dateStr.substr(0, 4) + "年";
+            // 编辑显示的季度
+            if (dateStr.indexOf("12-31") != -1)
+                quarter += "年";
+            else if (dateStr.indexOf("09-30") != -1)
+                quarter += "三季";
+            else if (dateStr.indexOf("06-30") != -1)
+                quarter += "中";
+            else if (dateStr.indexOf("03-31") != -1)
+                quarter += "一季";
+
+            document.title = quarter + "报业绩预告";
+            document.getElementById("topTit").innerHTML = quarter + "报业绩大全";
+
+            // tab跳转
+            var dateParam = dateStr.substr(0, 4) + dateStr.substr(5, 2);
+            document.getElementById("yjbbTab").onclick = function () {
+                window.location.href = "${base}/stockeast/yjbb?date_type=" + dateStr;
+            }
+            document.getElementById("yjkbTab").onclick = function () {
+                window.location.href = "${base}/stockeast/yjkb?date_type=" + dateStr;
+            }
+            document.getElementById("yysjTab").onclick = function () {
+                window.location.href = "${base}/stockeast/yysj?date_type=" + dateStr;
+            }
+        },
+        maketr: function (row, data, i, c) {
+            var _t = this;
+            var _class = (i % 2 == 0) ? "" : "odd";
+            row.className = _class;
+            row.onmouseover = function () {
+                this.className = "over";
+            }
+            row.onmouseout = function (o, _c) {
+                o.className = _c;
+            }.bind(this, row, _class)
+            var gpdm = "", yybd = "";
+            gpdm = data[0];
+            mc = data[1];
+            if (_t.options.param.stat_type.value == "3") {
+
+                if (gpdm.length > 1 && (gpdm.substring(0, 1) == '4' || gpdm.substring(0, 1) == '8')) {
+                    row.cells[0].innerHTML = '<a href="http://quote.eastmoney.com/3ban/sz' + gpdm + '.html?StockCode=' + gpdm + '">' + gpdm + '</a>'; //
+                    row.cells[1].innerHTML = '<a href="http://quote.eastmoney.com/3ban/sz' + gpdm + '.html?StockCode=' + gpdm + '">' + mc + '</a>';
+                    row.cells[2].innerHTML = '详细&nbsp;&nbsp;<a href="http://guba.eastmoney.com/topic,' + gpdm + '.html">股吧</a>';
+                }
+                else {
+                    row.cells[0].innerHTML = '<a href="${base}/stockeast/detail?stockCode=' + gpdm + '">' + gpdm + '</a>'; //代码
+                    row.cells[1].innerHTML = '<a href="${base}/stockeast/detail?stockCode=' + gpdm + '">' + mc + '</a>'; //名称
+                    row.cells[2].innerHTML = '<a class="red" href="${base}/stockeast/bbsj?code=' + gpdm + '">详细</a>&nbsp;&nbsp;<a href="http://guba.eastmoney.com/topic,' + gpdm + '.html">股吧</a>';
+                }
+
+                row.cells[3].innerHTML = data[2].replace(/(\&sbquo)/gi, ",") || "-"; //业绩变动
+                row.cells[4].innerHTML = data[3] || "-";//公告日期
+            } else {
+                row.cells[0].innerHTML = c;//序号
+
+                if (gpdm.length > 1 && (gpdm.substring(0, 1) == '4' || gpdm.substring(0, 1) == '8')) {
+                    row.cells[1].innerHTML = '<a href="http://quote.eastmoney.com/3ban/sz' + gpdm + '.html?StockCode=' + gpdm + '">' + gpdm + '</a>'; //
+                    row.cells[2].innerHTML = '<a href="http://quote.eastmoney.com/3ban/sz' + gpdm + '.html?StockCode=' + gpdm + '">' + mc + '</a>';
+                    row.cells[3].innerHTML = '详细&nbsp;&nbsp;<a href="http://guba.eastmoney.com/topic,' + gpdm + '.html">股吧</a>';
+                }
+                else {
+                    row.cells[1].innerHTML = '<a href="${base}/stockeast/detail?stockCode=' + gpdm + '">' + gpdm + '</a>'; //代码
+                    row.cells[2].innerHTML = '<a href="${base}/stockeast/detail?stockCode=' + gpdm + '">' + mc + '</a>'; //名称
+                    row.cells[3].innerHTML = '<a class="red" href="${base}/stockeast/bbsj?code=' + gpdm + '">详细</a>&nbsp;&nbsp;<a href="http://guba.eastmoney.com/topic,' + gpdm + '.html">股吧</a>';
+                }
+                row.cells[4].innerHTML = data[2].replace(/(\&sbquo)/gi, ",") || "-"; //业绩变动
+                row.cells[5].innerHTML = editBdfu(data[3]);//业绩变动幅度
+                row.cells[6].innerHTML = data[4] || "-";//预告类型
+                row.cells[7].className = "tdnumber";
+                var sntqjlr = data[5] || "-";
+                sntqjlr = sntqjlr == "-" ? "-" : (data[5] / 10000).toFixed(2);
+                row.cells[7].innerHTML = "<span>" + sntqjlr + "</span>";//上年同期净利润
+                row.cells[8].innerHTML = data[7].substr(5) || "-"; //公告日期
+            }
+        }
+    });
+</script>
+<div class="spacer20">
+</div>
+
+</body>
+</html>

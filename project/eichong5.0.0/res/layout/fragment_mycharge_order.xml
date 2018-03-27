@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:background="@color/common_white"
+    android:orientation="vertical" >
+    <TextView 
+        android:id="@+id/mycharge_nodata"
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:text="暂无充电记录"
+    	android:visibility="gone"
+	    android:textSize="14sp"
+	    android:layout_margin="14dp"
+	    android:padding="10dp"
+	    android:gravity="center"
+	    android:textColor="@color/common_black"
+	    android:background="@color/common_white"
+        />
+   
+     <ListView
+         android:id="@+id/mycharge_listview"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+        android:dividerHeight="0dp"
+        android:layout_marginBottom="10dp"
+        android:divider="@color/common_light_white"
+         />
+   
+      <com.bm.wanma.view.PullToRefreshListView 
+        android:id="@+id/mycharge_refresh_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:listSelector="@color/common_white"
+        />
+     
+     </LinearLayout>
+     
+

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 个人资料界面 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_light_white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/common_orange" >
+
+        <ImageButton
+            android:id="@+id/settings_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/nav_btn_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="个人资料"
+            android:textColor="@color/common_white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_item_padding_15"
+        android:background="@color/common_white"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/myuserinfo_photo_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/common_item_padding_15"
+            android:paddingLeft="@dimen/common_item_padding_20"
+            android:paddingRight="@dimen/common_item_padding_20"
+            android:paddingTop="@dimen/common_item_padding_15" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="头像"
+                android:textColor="@color/common_black"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/myuserinfo_photo_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/btn_map_arrow" />
+
+            <com.bm.wanma.view.RoundImageView
+                android:id="@+id/myuserinfo_photo_imageview"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/common_item_padding_20"
+                android:layout_toLeftOf="@id/myuserinfo_photo_arrow"
+                android:src="@drawable/default_user_img" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/common_item_padding_20"
+            android:background="@color/common_light_white" />
+
+        <RelativeLayout
+            android:id="@+id/myuserinfo_nick_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/common_item_padding_15"
+            android:paddingLeft="@dimen/common_item_padding_20"
+            android:paddingRight="@dimen/common_item_padding_20"
+            android:paddingTop="@dimen/common_item_padding_15" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="昵称"
+                android:textColor="@color/common_black"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/myuserinfo_nick_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/btn_map_arrow" />
+
+            <TextView
+                android:id="@+id/myuserinfo_nick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@id/myuserinfo_nick_arrow"
+                android:textColor="@color/common_light_black"
+                android:textSize="16sp" />
+        </RelativeLayout>
+<View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/common_item_padding_20"
+            android:background="@color/common_light_white" />
+
+        <RelativeLayout
+            android:id="@+id/myuserinfo_area_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/common_item_padding_15"
+            android:paddingLeft="@dimen/common_item_padding_20"
+            android:paddingRight="@dimen/common_item_padding_20"
+            android:paddingTop="@dimen/common_item_padding_15" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="地区"
+                android:textColor="@color/common_black"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/myuserinfo_area_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/btn_map_arrow" />
+
+            <TextView
+                android:id="@+id/myuserinfo_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@id/myuserinfo_area_arrow"
+                android:textColor="@color/common_light_black"
+                android:textSize="16sp" />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/common_item_padding_20"
+            android:background="@color/common_light_white" />
+
+        <RelativeLayout
+            android:id="@+id/myuserinfo_birthday_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/common_item_padding_15"
+            android:paddingLeft="@dimen/common_item_padding_20"
+            android:paddingRight="@dimen/common_item_padding_20"
+            android:paddingTop="@dimen/common_item_padding_15" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="生日"
+                android:textColor="@color/common_black"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/myuserinfo_birthday_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/btn_map_arrow" />
+
+            <TextView
+                android:id="@+id/myuserinfo_birthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@id/myuserinfo_birthday_arrow"
+                android:textColor="@color/common_light_black"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/common_item_padding_20"
+            android:background="@color/common_light_white" />
+
+        <RelativeLayout
+            android:id="@+id/myuserinfo_car_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/common_item_padding_15"
+            android:paddingLeft="@dimen/common_item_padding_20"
+            android:paddingRight="@dimen/common_item_padding_20"
+            android:paddingTop="@dimen/common_item_padding_15" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="车牌号"
+                android:textColor="@color/common_black"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/myuserinfo_car_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/btn_map_arrow" />
+
+            <TextView
+                android:id="@+id/myuserinfo_car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@id/myuserinfo_car_arrow"
+                android:textColor="@color/common_light_black"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_item_padding_15"
+        android:background="@color/common_white"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/myuserinfo_model_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:paddingBottom="@dimen/common_item_padding_15"
+            android:paddingLeft="@dimen/common_item_padding_20"
+            android:paddingRight="@dimen/common_item_padding_20"
+            android:paddingTop="@dimen/common_item_padding_15" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="我的座驾"
+                android:textColor="@color/common_black"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/myuserinfo_model_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/btn_map_arrow" />
+
+            <TextView
+                android:id="@+id/myuserinfo_model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="90dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_toLeftOf="@id/myuserinfo_model_arrow"
+                android:textColor="@color/common_light_black"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:visibility="gone"
+            android:layout_marginLeft="@dimen/common_item_padding_20"
+            android:background="@color/common_light_white" />
+
+        <TextView
+            android:id="@+id/myuserinfo_addr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:drawableRight="@drawable/btn_map_arrow"
+            android:paddingBottom="@dimen/common_item_padding_15"
+            android:paddingLeft="@dimen/common_item_padding_20"
+            android:paddingRight="@dimen/common_item_padding_20"
+            android:paddingTop="@dimen/common_item_padding_15"
+            android:text="我的地址"
+            android:textColor="@color/common_black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    >
+
+ <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:orientation="vertical" >
+    <TextView 
+        android:id="@+id/mybespoke_nodata"
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:text="暂无预约记录"
+    	android:visibility="gone"
+	    android:textSize="14sp"
+	    android:layout_margin="14dp"
+	    android:padding="10dp"
+	    android:gravity="center"
+	    android:textColor="@color/common_black"
+        />
+      <com.bm.wanma.view.PullToRefreshListView 
+        android:visibility="gone"
+        android:id="@+id/mybespoke_refresh_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:listSelector="@color/common_white"
+        />
+     <com.bm.wanma.view.MyDetailListView
+        android:id="@+id/mybespoke_listview"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+        android:dividerHeight="0dp"
+        android:divider="@color/common_light_white"
+         ></com.bm.wanma.view.MyDetailListView>
+     
+     </LinearLayout>
+     
+
+</ScrollView>

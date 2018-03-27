@@ -1,0 +1,353 @@
+package com.bm.wanma.ui.activity;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+import pulltorefresh.ListViewCustom;
+import pulltorefresh.PullToRefreshBase;
+import pulltorefresh.PullToRefreshBase.OnRefreshListener2;
+import pulltorefresh.PullToRefreshScrollView;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.format.DateFormat;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+
+import com.bm.wanma.R;
+import com.bm.wanma.adapter.MyListModeListViewAdapter;
+import com.bm.wanma.entity.MapModeBean;
+import com.bm.wanma.net.GetDataPost;
+import com.bm.wanma.net.Protocol;
+import com.bm.wanma.utils.ComparatorListMode;
+import com.bm.wanma.utils.PreferencesUtil;
+import com.bm.wanma.utils.Tools;
+import com.umeng.analytics.MobclickAgent;
+
+public class ChargeListActivity extends BaseActivity implements OnClickListener , OnRefreshListener2<ScrollView>{
+	private boolean isfirst=false;
+	private RelativeLayout rl_tab_score,rl_tab_price,rl_tab_distance;
+	private TextView tv_tab_score,tv_tab_price,tv_tab_distance;
+	private View v_tab_score,v_tab_price,v_tab_distance;
+	private ImageView iv_charging_point_close,iv_ambitus;
+	private ListViewCustom listview;
+	private PullToRefreshScrollView pScrollView;
+	private long exitTime;
+	private boolean isRefresh;
+	private ArrayList<MapModeBean> rawdata,beans;
+	private MyListModeListViewAdapter maAdapter;
+	private MapModeBean mapModeBean;
+	private String currentLat,currentLng,targetLat,targetLng;
+	private String cocurrent,exchange,leisure,catchpark;
+	private String classify = "distance";
+	@SuppressWarnings("unchecked")
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_chargelist);
+//		mContext=this;
+		mPageName = "ChargeListActivity";
+		beans = (ArrayList<MapModeBean>) getIntent().getSerializableExtra("allMapBean");
+		isRefresh = true;
+		rawdata = new ArrayList<MapModeBean>();
+		initView();
+		/*if (beans.size()>0) {
+			sortlist(classify);	
+		}else {
+			initValue();
+		}*/
+	}
+	
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		super.onWindowFocusChanged(hasFocus);
+		if (beans != null && beans.size()>0) {
+			sortlist(classify);	
+		}else {
+			if (beans == null ) {				
+				beans = new ArrayList<MapModeBean>();
+			}
+			initValue();
+		}
+	}
+	
+	private void initView() {
+		
+		iv_charging_point_close = (ImageView)findViewById(R.id.charging_point_close);	
+		iv_charging_point_close.setOnClickListener(this);
+		iv_ambitus = (ImageView) findViewById(R.id.ambitus);
+		iv_ambitus.setOnClickListener(this);
+		rl_tab_distance = (RelativeLayout)findViewById(R.id.list_mode_rl_distance);
+		rl_tab_distance.setOnClickListener(this);
+		rl_tab_price = (RelativeLayout)findViewById(R.id.list_mode_rl_price);
+		rl_tab_price.setOnClickListener(this);
+		rl_tab_score = (RelativeLayout)findViewById(R.id.list_mode_rl_leisure);
+		rl_tab_score.setOnClickListener(this);
+		
+		tv_tab_distance = (TextView)findViewById(R.id.list_mode_tv_distance);
+		tv_tab_price = (TextView)findViewById(R.id.list_mode_tv_price);
+		tv_tab_score = (TextView)findViewById(R.id.list_mode_tv_leisure);
+		v_tab_distance = (View)findViewById(R.id.list_mode_v_distance);
+		v_tab_price = (View)findViewById(R.id.list_mode_v_price);
+		v_tab_score = (View)findViewById(R.id.list_mode_v_leisure);	
+		
+		listview = (ListViewCustom) findViewById(R.id.charge_done_finish_listview);
+		pScrollView = (PullToRefreshScrollView) findViewById(R.id.charge_done_finish_refresh);
+		pScrollView.setOnRefreshListener(this);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.charging_point_close:
+			finish();
+			break;
+		case R.id.ambitus:
+			MobclickAgent.onEvent(mContext, "chongdian_fujinanniu");
+			if ((System.currentTimeMillis() - exitTime) > 10000) // System.currentTimeMillis()无论何时调用，肯定大于2000
+			{
+				isfirst = true;
+				exitTime = System.currentTimeMillis();
+			}else{
+				isfirst = false; 
+			}
+			if(isNetConnection()&&isfirst){
+				showPD("正在加载数据...");
+				initValue();
+			}
+			break;
+		case R.id.list_mode_rl_distance:
+			MobclickAgent.onEvent(mContext, "chongdian_julizuijin");
+			tv_tab_distance.setTextColor(getActivity().getResources().getColor(R.color.common_orange));
+			v_tab_distance.setBackgroundColor(getActivity().getResources().getColor(R.color.common_orange));
+			tv_tab_price.setTextColor(getActivity().getResources().getColor(R.color.common_light_black));
+			v_tab_price.setBackgroundColor(getActivity().getResources().getColor(R.color.common_light_grey));
+			tv_tab_score.setTextColor(getActivity().getResources().getColor(R.color.common_light_black));
+			v_tab_score.setBackgroundColor(getActivity().getResources().getColor(R.color.common_light_grey));
+			classify = "distance";
+			sortlist(classify);
+			break;
+		case R.id.list_mode_rl_price:
+			MobclickAgent.onEvent(mContext, "chogndian_jiagezuidi");
+			tv_tab_price.setTextColor(getActivity().getResources().getColor(R.color.common_orange));
+			v_tab_price.setBackgroundColor(getActivity().getResources().getColor(R.color.common_orange));
+			tv_tab_distance.setTextColor(getActivity().getResources().getColor(R.color.common_light_black));
+			v_tab_distance.setBackgroundColor(getActivity().getResources().getColor(R.color.common_light_grey));
+			tv_tab_score.setTextColor(getActivity().getResources().getColor(R.color.common_light_black));
+			v_tab_score.setBackgroundColor(getActivity().getResources().getColor(R.color.common_light_grey));
+			classify = "price";
+			sortlist(classify);
+			break;
+		case R.id.list_mode_rl_leisure:
+			MobclickAgent.onEvent(mContext, "chongidan_kongxianyouxian");
+			tv_tab_score.setTextColor(getActivity().getResources().getColor(R.color.common_orange));
+			v_tab_score.setBackgroundColor(getActivity().getResources().getColor(R.color.common_orange));
+			tv_tab_distance.setTextColor(getActivity().getResources().getColor(R.color.common_light_black));
+			v_tab_distance.setBackgroundColor(getActivity().getResources().getColor(R.color.common_light_grey));
+			tv_tab_price.setTextColor(getActivity().getResources().getColor(R.color.common_light_black));
+			v_tab_price.setBackgroundColor(getActivity().getResources().getColor(R.color.common_light_grey));
+			classify = "leisure";
+			sortlist(classify);
+			break;
+		default:
+			break;
+		}
+	}
+	private void initValue(){
+		currentLat = PreferencesUtil.getStringPreferences(getActivity(), "currentlat");
+		currentLng = PreferencesUtil.getStringPreferences(getActivity(), "currentlng");
+		targetLat = PreferencesUtil.getStringPreferences(getActivity(), "targetLat");
+		targetLng = PreferencesUtil.getStringPreferences(getActivity(), "targetLng");
+		if (Tools.isEmptyString(targetLat)||Tools.isEmptyString(targetLng)) {
+			targetLat = currentLat;
+			targetLng = currentLng;
+		}
+		if (PreferencesUtil.getBooleanPreferences(getActivity(), "isDc", false)) {// 直流
+			cocurrent = "1";
+		} else {
+			cocurrent = "0";
+		}
+		if (PreferencesUtil.getBooleanPreferences(getActivity(), "isAc", false)) {// 交流
+			exchange = "1";
+		} else {
+			cocurrent = "0";
+		}
+		if (PreferencesUtil.getBooleanPreferences(getActivity(), "isIdle", false)) {// 空闲
+			leisure = "1";
+		} else {
+			leisure = "0";
+		}
+		if (PreferencesUtil.getBooleanPreferences(getActivity(), "isPark", false)) {// 免费停车
+			catchpark = "1";
+		} else {
+			catchpark = "0";
+		}
+
+		if (isNetConnection()) {
+
+			String pkuserid = PreferencesUtil.getStringPreferences(
+					getActivity(), "pkUserinfo");
+			
+			GetDataPost.getInstance(getActivity()).getElectricPileMapList(handler,
+					targetLat, targetLng,cocurrent,exchange,leisure,catchpark,pkuserid,"1000");
+
+		} else {
+			showToast("网络不稳，请稍后再试");
+		}
+
+	}
+	@SuppressWarnings("unchecked")
+	public void sortlist(String sort) {
+		try {
+			PreferencesUtil.setPreferences(getActivity(), "locationsort", sort);
+			if(beans.size()>0){
+				ComparatorListMode comparator = new ComparatorListMode(sort);
+				Collections.sort(beans, comparator);
+			}
+			if(beans.size()>0){
+				if(maAdapter == null){
+					maAdapter = new MyListModeListViewAdapter(getActivity(), beans,"2");
+					listview.setAdapter(maAdapter);
+					listview.setOnItemClickListener(new OnItemClickListener() {
+
+						@Override
+						public void onItemClick(AdapterView<?> parent,
+								View view, int position, long id) {
+							maAdapter.getView(position, view, listview);
+							if (id!=R.id.navigation) {								
+								MobclickAgent.onEvent(mContext, "chongdian_listcard");
+								mapModeBean = beans.get(position);
+								Intent detail = new Intent(ChargeListActivity.this,StationStiltDetailActivity.class);
+								detail.putExtra("mapModeBean", mapModeBean);
+								startActivity(detail);
+							}
+						}
+					});
+				}
+				maAdapter.notifyDataSetChanged();
+				pScrollView.getRefreshableView().fullScroll(pScrollView.FOCUS_UP);
+			}
+		} catch (Exception e) {
+		}
+		
+	}
+
+	@Override
+	protected void getData() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void onSuccess(String sign, Bundle bundle) {
+		if(bundle != null ){
+			if (sign.equals(Protocol.GET_MAP_LIST)) {
+				if (isfirst) {					
+					cancelPD();
+				}
+			pScrollView.onRefreshComplete();
+			rawdata = (ArrayList<MapModeBean>) bundle.getSerializable(Protocol.DATA);
+			pScrollView.pullsettins = false;
+			if(isRefresh){
+					beans.clear();
+					beans.addAll(rawdata);
+			}else {
+				if (beans.size()>0) {
+					beans.clear();
+				}
+				if(rawdata.size()>0){
+					beans.addAll(rawdata);
+				}else {
+					showToast("暂无更多数据");
+				}
+			}
+			if(beans.size()>0){
+				ComparatorListMode comparator = new ComparatorListMode(classify);
+				Collections.sort(beans, comparator);
+			}
+			if(beans.size()>0){
+				if(maAdapter == null){
+					maAdapter = new MyListModeListViewAdapter(getActivity(), beans,"2");
+					listview.setAdapter(maAdapter);
+					listview.setOnItemClickListener(new OnItemClickListener() {
+
+						@Override
+						public void onItemClick(AdapterView<?> parent,
+								View view, int position, long id) {
+							mapModeBean = beans.get(position);
+							Intent detail = new Intent(ChargeListActivity.this,StationStiltDetailActivity.class);
+							detail.putExtra("mapModeBean", mapModeBean);
+							startActivity(detail);
+						}
+					});
+				}
+
+				maAdapter.notifyDataSetChanged();
+				if (isfirst) {					
+					pScrollView.getRefreshableView().fullScroll(pScrollView.FOCUS_UP);
+				}
+			}
+
+			
+			}
+		}
+	}
+
+	@Override
+	public void onFaile(String sign, Bundle bundle) {
+		pScrollView.onRefreshComplete();
+		showToast(bundle.getString(Protocol.MSG));
+	}
+
+
+
+	@Override
+	public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+		// 下拉刷新
+		String label = (String) DateFormat.format("yyyy-MM-dd HH:mm:ss", System.currentTimeMillis()); 
+		refreshView.getLoadingLayoutProxy().setLastUpdatedLabel("最后更新："+label);
+		isRefresh = true;
+		if(isNetConnection()){
+			initValue();
+		}else {
+			pScrollView.onRefreshComplete();
+			showToast("网络不稳，请稍后再试");
+		}
+
+	}
+
+	@Override
+	public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {	
+		// 上拉加载
+		isRefresh = false;
+		pScrollView.onRefreshComplete();
+	}
+	@Override
+	public void onPullUpToRefreshNoData(PullToRefreshBase<ScrollView> refreshView) {
+		showToast("暂无更多数据");
+	}
+
+
+//	interface 
+@Override
+protected void onResume() {
+	super.onResume();
+	MobclickAgent.onResume(mContext);
+	MobclickAgent.onPageStart(mPageName);
+}
+@Override
+protected void onPause() {
+	// TODO Auto-generated method stub
+	super.onPause();
+	MobclickAgent.onPause(mContext);
+	 MobclickAgent.onPageEnd(mPageName);
+}
+}

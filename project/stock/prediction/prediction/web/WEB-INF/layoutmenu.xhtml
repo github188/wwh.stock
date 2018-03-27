@@ -1,0 +1,49 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pr="http://primefaces.org/rio"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <div class="Animated05" id="layout-menu-cover">
+        <style>
+            .layout-menu .ui-commandlink { /* or .menulink.ui-commandlink */
+                color: #455a64 !important;
+            }
+        </style>
+
+        <ul class="layout-menu">
+            <c:if test="#{loginStatus.loggedIn}">
+                <li>
+                    <a class="menulink ripplelink">
+                        <i class="icon-round58 Fs50"></i>
+                        <span class="Fs18">#{users.nickname}<i class="icon-downwards Fright Fs20"></i><br /><span class="Fs12 FontRobotoLight">#{users.groupsId.groupName}</span></span>
+                    </a>
+                    <ul>
+                        <li><h:form><p:commandLink  styleClass="menulink ripplelink" ajax="false" action="/business/personal?faces-redirect=true" ><i class="fa fa-drupal Fs16"></i> 个人信息</p:commandLink> </h:form></li>
+                        <li>
+                            <h:form>
+                                <p:commandLink  styleClass="menulink ripplelink" ajax="false" action="/main?faces-redirect=true" actionListener="#{sessionUtil.logout()}" ><i class="fa fa-power-off Fs16"></i> 注销登录 </p:commandLink>
+                            </h:form>
+                        </li>
+                    </ul>
+                </li>
+            </c:if>
+        </ul>
+
+        <div class="Separator"></div>
+
+        <pr:menu id="h1">
+            <p:menuitem id="m1"  value="首页" icon="icon-planet29" outcome="/main?faces-redirect=true" />
+            <p:menuitem id="m2"  value="个股预测" icon="icon-planet29" outcome="/business/stock_predict"/>
+            <p:menuitem id="m3" value="升级用户" icon="icon-planet29" outcome="/upgrade"/>
+            <p:menuitem id="m4" value="系统帮助" icon="icon-planet29" outcome="/help"/>
+            <p:menuitem id="m5" value="关于我们" icon="icon-planet29" outcome="/aboutus"/>
+            <p:separator />
+        </pr:menu>
+
+    </div>
+
+</ui:composition>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_light_white"
+    android:orientation="vertical" >
+    <TextView 
+        android:id="@+id/listview_item_car_repair_name"
+         android:layout_width="match_parent"
+    	 android:layout_height="wrap_content"
+    	 android:textColor="@color/common_light_black"
+    	 android:textSize="19sp"
+    	 android:gravity="center_vertical"
+    	 android:paddingLeft="14dp"
+    	android:paddingTop="10dp"
+    	  android:paddingBottom="10dp"
+    	 android:background="@color/common_white"
+    	 android:layout_marginTop="15dp"
+         
+        />
+    
+    <LinearLayout 
+         android:layout_width="match_parent"
+    	 android:layout_height="wrap_content"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        android:paddingTop="10dp"
+    	 android:paddingBottom="10dp"
+        android:orientation="horizontal"
+         android:background="@color/common_white"
+         android:layout_marginTop="1dp"
+        
+        >
+       <TextView 
+        android:id="@+id/listview_item_car_repair_addr"
+         android:layout_width="0dp"
+    	 android:layout_height="wrap_content"
+    	 android:layout_weight="4"
+    	 android:textColor="@color/common_light_black"
+    	 android:textSize="15sp"
+    	 android:gravity="center_vertical"
+         
+        />  
+         <TextView 
+        android:id="@+id/listview_item_car_repair_distance"
+         android:layout_width="0dp"
+    	 android:layout_height="wrap_content"
+    	 android:layout_weight="1"
+    	 android:textColor="@color/common_light_black"
+    	 android:textSize="15sp"
+    	 android:gravity="center_vertical|right"
+        />  
+    </LinearLayout>
+    <LinearLayout 
+         android:layout_width="match_parent"
+    	 android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+       <com.bm.wanma.view.DrawableCenterTextView
+        android:id="@+id/listview_item_car_repair_tel"
+         android:layout_width="0dp"
+    	 android:layout_height="wrap_content"
+    	 android:layout_weight="1"
+    	 android:text="电话"
+    	 android:drawablePadding="5dp"
+    	 android:paddingTop="10dp"
+    	  android:paddingBottom="10dp"
+    	 android:textColor="@color/common_orange"
+    	 android:textSize="16sp"
+    	 android:layout_marginTop="1dp"
+    	 android:drawableLeft="@drawable/btn_help_phone"
+          android:background="@color/common_white"
+        />  
+        <com.bm.wanma.view.DrawableCenterTextView
+        android:id="@+id/listview_item_car_repair_nav"
+         android:layout_width="0dp"
+    	 android:layout_height="wrap_content"
+    	 android:layout_weight="1"
+    	 android:text="导航"
+    	 android:drawablePadding="5dp"
+    	 android:paddingTop="10dp"
+    	  android:paddingBottom="10dp"
+    	 android:textColor="@color/common_orange"
+    	 android:textSize="16sp"
+    	 android:layout_marginLeft="1dp"
+    	 android:layout_marginTop="1dp"
+    	 android:drawableLeft="@drawable/btn_help_navigation"
+          android:background="@color/common_white"
+        />  
+    </LinearLayout>
+    
+
+</LinearLayout>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>沪深证券指数行情管理</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        $(function () {
+            jQuery('#dg').datagrid({
+                url: 'index-data/queryPaged',
+                columns: [[
+                    {field: 'id', checkbox: true, hidden:true}
+                   ,{field: 'code', title: '代码', width: 100,align:'center'}
+                   ,{field: 'name', title: '简称', width: 100,align:'center'}
+                   ,{field: 'dt', title: '日期', width: 100,align:'center'}
+                   ,{field: 'curOpen', title: '今开', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'preClose', title: '昨收', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'price', title: '当前点数', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'changeAmount', title: '涨跌', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'changeWidth', title: '涨幅', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'high', title: '最高', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'low', title: '最低', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'volume', title: '成交量(手)', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'amount', title: '成交额(万元)', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'riseCnt', title: '上涨家数', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'flatCnt', title: '平盘家数', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'fallCnt', title: '下跌家数', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                   ,{field: 'changeRate', title: '涨速', width: 100,align:'right',sortable:true,formatter:optionNumFun}
+                ]],
+                pagination: true,
+                pageSize:Magic.PAGE_SIZE,
+                pageList:Magic.PAGE_LIST,
+                rownumbers:true,
+                singleSelect: false,
+                remoteSort:false,
+                fitColumns: true,
+                fit: true,
+                toolbar: '#toolbar',
+                onDblClickRow: function (rowid, rowdata) {
+                    editForm();
+                }
+            });
+        });
+        function optionFun(value, row, index) {
+            if (!!value) {
+                return Highcharts.numberFormat(value, 2);
+            } else {
+                return '';
+            }
+        }
+        function newForm() {
+            Magic.openWin('新增沪深证券指数行情', 'index-data/add', 600, 200);
+        }
+        function editForm() {
+            var row = jQuery('#dg').datagrid('getSelected');
+            if (row) {
+                Magic.openWin('编辑沪深证券指数行情', 'index-data/edit/' + row.id, 600, 300);
+            }
+        }
+        function destroyForm() {
+            var rows = jQuery('#dg').datagrid('getSelections');
+            if (rows.length > 0) {
+                jQuery.messager.confirm('确认删除', '确定删除该记录?', function (r) {
+                    if (r) {
+                        var ids = [];
+                        jQuery.each(rows, function (index, row) {
+                            ids.push(row.id);
+                        });
+                        jQuery.post('index-data/delete', {'ids': ids.toString()}, function (result) {
+                            if (result.success) {
+                                jQuery('#dg').datagrid('reload');    // reload the user data
+                            } else {
+                                jQuery.messager.show({    // show error message
+                                    title: '错误',
+                                    msg: result.message
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        function dataRefresh() {
+            $.dream.tip("加载中...");
+            var code=jQuery('#filter_code').val();
+            var name=jQuery('#filter_name').val();
+            jQuery.post('index-data/dataRefresh',{'code':code,'name':name},function(result){
+                if(!result.success){
+                    $.dream.closetip();
+                    jQuery.messager.show({title: '错误', msg: result.message });
+
+                } else {
+                    jQuery('#dg').datagrid('load', {'code':code,'name':name});
+                    $.dream.closetip();
+                }
+            });
+        }
+
+        function contentSearch() {
+            var code=jQuery('#filter_code').val();
+            var name=jQuery('#filter_name').val();
+            jQuery('#dg').datagrid('load', {
+                'code':code,'name':name})
+        }
+
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+<table id="dg" data-options="toolbar:'#toolbar'"></table>
+<div id="toolbar">
+    <div class="search_box">
+        代码：<input id="filter_code" class="easyui-validatebox">
+        简称：<input id="filter_name" class="easyui-validatebox">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+           onclick="contentSearch()">搜索</a>
+    </div>
+    <div class="btn_box">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"
+           onclick="newForm()">新增</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+           onclick="editForm()">编辑</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="destroyForm()">删除</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-mini-refresh" plain="true"
+           onclick="dataRefresh()">重新生成</a>
+    </div>
+</div>
+</body>
+</html>

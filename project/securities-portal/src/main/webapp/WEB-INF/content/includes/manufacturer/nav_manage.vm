@@ -1,0 +1,55 @@
+<div class="nav-action">
+    <a href="javascript:void(0);" class="nav-toggle"><i class="fa fa-reorder"></i></a>
+    <dl class="nav-list">
+		 <dt class="nav-list-title"><i class="fa fa-minus"></i> 单位信息</dt>
+            <dd class="nav-list-body">
+                <a href="${base}/member/account_manage" >资料完善</a>
+                <a href="${base}/member/account_headimg"  >用户头像</a>
+				 <a href="javascript:void(0)">资质</a>
+            </dd>
+            <dt class="nav-list-title"><i class="fa fa-minus"></i> 账号安全</dt>
+            <dd class="nav-list-body">
+                <a href="${base}/member/passwordedit"  >登录密码</a>
+                <a href="${base}/member/paypasswordedit"  >支付密码</a>
+            </dd>
+			 <dt class="nav-list-title"><i class="fa fa-minus"></i> 认证信息</dt>
+			 <dd class="nav-list-body">
+                <a href="${base}/member/account_auth"  >认证信息</a>
+            </dd>
+            <dt class="nav-list-title"><i class="fa fa-minus"></i> 财务管理</dt>
+            <dd class="nav-list-body">
+                <a href="${base}/financial/financelist" >收支明细</a>
+                <a href="/financial/withdraw"  >我要提现</a>
+                <a href="/financial/charge_index" >账号充值</a>
+            </dd>
+		 <dt class="nav-list-title"><i class="fa fa-minus"></i> 交易管理</dt>
+        <dd class="nav-list-body">
+            <a href="${base}/owner/mytask">我的项目</a>
+			<a href="javascript:void(0)">我的货物</a>
+		<!--
+        <dt class="nav-list-title"><i class="fa fa-minus"></i> 交易管理</dt>
+        <dd class="nav-list-body">
+            <a href="${base}/owner/undertake">我承接的任务</a>
+            <a href="${base}/job/jobmember/job_manage">我服务的任务</a>
+			 <a href="javascript:void(0)">我卖出的商品</a>
+            <a href="index.php?do=user&amp;view=wk&amp;op=gy">我接受的雇佣</a>
+            <a href="${base}/owner/bidtask">我的投标记录</a>
+            <a href="${base}/owner/myMark">交易评价</a>
+        </dd>
+        
+        <dt class="nav-list-title"><i class="fa fa-minus"></i> 店铺管理</dt>
+        <dd class="nav-list-body">
+            <a href="${base}/shop/service/goodspub" target="pubpage">快速发布商品</a>
+            <a href="${base}/shop/shop" target="_blank">我的店铺</a>
+            <a href="${base}/shop/shop/manage">店铺设置</a>
+            <a href="${base}/shop/service/goodslist">商品管理</a>
+        </dd>
+		-->
+		<!--
+        <dt class="nav-list-title"><i class="fa fa-minus"></i> 我的收藏</dt>
+        <dd class="nav-list-body">
+            <a href="index.php?do=user&amp;view=collect&amp;op=task">收藏的任务</a>
+        </dd>
+        -->
+    </dl>
+</div>

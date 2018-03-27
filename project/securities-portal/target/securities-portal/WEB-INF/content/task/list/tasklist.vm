@@ -1,0 +1,373 @@
+
+<link rel="stylesheet" type="text/css" href="${base}/static/newindex/css/taskHall.css" />
+#parse("includes/index-header.vm")
+<body>
+	<div class="wrap">
+		<div class="nav">
+			<ul class="clearfix">
+				#set($classNum = 2)
+				#parse("includes/index-navmanage.vm")
+			</ul>
+		</div>
+	</div>
+	<div class="clearfix task_box">
+		<!-- <div class="slide fr" id="slide_item">
+		    <ul class="img_item clearfix">
+		       <li><a href="#"><img src="${base}/static/newindex/images/taskHall/lunbo_1.png" width="100%"></a></li>
+		        <li><a href="#"><img src="${base}/static/newindex/images/taskHall/lunbo_1.png" width="100%"></a></li>
+		        <li><a href="#"><img src="${base}/static/newindex/images/taskHall/lunbo_1.png" width="100%"></a></li>
+		    </ul>
+		    <div class="num_slide" id="slide_num"></div>
+		</div> -->
+		
+		<ul class="task_leftnews wrap">
+		
+			#foreach($bid in $latestBidTask)
+				<li>
+					<span class="mark">$bid.indus_name</span>
+					<a href="${base}/task-detail-work?id=$!bid.id">$bid.task_title</a>
+					<span class="mark1">设计招标成功</span>
+				</li>
+			#end
+			<!--
+			<li><span class="mark">新能源</span><a href="">新疆广汇集团LNG天然气工程</a><span class="mark1">设计招标成功</span></li>
+			<li><span class="mark">煤化工</span><a href="">山西阳泉煤化集团万吨煤化工工程</a><span class="mark1">设计招标成功</span></li>
+			<li><span class="mark">煤化工</span><a href="">山西阳泉煤化集团万吨煤化工工程</a><span class="mark1">设计招标成功</span></li>
+			<li class="mt50"><span class="mark">煤化工</span><a href="">山西阳泉煤化集团万吨煤化工工程</a><span class="mark1">设计招标成功</span></li>
+			<li><span class="mark">煤化工</span><a href="">山西阳泉煤化集团万吨煤化工工程</a><span class="mark1">设计招标成功</span></li>
+			<li><span class="mark">煤化工</span><a href="">山西阳泉煤化集团万吨煤化工工程</a><span class="mark1">设计招标成功</span></li>
+			-->
+		</ul>
+		
+	</div>
+	<div class="wrap clearfix">
+		<div class="task_leftBox fl">
+			<div class="filterBox">
+				<ul class="filterList">
+					<li>
+						<span class="name">分类</span>
+						<a #if(!$paramData.indusPid || $paramData.indusPid == '' ) class="current" #end onclick="indusPage('');">全部</a>
+						#foreach($indus in $industies)
+							<a #if($!paramData.indusPid==$indus.id) class="current" #end onclick="indusPage('$indus.id');">$indus.indusName</a>
+						#end
+					</li>
+					<li>
+						<span class="name">预算</span>
+						<a #if(!$paramData.rangeId || $paramData.rangeId == '') class="current" #end onclick="rangePage('')">全部</a>
+						#foreach($range in $cashRanges)
+							<a #if($!paramData.rangeId==$range.id) class="current" #end onclick="rangePage('$range.id')">$range.name</a>
+						#end
+					</li>
+					<li>
+						<span class="name">状态</span>
+						<a #if(!$paramData.status || $paramData.status == '') class="current" #end onclick="goPage('1', '');">全部</a>
+						#foreach($statusDict in $statusDicts)
+							<a #if($!paramData.status==$statusDict.value) class="current" #end onclick="goPage('1', '$!statusDict.value');">$statusDict.content</a>
+						#end
+					</li>
+					<!--
+					<li>
+						<span class="name">XXX</span>
+						<a class="current">全部</a>
+						<a>前期咨询</a><a>前期咨询</a>
+					</li>
+					<li>
+						<span class="name">时间</span>
+						<a class="current">加急</a>
+						<a>1月内到期</a><a>3周内到期</a>
+						<a>1周内到期</a><a>3天内到期</a>
+						<a>24小时内到期</a>
+					</li>
+					-->
+				</ul>
+				<div class="filterBar">
+					<a class="filter current">综合</a>
+					<a class="filter" onclick="orderByPage('1');">
+						发布时间<i #if($!paramData.orderBy=='1' && $!paramData.asc=='0') class="icon_arrow_down" #else class="icon_arrow_up" #end></i>
+					</a>
+					<a class="filter" onclick="orderByPage('2');">
+						截止时间<i #if($!paramData.orderBy=='2' && $!paramData.asc=='0') class="icon_arrow_down" #else class="icon_arrow_up" #end></i>
+					</a>
+					<!--
+					<a class="filter" onclick="orderByPage('3');">
+						参与数<i #if($!paramData.orderBy=='3' && $!paramData.asc=='0') class="icon_arrow_down" #else class="icon_arrow_up" #end></i>
+					</a>
+					-->
+					<a class="filter" onclick="orderByPage('4');">
+						预算<i #if($!paramData.orderBy=='4' && $!paramData.asc=='0') class="icon_arrow_down" #else class="icon_arrow_up" #end></i>
+					</a>
+					<!--
+					<select><option>所有价格</option></select>
+					<select><option>所有地区</option></select>
+					-->
+					<!-- <a class="filterBtn">搜索任务</a> -->
+				</div>
+				<table class="filterResult">
+					<tr>
+						<th>项目编号</th>
+						<th>标题</th>
+						<th>预算</th>
+						<th>截止时间</th>
+						<th>业主</th>
+						<th>状态</th>
+						<th>详情</th>
+					</tr>
+					#foreach($!data in $!page.list)
+					<tr>
+						<td>$!data.ID</td>
+						<td>
+							<a href="${base}/task-detail-work?id=$!data.ID">
+								#if($!data.task_title.length() > 15)
+									$data.task_title.substring(0, 15)....
+								#else
+									$!data.task_title
+								#end
+							</a>
+						</td>
+						<td class="red">
+							#if($!data.task_cash)
+								￥ $!NumberTool.format('#0.00', $!data.task_cash) 元
+							#else	
+								----
+							#end
+						</td>
+						<td>$!date.format('yyyy-MM-dd', $!data.sub_time)</td>
+						<td>$!data.yz</td>
+						<td class="red"><span>$!data.statusName</span></td>
+						<td>
+							<!--
+							<a class="icon_tool icon1"><span>投标</span></a>
+							<a class="icon_tool icon2"><span>收藏</span></a>
+							<a class="icon_tool icon3"></a>
+							-->
+							<a class="icon_tool icon4" href="${base}/task-detail-work?id=$!data.ID"><span>详情</span></a>
+						</td>
+					</tr>
+					#end
+				</table>
+				<div class="pages">
+					<span>1/$!page.pages页</span>
+					#if($page.hasPreviousPage)
+		       			<a onclick="prevPage('$!page.pageNum');"><<上一页 </a>
+	       			#end
+	       			#foreach($num in $page.navigatepageNums)
+	       			<a #if($page.pageNum == $num) class="current" #end onclick="goPage('$num', '$!status');" href="javascript:void(0);">$num</a>
+	       			#end
+	       			#if($!page.hasNextPage)
+	       				<a onclick="nextPage('$!page.pageNum');">下一页 >></a>
+	       			#end
+					<input id="pageInput"><a onclick="jumpPage();">跳转</a>
+				</div>
+			</div>
+		</div>
+		<form action="${base}/tasklist#searchTransactionForm" method="post" id="searchTransactionForm">
+	  		<input type="hidden" name="status" id="status" value="$!paramData.status"/>
+	  		<input type="hidden" name="page" id="page" value="$!page.pageNum" />
+	  		<input type="hidden" name="size" id="size" value="$!page.pageSize" />
+	  		<input type="hidden" name="indusPid" id="indusPid" value="$!paramData.indusPid"/>
+	  		<input type="hidden" name="rangeId" id="rangeId" value="$!paramData.rangeId"/>
+	  		<input type="hidden" name="orderBy" id="orderBy" value="$!paramData.orderBy"/>
+	  		<input type="hidden" name="asc" id="asc" value="$!paramData.asc"/>
+	  	</form>
+		<div class="task_rightBox fl">
+			<h2>快速发布项目</h2>
+			<div class="task_process">
+				<ul>
+					<li><i>1</i>描述项目需求</li>
+					<li><i>2</i>选择最优秀的服务商</li>
+					<li><i>3</i>签订服务协议</li>
+					<li><i>4</i>在线进行审查，满意再付款</li>
+				</ul>
+				<a class="taskBtn" href="${base}/taskpub/pub">发布项目</a>
+			</div>
+			<div class="task_advantage">
+				<i class="icon_advantage"></i>
+				<p class="why">创意交易<span>为什么选择北斗天工</span></p>
+				<ul>
+					<li><i>验</i>900万专业服务商<p>北斗天工实名认证，业主放心交易</p></li>
+					<li><i>¥</i>担保交易，满意后付款<p>赏金托管北斗天工，安全全程保障</p></li>
+					<li><i>免</i>无风险，免费发布<p>所有类型项目，业主免费发布</p></li>
+					<li><i>退</i>无风险，全额退款<p>零交稿零投标，项目全额退款</p></li>
+				</ul>
+			</div>
+			<!--
+			<div class="task_submit">
+				<h3>快速发布一个任务<p>让北斗天工九百万人才为您分忧解难！</p></h3>
+				<ul>
+					<li><span class="name">需求标题</span><input></li>
+					<li><span class="name">需求分类</span><input><input><input></li>
+					<li><span class="name">手机号码</span><input></li>
+					<li><span class="name">手机验证码</span><div class="half_input"><input><a class="verifyCodeBtn">获取验证码</a></div></li>
+					<a class="taskBtn">提交需求</a>
+				</ul>
+			</div>
+			-->
+			<div class="task_case">
+				<h3>最新案例赏析<a class="more">更多</a></h3>
+				<ul>
+					<li><div class="img"><img src="${base}/static/newindex/images/taskHall/img1.png" width="100%"></div><span class="title">▪ 云南防腐工程</span><p class="content">工程是科学和数学的某种应用，通过这一应用，使自然界的物质和能源的特性能够通过...</p></li>
+					<li><span class="title">▪  云南造粒塔工程详解</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="wrap" style="margin:20px auto;"><a href=""><img src="${base}/static/newindex/images/taskHall/banner1.png" width="100%"></a></div>
+		#parse("includes/footer.vm")
+	<script src="${base}/static/js/jquery.js"></script>
+	<script type="text/javascript">
+		//图片切换  
+        // var items= $("#slide_item");
+        // var items_tool = $("#slide_num");
+        // Slide(items,items_tool,"l_r","click",$("#left_cur"),$("#right_cur"));//焦点图
+        function Slide(items,items_tool,type,Trigger,up_btn,down_btn){
+        var items_arr = items.find("li"), //获得包含图片的对象
+            items_ul = items.find("ul");//获得包含图片对象的ul层
+        var item_height = items_arr.first().height(), 
+            item_width = items_arr.first().width();//滚动块的宽高
+        var select_point_innerHTML = "", 
+            run_interval = null, 
+            now = 0, 
+            img_count = items_arr.length;//滚动里需要的几个参数
+        var slide_func = {
+            auto_run : function(){
+                var _this = this;
+                // if (now == 0) {
+                // 	_this.select_point_show(now);
+                //     _this.slide_run(now);
+                // };
+                run_interval = setInterval(function(){
+                    now++;
+                    if(now > (img_count-1)){ now = 0 }
+                    _this.select_point_show(now);
+                    _this.slide_run(now);
+                },3000);
+            },
+            slide_run : function(n){
+                switch (type){
+                    case "opacity":
+                        items_arr.fadeOut(1000);items_arr.eq(n).fadeIn(1000);break;
+                    case "l_r":
+                        items_ul.stop().animate({"margin-left" : n*item_width*-1+"px"},"slow");break;
+                    case "t_b":
+                        items_ul.stop().animate({"margin-top" : n*item_height*-1+"px"},"slow");break;
+                };
+            },
+            select_point_show : function(n){
+                items_tool_a.removeClass("hover");
+                items_tool_a.eq(n).addClass("hover");
+            }
+        };
+        
+        if (items_tool.find('img').size() == 0) {
+            items_arr.each(function(i){/* 生成触发的1，2，3，4那种热点。并排列好图片的位置。 */
+                // if(type == "l_r"){$(this).css("left",i*item_width);items_arr.show();}//横向排列大图片
+                if(type == "t_b"){$(this).css("top",i*item_height);items_arr.show();}//纵向排列大图片
+                select_point_innerHTML += '<a href="javascript:void(0);"></a>';
+            });
+            items_tool.html(select_point_innerHTML);
+        }
+        
+        var items_tool_a = items_tool.find("a");//获得很有热点LINK的对象集合
+        items_tool_a.first().addClass("hover");
+        slide_func.auto_run();//启动自动轮播
+        
+        items.bind("hover",function(){
+                
+        })
+        
+        
+        items_tool_a.each(function(i){//触发图片热点切换图片
+            $(this).bind(Trigger, function(){
+                clearInterval(run_interval);
+                now = i;
+                slide_func.select_point_show(now);
+                slide_func.slide_run(now);
+                //slide_func.auto_run();
+            })
+        });
+        
+        if(up_btn){
+            up_btn.click(function(){
+                clearInterval(run_interval);
+                now--;
+                if(now<0){now=(img_count-1)}
+                slide_func.select_point_show(now);
+                slide_func.slide_run(now);
+                //slide_func.auto_run();
+            });
+        }
+        if(down_btn){
+            down_btn.click(function(){
+                clearInterval(run_interval);
+                now++;
+                if(now > (img_count-1)){ now = 0 }
+                slide_func.select_point_show(now);
+                slide_func.slide_run(now);
+                //slide_func.auto_run();
+            });
+        }
+        items.hover(function () {
+            clearInterval(run_interval);
+        }, function () {
+            slide_func.auto_run();
+        });
+    }
+	</script>
+	<script type="text/javascript">
+    	
+    	function nextPage(num){
+    		var page = parseInt(num) + 1;
+    		$("#page").val(page);
+    		$("#searchTransactionForm").submit();
+    	}
+    	
+    	function prevPage(num){
+    		var page = parseInt(num) - 1;
+    		if(page < 1) page = 1;
+    		$("#page").val(page);
+    		$("#searchTransactionForm").submit();
+    	}
+    	
+    	function goPage(num, st){
+    		$("#page").val(num);
+    		$("#status").val(st);
+    		$("#searchTransactionForm").submit();
+    	}
+    	
+    	function indusPage(pid){
+			$("#page").val("1");
+			$("#indusPid").val(pid);
+			$("#searchTransactionForm").submit();
+    	}
+    	
+    	function rangePage(id){
+			$("#page").val("1");
+			$("#rangeId").val(id);
+			$("#searchTransactionForm").submit();
+    	}
+    	
+    	function orderByPage(id){
+    		var orderBy = $("#orderBy").val();
+    		if(id!=orderBy){
+    			$("#orderBy").val(id);
+    			$("#asc").val("1");
+    			$("#searchTransactionForm").submit();
+    		}
+    		var asc = $("#asc").val();
+    		if(asc!='1'){
+    			$("#asc").val("1");
+    		}
+    		else{
+    			$("#asc").val("0");
+    		}
+    		$("#searchTransactionForm").submit();
+    	}
+    	
+    	function jumpPage(){
+    		var num = $("#pageInput").val();
+    		goPage(num, '');
+    	}
+
+    </script>
+</body>
+</html>

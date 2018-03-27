@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>沪深板块行情</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    #parse("commons/commonEastJs.vm")
+    #parse("commons/commonEastCss.vm")
+</head>
+<body>
+
+<!--layout page-main-->
+<div class="page-main fn-clear">
+    <!-- layout section-main -->
+    <div class="section-main">
+
+        <div class="mod-section-header fn-clear">
+            <div class="brendnav">
+                <a href="${base}/stockeast/marketcentre/">行情中心首页</a> &gt; <a href="${base}/stockeast/marketlist#10_0_0_u?sortType=C&sortRule=-1">
+                沪深股市</a> &gt; 板块
+            </div>
+            <div class="fn-right options">
+                <a class="btn-refresh" id="refresh"></a><a class="btn-favor" id="bookMark"></a>
+            </div>
+        </div>
+        <div class="space-10">
+        </div>
+        <div class="fn-clear mod-section-content" id="hsindex">
+            <div class="mod-item">
+                <div class="item-header">
+                    <h4>
+                        上证指数</h4>
+                </div>
+                <div class="item-content">
+                    <a href="${base}/stockeast/zsdetail?code=000001" target="_self">
+                        <img width="320" height="243" alt="上证指数" src=" http://hqpiczs.dfcfw.com/EM_Quote2010PictureProducter/Picture/0000011RsIndex.png" />
+                    </a>
+                    <div class="buttons">
+                        <a href="${base}/stockeast/zsdetail?code=000001" target="_self" class="btn-bigimg">
+                        </a>&nbsp; <a href="http://guba.eastmoney.com/topic,szzs.html" target="_blank" class="btn-gubar">
+                    </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mod-item">
+                <div class="item-header">
+                    <h4>
+                        深圳成指</h4>
+                </div>
+                <div class="item-content">
+                    <a href="${base}/stockeast/zsdetail?code=399001" target="_self">
+                        <img width="320" height="243" alt="深圳成指" src="http://hqpiczs.dfcfw.com/EM_Quote2010PictureProducter/Picture/3990012RsIndex.png" />
+                    </a>
+                    <div class="buttons">
+                        <a href="${base}/stockeast/zsdetail?code=399001" target="_self" class="btn-bigimg">
+                        </a>&nbsp; <a href="http://guba.eastmoney.com/topic,399001.html" target="_blank"
+                                      class="btn-gubar"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mod-item">
+                <div class="item-header">
+                    <h4>
+                        领涨板块</h4>
+                </div>
+                <div class="mod-datas" id="lzbk">
+                </div>
+            </div>
+        </div>
+        <div class="space-10">
+        </div>
+        <!-- 个股综合排行 -->
+        <div class="space-10">
+        </div>
+        <div class="mod-section-header mod-section-sub">
+            <ul class="fn-left tabs" id="hybk">
+                <li class="current">行业板块涨幅</li>
+                <li>行业板块跌幅</li>
+            </ul>
+            <div class="links">
+                <a href="http://data.eastmoney.com/bkzj/hy.html" target="_self">行业板块资金流</a><a href="http://data.eastmoney.com/report/hyyb.html"
+                                                                                               target="_blank">行业研报</a></div>
+            <div class="fn-right options" id="hymore">
+                <a href="${base}/stockeast/bklist#trade_0_0?sortRule=0" target="_self">
+                    更多</a>
+            </div>
+        </div>
+        <div class="space-5">
+        </div>
+        <div class="mod-datas tab-panels" id="hybkpanels">
+            <div class="tab-panel current">
+                <div id="HYBKUP">
+                </div>
+                <div class="footer-more bg">
+                    <a href="${base}/stockeast/bklist#trade_0_0?sortRule=0" target="_self">
+                        点击查看全部行业板块涨幅&gt;&gt;</a>
+                </div>
+            </div>
+            <div class="tab-panel">
+                <div id="HYBKDOWN">
+                </div>
+                <div class="footer-more bg">
+                    <a href="${base}/stockeast/bklist#trade_0_0?sortRule=1" target="_self">
+                        点击查看全部行业板块跌幅&gt;&gt;</a>
+                </div>
+            </div>
+        </div>
+        <div class="space-10">
+        </div>
+        <div class="mod-section-header mod-section-sub">
+            <ul class="fn-left tabs" id="gnbk">
+                <li class="current">概念板块涨幅</li>
+                <li>概念板块跌幅</li>
+            </ul>
+            <div class="links">
+                <a href="http://data.eastmoney.com/bkzj/gn.html" target="_self">概念板块资金流</a></div>
+            <div class="fn-right options" id="gnmore">
+                <a href="${base}/stockeast/bklist#notion_0_0?sortRule=0" target="_self">
+                    更多</a>
+            </div>
+        </div>
+        <div class="space-5">
+        </div>
+        <div class="mod-datas tab-panels" id="gnbkpanels">
+            <div class="tab-panel current">
+                <div id="GNBKUP">
+                </div>
+                <div class="footer-more bg">
+                    <a href="${base}/stockeast/bklist#notion_0_0?sortRule=0" target="_self">
+                        点击查看全部概念板块涨幅&gt;&gt;</a>
+                </div>
+            </div>
+            <div class="tab-panel">
+                <div id="GNBKDOWN">
+                </div>
+                <div class="footer-more bg">
+                    <a href="${base}/stockeast/bklist#notion_0_0?sortRule=1" target="_self">
+                        点击查看全部概念板块跌幅&gt;&gt;</a>
+                </div>
+            </div>
+        </div>
+        <div class="space-10">
+        </div>
+        <div class="mod-section-header mod-section-sub">
+            <ul class="fn-left tabs" id="dybk">
+                <li class="current">地域板块涨幅榜</li>
+                <li>地域板块跌幅榜</li>
+            </ul>
+            <div class="fn-right options" id="dymore">
+                <a href="${base}/stockeast/bklist#area_0_0?sortRule=0" target="_self">
+                    更多</a>
+            </div>
+        </div>
+        <div class="space-5">
+        </div>
+        <div class="mod-datas tab-panels" id="dybkpanels">
+            <div class="tab-panel current">
+                <div id="DYBKUP">
+                </div>
+                <div class="footer-more bg">
+                    <a href="${base}/stockeast/bklist#area_0_0?sortRule=0" target="_self">
+                        点击查看全部地域板块涨幅&gt;&gt;</a>
+                </div>
+            </div>
+            <div class="tab-panel" id="DYBKDOWN">
+                <div class="footer-more bg">
+                    <a href="${base}/stockeast/bklist#area_0_0?sortRule=1" target="_self">
+                        点击查看全部地域板块涨幅&gt;&gt;</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- layout section-main 结束 -->
+
+</div>
+<!--layout page-main 结束 -->
+<div class="qphox">
+    <script type="text/javascript" charset="utf-8">
+        var portalurl = "${portal_url}/";
+    </script>
+    <script type="text/javascript" src="${base}/static/js/east/base.min.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/function.min.js"></script>
+    <script type="text/javascript" src="${base}/static/js/east/share.min.js"></script>
+
+    <script type="text/javascript" src="${base}/static/js/east/bankuai.min.js"></script>
+</div>
+</body>
+</html>

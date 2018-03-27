@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<portable-config>
+    <config-file path="WEB-INF/classes/spring/application.properties">
+        <replace key="jdbc.url"><![CDATA[jdbc:mysql://rds6a710ghx211atsbsj.mysql.rds.aliyuncs.com:3306/bdtg?useUnicode=true&characterEncoding=UTF-8]]></replace>
+        <replace key="jdbc.username">bdtg</replace>
+        <replace key="jdbc.password">bdtg123</replace>
+    </config-file>
+    <config-file path="WEB-INF/classes/sso/sso.properties">
+        <replace key="sso.cookie.domain">101.201.33.18</replace>
+        <replace key="sso.login.url">http://101.201.33.18:8083/login</replace>
+    </config-file>
+</portable-config>

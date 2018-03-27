@@ -1,0 +1,64 @@
+<div class="comment" id="commentArea1">
+	<!-- comment-post 未登录-->
+	<div id="comment_page">
+		<div class="comment-post " id="commentArea">
+			<div class="media-object comment-avatar">
+				<img src="http://10.80.11.246/test/data/avatar/default/man_small.jpg" uid="19" class="pic_small">
+			</div>
+			<div class="media-body">
+				<div class="media-heading">
+					<strong class="comment-name">zhangjf</strong>
+					<time class="comment-time">留言不得超过100字</time>
+				</div>
+			<div class="form-group">
+				<textarea name="addcontent" class="form-control" id="addcontent" rows="5"></textarea>
+			</div>
+			<button class="btn btn-default" type="button" id="addcomment" onclick="addComment('69','69','task',0)">
+				<i class="fa fa-comments"></i>
+				发表留言
+			</button>
+		</div>
+	</div>
+	<!-- comment-post 已登录-->
+	<div class="media comment-item" id="replyCommentList_10">
+		<div class="media-object comment-avatar">
+			<a href="index.php?do=space&amp;id=1">
+				<img src="http://10.80.11.246/test/data/avatar/system/14_small.jpg" uid="1" class="pic_small">
+			</a>
+		</div>
+		<div class="media-body">
+			<div class="media-heading">
+				<strong class="comment-name">admin</strong>
+				<time class="comment-time">2016-04-20 10:13:43</time>
+			</div>
+			<div class="comment-content">
+				<span class="caret"></span>
+				adfasdfasdf
+			</div>
+			<div class="comment-ctrl">
+				<a href="javascript:toggleReplyArea('10');void(0);" class="ctrl-item">
+					<i class="fa fa-comment"></i>
+					回复
+				</a>
+			</div>
+			<div class="comment-post hidden" id="replyComment_10">
+				<div class="media-object comment-avatar">
+					<img src="http://10.80.11.246/test/data/avatar/default/man_small.jpg" uid="19" class="pic_small">
+				</div>
+				<div class="media-body">
+					<div class="media-heading">
+						<strong class="comment-name">回复 admin</strong>
+						<time class="comment-time">不得超过100字</time>
+					</div>
+					<div class="form-group">
+						<textarea name="replyAddContent_10" class="form-control" id="replyAddContent_10" rows="1"></textarea>
+					</div>
+					<button class="btn btn-default" onclick="replyAddComment('10','69','69','task','10');">
+						<i class="fa fa-comments"></i>
+						发表
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/com/bm/wanma/dialog"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="12701"
+   kind="dir"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="ActionSheetDialog.java"
+   checksum="693b5c66f690cb01eb3cae862528ebec"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CancleBespokeDialog.java"
+   checksum="aefdd909fb7d6e75faec11062228efe6"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CancleBespokeSuccessDialog.java"
+   checksum="68e1968261be167e1b735203cbc1f8a6"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="ChargeFinishTipDialog.java"
+   checksum="a938ffce78adcd14bc82cf08edc7f639"
+   last-author="chengmeng"
+   committed-rev="3985"
+   text-time="2016-11-29T10:16:47.823000Z"
+   kind="file"
+   committed-date="2016-11-29T10:16:47.823390Z"/>
+<entry
+   name="CommentSuccessDialog.java"
+   checksum="3a1c1210c78dc8d483156b591ba4c3f2"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CommitBespokeDialog.java"
+   checksum="3c3fafed38fd06d327e58431e3aeb022"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="CustomCommonDialog.java"
+   checksum="59c9ce68602b8678257bd8f16266fe15"
+   last-author="chengmeng"
+   committed-rev="3985"
+   text-time="2016-11-29T10:16:47.823000Z"
+   kind="file"
+   committed-date="2016-11-29T10:16:47.823390Z"/>
+<entry
+   name="CustomTipInsertGunDialog.java"
+   checksum="aba36d2ed05aeda1df81e9d0d43bff8c"
+   last-author="chengmeng"
+   committed-rev="3985"
+   text-time="2016-11-29T10:16:47.823000Z"
+   kind="file"
+   committed-date="2016-11-29T10:16:47.823390Z"/>
+<entry
+   name="DoubleDatePickerDialog.java"
+   checksum="dadbd39950cbaad749c6f8f884e4085e"
+   last-author="liuyahui"
+   committed-rev="12701"
+   text-time="2017-10-16T01:41:28.523000Z"
+   kind="file"
+   committed-date="2017-10-16T01:41:28.523541Z"/>
+<entry
+   name="FinishChargeWarnDialog.java"
+   checksum="88076757212478cdc4540fe63f701c36"
+   last-author="chengmeng"
+   committed-rev="3985"
+   text-time="2016-11-29T10:16:47.823000Z"
+   kind="file"
+   committed-date="2016-11-29T10:16:47.823390Z"/>
+<entry
+   name="ImageLoadingDialog.java"
+   checksum="b82e7caf13a5bda4f7499f612f20c78a"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="MyAlertDialog.java"
+   checksum="f710203c707d4550e00b333ab89b63bd"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="PayPasswordDialog.java"
+   checksum="b47e5361b58b1916390b1e18cac6af3c"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="RechargeSuccesDialog.java"
+   checksum="a9071a2e305860faaff49304562ef4d5"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="RefreshPointDialog.java"
+   checksum="81310a4f6e5d6a027e19b1a24387fa40"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="SelectValueWarningDialog.java"
+   checksum="a7f3819f40f3029d40fee08ba2d50ab5"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="TakePhotoDialog.java"
+   checksum="b2f9c411b820eb3d8693e63e4cd2aa44"
+   last-author="chengmeng"
+   committed-rev="4435"
+   text-time="2016-12-19T03:01:15.059000Z"
+   kind="file"
+   committed-date="2016-12-19T03:01:15.059762Z"/>
+<entry
+   name="TipClearHistoryDialog.java"
+   checksum="fc2c6a70733fac00339fae468e571223"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="TipDrawGunDialog.java"
+   checksum="c7b67290a123dc4cc9bac03e83bfaeb5"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="TipImproveInfoDialog.java"
+   checksum="5b0f9016ec3dc9de745f055715117e59"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="TipInsertGunDialog.java"
+   checksum="cdf326b8631c64e59d5897f91fc516dc"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="WalletWarningDialog.java"
+   checksum="09ce2f7975aa2692f17451e1f9d8b485"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+</wc-entries>

@@ -1,0 +1,152 @@
+.headerLogo{
+	margin: 20px auto;
+}
+.registerBanner{
+	position: relative;
+}
+.registerBanner .banner{
+	position: relative;
+	left: 50%;
+	margin-left: -960px;
+}
+.registerBox{
+	position: absolute;
+	right: 10%;
+	top: 50px;
+	padding: 50px 38px 0;
+	background: #fcfcfc;
+}
+.registerBox h2{
+	font-size: 16px;
+	color: #565656;
+}
+.registerBox h2 a{
+	font-size: 9px;
+	color: #13b8ff;
+	float: right;
+	font-weight: normal;
+}
+.infoForm{
+	margin-top: 15px;
+	background: #fff;
+	position: relative;
+	box-sizing:content-box;
+	-moz-box-sizing:content-box; /* Firefox */
+	-webkit-box-sizing:content-box; /* Safari */
+}
+.infoForm .inputText{
+	border: 1px #cbcbcb solid;
+	vertical-align: top;
+	height: 50px;
+	width: 270px;
+	padding-left: 55px;
+	outline: none;
+	font-size: 10.5px;
+	box-sizing:content-box;
+	-moz-box-sizing:content-box; /* Firefox */
+	-webkit-box-sizing:content-box; /* Safari */
+}
+.infoForm.VerifyCode .inputText{
+	display: inline-block;
+	vertical-align: top;
+	width: 60px;
+}
+.infoForm img{vertical-align: middle;margin-left: 20px;margin-right: 10px;}
+.infoForm a{
+	font-size: 9px;
+	color: #13b8ff;
+}
+.treaty{
+	font-size: 10.5px;
+	color: #999;
+	margin: 12px auto;
+}
+.treaty .forgetPassword{
+	font-size: 10.5px;
+	color: #999;
+	float: right;
+}
+.treaty span{
+	color: #13b8ff;
+}
+.treaty .beijingcheckbox{
+	vertical-align: top;
+	height: 16px;
+	width: 16px;
+	margin-right: 5px;
+	border: 1px #b0b0b0 solid;
+}
+.level{
+	margin-top: 10px;
+	margin-bottom: -5px;
+}
+.level span{
+	display: inline-block;
+	width: 109px;
+	height: 17px;
+	text-align: center;
+	line-height: 17px;
+	color: #fff;
+	margin-right: -3px;
+	border-right: 1px #fff solid;
+	background: #ff0000;
+}
+.level.level1 .level_2{background: #ffcccc;}
+.level.level1 .level_3{background: #ffcccc;}
+.level.level2 .level_3{background: #ffcccc;}
+
+.icon{
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	height: 50px;
+	width: 21px;
+	margin: 0 20px 0 14px;
+	background: url(../images/register/sprite_icons.png) no-repeat;
+}
+.icon.icon_1{background-position: 0 center;}
+.icon.icon_2{background-position: -21px center;}
+.icon.icon_3{background-position: -42px center;}
+.icon.icon_4{background-position: -63px center;}
+
+.registerBtn{
+	display: block;
+	width: 326px;
+	height: 49px;
+	text-align: center;
+	line-height: 49px;
+	font-size: 16px;
+	color: #fffefe;
+	background: #ff0000;
+	border-radius: 6px;
+	margin: 15px auto;
+}
+
+.elseSignin{
+	margin: 20px auto;
+	padding-bottom: 30px;
+}
+.elseSignin .title{
+	margin-bottom: 20px;
+}
+.elseSignin a{
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 17px;
+}
+.elseSignin select{height: 32px;}
+.icon2{
+	display: block;
+	width: 32px;
+	height: 32px;
+	background: url(../images/register/sprite_icons2.png) no-repeat;
+}
+.icon2.icon2_1{background-position: 0 0;}
+.icon2.icon2_1:hover{background-position: -128px 0;}
+.icon2.icon2_2{background-position: -32px 0;}
+.icon2.icon2_2:hover{background-position: -160px 0;}
+.icon2.icon2_3{background-position: -64px 0;}
+.icon2.icon2_3:hover{background-position: -192px 0;}
+.icon2.icon2_4{background-position: -96px 0;}
+.icon2.icon2_4:hover{background-position: -224px 0;}

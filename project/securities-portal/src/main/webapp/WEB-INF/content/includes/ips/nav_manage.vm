@@ -1,0 +1,30 @@
+<div class="nav-action">
+    <a href="javascript:void(0);" class="nav-toggle"><i class="fa fa-reorder"></i></a>
+    <dl class="nav-list">
+        <dt class="nav-list-title"><i class="fa fa-minus"></i> 交易管理</dt>
+        <dd class="nav-list-body">
+            <a href="${base}/owner/undertake">我承接的任务</a>
+            <a href="${base}/job/jobmember/job_manage">我服务的任务</a>
+			 <a href="javascript:void(0)">我卖出的商品</a>
+            <!--
+            <a href="index.php?do=user&amp;view=wk&amp;op=gy">我接受的雇佣</a>
+            -->
+            <a href="${base}/owner/bidtask">我的投标记录</a>
+            <a href="${base}/owner/myMark">交易评价</a>
+        </dd>
+        
+        <dt class="nav-list-title"><i class="fa fa-minus"></i> 店铺管理</dt>
+        <dd class="nav-list-body">
+            <a href="${base}/shop/service/goodspub" target="pubpage">快速发布商品</a>
+            <a href="${base}/shop/shop" target="_blank">我的店铺</a>
+            <a href="${base}/shop/shop/manage">店铺设置</a>
+            <a href="${base}/shop/service/goodslist">商品管理</a>
+        </dd>
+		<!--
+        <dt class="nav-list-title"><i class="fa fa-minus"></i> 我的收藏</dt>
+        <dd class="nav-list-body">
+            <a href="index.php?do=user&amp;view=collect&amp;op=task">收藏的任务</a>
+        </dd>
+        -->
+    </dl>
+</div>

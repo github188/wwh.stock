@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 我的反馈listview item -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_light_white"
+    android:orientation="vertical" >
+    <View 
+        android:id="@+id/listview_item_mynews_feedback_top"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/common_light_gray"
+        />
+    
+    <TextView 
+            android:id="@+id/listview_item_mynews_feedback_status"
+            android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center_vertical"
+        	android:textColor="@color/common_red"
+        	android:textSize="18sp"
+        	android:background="@color/common_white"
+        	android:paddingLeft="14dp"
+        	android:paddingTop ="10dp"
+        	android:paddingBottom="10dp"
+        	
+            />
+     <TextView 
+            android:id="@+id/listview_item_mynews_feedback_content"
+            android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center_vertical"
+        	android:textColor="@color/common_gray"
+        	android:textSize="15sp"
+        	android:layout_marginTop="1dp"
+        	android:background="@color/common_white"
+        	android:padding="14dp"
+            />
+     <TextView 
+            android:id="@+id/listview_item_mynews_feedback_time"
+            android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center_vertical"
+        	android:textColor="@color/common_gray"
+        	android:textSize="13sp"
+        	android:background="@color/common_white"
+        	android:paddingLeft="14dp"
+        	android:paddingBottom="10dp"
+            />
+     <TextView 
+            android:id="@+id/listview_item_mynews_feedback_backcontent"
+            android:layout_marginTop="1dp"
+            android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center_vertical"
+        	android:textColor="@color/common_orange"
+        	android:textSize="13sp"
+        	android:background="@color/common_white"
+        	android:padding="14dp"
+            />
+     <TextView 
+            android:id="@+id/listview_item_mynews_feedback_backtime"
+            android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center_vertical"
+        	android:textColor="@color/common_gray"
+        	android:textSize="13sp"
+        	android:background="@color/common_white"
+        	android:paddingLeft="14dp"
+        	android:paddingBottom="10dp"
+            />
+    
+    
+
+</LinearLayout>

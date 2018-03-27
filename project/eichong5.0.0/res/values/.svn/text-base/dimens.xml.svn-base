@@ -1,0 +1,83 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="bbuton_rounded_corner_radius">10dp</dimen>
+    <dimen name="edittext_rounded_corner_radius">5dp</dimen>
+    <dimen name="login_rounded_corner_radius">20dp</dimen>
+    <dimen name="activity_home_item_tab_padding">20dp</dimen>
+    <dimen name="text_font_30">30sp</dimen>
+    <dimen name="text_font_24">24sp</dimen>
+    <dimen name="text_font_23">23sp</dimen>
+    <dimen name="text_font_22">22sp</dimen>
+    <dimen name="text_font_20">20sp</dimen>
+    <dimen name="text_font_18">18sp</dimen>
+    <dimen name="text_font_17">17sp</dimen>
+    <dimen name="text_font_16">16sp</dimen>
+    <dimen name="text_font_15">15sp</dimen>
+    <dimen name="text_font_14">14sp</dimen>
+    <dimen name="text_font_12">12sp</dimen>
+    <dimen name="text_font_10">10sp</dimen>
+    
+    <dimen name="common_item_padding_10">10dp</dimen>
+     <dimen name="common_item_padding_15">15dp</dimen>
+      <dimen name="common_item_padding_20">20dp</dimen>
+    <dimen name="slidingmenu_offset">60dp</dimen>
+    <dimen name="shadow_width">5dp</dimen>
+    
+    <dimen name="common_padding">10dp</dimen>
+    <dimen name="common_paddingleft">10dp</dimen>
+    <dimen name="common_paddingright">10dp</dimen>
+    <dimen name="common_paddingtop">10dp</dimen>
+    <dimen name="common_paddingbottom">10dp</dimen>
+    
+    <dimen name="common_margin">10dp</dimen>
+    <dimen name="common_marginleft">10dp</dimen>
+    <dimen name="common_margingright">10dp</dimen>
+    <dimen name="common_margintop">10dp</dimen>
+    <dimen name="common_marginbottom">10dp</dimen>
+    
+     <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="navibar_text_size">14sp</dimen>
+    <dimen name="navibar_margin_right">25dp</dimen>
+    <dimen name="navibar_margin_left">25dp</dimen>
+    <dimen name="navibar_margin_method">30dp</dimen>
+    <dimen name="navibar_start_left">40dp</dimen>
+    <dimen name="start_content_font_size">18sp</dimen>
+    <dimen name="navibar_margin_top">15dp</dimen>
+    <dimen name="navibar_edit_height">35dp</dimen>
+    <dimen name="navibar_button_height">40dp</dimen>
+    <dimen name="naviroute_navi_height">45dp</dimen>
+    <dimen name="navisetting_margin_bottom">5dp</dimen>
+    <dimen name="navisetting_subtext_size">20sp</dimen>
+    <dimen name="titletext_size">30sp</dimen>
+    <dimen name="margin_right">5dp</dimen>
+    <dimen name="margin_left">5dp</dimen>
+    <dimen name="margin_top">5dp</dimen>
+    <dimen name="margin_bottom">5dp</dimen>
+    <dimen name="setting_margin_top">10dp</dimen>
+    <dimen name="setting_margin_bottom">10dp</dimen>
+    <dimen name="route_text_size">20sp</dimen>
+    
+    
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+    
+    
+    
+    <dimen name="body_padding_medium">10dp</dimen>
+    <dimen name="body_padding_large">10dp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_medium">18sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_xlarge">18sp</dimen>
+    <dimen name="speaker_image_size">36dp</dimen>
+    <dimen name="speaker_image_padding">8dp</dimen>
+    <dimen name="vendor_image_size">100dp</dimen>
+    <dimen name="titlebar">54dp</dimen>
+    <dimen name="actionbar_height">45dip</dimen>
+    <dimen name="actionbar_item_height">45dip</dimen>
+    <dimen name="actionbar_item_width">45dip</dimen>
+</resources>

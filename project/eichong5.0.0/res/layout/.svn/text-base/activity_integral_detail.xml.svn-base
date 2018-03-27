@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 个人资料界面 -->
+
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_light_grey"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/common_orange" >
+
+        <ImageButton
+            android:id="@+id/integral_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/nav_btn_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="积分明细"
+            android:textColor="@color/common_white"
+            android:textSize="18sp" />
+        
+        <ImageButton
+            android:id="@+id/integral_guizhe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_question" />
+    </RelativeLayout>
+           <pulltorefresh.PullToRefreshScrollView
+    
+    android:id="@+id/integral_detail_refresh"  
+    android:background="@color/common_light_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    ptr:ptrAnimationStyle="flip"
+    ptr:ptrMode="both"
+    ptr:ptrHeaderBackground="@color/common_light_white"
+    ptr:ptrHeaderTextColor="@color/common_light_black"
+    ptr:ptrHeaderSubTextColor="@color/common_light_black">
+<!--         <LinearLayout  -->
+<!--     android:layout_width="match_parent" -->
+<!--     android:layout_height="match_parent" -->
+<!--     android:background="@color/common_light_grey" -->
+<!--     android:orientation="vertical" > -->
+<!--            <ScrollView -->
+<!--         android:layout_width="match_parent" -->
+<!--         android:layout_height="match_parent" -->
+<!--         android:background="@color/common_light_white" -->
+<!--         >   -->
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:orientation="vertical"
+                 >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_orange" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:layout_centerHorizontal="true"
+            android:padding="5dp"
+            android:text="当前积分"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="32dp"
+            android:textColor="@color/common_white"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/receive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32dp"
+            android:textColor="@color/common_white"
+            android:background="@null"
+            android:textSize="62sp" />
+
+    </RelativeLayout>
+	<TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:padding="5dp"
+            android:text="积分记录"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/common_black"
+            android:textSize="16sp" />
+	
+	
+<FrameLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+       <pulltorefresh.ListViewCustom 
+ 
+		        android:id="@+id/listview"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:divider="@color/common_light_white"
+		        android:listSelector="#00000000"/> 
+     
+<!-- 		<TextView -->
+<!-- 		        android:visibility="gone" -->
+<!-- 		        android:id="@+id/charge_done_nodata" -->
+<!-- 		        android:layout_width="match_parent" -->
+<!-- 		        android:layout_height="match_parent" -->
+<!-- 		        android:gravity="center"   -->
+<!-- 		        android:layout_marginTop="50dp" -->
+<!-- 		        android:textSize="15sp" -->
+<!-- 		        android:drawableTop="@drawable/img_vouchers" -->
+<!-- 		        android:drawablePadding="20dp" -->
+<!-- 		        android:textColor="@color/common_light_black" -->
+<!-- 		        /> -->
+        
+    </FrameLayout>
+   
+<!-- <ListView -->
+<!--         android:id="@+id/listview" -->
+<!-- 	    android:layout_width="match_parent" -->
+<!-- 	    android:layout_height="match_parent" -->
+<!-- 	    android:divider="@color/common_light_grey" -->
+<!-- 	    /> -->
+</LinearLayout>  
+<!-- </ScrollView> -->
+<!-- </LinearLayout> -->
+</pulltorefresh.PullToRefreshScrollView>
+</LinearLayout>

@@ -1,0 +1,117 @@
+<link rel="stylesheet" type="text/css" href="${base}/static/css/east/qphf.css">
+<script type="text/javascript" src="${base}/static/js/east/qphf.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/StockSuggest.js"></script>
+<script type="text/javascript" src="${base}/static/js/east/HisAcc.js"></script>
+
+<div class="qphox">
+    <div class="QVspace"></div>
+    <div class="mainnbox">
+        <div class="title"><div class="tit"><b></b><div class="nm"><a href="${base}/stockeast/marketcentre/" target="_self">行情中心</a></div></div></div>
+        <div class="qmbox">
+            <div class="nbox">
+                <div class="lbox">
+                    <ul>
+                        <li><a href="http://quote.eastmoney.com/center/index.html#zyzs_0_1" target="_blank">指数</a></li><li>|</li>
+                        <li><a href="http://js1.eastmoney.com/tg.aspx?ID=655" target="_blank">期指</a></li><li>|</li>
+                        <li><a href="http://quote.eastmoney.com/center/qiquan.html#1,510050,0_13_0" target="_blank">期权</a></li><li>|</li>
+                        <li><a href="${base}/stockeast/detail/" target="_self">个股</a></li><li>|</li>
+                        <li><a href="${base}/stockeast/bankuai" target="_self">板块</a></li><li>|</li>
+                        <li><a href="http://quote.eastmoney.com/center/paihang.html#paihang_0_0" target="_blank">排行</a></li><li>|</li>
+                        <li><a href="${base}/stockeast/marketlist#285001_0" target="_self">新股</a></li><li>|</li>
+                        <li><a href="http://quote.eastmoney.com/center/fund.html#_4" target="_blank">基金</a></li><li>|</li>
+                        <li><a href="http://quote.eastmoney.com/center/hkstock.html#_1" target="_blank">港股</a></li><li>|</li>
+                        <li><a href="${base}/stockeast/xglist" target="_self">新股申购</a></li><li>|</li>
+                        <li><a href="${base}/stockeast/zjlx/list" target="_self">资金</a></li><li>|</li>
+                        <li><a href="${base}/stockeast/yjfp" target="_self">分红送配</a></li><li>|</li>
+                        <li><a href="${base}/stockeast/xuangu" target="_self">选股器</a></li><li>|</li>
+                        <li><a href="${base}/stockeast/list" target="_self">自选股</a></li><li>|</li>
+                        <li><a href="${base}/stockeast/notices" target="_self">公告大全</a></li>
+                    </ul>
+                </div>
+                <div class="rbox">
+                    <div class="ipbox"><form method="get" target="_blank"><input type="text" value="输代码、名称或简拼" name="stockCode" id="StockCode" autocomplete="off"></form></div>
+                    <div class="btnbox a"><span onclick="qphf.toQuote()" title="查行情"></span></div>
+                    <div class="btnbox b"><span onclick="qphf.toGuBa()" title="搜股吧"></span></div>
+                    <div class="btnbox c"><span onclick="qphf.toNews()" title="搜资讯"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="qphox">
+    <div class="aide">
+        <div class="global">
+            <div class="lbox"><div class="tit"><b></b><a href="http://quote.eastmoney.com/center/global.html#global_3" target="_blank">全球股市</a></div></div>
+            <div class="mbox"><b id="btn_down" class="up" title="下滚"></b><b id="btn_up" class="down" title="上滚"></b></div>
+            <div class="rbox">
+                <div id="qqgscont" xvs="0"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="qphox">
+    <div class="aide nt">
+        <div class="dcer">
+            <div class="lbox"><div class="tit"><b></b><a href="${base}/stockeast/center/" target="_self">数据中心</a></div></div>
+            <div class="rbox">
+                <ul><li><a href="${base}/stockeast/xglist" target="_self">新股申购</a></li><li><a href="${base}/stockeast/calendar" target="_self">股市日历</a></li><li><a href="${base}/stockeast/zjlxcenter" target="_self">资金流向</a></li><li><a href="http://quote.eastmoney.com/center/list.html#ah_1" target="_blank" class="red">AH股比价</a></li><li><a href="http://js1.eastmoney.com/tg.aspx?ID=540" target="_blank">主力排名</a></li><li><a href="${base}/stockeast/bkzjlx" target="_self">板块资金</a></li><li><a href="http://js1.eastmoney.com/tg.aspx?ID=616" target="_blank">个股研报</a></li><li><a href="http://js1.eastmoney.com/tg.aspx?ID=631" target="_blank">行业研报</a></li><li><a href="http://js1.eastmoney.com/tg.aspx?ID=635" target="_blank">盈利预测</a></li><li><a href="http://data.eastmoney.com/stockcomment/" target="_blank">千股千评</a></li><li><a href="${base}/stockeast/bbsj" target="_self">年报季报</a></li><li><a href="http://js1.eastmoney.com/tg.aspx?ID=693" target="_blank">龙虎榜单</a></li><li><a href="http://js1.eastmoney.com/tg.aspx?ID=695" target="_blank">限售解禁</a></li><li><a href="http://js1.eastmoney.com/tg.aspx?ID=731" target="_blank">大宗交易</a></li><li><a href="http://js1.eastmoney.com/tg.aspx?ID=748" target="_blank">期指持仓</a></li><li class="last"><a href="http://js1.eastmoney.com/tg.aspx?ID=609" target="_blank">融资融券</a></li></ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="qphox">
+    <div class="aide nt">
+        <div class="hgt">
+            <div class="lbox"><div class="tit"><b></b><a href="http://quote.eastmoney.com/center/hgtstock.html#_12" target="_blank">沪深港通</a></div></div>
+            <div class="rbox">
+                <div style="margin-left: 2px; float: left; padding: 0 2px; width: 215px; text-align: center; position: relative;">
+                    <a href="${base}/stockeast/marketlist#28003707_12_2" target="_blank" class="sg">沪股通</a>
+                    <span class="run" id="hgtrun"><b class="off"></b>收盘</span><a style="color: #039;text-decoration: underline;" href="http://data.eastmoney.com/hsgt/index.html" target="_blank">资金流入</a><span style="text-decoration: underline;" id="hgtzj"><b><a href="http://data.eastmoney.com/hsgt/index.html" target="_blank" style="color:#090">-9.82</a></b>亿</span>
+                    <span class="lx" style="position: absolute; right: 0;">|</span>
+                </div>
+                <div style="float: left; padding: 0 2px; width: 215px; text-align: center; position: relative;">
+                    <a href="${base}/stockeast/marketlist#28013804_12_3" target="_blank" class="sg">深股通</a>
+                    <span class="run" id="sgtrun"><b class="off"></b>收盘</span><a style="color: #039;text-decoration: underline;" href="http://data.eastmoney.com/hsgt/index.html" target="_blank">资金流入</a><span style="text-decoration: underline;" id="sgtzj"><b><a href="http://data.eastmoney.com/hsgt/index.html" target="_blank" style="color:#f00">4.82</a></b>亿</span>
+                    <span class="lx" style="position: absolute; right: 0;">|</span>
+                </div>
+                <div style="float: left; padding: 0 2px; width: 232px; text-align: center; position: relative;">
+                    <a href="${base}/stockeast/marketlist#mk0144_12" target="_blank" class="sg">港股通(沪)</a>
+                    <span class="run" id="ggthrun"><b class="off"></b>收盘</span><a style="color: #039;text-decoration: underline;" href="http://data.eastmoney.com/hsgt/index.html" target="_blank">资金流入</a><span style="text-decoration: underline;" id="ggthzj"><b><a href="http://data.eastmoney.com/hsgt/index.html" target="_blank" style="color:#f00">8.64</a></b>亿</span>
+                    <span class="lx" style="position: absolute; right: 0;">|</span>
+                </div>
+                <div style="float: left;  padding: 0 2px; width: 232px; text-align: center; position: relative;">
+                    <a href="${base}/stockeast/marketlist#mk0146_12" target="_blank" class="sg">港股通(深)</a>
+                    <span class="run" id="ggtsrun"><b class="off"></b>收盘</span><a style="color: #039;text-decoration: underline;" href="http://data.eastmoney.com/hsgt/index.html" target="_blank">资金流入</a><span style="text-decoration: underline;" id="ggtszj"><b><a href="http://data.eastmoney.com/hsgt/index.html" target="_blank" style="color:#f00">3.02</a></b>亿</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="qphox">
+    <div class="aide nb">
+        <div class="hisacc">
+            <div id="histit" class="tit">最近访问：</div>
+            <div id="historyest" class="list tile"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" language="JavaScript">
+    var portalurl = "${portal_url}/";
+    setTimeout(function() {
+        var arg = {
+            text: "输代码、名称或简拼",
+            autoSubmit: true,
+            width: 195,
+            header: ["选项", "代码", "名称", "类型"],
+            body: [-1, 1, 4, -2],
+            callback: function(arg) { }
+        };
+        var ss = new StockSuggest("StockCode", arg);
+
+        qphf.getIndexQuote(20);
+
+        var arg = { def: "", set: "",lns:0 }; var HV = new HistoryViews("historyest", arg);
+    }, 500);
+</script>

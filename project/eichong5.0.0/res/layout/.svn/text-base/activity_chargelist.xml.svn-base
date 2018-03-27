@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_light_grey"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+<RelativeLayout
+        android:id="@+id/login_regist_top_bg"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/common_orange" >   
+		<ImageView
+            android:id="@+id/charging_point_close"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/nav_btn_back" />
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="充电点"
+            android:textColor="@color/common_white"
+            android:textSize="18sp" />
+        <ImageView
+            android:id="@+id/ambitus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/btn_positioning1" />
+    	</RelativeLayout>
+        <!-- 头布局 距离 价格 好评 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@color/common_white"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/list_mode_rl_distance"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="1dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/list_mode_tv_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="距离最近"
+                    android:textColor="@color/common_orange"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/list_mode_v_distance"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/common_orange" />
+            </RelativeLayout>
+			<View android:layout_height="wrap_content"
+			    android:layout_width="1dp"
+			    android:layout_marginTop="13dp"
+			    android:layout_marginBottom="13dp"
+			    android:background="@color/common_light_white"
+			    />
+            <RelativeLayout
+                android:id="@+id/list_mode_rl_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="1dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/list_mode_tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="价格最低"
+                    android:textColor="@color/common_light_black"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/list_mode_v_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/common_light_grey" />
+            </RelativeLayout>
+			<View android:layout_height="wrap_content"
+			    android:layout_width="1dp"
+			    android:layout_marginTop="13dp"
+			    android:layout_marginBottom="13dp"
+			    android:background="@color/common_light_white"
+			    />
+            <RelativeLayout
+                android:id="@+id/list_mode_rl_leisure"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="1dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/list_mode_tv_leisure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="空闲优先"
+                    android:textColor="@color/common_light_black"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/list_mode_v_leisure"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/common_light_grey" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    <pulltorefresh.PullToRefreshScrollView
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/charge_done_finish_refresh"  
+    android:background="@color/common_light_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    ptr:ptrAnimationStyle="flip"
+    ptr:ptrMode="both"
+    ptr:ptrHeaderBackground="@color/common_light_grey"
+    ptr:ptrHeaderTextColor="@color/common_light_black"
+    ptr:ptrHeaderSubTextColor="@color/common_light_black">
+
+       <pulltorefresh.ListViewCustom 
+
+		        android:id="@+id/charge_done_finish_listview"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        
+		        android:divider="@null"
+		        android:dividerHeight="0dp"
+		        android:listSelector="#00000000"/> 
+
+</pulltorefresh.PullToRefreshScrollView>
+    </LinearLayout>

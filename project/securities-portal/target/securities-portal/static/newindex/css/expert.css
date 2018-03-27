@@ -1,0 +1,69 @@
+.module h2.icon_title_x{
+	color: #30a9de;
+}
+.module h2.icon_title_x i{
+	background: url(../images/vip/icon_title_7.png) left center no-repeat;
+}
+
+.expertList li{
+	float: left;
+	margin-right: -1px;
+	margin-top: -1px;
+	padding: 24px 21px;
+	height: 215px;
+	overflow: hidden;
+	border: 1px #cdcdcd solid;
+}
+.expertList .img{
+	display: inline-block;
+	vertical-align: top;
+	width: 160px;
+	height: 100%;
+	overflow: hidden;
+}
+.expertList .img img{
+	width: 100%;
+}
+.expertList .listContent{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 15px;
+	width: 240px;
+}
+.expertList .listContent h3{
+	color: #ff0404;
+	font-size: 15.75px;
+	line-height: 30px;
+	height: 60px;
+}
+.expertList .listContent .content{
+	margin-top: 5px;
+	line-height: 20px;
+	height: 80px;
+	font-size: 10.5px;
+	color: #6c6c6c;
+	text-indent: 2em;
+}
+.expertList .listContent .pInfo{
+	font-size: 10.5px;
+	color: #393838;
+	margin-top: 10px;
+}
+.expertList .listContent .pInfo .name{
+	font-size: 13.5px;
+	color: #ff0404;
+}
+
+.employBtn{
+	display: block;
+	width: 86px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	color: #393838;
+	font-size: 10.5px;
+	background: #f4f4f4;
+	border: 1px #d5d5d5 solid;
+	border-radius: 5px;
+	margin-top: 10px;
+}

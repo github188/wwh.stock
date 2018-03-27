@@ -1,0 +1,64 @@
+#set($searchColCount = 2)
+##包定义
+package $!{targetPackage};
+
+import $!{generatorContext.domain};
+import $!{generatorContext.mapper};
+import net.ryian.commons.StringUtils;
+import net.ryian.orm.service.BaseService;
+import org.springframework.stereotype.Component;
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+* @description:
+* @author: autoCode
+* @history:
+*/
+@Component
+public class  $!{className}Service extends BaseService<$!{className},$!{className}Mapper> {
+
+    /**
+    * 根据条件查询分页
+    * @param paramMap
+    * @return
+    */
+    public List<$!{className}> query(Map<String, String> paramMap) {
+        Example example = new Example($!{className}.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("valid","1");
+#foreach ($column in $table.columns)#if($velocityCount<$searchColCount+1)
+        String $!{column.fieldName} = paramMap.get("$!{column.fieldName}");
+        if (!StringUtils.isEmpty($!{column.fieldName})) {
+            criteria.andLike("$!{column.fieldName}", "%" + $!{column.fieldName}+ "%");
+        }
+#end
+#end
+
+        return mapper.selectByExample(example);
+    }
+
+    /**
+    * 根据条件保存数据
+    * @param o
+    * @return
+    */
+    public Long saveOrUpdate($!{className} o) {
+        Example example = new Example($!{className}.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("valid","1");
+#foreach ($column in $table.columns)#if($velocityCount<$searchColCount+1)
+        criteria.andEqualTo("$!{column.fieldName}", o.$!{column.getName}());
+#end
+#end
+
+        List<$!{className}> list = mapper.selectByExample(example);
+        if(list != null && list.size() > 0) {
+            o.setId(list.get(0).getId());
+        }
+
+        return super.saveOrUpdate(o);
+    }
+}

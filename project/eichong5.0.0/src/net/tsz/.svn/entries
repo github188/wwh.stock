@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="chengmeng"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/net/tsz"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="5492"
+   kind="dir"
+   committed-date="2017-02-21T01:07:19.164058Z"/>
+<entry
+   name="afinal"
+   kind="dir"/>
+</wc-entries>

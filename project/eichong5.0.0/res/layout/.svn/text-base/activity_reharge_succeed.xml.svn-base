@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 个人资料界面 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_light_white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/common_orange" >
+
+        <ImageButton
+            android:id="@+id/settings_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/nav_btn_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="充值成功"
+            android:textColor="@color/common_white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/common_orange"
+    android:paddingLeft="20dp"
+    android:paddingTop="22dp"
+    android:paddingBottom="10dp"
+    android:orientation="vertical" >
+    
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="已经充值"
+            android:textColor="@color/common_white"
+            android:textSize="15sp" />
+    <TextView
+        	android:id="@+id/recharge_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="100.00"
+            android:textColor="@color/common_white"
+            android:textSize="32sp" />
+    <TextView
+        	android:id="@+id/jifen_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+			android:visibility="gone"
+            android:padding="5dp"
+            android:text="获增积分"
+            android:textColor="@color/common_white"
+            android:textSize="14sp" />
+    <TextView
+        	android:id="@+id/jifen_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+			android:visibility="gone"
+            android:padding="5dp"
+            android:text="40"
+            android:textColor="@color/common_white"
+            android:textSize="32sp" />
+</LinearLayout>
+<LinearLayout
+    android:id="@+id/ll_lottery_module"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_button_shape_white"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical"
+        >
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:layout_marginTop="15dp"
+            android:text="获得抽奖机会"
+            android:textColor="@color/common_black"
+            android:textSize="14sp" />
+    
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginBottom="10dp"
+			android:layout_marginTop="5dp"
+        >
+
+        <TextView
+            android:id="@+id/t_degree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="1"
+            android:textColor="@color/common_orange"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+			android:layout_toRightOf="@id/t_degree"
+            android:layout_alignBottom="@id/t_degree"
+            android:text="次"
+            android:background="@null"
+            android:textColor="@color/common_orange"
+            android:textSize="15sp" />
+    </RelativeLayout>
+    
+</LinearLayout>
+	<TextView
+        	android:id="@+id/t_sweepstake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:layout_marginLeft="40dp"
+        	android:layout_marginRight="40dp"
+            android:text="去抽奖"
+            android:textColor="@color/common_white"
+            android:background="@drawable/common_button_shape_orange"
+            android:textSize="15sp" />
+	
+	</LinearLayout>
+	<TextView
+            android:id="@+id/biaoshi"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="bottom"
+            android:text="· 充值金额仅能用于本app使用 \n· 积分与充值金额有关，实计积分与充值成功有关"
+            android:textColor="@color/common_light_light_black"
+            android:textSize="12sp"/>
+</LinearLayout>

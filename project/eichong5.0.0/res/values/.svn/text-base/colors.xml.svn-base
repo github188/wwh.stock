@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 登录界面 字体颜色 -->
+    <color name="common_white">#ffffff</color>
+    <color name="common_light_white">#ededed</color>
+    <color name="common_light_gray">#bfbfbf</color>
+    <color name="common_middle_gray">#bcbcbc</color>
+    <color name="common_gray">#808080</color>
+    <color name="common_light_black">#666666</color>
+    <color name="common_light_light_black">#888888</color>
+    <color name="common_black">#333333</color>
+    <color name="common_orange">#ff7d00</color>
+    <color name="common_light_yellow">#fff6ec</color>
+    <color name="common_yellow">#c15a00</color>
+    <color name="common_green">#009933</color>
+    <color name="common_red">#FF0000</color>
+    <color name="common_weak_gray">#c8c9ca</color>
+    <color name="common_light_orange">#EC6941</color>
+     <color name="common_light_grey">#EBECED</color>
+     <color name="common_light_9">#999999</color>
+      <color name="common_transparent">#00BBCCDD</color>
+      <color name="common_000">#000000</color>
+<!--     #ff8800 -->
+    <color name="blue">#0059c2</color>
+    <color name="common_light_grey_line">#dcdcdc</color>
+    
+    
+    <color name="umeng_white">#ffffff</color>
+    <color name="umeng_blue">#0086DC</color>
+    <color name="umeng_black">#000000</color>
+    <color name="umeng_background">#D4E0E5</color>
+    <color name="umeng_text_color">#575A5C</color>
+    <color name="umeng_divide">#C3C6C9</color>
+</resources>

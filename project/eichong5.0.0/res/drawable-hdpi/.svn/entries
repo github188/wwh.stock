@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/res/drawable-hdpi"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="5684"
+   kind="dir"
+   committed-date="2017-03-01T01:18:20.238619Z"/>
+<entry
+   name="back_top.png"
+   checksum="87546b7f53b171dc321e2daf92df41f2"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:07.084000Z"/>
+<entry
+   name="emotionstore_progresscancelbtn.png"
+   checksum="e3688f05e33d7b06c2060d75173f3f2f"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:07.092000Z"/>
+<entry
+   name="h_line.9.png"
+   checksum="a5fef1ef12d33120e369c78a244ea7a1"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:06.961000Z"/>
+<entry
+   name="icon_point.png"
+   checksum="e3297a396103d7d28f699dda754bceb5"
+   last-author="liuyahui"
+   committed-rev="5684"
+   text-time="2017-03-01T01:18:20.238000Z"
+   kind="file"
+   committed-date="2017-03-01T01:18:20.238619Z"
+   prop-time="2017-10-18T09:09:06.957000Z"/>
+<entry
+   name="icon_point_pre.png"
+   checksum="169839b7ee98a0778a224d54ec0a318b"
+   last-author="liuyahui"
+   committed-rev="5684"
+   text-time="2017-03-01T01:18:20.238000Z"
+   kind="file"
+   committed-date="2017-03-01T01:18:20.238619Z"
+   prop-time="2017-10-18T09:09:06.965000Z"/>
+<entry
+   name="imguser.png"
+   checksum="03e734f8774905c62276a8bd51a8de6a"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:07.058000Z"/>
+<entry
+   name="location_marker.png"
+   checksum="539c74df8c2c33b95c7f92c39085cc49"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:06.982000Z"/>
+<entry
+   name="search_bar_edit_normal.9.png"
+   checksum="8245129073df2a95f27464d23a6a9dd8"
+   last-author="liuyahui"
+   committed-rev="5095"
+   text-time="2017-01-17T06:40:59.868000Z"
+   kind="file"
+   committed-date="2017-01-17T06:40:59.868847Z"
+   prop-time="2017-10-18T09:09:07.067000Z"/>
+<entry
+   name="search_bar_icon_normal.png"
+   checksum="cf021e5708948a6b37ba73305b29601f"
+   last-author="liuyahui"
+   committed-rev="5095"
+   text-time="2017-01-17T06:40:59.868000Z"
+   kind="file"
+   committed-date="2017-01-17T06:40:59.868847Z"
+   prop-time="2017-10-18T09:09:06.969000Z"/>
+<entry
+   name="show_head_toast_bg.9.PNG"
+   checksum="cb473d4434b4511e2cbc966cdaaeb497"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:07.101000Z"/>
+<entry
+   name="toast_actionsheet_bottom_normal.9.png"
+   checksum="da43b0de119ab46283678d9d4e86c851"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:07.088000Z"/>
+<entry
+   name="toast_actionsheet_bottom_pressed.9.png"
+   checksum="d176f73781f3232351e92b4df6af88e8"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:06.949000Z"/>
+<entry
+   name="toast_actionsheet_middle_normal.9.png"
+   checksum="2dfe07d9d27e873357d5c3931302dd39"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:07.062000Z"/>
+<entry
+   name="toast_actionsheet_middle_pressed.9.png"
+   checksum="02618c09cdf8d50dfc7f0cc51451a637"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:07.097000Z"/>
+<entry
+   name="toast_actionsheet_top_normal.9.png"
+   checksum="6bd8371c6285da68b63d65f7c51633d6"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:07.075000Z"/>
+<entry
+   name="toast_actionsheet_top_pressed.9.png"
+   checksum="d2ea8026611617a3046add2e8e1cebc9"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:06.944000Z"/>
+<entry
+   name="toast_alert_bg.9.png"
+   checksum="aefa09c0079fcfb3e4ce11306276ef3c"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:06.953000Z"/>
+<entry
+   name="toast_alert_btn_left_pressed.9.png"
+   checksum="e6e6867249961a85ec7f401a82f38255"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:07.105000Z"/>
+<entry
+   name="toast_alert_btn_right_pressed.9.png"
+   checksum="9b488cd21e6a1a1dcd296e8c73e97854"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:07.071000Z"/>
+<entry
+   name="toast_alert_btn_single_pressed.9.png"
+   checksum="2eca2eaa2e255720b262d5e07b4091ff"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:07.079000Z"/>
+<entry
+   name="toast_trans_bg.png"
+   checksum="951663e3a43fa15124f524578d3ae380"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"
+   prop-time="2017-10-18T09:09:06.987000Z"/>
+</wc-entries>

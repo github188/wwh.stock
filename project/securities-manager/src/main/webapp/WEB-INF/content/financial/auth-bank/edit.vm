@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>银行认证编辑</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/financial/auth-bank/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <input type="hidden" name="id" value="$!{model.id}">
+        <table width="100%" cellpadding="5">
+##                            <tr>
+##                    <td align="left">
+##                        用户编号
+##                    </td>
+##                    <td>
+##                                                <input name="uid" class="easyui-textbox" value="$!{model.uid}">
+##                    </td>
+##                </tr>
+                            <tr>
+                    <td align="left">
+                        用户名
+                    </td>
+                    <td>
+                                                <input name="username" class="easyui-textbox" value="$!{model.username}" readonly="readonly">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        线下支付账号
+                    </td>
+                    <td>
+                                                <input name="bankAccount" class="easyui-textbox" value="$!{model.bankAccount}"  readonly="readonly">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        银行名称
+                    </td>
+                    <td>
+                                                <input name="bankName" class="easyui-textbox" value="$!{model.bankName}"  readonly="readonly">
+                    </td>
+                </tr>
+##                            <tr>
+##                    <td align="left">
+##                        银行编号
+##                    </td>
+##                    <td>
+##                                                <input name="bankId" class="easyui-textbox" value="$!{model.bankId}">
+##                    </td>
+##                </tr>
+                            <tr>
+                    <td align="left">
+                        开户行所在地
+                    </td>
+                    <td>
+                                                <input name="depositArea" class="easyui-textbox" value="$!{model.depositArea}"  readonly="readonly">
+                    </td>
+                </tr>
+##                            <tr>
+##                    <td align="left">
+##                        开户行名称
+##                    </td>
+##                    <td>
+##                                                <input name="depositName" class="easyui-textbox" value="$!{model.depositName}">
+##                    </td>
+##                </tr>
+                <tr>
+                    <td align="left">
+                         开户行名称
+                     </td>
+                    <td>
+                                                 <input name="bankSname" class="easyui-textbox" value="$!{model.bankSname}"  readonly="readonly">
+                     </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        打给用户的金额
+                    </td>
+                    <td>
+                        #if($!{model.payTime})  <input name="payToUserCash" type="easyui-textbox" value="$!{model.payToUserCash}" readonly="readonly">[$!{model.payTime}]
+                        #else <input name="payToUserCash" class="easyui-textbox" value="$!{model.payToUserCash}">
+                        #end
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        收款金额
+                    </td>
+                    <td>
+                                                <input name="userGetCash" class="easyui-textbox" value="$!{model.userGetCash}"  readonly="readonly">
+                    </td>
+                </tr>
+##                            <tr>
+##                    <td align="left">
+##                        打款时间
+##                    </td>
+##                    <td>
+##                                                <input name="payTime" class="easyui-textbox" value="$!{model.payTime}">
+##                    </td>
+##                </tr>
+##                            <tr>
+##                    <td align="left">
+##                        支付费用
+##                    </td>
+##                    <td>
+##                                                <input name="cash" class="easyui-textbox" value="$!{model.cash}">
+##                    </td>
+##                </tr>
+##                            <tr>
+##                    <td align="left">
+##                        认证开始时间
+##                    </td>
+##                    <td>
+##                                                <input name="startTime" class="easyui-textbox" value="$!{model.startTime}">
+##                    </td>
+##                </tr>
+##                            <tr>
+##                    <td align="left">
+##                        认证结束时间
+##                    </td>
+##                    <td>
+##                                                <input name="endTime" class="easyui-textbox" value="$!{model.endTime}">
+##                    </td>
+##                </tr>
+                            <tr>
+                    <td align="left">
+                        认证状态
+                    </td>
+                    <td>
+                                                <input name="authStatus" class="easyui-textbox" value="$!{model.authStatus}"  readonly="readonly">
+                    </td>
+                </tr>
+                    </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

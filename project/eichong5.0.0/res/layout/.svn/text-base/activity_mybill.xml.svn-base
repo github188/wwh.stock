@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/common_light_white"
+    android:orientation="vertical" >
+      <RelativeLayout 
+        android:background="@color/common_orange"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        >
+        <ImageButton
+            android:id="@+id/invoice_mybill_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/nav_btn_back"
+            android:background="@android:color/transparent"/>
+        <TextView 
+             android:id="@+id/bill_title"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="账单"
+             android:textColor="@color/common_white"
+             android:textSize="18sp"
+             android:padding="5dp"   
+             android:layout_centerVertical="true" 
+             android:layout_centerInParent="true"
+            />
+        </RelativeLayout>
+        
+    
+    <pulltorefresh.PullToRefreshScrollView 
+    android:id="@+id/invoice_mybill_refresh" 
+     
+    android:background="@color/common_light_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    ptr:ptrAnimationStyle="flip"
+    ptr:ptrMode="both"
+    ptr:ptrHeaderBackground="@color/common_light_white"
+    ptr:ptrHeaderTextColor="@color/common_light_black"
+    ptr:ptrHeaderSubTextColor="@color/common_light_black">
+    <FrameLayout 
+        android:layout_width="match_parent"
+        
+        android:layout_height="match_parent"
+        >
+        <LinearLayout 
+        android:id="@+id/mybill_month"
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:paddingTop="10dp"
+    	android:layout_marginTop="10dp"
+    	android:paddingBottom="10dp"
+    	android:paddingLeft="20dp"
+    	android:paddingRight="20dp"
+    	android:visibility="gone"
+    	android:background="@color/common_white"
+    	android:gravity="center_vertical"
+        >
+        <TextView 
+	    android:layout_width="0dp"
+	    android:layout_weight="6.7"
+	    android:layout_height="wrap_content"
+	    android:textSize="16sp"
+	    android:text="本月"
+	    android:textColor="@color/common_black"
+	    />
+        <TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textSize="14sp"
+	    android:text="查看明细   "
+	    android:layout_gravity="center_vertical"
+	    android:textColor="@color/common_black"
+	    />
+        <ImageView 
+	    android:layout_width="wrap_content"
+
+	    android:layout_height="wrap_content"
+		android:src="@drawable/btn_map_arrow"
+	    />
+    </LinearLayout>
+       <pulltorefresh.ListViewCustom 
+           		android:id="@+id/invoice_mybill_listview"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="50dp"
+		        android:divider="@null"
+		        android:dividerHeight="0dp"
+		        android:listSelector="#00000000"/> 
+     
+		<TextView 
+		        android:visibility="gone"
+		        android:id="@+id/invoice_mybill__nodata"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:gravity="center"  
+		        android:layout_marginTop="50dp"
+		        android:textSize="15sp"
+		        android:drawableTop="@drawable/img_vouchers"
+		        android:drawablePadding="20dp"
+		        android:textColor="@color/common_light_black"
+		        />
+        
+    </FrameLayout>
+   
+
+</pulltorefresh.PullToRefreshScrollView>
+        
+<!--          <ViewSwitcher  -->
+<!--            android:id="@+id/invoice_mybill_viewswitcher"   -->
+<!--            android:layout_width="match_parent"   -->
+<!--            android:layout_height="match_parent"  -->
+<!--           > -->
+<!--           <com.bm.wanma.view.PullToRefreshListView  -->
+<!-- 		        android:id="@+id/invoice_mybill_listview" -->
+<!-- 		        android:background="@color/common_light_white" -->
+<!-- 			    android:layout_width="match_parent" -->
+<!-- 			    android:layout_height="match_parent" -->
+<!-- 			    android:dividerHeight="0dp" -->
+<!-- 			    android:divider="@color/common_light_white" -->
+<!-- 			    ptr:ptrAnimationStyle="flip" -->
+<!-- 			    ptr:ptrMode="both" -->
+<!-- 			    ptr:ptrHeaderBackground="@color/common_light_white" -->
+<!-- 			    ptr:ptrHeaderTextColor="@color/common_light_black" -->
+<!-- 			    ptr:ptrHeaderSubTextColor="@color/common_light_black"/> -->
+<!-- 		    <TextView -->
+<!-- 		        android:layout_marginTop="40dp" -->
+<!-- 		        android:layout_width="wrap_content" -->
+<!-- 		        android:layout_height="wrap_content" -->
+<!-- 		        android:text="暂无账单记录" -->
+<!-- 		        android:textSize="18sp" -->
+<!-- 		        android:layout_gravity="center_horizontal" -->
+<!-- 		        android:drawableTop="@drawable/img_no_bill" -->
+<!-- 		        android:drawablePadding="20dp" -->
+<!-- 		        android:textColor="@color/common_light_black" -->
+<!-- 		        /> -->
+<!-- 	  </ViewSwitcher> -->
+    
+</LinearLayout>

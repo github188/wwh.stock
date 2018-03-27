@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="head">
+        <script type="text/javascript">
+            function skinChart() {
+                this.cfg.shadow = false;
+                this.cfg.title='';
+                this.cfg.seriesColors = ['#FF4081', '#FBB040', '#1C75BC'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#ffffff',
+                    gridLineColor: '#E8E8E8',
+                    shadow: false,
+                };
+                this.cfg.axesDefaults = {
+                    rendererOptions: {
+                        textColor: '#778D9B'
+                    }
+                };
+                this.cfg.seriesDefaults = {
+                    shadow: false,
+                    markerOptions: {
+                        shadow: false
+                    }
+                }
+            }
+        </script>
+        <style type="text/css">
+            .jqplot-target, .jqplot-axis {
+                color: #778D9B;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="content">
+        
+        <!-- section -->
+        <div class="Container100">
+            <div class="Container70 Responsive100">
+                        <div class="Container100">
+                            <div class="ContainerIndent">
+                                <div class="Card ShadowEffect HeiAutoOnMobile" style="height:392px;">
+                                    <h:form>
+                                        <p:commandButton actionListener="#{stockQueryMB.setStockCode('1')}" update="@form" />
+                                        <p:panel header="DOWNLOADS" style="height:100%; min-height:348px;" styleClass="HeiAutoOnMobile">
+                                            <p:chart type="line" model="#{chartView.lineModel1}" style="height:320px;" responsive="true"/>
+                                        </p:panel>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
+
+    </ui:define>
+
+</ui:composition>

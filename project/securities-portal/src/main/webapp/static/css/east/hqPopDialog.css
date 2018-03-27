@@ -1,0 +1,123 @@
+﻿
+.tab-list {
+    position: absolute;
+    /*top: 150px;
+            left: 100px;
+            z-index: 100;*/
+    border: solid 1px #4267A0;
+    border-right: 0;
+}
+
+.tab-item {
+    float: left;
+    display: inline-block;
+    border-right: solid 1px #4267A0;
+    padding: 2px 20px;
+    cursor: pointer;
+    height: 20px;
+    line-height: 20px;
+}
+
+.choose {
+    background-color: #4267A0;
+    color: white;
+}
+
+.scale {
+    position: absolute;
+    left: 400px;
+    /*top: 150px;
+            z-index: 101;*/
+    height: 25px;
+    line-height: 25px;
+    /*width: 250px;*/
+}
+
+.scale-plus,
+.scale-minus {
+    background-color: #4267A0;
+    display: inline-block;
+    margin-right: 10px;
+    height: 25px;
+    line-height: 25px;
+    width: 60px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    *display: inline;
+    *zoom: 1;
+}
+
+.beforeBackRight {
+    height: 25px;
+    line-height: 25px;
+}
+
+
+.hqPop {
+    width: 600px;
+    height: 553px;
+    padding: 3px;
+    border: 2px solid #bbb;
+    background-color: #fff;
+    position: absolute;
+    z-index: 99999;
+    left: 593px;
+    top: 800px;
+}
+
+.hqPop .hqStockName {
+    float: left;
+    position: absolute;
+    line-height: 30px;
+    height: 30px;
+    font-size: 18px;
+    left:0px;
+}
+
+.hqPop .arrowTop {
+    position: absolute;
+    left: -8px;
+    top: 20px;
+    width: 15px;
+    height: 15px;
+    background: url('../../img/east/triangle.png') no-repeat;
+    _background: none;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src='../../img/east/triangle.png');
+}
+
+.hqPop .arrowTopRight {
+    position: absolute;
+    left: 606px;
+    top: 20px;
+    width: 15px;
+    height: 15px;
+    background: url('/Stock2016/images/triangleRight.png') no-repeat;
+    _background: none;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src='/Stock2016/images/triangleRight.png');
+}
+
+.hqPop .contentWrapper {
+    height: 553px;
+    overflow: hidden;
+}
+
+.hqPop .contentWrapper .meetingTitle {
+    overflow: hidden;
+    padding: 10px;
+    background-color: #D6E9F8;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 1px solid #bbd4e8;
+}
+
+.hqPop .contentWrapper .meetingDetail {
+    overflow: hidden;
+    padding: 0 0 0 10px;
+}
+
+.hqPop .contentWrapper .meetingDetail span {
+    line-height: 20px;
+    height: 20px;
+}

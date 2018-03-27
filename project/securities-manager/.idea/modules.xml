@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../autocode/autocode.iml" filepath="$PROJECT_DIR$/../autocode/autocode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/securities-manager.iml" filepath="$PROJECT_DIR$/securities-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../securities-portal/securities-portal.iml" filepath="$PROJECT_DIR$/../securities-portal/securities-portal.iml" />
+    </modules>
+  </component>
+</project>

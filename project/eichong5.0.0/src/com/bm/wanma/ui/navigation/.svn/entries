@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/com/bm/wanma/ui/navigation"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="6957"
+   kind="dir"
+   committed-date="2017-05-19T05:21:29.356265Z"/>
+<entry
+   name="NaviCustomActivity.java"
+   checksum="d599462b321adf83e8c06ce5347dee48"
+   last-author="liuyahui"
+   committed-rev="6957"
+   text-time="2017-05-19T05:21:29.356000Z"
+   kind="file"
+   committed-date="2017-05-19T05:21:29.356265Z"/>
+<entry
+   name="NaviRouteActivity.java"
+   checksum="2091e27f57f13e5903fa73569f2edbb5"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="NaviSettingActivity.java"
+   checksum="ac69c557ee60896e2eb55fb96934324c"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="SimpleGPSNaviActivity.java"
+   checksum="271ec5762cc71feff2c28936123c3527"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="SimpleNaviActivity.java"
+   checksum="1a50b15d617460b18916222d89073cb0"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="TTSController.java"
+   checksum="aa1bee49aa1b5f696e47d5903745d78c"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+<entry
+   name="Utils.java"
+   checksum="a24fa15a2f86a8cf65151aa724b06406"
+   last-author="liuyahui"
+   committed-rev="3652"
+   text-time="2016-11-07T09:10:43.469000Z"
+   kind="file"
+   committed-date="2016-11-07T09:10:43.469269Z"/>
+</wc-entries>

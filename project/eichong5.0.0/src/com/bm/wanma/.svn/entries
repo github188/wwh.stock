@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://10.9.3.100/svn/eichong"
+   name=""
+   revision="12952"
+   last-author="liuyahui"
+   url="https://10.9.3.100/svn/eichong/trunk/android/branches/eichong_5.0.0/src/com/bm/wanma"
+   uuid="10cbccd9-2b97-e54f-a826-980271203259"
+   committed-rev="12947"
+   kind="dir"
+   committed-date="2017-10-18T08:57:33.847005Z"/>
+<entry
+   name="adapter"
+   kind="dir"/>
+<entry
+   name="alipay"
+   kind="dir"/>
+<entry
+   name="apshare"
+   kind="dir"/>
+<entry
+   name="broadcast"
+   kind="dir"/>
+<entry
+   name="ddshare"
+   kind="dir"/>
+<entry
+   name="dialog"
+   kind="dir"/>
+<entry
+   name="entity"
+   kind="dir"/>
+<entry
+   name="imagepager"
+   kind="dir"/>
+<entry
+   name="jpush"
+   kind="dir"/>
+<entry
+   name="model"
+   kind="dir"/>
+<entry
+   name="net"
+   kind="dir"/>
+<entry
+   name="popup"
+   kind="dir"/>
+<entry
+   name="socket"
+   kind="dir"/>
+<entry
+   name="sortlistview"
+   kind="dir"/>
+<entry
+   name="ui"
+   kind="dir"/>
+<entry
+   name="ummodel"
+   kind="dir"/>
+<entry
+   name="utils"
+   kind="dir"/>
+<entry
+   name="view"
+   kind="dir"/>
+<entry
+   name="weibo"
+   kind="dir"/>
+<entry
+   name="weixin"
+   kind="dir"/>
+<entry
+   name="widget"
+   kind="dir"/>
+<entry
+   name="wxapi"
+   kind="dir"/>
+<entry
+   name="yxapi"
+   kind="dir"/>
+</wc-entries>

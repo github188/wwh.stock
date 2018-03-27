@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_light_white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+    
+     <RelativeLayout 
+        android:background="@color/common_orange"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        > 
+        <ImageButton
+            android:id="@+id/comment_detail_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/nav_btn_back"
+            android:background="@android:color/transparent"/>
+        <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="评价"
+             android:textColor="@color/common_white"
+             android:textSize="18sp"
+             android:layout_centerVertical="true"
+             android:layout_centerInParent="true"
+            
+            />
+        </RelativeLayout>
+     <com.bm.wanma.view.PullToRefreshListView 
+        android:id="@+id/comment_detail_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:listSelector="@color/common_white"
+        
+        />
+    
+   <ScrollView 
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:scrollbars="none"
+       >
+    <com.bm.wanma.view.MyDetailListView
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:divider="@null"
+	    android:listSelector="@color/common_white"
+	    ></com.bm.wanma.view.MyDetailListView>   
+       
+   </ScrollView>
+
+</LinearLayout>

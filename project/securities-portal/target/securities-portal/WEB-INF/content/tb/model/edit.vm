@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>任务编辑</title>
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('#fm').form('submit', {
+                url: '${base}/tb/model/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        window.parent.jQuery('#dg').datagrid('reload');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+    <form id="fm" method="post">
+        <input type="hidden" name="id" value="$!{model.id}">
+        <table width="100%" cellpadding="5">
+                            <tr>
+                    <td align="left">
+                        模型编号
+                    </td>
+                    <td>
+                                                <input name="modelId" class="easyui-textbox" value="$!{model.modelId}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        模型代码
+                    </td>
+                    <td>
+                                                <input name="modelCode" class="easyui-textbox" value="$!{model.modelCode}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        模型中文名
+                    </td>
+                    <td>
+                                                <input name="modelName" class="easyui-textbox" value="$!{model.modelName}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        模型文件夹
+                    </td>
+                    <td>
+                                                <input name="modelDir" class="easyui-textbox" value="$!{model.modelDir}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        模型类型(task,shop)
+                    </td>
+                    <td>
+                                                <input name="modelType" class="easyui-textbox" value="$!{model.modelType}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        开发者
+                    </td>
+                    <td>
+                                                <input name="modelDev" class="easyui-textbox" value="$!{model.modelDev}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        模型开启状态
+                    </td>
+                    <td>
+                                                <input name="modelStatus" class="easyui-textbox" value="$!{model.modelStatus}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        模型描述
+                    </td>
+                    <td>
+                                                <input name="modelDesc" class="easyui-textbox" value="$!{model.modelDesc}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        安装时间
+                    </td>
+                    <td>
+                                                <input name="onTime" class="easyui-textbox" value="$!{model.onTime}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        是否私有模式（0=>非私有，1=>私有）
+                    </td>
+                    <td>
+                                                <input name="hideMode" class="easyui-textbox" value="$!{model.hideMode}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        模型排序
+                    </td>
+                    <td>
+                                                <input name="listorder" class="easyui-textbox" value="$!{model.listorder}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        模型介绍
+                    </td>
+                    <td>
+                                                <input name="modelIntro" class="easyui-textbox" value="$!{model.modelIntro}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        绑定行业
+                    </td>
+                    <td>
+                                                <input name="indusBid" class="easyui-textbox" value="$!{model.indusBid}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        模型扩展配置
+                    </td>
+                    <td>
+                                                <input name="config" class="easyui-textbox" value="$!{model.config}">
+                    </td>
+                </tr>
+                            <tr>
+                    <td align="left">
+                        是否开启自定义字段
+                    </td>
+                    <td>
+                                                <input name="openCustom" class="easyui-textbox" value="$!{model.openCustom}">
+                    </td>
+                </tr>
+                    </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

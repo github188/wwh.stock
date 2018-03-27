@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/common_white"
+    android:orientation="vertical" >
+
+		<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        >
+        <TextView 
+            android:id="@+id/malfunction_time_title"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="20dp"
+             android:textColor="@color/common_light_light_black"
+             android:textSize="14sp"
+             android:text="充电点名称 : "
+            />
+
+        <TextView 
+            android:id="@+id/malfunction_charge"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_toRightOf="@id/malfunction_time_title"
+             android:layout_marginRight="20dp"
+             android:textColor="@color/common_black"
+             android:textSize="14sp"
+             android:layout_centerVertical="true"
+            />
+        </RelativeLayout>
+        
+	<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="25dp"
+        >
+        <TextView 
+            android:id="@+id/malfunction_address_title"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="具体地址 : "
+             android:textColor="@color/common_light_light_black"
+             android:textSize="14sp"
+             android:layout_marginLeft="20dp"
+            />
+        <TextView 
+            android:id="@+id/malfunction_address"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textColor="@color/common_black"
+             android:textSize="14sp"
+             android:layout_toRightOf="@id/malfunction_address_title"
+             android:layout_marginRight="20dp"
+             android:layout_centerVertical="true"
+
+            />
+        </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,36 @@
+##包定义
+package $!{targetPackage};
+
+##引用导入
+import $!{basePackage}.common.domain.BaseDomain;
+import javax.persistence.Column;
+import javax.persistence.Table;
+
+/**
+* @description:
+* @author: autoCode
+* @history:
+*/
+@Table(name = "$table.tableName")
+public class $!{className} extends BaseDomain {
+
+    private static final long serialVersionUID = 1L;
+
+##属性
+#foreach ($column in $table.columns)
+    //$!{column.columnCommnet}
+    @Column(name = "$column.columnName")
+    private $!{column.fieldType} $!{column.fieldName};
+#end
+##get/set
+#foreach ($column in $table.columns)
+
+    public void $!{column.setName}($!{column.fieldType} $!{column.fieldName}){
+        this.$!{column.fieldName} = $!{column.fieldName};
+    }
+
+    public $!{column.fieldType} $!{column.getName}(){
+        return $!{column.fieldName};
+    }
+#end
+}

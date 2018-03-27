@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/keybord_btn_keys"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custom_input_keybord"
+    android:gravity="center"
+    android:paddingBottom="15dp"
+    android:paddingTop="15dp" >
+
+    <ImageView
+        android:id="@+id/delete_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/keybord_btn_keys_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="28sp" />
+
+</RelativeLayout>

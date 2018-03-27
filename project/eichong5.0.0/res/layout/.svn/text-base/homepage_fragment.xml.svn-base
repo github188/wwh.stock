@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_light_grey"
+    android:fitsSystemWindows="true"
+     >
+<com.amap.api.maps.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:visibility="gone"
+        />
+<RelativeLayout
+    android:id="@+id/title_i"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/common_orange" >   
+		<TextView
+		    android:id="@+id/help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:text="帮助"
+            android:textColor="@color/common_white"
+            android:textSize="14sp"
+             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="爱充"
+            android:textColor="@color/common_white"
+            android:textSize="18sp" />
+<!--         <ImageView  -->
+<!--                 android:id="@+id/fragment_myperson_charging" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--         	    android:layout_height="wrap_content" -->
+<!--         	    android:layout_margin="15dp" -->
+<!--                 android:src="@drawable/img_charging" -->
+<!--                 android:layout_alignParentRight="true" -->
+<!--                 /> -->
+<!--         <FrameLayout -->
+<!--         android:id="@+id/charging_confirm" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!-- 		android:layout_centerVertical="true" -->
+<!-- 		android:layout_alignParentRight="true" -->
+<!--         android:layout_marginRight="15dp" -->
+<!--         android:background="@drawable/img_round" > -->
+
+<!--         <ImageView -->
+<!--             android:id="@+id/fragment_myperson_charging" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:layout_gravity="center_vertical|center_horizontal" -->
+<!--             android:src="@drawable/img_charging" /> -->
+<!--     </FrameLayout> -->
+    
+        <TextView 
+             android:id="@+id/fragment_myperson_charging"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginRight="10dp"
+             android:text="充电中"
+             android:padding="5dp"
+             android:textColor="@color/common_white"
+             android:layout_alignParentRight="true"
+             android:textSize="13dp"
+             android:visibility="gone"
+             android:layout_centerVertical="true"
+             />
+    </RelativeLayout>
+
+<pulltorefresh.PullToRefreshScrollView
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/charge_done_finish_refresh"  
+    android:background="@color/common_light_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/title_i"
+    ptr:ptrAnimationStyle="flip"
+    ptr:ptrMode="both"
+    android:scrollbars="none"
+    ptr:ptrHeaderBackground="@color/common_light_grey"
+    ptr:ptrHeaderTextColor="@color/common_light_black"
+    ptr:ptrHeaderSubTextColor="@color/common_light_black">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    
+     >
+    <fragment
+        android:id="@+id/fragment_cycle_viewpager_content"
+        android:name="com.bm.wanma.view.CycleViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="165dp" />
+    <LinearLayout 
+        android:id="@+id/information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/common_white"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        >
+        <com.bm.wanma.view.AutoVerticalScrollTextView2
+            android:id="@+id/fault_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+			android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/common_orange"
+            android:textSize="14sp"
+             />
+        <com.bm.wanma.view.AutoVerticalScrollTextView
+            android:id="@+id/textview_auto_roll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center_vertical"
+            android:ellipsize="end"
+            android:lines="1" />
+        
+    </LinearLayout>
+    
+     <com.bm.wanma.view.CustomGridView
+                android:id="@+id/custom_function"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/common_white"
+                android:numColumns="4"
+                android:columnWidth="10dp"  
+                android:paddingTop="20dp"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="13dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+				  android:horizontalSpacing="10dp"  
+				  android:verticalSpacing="10dp"  
+				  android:listSelector="@android:color/transparent"
+				  android:gravity="center" 
+	/>
+
+        <TextView
+            android:id="@+id/information_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="资讯"
+            android:textColor="@color/common_light_light_black"
+            android:textSize="14sp"
+             />
+
+    <pulltorefresh.ListViewCustom
+		        android:id="@+id/information_listview"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:dividerHeight="1dp"
+		        android:divider="@color/common_light_grey_line"
+		        android:listSelector="#00000000"/>
+
+</LinearLayout>
+</pulltorefresh.PullToRefreshScrollView>
+
+    
+
+</RelativeLayout>

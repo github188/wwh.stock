@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    android:background="@color/common_white" >
+    
+    <TextView 
+         android:id="@+id/dialog_comment_title"
+         android:layout_width="match_parent"
+    	 android:layout_height="wrap_content"
+         android:text="请先完善个人资料"
+         android:textColor="@color/common_orange"
+         android:textSize="18sp"
+         android:paddingLeft="15dp"
+         android:paddingRight="15dp"
+         android:textStyle="bold"
+         android:gravity="center"
+        />
+ 
+     <LinearLayout 
+         android:layout_below="@id/dialog_comment_title"
+         android:layout_marginTop="20dp"
+         android:layout_width="match_parent"
+    	 android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         >
+ 	<TextView 
+         android:id="@+id/dialog_cancle_bespoke_cancel"
+         android:layout_width="0dp"
+    	 android:layout_height="wrap_content"
+    	 android:layout_weight="1"
+         android:text="返回"
+         android:background="@drawable/common_shape_corner_gray"
+         android:textColor="@color/common_white"
+         android:textSize="18sp"
+         android:layout_marginRight="15dp"
+         android:gravity="center"
+        />
+    <TextView 
+         android:id="@+id/dialog_cancle_bespoke_confirm"
+         android:layout_width="0dp"
+    	 android:layout_height="wrap_content"
+    	 android:layout_weight="1"
+         android:text="去填写"
+         android:background="@drawable/common_shape_corner_orange"
+         android:textColor="@color/common_white"
+         android:textSize="18sp"
+         android:gravity="center"
+          android:layout_marginLeft="15dp"
+        />   
+     </LinearLayout>
+
+</RelativeLayout>

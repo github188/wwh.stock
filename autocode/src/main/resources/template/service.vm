@@ -1,0 +1,42 @@
+#set($searchColCount = 1)
+##包定义
+package $!{targetPackage};
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
+
+import com.skoo.orm.service.BaseService;
+import com.skoo.orm.service.support.paging.PageInfo;
+import com.skoo.orm.service.support.query.Condition;
+import com.skoo.orm.service.support.query.Criteria;
+import com.skoo.orm.service.support.query.Restrictions;
+##导入dao、实体
+import $!{generatorContext.domain};
+
+/**
+ * @description:
+ * @author: autoCode
+ * @history:
+ */
+@Component
+public class  $!{className}Service extends BaseService<$!{className}> {
+
+	/**
+	 * 根据条件查询分页
+	 * @param condition
+	 * @return
+	 */
+	public PageInfo<$!{className}> queryPaged(Condition condition) {
+		Assert.notNull(condition);
+		Criteria c = condition.createCriteria($!{className}.class);
+#foreach ($column in $table.columns)
+#if($velocityCount<$searchColCount+1)
+		String $!{column.fieldName} = condition.get("$!{column.fieldName}");
+		if (!StringUtils.isEmpty($!{column.fieldName}))
+			c.add(Restrictions.like("$!{column.fieldName}", "%" + $!{column.fieldName} + "%"));
+#end
+#end
+		return super.queryPaged(condition);
+	}
+}

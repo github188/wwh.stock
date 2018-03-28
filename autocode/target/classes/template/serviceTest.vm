@@ -1,0 +1,54 @@
+#set($searchColCount = 1)
+##包定义
+package $!{targetPackage};
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+
+import $!{generatorContext.domain};
+import $!{targetPackage}.$!{className}Service;
+import com.skoo.orm.service.support.paging.PageInfo;
+import com.skoo.orm.service.support.query.Condition;
+import com.skoo.orm.service.support.query.Criteria;
+import com.skoo.test.DreamServiceTestCase;
+
+/**
+ * @description:
+ * @author: autoCode
+ * @history:
+ */
+@ContextConfiguration(locations = { "classpath*:spring/*.xml" })
+public class  $!{className}ServiceTest extends ManServiceTestCase {
+
+	@Autowired
+	private $!{className}Service entityService;
+	
+	@Before
+	public void init() {
+		$!{className} d1 = new $!{className}();
+		//TODO:设置一些属性
+		entityService.saveOrUpdate(d1);
+		$!{className} d2 = new $!{className}();
+		//TODO:设置一些属性
+		entityService.saveOrUpdate(d2);
+	}
+
+	@Test
+	public void queryPaged() {
+		Condition condition = new Condition();
+		Criteria c = condition.createCriteria($!{className}.class);
+		//TODO:根据页面上的查询条件，添加一些条件
+		PageInfo<$!{className}> page = entityService.queryPaged(condition);
+		assertThat(page.getRows()).isNotEmpty();
+		assertThat(page.getRows().size()).isEqualTo(1);
+		assertThat(page.getRows().get(0).getValid()).isEqualTo(1);
+		//TODO:断言一些属性值是否符合预期
+	}
+}

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config targetProject="D:\wwh\idea\stock\" targetPackage="com.skoo.stock">
+<!--<config targetProject="E:\项目\软协\assoc\" targetPackage="com.zjhcsoft.smartcity.assoc">-->
+    <!--jdbcConnection 数据库连接信息
+        driverClass：数据库驱动程序
+        connectionURL：数据库连接串
+        userId:数据库用户名
+        password：用户密码
+        infSql:读取表信息的sql,mysql:"SELECT c.COLUMN_COMMENT ,c.COLUMN_NAME , c.COLUMN_TYPE , c.COLUMN_KEY ,c.DATA_TYPE , c.IS_NULLABLE ,c.COLUMN_DEFAULT  FROM information_schema.COLUMNS c WHERE c.TABLE_NAME = '${table_name}' AND c.TABLE_SCHEMA = '${TABLE_SCHEMA}'"
+     -->
+    <!-- mysql “hcim_mjh”-->
+
+<!--    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                    connectionURL="jdbc:mysql://10.80.11.246:3306/assoc_dev?useUnicode=true&amp;characterset=utf-8"
+                    userId="dev"
+                    password="dev123!@#"
+                    infSql = "SELECT   c.COLUMN_COMMENT ,c.COLUMN_NAME , c.COLUMN_TYPE , c.COLUMN_KEY ,c.DATA_TYPE , c.IS_NULLABLE ,c.COLUMN_DEFAULT   FROM information_schema.COLUMNS c WHERE c.TABLE_NAME = '${TABLE_NAME}' AND c.TABLE_SCHEMA = '${TABLE_SCHEMA}'"
+            >
+    </jdbcConnection>-->
+
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                    connectionURL="jdbc:mysql://localhost:3306/stock?useUnicode=true&amp;characterset=utf-8"
+                    userId="root"
+                    password="hongcheng"
+                    infSql="SELECT   c.COLUMN_COMMENT ,c.COLUMN_NAME , c.COLUMN_TYPE , c.COLUMN_KEY ,c.DATA_TYPE , c.IS_NULLABLE ,c.COLUMN_DEFAULT   FROM information_schema.COLUMNS c WHERE c.TABLE_NAME = '${TABLE_NAME}' AND c.TABLE_SCHEMA = '${TABLE_SCHEMA}'"
+            >
+    </jdbcConnection>
+
+    <!-- oracle -->
+    <!--
+    <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+        connectionURL="jdbc:oracle:thin:@10.80.11.250:1521:jpsc"
+        userId="jpsc"
+        password="jpsc"
+        infSql = "select f.comments as COLUMN_COMMENT,a.column_name as COLUMN_NAME,a.data_type as COLUMN_TYPE,e.key as COLUMN_KEY,a.data_type as DATA_TYPE, a.nullable as IS_NULLABLE,a.data_default as COLUMN_DEFAULT from user_tab_columns a, user_col_comments f,(select b.table_name, b.index_name,b.uniqueness, c.column_name,decode(d.constraint_name,NULL,'N','Y') key from user_indexes b, user_ind_columns c,( select constraint_name from user_constraints where constraint_type='P' ) d where b.index_name=c.index_name and b.index_name=d.constraint_name(+) ) e where a.table_name='${TABLE_NAME}' and a.table_name=e.table_name(+) and a.column_name=e.column_name(+) and a.table_name=f.table_name and a.column_name=f.column_name order by a.column_id"
+        >
+    </jdbcConnection>
+     -->
+    <generators>
+        <!--generator，要生成的代码类型
+            targetProject:代码存放位置，
+            targetPackage:代码包路径，
+            template：使用渲染模板，
+            type:代码类型，xml:sql Map文件，domain：实体对象，dao：数据访问对象，service：服务对象，action，page:vm模板
+             -->
+        <!-- domain 文件生成 -->
+        <generator type="domain"/>
+
+        <!-- sql map 文件生成 -->
+        <generator type="xml" template="/template/mapXml.vm"/>
+
+        <!-- service 文件生成 -->
+        <generator type="service"/>
+
+        <!-- action 文件生成 -->
+        <generator type="action"/>
+
+        <!-- 页面  文件生成 -->
+        <generator type="page" template="/template/pageIndex.vm,/template/pageAdd.vm,/template/pageEdit.vm"/>
+
+    </generators>
+    <tables>
+        <!--生成代码的表信息
+            schema：数据库schema
+            tableNmae：数据库表名
+            className:对应java实体名，如果按照数据库设计规范设计可不用配置，按照tableName安装驼峰规则转换得到
+            name:对应的实体名称，用于生成页面时展示使用
+         -->
+
+
+        <!--<table schema="stock" tableName="hsa_stock_new" name="沪深A股自选行情"/>-->
+        <!--<table schema="stock" tableName="hsa_plate_stock" name="板块代码关联"/>-->
+        <!--<table schema="stock" tableName="hsa_turnsend_detail" name="沪深A股分红送转"/>-->
+        <!--<table schema="stock" tableName="hsa_history_detail" name="沪深A股行情明细"/>-->
+        <!--<table schema="stock" tableName="zs_hq_details" name="招商证券A股行情"/>-->
+        <table schema="stock" tableName="zs_rx_data" name="招商证券A股日线"/>
+
+    </tables>
+</config>

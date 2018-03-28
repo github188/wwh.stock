@@ -1,0 +1,48 @@
+#set($v1 = "$!{")
+#set($v2 = "}")
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>$!{table.name}编辑</title>
+\#parse("commons/commonJs.vm")
+\#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/$!{generatorContext.module}/$!{table.urlName}/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				Man.reload(result);
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" class="dm_mainarea">
+      <form id="fm" method="post">
+			<input type="hidden" name="id" value="${v1}model.id${v2}">
+			<table width="100%" cellpadding="5">
+#foreach ($column in $table.columns)
+    			<tr>
+					<td align="left">
+    			 		$!{column.columnCommnet}
+    			 	</td>
+    			 	<td>
+#set($columnFieldName=$!{column.fieldName})
+						<input name="$columnFieldName" class="easyui-textbox" value="${v1}model.$columnFieldName${v2}">
+    			 	</td>
+    			 </tr>
+#end   	
+         	</table>
+	</form>
+	</div>
+     <div region="south" border="false" class="dm_btnarea">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Man.closeWin()">取消</a>
+	</div>
+</body>
+</html>

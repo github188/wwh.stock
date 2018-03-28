@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>沪深A股行情明细编辑</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/hsa/history-detail/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				result = jQuery.parseJSON(result);
+				Magic.closeWin();  
+				if(!result.success){  
+					window.parent.jQuery.messager.show({title: '错误', msg: result.message });                  
+				} else {                  
+					window.parent.jQuery('#dg').datagrid('reload');   
+				}             
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+      <form id="fm" method="post">
+			<input type="hidden" name="id" value="$!{model.id}">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		代码
+    			 	</td>
+    			 	<td>
+						<input name="code" class="easyui-textbox" value="$!{model.code}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		简称
+    			 	</td>
+    			 	<td>
+						<input name="name" class="easyui-textbox" value="$!{model.name}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		当前价
+    			 	</td>
+    			 	<td>
+						<input name="currentPrice" class="easyui-textbox" value="$!{model.currentPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		压力位
+    			 	</td>
+    			 	<td>
+						<input name="pressurePrice" class="easyui-textbox" value="$!{model.pressurePrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		支撑位
+    			 	</td>
+    			 	<td>
+						<input name="supportPrice" class="easyui-textbox" value="$!{model.supportPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		最高价
+    			 	</td>
+    			 	<td>
+						<input name="highestPrice" class="easyui-textbox" value="$!{model.highestPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		最低价
+    			 	</td>
+    			 	<td>
+						<input name="lowestPrice" class="easyui-textbox" value="$!{model.lowestPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		5日涨幅
+    			 	</td>
+    			 	<td>
+						<input name="fiveWidth" class="easyui-textbox" value="$!{model.fiveWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		10日涨幅
+    			 	</td>
+    			 	<td>
+						<input name="tenWidth" class="easyui-textbox" value="$!{model.tenWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		20日涨幅
+    			 	</td>
+    			 	<td>
+						<input name="twentyWidth" class="easyui-textbox" value="$!{model.twentyWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		停牌天数
+    			 	</td>
+    			 	<td>
+						<input name="suspensionDays" class="easyui-textbox" value="$!{model.suspensionDays}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		停牌起始日期
+    			 	</td>
+    			 	<td>
+						<input name="startDate" class="easyui-textbox" value="$!{model.startDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		停牌结束日期
+    			 	</td>
+    			 	<td>
+						<input name="endDate" class="easyui-textbox" value="$!{model.endDate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		流通股本
+    			 	</td>
+    			 	<td>
+						<input name="circulationEquity" class="easyui-textbox" value="$!{model.circulationEquity}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		总股本
+    			 	</td>
+    			 	<td>
+						<input name="totalEquity" class="easyui-textbox" value="$!{model.totalEquity}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		每股收益
+    			 	</td>
+    			 	<td>
+						<input name="perProfit" class="easyui-textbox" value="$!{model.perProfit}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		每股净资产
+    			 	</td>
+    			 	<td>
+						<input name="netAssets" class="easyui-textbox" value="$!{model.netAssets}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		每股资本公积金
+    			 	</td>
+    			 	<td>
+						<input name="capitalFund" class="easyui-textbox" value="$!{model.capitalFund}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		净利润
+    			 	</td>
+    			 	<td>
+						<input name="netProfit" class="easyui-textbox" value="$!{model.netProfit}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		净利润描述
+    			 	</td>
+    			 	<td>
+						<input name="profitDescribe" class="easyui-textbox" value="$!{model.profitDescribe}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		主营业务
+    			 	</td>
+    			 	<td>
+						<input name="mainBusiness" class="easyui-textbox" value="$!{model.mainBusiness}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		所属板块
+    			 	</td>
+    			 	<td>
+						<input name="thePlate" class="easyui-textbox" value="$!{model.thePlate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		备注
+    			 	</td>
+    			 	<td>
+						<input name="memo" class="easyui-textbox" value="$!{model.memo}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		顺序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+        <div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+        </div>
+</body>
+</html>

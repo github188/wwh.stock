@@ -1,0 +1,4 @@
+<script type="text/javascript" src="${base}/js/magic.js"></script>
+<script type="text/javascript" src="${base}/easyui/jquery-1.6.min.js"></script>
+<script type="text/javascript" src="${base}/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${base}/easyui/locale/easyui-lang-zh_CN.js"></script>

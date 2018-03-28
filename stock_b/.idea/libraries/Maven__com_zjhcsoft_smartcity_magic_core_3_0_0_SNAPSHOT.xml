@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.zjhcsoft.smartcity:magic-core:3.0.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/zjhcsoft/smartcity/magic-core/3.0.0-SNAPSHOT/magic-core-3.0.0-20150521.062057-15.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/zjhcsoft/smartcity/magic-core/3.0.0-SNAPSHOT/magic-core-3.0.0-20150521.062057-15-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/zjhcsoft/smartcity/magic-core/3.0.0-SNAPSHOT/magic-core-3.0.0-20150521.062057-15-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

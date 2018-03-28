@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>后台管理系统</title>
+    #parse("commons/commonJs.vm")
+	#parse("commons/commonCss.vm")
+	<link rel="stylesheet" type="text/css" href="${base}/css/index.css"/>
+	<script type="text/javascript" src='${base}/js/index.js'></script>
+    <script type="text/javascript">
+	var _menus = $menus;
+
+	//设置登录窗口`
+    function openPwd() {
+        jQuery('#w').window({
+            title: '修改密码',
+            width: 300,
+            modal: true,
+            shadow: true,
+            closed: true,
+            height: 160,
+            resizable:false
+        });
+    }
+    //关闭登录窗口
+    function closePwd() {
+        jQuery('#w').window('close');
+    }
+
+        
+    //修改密码
+    function serverLogin() {
+        var $new1 = jQuery('#new1');
+        var $new2 = jQuery('#new2');
+        var $old = jQuery('#old');
+        if ($new1.val() == '') {
+            msgShow('系统提示', '请输入密码！', 'warning');
+            return false;
+        }
+        if ($new2.val() == '') {
+            msgShow('系统提示', '请在一次输入密码！', 'warning');
+            return false;
+        }
+        if ($new1.val() != $new2.val()) {
+            msgShow('系统提示', '两次密码不一至！请重新输入', 'warning');
+            return false;
+        }
+        jQuery.post('user!doSetPassword.action?new1=' + $new1.val()+'&old=' +$old.val(), function(msg) {
+           	closePwd();
+            msgShow('系统提示', '恭喜，密码修改成功！');
+            $newpass.val('');
+            $rePass.val('');
+         	
+         	
+        })
+        	
+    }
+    
+    function goPage(id) {
+    	jQuery.post('${base}/sys/index/getSubMenus',{"moduleId":id}, function(menus) {
+           	_menus = menus;
+           	InitLeftMenu();
+        });
+    }
+
+    jQuery(function() {
+        openPwd();
+        jQuery('#editpass').click(function() {
+            jQuery('#w').window('open');
+        });
+        jQuery('#btnEp').click(function() {
+            serverLogin();
+        })
+		jQuery('#btnCancel').click(function(){closePwd();})
+        jQuery('#loginOut').click(function() {
+            jQuery.messager.confirm('系统提示', '您确定要退出本次登录吗?', function(r) {
+                if (r) {
+                    LoginAjaxService.loginOut(function(data){
+			 			window.location.href="${base}/welcome.html";
+					});
+                }
+            });
+        })
+    });
+    </script>
+
+</head>
+<body class="easyui-layout" style="overflow-y: hidden"  fit="true"   scroll="no">
+<noscript>
+	<div style=" position:absolute; z-index:100000; height:2046px;top:0px;left:0px; width:100%; background:white; text-align:center;">
+	    <img src="${base}/images/noscript.gif" alt='抱歉，请开启脚本支持！' />
+	</div>
+</noscript>
+
+	<div id="loading-mask" style="position:absolute;top:0px; left:0px; width:100%; height:100%; background:#D2E0F2; z-index:20000">
+		<div id="pageloading" style="position:absolute; top:50%; left:50%; margin:-120px 0px 0px -120px; text-align:center;  border:2px solid #8DB2E3; width:200px; height:40px;  font-size:14px;padding:10px; font-weight:bold; background:#fff; color:#15428B;"> 
+		    <img src="${base}/images/loading.gif" align="absmiddle" /> 正在加载中,请稍候...</div>
+		</div>
+	</div>
+    <div region="north" border="true" id="top"  #if($level==3 && ${modules.size()}>1)style="height:92px"#end>
+	    <div class="top-bg" >
+	    	<div class="user_info">在线用户：<span class="fn_blue">$username</span><a style="cursor:pointer" href="/sjtb/logout.do"">退出</a></div>
+	    	<strong>$applicationName</strong>
+	    </div>
+	    #if($level==3 && ${modules.size()}>1)
+	    <div class="menu" data-options="region:'north'" style="height:50px">
+	    	<ul>
+#foreach ($module in $modules)
+            	<li ><a href="#" onclick="goPage('$module.id')">$!{module.name}</a></li>
+#end				
+			</ul>            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				            				                    </ul>
+    	</div>
+	    #end
+	    
+	</div>
+    
+    <div region="south" split="false" style="height: 30px; background: #D2E0F2; ">
+        <div class="footer"></div>
+    </div>
+    
+    <div region="west" split="true" title="导航菜单" style="width:180px;" id="west">
+    		<div id="nav">
+				<!--  导航内容 -->
+			</div>
+			
+    </div>
+    
+    <div id="mainPanle" region="center" style="background: #eee; overflow-y:hidden">
+        <div id="tabs" class="easyui-tabs"  fit="true" border="false" >
+			<div title="管理控制台" style="padding:20px;overflow:hidden; color:red; " >
+				<iframe scrolling="auto" frameborder="0"  src="${base}/welcome.html" style="width:100%;height:100%;"></iframe>
+			</div>
+		</div>
+    </div>
+
+	<div id="mm" class="easyui-menu" style="width:150px;">
+		<div id="refresh">刷新</div>
+		<div class="menu-sep"></div>
+		<div id="close">关闭</div>
+		<div id="closeall">全部关闭</div>
+		<div id="closeother">除此之外全部关闭</div>
+		<div class="menu-sep"></div>
+		<div id="closeright">当前页右侧全部关闭</div>
+		<div id="closeleft">当前页左侧全部关闭</div>
+		<div class="menu-sep"></div>
+		<div id="exit">退出</div>
+	</div>
+
+</body>
+</html>

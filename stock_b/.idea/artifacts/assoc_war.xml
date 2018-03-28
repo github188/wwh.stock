@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="assoc:war">
+    <output-path>E:/项目/软协/branch/assoc/target</output-path>
+    <root id="archive" name="assoc.war">
+      <element id="artifact" artifact-name="assoc:war exploded" />
+    </root>
+  </artifact>
+</component>

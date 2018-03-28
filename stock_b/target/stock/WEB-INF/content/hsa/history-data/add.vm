@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>沪深A历史行情新增</title>
+#parse("commons/commonJs.vm")
+#parse("commons/commonCss.vm")
+<script type="text/javascript">
+	function save(){            
+		jQuery('#fm').form('submit',{                
+			url: '${base}/hsa/history-data/save',                
+			onSubmit: function(){
+				return jQuery(this).form('validate');
+			},
+			success: function(result){
+				result = jQuery.parseJSON(result);
+				Magic.closeWin();  
+				if(!result.success){  
+					window.parent.jQuery.messager.show({title: '错误', msg: result.message });                  
+				} else {                  
+					window.parent.jQuery('#dg').datagrid('reload');   
+				}             
+			}         
+		});     
+	}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+	 <div data-options="region:'center',border:false" style="padding: 10px 60px 20px 60px;background:#fff;border:1px solid #ccc;">
+      <form id="fm" method="post">
+			<table width="100%" cellpadding="5">
+    			<tr>
+					<td align="left">
+    			 		代码
+    			 	</td>
+    			 	<td>
+						<input name="code" class="easyui-textbox" value="$!{model.code}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		日期
+    			 	</td>
+    			 	<td>
+						<input name="dt" class="easyui-textbox" value="$!{model.dt}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		收盘价(元)
+    			 	</td>
+    			 	<td>
+						<input name="closingPrice" class="easyui-textbox" value="$!{model.closingPrice}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		涨跌幅(%)
+    			 	</td>
+    			 	<td>
+						<input name="udWidth" class="easyui-textbox" value="$!{model.udWidth}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		换手率(%)
+    			 	</td>
+    			 	<td>
+						<input name="turnoverRate" class="easyui-textbox" value="$!{model.turnoverRate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		成交量(万股)
+    			 	</td>
+    			 	<td>
+						<input name="volume" class="easyui-textbox" value="$!{model.volume}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		成交额(亿)
+    			 	</td>
+    			 	<td>
+						<input name="turnVolume" class="easyui-textbox" value="$!{model.turnVolume}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		流入资金(亿)
+    			 	</td>
+    			 	<td>
+						<input name="inflowFund" class="easyui-textbox" value="$!{model.inflowFund}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		买卖差额(万元)
+    			 	</td>
+    			 	<td>
+						<input name="tradeBalance" class="easyui-textbox" value="$!{model.tradeBalance}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		资金差(亿)
+    			 	</td>
+    			 	<td>
+						<input name="fundDiff" class="easyui-textbox" value="$!{model.fundDiff}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		净流入率(%)
+    			 	</td>
+    			 	<td>
+						<input name="netInflowRate" class="easyui-textbox" value="$!{model.netInflowRate}">
+    			 	</td>
+    			 </tr>
+    			<tr>
+					<td align="left">
+    			 		顺序
+    			 	</td>
+    			 	<td>
+						<input name="orderBy" class="easyui-textbox" value="$!{model.orderBy}">
+    			 	</td>
+    			 </tr>
+         	</table>
+	</form>
+	</div>
+        <div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+        </div>
+</body>
+</html>

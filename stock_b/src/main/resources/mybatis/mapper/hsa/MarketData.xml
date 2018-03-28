@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hzskt.hsa.domain.MarketData">
+	<resultMap id="get-MarketData-result" type="cn.hzskt.hsa.domain.MarketData">
+		<id property="id" column="ID" />
+		<!-- 代码-->
+    	<result property="code" column="code" />
+		<!-- 简称-->
+    	<result property="name" column="name" />
+		<!-- 最新价-->
+    	<result property="latestPrice" column="latest_price" />
+		<!-- 涨跌幅-->
+    	<result property="udWidth" column="ud_width" />
+		<!-- 涨跌额-->
+    	<result property="udAmount" column="ud_amount" />
+		<!-- 5分钟涨幅-->
+    	<result property="fiveWidth" column="five_width" />
+		<!-- 成交量(手)-->
+    	<result property="volume" column="volume" />
+		<!-- 成交额(万元)-->
+    	<result property="turnVolume" column="turn_volume" />
+		<!-- 换手率-->
+    	<result property="turnoverRate" column="turnover_rate" />
+		<!-- 振幅-->
+    	<result property="amplitude" column="amplitude" />
+		<!-- 量比-->
+    	<result property="volumeRatio" column="volume_ratio" />
+		<!-- 委比-->
+    	<result property="committee" column="committee" />
+		<!-- 市盈率-->
+    	<result property="peRatio" column="pe_ratio" />
+		<!-- 顺序-->
+    	<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="MarketData_Base_Column_List">
+		ID,
+		<!-- 代码-->
+    	code,
+		<!-- 简称-->
+    	name,
+		<!-- 最新价-->
+    	latest_price,
+		<!-- 涨跌幅-->
+    	ud_width,
+		<!-- 涨跌额-->
+    	ud_amount,
+		<!-- 5分钟涨幅-->
+    	five_width,
+		<!-- 成交量(手)-->
+    	volume,
+		<!-- 成交额(万元)-->
+    	turn_volume,
+		<!-- 换手率-->
+    	turnover_rate,
+		<!-- 振幅-->
+    	amplitude,
+		<!-- 量比-->
+    	volume_ratio,
+		<!-- 委比-->
+    	committee,
+		<!-- 市盈率-->
+    	pe_ratio,
+		<!-- 顺序-->
+    	order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+			<select id="MarketData_get"  resultMap="get-MarketData-result">
+		 SELECT
+    		<include refid="MarketData_Base_Column_List" />
+	 	 FROM 
+			hsa_market_data
+		 where 
+			ID = #{id}
+    </select>
+	
+		<select id="MarketData_list"  resultMap="get-MarketData-result">
+		 SELECT
+    				<include refid="MarketData_Base_Column_List" />
+	 	 FROM 
+			hsa_market_data    
+		<include refid="common.Select_Where_Clause" />
+    </select>
+
+	<select id="MarketData_platelist" resultMap="get-MarketData-result" parameterType="map">
+		SELECT
+		distinct t.*
+		FROM
+		hsa_market_data t
+		INNER JOIN hsa_plate_stock a ON t.code = a.code AND a.valid = '1'
+		<if test="industryId != null and industryId != ''">
+		AND a.concept_id = #{industryId}
+		</if>
+		WHERE
+		t.volume != 0 AND
+		t.valid = '1'
+
+		<if test="code != null and code != ''">
+			AND t.code = #{code}
+		</if>
+	</select>
+
+   <insert id="MarketData_insert" parameterType="cn.hzskt.hsa.domain.MarketData" >
+      INSERT INTO hsa_market_data(
+		code,
+		name,
+		latest_price,
+		ud_width,
+		ud_amount,
+		five_width,
+		volume,
+		turn_volume,
+		turnover_rate,
+		amplitude,
+		volume_ratio,
+		committee,
+		pe_ratio,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid)values(
+		#{code},
+		#{name},
+		#{latestPrice},
+		#{udWidth},
+		#{udAmount},
+		#{fiveWidth},
+		#{volume},
+		#{turnVolume},
+		#{turnoverRate},
+		#{amplitude},
+		#{volumeRatio},
+		#{committee},
+		#{peRatio},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+		 SELECT LAST_INSERT_ID() AS id;
+		 </selectKey>
+    </insert>
+    <update id="MarketData_update" parameterType="cn.hzskt.hsa.domain.MarketData">
+    	UPDATE hsa_market_data
+			set
+          		code = #{code},
+          		name = #{name},
+          		latest_price = #{latestPrice},
+          		ud_width = #{udWidth},
+          		ud_amount = #{udAmount},
+          		five_width = #{fiveWidth},
+          		volume = #{volume},
+          		turn_volume = #{turnVolume},
+          		turnover_rate = #{turnoverRate},
+          		amplitude = #{amplitude},
+          		volume_ratio = #{volumeRatio},
+          		committee = #{committee},
+          		pe_ratio = #{peRatio},
+          		order_by = #{orderBy},
+			UPDATE_DATE = now()
+			,UPDATOR = #{updator}
+    	WHERE 
+			ID = #{id}
+    </update>
+    <update id="MarketData_logicDelete" parameterType="cn.hzskt.hsa.domain.MarketData">
+		UPDATE hsa_market_data
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="MarketData_delete" parameterType="cn.hzskt.hsa.domain.MarketData">
+    	DELETE FROM hsa_market_data
+		WHERE 
+		ID = #{id}
+  	</delete>
+</mapper>

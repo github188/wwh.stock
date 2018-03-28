@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hzskt.hsa.domain.IndustryData">
+	<resultMap id="get-IndustryData-result" type="cn.hzskt.hsa.domain.IndustryData">
+		<id property="id" column="ID" />
+		<!-- 板块编码-->
+    	<result property="industryId" column="industry_id" />
+		<!-- 板块名称-->
+    	<result property="industryName" column="industry_name" />
+		<!-- 股票数量-->
+    	<result property="stockNum" column="stock_num" />
+		<!-- 加权涨跌幅-->
+    	<result property="udWidth" column="ud_width" />
+		<!-- 上涨家数-->
+    	<result property="upNum" column="up_num" />
+		<!-- 涨幅-->
+    	<result property="upWidth" column="up_width" />
+		<!-- 下跌家数-->
+    	<result property="downNum" column="down_num" />
+		<!-- 跌幅-->
+    	<result property="downWidth" column="down_width" />
+		<!-- 成交量(手)-->
+    	<result property="volume" column="volume" />
+		<!-- 成交额(万元)-->
+    	<result property="turnVolume" column="turn_volume" />
+		<!-- 总流通市值-->
+    	<result property="circuValue" column="circu_value" />
+		<!-- 网址-->
+    	<result property="netAddress" column="net_address" />
+		<!-- 顺序-->
+    	<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="IndustryData_Base_Column_List">
+		ID,
+		<!-- 板块编码-->
+    	industry_id,
+		<!-- 板块名称-->
+    	industry_name,
+		<!-- 股票数量-->
+    	stock_num,
+		<!-- 加权涨跌幅-->
+    	ud_width,
+		<!-- 上涨家数-->
+    	up_num,
+		<!-- 涨幅-->
+    	up_width,
+		<!-- 下跌家数-->
+    	down_num,
+		<!-- 跌幅-->
+    	down_width,
+		<!-- 成交量(手)-->
+    	volume,
+		<!-- 成交额(万元)-->
+    	turn_volume,
+		<!-- 总流通市值-->
+    	circu_value,
+		<!-- 网址-->
+    	net_address,
+		<!-- 顺序-->
+    	order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+			<select id="IndustryData_get"  resultMap="get-IndustryData-result">
+		 SELECT
+    		<include refid="IndustryData_Base_Column_List" />
+	 	 FROM 
+			hsa_industry_data
+		 where 
+			ID = #{id}
+    </select>
+	
+		<select id="IndustryData_list"  resultMap="get-IndustryData-result">
+		 SELECT
+    				<include refid="IndustryData_Base_Column_List" />
+	 	 FROM 
+			hsa_industry_data    
+		<include refid="common.Select_Where_Clause" />
+    </select>
+	
+   <insert id="IndustryData_insert" parameterType="cn.hzskt.hsa.domain.IndustryData" >
+      INSERT INTO hsa_industry_data(
+		industry_id,
+		industry_name,
+		stock_num,
+		ud_width,
+		up_num,
+		up_width,
+		down_num,
+		down_width,
+		volume,
+		turn_volume,
+		circu_value,
+		net_address,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid)values(
+		#{industryId},
+		#{industryName},
+		#{stockNum},
+		#{udWidth},
+		#{upNum},
+		#{upWidth},
+		#{downNum},
+		#{downWidth},
+		#{volume},
+		#{turnVolume},
+		#{circuValue},
+		#{netAddress},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+		 SELECT LAST_INSERT_ID() AS id;
+		 </selectKey>
+    </insert>
+    <update id="IndustryData_update" parameterType="cn.hzskt.hsa.domain.IndustryData">
+    	UPDATE hsa_industry_data
+			set
+          		industry_id = #{industryId},
+          		industry_name = #{industryName},
+          		stock_num = #{stockNum},
+          		ud_width = #{udWidth},
+          		up_num = #{upNum},
+          		up_width = #{upWidth},
+          		down_num = #{downNum},
+          		down_width = #{downWidth},
+          		volume = #{volume},
+          		turn_volume = #{turnVolume},
+          		circu_value = #{circuValue},
+          		net_address = #{netAddress},
+          		order_by = #{orderBy},
+			UPDATE_DATE = now()
+			,UPDATOR = #{updator}
+    	WHERE 
+			ID = #{id}
+    </update>
+    <update id="IndustryData_logicDelete" parameterType="cn.hzskt.hsa.domain.IndustryData">
+		UPDATE hsa_industry_data
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="IndustryData_delete" parameterType="cn.hzskt.hsa.domain.IndustryData">
+    	DELETE FROM hsa_industry_data
+		WHERE 
+		ID = #{id}
+  	</delete>
+</mapper>

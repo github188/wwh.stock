@@ -1,0 +1,4 @@
+<link rel="stylesheet" type="text/css" href="${base}/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="${base}/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${base}/css/extIcon.css">
+<link rel="stylesheet" type="text/css" href="${base}/css/common.css">

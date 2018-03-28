@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cn.hzskt</groupId>
+	<artifactId>stock</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>stock</name>
+	<url>http://maven.apache.org</url>
+	<repositories>
+		<repository>
+			<id>nexus-snapshots</id>
+			<name>nexus snapshots</name>
+			<url>http://10.80.11.240:8081/nexus/content/repositories/snapshots/</url>
+		</repository>
+		<repository>
+			<id>nexus-realeases</id>
+			<name>nexus realeases</name>
+			<url>http://10.80.11.240:8081/nexus/content/repositories/releases/</url>
+		</repository>
+	</repositories>
+	<dependencies>
+
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.8.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.zjhcsoft.smartcity</groupId>
+			<artifactId>cas-clientX</artifactId>
+			<version>3.0.0</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>servlet-api</artifactId>
+					<groupId>javax.servlet</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.zjhcsoft.smartcity</groupId>
+			<artifactId>magic-core</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.zjhcsoft.smartcity</groupId>
+			<artifactId>magic-test</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-archetype-plugin</artifactId>
+				<version>2.3</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>stock</finalName>
+	</build>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+</project>

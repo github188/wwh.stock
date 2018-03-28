@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<portable-config>
+	<config-file path="WEB-INF/classes/spring/application.properties">
+		<replace key="jdbc.url"><![CDATA[jdbc:mysql:replication://10.80.11.246:3306,10.80.11.247:3306/magic_test?useUnicode=true&characterEncoding=UTF-8]]></replace>
+	</config-file>
+</portable-config>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://E:/项目/软协/branch/assoc/assoc.iml" filepath="E:/项目/软协/branch/assoc/assoc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stock.iml" filepath="$PROJECT_DIR$/stock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../tools/tools.iml" filepath="$PROJECT_DIR$/../tools/tools.iml" />
+    </modules>
+  </component>
+</project>

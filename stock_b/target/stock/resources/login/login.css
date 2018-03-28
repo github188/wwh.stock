@@ -1,0 +1,33 @@
+auBODY,FORM,IMG,TD,TABLE,TR{margin:0;padding:0;}
+BODY {
+     font-size:12px;
+     font-family:"宋体",arial; 
+     LINE-HEIGHT:100%;
+     font-family: Microsoft YaHei,simsun,Arial,Helvetica,sans-serif!important;
+     background:#99CCFF}
+BODY table{
+	 font-size:12px;
+}
+BODY table th{
+	 text-align: right;
+	 width: 60px;
+	 color: #333;
+}
+#wrap {width:794px;margin-left:auto;margin-right:auto;}
+.input-text{
+	border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 1px 1px 3px #DDDDDD inset;
+    font: 14px/28px "microsoft yahei",simsun;
+    padding-left: 3px;
+    text-align: left;
+    height: 22px;
+    line-height: 22px;
+}
+.btn_login{
+	width: 80px;
+	height: 28px;
+	line-height:28px;
+	font-size:14px;
+}

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hzskt.hsa.domain.HistoryDetail">
+	<resultMap id="get-HistoryDetail-result" type="cn.hzskt.hsa.domain.HistoryDetail">
+		<id property="id" column="ID" />
+		<!-- 代码-->
+    	<result property="code" column="code" />
+		<!-- 简称-->
+    	<result property="name" column="name" />
+		<!-- 当前价-->
+    	<result property="currentPrice" column="current_price" />
+		<!-- 压力位-->
+    	<result property="pressurePrice" column="pressure_price" />
+		<!-- 支撑位-->
+    	<result property="supportPrice" column="support_price" />
+		<!-- 最高价-->
+    	<result property="highestPrice" column="highest_price" />
+		<!-- 最低价-->
+    	<result property="lowestPrice" column="lowest_price" />
+		<!-- 5日涨幅-->
+    	<result property="fiveWidth" column="five_width" />
+		<!-- 10日涨幅-->
+    	<result property="tenWidth" column="ten_width" />
+		<!-- 20日涨幅-->
+    	<result property="twentyWidth" column="twenty_width" />
+		<!-- 停牌天数-->
+    	<result property="suspensionDays" column="suspension_days" />
+		<!-- 停牌起始日期-->
+    	<result property="startDate" column="start_date" />
+		<!-- 停牌结束日期-->
+    	<result property="endDate" column="end_date" />
+		<!-- 流通股本-->
+    	<result property="circulationEquity" column="circulation_equity" />
+		<!-- 总股本-->
+    	<result property="totalEquity" column="total_equity" />
+		<!-- 每股收益-->
+    	<result property="perProfit" column="per_profit" />
+		<!-- 每股净资产-->
+    	<result property="netAssets" column="net_assets" />
+		<!-- 每股资本公积金-->
+    	<result property="capitalFund" column="capital_fund" />
+		<!-- 净利润-->
+    	<result property="netProfit" column="net_profit" />
+		<!-- 净利润描述-->
+    	<result property="profitDescribe" column="profit_describe" />
+		<!-- 主营业务-->
+    	<result property="mainBusiness" column="main_business" />
+		<!-- 所属板块-->
+    	<result property="thePlate" column="the_plate" />
+		<!-- 备注-->
+    	<result property="memo" column="memo" />
+		<!-- 顺序-->
+    	<result property="orderBy" column="order_by" />
+		<!-- 创建时间 -->
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 创建人 -->
+		<result property="creator" column="CREATOR" />
+		<!-- 修改时间 -->
+		<result property="updateDate" column="UPDATE_DATE" />
+		<!-- 修改人 -->
+		<result property="updator" column="UPDATOR" />
+		<!-- 软删除标识 -->
+		<result property="valid" column="VALID" />
+	</resultMap>
+	<sql id="HistoryDetail_Base_Column_List">
+		ID,
+		<!-- 代码-->
+    	code,
+		<!-- 简称-->
+    	name,
+		<!-- 当前价-->
+    	current_price,
+		<!-- 压力位-->
+    	pressure_price,
+		<!-- 支撑位-->
+    	support_price,
+		<!-- 最高价-->
+    	highest_price,
+		<!-- 最低价-->
+    	lowest_price,
+		<!-- 5日涨幅-->
+    	five_width,
+		<!-- 10日涨幅-->
+    	ten_width,
+		<!-- 20日涨幅-->
+    	twenty_width,
+		<!-- 停牌天数-->
+    	suspension_days,
+		<!-- 停牌起始日期-->
+    	start_date,
+		<!-- 停牌结束日期-->
+    	end_date,
+		<!-- 流通股本-->
+    	circulation_equity,
+		<!-- 总股本-->
+    	total_equity,
+		<!-- 每股收益-->
+    	per_profit,
+		<!-- 每股净资产-->
+    	net_assets,
+		<!-- 每股资本公积金-->
+    	capital_fund,
+		<!-- 净利润-->
+    	net_profit,
+		<!-- 净利润描述-->
+    	profit_describe,
+		<!-- 主营业务-->
+    	main_business,
+		<!-- 所属板块-->
+    	the_plate,
+		<!-- 备注-->
+    	memo,
+		<!-- 顺序-->
+    	order_by,
+		<!-- 创建时间 -->
+		CREATE_DATE,
+		<!-- 创建人 -->
+		CREATOR,
+		<!-- 更新时间 -->
+		UPDATE_DATE,
+		<!-- 更新人 -->
+		UPDATOR,
+		<!-- 软删除标识 -->
+		VALID
+	</sql>
+			<select id="HistoryDetail_get"  resultMap="get-HistoryDetail-result">
+		 SELECT
+    		<include refid="HistoryDetail_Base_Column_List" />
+	 	 FROM 
+			hsa_history_detail
+		 where 
+			ID = #{id}
+    </select>
+	
+		<select id="HistoryDetail_list"  resultMap="get-HistoryDetail-result">
+		 SELECT
+    				<include refid="HistoryDetail_Base_Column_List" />
+	 	 FROM 
+			hsa_history_detail    
+		<include refid="common.Select_Where_Clause" />
+    </select>
+	
+   <insert id="HistoryDetail_insert" parameterType="cn.hzskt.hsa.domain.HistoryDetail" >
+      INSERT INTO hsa_history_detail(
+		code,
+		name,
+		current_price,
+		pressure_price,
+		support_price,
+		highest_price,
+		lowest_price,
+		five_width,
+		ten_width,
+		twenty_width,
+		suspension_days,
+		start_date,
+		end_date,
+		circulation_equity,
+		total_equity,
+		per_profit,
+		net_assets,
+		capital_fund,
+		net_profit,
+		profit_describe,
+		main_business,
+		the_plate,
+		memo,
+		order_by,
+		CREATE_DATE,
+		CREATOR,
+		valid)values(
+		#{code},
+		#{name},
+		#{currentPrice},
+		#{pressurePrice},
+		#{supportPrice},
+		#{highestPrice},
+		#{lowestPrice},
+		#{fiveWidth},
+		#{tenWidth},
+		#{twentyWidth},
+		#{suspensionDays},
+		#{startDate},
+		#{endDate},
+		#{circulationEquity},
+		#{totalEquity},
+		#{perProfit},
+		#{netAssets},
+		#{capitalFund},
+		#{netProfit},
+		#{profitDescribe},
+		#{mainBusiness},
+		#{thePlate},
+		#{memo},
+		#{orderBy},
+		NOW(),
+		#{creator},
+		1)
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+		 SELECT LAST_INSERT_ID() AS id;
+		 </selectKey>
+    </insert>
+    <update id="HistoryDetail_update" parameterType="cn.hzskt.hsa.domain.HistoryDetail">
+    	UPDATE hsa_history_detail
+			set
+          		code = #{code},
+          		name = #{name},
+          		current_price = #{currentPrice},
+          		pressure_price = #{pressurePrice},
+          		support_price = #{supportPrice},
+          		highest_price = #{highestPrice},
+          		lowest_price = #{lowestPrice},
+          		five_width = #{fiveWidth},
+          		ten_width = #{tenWidth},
+          		twenty_width = #{twentyWidth},
+          		suspension_days = #{suspensionDays},
+          		start_date = #{startDate},
+          		end_date = #{endDate},
+          		circulation_equity = #{circulationEquity},
+          		total_equity = #{totalEquity},
+          		per_profit = #{perProfit},
+          		net_assets = #{netAssets},
+          		capital_fund = #{capitalFund},
+          		net_profit = #{netProfit},
+          		profit_describe = #{profitDescribe},
+          		main_business = #{mainBusiness},
+          		the_plate = #{thePlate},
+          		memo = #{memo},
+          		order_by = #{orderBy},
+			UPDATE_DATE = now()
+			,UPDATOR = #{updator}
+    	WHERE 
+			ID = #{id}
+    </update>
+    <update id="HistoryDetail_logicDelete" parameterType="cn.hzskt.hsa.domain.HistoryDetail">
+		UPDATE hsa_history_detail
+		set
+		VALID=0
+		,UPDATE_DATE = now()
+		WHERE
+		ID = #{id}
+	</update>
+	<delete id="HistoryDetail_delete" parameterType="cn.hzskt.hsa.domain.HistoryDetail">
+    	DELETE FROM hsa_history_detail
+		WHERE 
+		ID = #{id}
+  	</delete>
+</mapper>

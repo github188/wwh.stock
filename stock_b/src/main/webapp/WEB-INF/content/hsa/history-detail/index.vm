@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>沪深A股行情明细管理</title>
+        <meta charset="UTF-8">
+        #parse("commons/commonJs.vm")
+		#parse("commons/commonCss.vm")
+		<script type="text/javascript">
+			$(function() {
+				jQuery('#dg').datagrid({
+					url:'history-detail/queryPaged',
+                    columns:[[
+                        {field:'id',width:100,hidden:true}
+                        ,{field:'code',title:'代码',width:100,align:'center',sortable:true}
+                        ,{field:'name',title:'简称',width:100,align:'center'}
+                        ,{field:'currentPrice',title:'当前价',width:100,align:'right',sortable:true}
+                        ,{field:'pressurePrice',title:'压力位',width:100,align:'right',sortable:true}
+                        ,{field:'supportPrice',title:'支撑位',width:100,align:'right',sortable:true}
+                        ,{field:'highestPrice',title:'最高价',width:100,align:'right',hidden:true}
+                        ,{field:'lowestPrice',title:'最低价',width:100,align:'right',hidden:true}
+                        ,{field:'fiveWidth',title:'5日涨幅',width:100,align:'right',sortable:true}
+                        ,{field:'tenWidth',title:'10日涨幅',width:100,hidden:true}
+                        ,{field:'twentyWidth',title:'20日涨幅',width:100,align:'right',sortable:true}
+                        ,{field:'circulationEquity',title:'流通股本',width:100,align:'right',sortable:true}
+                        ,{field:'totalEquity',title:'总股本',width:100,hidden:true}
+                        ,{field:'perProfit',title:'每股收益',width:100,align:'right',sortable:true}
+                        ,{field:'netAssets',title:'每股净资产',width:100,hidden:true}
+                        ,{field:'capitalFund',title:'每股资本公积金',width:100,hidden:true}
+                        ,{field:'netProfit',title:'净利润',width:100,hidden:true}
+                        ,{field:'profitDescribe',title:'净利润描述',width:100}
+                        ,{field:'mainBusiness',title:'主营业务',width:100,hidden:true}
+                        ,{field:'thePlate',title:'所属板块',width:100,hidden:true}
+                        ,{field:'memo',title:'备注',width:100}
+                        ,{field:'suspensionDays',title:'停牌天数',width:100,align:'center',sortable:true}
+                        ,{field:'startDate',title:'停牌起始日期',width:100,align:'center',sortable:true}
+                        ,{field:'endDate',title:'停牌结束日期',width:100,align:'center',sortable:true}
+                        ,{field:'orderBy',title:'顺序',width:100,hidden:true}
+                    ]],
+                    pagination:true,
+                    pageSize:5000,
+                    rownumbers:true,
+                    singleSelect:true,
+                    remoteSort:false,
+				    fitColumns:true,
+				    fit: true,
+				    toolbar:'#toolbar',
+			    	onDblClickRow: function(rowid,rowdata){
+						editForm();
+			    	}
+			    });
+			});
+			function optionFun(value,row,index) {
+				return "";
+			}
+		  	function newForm(){
+		  		Magic.openWin('新增沪深A股行情明细','history-detail/add',600,200);
+			}
+			function editForm(){
+				var row = jQuery('#dg').datagrid('getSelected');
+				if (row){
+					Magic.openWin('编辑沪深A股行情明细','history-detail/edit/'+row.id,600,300);
+				}
+			}
+			function destroyForm(){
+				var row = jQuery('#dg').datagrid('getSelected');
+				if (row){
+					jQuery.messager.confirm('确认删除','确定删除该记录?',function(r){
+						if (r){
+							jQuery.post('history-detail/delete/'+row.id,function(result){
+								if(result.success) {
+									jQuery('#dg').datagrid('reload');    // reload the user data
+								} else {
+									jQuery.messager.show({    // show error message
+										title: '错误',
+										msg: result.message
+									});
+								}
+							});
+						}
+					});
+				}
+			}
+
+            function dataRefresh() {
+                $.sunking.tip("加载中...");
+                var industryId=jQuery('#filter_industryId').val();
+                jQuery.post('history-detail/dataRefresh',{industryId:industryId},function(result){
+                    if(!result.success){
+                        $.sunking.closetip();
+                        jQuery.messager.show({title: '错误', msg: result.message });
+
+                    } else {
+                        jQuery('#dg').datagrid('load',{industryId:industryId});
+                        $.sunking.closetip();
+                    }
+                });
+            }
+
+			function contentSearch(){
+                var industryId=jQuery('#filter_industryId').val();
+				var code=jQuery('#filter_code').val();
+		        jQuery('#dg').datagrid('load',{
+                'industryId':industryId,
+				'code':code		    	})}
+	    	
+		</script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+   <table id="dg" data-options="toolbar:'#toolbar'"></table>
+    <div id="toolbar">
+    	<div class="search_box">
+            行业编码：<input id="filter_industryId" class="easyui-textbox" >
+			代码：<input id="filter_code" class="easyui-validatebox" >
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="contentSearch()">搜索</a>
+    	</div>
+    	<div class="btn_box">
+    		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newForm()">新增</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editForm()">编辑</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyForm()">删除</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-mini-refresh" plain="true" onclick="dataRefresh()">刷新</a>
+    	</div>
+	</div>
+</body>
+</html>

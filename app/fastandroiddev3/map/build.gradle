@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+
+android {
+<<<<<<< HEAD
+    compileSdkVersion compileSdk
+    buildToolsVersion buildTool
+
+    defaultConfig {
+        minSdkVersion minSdk
+        targetSdkVersion targetSdk
+=======
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 25
+>>>>>>> f2aa0b1ce6020df56bd13eb05bbdcefee7eee8bf
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+<<<<<<< HEAD
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':fastandroiddev3')
+=======
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':fastandroiddev3')
+>>>>>>> f2aa0b1ce6020df56bd13eb05bbdcefee7eee8bf
+}

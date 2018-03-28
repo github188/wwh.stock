@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/footerLoading"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_height="35dp">
+
+        <ImageView
+            android:id="@+id/loadImg"
+            android:layout_width="25dp"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/loadResult"
+            android:textColor="#8f8e94"
+            android:text="加载失败"
+            android:drawableLeft="@mipmap/icon_refresh"
+            android:drawablePadding="5dp"
+            android:textSize="11dp"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#00796B</color>
+    <color name="colorPrimaryLight">#B2DFDB</color>
+    <color name="colorAccent">#CDDC39</color>
+    <color name="textColor">#FFFFFF</color>
+    <color name="iconColor">@color/textColor</color>
+    <color name="textPrimary">#212121</color>
+    <color name="textSecond">#757575</color>
+    <color name="dividerColor">#BDBDBD</color>
+
+    <color name="bright_foreground_dark">#ffffffff</color>
+    <color name="toast_top">#fff3bb</color>
+
+    <color name="bg_color">#ececec</color>   //   主背景颜色
+
+    <color name="home_tab">#f8f8f8</color>
+
+    <color name="holo_blue">#ff33e5b5</color>
+
+    <color name="white">#FFFFFF</color><!--白色 -->
+    <color name="titleBlue">#4876FF</color><!--天兰色 -->
+    <color name="gray">#808080</color><!--灰色 -->
+    <color name="deep_gray">#666</color> <!-- 深灰色 -->
+
+    <color name="color_null">#00ffffff</color>
+    <color name="color_000000">#000000</color>
+    <color name="color_FFFFFF">#FFFFFF</color>
+    <color name="black">@color/color_000000</color>
+
+    <color name="color_alpha_50">#66000000</color>
+    <color name="color_alpha_10">#05000000</color>
+    <color name="color_alpha_80">#CC000000</color>
+    <color name="color_alpha_60">#9A000000</color>
+
+</resources>

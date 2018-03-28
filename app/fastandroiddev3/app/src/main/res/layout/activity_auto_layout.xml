@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data class="AutoLayoutView">
+        <variable
+            name="event"
+            type="com.ijustyce.weekly1601.event.AutoLayoutEvent" />
+
+    </data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="716px"
+        android:layout_height="716px"
+        app:layout_width="@{716}"
+        app:layout_height="@{716}">
+
+        <Button
+            android:text="@{event.name}"
+            android:onClick="@{()->event.clickPerson()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/first"
+            app:layout_width="@{200}"
+            app:layout_height="@{200}"
+            android:layout_marginTop="258px"
+            app:layout_marginTop="@{258}"
+            android:textSize="24px"
+            android:text="哈哈哈哈"
+            app:textSize="@{24}"
+            android:layout_width="200px"
+            android:layout_height="200px" />
+
+        <Button
+            android:layout_toRightOf="@id/first"
+            app:layout_width="@{200}"
+            app:layout_height="@{200}"
+            app:textSize="@{24}"
+            android:textSize="24px"
+            android:text="哈哈哈哈"
+            android:layout_centerVertical="true"
+            android:layout_width="200px"
+            android:layout_height="200px" />
+
+        <RelativeLayout
+            android:paddingLeft="200px"
+            app:paddingLeft="@{200}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:textSize="24px"
+                app:textSize="@{24}"
+                app:layout_width="@{200}"
+                app:layout_height="@{200}"
+                android:text="哈哈哈哈"
+                android:layout_width="200px"
+                android:layout_height="200px" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

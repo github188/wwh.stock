@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="com.ijustyce.weekly1601.bean.AlbumBean" />
+        <variable
+            name="personView"
+            type="AlbumBean" />
+    </data>
+
+    <RelativeLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.ijustyce.fastandroiddev3.ui.CircleImageView
+            android:id="@+id/userHead"
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="64dp"
+            android:layout_height="64dp" />
+
+        <TextView
+            android:id="@+id/name"
+            android:text="@{personView.shareTitle}"
+            android:layout_toRightOf="@id/userHead"
+            android:layout_toEndOf="@id/userHead"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/description"
+            android:text="@{personView.albumTitle}"
+            android:layout_alignLeft="@id/name"
+            android:layout_alignStart="@id/name"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data class="MainView">
+
+        <import type="com.ijustyce.weekly1601.event.DownloadAndUploadEvent" />
+        <import type="com.ijustyce.weekly1601.event.ShowFunctionEvent" />
+
+        <variable
+            name="clickEvent"
+            type="DownloadAndUploadEvent" />
+
+        <variable
+            name="functionEvent"
+            type="ShowFunctionEvent" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.ijustyce.fastandroiddev3.ui.CommonTitleBar
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTxt="请选择功能" />
+
+        <include
+            android:id="@+id/MainFunction"
+            bind:clickEvent="@{clickEvent}"
+            bind:functionEvent="@{functionEvent}"
+            layout="@layout/view_main_function" />
+
+    </LinearLayout>
+</layout>

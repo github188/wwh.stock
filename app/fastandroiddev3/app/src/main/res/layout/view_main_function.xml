@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="MainViewSecond">
+
+        <import type="com.ijustyce.weekly1601.event.DownloadAndUploadEvent" />
+        <import type="com.ijustyce.weekly1601.event.ShowFunctionEvent" />
+
+        <variable
+            name="clickEvent"
+            type="DownloadAndUploadEvent" />
+
+        <variable
+            name="functionEvent"
+            type="ShowFunctionEvent" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/activity_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="15dp"
+                android:onClick="@{clickEvent.download}"
+                android:text="下载APK文件" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:onClick="@{clickEvent.upload}"
+                android:text="上传一个文件" />
+
+            <Button
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:onClick="@{functionEvent.showWebView}"
+                android:text="显示带进度条的webview" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:onClick="@{functionEvent.showListActivity}"
+                android:text="展示BaseListActivity" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:onClick="@{functionEvent.QRCode}"
+                android:text="扫描二维码" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:onClick="@{functionEvent.showScrollView}"
+                android:text="滚动的View" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:onClick="@{()->functionEvent.showPicture()}"
+                android:text="图片浏览器" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:onClick="@{()->functionEvent.autoLayout()}"
+                android:text="展示自动布局" />
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

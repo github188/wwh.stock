@@ -1,0 +1,74 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion compileSdk
+    buildToolsVersion buildTool
+
+    defaultConfig {
+        minSdkVersion minSdk
+        targetSdkVersion targetSdk
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'android/support/annotation/Animres'
+    }
+}
+
+afterEvaluate { project ->
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: "http://114.55.28.8:18081/nexus/content/repositories/releases/") {
+                    authentication(userName: "deployment", password: "deployment123")
+                }
+
+                pom.project {
+                    version '1.0.1'
+                    artifactId 'qrcode'
+                    groupId 'com.ijustyce.fastandroiddev'
+                    packaging 'aar'
+                    description 'dependences lib'
+                }
+            }
+        }
+    }
+
+    task androidJavadocs(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    }
+
+    task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+        classifier = 'javadoc'
+        from androidJavadocs.destinationDir
+    }
+
+    task androidSourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.sourceFiles
+    }
+
+    artifacts {
+        archives androidSourcesJar
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+}

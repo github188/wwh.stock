@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ijustyce.fastandroiddev.ui.CircleImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="24px"
+    android:layout_height="24px"
+    android:src="@color/black"
+    android:orientation="vertical">
+
+</com.ijustyce.fastandroiddev.ui.CircleImageView>

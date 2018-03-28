@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="TitleBarView">
+        <import type="com.ijustyce.fastandroiddev3.viewmodel.CommonTitleBarView" />
+        <import type="com.ijustyce.fastandroiddev3.event.TitleBarEvent" />
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="CommonTitleBarView" />
+        <variable
+            name="clickEvent"
+            type="TitleBarEvent" />
+    </data>
+
+    <RelativeLayout
+        android:onClick="@{clickEvent.titleBarClick}"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@{viewModel.titleBg}">
+
+        <ImageView
+            android:id="@+id/commonTitleBarBackIcon"
+            android:onClick="backClick"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="13dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:visibility="@{viewModel.leftIcon != -100 ? View.VISIBLE : View.GONE}"
+            android:src="@{viewModel.leftIcon}" />
+
+        <TextView
+            android:id="@+id/commonTitleBarLeft"
+            android:onClick="@{clickEvent.leftTextClick}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="15dp"
+            android:maxEms="10"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@{viewModel.leftText}"
+            android:textColor="@{viewModel.leftTextColor}"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/commonTitleBarTitle"
+            android:onClick="@{clickEvent.titleTextClick}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:maxEms="10"
+            android:lines="1"
+            android:padding="10dp"
+            android:text="@{viewModel.titleText}"
+            android:textColor="@{viewModel.titleTextColor}"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/commonTitleBarRightText"
+            android:onClick="@{clickEvent.rightTextClick}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxEms="10"
+            android:lines="1"
+            android:padding="10dp"
+            android:layout_alignBottom="@id/commonTitleBarTitle"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="@{viewModel.rightText}"
+            android:textColor="@{viewModel.rightTextColor}"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/commonTitleBarRightIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.rightIcon != -100 ? View.VISIBLE : View.GONE}"
+            android:onClick="@{clickEvent.rightIconClick}"
+            android:src="@{viewModel.rightIcon}"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp" />
+
+        <View
+            android:visibility="@{viewModel.showLine}"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#e7e7e7" />
+
+    </RelativeLayout>
+</layout>

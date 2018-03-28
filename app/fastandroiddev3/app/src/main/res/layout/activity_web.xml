@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data class="IWebView">
+        <import type="com.ijustyce.weekly1601.event.DownloadAndUploadEvent" />
+        <variable
+            name="clickEvent"
+            type="DownloadAndUploadEvent" />
+    </data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.ijustyce.weekly1601.MainActivity">
+
+        <com.ijustyce.fastandroiddev3.ui.CommonTitleBar
+            android:id="@+id/titleBar"
+            app:titleTxt="带进度条的WebView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/downByWebView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:onClick="@{clickEvent.downloadByWebView}"
+            android:text="用WebView下载APK" />
+
+        <com.ijustyce.fastandroiddev3.ui.ProgressWebView
+            android:layout_below="@id/titleBar"
+            android:layout_above="@id/downByWebView"
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="400px" />
+
+    </RelativeLayout>
+</layout>

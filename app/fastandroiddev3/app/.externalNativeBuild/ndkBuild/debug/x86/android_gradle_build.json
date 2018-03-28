@@ -1,0 +1,33 @@
+{
+  "buildFiles": [
+    "/home/android/studio-code/weekly1601/app/src/main/jni/Android.mk",
+    "/home/android/studio-code/weekly1601/app/src/main/jni/Application.mk"
+  ],
+  "cleanCommands": [
+    "/home/android/sdk/ndk-bundle/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/home/android/studio-code/weekly1601/app/src/main/jni/Android.mk NDK_APPLICATION_MK\u003d/home/android/studio-code/weekly1601/app/src/main/jni/Application.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-14 NDK_OUT\u003d/home/android/studio-code/weekly1601/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003d/home/android/studio-code/weekly1601/app/build/intermediates/ndkBuild/debug/lib clean"
+  ],
+  "libraries": {
+    "JniUtils-debug-x86": {
+      "buildCommand": "/home/android/sdk/ndk-bundle/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/home/android/studio-code/weekly1601/app/src/main/jni/Android.mk NDK_APPLICATION_MK\u003d/home/android/studio-code/weekly1601/app/src/main/jni/Application.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-14 NDK_OUT\u003d/home/android/studio-code/weekly1601/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003d/home/android/studio-code/weekly1601/app/build/intermediates/ndkBuild/debug/lib /home/android/studio-code/weekly1601/app/build/intermediates/ndkBuild/debug/obj/local/x86/libJniUtils.so",
+      "toolchain": "toolchain-x86",
+      "abi": "x86",
+      "artifactName": "JniUtils",
+      "files": [
+        {
+          "src": "/home/android/studio-code/weekly1601/app/src/main/jni/JniUtils.cpp",
+          "flags": "\"-gcc-toolchain\" \"/home/android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/linux-x86_64\" \"-target\" \"i686-none-linux-android\" \"-ffunction-sections\" \"-funwind-tables\" \"-fstack-protector-strong\" \"-fPIC\" \"-Wno-invalid-command-line-argument\" \"-Wno-unused-command-line-argument\" \"-no-canonical-prefixes\" \"-g\" \"-fno-exceptions\" \"-fno-rtti\" \"-O0\" \"-UNDEBUG\" \"-fno-limit-debug-info\" \"-I/home/android/sdk/ndk-bundle/sources/cxx-stl/system/include\" \"-I/home/android/studio-code/weekly1601/app/src/main/jni\" \"-DANDROID\" \"-D__ANDROID_API__\u003d14\" \"-Wa,--noexecstack\" \"-Wformat\" \"-Werror\u003dformat-security\" \"-mstackrealign\" \"--sysroot\" \"/home/android/sdk/ndk-bundle/sysroot\" \"-isystem\" \"/home/android/sdk/ndk-bundle/sysroot/usr/include/i686-linux-android\""
+        }
+      ],
+      "output": "/home/android/studio-code/weekly1601/app/build/intermediates/ndkBuild/debug/obj/local/x86/libJniUtils.so"
+    }
+  },
+  "toolchains": {
+    "toolchain-x86": {
+      "cppCompilerExecutable": "/home/android/sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

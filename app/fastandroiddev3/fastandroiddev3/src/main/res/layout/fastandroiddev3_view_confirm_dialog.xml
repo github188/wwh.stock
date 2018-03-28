@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data class="ConfirmDialogView">
+
+    </data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/color_alpha_50">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="25px"
+            android:layout_centerInParent="true"
+            android:background="@drawable/radius_36302d_white"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="23dp">
+
+            <TextView
+                android:id="@+id/tv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="#666"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_below="@+id/tv_message"
+                android:layout_marginTop="23dp"
+                android:background="@drawable/radius_cccccc"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="取消"
+                android:textColor="#666" />
+
+            <TextView
+                android:id="@+id/tv_confirm"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tv_message"
+                android:layout_marginTop="23dp"
+                android:background="@drawable/radius_ce0510_btn"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="#ce0410" />
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

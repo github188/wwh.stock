@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/headerView"
+    android:layout_width="match_parent"
+    android:layout_height="35dp">
+
+
+    <ImageView
+        android:id="@+id/refreshImg"
+        android:layout_width="25dp"
+        android:layout_height="20dp"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/refreshResult"
+        android:textColor="#8f8e94"
+        android:text="刷新中・・・"
+        android:drawableLeft="@mipmap/icon_refresh"
+        android:drawablePadding="5dp"
+        android:textSize="11dp"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

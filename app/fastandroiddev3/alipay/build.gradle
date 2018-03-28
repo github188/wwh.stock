@@ -1,0 +1,75 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion compileSdk
+    buildToolsVersion buildTool
+
+    defaultConfig {
+        minSdkVersion minSdk
+        targetSdkVersion targetSdk
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles 'proguard-project.txt'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+//afterEvaluate { project ->
+//
+//    uploadArchives {
+//        repositories {
+//            mavenDeployer {
+//                repository(url: "http://127.0.0.1:9999/repository/ijustyce/") {
+//                    authentication(userName: "ijustyce", password: "123456")
+//                }
+//
+//                pom.project {
+//                    version '1.0.0'
+//                    artifactId 'qlipay'
+//                    groupId 'com.ijustyce.fastandroiddev'
+//                    packaging 'aar'
+//                    description 'dependences lib'
+//                }
+//            }
+//        }
+//    }
+//
+//    task androidJavadocs(type: Javadoc) {
+//        source = android.sourceSets.main.java.srcDirs
+//        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//    }
+//
+//    task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+//        classifier = 'javadoc'
+//        from androidJavadocs.destinationDir
+//    }
+//
+//    task androidSourcesJar(type: Jar) {
+//        classifier = 'sources'
+//        from android.sourceSets.main.java.sourceFiles
+//    }
+//
+//    artifacts {
+//        archives androidSourcesJar
+//    }
+//}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api 'com.alibaba.alipay:alipaySingle:20160825@jar'
+    api 'de.greenrobot:eventbus:2.4.0'
+}

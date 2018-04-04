@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    #parse("system/component/global-macro.html")
+    #parse("system/component/header-wrapper.html")
+</head>
+<body>
+#parse("system/component/body-wrapper.html")
+<section class="main">
+    <div id="divMain">
+        <div class="divHeader" style="padding-left: 38px; background: transparent url('/system/image/common/home_32.png') no-repeat scroll 3px 9px / 32px auto;">网站摘要</div>
+        <div id="divMain2">
+            <table id="tbStatistic" class="tableFull tableBorder">
+                <tbody>
+                <tr class="color1">
+                    <th scope="col" colspan="4">&nbsp;网站信息&nbsp;
+                        <a id="statistic" href="/system/management/cache-reload.html">[清空缓存并重新编译]</a>
+                        <span style="font-size: xx-small; ">有任何使用问题，加QQ讨论群：592835013</span>
+                    </th>
+                </tr>
+                <tr class="color3">
+                    <td class="td20">当前用户</td>
+                    <td class="td30">$!user.name</td>
+                    <td class="td20">当前版本</td>
+                    <td class="td30">$!indexDTO.currentVersion</td>
+                </tr>
+                <tr class="color2">
+                    <td class="td20">文章总数</td>
+                    <td>$!indexDTO.articleCount</td>
+                    <td>分类总数</td>
+                    <td>$!indexDTO.cateCount</td>
+                </tr>
+                <tr class="color3">
+                    <td class="td20">页面总数</td>
+                    <td>$!indexDTO.templateCount</td>
+                    <td>标签总数</td>
+                    <td>$!indexDTO.tagCount</td>
+                </tr>
+                <tr class="color2">
+                    <td class="td20">评论总数</td>
+                    <td>$!indexDTO.commentCount</td>
+                    <td>用户总数</td>
+                    <td>$!indexDTO.userCount</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+#parse("system/component/footer-wrapper.html")
+</body>
+</html>
+

@@ -1,0 +1,126 @@
+.box .row {
+	padding-bottom: 20px;
+	line-height: 30px;
+	height: 30px;
+}
+.box label {
+	padding-right: 5px;
+	width: 95px;
+	height: 30px;
+	text-align: right;
+	line-height: 30px;
+	left: 0;
+	top: 0;
+	font-size: 16px;
+	color: #666;
+	font-weight: normal;
+	color: #333;
+	font-family: "Microsoft Yahei";
+}
+.box .row .required {
+	width: 268px;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 3px;
+	margin-right: 5px;
+	font-size: 15px;
+}
+.box .row .error {
+	width: 268px;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 3px;
+	margin-right: 5px;
+	font-size: 15px;
+}
+.code {
+	border: 1px #dfdfdf solid;
+	padding: 4px 3px;
+	margin-right: 10px;
+	width: 80px;
+	height: 17px;
+	vertical-align: middle;
+}
+
+.errors {
+	width: 268px;
+	margin-left: 65px;
+	margin-top: -8px;
+	line-height: 1px;
+	font: 13px tahoma;
+	color: black;
+	padding: 8px 2px 2px 2px;
+	background-color: #fff2f2;
+	border-color: #ff8080;
+	border-style: solid;
+	border-width: 1px;
+}
+.box .btn-row {
+padding-left: 65px;
+}
+.box .row #verifyCode {
+	width: 100px;
+	margin-right: 10px;
+	margin-left: 3px;
+}
+.box .row .btn-submit {
+	width: 280px;
+	height: 30px;
+	background: #80b50f;
+	line-height: 30px;
+	text-align: center;
+	font-size: 18px;
+	font-weight: normal;
+	font-family: "Microsoft Yahei";
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+.box .row1 label {
+	display: block;
+	text-align: right;
+	font-size: 14px;
+	float: left;
+	margin-right: 10px;
+	width: 35px;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 15px;
+}
+
+.box .check {
+	vertical-align: middle;
+	margin: -2px 3px 0 0;
+}
+
+/**登陆注册2**/
+.login_header{ border-bottom:4px solid #80b50f; padding:25px;}
+.login_header .logo_rg{ float:left;}
+.login_header span{ font-size:20px; font-weight:bold;font-family:"Microsoft Yahei"; line-height:56px; margin-left:10px; color:#333;}
+.container{ background:#fff; padding:30px; _height:340px; min-height:340px;}
+.img_r{ width:458px; float:right;}
+.box_l{ width:580px; float:left;}
+.reg_box{ padding-top:30px;}
+.login_box{ padding-top:60px;}
+.box_item{ position:relative; padding-left:100px; overflow:hidden;_zoom:1; margin-top:15px;}
+.box_item  label{ padding-right:5px; width:95px; height:30px; text-align:right; line-height:30px; position:absolute; left:0; top:0; font-size:16px; color:#666;font-weight:normal; color:#333;font-family:"Microsoft Yahei";}
+.box_item .inputText{ width:268px; float:left; height:30px; line-height:30px; padding:0 3px; margin-right:5px;font-size: 15px;}
+.box_item .inputText_YZM{ width:140px; float:left; height:30px; line-height:30px; padding:0 3px; margin-right:5px; font-size: 20px;}
+.box_item .message{ float:left; width:175px; color:#999; overflow:hidden; line-height:30px;}	
+.box_item .message .ico{ display:block; float:left; margin:8px 3px 0 0; width:16px; height:16px; background:url(../images/reg.gif) no-repeat;}
+.box_item .error { color:#eb0000;}
+.box_item .error .ico{ background-position:0 -79px;}
+.box_item .right .ico{ background-position:0 -56px;}
+.box_item .check_box{ vertical-align:middle; margin:-2px 3px 0 0;}
+.box_item .forget_pass{ padding-left:163px; color:#ff6600;}	
+.box_item .sub_input{width:280px; height:30px; background:#80b50f; line-height:30px; text-align:center; font-size:18px; font-weight:normal;font-family:"Microsoft Yahei"; border:none; color:#fff; cursor:pointer; margin-right:5px;}
+.box_item .code{ width:138px;}
+.box_item .upload{ width:180px;}
+.tjUPload { cursor:pointer; overflow:hidden; zoom:1;}
+.box_item .hideFile {width: 53px; height: 33px; position:absolute;-moz-opacity:0;filter:alpha(opacity=0);opacity:0; cursor:pointer; position:absolute; left:0; top:0;}
+.box_item .grayBtn{ width:53px; height:33px; background: url(../images/upload.jpg) no-repeat; display:block; cursor:pointer; text-indent:-99999px;}
+.box_item .tip{ font-size:12px; width:246px; color:#999;}
+.pdr{ padding-right:180px; text-align:right;}
+

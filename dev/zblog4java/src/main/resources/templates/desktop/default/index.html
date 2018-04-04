@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    #parse("desktop/default/component/header-wrapper.html")
+</head>
+<body>
+    #parse("desktop/default/component/body-wrapper.html")
+    <div class="container main">
+        <div class="row">
+            <div id="main-left-cloumn" class="col left-column">
+                <div id="cate0" class="tab"><i class="fa fa-reorder"></i> 全部栏目</div>
+                <div class="sidebar-box gallery-list">
+                    <div id="cate1" class="design">
+                        <div class="navto-nav"><i class="fa fa-external-link"></i> 分类列表</div>
+                    </div>
+                    <div id="cate2" class="design">
+                        <div class="navto-nav"><i class="fa fa-external-link"></i> 最新文章</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col middle-column-home">
+                <div class="codelist codelist-desktop cate1">
+                    <h2><i class="fa fa-list"></i> 分类列表</h2>
+                    #foreach($category in $!cache.categoryModelList)
+                    <a href="/category-$!{category.id}.html">$!{category.name}</a>
+                    #end
+                </div>
+                <div class="codelist codelist-desktop cate2">
+                    <h2><i class="fa fa-list"></i> 最新文章</h2>
+                    #foreach($new in $news)
+                    <a href="/article/${new.id}.html">${new.title}</a>
+                    #end
+                </div>
+            </div>
+        </div>
+    </div>
+    #parse("desktop/default/component/footer-wrapper.html")
+</body>
+</html>
+

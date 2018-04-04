@@ -1,0 +1,169 @@
+#set( $symbol_pound = '#' )
+        #set( $symbol_dollar = '$' )
+        #set( $symbol_escape = '\' )
+        <?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${package}.sys.domain.Permission">
+    <resultMap id="get-Permission-result" type="Permission">
+        <id property="id" column="ID"/>
+        <!-- 名称-->
+        <result property="name" column="name"/>
+        <!-- 编码-->
+        <result property="code" column="code"/>
+        <!-- 类型-->
+        <result property="type" column="type"/>
+        <!-- 链接-->
+        <result property="url" column="url"/>
+        <!-- 图标-->
+        <result property="icon" column="icon"/>
+        <!-- 父id-->
+        <result property="pid" column="pid"/>
+        <!-- 树路径-->
+        <result property="treePath" column="tree_path"/>
+        <!-- 创建时间 -->
+        <result property="createDate" column="CREATE_DATE"/>
+        <!-- 创建人 -->
+        <result property="creator" column="CREATOR"/>
+        <!-- 修改时间 -->
+        <result property="updateDate" column="UPDATE_DATE"/>
+        <!-- 修改人 -->
+        <result property="updator" column="UPDATOR"/>
+        <!-- 软删除标识 -->
+        <result property="valid" column="VALID"/>
+    </resultMap>
+    <sql id="Permission_Base_Column_List">
+        ID,
+        <!-- 名称-->
+        name,
+        <!-- 编码-->
+        code,
+        <!-- 类型-->
+        type,
+        <!-- 链接-->
+        url,
+        <!-- 图标-->
+        icon,
+        <!-- 父id-->
+        pid,
+        <!-- 树路径-->
+        tree_path,
+        <!-- 创建时间 -->
+        CREATE_DATE,
+        <!-- 创建人 -->
+        CREATOR,
+        <!-- 更新时间 -->
+        UPDATE_DATE,
+        <!-- 更新人 -->
+        UPDATOR,
+        <!-- 软删除标识 -->
+        VALID
+    </sql>
+    <select id="Permission_get" resultMap="get-Permission-result">
+        SELECT
+        <include refid="Permission_Base_Column_List"/>
+        FROM
+        sys_permission
+        where
+        ID = ${symbol_pound}{id}
+    </select>
+
+    <select id="Permission_list" resultMap="get-Permission-result">
+        SELECT
+        <include refid="Permission_Base_Column_List"/>
+        FROM
+        sys_permission
+        <include refid="common.Select_Where_Clause"/>
+    </select>
+
+    <select id="Permission_list_by_role" resultMap="get-Permission-result">
+        SELECT
+        <include refid="Permission_Base_Column_List"/>
+        FROM
+        sys_permission where id in (select permission_id from sys_r_role_permission where valid=1 and
+        role_id=${symbol_pound}{value})
+    </select>
+
+    <select id="Permission_list_by_user" resultMap="get-Permission-result">
+        SELECT
+        <include refid="Permission_Base_Column_List"/>
+        FROM
+        sys_permission where id in (select permission_id from sys_r_role_permission where valid=1 and role_id in
+        (select role_id from sys_r_user_role where valid=1 and user_id=${symbol_pound}{value})
+        )
+    </select>
+
+
+    <insert id="Permission_insert" parameterType="Permission">
+        INSERT INTO sys_permission(
+        name,
+        code,
+        type,
+        url,
+        icon,
+        pid,
+        tree_path,
+        CREATE_DATE,
+        CREATOR,
+        valid)values(
+        ${symbol_pound}{name},
+        ${symbol_pound}{code},
+        ${symbol_pound}{type},
+        ${symbol_pound}{url},
+        ${symbol_pound}{icon},
+        ${symbol_pound}{pid},
+        ${symbol_pound}{treePath},
+        NOW(),
+        ${symbol_pound}{creator},
+        1)
+        <selectKey keyProperty="id" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID() AS id;
+        </selectKey>
+    </insert>
+    <insert id="Permission_insert_by_role" parameterType="map">
+        insert into sys_r_role_permission(
+        role_id,
+        permission_id,
+        CREATE_DATE,
+        CREATOR,
+        valid)values(
+        ${symbol_pound}{roleId},
+        ${symbol_pound}{permissionId},
+        now(),
+        ${symbol_pound}{creator},
+        1
+        )
+    </insert>
+    <update id="Permission_update" parameterType="Permission">
+        UPDATE sys_permission
+        set
+        name = ${symbol_pound}{name},
+        code = ${symbol_pound}{code},
+        type = ${symbol_pound}{type},
+        url = ${symbol_pound}{url},
+        icon = ${symbol_pound}{icon},
+        pid = ${symbol_pound}{pid},
+        tree_path = ${symbol_pound}{treePath},
+        UPDATE_DATE = now()
+        ,UPDATOR = ${symbol_pound}{updator}
+        WHERE
+        ID = ${symbol_pound}{id}
+    </update>
+    <update id="Permission_logicDelete" parameterType="Permission">
+        UPDATE sys_permission
+        set
+        VALID=0
+        ,UPDATE_DATE = now()
+        WHERE
+        ID = ${symbol_pound}{id}
+    </update>
+    <delete id="Permission_delete" parameterType="Permission">
+        DELETE FROM sys_permission
+        WHERE
+        ID = ${symbol_pound}{id}
+    </delete>
+    <delete id="Permission_delete_by_role" parameterType="long">
+        DELETE FROM sys_r_role_permission
+        WHERE
+        role_id = ${symbol_pound}{value}
+    </delete>
+</mapper>

@@ -1,0 +1,64 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Tooltip Style - jQuery EasyUI Demo</title>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <script type="text/javascript" src="../../jquery.min.js"></script>
+    <script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+</head>
+<body>
+<h2>Custom Tooltip Style</h2>
+
+<p>This sample shows how to change the tooltip style.</p>
+
+<div style="margin:s0px 0;"></div>
+<div style="padding:10px 200px">
+    <div id="pp1" class="easyui-panel" style="width:100px;padding:5px">Hover Me</div>
+</div>
+<div style="padding:10px 200px">
+    <div id="pp2" class="easyui-panel" style="width:100px;padding:5px">Hover Me</div>
+</div>
+<script>
+    ${symbol_dollar}
+    (function () {
+        ${symbol_dollar}
+        ('${symbol_pound}pp1').tooltip({
+            position: 'right',
+            content: '<span style="color:${symbol_pound}fff">This is the tooltip message.</span>',
+            onShow: function () {
+                ${symbol_dollar}
+                (this).tooltip('tip').css({
+                    backgroundColor: '${symbol_pound}666',
+                    borderColor: '${symbol_pound}666'
+                });
+            }
+        });
+        ${symbol_dollar}
+        ('${symbol_pound}pp2').tooltip({
+            position: 'bottom',
+            content: '<div style="padding:5px;background:${symbol_pound}eee;color:${symbol_pound}000">This is the tooltip message.</div>',
+            onShow: function () {
+                ${symbol_dollar}
+                (this).tooltip('tip').css({
+                    backgroundColor: '${symbol_pound}fff000',
+                    borderColor: '${symbol_pound}ff0000',
+                    boxShadow: '1px 1px 3px ${symbol_pound}292929'
+                });
+            },
+            onPosition: function () {
+                ${symbol_dollar}
+                (this).tooltip('tip').css('left', ${symbol_dollar}(this).offset().left);
+                ${symbol_dollar}
+                (this).tooltip('arrow').css('left', 20);
+            }
+        });
+    });
+</script>
+</body>
+</html>

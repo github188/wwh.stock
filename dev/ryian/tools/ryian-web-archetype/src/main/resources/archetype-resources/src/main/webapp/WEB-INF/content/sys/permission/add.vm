@@ -1,0 +1,91 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>系统权限新增</title>
+    ${symbol_pound}parse("commons/commonJs.vm")
+    ${symbol_pound}parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        function save() {
+            jQuery('${symbol_pound}fm').form('submit', {
+                url: '${symbol_dollar}{base}/sys/permission/save',
+                onSubmit: function () {
+                    return jQuery(this).form('validate');
+                },
+                success: function (result) {
+                    result = jQuery.parseJSON(result);
+                    Magic.closeWin();
+                    if (!result.success) {
+                        window.parent.jQuery.messager.show({title: '错误', msg: result.message});
+                    } else {
+                        var pid = ${symbol_dollar}('${symbol_pound}pid').val();
+                        if (pid == 0) {
+                            window.parent.jQuery('${symbol_pound}dg').treegrid('reload');
+                        } else {
+                            window.parent.jQuery('${symbol_pound}dg').treegrid('reload', pid);
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+<div data-options="region:'center',border:false"
+     style="padding: 10px 60px 20px 60px;background:${symbol_pound}fff;border:1px solid ${symbol_pound}ccc;">
+    <form id="fm" method="post">
+        <table width="100%" cellpadding="5">
+            <tr>
+                <td align="left">
+                    上级权限
+                </td>
+                <td>
+                    <input class="easyui-combotree" id="pid" name="pid"
+                           data-options="url:'${symbol_dollar}{base}/sys/permission/queryTree',method:'get'"
+                           style="width:200px;" value="${symbol_dollar}!{pid}">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    名称
+                </td>
+                <td>
+                    <input name="name" class="easyui-textbox" data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    编码
+                </td>
+                <td>
+                    <input name="code" class="easyui-textbox">
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    类型
+                </td>
+                <td>
+                    ${symbol_pound}combobox('type',${symbol_dollar}{permissionTypes},'value','content')
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    链接
+                </td>
+                <td>
+                    <input name="url" class="easyui-textbox">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

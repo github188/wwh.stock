@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/../kisso-spring-boot/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/../spring-boot-master/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-actuator/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-autoconfigure/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-cli/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-dependencies/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-devtools/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-docs/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-integration-tests/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-integration-tests/spring-boot-devtools-tests/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-integration-tests/spring-boot-integration-tests-embedded-servlet-container/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-integration-tests/spring-boot-launch-script-tests/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-integration-tests/spring-boot-security-tests/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-integration-tests/spring-boot-security-tests/spring-boot-security-test-web-helloworld/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-activemq/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-actuator/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-amqp/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-aop/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-artemis/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-batch/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-cache/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-cloud-connectors/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-data-cassandra-reactive/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-data-cassandra/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-data-couchbase/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-data-elasticsearch/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-data-jpa/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-data-ldap/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-data-mongodb-reactive/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-data-mongodb/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-data-neo4j/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-data-redis-reactive/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-data-redis/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-data-rest/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-data-solr/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-freemarker/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-groovy-templates/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-hateoas/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-integration/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-jdbc/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-jersey/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-jetty/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-jooq/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-json/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-jta-atomikos/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-jta-bitronix/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-jta-narayana/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-log4j2/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-logging/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-mail/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-mobile/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-mustache/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-quartz/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-reactor-netty/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-security/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-social-facebook/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-social-linkedin/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-social-twitter/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-test/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-thymeleaf/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-tomcat/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-undertow/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-validation/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-web-services/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-web/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-webflux/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter-websocket/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-starters/spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-test-autoconfigure/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-test/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-tools/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-tools/spring-boot-antlib/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-tools/spring-boot-autoconfigure-processor/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-tools/spring-boot-configuration-metadata/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-tools/spring-boot-configuration-processor/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-tools/spring-boot-gradle-plugin/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-tools/spring-boot-loader-tools/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-tools/spring-boot-loader/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-tools/spring-boot-maven-plugin/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot-tools/spring-boot-test-support/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring-boot-master/spring-boot/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

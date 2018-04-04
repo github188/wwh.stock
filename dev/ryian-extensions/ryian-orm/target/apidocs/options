@@ -1,0 +1,24 @@
+-classpath
+'E:/dev/ryian-extensions/ryian-orm/target/classes;E:/maven/repository/org/springframework/spring-beans/4.1.0.RELEASE/spring-beans-4.1.0.RELEASE.jar;E:/maven/repository/org/mybatis/mybatis/3.2.7/mybatis-3.2.7.jar;E:/maven/repository/com/alibaba/druid/1.0.15/druid-1.0.15.jar;E:/maven/repository/commons-digester/commons-digester/2.1/commons-digester-2.1.jar;E:/maven/repository/mysql/mysql-connector-java/5.1.29/mysql-connector-java-5.1.29.jar;E:/maven/repository/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.jar;E:/maven/repository/org/mybatis/mybatis-spring/1.2.1/mybatis-spring-1.2.1.jar;E:/maven/repository/net/ryian/ryian-commons/1.0.0/ryian-commons-1.0.0.jar;E:/maven/repository/commons-io/commons-io/2.4/commons-io-2.4.jar;E:/maven/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar;E:/maven/repository/org/springframework/spring-tx/4.1.0.RELEASE/spring-tx-4.1.0.RELEASE.jar;E:/maven/repository/com/github/pagehelper/pagehelper/4.0.0/pagehelper-4.0.0.jar;E:/maven/repository/commons-beanutils/commons-beanutils/1.9.2/commons-beanutils-1.9.2.jar;E:/maven/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar;E:/maven/repository/org/aspectj/aspectjrt/1.8.0/aspectjrt-1.8.0.jar;E:/maven/repository/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar;E:/maven/repository/org/springframework/spring-expression/4.1.0.RELEASE/spring-expression-4.1.0.RELEASE.jar;E:/maven/repository/org/springframework/spring-jdbc/4.1.0.RELEASE/spring-jdbc-4.1.0.RELEASE.jar;E:/maven/repository/com/github/jsqlparser/jsqlparser/0.9.1/jsqlparser-0.9.1.jar;E:/maven/repository/commons-codec/commons-codec/1.9/commons-codec-1.9.jar;E:/maven/repository/org/springframework/spring-aop/4.1.0.RELEASE/spring-aop-4.1.0.RELEASE.jar;E:/maven/repository/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar;E:/maven/repository/org/springframework/spring-context/4.1.0.RELEASE/spring-context-4.1.0.RELEASE.jar;E:/maven/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar;C:/Program Files/Java/jdk1.8.0_31/jre/../lib/tools.jar;E:/maven/repository/tk/mybatis/mapper/3.2.1/mapper-3.2.1.jar;C:/Program Files/Java/jdk1.8.0_31/jre/../lib/jconsole.jar;E:/maven/repository/org/springframework/spring-core/4.1.0.RELEASE/spring-core-4.1.0.RELEASE.jar;E:/maven/repository/javax/persistence/persistence-api/1.0/persistence-api-1.0.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'E:/dev/ryian-extensions/ryian-orm/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2017. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'E:/dev/ryian-extensions/ryian-orm/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'ryian-orm 1.1.0 API'
+-linkoffline
+'http://docs.oracle.com/javase/6/docs/api' 'E:/dev/ryian-extensions/ryian-orm/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'ryian-orm 1.1.0 API'

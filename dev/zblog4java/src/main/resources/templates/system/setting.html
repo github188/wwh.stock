@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    #parse("system/component/global-macro.html")
+    #parse("system/component/header-wrapper.html")
+</head>
+<body>
+#parse("system/component/body-wrapper.html")
+
+<section class="main">
+    <div id="divMain">
+        <div class="divHeader"
+             style="padding-left: 38px; background: transparent url('/system/image/common/setting_32.png') no-repeat scroll 3px 9px / 32px auto;">
+            网站设置
+        </div>
+        <div class="SubMenu"></div>
+        <form method="post" action="/system/setting.html">
+            <div id="divMain2">
+                <div class="content-box">
+                    <div class="content-box-header">
+                        <ul class="content-box-tabs">
+                            <li><a href="#tab1" class="default-tab current"><span>基础设置</span></a></li>
+                            <li><a href="#tab2"><span>全局设置</span></a></li>
+                            <li><a href="#tab3"><span>页面设置</span></a></li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="content-box-content">
+                        <div class="tab-content default-tab"
+                             style="border: medium none; padding: 0px; margin: 0px; display: block;" id="tab1">
+                            <table style="padding:0px;margin:0px;width:100%;">
+                                <tbody>
+                                <tr class="color2">
+                                    <td class="td25"><p><b>网站域名</b></span></p></td>
+                                    <td><p><input id="ZC_BLOG_HOST" name="domain" style="width:600px;" value="$!cache.settingDTO.domain" type="text"></p></td>
+                                </tr>
+                                <tr class="color3">
+                                    <td><p><b>网站标题</b></p></td>
+                                    <td><p><input id="ZC_BLOG_NAME" name="blogTitle" style="width:600px;" value="$!cache.settingDTO.blogTitle" type="text"></p></td>
+                                </tr>
+                                <tr class="color2">
+                                    <td><p><b>网站副标题</b></p></td>
+                                    <td><p><input id="ZC_BLOG_SUBNAME" name="blogSubTitle" style="width:600px;" value="$!cache.settingDTO.blogSubTitle" type="text"></p></td>
+                                </tr>
+                                <tr class="color3">
+                                    <td><p><b>版权说明</b><br><span class="note">&nbsp;可以填入网站统计、备案号等内容。</span></p></td>
+                                    <td><p><textarea cols="3" rows="6" id="ZC_BLOG_COPYRIGHT" name="copyRight" style="width:600px;">$!cache.settingDTO.copyRight</textarea>
+                                    </p></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-content" style="border: medium none; padding: 0px; margin: 0px; display: none;"
+                             id="tab2">
+                            <table style="padding:0px;margin:0px;width:100%;">
+                                <tbody>
+                                <tr class="color2">
+                                    <td class="td25"><p><b>网站时区</b></p></td>
+                                    <td>
+                                        <p><select id="ZC_TIME_ZONE_NAME" name="ZC_TIME_ZONE_NAME" disabled="disabled" style="width:600px;">
+                                            <option value="Asia/Shanghai" selected="selected">Asia/Shanghai +08:00</option>
+                                        </select></p>
+                                    </td>
+                                </tr>
+                                <tr class="color3">
+                                    <td><p><b>网站语言</b></p></td>
+                                    <td>
+                                        <p><select id="ZC_BLOG_LANGUAGEPACK" name="ZC_BLOG_LANGUAGEPACK" disabled="disabled" style="width:600px;">
+                                            <option value="zh-cn" selected="selected">简体中文 (zh-cn)</option>
+                                        </select></p>
+                                    </td>
+                                </tr>
+                                <tr class="color2">
+                                    <td><p><b>允许上传文件的类型</b></p></td>
+                                    <td><p><input id="ZC_UPLOAD_FILETYPE" name="allowUploadFileType" style="width:600px;" value="$!cache.settingDTO.allowUploadFileType" type="text"></p></td>
+                                </tr>
+                                <tr class="color3">
+                                    <td><p><b>允许上传文件的大小(单位MB)</b></p></td>
+                                    <td><p><input id="ZC_UPLOAD_FILESIZE" name="allowUplaodPerFileSize" style="width:600px;" value="$!cache.settingDTO.allowUplaodPerFileSize" type="text"></p></td>
+                                </tr>
+                                <tr class="color2">
+                                    <td><p><b>GZip压缩</b></p></td>
+                                    <td><p><input id="ZC_GZIP_ENABLE" name="enableGzip" value="$!cache.settingDTO.enableGzip" class="checkbox" style="display: none;" type="text"><span class="imgcheck"></span></p>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-content" style="border: medium none; padding: 0px; margin: 0px; display: none;"
+                             id="tab3">
+                            <table style="padding:0px;margin:0px;width:100%;">
+                                <tbody>
+                                <tr class="color2">
+                                    <td><p><b>前台列表页每页显示数量</b></p></td>
+                                    <td><p><input id="ZC_DISPLAY_COUNT" name="deskPageSize" style="width:600px;"
+                                                  value="$!cache.settingDTO.deskPageSize" type="text"></p></td>
+                                </tr>
+                                <tr class="color3">
+                                    <td><p><b>后台列表页每页显示数量</b></p></td>
+                                    <td><p><input id="ZC_MANAGE_COUNT" name="systemPageSize" style="width:600px;"
+                                                  value="$!cache.settingDTO.systemPageSize" type="text"></p></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- End .content-box-content -->
+                </div>
+                <hr>
+                <p><input class="button" value="提交" id="btnPost" onclick="" type="submit"></p>
+            </div>
+        </form>
+        <script type="text/javascript">ActiveTopMenu("topmenu2");</script>
+        <script type="text/javascript">AddHeaderIcon("/system/image/common/setting_32.png");</script>
+    </div>
+</section>
+<script>
+    $(function(){
+        //加载是否启用配置
+        $(".imgcheck").each(function(){
+            if($(this).prev().val()=="true"){
+                $(this).attr("class","imgcheck imgcheck-on");
+            }
+        });
+        //切换配置
+        $(".content-box-tabs li a").click(function(){
+            $(".content-box-tabs li a").attr("class","");
+            $(this).attr("class","default-tab current");
+            $(".content-box-content .tab-content").css("display","none");
+            $(".content-box-content").find($(this).attr("href")).css("display","block");
+        });
+        //是否启用
+        $(".imgcheck").click(function(){
+            if($(this).attr("class").indexOf("imgcheck-on")>=0){
+                $(this).attr("class","imgcheck");
+                $(this).prev().val("false");
+            }else{
+                $(this).attr("class","imgcheck imgcheck-on");
+                $(this).prev().val("true");
+            }
+        });
+    });
+
+</script>
+#parse("system/component/footer-wrapper.html")
+</body>
+</html>

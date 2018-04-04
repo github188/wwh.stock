@@ -1,0 +1,6 @@
+net\ryian\orm\service\support\datasource\DataSourceMethodInterceptor.class
+net\ryian\orm\service\support\datasource\DataSourceContextHolder.class
+net\ryian\orm\domain\BaseEntity.class
+net\ryian\orm\service\support\datasource\MultipleDataSource.class
+net\ryian\orm\service\BaseService.class
+net\ryian\orm\service\support\datasource\annotation\DataSource.class

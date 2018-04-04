@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="$!{generatorContext.domain}">
+    <resultMap id="get-$!{className}-result" type="$!{generatorContext.domain}">
+    ##属性-列对应
+        <id property="id" column="ID"/>
+        #foreach ($column in $table.columns)
+            <!-- $!{column.columnCommnet}-->
+            <result property="$!{column.fieldName}" column="$!{column.columnName}"/>
+        #end
+        <!-- 创建时间 -->
+        <result property="createDate" column="CREATE_DATE"/>
+        <!-- 创建人 -->
+        <result property="creator" column="CREATOR"/>
+        <!-- 修改时间 -->
+        <result property="updateDate" column="UPDATE_DATE"/>
+        <!-- 修改人 -->
+        <result property="updator" column="UPDATOR"/>
+        <!-- 软删除标识 -->
+        <result property="valid" column="VALID"/>
+    </resultMap>
+    <sql id="$!{className}_Base_Column_List">
+        ID,
+        #foreach ($column in $table.columns)
+            <!-- $!{column.columnCommnet}-->
+            $!{column.columnName},
+        #end
+        <!-- 创建时间 -->
+        CREATE_DATE,
+        <!-- 创建人 -->
+        CREATOR,
+        <!-- 更新时间 -->
+        UPDATE_DATE,
+        <!-- 更新人 -->
+        UPDATOR,
+        <!-- 软删除标识 -->
+        VALID
+    </sql>
+##查询列表
+    <select id="$!{className}_get" resultMap="get-$!{className}-result">
+        SELECT
+    ##查询列
+        <include refid="$!{className}_Base_Column_List"/>
+        FROM
+        $!{tableName}
+        where
+        ID = #{id}
+    </select>
+
+##查询列表
+    <select id="$!{className}_list" resultMap="get-$!{className}-result">
+        SELECT
+    ##查询列
+        <include refid="$!{className}_Base_Column_List"/>
+        FROM
+        $!{tableName}
+        <include refid="common.Select_Where_Clause"/>
+    </select>
+
+    <insert id="$!{className}_insert" parameterType="$!{generatorContext.domain}">
+        INSERT INTO $!{tableName}(
+        #foreach ($column in $table.columns)
+            $!{column.columnName},
+        #end
+        CREATE_DATE,
+        CREATOR,
+        valid)values(
+        #foreach ($column in $table.columns)
+            #{$!{column.fieldName}},
+        #end
+        NOW(),
+        #{creator},
+        1)
+        <selectKey keyProperty="id" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID() AS id;
+        </selectKey>
+    </insert>
+    <update id="$!{className}_update" parameterType="$!{generatorContext.domain}">
+        UPDATE $!{tableName}
+        set
+        #foreach ($column in $table.columns)
+            $!{column.columnName} = #{$!{column.fieldName}},
+        #end
+        UPDATE_DATE = now()
+        ,UPDATOR = #{updator}
+        WHERE
+        ID = #{id}
+    </update>
+    <update id="$!{className}_updateSelective" parameterType="map">
+        UPDATE $!{tableName}
+        set
+        #foreach ($column in $table.columns)
+            <if test="record.$!{column.fieldName} != null">
+                $!{column.columnName} = #{$!{column.fieldName}},
+            </if>
+        #end
+        UPDATE_DATE = now()
+        ,UPDATOR = #{record.updator}
+        <include refid="common.Update_Where_Clause"/>
+    </update>
+    <update id="$!{className}_logicDelete" parameterType="$!{generatorContext.domain}">
+        UPDATE $!{tableName}
+        set
+        VALID=0
+        ,UPDATE_DATE = now()
+        WHERE
+        ID = #{id}
+    </update>
+    <delete id="$!{className}_delete" parameterType="$!{generatorContext.domain}">
+        DELETE FROM $!{tableName}
+        WHERE
+        ID = #{id}
+    </delete>
+</mapper>

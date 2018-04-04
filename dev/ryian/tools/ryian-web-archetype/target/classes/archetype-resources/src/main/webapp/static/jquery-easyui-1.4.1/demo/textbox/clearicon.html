@@ -1,0 +1,72 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TextBox with Clear Icon - jQuery EasyUI Demo</title>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <script type="text/javascript" src="../../jquery.min.js"></script>
+    <script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+</head>
+<body>
+<h2>TextBox with Clear Icon</h2>
+
+<p>This example shows how to create an textbox with an icon to clear the input element itself.</p>
+
+<div style="margin:20px 0 40px 0;"></div>
+<input id="tt" style="width:400px" data-options="
+			prompt: 'Input something here!',
+			icons:[{
+				iconCls:'icon-search',
+				handler: function(e){
+					var v = ${symbol_dollar}(e.data.target).textbox('getValue');
+					alert('The inputed value is ' + (v ? v : 'empty'));
+				}
+			}]
+			">
+<script>
+    ${symbol_dollar}.extend(${symbol_dollar}.fn.textbox.methods, {
+        addClearBtn: function (jq, iconCls) {
+            return jq.each(function () {
+                var t = ${symbol_dollar}(this);
+                var opts = t.textbox('options');
+                opts.icons = opts.icons || [];
+                opts.icons.unshift({
+                    iconCls: iconCls,
+                    handler: function (e) {
+                        ${symbol_dollar}
+                        (e.data.target).textbox('clear').textbox('textbox').focus();
+                        ${symbol_dollar}
+                        (this).css('visibility', 'hidden');
+                    }
+                });
+                t.textbox();
+                if (!t.textbox('getText')) {
+                    t.textbox('getIcon', 0).css('visibility', 'hidden');
+                }
+                t.textbox('textbox').bind('keyup', function () {
+                    var icon = t.textbox('getIcon', 0);
+                    if (${symbol_dollar}(this).val()) {
+                        icon.css('visibility', 'visible');
+                    } else {
+                        icon.css('visibility', 'hidden');
+                    }
+                });
+            });
+        }
+    }
+    )
+    ;
+
+    ${symbol_dollar}
+    (function () {
+        ${symbol_dollar}
+        ('${symbol_pound}tt').textbox().textbox('addClearBtn', 'icon-clear');
+    });
+</script>
+</body>
+</html>

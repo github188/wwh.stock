@@ -1,0 +1,8 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<script type="text/javascript" src="${symbol_dollar}{base}/static/js/magic.js"></script>
+<script type="text/javascript" src="${symbol_dollar}{base}/static/jquery-easyui-1.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="${symbol_dollar}{base}/static/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+        src="${symbol_dollar}{base}/static/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>

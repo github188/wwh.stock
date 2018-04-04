@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    #parse("system/component/global-macro.html")
+    #parse("system/component/header-wrapper.html")
+</head>
+<body>
+#parse("system/component/body-wrapper.html")
+
+<section class="main">
+    <div id="divMain">
+        <div class="divHeader" style="padding-left: 38px; background: transparent url('/system/image/common/accessories_32.png') no-repeat scroll 3px 9px / 32px auto;">$!title</div>
+        <div class="SubMenu"></div>
+        <div id="divMain2">
+            <form class="search" name="upload" id="upload" method="post" enctype="multipart/form-data" action="/system/management/upload-add.html"><p>选择需要上传的文件: </p>
+                <p>
+                    <input type="file" name="uploadFile" size="60"/>&nbsp;&nbsp;
+                    <input type="submit" class="button" value="提交"/>&nbsp;&nbsp;
+                    <input class="button" type="reset" value="重置"/>
+                </p>
+            </form>
+            <table border="1" class="tableFull tableBorder tableBorder-thcenter">
+                <tr>
+                    <th>ID</th><th>作者</th><th>名称</th><th>日期</th><th>大小（KB）</th><th>类型</th><th>操作</th>
+                </tr>
+                #foreach($model in $models)
+                <tr>
+                    <td class="td5">$!model.id</td>
+                    <td class="td10">$!model.userId</td>
+                    <td><a href="/$!model.id" target="_blank"><img src="/system/image/admin/link.png" alt="" title="" width="16"/></a>$!model.name</td>
+                    <td class="td15">$!date.format('yyyy-MM-dd HH:mm:ss',$!model.modifyTime)</td>
+                    <td class="td10">$!model.size</td>
+                    <td class="td20">$!model.mimeType</td>
+                    <td class="td10 tdCenter">
+                        <a href="/system/management/upload-remove.html?id=$!model.id" onclick="return window.confirm('单击“确定”继续。单击“取消”停止。');">
+                            <img src="/system/image/admin/delete.png" alt="删除" title="删除" width="16"/>
+                        </a>
+                    </td>
+                </tr>
+                #end
+            </table>
+            #pagebar("upload",$page)
+        </div>
+    </div>
+</section>
+#parse("system/component/footer-wrapper.html")
+</body>
+</html>
+
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/tools/ryian-autocode/ryian-autocode.iml" filepath="$PROJECT_DIR$/tools/ryian-autocode/ryian-autocode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tools/ryian-autocode-archetype/ryian-autocode-archetype.iml" filepath="$PROJECT_DIR$/tools/ryian-autocode-archetype/ryian-autocode-archetype.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ryian-extensions/ryian-commons/ryian-commons.iml" filepath="$PROJECT_DIR$/../ryian-extensions/ryian-commons/ryian-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ryian-core/ryian-core.iml" filepath="$PROJECT_DIR$/ryian-core/ryian-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ryian-extensions/ryian-extendsions.iml" filepath="$PROJECT_DIR$/../ryian-extensions/ryian-extendsions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ryian-framework.iml" filepath="$PROJECT_DIR$/ryian-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ryian-extensions/ryian-orm/ryian-orm.iml" filepath="$PROJECT_DIR$/../ryian-extensions/ryian-orm/ryian-orm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ryian-extensions/ryian-scheduler/ryian-scheduler.iml" filepath="$PROJECT_DIR$/../ryian-extensions/ryian-scheduler/ryian-scheduler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tools/ryian-web-archetype/ryian-web-archetype.iml" filepath="$PROJECT_DIR$/tools/ryian-web-archetype/ryian-web-archetype.iml" />
+    </modules>
+  </component>
+</project>

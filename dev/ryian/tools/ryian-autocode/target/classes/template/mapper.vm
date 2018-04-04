@@ -1,0 +1,14 @@
+#set($searchColCount = 1)
+##包定义
+package $!{targetPackage};
+
+import $!{generatorContext.domain};
+import tk.mybatis.mapper.common.Mapper;
+
+/**
+* @description:
+* @author: autoCode
+* @history:
+*/
+public interface $!{className}Mapper extends Mapper<$!{className}>{
+}

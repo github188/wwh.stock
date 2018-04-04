@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Class-Path: spring-jdbc-4.3.3.RELEASE.jar tomcat-jdbc-8.5.5.jar ehcach
+ e-3.0.0.m3.jar logback-classic-1.1.7.jar spring-web-4.3.3.RELEASE.jar
+  ezmorph-1.0.6.jar jcl-over-slf4j-1.7.21.jar spring-core-4.3.3.RELEAS
+ E.jar struts-core-1.3.8.jar velocity-tools-2.0.jar struts-taglib-1.3.
+ 8.jar validation-api-1.1.0.Final.jar logback-core-1.1.7.jar spring-bo
+ ot-1.4.1.RELEASE.jar commons-logging-1.1.1.jar tomcat-embed-el-8.5.5.
+ jar dom4j-1.6.1.jar commons-collections-3.2.2.jar commons-chain-1.1.j
+ ar spring-tx-4.3.3.RELEASE.jar spring-context-4.3.3.RELEASE.jar tomca
+ t-juli-8.5.5.jar tools.jar ueditor-1.1.2.jar antlr-2.7.7.jar spring-b
+ eans-4.3.3.RELEASE.jar hibernate-validator-5.2.4.Final.jar mybatis-sp
+ ring-1.3.0.jar velocity-1.7.jar commons-beanutils-1.9.2.jar spring-we
+ bmvc-4.3.3.RELEASE.jar spring-boot-autoconfigure-1.4.1.RELEASE.jar jc
+ onsole.jar jackson-core-2.8.3.jar jackson-annotations-2.8.3.jar tomca
+ t-embed-websocket-8.5.5.jar mybatis-plus-1.4.6.jar jul-to-slf4j-1.7.2
+ 1.jar commons-validator-1.3.1.jar bcprov-jdk14-1.50.jar oro-2.0.8.jar
+  spring-boot-starter-jdbc-1.4.1.RELEASE.jar spring-boot-starter-1.4.1
+ .RELEASE.jar sslext-1.2-0.jar fastjson-1.2.3.jar spring-boot-starter-
+ logging-1.4.1.RELEASE.jar xml-apis-1.4.01.jar commons-digester-2.1.ja
+ r spring-context-support-4.3.3.RELEASE.jar commons-lang-2.5.jar slf4j
+ -api-1.7.21.jar h2-1.4.192.jar spring-expression-4.3.3.RELEASE.jar sn
+ akeyaml-1.17.jar ehcache-core-2.6.8.jar json-lib-2.4-jdk15.jar jackso
+ n-databind-2.8.3.jar struts-tiles-1.3.8.jar generalmapper-1.2.0.jar d
+ ruid-1.0.17.jar offheap-store-2.1.0.jar spring-boot-starter-tomcat-1.
+ 4.1.RELEASE.jar jboss-logging-3.3.0.Final.jar spring-boot-starter-vel
+ ocity-1.4.1.RELEASE.jar classmate-1.3.1.jar spring-aop-4.3.3.RELEASE.
+ jar kisso-3.6.9.jar log4j-over-slf4j-1.7.21.jar mybatis-3.4.1.jar myb
+ atis-ehcache-1.0.3.jar tomcat-embed-core-8.5.5.jar spring-boot-starte
+ r-web-1.4.1.RELEASE.jar
+Main-Class: com.javaear.koubeiblog.Application
+

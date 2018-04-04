@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    #parse("desktop/default/component/header-wrapper.html")
+</head>
+<body>
+    #parse("desktop/default/component/body-wrapper.html")
+    <div class="container main">
+        <div class="row">
+            <div class="col middle-column" style="width:100%">
+                <div class="article">
+                    <div class="article-body">
+                        <div class="article-intro" id="content">
+                            <h1>$!model.title</h1>
+                            <hr>
+                            <table class="reference">
+                                <div id="yansedapei">
+                                    <div id="b_left">
+                                        <div id="color">
+                                            <ul class="section byhue">
+                                                <li id="question">$!model.content</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div id="b_right">
+                                        <div id="float" class="ft">
+                                            <h4>最新文章</h4>
+                                            <div>
+                                                #foreach($new in $news)
+                                                <a href="/article/${new.id}.html">${new.title}</a>
+                                                #end
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    #parse("desktop/default/component/footer-wrapper.html")
+</body>
+</html>

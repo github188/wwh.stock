@@ -1,0 +1,111 @@
+#set( $symbol_pound = '#' )
+        #set( $symbol_dollar = '$' )
+        #set( $symbol_escape = '\' )
+        <?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${package}.sys.domain.User">
+    <resultMap id="get-User-result" type="User">
+        <id property="id" column="ID"/>
+        <!-- 用户名-->
+        <result property="userName" column="user_name"/>
+        <!-- 姓名-->
+        <result property="name" column="name"/>
+        <!-- 密码-->
+        <result property="password" column="password"/>
+        <!--盐值-->
+        <result property="password" column="password"/>
+        <!-- 创建时间 -->
+        <result property="createDate" column="CREATE_DATE"/>
+        <!-- 创建人 -->
+        <result property="creator" column="CREATOR"/>
+        <!-- 修改时间 -->
+        <result property="updateDate" column="UPDATE_DATE"/>
+        <!-- 修改人 -->
+        <result property="updator" column="UPDATOR"/>
+        <!-- 软删除标识 -->
+        <result property="valid" column="VALID"/>
+    </resultMap>
+    <sql id="User_Base_Column_List">
+        ID,
+        <!-- 用户名-->
+        user_name,
+        <!-- 姓名-->
+        name,
+        <!-- 密码-->
+        password,
+        <!--盐值-->
+        salt,
+        <!-- 创建时间 -->
+        CREATE_DATE,
+        <!-- 创建人 -->
+        CREATOR,
+        <!-- 更新时间 -->
+        UPDATE_DATE,
+        <!-- 更新人 -->
+        UPDATOR,
+        <!-- 软删除标识 -->
+        VALID
+    </sql>
+    <select id="User_get" resultMap="get-User-result">
+        SELECT
+        <include refid="User_Base_Column_List"/>
+        FROM
+        sys_user
+        where
+        ID = ${symbol_pound}{id}
+    </select>
+
+    <select id="User_list" resultMap="get-User-result">
+        SELECT
+        <include refid="User_Base_Column_List"/>
+        FROM
+        sys_user
+        <include refid="common.Select_Where_Clause"/>
+    </select>
+
+    <insert id="User_insert" parameterType="User">
+        INSERT INTO sys_user(
+        user_name,
+        name,
+        password,
+        salt,
+        CREATE_DATE,
+        CREATOR,
+        valid)values(
+        ${symbol_pound}{userName},
+        ${symbol_pound}{name},
+        ${symbol_pound}{password},
+        ${symbol_pound}{salt},
+        NOW(),
+        ${symbol_pound}{creator},
+        1)
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            SELECT LAST_INSERT_ID() AS id;
+        </selectKey>
+    </insert>
+    <update id="User_update" parameterType="User">
+        UPDATE sys_user
+        set
+        user_name = ${symbol_pound}{userName},
+        name = ${symbol_pound}{name},
+        salt = ${symbol_pound}{salt},
+        password = ${symbol_pound}{password},
+        UPDATE_DATE = now()
+        ,UPDATOR = ${symbol_pound}{updator}
+        WHERE
+        ID = ${symbol_pound}{id}
+    </update>
+    <update id="User_logicDelete" parameterType="User">
+        UPDATE sys_user
+        set
+        VALID=0
+        ,UPDATE_DATE = now()
+        WHERE
+        ID = ${symbol_pound}{id}
+    </update>
+    <delete id="User_delete" parameterType="User">
+        DELETE FROM sys_user
+        WHERE
+        ID = ${symbol_pound}{id}
+    </delete>
+</mapper>

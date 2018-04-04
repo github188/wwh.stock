@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    #parse("system/component/global-macro.html")
+    #parse("system/component/header-wrapper.html")
+</head>
+<body>
+#parse("system/component/body-wrapper.html")
+<section class="main">
+    <div id="divMain">
+        <div class="divHeader2" style="padding-left: 38px; background: transparent url('/system/image/common/tag_32.png') no-repeat scroll 3px 9px / 32px auto;">$!title</div>
+        <div class="SubMenu"></div>
+        <div class="edit tag_edit" id="divMain2">
+            <form action="/system/management/tag-add.html" method="post" name="edit" id="edit">
+                <input type="hidden" value="$!model.id" name="id" id="edtID">
+                <p>
+                    <span class="title">名称:</span><span class="star">(*)</span><br>
+                    <input type="text" value="$!model.name" maxlength="50" name="name" size="40" class="edit" id="edtName">
+                </p>
+                <p>
+                    <span class="title">别名:</span><br>
+                    <input type="text" value="$!model.alias" name="alias" size="40" class="edit" id="edtAlias"></p>
+                <p>
+                    <span class="title">模板:</span><br>
+                    <select id="cmbTemplate" name="template" size="1" class="edit">
+                        <option selected="selected" value="$!model.template">标签模板</option>
+                    </select>
+                </p>
+                <p>
+                    <span class="title">摘要:</span><br>
+                    <textarea style="width:600px;" name="intro" id="edtIntro" rows="6" cols="3">$!model.intro</textarea>
+                </p>
+                <p>
+                    <label>
+                        <span class="title">加入导航栏菜单:</span>
+                        <input type="text" class="checkbox" value="$!model.status" id="edtAddNavbar" name="status" style="display: none;"/>
+                        <span class="imgcheck" id="edtAddNavbarImgCheck"></span>
+                    </label>
+                </p>
+                <div class="editmod2" id="response"></div>
+                <p>
+                    <input type="submit" onclick="return checkInfo();" id="btnPost" value="提交" class="button"></p>
+            </form>
+        </div>
+    </div>
+</section>
+<script>
+    $(function(){
+        //是否加入导航栏
+        if($("#edtAddNavbar").val()=='2'){
+            $("#edtAddNavbarImgCheck").attr("class","imgcheck imgcheck-on");
+        }
+        //提交表单
+        $("#btnPost").click(function(){
+            if(!$("#edtName").val()){
+                alert("名称不能为空或格式不正确");
+                return false
+            }
+        });
+        //是否启用
+        $("#edtAddNavbarImgCheck").click(function(){
+            if($(this).attr("class").indexOf("imgcheck-on")>=0){
+                $(this).attr("class","imgcheck");
+                $("#edtAddNavbar").val("1");
+            }else{
+                $(this).attr("class","imgcheck imgcheck-on");
+                $("#edtAddNavbar").val("2");
+            }
+        });
+    });
+</script>
+#parse("system/component/footer-wrapper.html")
+</body>
+</html>

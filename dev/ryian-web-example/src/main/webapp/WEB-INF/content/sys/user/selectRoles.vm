@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>选择角色</title>
+    <meta charset="UTF-8">
+    #parse("commons/commonJs.vm")
+    #parse("commons/commonCss.vm")
+    <script type="text/javascript">
+        $(function () {
+            jQuery('#dg').datagrid({
+                url: '/sys/role/queryAll?userId=${userId}',
+                method:'get',
+                columns: [[
+                    {field: 'id', checkbox: true}
+                    , {field: 'name', title: '角色名', width: 100}
+                    , {field: 'code', title: '角色编码', width: 100}
+                    , {field: 'note', title: '备注', width: 100}
+                ]],
+                singleSelect: false,
+                fitColumns: true,
+                fit: true
+            });
+        });
+        function optionFun(value, row, index) {
+            return "";
+        }
+
+        function save() {
+            var rows = jQuery('#dg').datagrid('getSelections');
+            var ids = [];
+            jQuery.each(rows,function(index,row) {
+                ids.push(row.id);
+            });
+            jQuery.post('${base}/sys/role/saveUserRoles',{'userId':jQuery('#userId').val(),'roles':ids.toString()},function(result) {
+                Magic.closeWin();
+                if(!result.success){
+                    window.parent.jQuery.messager.show({title: '错误', msg: result.message });
+                } else {
+                    window.parent.jQuery.messager.show({title: '提示', msg: '操作成功！' });
+                }
+            });
+        }
+
+    </script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+<input type="hidden" id="userId" value="${userId}">
+<div data-options="region:'center',border:false">
+    <table id="dg"></table>
+</div>
+<div region="south" border="false" style="text-align: right; height: 30px;padding-top:3px;padding-right:10px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Magic.closeWin()">取消</a>
+</div>
+</body>
+</html>

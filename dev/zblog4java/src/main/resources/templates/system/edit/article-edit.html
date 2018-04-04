@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    #parse("system/component/global-macro.html")
+    #parse("system/component/header-wrapper.html")
+</head>
+<body>
+#parse("system/component/body-wrapper.html")
+
+<section class="main">
+    <div id="divMain">
+        <div class="divHeader2" style="padding-left: 38px; background: transparent url('/system/image/common/new_32.png') no-repeat scroll 3px 9px / 32px auto;">$!title</div>
+        <div class="SubMenu"></div>
+        <div id="divMain2" class="edit post_edit">
+            <form action="/system/management/article-edit.html" id="edit" name="edit" method="post">
+                <div id="divEditLeft">
+                    <!-- 4号输出接口 -->
+                    <div id="response4" class="editmod2"></div>
+                    <div id="divEditTitle" class="editmod2">
+                        <input type="hidden" name="id" id="edtID" value="$!model.id" />
+                        <!-- title( -->
+                        <div id="titleheader" class="editmod">
+                            <label for="edtTitle" class="editinputname" >标题</label>
+                            <div><input type="text" name="title" id="edtTitle"  maxlength="100" onBlur="if(this.value=='') this.value='未命名'" onFocus="if(this.value=='未命名') this.value=''" value="$!model.title" /></div>
+                        </div>
+                        <!-- )title -->
+                    </div>
+
+                    <!-- 5号输出接口 -->
+                    <div id="response5" class="editmod2"></div>
+                    <div id="divContent"  class="editmod2" style="clear:both;">
+                        <div id='cheader' class="editmod editmod3">
+                            <label for="editor_content" class="editinputname" >正文</label>&nbsp;&nbsp;
+                            <span id="timemsg"></span><span id="msg2"></span><span id="msg"></span><span class="editinputname" ></span>
+                        </div>
+                        <div id='carea' class="editmod editmod3">
+                            <textarea id="editor_content" name="content" style="display: none">$!model.content</textarea>
+                            <!-- 加载编辑器的容器 -->
+                            <script id="container" name="content" type="text/plain">$!model.content</script>
+                        </div>
+                        <div id="contentready" style="display:none"><img alt="loading" id="statloading1" src="/system/image/admin/loading.gif"/>Waiting...</div>
+                    </div>
+
+                    <!-- 1号输出接口 -->
+                    <div id="response" class="editmod2"></div>
+
+                    <!-- alias( -->
+                    <div id="alias" class="editmod2"><label for="edtAlias" class="editinputname" >别名</label>
+                        <input type="text" name="alias" id="edtAlias" maxlength="250" value="$!model.alias" />
+                    </div>
+                    <!-- )alias -->
+                    <!-- tags( -->
+                    <div id="tags" class="editmod2"><label  for="edtTag"  class='editinputname'>标签</label>
+                        <input type="text"  name="tags" id="edtTag" value="$!tags" />(、顿号分割)</div>
+                    <!-- Tags -->
+                    <div id="ulTag" class="editmod2" style="display:none;">
+                        <div id="ajaxtags">Waiting...</div>
+                    </div>
+                    <!-- )tags -->
+
+                    <div id="insertintro" class="editmod2" style="padding-top:1em;paddding-bottom:0;"><span>* 在正文插入分隔符&quot;&lt;hr class=&quot;more&quot; /&gt;&quot;可以让系统识别摘要内容。</span></div>
+
+                    <div id="divIntro" class="editmod2" >
+                        <div id="theader" class="editmod editmod3"><label for="editor_intro" class="editinputname" >摘要</label></div>
+                        <div id='tarea' class="editmod editmod3"><textarea id="editor_intro" name="intro">$!model.intro</textarea></div>
+                        <div id="introready" style="display:none"><img alt="loading" id="statloading2" src="/system/image/admin/loading.gif"/>Waiting...</div>
+                    </div>
+                    <!-- 2号输出接口 -->
+                    <div id="response2" class="editmod2"></div>
+
+                </div>
+                <!-- divEditLeft -->
+                <div id="divEditRight">
+                    <div id="divEditPost">
+                        <div id="divBox">
+                            <div id="divFloat">
+                                <div id='post' class="editmod">
+                                    <input class="button" style="width:180px;height:38px;" type="submit" value="提交" id="btnPost"/>
+                                </div>
+                                <!-- cate -->
+                                <div id='cate' class="editmod">
+                                    <label for="cmbCateID" class="editinputname" style="max-width:65px;text-overflow:ellipsis;">分类</label>
+                                    <select style="width:180px;" class="edit" size="1" name="cateId" id="cmbCateID">
+                                        #foreach($category in $!cache.categoryModelList)
+                                        #if($category.id == $!model.cateId)
+                                        <option selected="selected" value="$!category.id">$!category.name</option>
+                                        #else
+                                        <option  value="$!category.id">$!category.name</option>
+                                        #end
+                                        #end
+                                    </select>
+                                </div>
+                                <!-- cate -->
+                                <!-- level -->
+                                <div id='level' class="editmod">
+                                    <label for="cmbPostStatus" class="editinputname" style="max-width:65px;text-overflow:ellipsis;">状态</label>
+                                    <select class="edit" style="width:180px;" size="1" name="status" id="cmbPostStatus">
+                                        #foreach($status in $!cache.articleStatusEnumList)
+                                        #if($status.status == $!model.status)
+                                        <option selected="selected" value="$!status.status">$!status.desc</option>
+                                        #else
+                                        <option value="$!status.status">$!status.desc</option>
+                                        #end
+                                        #end
+                                    </select>
+                                </div>
+                                <!-- )level -->
+
+                                <!-- template( -->
+                                <div id='template' class="editmod">
+                                    <label for="cmbTemplate" class="editinputname" style="max-width:65px;text-overflow:ellipsis;">模板</label>
+                                    <select style="width:180px;" disabled="disabled" class="edit" size="1" name="template" id="cmbTemplate">
+                                        <option value="$!model.template" selected="selected">文章模板</option>
+                                    </select>
+                                </div>
+                                <!-- )template -->
+
+                                <!-- user( -->
+                                <div id='user' class="editmod">
+                                    <label for="cmbUser" class="editinputname" style="max-width:65px;text-overflow:ellipsis;">作者</label>
+                                    <select style="width:180px;" size="1" name="userId" id="cmbUser">
+                                        <option value="$!user.id" selected="selected" >$!user.name</option>
+                                    </select>
+                                </div>
+                                <!-- )user -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- divEditRight -->
+            </form>
+        </div>
+    </div>
+</section>
+<!-- 配置文件 -->
+<script type="text/javascript" src="/system/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/system/ueditor/ueditor.all.js"></script>
+<script type="text/javascript" src="/system/ueditor/lang/zh-cn/zh-cn.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    $(function(){
+        var ue = UE.getEditor('container');
+        $("#btnPost").click(function(){
+            $("#editor_content").text(ue.getContent());
+        });
+    })
+</script>
+#parse("system/component/footer-wrapper.html")
+</body>
+</html>

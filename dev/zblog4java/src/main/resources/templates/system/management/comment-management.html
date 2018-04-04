@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    #parse("system/component/global-macro.html")
+    #parse("system/component/header-wrapper.html")
+</head>
+<body>
+#parse("system/component/body-wrapper.html")
+
+<section class="main">
+    <div id="divMain">
+        <div class="divHeader" style="padding-left: 38px; background: transparent url('/system/image/common/comments_32.png') no-repeat scroll 3px 9px / 32px auto;">$!title</div>
+        <div class="SubMenu"></div>
+        <div id="divMain2">
+            <form class="search" id="search" method="post" action="/system/management/comment-management.html">
+                <p>标题搜索&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="search" style="width:450px;" type="text" value="$!search"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" class="button" value="提交"/></p>
+            </form>
+            <form method="post" action="/system/management/comment-remove.html">
+                <table border="1" class="tableFull tableBorder tableBorder-thcenter">
+                    <tr>
+                        <th>ID</th><th>上层ID</th><th>标题</th><th>正文</th><th>文章Id</th><th>评论状态</th><th>最后更新日期</th><th>操作</th>
+                    </tr>
+                    #foreach($model in $models)
+                    <tr>
+                        <td class="td5">$!model.id</td>
+                        <td class="td5">$!model.parentId</td>
+                        <td class="td10">$!model.title</td>
+                        <td><div style="overflow:hidden;max-width:500px;">$!model.content</div></td>
+                        <td class="td5">$!model.articleId</td>
+                        <td class="td5">#if($!model.status == 1 )待审核#else 已审核 #end</td>
+                        <td class="td15">$!date.format('yyyy-MM-dd HH:mm:ss',$!model.modifyTime)</td>
+                        <td class="td10 tdCenter">
+                            <a  href="/system/management/comment-remove.html?id=$!model.id" onclick="return window.confirm('单击“确定”继续。单击“取消”停止。');">
+                                <img src="/system/image/admin/delete.png" alt="删除" title="删除" width="16"/>
+                            </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="/system/management/comment-edit.html?id=$!model.id&type=show">
+                                <img src="/system/image/admin/ok.png" alt="通过" title="通过" width="16"/>
+                            </a>
+                        </td>
+                    </tr>
+                    #end
+                </table>
+            </form>
+            #pagebar("comment",$page)
+        </div>
+    </div>
+</section>
+#parse("system/component/footer-wrapper.html")
+</body>
+</html>

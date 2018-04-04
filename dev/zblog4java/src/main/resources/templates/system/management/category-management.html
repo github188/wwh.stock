@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    #parse("system/component/global-macro.html")
+    #parse("system/component/header-wrapper.html")
+</head>
+<body>
+#parse("system/component/body-wrapper.html")
+
+<section class="main">
+    <div id="divMain">
+        <div class="divHeader" style="padding-left: 38px; background: transparent url('/system/image/common/category_32.png') no-repeat scroll 3px 9px / 32px auto;">分类管理</div>
+        <div class="SubMenu" style="display: block;"><a href="/system/management/category-add.html?type=show"><span class="m-left">新建分类</span></a></div>
+        <div id="divMain2">
+            <table border="1" class="tableFull tableBorder tableBorder-thcenter">
+                <tbody>
+                <tr class="color1">
+                    <th>ID</th><th>排序</th><th>名称</th><th>别名</th><th>文章数量</th><th>操作</th>
+                </tr>
+                #foreach($model in $models)
+                <tr class="color3">
+                    <td class="td5">$!model.id</td>
+                    <td class="td5">$!model.sort</td>
+                    <td class="td25">
+                        <a target="_blank" href="/category-$!{model.id}.html">
+                            <img width="16" title="" alt="" src="/system/image/admin/link.png">
+                        </a> $!model.name
+                    </td>
+                    <td class="td20">$!model.alias</td>
+                    <td class="td10">$!model.count</td>
+                    <td class="td10 tdCenter">
+                        <a href="/system/management/category-edit.html?id=$!model.id&type=show" class="button">
+                            <img width="16" title="编辑" alt="编辑" src="/system/image/admin/folder_edit.png">
+                        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="/system/management/category-remove.html?id=$!model.id" onclick="return window.confirm('单击“确定”继续。单击“取消”停止。');" class="button">
+                            <img width="16" title="删除" alt="删除" src="/system/image/admin/delete.png">
+                        </a>
+                    </td>
+                </tr>
+                #end
+                </tbody>
+            </table>
+            #pagebar("category",$page)
+        </div>
+    </div>
+</section>
+#parse("system/component/footer-wrapper.html")
+</body>
+</html>

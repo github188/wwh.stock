@@ -1,0 +1,122 @@
+#yansedapei #b_left {
+    float: left;
+    width: 780px;
+    color: black;
+    padding:0px;
+}
+
+#yansedapei #b_left p {
+    text-indent: 2em;
+    font-size: 14px;
+}
+
+#yansedapei #b_left h3 {
+    text-align: center;
+    font-size: 16px;
+    background: #165f8f;
+    color: #fff;
+    height: 25px;
+    line-height: 25px;
+    width:100px;
+}
+
+#yansedapei #b_left ul {
+    overflow: hidden;
+    list-style: none;
+    margin: 0px;
+}
+
+#yansedapei #b_left li>ul li {
+    padding: 0px 14px;
+    width: 198px;
+    float: left;
+}
+
+#yansedapei #b_left span {
+    display: block;
+    width: 64px;
+    height: 84px;
+    float: left;
+    margin: 1px;
+}
+
+#yansedapei #b_left span font {
+    display: block;
+    width: 64px;
+    height: 20px;
+    line-height: 20px;
+    background: #fff;
+    margin-top: 64px;
+    text-align: center;
+    background: #fff;
+}
+
+#yansedapei #b_left span input {
+    background: none;
+}
+
+#yansedapei #b_left h2 {
+    text-align: center;
+    background: #660;
+    color: #fff;
+    margin: 0px;
+    line-height: 30px;
+}
+
+#yansedapei #b_left #color {
+    margin: 0px;
+}
+
+#yansedapei #b_right {
+    float: right;
+    width: 300px;
+}
+
+#yansedapei #b_right h4 {
+    text-align: center;
+    background: #165f8f;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#yansedapei #b_right a {
+    display: block;
+    text-align: left;
+    color: black;
+    line-height: 25px;
+    text-decoration: none;
+}
+
+#yansedapei #b_right a:hover {
+    text-decoration: underline;
+}
+
+#yansedapei .navr {
+    top: 5px;
+    z-index: 999;
+    position: fixed;
+    _position: absolute;
+    width: 300px;
+    margin: 0px;
+    padding:0px;
+}
+
+#yansedapei .ft {
+    top: 111px;
+}
+
+.article-body ul li, .sidebar-box ul li{
+    margin:0px;
+    padding:0px;
+}
+
+.syntaxhighlighter .source{
+    overflow: visible !important;
+}
+.syntaxhighlighter{
+    overflow: inherit;
+    overflow: visible !important;
+}

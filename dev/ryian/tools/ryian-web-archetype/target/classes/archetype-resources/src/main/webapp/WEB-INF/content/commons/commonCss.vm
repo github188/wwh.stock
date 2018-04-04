@@ -1,0 +1,8 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<link rel="stylesheet" type="text/css"
+      href="${symbol_dollar}{base}/static/jquery-easyui-1.4.1/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="${symbol_dollar}{base}/static/jquery-easyui-1.4.1/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${symbol_dollar}{base}/static/css/extIcon.css">
+<link rel="stylesheet" type="text/css" href="${symbol_dollar}{base}/static/css/common.css">

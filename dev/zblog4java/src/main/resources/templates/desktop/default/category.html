@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    #parse("desktop/default/component/header-wrapper.html")
+</head>
+<body>
+    #parse("desktop/default/component/body-wrapper.html")
+    <div class="container main">
+        <div class="row">
+            <div class="col middle-column big-middle-column">
+                <div class="archive-list">
+                    #foreach($model in $models)
+                    <div class="archive-list-item">
+                        <div class="post-intro" style="width: 100%">
+                            <h2>
+                                <a target="_blank"
+                                   href="/article/${model.id}.html"> $model.title</a>
+                                <i class="fa fa-external-link"></i>
+                            </h2>
+                            <p>$!model.intro</p>
+                        </div>
+                    </div>
+                    #end
+                </div>
+                <div class="article">
+                    <div class="archive-list-item">
+                        <div id="wp_page_numbers">
+                            <ul>
+                                <p class="pagebar">
+                                    #set($pageCount=$!page.pages)
+                                    #set($pageCurrent=$!page.current)
+                                    #set($prePage=$!pageCurrent - 1)
+                                    #set($nextPage=$!pageCurrent + 1)
+                                    #set($next5Page=$!pageCurrent + 5)
+                                <li><a href="/category-$!{cateId}?pageNo=$!prePage">上一页</a></li>
+                                #if($pageCount == 0)
+                                <li><a href="/category-$!{cateId}.html?pageNo=1">1</a></li>
+                                #elseif($pageCount < 10)
+                                #foreach($pageNO in [1..$pageCount])
+                                <li><a href="/category-$!{cateId}.html?pageNo=$pageNO">$pageNO</a></li>
+                                #end
+                                #elseif($pageCurrent < 6)
+                                #foreach($pageNO in [1..10])
+                                <li><a href="/category-$!{cateId}.html?pageNo=$pageNO">$pageNO</a></li>
+                                #end
+                                #elseif($pageCount < $next5Page)
+                                #set($tempStart = $pageCount - 9)
+                                #foreach($pageNO in [$tempStart..$pageCount])
+                                <li><a href="/category-$!{cateId}.html?pageNo=$pageNO">$pageNO</a></li>
+                                #end
+                                #else
+                                #set($tempStart=$pageCurrent - 5)
+                                #set($tempEnd=$pageCurrent + 5)
+                                #foreach($pageNO in [$tempStart..$tempEnd])
+                                <li><a href="/category-$!{cateId}.html?pageNo=$pageNO">$pageNO</a></li>
+                                #end
+                                #end
+                                <li><a href="/category-$!{cateId}.html?pageNo=$!nextPage">下一页</a></li>
+                                </p>
+                            </ul>
+                            <div style="float: none; clear: both;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="listcol last right-column">
+                <div class="tab tab-light-blue">欢迎加QQ群讨论</div>
+                <div class="sidebar-box">QQ群号：592835013</div>
+                <div class="sidebar-box cate-list">
+                    <div class="sidebar-box advertise-here list-link"><a>分类最新文章</a></div>
+                    <div class="cate-items">
+                        #foreach($new in $news)
+                        <a href="/article/${new.id}.html">${new.title}</a>
+                        #end
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    #parse("desktop/default/component/footer-wrapper.html")
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    #parse("system/component/global-macro.html")
+    #parse("system/component/header-wrapper.html")
+</head>
+<body>
+#parse("system/component/body-wrapper.html")
+
+<section class="main">
+    <div id="divMain">
+        <div class="divHeader"
+             style="padding-left: 38px; background: transparent url(&quot;/zb_system/image/common/comments_32.png&quot;) no-repeat scroll 3px 9px / 32px auto;">
+            评论管理
+        </div>
+        <div class="SubMenu" style="display: block;"><a href="../cmd.php?act=CommentMng&amp;ischecking=1"><span
+                class="m-left m-now">审核评论 (1)</span></a></div>
+        <div id="divMain2">
+            <form action="#" method="post" id="search" class="search"><p>搜索&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+                                                                                                          value=""
+                                                                                                          style="width:450px;"
+                                                                                                          name="search">
+                &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="提交" class="button"></p></form>
+            <form action="/zb_system/cmd.php?act=CommentBat" method="post">
+                <table border="1" class="tableFull tableBorder tableBorder-thcenter">
+                    <tbody>
+                    <tr class="color1">
+                        <th>ID</th>
+                        <th>上层ID</th>
+                        <th>名称</th>
+                        <th>正文</th>
+                        <th>文章</th>
+                        <th>日期</th>
+                        <th></th>
+                        <th><a onclick="BatchSelectAll();return false;" href="">全选</a></th>
+                    </tr>
+                    <tr class="color3">
+                        <td class="td5"><a title="查看评论ID=1" href="?act=CommentMng&amp;id=1">1</a></td>
+                        <td class="td5"></td>
+                        <td class="td10">admin</td>
+                        <td>
+                            <div style="overflow:hidden;max-width:500px;"><a target="_blank"
+                                                                             href="/?id=1"
+                                                                             class="button"><img width="16" title=""
+                                                                                                 alt=""
+                                                                                                 src="../image/admin/link.png"></a>
+                                232333333
+                                <div></div>
+                            </div>
+                        </td>
+                        <td class="td5">1</td>
+                        <td class="td15">2016-09-20 17:36:57</td>
+                        <td class="td10 tdCenter"><a
+                                href="../cmd.php?act=CommentDel&amp;id=1&amp;token=7136889cca014d74843a764603b6555a"
+                                onclick="return window.confirm('单击“确定”继续。单击“取消”停止。');" class="button"><img width="16"
+                                                                                                           title="删除"
+                                                                                                           alt="删除"
+                                                                                                           src="../image/admin/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                href="../cmd.php?act=CommentChk&amp;id=1&amp;ischecking=0&amp;token=7136889cca014d74843a764603b6555a"
+                                class="button"><img width="16" title="通过" alt="通过" src="../image/admin/ok.png"></a></td>
+                        <td class="td5 tdCenter"><input type="checkbox" value="1" name="id[]" id="id1"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <p style="float:right;"><input type="submit" value="删除所选项目" name="all_del">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                        type="submit" value="通过所选项目" name="all_pass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <p class="pagebar"><a href="/zb_system/cmd.php?act=CommentMng&amp;ischecking=1">‹‹</a>&nbsp;&nbsp;<a
+                        href="/zb_system/cmd.php?act=CommentMng&amp;ischecking=1">1</a>&nbsp;&nbsp;<a
+                        href="/zb_system/cmd.php?act=CommentMng&amp;ischecking=1">››</a>&nbsp;&nbsp;
+                </p>
+                <hr>
+            </form>
+        </div>
+        <script type="text/javascript">ActiveLeftMenu("aCommentMng");</script>
+        <script type="text/javascript">
+            AddHeaderIcon("/zb_system/image/common/comments_32.png");
+        </script>
+    </div>
+</section>
+#parse("system/component/footer-wrapper.html")
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>系统用户管理</title>
+        <meta charset="UTF-8">
+        #parse("commons/commonJs.vm")
+		#parse("commons/commonCss.vm")
+		<script type="text/javascript">
+			$(function() {
+				jQuery('#dg').datagrid({
+					url:'user/queryPaged',
+					columns:[[
+						{field:'id',checkbox:true}
+						,{field:'userName',title:'用户名',width:100}
+						,{field:'name',title:'姓名',width:100}
+						,{field:'opt',title:'操作',width:100,formatter:optionFun}
+				    ]],
+				    pagination:true,
+				    singleSelect:false,
+				    fitColumns:true,
+				    fit: true,
+				    toolbar:'#toolbar',
+			    	onDblClickRow: function(rowid,rowdata){
+						editForm();
+			    	}
+			    });
+			});
+			function optionFun(value,row,index) {
+                return '<a href="javascript:selectRoles('+row.id+');">选择角色</a>';
+			}
+		  	function newForm(){
+		  		Magic.openWin('新增系统用户','user/add',600,200);
+			}
+			function editForm(){
+				var row = jQuery('#dg').datagrid('getSelected');
+				if (row){
+					Magic.openWin('编辑系统用户','user/edit/'+row.id,600,300);
+				}
+			}
+			function selectRoles(userId) {
+				Magic.openWin('选择角色','/sys/user/selectRoles?userId='+userId,600,300);
+			}
+			function destroyForm(){
+                var rows = jQuery('#dg').datagrid('getSelections');
+                if (rows.length>0){
+					jQuery.messager.confirm('确认删除','确定删除该记录?',function(r){
+						if (r){
+                            var ids = [];
+                            jQuery.each(rows,function(index,row) {
+                                ids.push(row.id);
+                            });
+							jQuery.post('user/delete',{'ids':ids.toString()},function(result){
+								if(result.success) {
+									jQuery('#dg').datagrid('reload');    // reload the user data
+								} else {
+									jQuery.messager.show({    // show error message
+										title: '错误',
+										msg: result.message
+									});
+								}
+							});
+						}
+					});
+				}
+			}
+			
+			function contentSearch(){ 
+				var userName=jQuery('#filter_userName').val();
+		        jQuery('#dg').datagrid('load',{
+				'userName':userName		    	})}
+	    	
+		</script>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+   <table id="dg" data-options="toolbar:'#toolbar'"></table>
+    <div id="toolbar">
+    	<div class="search_box">
+			用户名：<input id="filter_userName" class="easyui-validatebox" >
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="contentSearch()">搜索</a>
+    	</div>
+    	<div class="btn_box">
+    		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newForm()">新增</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editForm()">编辑</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyForm()">删除</a>
+    	</div>
+	</div>
+</body>
+</html>

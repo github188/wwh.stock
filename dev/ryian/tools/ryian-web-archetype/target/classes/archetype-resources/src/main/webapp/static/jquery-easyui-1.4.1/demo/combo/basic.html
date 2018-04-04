@@ -1,0 +1,53 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Combo - jQuery EasyUI Demo</title>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <script type="text/javascript" src="../../jquery.min.js"></script>
+    <script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+</head>
+<body>
+<h2>Basic Combo</h2>
+
+<p>Click the right arrow button to show drop down panel that can be filled with any content.</p>
+
+<div style="margin:20px 0"></div>
+<select id="cc" style="width:150px"></select>
+
+<div id="sp">
+    <div style="color:${symbol_pound}99BBE8;background:${symbol_pound}fafafa;padding:5px;">Select a language</div>
+    <div style="padding:10px">
+        <input type="radio" name="lang" value="01"><span>Java</span><br/>
+        <input type="radio" name="lang" value="02"><span>C${symbol_pound}</span><br/>
+        <input type="radio" name="lang" value="03"><span>Ruby</span><br/>
+        <input type="radio" name="lang" value="04"><span>Basic</span><br/>
+        <input type="radio" name="lang" value="05"><span>Fortran</span>
+    </div>
+</div>
+<script type="text/javascript">
+    ${symbol_dollar}
+    (function () {
+        ${symbol_dollar}
+        ('${symbol_pound}cc').combo({
+            required: true,
+            editable: false
+        });
+        ${symbol_dollar}
+        ('${symbol_pound}sp').appendTo(${symbol_dollar}('${symbol_pound}cc').combo('panel'));
+        ${symbol_dollar}
+        ('${symbol_pound}sp input').click(function () {
+            var v = ${symbol_dollar}(this).val();
+            var s = ${symbol_dollar}(this).next('span').text();
+            ${symbol_dollar}
+            ('${symbol_pound}cc').combo('setValue', v).combo('setText', s).combo('hidePanel');
+        });
+    });
+</script>
+</body>
+</html>

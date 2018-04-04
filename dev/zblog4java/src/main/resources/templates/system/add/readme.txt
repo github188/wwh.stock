@@ -1,0 +1,1 @@
+add模块下的模板，从edit复制得来，只改了from的action，可以用jquery优化掉

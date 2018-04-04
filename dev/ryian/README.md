@@ -1,0 +1,3 @@
+#ryian
+#ryian是一个ryian是一个整合了多个开源框架的企业快速开发框架
+#ryian采用Spring+SpringMVC+MyBatis+Velocity+easyui的web选型

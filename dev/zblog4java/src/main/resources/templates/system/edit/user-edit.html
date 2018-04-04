@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    #parse("system/component/global-macro.html")
+    #parse("system/component/header-wrapper.html")
+</head>
+<body>
+#parse("system/component/body-wrapper.html")
+
+<section class="main">
+    <div id="divMain">
+        <div class="divHeader2" style="padding-left: 38px; background: transparent url('/system/image/common/user_32.png') no-repeat scroll 3px 9px / 32px auto;">$!title</div>
+        <div class="SubMenu"></div>
+        <div class="edit tag_edit" id="divMain2">
+            <form action="/system/management/user-edit.html" method="post" name="edit" id="edit">
+                <input type="hidden" value="$!model.id" name="id" id="edtID">
+                <input type="hidden" value="$!model.password" name="password" id="edtOldPassWord">
+                <p>
+                    <span class="title">用户级别:</span><br>
+                    <select id="cmbLevel" name="role" size="1" class="edit">
+                        #foreach($role in $!cache.roleModelList)
+                        #if($role.id == $!model.role)
+                        <option selected="selected" value="$role.id">$role.name</option>
+                        #else
+                        <option value="$role.id">$role.name</option>
+                        #end
+                        #end
+                    </select>
+                </p>
+                <p>
+                    <span class="title">名称:</span><span class="star">(*)</span><br>
+                    <input type="text" value="$!model.name" maxlength="20" name="name" size="40" class="edit" id="edtName">
+                </p>
+                <p>
+                    <span class="title">新密码:</span><br>
+                    <input type="password" value="" name="passwordNew" size="40" class="edit" id="edtPassword">
+                </p>
+                <p>
+                    <span class="title">原密码:</span><br>
+                    <input type="password" value="" name="PasswordRe" size="40" class="edit" id="edtPasswordRe">
+                </p>
+                <p>
+                    <span class="title">别名:</span><br>
+                    <input type="text" value="$!model.alias" name="alias" size="40" class="edit" id="edtAlias"></p>
+                <p>
+                    <span class="title">邮箱:</span><span class="star">(*)</span><br>
+                    <input type="text" value="$!model.email" name="email" size="40" class="edit" id="edtEmail"></p>
+                <p>
+                    <span class="title">摘要:</span><br>
+                    <textarea style="width:600px;" name="intro" id="edtIntro" rows="6" cols="3">$!model.intro</textarea>
+                </p>
+                <div class="editmod2" id="response"></div>
+                <p><input type="submit" id="btnPost" value="提交" class="button"></p>
+            </form>
+
+        </div>
+    </div>
+</section>
+<script>
+    $(function(){
+        //提交表单
+        $("#btnPost").click(function(){
+            var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/; //验证邮箱的正则表达式
+            if(!$("#edtEmail").val()||!reg.test($("#edtEmail").val())){
+                alert("邮箱格式不正确，可能过长或为空");
+                return false
+            }
+            if(!$("#edtName").val()){
+                alert("名称不能为空或格式不正确");
+                return false
+            }
+            if($("#edtOldPassWord").val()){
+                if(!$("#edtPassword").val()){
+                    alert("请确认新密码是否设置正确");
+                    return false
+                }
+                if(MD5($("#edtPasswordRe").val())!=$("#edtOldPassWord").val()){
+                    alert("请确认原密码是否设置正确");
+                    return false
+                }
+            }
+            alert("点击确认新密码："+$("#edtPassword").val());
+            $("#edtOldPassWord").val(MD5($("#edtPassword").val()));
+        });
+    });
+</script>
+#parse("system/component/footer-wrapper.html")
+</body>
+</html>

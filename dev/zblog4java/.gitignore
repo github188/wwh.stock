@@ -1,0 +1,12 @@
+.idea/
+classes/
+.project/
+.settings/
+.classpath
+.tern-project
+*.patch
+*.lock.db
+target/
+npm-debug.log
+static/log/
+uploadfile/

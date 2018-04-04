@@ -1,0 +1,46 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TimeSpinner Actions - jQuery EasyUI Demo</title>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <script type="text/javascript" src="../../jquery.min.js"></script>
+    <script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+</head>
+<body>
+<h2>TimeSpinner Actions</h2>
+
+<p>Click the buttons below to perform actions.</p>
+
+<div style="margin:20px 0;">
+    <a href="${symbol_pound}" class="easyui-linkbutton" onclick="getValue()">GetValue</a>
+    <a href="${symbol_pound}" class="easyui-linkbutton" onclick="setValue()">SetValue</a>
+    <a href="${symbol_pound}" class="easyui-linkbutton" onclick="disable()">Disable</a>
+    <a href="${symbol_pound}" class="easyui-linkbutton" onclick="enable()">Enable</a>
+</div>
+<input id="dt" class="easyui-timespinner" style="width:80px;">
+<script>
+    function getValue() {
+        var val = ${symbol_dollar}('${symbol_pound}dt').timespinner('getValue');
+        alert(val);
+    }
+    function setValue() {
+        ${symbol_dollar}
+        ('${symbol_pound}dt').timespinner('setValue', '09:45');
+    }
+    function disable() {
+        ${symbol_dollar}
+        ('${symbol_pound}dt').timespinner('disable');
+    }
+    function enable() {
+        ${symbol_dollar}
+        ('${symbol_pound}dt').timespinner('enable');
+    }
+</script>
+</body>
+</html>

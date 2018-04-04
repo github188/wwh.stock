@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    #parse("system/component/global-macro.html")
+    #parse("system/component/header-wrapper.html")
+</head>
+<body>
+#parse("system/component/body-wrapper.html")
+
+<section class="main">
+    <div id="divMain">
+        <div class="divHeader" style="padding-left: 38px; background: transparent url('/system/image/common/user_32.png') no-repeat scroll 3px 9px / 32px auto;">权限管理</div>
+        <div id="divMain2">
+            <table border="1" class="tableFull tableBorder tableBorder-thcenter">
+                <tbody>
+                <tr class="color1">
+                    <th>权限ID</th><th>权限名称</th><th>对应url</th>
+                    #foreach($role in $roles)
+                    <th>$!role.name</th>
+                    #end
+                </tr>
+                #foreach($permission in $permissions)
+                <tr class="color3">
+                    <td class="td5">$!permission.id</td>
+                    <td class="td10">$!permission.name</td>
+                    <td class="td10">$!permission.url</td>
+                    #foreach($rolehas in $!permission.roleHas.entrySet())
+                    <th class="td5">
+                        #if($!rolehas.value==1)
+                        <input type="checkbox" class="roleChecked" roleId="$!{rolehas.key}" permissionId="$!{permission.id}" checked="checked" /> $!role.name
+                        #else
+                        <input type="checkbox" class="roleChecked" roleId="$!{rolehas.key}" permissionId="$!{permission.id}" /> $!role.name
+                        #end
+                    </th>
+                    #end
+                </tr>
+                #end
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<script>
+    $(function(){
+        //提交表单
+        $(".roleChecked").click(function(){
+            var roleId=$(this).attr("roleId");
+            var permissionId=$(this).attr("permissionId");
+            var status=$(this).attr("checked")=='checked'?1:0;
+            $.ajax({
+                type:'post',
+                url:'/system/management/authority-edit.json?roleId='+roleId+'&permissionId='+permissionId+'&status='+status,
+                success:function(data){alert(data.result+"更新成功");},
+                error:function(data,status){alert("修改发生异常，您可能没有权限操作");}
+            })
+        });
+    });
+</script>
+#parse("system/component/footer-wrapper.html")
+</body>
+</html>

@@ -1,0 +1,95 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cell Editing in DataGrid - jQuery EasyUI Demo</title>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <script type="text/javascript" src="../../jquery.min.js"></script>
+    <script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+</head>
+<body>
+<h2>Cell Editing in DataGrid</h2>
+
+<p>Click a cell to start editing.</p>
+
+<div style="margin:20px 0;"></div>
+
+<table id="dg" class="easyui-datagrid" title="Cell Editing in DataGrid" style="width:700px;height:auto"
+       data-options="
+				iconCls: 'icon-edit',
+				singleSelect: true,
+				url: 'datagrid_data1.json',
+				method:'get',
+				onClickCell: onClickCell
+			">
+    <thead>
+    <tr>
+        <th data-options="field:'itemid',width:80">Item ID</th>
+        <th data-options="field:'productid',width:100,editor:'text'">Product</th>
+        <th data-options="field:'listprice',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">List
+            Price
+        </th>
+        <th data-options="field:'unitcost',width:80,align:'right',editor:'numberbox'">Unit Cost</th>
+        <th data-options="field:'attr1',width:250,editor:'text'">Attribute</th>
+        <th data-options="field:'status',width:60,align:'center',editor:{type:'checkbox',options:{on:'P',off:''}}">
+            Status
+        </th>
+    </tr>
+    </thead>
+</table>
+
+<script type="text/javascript">
+    ${symbol_dollar}.extend(${symbol_dollar}.fn.datagrid.methods, {
+        editCell: function (jq, param) {
+            return jq.each(function () {
+                var opts = ${symbol_dollar}(this).datagrid('options');
+                var fields = ${symbol_dollar}(this).datagrid('getColumnFields', true).concat(${symbol_dollar}(this).datagrid('getColumnFields'));
+                for (var i = 0; i < fields.length; i++) {
+                    var col = ${symbol_dollar}(this).datagrid('getColumnOption', fields[i]);
+                    col.editor1 = col.editor;
+                    if (fields[i] != param.field) {
+                        col.editor = null;
+                    }
+                }
+                ${symbol_dollar}
+                (this).datagrid('beginEdit', param.index);
+                for (var i = 0; i < fields.length; i++) {
+                    var col = ${symbol_dollar}(this).datagrid('getColumnOption', fields[i]);
+                    col.editor = col.editor1;
+                }
+            });
+        }
+    }
+    )
+    ;
+
+    var editIndex = undefined;
+    function endEditing() {
+        if (editIndex == undefined) {
+            return true
+        }
+        if (${symbol_dollar}('${symbol_pound}dg').datagrid('validateRow', editIndex)) {
+            ${symbol_dollar}
+            ('${symbol_pound}dg').datagrid('endEdit', editIndex);
+            editIndex = undefined;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function onClickCell(index, field) {
+        if (endEditing()) {
+            ${symbol_dollar}
+            ('${symbol_pound}dg').datagrid('selectRow', index)
+                    .datagrid('editCell', {index: index, field: field});
+            editIndex = index;
+        }
+    }
+</script>
+</body>
+</html>
